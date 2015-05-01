@@ -1,0 +1,24 @@
+// js/collapse.js
+
+jQuery(document).ready(function() {
+  assignCollapse();
+});
+
+function assignCollapse(elID) { // Attach toggle event to collapsible areas
+  var el = elID || document.body;
+  var sm = jQuery('.collapse-auto')[0];
+  jQuery(el).find('.panel-heading').each(function() {
+    var precol = sm || jQuery(this).attr('data-collapse');
+    if (precol) { jQuery(this).siblings().hide(); }
+    this.onclick = function() { clickCollapse(this); }
+  });
+}
+
+function clickCollapse(el) {
+  if (jQuery(el).next().is(":hidden")) {
+    jQuery(el).siblings().show('slow');
+    scrollToElement(el);
+  } else {
+    jQuery(el).siblings().hide('slow');
+  }
+}
