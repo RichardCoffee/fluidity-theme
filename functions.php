@@ -5,7 +5,12 @@
  */
 
 require_once('includes/theme-support.php');
+require_once('includes/library.php');
+require_once('includes/login.php');
+require_once('includes/misc.php');
 require_once('includes/sidebars.php');
+require_once('includes/wp_bootstrap_navwalker.php');
+require_once('classes/widgets.php');
 
 if (!function_exists('fluid_enqueue')) {
   function fluid_enqueue() {
@@ -47,5 +52,5 @@ if (!function_exists('register_fontawesome')) {
   function register_fontawesome() {
     wp_register_style('tcc-fawe', get_template_directory_uri()."/css/font-awesome.min.css",false,'4.3.0');
   }
-  add_action('admin_enqueue_scripts','register_fontawesome',9);
+  add_action('admin_enqueue_scripts','register_fontawesome');
 }
