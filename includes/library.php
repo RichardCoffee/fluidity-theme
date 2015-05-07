@@ -5,15 +5,16 @@ if (!function_exists('apply_clearfix')) {
   function apply_clearfix($args) {
     $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
     $args = wp_parse_args($args,$defs);
-    if (!isset($args['cnt'])) return;
+    if (empty($args['cnt'])) return;
     extract($args);
-    if ($lg && ($cnt%$lg==0)) echo "<div class='clearfix visible-lg-block'></div>";
-    if ($md && ($cnt%$md==0)) echo "<div class='clearfix visible-md-block'></div>";
-    if ($sm && ($cnt%$sm==0)) echo "<div class='clearfix visible-sm-block'></div>";
-    if ($xs && ($cnt%$xs==0)) echo "<div class='clearfix visible-xs-block'></div>";
+    if ($lg && ($cnt%(intval((12/$lg)))==0)) echo "<div class='clearfix visible-lg-block'></div>";
+    if ($md && ($cnt%(intval((12/$md)))==0)) echo "<div class='clearfix visible-md-block'></div>";
+    if ($sm && ($cnt%(intval((12/$sm)))==0)) echo "<div class='clearfix visible-sm-block'></div>";
+    if ($xs && ($cnt%(intval((12/$xs)))==0)) echo "<div class='clearfix visible-xs-block'></div>";
   }
 }
 
+// Limit length of title string
 if (!function_exists('browser_title')) {
   function browser_title($title,$sep) {
     if (is_feed()) return $title;
@@ -28,6 +29,7 @@ if (!function_exists('browser_title')) {
   add_filter('wp_title','browser_title',10,2);
 }
 
+// convert user data to flat object
 if (!function_exists('convert_user_meta')) {
   function convert_user_meta($ID) {
     $data = get_user_meta($ID);
@@ -39,6 +41,7 @@ if (!function_exists('convert_user_meta')) {
   }
 }
 
+// get term name string
 if (!function_exists('get_term_name')) {
   function get_term_name($tax,$slug) {
     $term = get_term_by('slug',$slug,$tax);
@@ -162,6 +165,7 @@ if (!function_exists('list_filter_hooks')) {
   #add_action('wp_footer','tcc_list_hooks');
 }
 
+// generate log entry, with comment
 if (!function_exists('log_entry')) {
   function log_entry($message,$mess2='') {
     if (WP_DEBUG) {
@@ -175,25 +179,29 @@ if (!function_exists('log_entry')) {
   }
 }
 
+//  show data inline
 if (!function_exists('showme')) {
-  function showme($title,$data) { ?>
-    <div class="col-md-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading" data-collapse="1">
-          <h3 class="panel-title"><?php
-            echo $title; ?>
-          </h3>
+  function showme($title,$data) {
+    if (WP_DEBUG) { ?>
+      <div class="col-md-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading" data-collapse="1">
+            <h3 class="panel-title"><?php
+              echo $title; ?>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <pre><?php
+              print_r($data); ?>
+            </pre>
+          </div>
         </div>
-        <div class="panel-body">
-          <pre><?php
-            print_r($data); ?>
-          </pre>
-        </div>
-      </div>
-    </div><?php
+      </div><?php
+    }
   }
 }
 
+// another log entry function
 if (!function_exists('tcc_log_entry')) {
   function tcc_log_entry($message,$mess2='') {
     if (WP_DEBUG) {
@@ -213,7 +221,7 @@ if (!function_exists('tcc_log_entry')) {
 if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
   function who_am_i($file) {
-    static $flag = '';
+    static $flag = ''; // give capability to turn this off via a flag file
     if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
     if (WP_DEBUG && ($flag=='yes')) {
       $display = $file;
