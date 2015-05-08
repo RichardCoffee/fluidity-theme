@@ -5,7 +5,7 @@ class TCC_Basic_Widget extends WP_Widget {
   protected $title = '';
   protected $desc  = '';
   protected $slug  = '';
-  
+
   function __construct($slug='',$title='',$desc=array()) {
     if (empty($this->slug)) $this->slug = $slug; // FIXME:  update all current widgets to use $this->slug
     parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
