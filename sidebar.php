@@ -12,6 +12,10 @@ if (is_front_page()) {
 }
 if (!$loaded) {
   global $wp_query;
+  $post_type = $wp_query->get('post_type');
+  if ($post_type) {
+    $loaded = load_sidebar($post_type,$post_type.'_sidebar');
+  }
 }
 
 function get_sidebar_parameter() {
@@ -23,16 +27,15 @@ function get_sidebar_parameter() {
   return array();
 }
 
-if (!function_exists('load_sidebar')) {
-  function load_sidebar($sidebars) {
-    foreach($sidebars as $sidebar) {
-      if (is_active_sidebar($sidebar)) {
-        if (dynamic_sidebar($sidebar)) return true;
-      }
+function load_sidebar($sidebars) {
+  foreach($sidebars as $sidebar) {
+    if (is_active_sidebar($sidebar)) {
+      if (dynamic_sidebar($sidebar)) return true;
     }
-    return false;
   }
+  return false;
 }
+
 
 
 ?>
