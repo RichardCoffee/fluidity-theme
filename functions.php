@@ -10,6 +10,7 @@ require_once('includes/actions.php');
 require_once('includes/filters.php');
 require_once('includes/login.php');
 require_once('includes/misc.php');
+require_once('includes/options.php');
 require_once('includes/sidebars.php');
 require_once('includes/wp_bootstrap_navwalker.php');
 require_once('includes/third-party.php');
