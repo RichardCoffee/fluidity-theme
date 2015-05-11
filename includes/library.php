@@ -14,39 +14,6 @@ if (!function_exists('apply_clearfix')) {
   }
 }
 
-if (!function_exists('browser_body_class')) {
-  // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
-  function browser_body_class($classes) {
-    global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
-    if     ($is_lynx)   $classes[] = 'lynx';
-    elseif ($is_gecko)  $classes[] = 'gecko';
-    elseif ($is_opera)  $classes[] = 'opera';
-    elseif ($is_NS4)    $classes[] = 'ns4';
-    elseif ($is_safari) $classes[] = 'safari';
-    elseif ($is_chrome) $classes[] = 'chrome';
-    elseif ($is_IE)     $classes[] = 'ie';
-    else                $classes[] = 'unknown';
-    if     ($is_iphone) $classes[] = 'iphone';
-    return $classes;
-  }
-  add_filter('body_class','browser_body_class');
-}
-
-// Limit length of title string
-if (!function_exists('browser_title')) {
-  function browser_title($title,$sep) {
-    if (is_feed()) return $title;
-    $test = get_bloginfo('name');
-    $spot = strpos($title,$test);
-    if ($spot) {
-      $new = substr($title,0,$spot);
-      $title = $new.' > '.$test;
-    }
-    return $title;
-  }
-  add_filter('wp_title','browser_title',10,2);
-}
-
 // convert user data to flat object
 if (!function_exists('convert_user_meta')) {
   function convert_user_meta($ID) {
@@ -65,17 +32,6 @@ if (!function_exists('get_term_name')) {
     $term = get_term_by('slug',$slug,$tax);
     if ($term) return $term->name;
     return '';
-  }
-}
-
-if (!function_exists('load_sidebar')) {
-  function load_sidebar($sidebars) {
-    foreach($sidebars as $sidebar) {
-      if (is_active_sidebar($sidebar)) {
-        if (dynamic_sidebar($sidebar)) return true;
-      }
-    }
-    return false;
   }
 }
 
@@ -148,37 +104,39 @@ if (!function_exists('debug_rewrite_rules')) {
 // source unknown
 if (!function_exists('list_filter_hooks')) {
   function list_filter_hooks( $hook = '' ) {
-    global $wp_filter;
-    $hooks = isset( $wp_filter[$hook] ) ? $wp_filter[$hook] : array();
-    $hooks = call_user_func_array( 'array_merge', $hooks );
-    foreach( $hooks as &$item ) {
-      // function name as string or static class method eg. 'Foo::Bar'
-      if ( is_string( $item['function'] ) ) {
-        $ref = strpos( $item['function'], '::' ) ? new ReflectionClass( strstr( $item['function'], '::', true ) ) : new ReflectionFunction( $item['function'] );
-        $item['file'] = $ref->getFileName();
-        $item['line'] = get_class( $ref ) == 'ReflectionFunction' ? $ref->getStartLine()
-                  : $ref->getMethod( substr( $item['function'], strpos( $item['function'], '::' ) + 2 ) )->getStartLine();
-      // array( object, method ), array( string object, method ), array( string object, string 'parent::method' )
-      } elseif ( is_array( $item['function'] ) ) {
-        $ref = new ReflectionClass( $item['function'][0] );
-        // $item['function'][0] is a reference to existing object
-        $item['function'] = array(
-                  is_object($item['function'][0]) ? get_class($item['function'][0]) : $item['function'][0],
-                  $item['function'][1] );
-        $item['file'] = $ref->getFileName();
-        $item['line'] = strpos( $item['function'][1], '::' )
-                  ? $ref->getParentClass()->getMethod( substr( $item['function'][1], strpos( $item['function'][1], '::' ) + 2 ) )->getStartLine()
-                  : $ref->getMethod( $item['function'][1] )->getStartLine();
-      // closures
-      } elseif (is_callable( $item['function'])) {
-        $ref = new ReflectionFunction($item['function']);
-        $item['function'] = get_class($item['function']);
-        $item['file']     = $ref->getFileName();
-        $item['line']     = $ref->getStartLine();
+    if (WP_DEBUG) {
+      global $wp_filter;
+      $hooks = isset( $wp_filter[$hook] ) ? $wp_filter[$hook] : array();
+      $hooks = call_user_func_array( 'array_merge', $hooks );
+      foreach( $hooks as &$item ) {
+        // function name as string or static class method eg. 'Foo::Bar'
+        if ( is_string( $item['function'] ) ) {
+          $ref = strpos( $item['function'], '::' ) ? new ReflectionClass( strstr( $item['function'], '::', true ) ) : new ReflectionFunction( $item['function'] );
+          $item['file'] = $ref->getFileName();
+          $item['line'] = get_class( $ref ) == 'ReflectionFunction' ? $ref->getStartLine()
+                    : $ref->getMethod( substr( $item['function'], strpos( $item['function'], '::' ) + 2 ) )->getStartLine();
+        // array( object, method ), array( string object, method ), array( string object, string 'parent::method' )
+        } elseif ( is_array( $item['function'] ) ) {
+          $ref = new ReflectionClass( $item['function'][0] );
+          // $item['function'][0] is a reference to existing object
+          $item['function'] = array(
+                    is_object($item['function'][0]) ? get_class($item['function'][0]) : $item['function'][0],
+                    $item['function'][1] );
+          $item['file'] = $ref->getFileName();
+          $item['line'] = strpos( $item['function'][1], '::' )
+                    ? $ref->getParentClass()->getMethod( substr( $item['function'][1], strpos( $item['function'][1], '::' ) + 2 ) )->getStartLine()
+                    : $ref->getMethod( $item['function'][1] )->getStartLine();
+        // closures
+        } elseif (is_callable( $item['function'])) {
+          $ref = new ReflectionFunction($item['function']);
+          $item['function'] = get_class($item['function']);
+          $item['file']     = $ref->getFileName();
+          $item['line']     = $ref->getStartLine();
+        }
       }
+      log_entry($hooks);
+      #return $hooks;
     }
-    log_entry($hooks);
-  #  return $hooks;
   }
   #add_action('wp_footer','tcc_list_hooks');
 }
@@ -219,35 +177,20 @@ if (!function_exists('showme')) {
   }
 }
 
-// another log entry function
-if (!function_exists('tcc_log_entry')) {
-  function tcc_log_entry($message,$mess2='') {
-    if (WP_DEBUG) {
-      if (is_array($message) || is_object($message)) {
-        error_log(print_r($message, true));
-      } else {
-        error_log($message);
-      }
-      if ($mess2) tcc_log_entry($mess2);
-    }
-  }
-} else {
-  // track file load order
-  log_entry('pre-existing tcc_log_entry_function'.who_am_i(__FILE__));
-}
-
 if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
   function who_am_i($file) {
-    static $flag = ''; // give capability to turn this off via a flag file
-    if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
-    if (WP_DEBUG && ($flag=='yes')) {
-      $display = $file;
-      $pos = strpos($file,'wp-content');
-      if ($pos) {
-        $display = substr($file,$pos+10);
+    if (WP_DEBUG)  {
+      static $flag = ''; // give capability to turn this off via a flag file
+      if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
+      if ($flag=='yes') {
+        $display = $file;
+        $pos = strpos($file,'wp-content');
+        if ($pos) {
+          $display = substr($file,$pos+10);
+        }
+        echo "<p>$display</p>";
       }
-      echo "<p>$display</p>";
     }
   }
 }

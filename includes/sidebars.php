@@ -6,14 +6,12 @@ if (!function_exists('register_fluid_sidebars')) {
   function register_fluid_sidebars() {
 
     $color    = 'primary'; // FIXME: get theme color option
-
     $b_widget = "<div class='panel panel-$color'>";
     $b_title  = "<div class='panel-heading'><h3 class='panel-title text-center'>";
     $a_title  = "</h3></div><div class='panel-body'>";
     $a_widget = "</div></div>";
 
     $sidebars = array();
-
     $sidebars[] = array('name'          => __('Three Column Sidebar','tcc-fluid'),
                         'id'            => 'three_column',
                         'before_widget' => "<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>$b_widget",
