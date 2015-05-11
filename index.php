@@ -4,14 +4,12 @@
  *
  */
 
-get_header();
+get_header(); ?>
 
-$contain = 'container-fluid'; ?>
-
-<div class="<?php echo $contain; ?>">
+<div class="<?php echo container_type(); ?>">
   <div class="row">
 
-    <div class="col-md-8 "><?php
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><?php
       who_am_i(__FILE__);
       if (have_posts()) {
         while(have_posts()) {
@@ -23,7 +21,7 @@ $contain = 'container-fluid'; ?>
       } ?>
     </div>
 
-    <div class="col-md-4"><?php
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
       get_sidebar(); ?>
     </div>
 

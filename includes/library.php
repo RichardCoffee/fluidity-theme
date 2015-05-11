@@ -165,7 +165,7 @@ if (!function_exists('log_entry')) {
 if (!function_exists('showme')) {
   function showme($title,$data) {
     if (WP_DEBUG) { ?>
-      <div class="col-md-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="panel panel-primary">
           <div class="panel-heading" data-collapse="1">
             <h3 class="panel-title"><?php
