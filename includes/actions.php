@@ -41,7 +41,7 @@ if (!function_exists('fluidity_main_header')) {
   add_action('tcc_main_header','fluidity_main_header');
 }
 
-if (!funcion_exists('header_logo')) {
+if (!function_exists('header_logo')) {
   function header_logo() {
     $logo = tcc_design('logo');
     if ($logo) { ?>
