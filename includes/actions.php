@@ -59,3 +59,13 @@ if (!function_exists('fluidity_main_menubar')) {
   }
   add_action('tcc_main_menubar','fluidity_main_menubar');
 }
+
+
+/*  Footer Functions */
+
+if (!function_exists('fluidity_footer')) {
+  function fluidity_footer() {
+    get_template_part('template_parts/footer',tcc_layout('footer'));
+  }
+  add_action('tcc_footer','fluidity_footer');
+}
