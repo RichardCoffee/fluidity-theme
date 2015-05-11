@@ -14,6 +14,12 @@ if (!function_exists('apply_clearfix')) {
   }
 }
 
+if (!function_exists('container_type')) {
+  function container_type() {
+    return 'container-fluid';
+  }
+}
+
 // convert user data to flat object
 if (!function_exists('convert_user_meta')) {
   function convert_user_meta($ID) {
