@@ -19,7 +19,7 @@ if (!function_exists('tcc_design')) {
 }
 
 if (!function_exists('tcc_layout')) {
-  function tcc_layout() {
+  function tcc_layout($option) {
     static $data;
     if (empty($data)) { $data = get_option('tcc_options_layout'); }
     if (isset($data[$option])) {
