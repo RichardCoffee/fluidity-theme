@@ -25,7 +25,7 @@ get_header(); ?>
     </div>
 
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
-      get_sidebar(); ?>
+      get_sidebar('standard'); ?>
     </div>
 
   </div><!-- .row -->
