@@ -15,7 +15,7 @@ if (!function_exists('apply_clearfix')) {
 }
 
 if (!function_exists('container_type')) {
-  function container_type($location) {
+  function container_type($location='post') {
     return 'container-fluid';
   }
 }

@@ -6,7 +6,7 @@
 
 get_header(); ?>
 
-<div class="<?php echo container_type(); ?>">
+<div class="<?php echo container_type('post'); ?>">
   <div class="row">
 
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><?php
