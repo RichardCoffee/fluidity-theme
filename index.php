@@ -15,7 +15,7 @@ get_header(); ?>
         while(have_posts()) {
           the_post(); ?>
           <h1><?php
-            the _title(); ?>
+            the_title(); ?>
           </h1>
           <div class="inner-padding article"><?php
             the_content(); ?>
