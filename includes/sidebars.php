@@ -12,6 +12,14 @@ if (!function_exists('register_fluid_sidebars')) {
     $a_widget = "</div></div>";
 
     $sidebars = array();
+
+    $sidebars[] = array('name'          => __('Standard Page Sidebar','tcc-fluid'),
+                        'id'            => 'standard',
+                        'before_widget' => $b_widget,
+                        'before_title'  => $b_title,
+                        'after_title'   => $a_title,
+                        'after_widget'  => $a_widget);
+
     $sidebars[] = array('name'          => __('Three Column Sidebar','tcc-fluid'),
                         'id'            => 'three_column',
                         'before_widget' => "<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>$b_widget",
@@ -21,13 +29,6 @@ if (!function_exists('register_fluid_sidebars')) {
 
     $sidebars[] = array('name'          => __('Front Page Sidebar','tcc-fluid'),
                         'id'            => 'front',
-                        'before_widget' => $b_widget,
-                        'before_title'  => $b_title,
-                        'after_title'   => $a_title,
-                        'after_widget'  => $a_widget);
-
-    $sidebars[] = array('name'          => __('Standard Page Sidebar','tcc-fluid'),
-                        'id'            => 'standard',
                         'before_widget' => $b_widget,
                         'before_title'  => $b_title,
                         'after_title'   => $a_title,
