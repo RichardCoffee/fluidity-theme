@@ -6,14 +6,18 @@ who_am_i(__FILE__);
 
 $loaded = false;
 if (is_front_page()) {
+  echo "<h5>front page</h5>";
   $loaded = load_sidebar(array('front'));
 } else {
+  echo "<h5>not front page</h5>";
   $loaded = load_sidebar(get_sidebar_parameter());
 }
 if (!$loaded) {
+  echo "<h5>wp_query sidebar</h5>";
   global $wp_query;
   $post_type = $wp_query->get('post_type');
   if ($post_type) {
+    echo "<h5>post_type: $post_type</h5>";
     $loaded = load_sidebar($post_type,$post_type.'_sidebar');
   }
 }
