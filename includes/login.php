@@ -82,7 +82,7 @@ if (!function_exists('tcc_login_form')) {
     $signin  = __('Sign In',       'tcc-theme');
     $signout = __('Sign Out',      'tcc-theme');
     $lost    = __('Lost Password', 'tcc-theme');
-    $color   = 'primary';
+    $color   = tcc_color_scheme();
     if ($navbar) {
       $align     = ($right) ? " navbar-right" : "";
       $formclass = "navbar-form$align";
