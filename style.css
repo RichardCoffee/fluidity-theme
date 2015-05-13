@@ -12,6 +12,10 @@ Copyright 2015, The Creative Collective
 */
 
 
+.article {
+  font-size: 18px;
+}
+
 /* bootstrap fixes */
 
 .panel-success {

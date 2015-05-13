@@ -18,7 +18,7 @@ get_header(); ?>
             <h1><?php
               the_title(); ?>
             </h1>
-            <div class="inner-padding article"><?php
+            <div class="article"><?php
               the_content(); ?>
             </div><?php
           }
