@@ -7,7 +7,7 @@ who_am_i(__FILE__);
 $loaded = false;
 if (is_front_page()) {
   echo "<h5>front page</h5>";
-  $loaded = load_sidebar(array('front'));
+  $loaded = load_sidebar(array('front','standard'));
 } else {
   echo "<h5>not front page</h5>";
   $loaded = load_sidebar(get_sidebar_parameter());
