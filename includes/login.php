@@ -117,7 +117,7 @@ if (!function_exists('tcc_login_form')) {
         </div><?php
         if (get_page_by_title('Lost Password'))
           echo "<a href='".wp_lostpassword_url(home_url() )." title='$lost'>$lost</a>"; ?>
-        <button type="submit" id="wp-submit" class="btn btn-primary" name="wp=submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button>
+        <button type="submit" id="wp-submit" class="btn btn-<?php echo $color; ?>" name="wp=submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button>
       </form><?php
     }
   }
