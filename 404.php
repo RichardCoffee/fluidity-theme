@@ -5,7 +5,7 @@
 
 get_header();
 
-$color = tcc_color_scheme('404'); ?>
+$color = tcc_color_scheme('404');
 
 if (WP_DEBUG) { ?>
  <div class="panel panel-<?php echo $color; ?> collapse-auto">
