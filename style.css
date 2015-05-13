@@ -18,7 +18,7 @@ Copyright 2015, The Creative Collective
   border-color: #4cae4c;
 }
 
-.panel-success > .panel-title {
+.panel-success > .panel-heading {
   background-color: #5cb85c;
   border-color: #4cae4c;
   color: #fff;
