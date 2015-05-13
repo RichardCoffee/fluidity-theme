@@ -9,7 +9,7 @@
 
 <div class="footer">
   <div class="container ">
-    <div class="row">
+    <div class="row"><?php
       who_am_i(__FILE__); ?>
       <div class="col-lg-3 col-md-3 hidden-sm hidden-xs ">
         <a href="<?php echo home_url(); ?>/">
