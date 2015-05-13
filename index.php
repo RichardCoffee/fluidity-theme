@@ -15,9 +15,8 @@ get_header(); ?>
         if (have_posts()) {
           while(have_posts()) {
             the_post(); ?>
-            <h1><?php
-              the_title(); ?>
-            </h1>
+            <h1><?php the_title(); ?></h1>
+            <h3><?php echo sprintf(__('Posted on %s','fluid-theme'),get_the_date()); ?></h3>
             <div class="article"><?php
               the_content(); ?>
             </div><?php
