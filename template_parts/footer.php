@@ -32,7 +32,7 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><?php
         $format = _x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','fluid-theme'); ?>
         <p class="text-center"><?php
-          echo sprintf($format,site_copyright_dates(),bloginfo('name')); ?>
+          echo sprintf($format,site_copyright_dates(),get_bloginfo('name')); ?>
           <br><?php
           $foot_menu = array();
           if (page_exists('conditions')) $foot_menu[] = array('conditions', __('Terms & Conditions','fluid-theme'));
