@@ -185,11 +185,23 @@ if (!function_exists('showme')) {
 
 if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
-  function who_am_i($file) {
+  function who_am_i($file='') {
     if (WP_DEBUG)  {
       static $flag = ''; // give capability to turn this off via a flag file
       if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
       if ($flag=='yes') {
+        if (empty($file)) {
+
+$trace = debug_backtrace();
+log_entry($trace);
+#  foreach($trace as $item) {
+#    if ($item['function']=='get_sidebar') {
+#      return $item['args']; 
+#    }
+#  }
+
+
+        }
         $display = $file;
         $pos = strpos($file,'wp-content');
         if ($pos) {
