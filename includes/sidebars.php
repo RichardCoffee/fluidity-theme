@@ -5,7 +5,7 @@
 if (!function_exists('register_fluid_sidebars')) {
   function register_fluid_sidebars() {
 
-    $color    = 'primary'; // FIXME: get theme color option
+    $color    = tcc_color_scheme('sidebars');
     $b_widget = "<div class='panel panel-$color'>";
     $b_title  = "<div class='panel-heading'><h3 class='panel-title text-center'>";
     $a_title  = "</h3></div><div class='panel-body'>";

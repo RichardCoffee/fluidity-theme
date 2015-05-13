@@ -30,3 +30,17 @@ if (!function_exists('tcc_layout')) {
     return '';
   }
 }
+
+if (!function_exists('tcc_color_scheme')) {
+  function tcc_color_scheme($location='') {
+/*
+ *    blue: primary
+ *   green: success
+ * lt blue: info
+ *  orange: warning
+ *     red: danger
+ *   white: default
+ */
+    return 'success';
+  }
+}
