@@ -11,9 +11,12 @@ Text Domain: tcc-fluid
 Copyright 2015, The Creative Collective
 */
 
+body {
+  font-size: 18px
+}
 
 .article {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 /* bootstrap fixes */
