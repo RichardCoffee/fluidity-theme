@@ -38,7 +38,7 @@
           if (page_exists('conditions')) $foot_menu[] = array('conditions', __('Terms & Conditions','fluid-theme'));
           if (page_exists('privacy'))    $foot_menu[] = array('privacy',    __('Privacy Policy','fluid-theme'));
           if (page_exists('security'))   $foot_menu[] = array('security',   __('Security Policy','fluid-theme'));
-          $foot_menu = apply_filter('tcc_foot_menu',$foot_menu);
+          $foot_menu = apply_filters('tcc_foot_menu',$foot_menu);
           if ($foot_menu) {
             $string = '';
             foreach($foot_menu as $option) {
