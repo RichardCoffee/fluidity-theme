@@ -26,11 +26,11 @@ if (WP_DEBUG) { ?>
 <div class="row text-center">
   <div class="col-md-12">
     <div class="article">
-      <h1  class="page-title"><?php _e("Ooops.....Well this is somewhat embarrassing, isn't it?",'fluid-theme'); ?></h1>
+      <h1  class="page-title"><?php _e("Ooops.....Well this is somewhat embarrassing, isn't it?",'tcc-fluid'); ?></h1>
       <div class="page-content">
-        <h2><?php _e('It seems as if the page you are looking for is not here','fluid-theme'); ?></h2>
-        <h3><?php _e('It looks like nothing was found at this location','fluid-theme'); ?></h3>
-        <a href="<?php echo home_url() ; ?>"><?php _e('Home Page','fluid-theme'); ?></a>
+        <h2><?php _e('It seems as if the page you are looking for is not here','tcc-fluid'); ?></h2>
+        <h3><?php _e('It looks like nothing was found at this location','tcc-fluid'); ?></h3>
+        <a href="<?php echo home_url() ; ?>"><?php _e('Home Page','tcc-fluid'); ?></a>
       </div><!-- .page-content -->
     </div><!-- .article -->
   </div><!-- .col-md-12 -->

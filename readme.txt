@@ -22,6 +22,7 @@
 
    Filters                       Description                                      Function                      File
 ========================     ==============================================    ========================   ============================
+ tcc_author_posts_title       main title for author's posts                     n/a                        author.php
  tcc_bottom_menu              footer menu below copyright                       n/a                        template_parts/footer.php
  tcc_login_username           placeholder for user name                         tcc_login_form             includes/login.php
  tcc_login_userpass           placeholder for user password                     tcc_login_form             includes/login.php

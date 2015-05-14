@@ -36,7 +36,7 @@ class TCC_Basic_Widget extends WP_Widget {
   protected function form_title($instance) {
     $instance['title'] = (isset($instance['title'])) ? $instance['title'] : $this->title;
     $form = "<p><label for='".$this->get_field_id('title')."'>";
-    $form.= __('Title:','fluid-theme')."</label>";
+    $form.= __('Title:','tcc-fluid')."</label>";
     $form.= "<input type='text' class='widefat'";
     $form.= " id='"   .$this->get_field_id('title')  ."'";
     $form.= " name='" .$this->get_field_name('title')."'";
@@ -56,7 +56,7 @@ class TCC_Basic_Widget extends WP_Widget {
 class TCC_Login_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Login & Registration','fluid-theme');
+    $this->title = __('Login & Registration','tcc-fluid');
     $this->desc  = $this->title;
     $this->slug  = 'tcc_login';
     parent::__construct();
