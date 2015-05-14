@@ -37,7 +37,7 @@ function fluid_title($length,$echo=true,$after='...',$before='') {
       }
     }
     $new = $before.$new.$after;
-    $new = apply_filters('fluid_title',$new,$title);
+    $new = apply_filters('the_title',$title,get_the_ID());
     if ($echo) { echo $new; } else { return $new; }
   }
 }
