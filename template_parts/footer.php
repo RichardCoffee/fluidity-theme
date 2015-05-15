@@ -8,7 +8,7 @@
 <div class="ribbon"></div>
 
 <div class="footer">
-  <div class="container ">
+  <div class="<?php echo container_type('footer'); ?> ">
     <div class="row"><?php
       who_am_i(__FILE__); ?>
       <div class="col-lg-3 col-md-3 hidden-sm hidden-xs "><?php

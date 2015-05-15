@@ -1,0 +1,10 @@
+
+%inverse {
+  background-color: color(background);
+  border-color: color(bgHighlight);
+  color: color(textcolor);
+  &:hover, &:focus {
+    background-color: color(bgHighlight);
+    color: color(textHighlight);
+  }
+}

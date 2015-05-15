@@ -1,0 +1,62 @@
+/*
+ *  fluidity/css/success.css
+ *
+ *  bootstrap success color scheme
+ *
+ */
+.btn-success-inverse, .navbar-success .btn-success {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  color: #ffffff; }
+.btn-success-inverse:hover, .navbar-success .btn-success:hover, .btn-success-inverse:focus, .navbar-success .btn-success:focus {
+  background-color: #4cae4c;
+  color: #ffffff; }
+
+.navbar-success {
+  background-color: #5cb85c;
+  border-color: #4cae4c; }
+.navbar-success .navbar-brand {
+  color: #ffffff; }
+.navbar-success .navbar-brand:hover, .navbar-success .navbar-brand:focus {
+  color: #ffffff; }
+.navbar-success .navbar-text {
+  color: #ffffff; }
+.navbar-success .navbar-nav > li > a {
+  color: #ffffff; }
+.navbar-success .navbar-nav > li > a:hover, .navbar-success .navbar-nav > li > a:focus {
+  color: #ffffff; }
+.navbar-success .navbar-nav > .active > a, .navbar-success .navbar-nav > .active > a:hover, .navbar-success .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #4cae4c; }
+.navbar-success .navbar-nav > .open > a, .navbar-success .navbar-nav > .open > a:hover, .navbar-success .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #4cae4c; }
+.navbar-success .navbar-toggle {
+  border-color: #4cae4c; }
+.navbar-success .navbar-toggle:hover, .navbar-success .navbar-toggle:focus {
+  background-color: #4cae4c; }
+.navbar-success .navbar-toggle .icon-bar {
+  background-color: #ffffff; }
+.navbar-success .navbar-collapse, .navbar-success .navbar-form {
+  border-color: #ffffff; }
+.navbar-success .navbar-link {
+  color: #ffffff; }
+.navbar-success .navbar-link:hover {
+  color: #ffffff; }
+
+@media (max-width: 767px) {
+  .navbar-success .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff; }
+  .navbar-success .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-success .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff; }
+  .navbar-success .navbar-nav .open .dropdown-menu > .active > a, .navbar-success .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-success .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #4cae4c; } }
+.panel-success {
+  border-color: #4cae4c; }
+.panel-success > .panel-heading {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  color: #ffffff; }
+
+/*# sourceMappingURL=success.css.map */

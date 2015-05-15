@@ -18,15 +18,3 @@ body {
 .article {
   font-size: 20px;
 }
-
-/* bootstrap fixes */
-
-.panel-success {
-  border-color: #4cae4c;
-}
-
-.panel-success > .panel-heading {
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  color: #fff;
-}

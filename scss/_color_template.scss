@@ -1,0 +1,103 @@
+// fluidity/scss/_color_template.scss
+
+// template for bootstrap color scheme
+
+
+@import "functions";
+@import "placeholders";
+
+
+// buttons
+
+.btn-#{$colorName}-inverse {
+  @extend %inverse;
+}
+
+
+// navbars
+
+.navbar-#{$colorName} {
+  background-color: color(background);
+  border-color: color(bgHighlight);
+  .navbar-brand {
+    color: color(textcolor);
+    &:hover, &:focus { 
+      color: color(textHighlight);
+    }
+  }
+  .navbar-text {
+    color: color(textcolor);
+  }
+  .navbar-nav {
+    > li {
+      > a {
+        color: color(textcolor);
+        &:hover,  &:focus {
+          color: color(textHighlight);
+        }
+      }
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: color(textHighlight);
+        background-color: color(bgHighlight);
+      }
+    }
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: color(textHighlight);
+        background-color: color(bgHighlight);
+      }
+    }
+  }
+  .navbar-toggle {
+    border-color: color(bgHighlight);
+    &:hover, &:focus {
+      background-color: color(bgHighlight); }
+    .icon-bar {
+      background-color: color(textcolor);
+    }
+  }
+  .navbar-collapse,
+  .navbar-form {
+    border-color: color(textcolor); }
+  .navbar-link {
+    color: color(textcolor);
+    &:hover {
+      color: color(textHighlight);
+    }
+  }
+  .btn-#{$colorName} {
+    @extend %inverse;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .navbar-#{$colorName} .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: color(textcolor);
+      &:hover, &:focus {
+        color: color(textHighlight);
+      }
+    }
+    > .active {
+      > a, > a:hover, > a:focus, {
+        color: color(textHighlight);
+        background-color: color(bgHighlight);
+      }
+    }
+  }
+}
+
+
+// panels
+
+.panel-#{$colorName} {
+  border-color: color(bgHighlight);
+  > .panel-heading {
+    background-color: color(background);
+    border-color: color(bgHighlight);
+    color: color(textcolor);
+  }
+}
