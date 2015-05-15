@@ -26,10 +26,8 @@ if (!function_exists('fluid_enqueue')) {
     wp_enqueue_style('bootstrap');
     wp_enqueue_style('library');
     wp_enqueue_style('fluid');
-    wp_enqueue_style('colors');
     wp_enqueue_style('tcc-fawe');
     if ($color_file=fluid_color_scheme()) {
-log_entry("colors file: $base_url/css/colors/$color_file.css");
       wp_enqueue_style('colors',"$base_url/css/colors/$color_file.css"); }
     wp_register_script('sprintf', "$base_url/js/sprintf.js", null,                     false,true);
     wp_register_script('library', "$base_url/js/library.js", array('jquery','sprintf'),false,true);
