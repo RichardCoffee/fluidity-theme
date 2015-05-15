@@ -31,6 +31,7 @@ if (!function_exists('fluidity_header_bar_login')) {
 
 if (!function_exists('fluidity_main_header')) {
   function fluidity_main_header() { ?>
+<h1>Please be patient, this site under construction</h1>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 logo"><?php
       do_action('tcc_left_header'); ?>
     </div>
