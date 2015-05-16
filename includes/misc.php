@@ -22,6 +22,7 @@ function tcc_custom_colors() { ?>
 // Can only be used inside the Loop
 function fluid_title($length,$echo=true,$after='...',$before='') {
   $title = get_the_title();
+  return $title;
   if (strlen($title)>0) {
     $new = $title;
     if ($length && is_numeric($length)) {
