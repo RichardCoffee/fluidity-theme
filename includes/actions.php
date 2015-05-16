@@ -31,7 +31,7 @@ if (!function_exists('fluidity_header_bar_login')) {
 
 if (!function_exists('fluidity_main_header')) {
   function fluidity_main_header() { ?>
-<h1 class='text-center'><a href="<?php echo home_url() ; ?>">This site</a> currently under construction</h1>
+<h1 class='text-center'><a href="<?php echo home_url() ; ?>">This site</a> currently under construction by <a href="the-creative-collective.com" target="TCC">The Creative Collective</a></h1>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 logo"><?php
       do_action('tcc_left_header'); ?>
     </div>
