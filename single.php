@@ -11,6 +11,10 @@ get_header(); ?>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
 
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
+        get_sidebar('single'); ?>
+      </div>
+
 <!--      <div class="col-lg-8 col-md-8 col-sm-12 col-sx-12"> -->
         <div id="content" role="main"><?php
           who_am_i(__FILE__);
