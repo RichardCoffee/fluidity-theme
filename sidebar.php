@@ -35,7 +35,7 @@ function load_sidebar($sidebars) {
     if (is_active_sidebar($sidebar)) {
       if (dynamic_sidebar($sidebar)) {
         return true;
-      }
+      } else { echo "$sidebar not active"; }
     }
   }
   return false;
