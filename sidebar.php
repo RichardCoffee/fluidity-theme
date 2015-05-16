@@ -28,7 +28,7 @@ function get_sidebar_parameter() {
   $trace = debug_backtrace();
   foreach($trace as $item) {
     if ($item['function']=='get_sidebar') {
-      return $item['args'];
+      return $item['args'][0];
     }
   }
   return array();
