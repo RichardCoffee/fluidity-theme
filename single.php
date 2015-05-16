@@ -19,11 +19,13 @@ $layout = 'sidebar-both';
 
       if (($layout=='sidebar-left') || ($layout=='sidebar-both')) { ?>
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
+echo "<p>Sidebar Left</p>";
           get_sidebar('single'); ?>
         </div><?php
       }
       if (($layout=='sidebar-right') || ($layout=='sidebar-both')) { ?>
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right"><?php
+echo "<p>Sidebar Right</p>";
           get_sidebar('single'); ?>
         </div><?php
       } ?>
