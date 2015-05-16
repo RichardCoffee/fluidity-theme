@@ -10,7 +10,7 @@ $loaded = false;
 if (is_front_page()) {
   $loaded = load_sidebar(array('front','standard'));
 } else {
-  $loaded = load_sidebar(get_sidebar_parameter());
+  $loaded = load_sidebar(get_sidebar_parameter(),'standard');
 }
 if (!$loaded) {
   global $wp_query;
