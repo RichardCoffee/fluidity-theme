@@ -191,20 +191,11 @@ if (!function_exists('who_am_i')) {
       if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
       if ($flag=='yes') {
         if (empty($file)) {
-
-$trace = debug_backtrace();
-log_entry($trace);
-#  foreach($trace as $item) {
-#    if ($item['function']=='get_sidebar') {
-#      return $item['args']; 
-#    }
-#  }
-
-
+          $trace = debug_backtrace();
+          $file  = $trace[0]['file'];
         }
         $display = $file;
-        $pos = strpos($file,'wp-content');
-        if ($pos) {
+        if ($pos=strpos($file,'wp-content')) {
           $display = substr($file,$pos+10);
         }
         echo "<p>$display</p>";
