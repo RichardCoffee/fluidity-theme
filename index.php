@@ -17,7 +17,7 @@ get_header(); ?>
             the_post();
 #            $format  = __('Permanent Link to %s','tcc-fluid');
 #            $tooltip = sprintf($string,the_title_attribute()); ?>
-            <h1 class="text-center"><?php fluid_title(20); ?></h1>
+            <h1 class="text-center"><?php echo fluid_title(20); ?></h1>
             <h3 class="text-center"><?php echo sprintf(__('Posted on %s','tcc-fluid'),get_the_date()); ?></h3>
             <div class="article"><?php
               the_content(); ?>
