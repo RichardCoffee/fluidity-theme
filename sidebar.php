@@ -20,7 +20,7 @@ if (!$loaded) {
   $post_type = $wp_query->get('post_type');
   if ($post_type) {
     echo "<p>looking for post type $post_type</p>";
-    $loaded = load_sidebar($post_type,$post_type.'_sidebar');
+    $loaded = load_sidebar($post_type,$post_type.'_sidebar','standard');
   }
 }
 
@@ -39,8 +39,8 @@ function load_sidebar($sidebars) {
     if (is_active_sidebar($sidebar)) {
       if (dynamic_sidebar($sidebar)) {
         return true;
-      } else { echo "<p>$sidebar not active</p>"; }
-    }
+      } else { echo "<p>$sidebar non-dynamic</p>"; }
+    } else { echo "<p>$sidebar not active</p>"; }
   }
   return false;
 }
