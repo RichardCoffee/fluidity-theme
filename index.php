@@ -20,6 +20,7 @@ get_header(); ?>
             <div class="article"><?php
               the_content(); ?>
             </div><?php
+            comments_template();
           }
         } ?>
       </div>
