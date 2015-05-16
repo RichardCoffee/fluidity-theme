@@ -7,8 +7,8 @@ if (!function_exists('register_fluid_sidebars')) {
 
     $color    = tcc_color_scheme('sidebars');
     $b_widget = "<div class='panel panel-$color'>";
-    $b_title  = "<div class='panel-heading'><h3 class='panel-title text-center'>";
-    $a_title  = "</h3></div><div class='panel-body'>";
+    $b_title  = "<div class='panel-heading'><h3 class='panel-title text-center'><b>";
+    $a_title  = "</b></h3></div><div class='panel-body'>";
     $a_widget = "</div></div>";
 
     $sidebars = array();
