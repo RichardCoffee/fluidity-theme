@@ -7,7 +7,7 @@
 
 get_header(); ?>
 
-<div class="container">
+<div class="<?php echo container_type('single'); ?>">
   <div class="row">
 
     <div class="col-md-8">
