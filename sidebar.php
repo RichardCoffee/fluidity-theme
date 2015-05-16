@@ -8,14 +8,18 @@ who_am_i();
 
 $loaded = false;
 if (is_front_page()) {
+  echo "<p>front page</p>";
   $loaded = load_sidebar(array('front','standard'));
 } else {
+  echo "<p>another page</p>";
   $loaded = load_sidebar(get_sidebar_parameter(),'standard');
 }
 if (!$loaded) {
+  echo "<p>looking for post type</p>";
   global $wp_query;
   $post_type = $wp_query->get('post_type');
   if ($post_type) {
+    echo "<p>looking for post type $post_type</p>";
     $loaded = load_sidebar($post_type,$post_type.'_sidebar');
   }
 }
@@ -35,7 +39,7 @@ function load_sidebar($sidebars) {
     if (is_active_sidebar($sidebar)) {
       if (dynamic_sidebar($sidebar)) {
         return true;
-      } else { echo "$sidebar not active"; }
+      } else { echo "<p>$sidebar not active</p>"; }
     }
   }
   return false;
