@@ -20,6 +20,11 @@ $layout = 'sidebar-right';
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
           get_sidebar('single'); ?>
         </div><?php
+      }
+      if (($layout=='sidebar-right') || ($layout=='sidebar-both')) { ?>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right"><?php
+          get_sidebar('single'); ?>
+        </div><?php
       } ?>
 
 <!--      <div class="col-lg-8 col-md-8 col-sm-12 col-sx-12"> -->
@@ -58,13 +63,7 @@ $layout = 'sidebar-right';
           } ?>
 
         </div><!-- #content -->
-<!--      </div>--><!-- .col-md-8 --><?php
-
-      if (($layout=='sidebar-right') || ($layout=='sidebar-both')) { ?>
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
-          get_sidebar('single'); ?>
-        </div><?php 
-      } ?>
+<!--      </div>--><!-- .col-md-8 -->
 
     </div><!-- col-*-12 -->
   </div><!-- .row -->
