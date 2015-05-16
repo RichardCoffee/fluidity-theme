@@ -35,6 +35,7 @@ function get_sidebar_parameter() {
 }
 
 function load_sidebar($sidebars) {
+  echo "<pre>$sidebars</pre>";
   foreach($sidebars as $sidebar) {
     if (is_active_sidebar($sidebar)) {
       if (dynamic_sidebar($sidebar)) {
