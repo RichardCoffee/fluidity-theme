@@ -5,15 +5,22 @@
  *
  */
 
-get_header(); ?>
+get_header();
+
+$layout = 'sidebar-left';
+#$layout = 'sidebar-right';
+
+ ?>
 
 <div class="<?php echo container_type('single'); ?>">
   <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
 
-<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
-        get_sidebar('single'); ?>
-      </div>
+      if (($layout=='sidebar-left') || ($layout=='sidebar-both')) { ?>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
+          get_sidebar('single'); ?>
+        </div><?php
+      } ?>
 
 <!--      <div class="col-lg-8 col-md-8 col-sm-12 col-sx-12"> -->
         <div id="content" role="main"><?php
@@ -51,13 +58,15 @@ get_header(); ?>
           } ?>
 
         </div><!-- #content -->
-      </div><!-- .col-md-8 -->
+<!--      </div>--><!-- .col-md-8 --><?php
 
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
-        get_sidebar('single'); ?>
-      </div>
+      if (($layout=='sidebar-right') || ($layout=='sidebar-both')) { ?>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
+          get_sidebar('single'); ?>
+        </div><?php 
+      } ?>
 
-<!--    </div>--><!-- col-*-12 -->
+    </div><!-- col-*-12 -->
   </div><!-- .row -->
 </div><!-- .container --><?php
 
