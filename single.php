@@ -9,45 +9,49 @@ get_header(); ?>
 
 <div class="<?php echo container_type('single'); ?>">
   <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
 
-    <div class="col-md-8">
-      <div id="content" role="main"><?php
-        who_am_i(__FILE__);
-        if (have_posts()) {
-          while (have_posts()) {
-            the_post();
-            $string = __('Permanent Link to %s','tcc-realty');
-            $title  = sprintf($string,the_title_attribute()); ?>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-sx-12">
+        <div id="content" role="main"><?php
+          who_am_i(__FILE__);
+          if (have_posts()) {
+            while (have_posts()) {
+              the_post();
+              $string = __('Permanent Link to %s','tcc-realty');
+              $title  = sprintf($string,the_title_attribute()); ?>
 
-            <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-              <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php echo $title; ?>"><?php the_title(); ?></a></h2>
-              <small><?php the_time('F jS, Y') ?> <!-- by <?php the_author() ?> --></small>
+              <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
 
-              <div class="entry"><?php
-                the_content(); ?>
-              </div>
+                <h1 class="text-center"><?php echo fluid_title(20); ?></h1>
 
-              <p class="postmetadata"><?php
-                the_tags('Tags: ', ', ', '<br />'); ?> 
-                Posted in <?php the_category(', ') ?> | <?php edit_post_link('Edit', '', ' | ');
-                comments_popup_link('No Comments &#187', '1 Comment &#187', '% Comments &#187'); ?>
-              </p><?php
+                <h3 class="text-center"><?php echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),get_the_author()); ?></h3>
 
-              wp_link_pages(  );
-              comments_template(); ?>
+                <div class="article"><?php
+                  the_content(); ?>
+                </div>
 
-            </div><?php
+                <p class="postmetadata"><?php
+                  the_tags('Tags: ', ', ', '<br />'); ?> 
+                  Posted in <?php the_category(', ') ?> | <?php edit_post_link('Edit', '', ' | ');
+                  comments_popup_link('No Comments &#187', '1 Comment &#187', '% Comments &#187'); ?>
+                </p><?php
 
-          }
-        } ?>
+                wp_link_pages(  );
+                comments_template(); ?>
 
-      </div><!-- #content -->
-    </div><!-- .col-md-8 -->
+              </div><?php
 
-    <div class="col-md-4"><?php
-      get_sidebar('single'); ?>
-    </div>
+            }
+          } ?>
 
+        </div><!-- #content -->
+      </div><!-- .col-md-8 -->
+
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
+        get_sidebar('single'); ?>
+      </div>
+
+    </div><!-- col-*-12 -->
   </div><!-- .row -->
 </div><!-- .container --><?php
 
