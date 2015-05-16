@@ -16,15 +16,17 @@ get_header(); ?>
           who_am_i(__FILE__);
           if (have_posts()) {
             while (have_posts()) {
-              the_post();
-              $string = __('Permanent Link to %s','tcc-realty');
-              $title  = sprintf($string,the_title_attribute()); ?>
+              the_post();?>
 
-              <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
+              <div id="post-<?php the_ID(); ?>" <?php post_class() ?>>
 
-                <h1 class="text-center"><?php echo fluid_title(20); ?></h1>
+                <h1 class="text-center"><?php
+                  echo fluid_title(20); ?>
+                </h1>
 
-                <h3 class="text-center"><?php echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),get_the_author()); ?></h3>
+                <h3 class="text-center"><?php
+                  echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),get_the_author()); ?>
+                </h3>
 
                 <div class="article"><?php
                   the_content(); ?>
