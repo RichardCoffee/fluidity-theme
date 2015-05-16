@@ -8,7 +8,8 @@
 get_header();
 
 #$layout = 'sidebar-left';
-$layout = 'sidebar-right';
+#$layout = 'sidebar-right';
+$layout = 'sidebar-both';
 
  ?>
 
