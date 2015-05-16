@@ -16,9 +16,9 @@ get_header(); ?>
           while(have_posts()) {
             the_post();
             $format  = __('Permanent Link to %s','tcc-fluid');
-            $tooltip = sprintf($string,get_the_title()); ?>
+            $tooltip = sprintf($format,get_the_title()); ?>
             <h1 class="text-center">
-              <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php echo $tooltip; ?>"><?php echo fluid_title(); ?></a>
+              <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php echo $tooltip; ?>"><?php echo fluid_title(20); ?></a>
             </h1>
             <h3 class="text-center"><?php echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),get_the_author()); ?></h3>
             <div class="article"><?php
