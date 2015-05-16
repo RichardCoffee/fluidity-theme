@@ -14,8 +14,10 @@ get_header(); ?>
         who_am_i(__FILE__);
         if (have_posts()) {
           while(have_posts()) {
-            the_post(); ?>
-            <h1 class="text-center"><?php the_title(); ?></h1>
+            the_post();
+#            $format  = __('Permanent Link to %s','tcc-fluid');
+#            $tooltip = sprintf($string,the_title_attribute()); ?>
+            <h1 class="text-center"><?php fluid_title(40); ?></h1>
             <h3 class="text-center"><?php echo sprintf(__('Posted on %s','tcc-fluid'),get_the_date()); ?></h3>
             <div class="article"><?php
               the_content(); ?>
