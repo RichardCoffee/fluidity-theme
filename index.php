@@ -14,7 +14,7 @@ get_header(); ?>
         get_sidebar('standard'); ?>
       </div>
       <div class="col-lg-4 col-md-4 hidden-sm hidden-xs pull-right"><?php
-        get_sidebar('standard'); ?>
+        get_sidebar('fake'); ?>
       </div><?php
 
       who_am_i(__FILE__);
