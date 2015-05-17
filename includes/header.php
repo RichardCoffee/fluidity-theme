@@ -64,7 +64,7 @@ if (!function_exists('fluidity_header_logo')) {
   add_action('tcc_left_header_body','fluidity_header_logo');
 }
 
-if (!function_exists('fluidity_main_menubar')) {
+if ((!function_exists('fluidity_main_menubar')) && (file_exists('template_parts/menu.php'))) {
   function fluidity_main_menubar() {
     get_template_part('template_parts/menu',tcc_layout('menu'));
   }
