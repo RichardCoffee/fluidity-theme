@@ -44,12 +44,11 @@ $layout = 'sidebar-right';
 
               <p class="postmetadata"><?php
                 the_tags(__('Tags','tcc-fluid').': ', ', ', '<br />');
-                $format = _x('Posted in %s','a category or list of categories','tcc-fluid');
-showme('category',get_the_category());
-                $string = sprintf($format,get_the_category(', '));
-                $string.= ' | '.edit_post_link(__('Edit','tcc-fluid'), '', ' | ');
-                $string.= comments_popup_link('No Comments', '1 Comment', '% Comments');
-                echo $string; ?>
+                _ex('Posted in ','string will be followed by a category or list of categories','tcc-fluid');
+                the_category(', '));
+                echo ' | ';
+                edit_post_link(__('Edit','tcc-fluid'), '', ' | ');
+                comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
               </p><?php
 
               wp_link_pages();
