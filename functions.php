@@ -39,7 +39,15 @@ if (!function_exists('fluidity_enqueue')) {
       wp_enqueue_script('comment-reply'); } // enable threaded comments
     do_action('tcc_enqueue');
   }
-  add_action('wp_enqueue_scripts','fluid_enqueue');
+  add_action('wp_enqueue_scripts','fluidity_enqueue');
+}
+
+if (!function_exists('fluidity_admin_enqueue')) {
+  function fluidity_admin_enqueue() {
+    fluidity_register_fontawesome();
+    wp_enqueue('tcc-fawe');
+  }
+  add_action('admin_enqueue_scripts','fluidity_admin_enqueue');
 }
 
 if (!function_exists('fluidity_register_bootstrap')) {
@@ -54,7 +62,6 @@ if (!function_exists('fluidity_register_fontawesome')) {
   function fluidity_register_fontawesome() {
     wp_register_style('tcc-fawe', get_template_directory_uri()."/css/font-awesome.min.css",false,'4.3.0');
   }
-  add_action('admin_enqueue_scripts','register_fontawesome');
 }
 
 /** Temporary Construction functions **/
