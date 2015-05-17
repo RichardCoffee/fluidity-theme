@@ -23,7 +23,7 @@ if (!function_exists('fluidity_header_bar_login')) {
       tcc_login_form(true,true); ?>
     </div><?php
   }
-  add_action('tcc_top_right_header','fluidity_header_bar_login');
+  add_action('tcc_top_right_menubar','fluidity_header_bar_login');
 }
 
 if (!function_exists('fluidity_header_body')) {
