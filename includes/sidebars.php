@@ -50,4 +50,30 @@ if (!function_exists('register_fluid_sidebars')) {
   }
 }
 register_fluid_sidebars();
+
+if (!function_exists('get_sidebar_parameter')) {
+  function get_sidebar_parameter() {
+    $trace = debug_backtrace();
+    foreach($trace as $item) {
+      if ($item['function']=='get_sidebar') {
+        return $item['args'][0];
+      }
+    }
+    return array();
+  }
+}
+
+if (!function_exists('load_sidebar')) {
+  function load_sidebar($sidebars) {
+#    echo "<pre>"; print_r($sidebars); echo "</pre>";
+    foreach($sidebars as $sidebar) {
+      if (is_active_sidebar($sidebar)) {
+        if (dynamic_sidebar($sidebar)) {
+          return true;
+        } else { /*echo "<p>$sidebar non-dynamic</p>";*/ }
+      } else { /*echo "<p>$sidebar not active</p>";*/ }
+    }
+    return false;
+  }
+}
 ?>
