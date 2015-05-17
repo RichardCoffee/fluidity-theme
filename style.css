@@ -21,3 +21,7 @@ body {
   font-size: 20px;
 }
 
+.no-padding {
+  padding: 0;
+}
+
