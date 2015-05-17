@@ -10,7 +10,7 @@ $loaded = false;
 if (is_front_page()) {
   $loaded = load_sidebar(array('front','standard'));
 } else {
-  $loaded = load_sidebar(array(get_sidebar_parameter(),'standard'));
+  $loaded = load_sidebar(array(fluidity_sidebar_parameter(),'standard'));
 }
 if (!$loaded) {
   global $wp_query;

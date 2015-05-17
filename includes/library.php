@@ -14,6 +14,15 @@ if (!function_exists('apply_clearfix')) {
   }
 }
 
+if (!function_exists('fluid_color_scheme')) {
+  function fluid_color_scheme() {
+    $color    = tcc_color_scheme();
+    $base_dir = get_template_directory();
+    if (file_exists("$base_dir/css/colors/$color.css")) { return $color; }
+    return false;
+  }
+}
+
 if (!function_exists('container_type')) {
   function container_type($location='post') {
     return 'container-fluid';
@@ -64,23 +73,6 @@ if (!function_exists('page_exists')) {
         return true;
     }
     return false;
-  }
-}
-
-//  Uses earliest published post to generate copyright date
-if (!function_exists('site_copyright_dates')) {
-  function site_copyright_dates() {
-    global $wpdb;
-    $output = '';
-    $select = "SELECT YEAR(min(post_date_gmt)) AS firstdate, YEAR(max(post_date_gmt)) AS lastdate FROM $wpdb->posts WHERE post_status = 'publish'";
-    $copyright_dates = $wpdb->get_results($select);
-    if($copyright_dates) {
-      $output = "&copy; ".$copyright_dates[0]->firstdate;
-      if($copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate) {
-        $output .= '-'.$copyright_dates[0]->lastdate;
-      }
-    }
-    return $output;
   }
 }
 

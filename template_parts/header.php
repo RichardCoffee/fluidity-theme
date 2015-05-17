@@ -1,32 +1,23 @@
 <?php
 
 /*
- * fluidity/template_parts/header.php
+ * tcc-fluidity/template_parts/header.php
  *
  */
 
 ?>
+<div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>">
 
-<div class="header-topmenu">
-  <div class="<?php echo container_type('header-topmenu'); ?>">
-    <div class="row"><?php
-      do_action('tcc_top_menu_bar'); ?>
-    </div>
+  <div class="row header-topmenu"><?php
+    do_action('tcc_header_top_menubar'); ?>
   </div>
-</div>
 
-<div class="head-body">
-  <div class="<?php echo container_type('header-body'); ?>">
-    <div class="row"><?php
-      do_action('tcc_main_header'); ?>
-    </div>
+  <div class="row header-body"><?php
+    do_action('tcc_header_body_content'); ?>
   </div>
-</div>
 
-<div class="header-menubar">
-  <div class="<?php echo container_type('header-menubar'); ?>">
-    <div class="row"><?php
-      do_action('tcc_main_menubar'); ?>
-    </div>
+  <div class="row header-menubar"><?php
+    do_action('tcc_header_bottom_menubar'); ?>
   </div>
+
 </div>

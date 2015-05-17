@@ -51,18 +51,18 @@ if (!function_exists('register_fluid_sidebars')) {
 }
 register_fluid_sidebars();
 
-if (!function_exists('get_fluid_sidebar')) {
-  function get_fluid_sidebar($sidebar='standard') {
-#    do_action('get_sidebar',$sidebar);
+if (!function_exists('fluidity_get_sidebar')) {
+  function fluidity_get_sidebar($sidebar='standard') {
+    do_action('get_sidebar',$sidebar);
     get_template_part('sidebar',$sidebar);
   }
 }
 
-if (!function_exists('get_sidebar_parameter')) {
-  function get_sidebar_parameter() {
+if (!function_exists('fluidity_sidebar_parameter')) {
+  function fluidity_sidebar_parameter() {
     $trace = debug_backtrace();
     foreach($trace as $item) {
-      if ($item['function']=='get_fluid_sidebar') {
+      if ($item['function']=='fluidity_get_sidebar') {
         return $item['args'][0];
       }
     }
