@@ -73,7 +73,7 @@ function show_construction_title() {
     echo "$site currently under construction by $refer"; ?>
   </h1><?php
 }
-add_action('tcc_main_body_header','show_construction_title');
+add_action('tcc_header_body_content','show_construction_title');
 
 function control_construction_header($args) {
   $args['split'] = false;
