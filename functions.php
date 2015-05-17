@@ -45,7 +45,7 @@ if (!function_exists('fluidity_enqueue')) {
 if (!function_exists('fluidity_admin_enqueue')) {
   function fluidity_admin_enqueue() {
     fluidity_register_fontawesome();
-    wp_enqueue('tcc-fawe');
+    wp_enqueue_style('tcc-fawe');
   }
   add_action('admin_enqueue_scripts','fluidity_admin_enqueue');
 }
