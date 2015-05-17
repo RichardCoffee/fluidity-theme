@@ -10,6 +10,9 @@ get_header(); ?>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12">
 
+      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"><?php
+        get_sidebar('standard'); ?>
+      </div>
       <div class="col-lg-4 col-md-4 hidden-sm hidden-xs pull-right"><?php
         get_sidebar('standard'); ?>
       </div><?php
