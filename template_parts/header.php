@@ -9,7 +9,7 @@
 
 <div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>">
 
-  <div id="header-topmenu" class="row"><?php
+  <div id="header-topmenu" class="row navbar"><?php
     do_action('tcc_header_top_menubar'); ?>
   </div>
 

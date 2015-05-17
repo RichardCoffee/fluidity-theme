@@ -84,14 +84,13 @@ if (!function_exists('tcc_login_form')) {
     $lost    = __('Lost Password', 'tcc-fluid');
     $color   = tcc_color_scheme();
     if ($navbar) {
-      $align     = ($right) ? " navbar-right" : "";
-      $formclass = "navbar-form$align";
+      $formclass = 'navbar-form'.(($right) ? ' navbar-right' : '');
     } else {
       $formclass = "login-form";
     }
     if (is_user_logged_in()) { ?>
       <form class="<?php echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
-        <div style="text-align:center;"><?php
+        <div class="text-center;"><?php
           $action = ($navbar) ? 'tcc_navbar_signout' : 'tcc_widget_signout';
           do_action($action);
           $out  = wp_logout_url(home_url());
