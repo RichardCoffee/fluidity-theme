@@ -15,10 +15,9 @@ body {
   font-size: 18px
 }
 
-.article {
+
+.article,
+.article pre {
   font-size: 20px;
 }
 
-/**  Bootstrap Overrides **/
-
-pre { line-height: inherit; }
