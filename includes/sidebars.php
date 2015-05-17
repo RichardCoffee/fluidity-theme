@@ -51,11 +51,18 @@ if (!function_exists('register_fluid_sidebars')) {
 }
 register_fluid_sidebars();
 
+if (!function_exists('get_fluid_sidebar')) {
+  function get_fluid_sidebar($sidebar='standard') {
+#    do_action('get_sidebar',$sidebar);
+    get_template_part('sidebar',$sidebar);
+  }
+}
+
 if (!function_exists('get_sidebar_parameter')) {
   function get_sidebar_parameter() {
     $trace = debug_backtrace();
     foreach($trace as $item) {
-      if ($item['function']=='get_sidebar') {
+      if ($item['function']=='get_fluid_sidebar') {
         return $item['args'][0];
       }
     }

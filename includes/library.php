@@ -183,6 +183,15 @@ if (!function_exists('showme')) {
   }
 }
 
+//  show string inline
+if (!function_exists('tellme')) {
+  function tellme($string) {
+    if (WP_DEBUG) {
+      echo "<p>$string</p>";
+    }
+  }
+}
+
 if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
   function who_am_i($file='') {
