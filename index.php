@@ -4,16 +4,17 @@
  *
  */
 
-get_header(); ?>
+get_header();
+
+$layout = ""; ?>
 
 <div class="<?php echo container_type('post'); ?>">
   <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12"><?php
 
-      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"><?php
-        fluidity_get_sidebar('standard'); ?>
-      </div>
-      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs pull-right"><?php
+      $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
+      $sidebar_class.= ($layout=='sidebar-right') ? ' pull-right' : ''; ?>
+      <div class="<? echo $sidebar_class; ?>"><?php
         fluidity_get_sidebar('standard'); ?>
       </div><?php
 
