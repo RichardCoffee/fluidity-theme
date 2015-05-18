@@ -42,7 +42,7 @@
 
    Filters                       Description                                      Function                      File
 ========================     ==============================================    ========================   ============================
- tcc_author_posts_title       main title for author's posts                     n/a                        author.php
+ tcc_author_posts_header      main header for author's posts                     n/a                        author.php
  tcc_bottom_menu              footer menu below copyright                       n/a                        template_parts/footer.php
  tcc_header_body              control the header body layout                    fluidity_header_body       includes/header.php
  tcc_login_username           placeholder for user name                         tcc_login_form             includes/login.php

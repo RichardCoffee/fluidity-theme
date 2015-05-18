@@ -5,6 +5,8 @@
  *
  */
 
+$micro = TCC_Microdata::get_instance();
+
 get_header();
 
 #$layout = 'sidebar-left';
@@ -12,7 +14,7 @@ $layout = 'sidebar-right';
 
  ?>
 
-<div class="<?php echo container_type('single'); ?>">
+<div class="<?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
 
@@ -28,17 +30,17 @@ $layout = 'sidebar-right';
           while (have_posts()) {
             the_post();?>
 
-            <div id="post-<?php the_ID(); ?>" <?php post_class() ?>>
+            <div id="post-<?php the_ID(); ?>" <?php post_class(); $micro->BlogPosting(); ?>>
 
               <h1 class="text-center"><?php
                 echo fluid_title(20); ?>
               </h1>
 
               <h3 class="text-center"><?php
-                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),get_the_author()); ?>
+                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),$micro->get_the_date(),$micro->get_the_author()); ?>
               </h3>
 
-              <div class="article"><?php
+              <div class="article" itemprop="text"><?php
                 the_content(); ?>
               </div>
 

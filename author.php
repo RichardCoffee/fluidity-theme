@@ -1,21 +1,20 @@
 <?php
 
 /*
- *  fluidity/author.php
+ *  tcc-fluidity/author.php
  *
- * The template for displaying Author archive pages
- *
- * @link http://codex.wordpress.org/Template_Hierachy
  */
+
+$micro = TCC_Microdata::get_instance();
 
 get_header();
 
 $sidebar     = (is_search()) ? 'archive' : 'author';
 $has_sidebar = is_active_sidebar($sidebar);
-$col_primary = ($has_sidebar) ? "col-lg-8 col-md-8" : "col-md-12";
+$col_primary = ($has_sidebar) ? "col-lg-8 col-md-8" : "col-lg-12 col-md-12";
 $col_primary.= " col-sm-12 col-xs-12"; ?>
 
-<div class="container"><?php
+<div class="<?php echo container_type('post'); ?>" role="main" <?php echo $micro->Author(); ?>><?php
   who_am_i(); ?>
   <div class="row">
 
@@ -28,11 +27,11 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
         if (have_posts()) {
           $col = min(12,$wp_query->post_count*4);
           $title_class = "col-lg-$col col-md-$col col-sm-12 col-xs-12";
-          $title_posts = apply_filters('tcc_author_posts_title',__('Most Recent Posts','tcc-fluid')); ?>
-          <div class='<?php echo $title_class; ?>'>
+          $title_posts = apply_filters('tcc_author_posts_header',__('Most Recent Posts','tcc-fluid')); ?>
+          <div class='<?php echo $title_class; ?>' itemprop='headline'>
             <h3 class='text-center'><?php echo $title_posts; ?></h3>
           </div>
-          <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'><?php
+          <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' itemprop='blogPost' itemscope itemtype='http://schema.org/Blog'><?php
             tcc_navigation('above');
             while (have_posts()) {
               the_post(); ?>

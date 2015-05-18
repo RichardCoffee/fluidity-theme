@@ -20,7 +20,7 @@ if (!function_exists('site_copyright_dates')) {
     $select = "SELECT YEAR(min(post_date_gmt)) AS firstdate, YEAR(max(post_date_gmt)) AS lastdate FROM $wpdb->posts WHERE post_status = 'publish'";
     $copyright_dates = $wpdb->get_results($select);
     if($copyright_dates) {
-      $output = "&copy; ".$copyright_dates[0]->firstdate;
+      $output = "&copy; <span itemprop='copyrightYear'>{$copyright_dates[0]->firstdate}</span>";
       if($copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate) {
         $output .= '-'.$copyright_dates[0]->lastdate;
       }

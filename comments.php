@@ -4,14 +4,16 @@
  *
  */
 
-if (post_password_required()) { return; } ?>
+if (post_password_required()) { return; }
+global $micro; ?>
 
-<div id="comments" class="comments-area"><?php
+<div id="comments" class="comments-area" itemprop="comment" itemscope itemtype='http://schema.org/Comment'><?php
   if (have_comments()) { ?>
     <h2 class="comments-title"><?php
       $number = get_comments_number();
       $format = _n('One thought on %2$s','%1$s thoughts on %2$s',$number,'tcc-fluid');
-      $title  = '&ldquo;'.get_the_title().'&rdquo;';
+      $number = "<span itemprop='commentCount'>$number</span>";
+      $title  = '&ldquo;'.$micro->get_the_title().'&rdquo;';
       echo sprintf($format,$number,$title); ?>
     </h2><?php
     comment_navigation(); ?>
