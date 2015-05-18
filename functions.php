@@ -15,6 +15,7 @@ require_once('includes/options.php');
 require_once('includes/sidebars.php');
 require_once('includes/wp_bootstrap_navwalker.php');
 require_once('includes/third-party.php');
+require_once('classes/microdata.php');
 require_once('classes/widgets.php');
 
 if (!function_exists('fluidity_enqueue')) {
