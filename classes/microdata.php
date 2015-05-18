@@ -52,10 +52,21 @@ class TCC_Microdata {
     echo "itemscope itemtype='http://schema.org/WPFooter'";
   }
 
+  public function Header() {
+    echo "itemscope itemtype='http://schema.org/WPHeader'";
+  }
+
+  public function Navigation() {
+    echo "itemscope itemtype='http://schema.org/SiteNavigationElement'";
+  }
+
   public function ProfilePage() {
     echo "itemscope itemtype='http://schema.org/ProfilePage' itemprop='mainContentOfPage'";
   }
 
+  public function SideBar() {
+    echo "itemscope itemtype='http://schema.org/WPSideBar'";
+  }
   /*
    *  These functions should be utilized like so:
    *
