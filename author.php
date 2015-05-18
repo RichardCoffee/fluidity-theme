@@ -52,7 +52,7 @@ echo "<p>no posts</p>";
     </div><!-- .col-md-(8 or 12) --><?php
 
     if ($has_sidebar) { ?>
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
+      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs" <?php $micro->SideBar(); ?>><?php
         get_sidebar($sidebar); ?>
       </div><?php
     } ?>
