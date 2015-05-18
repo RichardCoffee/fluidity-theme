@@ -10,9 +10,7 @@ $micro = TCC_Microdata::get_instance();
 get_header();
 
 #$layout = 'sidebar-left';
-$layout = 'sidebar-right';
-
- ?>
+$layout = 'sidebar-right'; ?>
 
 <div class="<?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
   <div class="row">
@@ -20,7 +18,7 @@ $layout = 'sidebar-right';
 
       $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
       $sidebar_class.= ($layout=='sidebar-right') ? ' pull-right' : ''; ?>
-      <div class="<? echo $sidebar_class; ?> collapse-auto"><?php
+      <div class="<? echo $sidebar_class; ?> collapse-auto"> <?php $micro->SideBar(); ?><?php
         fluidity_get_sidebar('single'); ?>
       </div>
 
