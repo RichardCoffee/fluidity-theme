@@ -12,7 +12,7 @@ class TCC_Microdata {
 
   static $instance = null;
 
-  private function __construct {
+  private function __construct() {
 #    add_filter('comments_popup_link_attributes',array($this,'comments_popup_link_attributes',2));
 #    add_filter('comment_reply_link',            array($this,'comment_reply_link_filter',2));
 #    add_filter('get_avatar',                    array($this,'get_avatar',2));
