@@ -25,6 +25,6 @@ tcc_custom_colors(); ?>
 
 </head>
 
-<body <?php body_class('background'); ?> itemscope="itemscope" itemtype="http://schema.org/WebPage">
+<body <?php body_class('background'); ?>>
   <div id="overlay" class="hidden translucent fullview"></div><?php
   get_template_part('template_parts/header'); ?>
