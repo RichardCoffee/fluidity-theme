@@ -20,7 +20,7 @@ global $micro; ?>
     } ?>
     <h4 class="text-center" itemprop="name"><?php bloginfo('title'); ?></h4>
     <!-- FIXME: address needs to be editable option in theme options -->
-    <address class="text-center" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+    <address class="text-center" <?php $micro->PostalAddress(); ?>>
       <span itemprop="streetAddress">123 Main Street</span><br>
       <span itemprop="addressLocality">Van</span> <span itemprop="addressRegion">TX</span>, <span itemprop="postalCode">12345</span><br>
       Office: <span itemprop="telephone">888 555 1212</span><br>
@@ -42,7 +42,7 @@ global $micro; ?>
       if (page_exists('security'))   $foot_menu[] = array('security',   __('Security Policy',   'tcc-fluid'));
       $foot_menu = apply_filters('tcc_bottom_menu',$foot_menu);
       if ($foot_menu) {
-        $string = '<span '.$micro->Navigation().'>';
+        $string = '<span '.$micro->SiteNavigationElement().'>';
         foreach($foot_menu as $option) {
           $string.= "<a href='/{$option[0]}/'> {$option[1]} </a> | "; }
         echo substr($string,0,-3).'</span>';
