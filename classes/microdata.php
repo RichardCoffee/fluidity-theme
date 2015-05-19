@@ -55,11 +55,6 @@ class TCC_Microdata {
     echo "itemscope itemtype='http://schema.org/AboutPage' itemprop='mainContentOfPage'";
   }
 
-  // Note: 'Author' is not a schema.org type, function is provided for convenience only
-  public function Author() {
-    echo "itemprop='author' itemscope itemtype='http://schema.org/Person'";
-  }
-
   // descendant of 'CreativeWork'
   public function Blog() {
     echo "itemscope itemtype='http://schema.org/Blog'";
@@ -141,7 +136,7 @@ class TCC_Microdata {
   }
 
   public function get_the_author() {
-    $string = "<span itemprop='author' itemscope itemtype='http://schema.org/Person'>";
+    $string = "<span itemprop='author'>";
     $string.= get_the_author();
     $string.= "</span>";
     return $string;
