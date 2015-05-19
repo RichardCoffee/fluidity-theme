@@ -14,7 +14,7 @@ $has_sidebar = is_active_sidebar($sidebar);
 $col_primary = ($has_sidebar) ? "col-lg-8 col-md-8" : "col-lg-12 col-md-12";
 $col_primary.= " col-sm-12 col-xs-12"; ?>
 
-<div class="<?php echo container_type('post'); ?>" role="main" <?php echo $micro->Author(); ?>><?php
+<div class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Person(); ?>><?php
   who_am_i(); ?>
   <div class="row">
 
