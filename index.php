@@ -9,7 +9,7 @@ $layout = "";
 get_header(); ?>
 
 <div class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
-  <div class="row">
+  <div class="row" itemprop="mainContentOfPage">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12"><?php
 
       $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12";

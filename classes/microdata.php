@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  tcc-fluidity/classes/microdata.php
+ * tcc-fluidity/classes/microdata.php
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
  * General Public License as published by the Free Software Foundation; either version 2 of the License, 
@@ -11,6 +11,7 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  *  Sources: http://www.bloggingspell.com/add-schema-org-markup-wordpress/
+ *           http://leaves-and-love.net/how-to-improve-wordpress-seo-with-schema-org/
  *           https://github.com/justintadlock/hybrid-core
  *
  */
@@ -20,18 +21,10 @@ class TCC_Microdata {
   static $instance = null;
 
   private function __construct() {
-    add_filter('comments_popup_link_attributes',      array($this,'comments_popup_link_attributes'),     5);
-    add_filter('comment_reply_link',                  array($this,'comment_reply_link_filter'),          5);
-    add_filter('get_avatar',                          array($this,'get_avatar'),                         5);
-    add_filter('get_comment_author_link',             array($this,'get_comment_author_link'),            5);
-    add_filter('get_comment_author_url_link',         array($this,'get_comment_author_url_link'),        5);
-    add_filter('post_thumbnail_html',                 array($this,'post_thumbnail_html'),                5);
-    add_filter('the_author_posts_link',               array($this,'the_author_posts_link'),              5);
-    add_filter( 'wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), 5, 2);
-    add_filter( 'wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             5);
+    $this->filters();
   }
 
-  public static function get_instance () {
+  public static function get_instance() {
     if (self::$instance===null) {
       self::$instance = new TCC_Microdata();
     }
@@ -41,58 +34,103 @@ class TCC_Microdata {
   /*
    *  These functions should be inserted into elements like so:
    *
-   *  <div class="container" role="main" <?php $micro->Blog(); ?>>
+   *  <?php $instance = TCC_Microdata::get_instance(); ?>
+   *  <div class="container" role="main" <?php $instance->Blog(); ?>>
    *
    *  Notice that some functions either do not have the itemprop attribute
    *    or have an itemprop of 'mainContentOfPage'.  Please pay attention to
    *    this when utilizing these functions.  Extend the class if you have
    *    different needs.
+   *
+   *  The attributes itemprop and itemscope sometimes appear either before
+   *    or after the itemtype.  This serves merely as a reminder to the
+   *    programmer of what the function is designed for, and has no impact
+   *    whatsoever over how these attributes are interpreted by the browser
+   *    or search engine.  The itemprop will always apply to any -previously-
+   *    declared itemtype.  Do not misinterprete what 'previously' means.
    */
 
+  // descendant of 'CreativeWork->WebPage'
+  public function AboutPage() {
+    echo "itemscope itemtype='http://schema.org/AboutPage' itemprop='mainContentOfPage'";
+  }
+
+  // Note: 'Author' is not a schema.org type, function is provided for convenience only
   public function Author() {
     echo "itemprop='author' itemscope itemtype='http://schema.org/Person'";
   }
 
+  // descendant of 'CreativeWork'
   public function Blog() {
-    echo "itemscope itemtype='http://schema.org/Blog' itemprop='mainContentOfPage'";
+    echo "itemscope itemtype='http://schema.org/Blog'";
   }
 
+  // descendant of 'CreativeWork->Blog'
   public function BlogPosting() {
     echo "itemprop='blogPost' itemscope itemtype='http://schema.org/BlogPosting'";
   }
 
-  public function Person() {
-    echo "itemscope itemtype='http://schema.org/Person' itemprop='mainContentOfPage'";
+  // descendant of 'CreativeWork->WebPage'
+  public function ContactPage() {
+    echo "itemscope itemtype='http://schema.org/ContactPage' itemprop='mainContentOfPage'";
   }
 
+  // descendant of 'CreativeWork->WebPage'
+  public function ItemPage() {
+    echo "itemscope itemtype='http://schema.org/ItemPage' itemprop='mainContentOfPage'";
+  }
+
+
+  // first tier type
+  public function Person() {
+    echo "itemscope itemtype='http://schema.org/Person'";
+  }
+
+  // descendant of many types - see link
   public function PostalAddress() {
     echo "itemprop='address' itemscope itemtype='http://schema.org/PostalAddress'";
   }
 
+  // descendant of 'CreativeWork->WebPage'
   public function ProfilePage() {
     echo "itemscope itemtype='http://schema.org/ProfilePage' itemprop='mainContentOfPage'";
   }
 
+  // descendant of 'CreativeWork->WebPage'
+  public function SearchResultsPage() {
+    echo "itemscope itemtype='http://schema.org/SearchResultsPage' itemprop='mainContentOfPage'";
+  }
+
+  // descendant of 'CreativeWork->WebPage->WebPageElement'
   public function SiteNavigationElement() {
     echo "itemscope itemtype='http://schema.org/SiteNavigationElement'";
   }
 
+  // descendant of 'CreativeWork'
+  public function WebPage() {
+    echo "itemscope itemtype='http://schema.org/WebPage'";
+  }
+
+  // descendant of 'CreativeWork->WebPage->WebPageElement'
   public function WPFooter() {
     echo "itemscope itemtype='http://schema.org/WPFooter'";
   }
 
+  // descendant of 'CreativeWork->WebPage->WebPageElement'
   public function WPHeader() {
     echo "itemscope itemtype='http://schema.org/WPHeader'";
   }
 
+  // descendant of 'CreativeWork->WebPage->WebPageElement'
   public function WPSideBar() {
     echo "itemscope itemtype='http://schema.org/WPSideBar'";
   }
 
   /*
-   *  These functions should be utilized like so:
+   *  These functions can be utilized like so:
    *
-   *  echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),$instance->get_the_date(),$instance->get_the_author());
+   *  $instance = TCC_Microdata::get_instance();
+   *  echo sprintf(__('Posted on %1$s by %2$s','text-domain'),$instance->get_the_date(),$instance->get_the_author());
    *
    */
 
@@ -128,6 +166,18 @@ class TCC_Microdata {
    *  These are filters, and will do their work behind the scenes.  Nothing else is required.
    *
    */
+
+  private function filters() {
+    add_filter('comments_popup_link_attributes',      array($this,'comments_popup_link_attributes'),     5);
+    add_filter('comment_reply_link',                  array($this,'comment_reply_link_filter'),          5);
+    add_filter('get_avatar',                          array($this,'get_avatar'),                         5);
+    add_filter('get_comment_author_link',             array($this,'get_comment_author_link'),            5);
+    add_filter('get_comment_author_url_link',         array($this,'get_comment_author_url_link'),        5);
+    add_filter('post_thumbnail_html',                 array($this,'post_thumbnail_html'),                5);
+    add_filter('the_author_posts_link',               array($this,'the_author_posts_link'),              5);
+    add_filter( 'wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), 5, 2);
+    add_filter( 'wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             5);
+  }
 
   public function comments_popup_link_attributes($attr) {
     return 'itemprop="discussionURL"';
