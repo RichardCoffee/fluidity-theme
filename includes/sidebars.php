@@ -53,7 +53,6 @@ register_fluid_sidebars();
 
 if (!function_exists('fluidity_get_sidebar')) {
   function fluidity_get_sidebar($sidebar='standard') {
-    do_action('get_sidebar',$sidebar);
     get_template_part('sidebar',$sidebar);
   }
 }
@@ -72,7 +71,6 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 
 if (!function_exists('load_sidebar')) {
   function load_sidebar($sidebars) {
-#    echo "<pre>"; print_r($sidebars); echo "</pre>";
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {

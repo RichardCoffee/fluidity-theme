@@ -4,89 +4,50 @@
  *
  */
 
-$micro = TCC_Microdata::get_instance();
+$fluid = new Fluid_Layout();
+$micro = $fluid->microdata;
 
-get_header();
+get_header(); ?>
 
-$col_primary = "col-md-8";
-$col_sidebar = "col-md-4";
-$col_second  = "col-md-4";
-$clearfix    = "md=4";
-$sidebar     = (is_search()) ? 'search' : 'archive';
-$has_sidebar = is_active_sidebar($sidebar);
-if (!$has_sidebar) {
-  $col_primary = "col-md-12";
-  $col_second  = "col-md-3";
-  $clearfix    = "md=3";
-} ?>
+<div class="<?php echo container_type($fluid->page); ?>" <?php if (is_search()) $micro->SearchResultsPage(); ?>>
+  <div class="row"><?php
+    who_am_i();
 
-<div class="container"><?php
-  who_am_i(__FILE__); ?>
-  <div class="row">
+    $fluid->get_sidebar(); ?>
 
-    <div class="<?php echo $col_primary; ?>"><?php
+    <div class="<?php echo $fluid->primary_class; ?>" <?php $micro->Blog(); ?>><?php
       if (have_posts()) {
         if (is_search()) { ?>
           <h2 class="text-center"><?php
-            $string = _n('%d Search Result found for: %s','%d Search Results found for: %s',$wp_query->found_posts,'tcc-realty');
-            echo sprintf($string,$wp_query->found_posts,tcc_archive_title()); ?>
+            $format = _n('%d Search Result found','%d Search Results found',$wp_query->found_posts,'tcc-fluid');
+            $string = sprintf($format,$wp_query->found_posts);
+            $string = apply_filters('tcc_search_title',$string);
+            echo "<span itemprop='headline'>$string</span>"; ?>
           </h2>
-          <div class="col-md-12"><?php
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><?php
             do_action('tcc_pre_search'); ?>
           </div><?php
         }
         if ($wp_query->max_num_pages>1) tcc_navigation('above');
         $cnt  = 0;
         while(have_posts()) {
-          the_post();
-          $prop = get_post_meta(get_the_ID(),'prop_action');
-          $slug = sanitize_title($prop[0]); ?>
-          <div class="<?php echo $col_second; ?>"><?php
+          the_post(); ?>
+          <div class="<?php echo $fluid->inner_class; ?>" <?php $micro->BlogPosting(); ?>><?php
+            $slug = apply_filters('tcc_archive_content_slug',$wp_query->post_type);
             get_template_part('template_parts/content',$slug); ?>
           </div><?php
-          apply_clearfix("$clearfix&cnt=".(++$cnt));
+          apply_clearfix($fluid->clearfix.'&cnt='.(++$cnt));
         }
         if ($wp_query->max_num_pages>1) tcc_navigation('below');
         if (is_search()) { ?>
-          <div class="col-md-12"><?php
+          <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
             do_action('tcc_post_search'); ?>
           </div><?php
         }
       } ?>
-    </div><?php
-    if ($has_sidebar) { ?>
-      <div class="<?php echo $col_sidebar; ?>"><?php
-        get_sidebar($sidebar); ?>
-      </div><?php
-    } ?>
+    </div>
 
   </div><!-- .row -->
 </div><!-- .container --><?php
 
-get_footer();
-
-function tcc_archive_title() {
-  $result = '';
-  foreach($_GET as $tax=>$slug) {
-    if ($tax==='s') continue;
-    if (empty($slug)) continue;
-    $name  = false;
-    $key   = sanitize_text_field($tax);
-    $value = sanitize_text_field($slug);
-    $check = substr($key,0,4);
-    if ($check=='prop') {
-      $name = get_term_name($key,$value);
-    } else if (in_array($check,array('min_','max_'))) {
-#      $pref = ($check=='min_') ? 'Min' : 'Max';
-#      $type = (intval($value)==floatval($value)) ? "%s %s %2d" : "%s %s %3.1f";
-#      $name = sprintf($type,$pref,ucfirst(substr($key,4)),floatval($value));
-      // this code assumes min only, use above code for min/max
-      $type = (intval($value)==floatval($value)) ? "%s %2d" : "%s %3.1f";
-      $name = sprintf($type,ucfirst(substr($key,4)),floatval($value));
-    }
-    if ($name) $result.= (empty($result)) ? $name : " / $name";
-  }
-  return $result;
-}
-
-?>
+get_footer(); ?>

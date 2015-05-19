@@ -37,10 +37,6 @@ class TCC_Microdata {
    *  <?php $instance = TCC_Microdata::get_instance(); ?>
    *  <div class="container" role="main" <?php $instance->Blog(); ?>>
    *
-   *  Notice that some functions either do not have the itemprop attribute
-   *    or have an itemprop of 'mainContentOfPage'.  Please pay attention to
-   *    this when utilizing these functions.  Extend the class if you have
-   *    different needs.
    *
    *  The attributes itemprop and itemscope sometimes appear either before
    *    or after the itemtype.  This serves merely as a reminder to the
@@ -52,7 +48,7 @@ class TCC_Microdata {
 
   // descendant of 'CreativeWork->WebPage'
   public function AboutPage() {
-    echo "itemscope itemtype='http://schema.org/AboutPage' itemprop='mainContentOfPage'";
+    echo "itemscope itemtype='http://schema.org/AboutPage'";
   }
 
   // descendant of 'CreativeWork'
@@ -67,12 +63,12 @@ class TCC_Microdata {
 
   // descendant of 'CreativeWork->WebPage'
   public function ContactPage() {
-    echo "itemscope itemtype='http://schema.org/ContactPage' itemprop='mainContentOfPage'";
+    echo "itemscope itemtype='http://schema.org/ContactPage'";
   }
 
   // descendant of 'CreativeWork->WebPage'
   public function ItemPage() {
-    echo "itemscope itemtype='http://schema.org/ItemPage' itemprop='mainContentOfPage'";
+    echo "itemscope itemtype='http://schema.org/ItemPage'";
   }
 
 
@@ -88,12 +84,12 @@ class TCC_Microdata {
 
   // descendant of 'CreativeWork->WebPage'
   public function ProfilePage() {
-    echo "itemscope itemtype='http://schema.org/ProfilePage' itemprop='mainContentOfPage'";
+    echo "itemscope itemtype='http://schema.org/ProfilePage'";
   }
 
   // descendant of 'CreativeWork->WebPage'
   public function SearchResultsPage() {
-    echo "itemscope itemtype='http://schema.org/SearchResultsPage' itemprop='mainContentOfPage'";
+    echo "itemscope itemtype='http://schema.org/SearchResultsPage'";
   }
 
   // descendant of 'CreativeWork->WebPage->WebPageElement'
