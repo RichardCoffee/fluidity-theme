@@ -35,7 +35,7 @@ $layout = 'sidebar-right'; ?>
               </h1>
 
               <h3 class="text-center"><?php
-                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),$micro->get_the_date(),$micro->get_the_author()); ?>
+                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),$micro->get_the_author()); ?>
               </h3>
 
               <div class="article" itemprop="text"><?php

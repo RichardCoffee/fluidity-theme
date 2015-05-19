@@ -138,19 +138,16 @@ class TCC_Microdata {
     return $string;
   }
 
-  public function get_the_date() {
-    $datetime = get_the_date('Y-m-d');
-    $string = "<time itemprop='datePublished' datetime='$datetime'>";
-    $string.= get_the_date();
-    $string.= "</time>";
+  // https://codex.wordpress.org/Function_Reference/get_the_title
+  public function get_the_title($ID=null) {
+    $string = "<span itemprop='headline'>";
+    $string.= get_the_title($ID);
+    $string.= "</span>";
     return $string;
   }
 
-  public function get_the_title() {
-    $string = "<span itemprop='headline'>";
-    $string.= get_the_title();
-    $string.= "</span>";
-    return $string;
+  public function the_title($ID=null) {
+    echo $this->get_the_title($ID);
   }
 
   /*
@@ -159,15 +156,16 @@ class TCC_Microdata {
    */
 
   private function filters() {
-    add_filter('comments_popup_link_attributes',      array($this,'comments_popup_link_attributes'),     5);
-    add_filter('comment_reply_link',                  array($this,'comment_reply_link_filter'),          5);
-    add_filter('get_avatar',                          array($this,'get_avatar'),                         5);
-    add_filter('get_comment_author_link',             array($this,'get_comment_author_link'),            5);
-    add_filter('get_comment_author_url_link',         array($this,'get_comment_author_url_link'),        5);
-    add_filter('post_thumbnail_html',                 array($this,'post_thumbnail_html'),                5);
-    add_filter('the_author_posts_link',               array($this,'the_author_posts_link'),              5);
-    add_filter( 'wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), 5, 2);
-    add_filter( 'wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             5);
+    add_filter('comments_popup_link_attributes',     array($this,'comments_popup_link_attributes'),     5);
+    add_filter('comment_reply_link',                 array($this,'comment_reply_link_filter'),          5);
+    add_filter('get_avatar',                         array($this,'get_avatar'),                         5);
+    add_filter('get_comment_author_link',            array($this,'get_comment_author_link'),            5);
+    add_filter('get_comment_author_url_link',        array($this,'get_comment_author_url_link'),        5);
+    add_filter('get_the_date',                       array($this,'get_the_date'),                       5, 3);
+    add_filter('post_thumbnail_html',                array($this,'post_thumbnail_html'),                5);
+    add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              5);
+    add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), 5, 2);
+    add_filter('wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             5);
   }
 
   public function comments_popup_link_attributes($attr) {
@@ -190,6 +188,13 @@ class TCC_Microdata {
 
   public function get_comment_author_url_link($link) {
     return preg_replace('/(<a.*?)(>)/i','$1 itemprop="url"$2',$link);
+  }
+
+  // https://codex.wordpress.org/Function_Reference/get_the_date
+  public function get_the_date($the_date,$format,$postID) {
+    $post = get_post($postID);
+    $date = mysql2date('Y-m-d', $post->post_date );
+    return "<time itemprop='datePublished' datetime='$date'>$the_date</time>";
   }
 
   public function post_thumbnail_html( $html ) {
