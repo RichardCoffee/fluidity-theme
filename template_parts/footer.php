@@ -27,7 +27,7 @@ global $micro; ?>
       Email: <a href="mailto:<?php echo get_option('admin_email'); ?>"><?php bloginfo ('title');?> </a>
     </address>
   </div>
-  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" <?php $micro->SideBar(); ?>><?php
+  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" <?php $micro->WPSideBar(); ?>><?php
     get_sidebar('footer'); ?>
   </div>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
