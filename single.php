@@ -28,7 +28,7 @@ $layout = 'sidebar-right'; ?>
           while (have_posts()) {
             the_post();?>
 
-            <div id="post-<?php the_ID(); ?>" <?php post_class(); $micro->BlogPosting(); ?>>
+            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
 
               <h1 class="text-center"><?php
                 echo fluid_title(20); ?>

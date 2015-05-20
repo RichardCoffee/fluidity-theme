@@ -140,17 +140,28 @@ class TCC_Microdata {
  /*
   *  These are filters, and will do their work behind the scenes.  Nothing else is required.
   *
+  *  Note the priority on these.  Extend the class if you need a different priority.
+  *
   */
 
   private function filters() {
     add_filter('comments_popup_link_attributes',     array($this,'comments_popup_link_attributes'),     5);
     add_filter('comment_reply_link',                 array($this,'comment_reply_link_filter'),          5);
+    add_filter('get_archives_link',                  array($this,'get_archives_link'),                  5);
     add_filter('get_avatar',                         array($this,'get_avatar'),                         5);
     add_filter('get_comment_author_link',            array($this,'get_comment_author_link'),            5);
     add_filter('get_comment_author_url_link',        array($this,'get_comment_author_url_link'),        5);
+    add_filter('get_post_time',                      array($this,'get_post_time'),                      5, 3);
+    add_filter('get_the_archive_description',        array($this,'get_the_archive_description'),        5);
+    add_filter('get_the_archive_title',              array($this,'get_the_archive_title'),              5);
     add_filter('get_the_date',                       array($this,'get_the_date'),                       5, 3);
     add_filter('get_the_title',                      array($this,'get_the_title'),                      5, 2);
     add_filter('post_thumbnail_html',                array($this,'post_thumbnail_html'),                5);
+    add_filter('post_type_archive_title',            array($this,'get_the_title'),                      5, 2);
+    add_filter('single_cat_title',                   array($this,'single_term_title'),                  5);
+    add_filter('single_post_title',                  array($this,'get_the_title'),                      5, 2);
+    add_filter('single_tag_title',                   array($this,'single_term_title'),                  5);
+    add_filter('single_term_title',                  array($this,'single_term_title'),                  5);
     add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              5);
     add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), 5, 2);
     add_filter('wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             5);
@@ -162,6 +173,11 @@ class TCC_Microdata {
 
   public function comment_reply_link($link) {
     return preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
+  }
+
+  public function get_archives_link($link) {
+    $patterns = array('/(<link.*?)(\/>)/i',  "/(<option.*?>)(\'>)/i","/(<a.*?)(\'>)/i");
+    return preg_replace($patterns,'$1 itemprop="url" $2',$link);
   }
 
   public function get_avatar($avatar) {
@@ -178,20 +194,50 @@ class TCC_Microdata {
     return preg_replace('/(<a.*?)(>)/i','$1 itemprop="url"$2',$link);
   }
 
-  // https://codex.wordpress.org/Function_Reference/get_the_date
+  public function get_post_time($time,$format,$gmt) {
+    $post = $this->get_post_time_post();
+    $date = mysql2date('Y-m-d\TH:i:s',get_post($post)->post_date);
+    return "<time itemprop='datePublished' datetime='$date'>$time</time>";
+  }
+
+  private function get_post_time_post() {
+    $trace = debug_backtrace();
+    foreach($trace as $item) {
+      if ($item['function']=='get_post_time') {
+        return $item['args'][2];
+      }
+    }
+    return array();
+  }
+
+  public function get_the_archive_description($descrip) {
+    return "<span itemprop='description'>$descrip</span>";
+  }
+
+  public function get_the_archive_title($title) {
+    if (is_author()) {
+      $title = preg_replace('/(<span.*?)(>)/i','$1 itemprop="author"$2',$title);
+    } else if ($title==__('Archives')) { // do not add text domain to this
+      $title = "<span itemprop='headline'>$title</span>";
+    }
+    return $title;
+  }
+
   public function get_the_date($the_date,$format,$postID) {
-    $post = get_post($postID);
-    $date = mysql2date('Y-m-d',$post->post_date);
+    $date = mysql2date('Y-m-d',get_post($postID)->post_date);
     return "<time itemprop='datePublished' datetime='$date'>$the_date</time>";
   }
 
-  // https://codex.wordpress.org/Function_Reference/get_the_title
   public function get_the_title($title,$id) {
     return "<span itemprop='headline'>$title</span>";
   }
 
   public function post_thumbnail_html($html) {
     return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$html);
+  }
+
+  public function single_term_title($title) {
+    return "<span itemprop='headline'>$title</span>";
   }
 
   public function the_author_posts_link($link) {
