@@ -176,10 +176,8 @@ class TCC_Microdata {
   }
 
   public function get_archives_link($link) {
-    $patterns = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(\'>)/i"); #<?
+    $patterns = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); #<?
     $result =  preg_replace($patterns,'$1 itemprop="url" $2',$link);
-log_entry("result: $result");
-return $result;
     return preg_replace($patterns,'$1 itemprop="url" $2',$link);
   }
 
