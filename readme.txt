@@ -48,5 +48,4 @@
  tcc_login_username           placeholder for user name                         tcc_login_form             includes/login.php
  tcc_login_userpass           placeholder for user password                     tcc_login_form             includes/login.php
  tcc_register_sidebars        sidebar array                                     register_fluid_sidebars    includes/sidebars.php
- the_title                    as per WordPress Codex                            fluid_title                includes/misc.php
  widget_title                 widget title                                      pre_widget                 classes/widgets.php

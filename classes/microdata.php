@@ -31,20 +31,20 @@ class TCC_Microdata {
     return self::$instance;
   }
 
-  /*
-   *  These functions should be inserted into elements like so:
-   *
-   *  <?php $instance = TCC_Microdata::get_instance(); ?>
-   *  <div class="container" role="main" <?php $instance->Blog(); ?>>
-   *
-   *
-   *  The attributes itemprop and itemscope sometimes appear either before
-   *    or after the itemtype.  This serves merely as a reminder to the
-   *    programmer of what the function is designed for, and has no impact
-   *    whatsoever over how these attributes are interpreted by the browser
-   *    or search engine.  The itemprop will always apply to any -previously-
-   *    declared itemtype.  Do not misinterprete what 'previously' means.
-   */
+ /*
+  *  These functions should be inserted into elements like so:
+  *
+  *  <?php $instance = TCC_Microdata::get_instance(); ?>
+  *  <div class="container" role="main" <?php $instance->Blog(); ?>>
+  *
+  *
+  *  The attributes itemprop and itemscope sometimes appear either before
+  *    or after the itemtype.  This serves merely as a reminder to the
+  *    programmer of what the function is designed for, and has no impact
+  *    whatsoever over how these attributes are interpreted by the browser
+  *    or search engine.  The itemprop will always apply to any -previously-
+  *    declared itemtype.  Do not misinterprete what 'previously' means.
+  */
 
   // descendant of 'CreativeWork->WebPage'
   public function AboutPage() {
@@ -71,13 +71,12 @@ class TCC_Microdata {
     echo "itemscope itemtype='http://schema.org/ItemPage'";
   }
 
-
   // first tier type
   public function Person() {
     echo "itemscope itemtype='http://schema.org/Person'";
   }
 
-  // descendant of many types - see link
+  // descendant of many types - see itemtype link
   public function PostalAddress() {
     echo "itemprop='address' itemscope itemtype='http://schema.org/PostalAddress'";
   }
@@ -117,13 +116,13 @@ class TCC_Microdata {
     echo "itemscope itemtype='http://schema.org/WPSideBar'";
   }
 
-  /*
-   *  These functions can be utilized like so:
-   *
-   *  $instance = TCC_Microdata::get_instance();
-   *  echo sprintf(__('Posted on %1$s by %2$s','text-domain'),$instance->get_the_date(),$instance->get_the_author());
-   *
-   */
+ /*
+  *  These functions can be utilized like so:
+  *
+  *  $instance = TCC_Microdata::get_instance();
+  *  echo sprintf(__('Posted on %1$s by %2$s','text-domain'),get_the_date(),$instance->get_the_author());
+  *
+  */
 
   public function get_bloginfo($show,$filter='raw') {
     $string = get_bloginfo($show,$filter);
@@ -138,22 +137,10 @@ class TCC_Microdata {
     return $string;
   }
 
-  // https://codex.wordpress.org/Function_Reference/get_the_title
-  public function get_the_title($ID=null) {
-    $string = "<span itemprop='headline'>";
-    $string.= get_the_title($ID);
-    $string.= "</span>";
-    return $string;
-  }
-
-  public function the_title($ID=null) {
-    echo $this->get_the_title($ID);
-  }
-
-  /*
-   *  These are filters, and will do their work behind the scenes.  Nothing else is required.
-   *
-   */
+ /*
+  *  These are filters, and will do their work behind the scenes.  Nothing else is required.
+  *
+  */
 
   private function filters() {
     add_filter('comments_popup_link_attributes',     array($this,'comments_popup_link_attributes'),     5);
@@ -162,6 +149,7 @@ class TCC_Microdata {
     add_filter('get_comment_author_link',            array($this,'get_comment_author_link'),            5);
     add_filter('get_comment_author_url_link',        array($this,'get_comment_author_url_link'),        5);
     add_filter('get_the_date',                       array($this,'get_the_date'),                       5, 3);
+    add_filter('get_the_title',                      array($this,'get_the_title'),                      5, 2);
     add_filter('post_thumbnail_html',                array($this,'post_thumbnail_html'),                5);
     add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              5);
     add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), 5, 2);
@@ -193,11 +181,16 @@ class TCC_Microdata {
   // https://codex.wordpress.org/Function_Reference/get_the_date
   public function get_the_date($the_date,$format,$postID) {
     $post = get_post($postID);
-    $date = mysql2date('Y-m-d', $post->post_date );
+    $date = mysql2date('Y-m-d',$post->post_date);
     return "<time itemprop='datePublished' datetime='$date'>$the_date</time>";
   }
 
-  public function post_thumbnail_html( $html ) {
+  // https://codex.wordpress.org/Function_Reference/get_the_title
+  public function get_the_title($title,$id) {
+    return "<span itemprop='headline'>$title</span>";
+  }
+
+  public function post_thumbnail_html($html) {
     return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$html);
   }
 

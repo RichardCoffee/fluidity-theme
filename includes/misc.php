@@ -21,8 +21,7 @@ function tcc_custom_colors() { ?>
 
 // Can only be used inside the Loop
 function fluid_title($length,$echo=true,$after='...',$before='') {
-  global $micro;
-  $title = $micro->get_the_title();
+  $title = get_the_title();
   return $title;
   if (strlen($title)>0) {
     $new = $title;
@@ -39,7 +38,6 @@ function fluid_title($length,$echo=true,$after='...',$before='') {
       }
     }
     $new = $before.$new.$after;
-    $new = apply_filters('the_title',$title,get_the_ID());
     if ($echo) { echo $new; } else { return $new; }
   }
 }

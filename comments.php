@@ -13,7 +13,7 @@ global $micro; ?>
       $number = get_comments_number();
       $format = _n('One thought on %2$s','%1$s thoughts on %2$s',$number,'tcc-fluid');
       $number = "<span itemprop='commentCount'>$number</span>";
-      $title  = '&ldquo;'.$micro->get_the_title().'&rdquo;';
+      $title  = '&ldquo;'.get_the_title().'&rdquo;';
       echo sprintf($format,$number,$title); ?>
     </h2><?php
     comment_navigation(); ?>

@@ -12,7 +12,7 @@ who_am_i(); ?>
 <div id="post-<?php the_ID(); ?> " <?php post_class(); ?>>
 
   <h4 class='text-center'><?php
-    $micro->the_title(); ?>
+    the_title(); ?>
   </h4><?php
 
   if (has_post_thumbnail()) { ?>
