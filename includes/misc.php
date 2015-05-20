@@ -19,6 +19,16 @@ function tcc_custom_colors() { ?>
   </style><?php
 }
 
+// derived from:  http://codex.wordpress.org/Excerpt
+function fluid_read_more_link($output) {
+ global $post;
+ $read = __('Read More...','creatom');
+ $perm = get_permalink($post->ID);
+ $link = " [<a href='$perm' itemprop='url'>$read</a>]";
+ return $link;
+}
+add_filter('excerpt_more', 'creatom_read_more_link');
+
 // Can only be used inside the Loop
 function fluid_title($length,$echo=true,$after='...',$before='') {
   $title = get_the_title();
