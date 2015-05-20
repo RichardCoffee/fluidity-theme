@@ -27,7 +27,7 @@ function fluid_read_more_link($output) {
  $link = " [<a href='$perm' itemprop='url'>$read</a>]";
  return $link;
 }
-add_filter('excerpt_more', 'creatom_read_more_link');
+add_filter('excerpt_more', 'fluid_read_more_link');
 
 // Can only be used inside the Loop
 function fluid_title($length,$echo=true,$after='...',$before='') {
