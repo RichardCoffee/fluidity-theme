@@ -14,7 +14,7 @@ class Fluid_Layout {
 
   public function __construct($args=array()) {
     if (self::$instance) return self::$instance;
-    $this->micro = TCC_Microdata::get_instance();
+    $this->microdata = TCC_Microdata::get_instance();
     foreach($args as $key=>$value) {
       if (property_exists($this,$key))
         $this->$key = $value;
