@@ -32,7 +32,9 @@ class Fluid_Layout {
   }
 
   private function determine_sidebar() {
-    $known = array('archive','front','search','standard');
+    // FIXME:  this needs to be coordinated in register_fluid_sidebars() in sidebars.php
+    $known = array('standard','front','three_column','footer');
+    $known = apply_filters('fluidity_known_sidebars',$known);
     if ((empty($this->sidebar_name)) || (!in_array($this->sidebar_name,$known))) {
       if (is_front()) {
         $this->sidebar_name = 'front';
@@ -44,7 +46,6 @@ class Fluid_Layout {
         $this->sidebar_name = 'standard';
       }
     }
-    return $page;
   }
 
   public function get_sidebar() {
