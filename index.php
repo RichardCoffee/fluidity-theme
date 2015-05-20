@@ -18,7 +18,7 @@ get_header(); ?>
         fluidity_get_sidebar('standard'); ?>
       </div>
 
-      <article id="post-<?php the_ID(); ?>" <?php post_class(); $micro->BlogPosting(); ?>><?php
+      <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>><?php
         who_am_i(__FILE__);
         if (have_posts()) {
           while(have_posts()) {

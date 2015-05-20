@@ -9,7 +9,7 @@ global $micro;
 $href = get_the_permalink();
 who_am_i(); ?>
 
-<div id="post-<?php the_ID(); ?> " <?php post_class(); ?>>
+<div id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
 
   <h4 class='text-center'><?php
     the_title(); ?>
@@ -19,8 +19,10 @@ who_am_i(); ?>
     <a href='<?php echo $href; ?>'><?php
       the_post_thumbnail('', array('class' => 'img-responsive listpost-img')); ?>
     </a><?php
-  }
+  } ?>
 
-  the_excerpt(); ?>
+  <div itemprop="text"><?php
+    the_excerpt(); ?>
+  </div>
 
 </div>
