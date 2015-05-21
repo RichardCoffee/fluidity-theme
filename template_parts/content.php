@@ -9,7 +9,7 @@ global $micro;
 
 who_am_i(); ?>
 
-<div id="post-<?php the_ID(); ?> " <?php post_class('content content-'.tcc_color_scheme()); ?> <?php $micro->BlogPosting(); ?>>
+<div id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
 
   <h4 class='text-center'><?php
     the_title(); ?>

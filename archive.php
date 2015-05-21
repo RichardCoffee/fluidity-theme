@@ -32,7 +32,7 @@ get_header(); ?>
         $cnt  = 0;
         while(have_posts()) {
           the_post(); ?>
-          <div class="<?php echo $fluid->inner_class; ?>" <?php $micro->BlogPosting(); ?>><?php
+          <div class="<?php echo $fluid->inner_class; ?> content content-<?php echo $fluid->color_scheme; ?>" <?php $micro->BlogPosting(); ?>><?php
             $slug = apply_filters('tcc_archive_content_slug',$wp_query->post_type);
             get_template_part('template_parts/content',$slug); ?>
           </div><?php
