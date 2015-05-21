@@ -3,6 +3,8 @@
  * The template for displaying 404 pages (Not Found)
  */
 
+$micro = TCC_Microdata::get_instance();
+
 get_header();
 
 $color = tcc_color_scheme('404');
