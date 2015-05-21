@@ -2,6 +2,8 @@
 /*
  * tcc-fluidity/archive.php
  *
+ * Template Name:  Archive Page Template
+ *
  */
 
 $fluid = new Fluid_Layout();
