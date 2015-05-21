@@ -16,7 +16,7 @@ get_header(); ?>
     $fluid->get_sidebar(); ?>
 
     <div class="<?php echo $fluid->primary_class; ?>" <?php $micro->Blog(); ?>>
-      <h1 class="text-center"><?php post_type_archive_title(); ?></h1><?php
+      <h1 class="text-center"><?php the_archive_title(); ?></h1><?php
       if (have_posts()) {
         if (is_search()) { ?>
           <h2 class="text-center"><?php
