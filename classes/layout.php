@@ -4,6 +4,7 @@ class Fluid_Layout {
 
   private static $instance = null;
   public $clearfix      = 'lg=4&md=4&sm=6&xs=12';
+  public $color_scheme  = '';
   public $current_page  = '';
   public $inner_class   = 'col-lg-4 col-md-4 col-sm-6 col-xs-12';
   public $microdata     = null;
@@ -14,7 +15,8 @@ class Fluid_Layout {
 
   public function __construct($args=array()) {
     if (self::$instance) return self::$instance;
-    $this->microdata = TCC_Microdata::get_instance();
+    $this->color_scheme = tcc_color_scheme();
+    $this->microdata    = TCC_Microdata::get_instance();
     foreach($args as $key=>$value) {
       if (property_exists($this,$key))
         $this->$key = $value;
