@@ -101,3 +101,9 @@
     color: color(textcolor);
   }
 }
+
+// miscellaneous
+
+.content-#{$colorName} {
+  border-color: color(bgHighlight);
+}
