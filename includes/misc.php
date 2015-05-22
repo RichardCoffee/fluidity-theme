@@ -38,7 +38,7 @@ function fluid_title($length,$echo=true,$after='...',$before='') {
         $title = strip_tags($title);
         $title = substr($title,0,$length);
         $title = substr($title,0,strripos($title,' '));
-        $title = $before.$new.$after;
+        $title = $before.$title.$after;
       }
     }
     $title = apply_filters('the_title',$title,get_post()->ID);
