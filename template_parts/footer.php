@@ -5,13 +5,24 @@
  *
  */
 
-global $micro; ?>
+global $micro;
+
+$class_logo  = "col-lg-3 col-md-3 hidden-sm hidden-xs";
+$class_side  = "col-lg-9 col-md-9 col-sm-12 col-xs-12";
+$has_sidebar = is_active_sidebar('footer');
+if (!$has_sidebar) {
+  $class_logo = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+}
+
+
+
+ ?>
 
 <div class="ribbon"></div>
 
 <div class="footer"><?php
   who_am_i(); ?>
-  <div class="col-lg-3 col-md-3 hidden-sm hidden-xs" itemprop='author' itemscope itemtype='http://schema.org/Organization'><?php
+  <div class="<?php echo $class_logo; ?>" itemprop='author' itemscope itemtype='http://schema.org/Organization'><?php
     $logo = tcc_design('logo');
     if ($logo) { ?>
       <a href="<?php bloginfo('url'); ?>/">
@@ -26,10 +37,12 @@ global $micro; ?>
       Office: <span itemprop="telephone">888 555 1212</span><br>
       Email: <a href="mailto:<?php echo get_option('admin_email'); ?>"><?php bloginfo ('title');?> </a>
     </address>
-  </div>
-  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" <?php $micro->WPSideBar(); ?>><?php
-    get_sidebar('footer'); ?>
-  </div>
+  </div><?php
+  if ($has_sidebar) { ?>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" <?php $micro->WPSideBar(); ?>><?php
+      get_sidebar('footer'); ?>
+    </div><?php
+  } ?>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
     <p class="text-center"><?php
       $format = _x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
