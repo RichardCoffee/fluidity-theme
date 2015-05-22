@@ -22,7 +22,7 @@ global $micro; ?>
     <!-- FIXME: address needs to be editable option in theme options -->
     <address class="text-center" <?php $micro->PostalAddress(); ?>>
       <span itemprop="streetAddress">123 Main Street</span><br>
-      <span itemprop="addressLocality">Van</span> <span itemprop="addressRegion">TX</span>, <span itemprop="postalCode">12345</span><br>
+      <span itemprop="addressLocality">Van</span> <span itemprop="addressRegion">TX</span>, <span itemprop="postalCode">75790</span><br>
       Office: <span itemprop="telephone">888 555 1212</span><br>
       Email: <a href="mailto:<?php echo get_option('admin_email'); ?>"><?php bloginfo ('title');?> </a>
     </address>
