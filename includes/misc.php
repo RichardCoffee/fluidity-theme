@@ -31,24 +31,18 @@ add_filter('excerpt_more', 'fluid_read_more_link');
 
 // Can only be used inside the Loop
 function fluid_title($length,$echo=true,$after='...',$before='') {
-  $title = get_the_title();
-  return $title;
+  $title = get_the_title(get_post()->ID);
   if (strlen($title)>0) {
-    $new = $title;
     if ($length && is_numeric($length)) {
-      while (strlen($new)>$length) {
-        $words = explode(' ',$title);
-        array_pop($words);
-        if ($words) {
-          $new = implode(' ',$words);
-        } else {
-          $new = substr($title,0,$length);
-          break;
-        }
+      if (strlen($title)>$length) {
+        $title = strip_tags($title);
+        $title = substr($title,0,$length);
+        $title = substr($title,0,strripos($title,' '));
+        $title = $before.$new.$after;
       }
     }
-    $new = $before.$new.$after;
-    if ($echo) { echo $new; } else { return $new; }
+    $title = apply_filters('the_title',$title,);
+    if ($echo) { echo $title; } else { return $title; }
   }
 }
 
