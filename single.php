@@ -31,7 +31,7 @@ $layout = 'sidebar-right'; ?>
             <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
 
               <h1 class="text-center"><?php
-                echo fluid_title(40); ?>
+                echo fluid_title(); ?>
               </h1>
 
               <h3 class="text-center"><?php
