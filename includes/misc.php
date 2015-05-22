@@ -41,7 +41,7 @@ function fluid_title($length,$echo=true,$after='...',$before='') {
         $title = $before.$new.$after;
       }
     }
-    $title = apply_filters('the_title',$title,);
+    $title = apply_filters('the_title',$title,get_post()->ID);
     if ($echo) { echo $title; } else { return $title; }
   }
 }
