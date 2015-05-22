@@ -1,13 +1,14 @@
 <?php
 
-if (!WP_DEBUG) { // Source?  What does this do?
+if (!WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
 
 if (!function_exists('tcc_admin_login_redirect')) {
   function tcc_admin_login_redirect($redirect_to,$request,$user) {
     if (get_class($user)=='WP_Error') return $redirect_to;
-    if (!in_array("administrator",$user->roles)) return home_url();
+#    if (!in_array("administrator",$user->roles))
+    return home_url();
     return $redirect_to;
   }
   add_filter("login_redirect","tcc_admin_login_redirect",10,3);
