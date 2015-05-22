@@ -146,7 +146,7 @@ class TCC_Microdata {
 
   private function filters() {
     add_filter('comments_popup_link_attributes',     array($this,'comments_popup_link_attributes'),     5);
-    add_filter('comment_reply_link',                 array($this,'comment_reply_link_filter'),          5);
+    add_filter('comment_reply_link',                 array($this,'comment_reply_link'),                 5);
     add_filter('get_archives_link',                  array($this,'get_archives_link'),                  5);
     add_filter('get_avatar',                         array($this,'get_avatar'),                         5);
     add_filter('get_comment_author_link',            array($this,'get_comment_author_link'),            5);
