@@ -30,7 +30,7 @@ function fluid_read_more_link($output) {
 add_filter('excerpt_more', 'fluid_read_more_link');
 
 // Can only be used inside the Loop
-function fluid_title($length,$echo=true,$after='...',$before='') {
+function fluid_title($length=0,$echo=true,$after='...',$before='') {
   $title = get_the_title(get_post()->ID);
   if (strlen($title)>0) {
     if ($length && is_numeric($length)) {
