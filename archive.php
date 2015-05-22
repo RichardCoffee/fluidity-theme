@@ -11,7 +11,7 @@ $micro = $fluid->microdata;
 
 get_header(); ?>
 
-<div class="<?php echo container_type($fluid->page); ?>" <?php if (is_search()) $micro->SearchResultsPage(); ?>>
+<div class="<?php echo container_type($fluid->sidebar_name); ?>" <?php if (is_search()) $micro->SearchResultsPage(); ?>>
   <div class="row"><?php
     who_am_i();
 
