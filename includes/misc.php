@@ -29,6 +29,19 @@ function fluid_read_more_link($output) {
 }
 add_filter('excerpt_more', 'fluid_read_more_link');
 
+if (!function_exists('single_search_result')) {
+  // http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
+  function single_search_result() {
+    if (is_search() || is_archive()) {
+      global $wp_query;
+      if ($wp_query->post_count==1) {
+        wp_redirect(get_permalink($wp_query->posts['0']->ID));
+      }
+    }
+  }
+  add_action('template_redirect','single_search_result');
+}
+
 // Can only be used inside the Loop
 function fluid_title($length=0,$echo=true,$after='...',$before='') {
   $title = get_the_title(get_post()->ID);
