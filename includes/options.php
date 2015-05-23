@@ -45,4 +45,5 @@ if (!function_exists('tcc_color_scheme')) {
 #    return 'primary';
 #    return 'info';
     return 'warning';
+  }
 }
