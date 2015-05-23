@@ -1,14 +1,14 @@
 /*
- *  fluidity/css/success.css
+ *  fluidity/css/info.css
  *
  *  bootstrap info color scheme
  *
  */
 
 $colorName : info;
-$colors    : ( "background"    : #D9EDF7,
-               "bgHighlight"   : #BCE8F1,
-               "textcolor"     : #31708F,
-               "textHighlight" : #31708F);
+$colors    : ( "background"    : #5BC0DE,
+               "bgHighlight"   : #46B8DA,
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
 
 @import "color_template";
