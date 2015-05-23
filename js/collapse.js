@@ -20,9 +20,9 @@ function assignCollapse(elID) { // Attach toggle event to collapsible areas
 function clickCollapse(el) {
   if (jQuery(el).next().is(":hidden")) {
     jQuery(el).siblings().show('slow');
-var test = jQuery(el).find('.scroll-this');
+var test = jQuery(el).find('.scroll-this')[0];
 console.log(test);
-    if (collapse.scroll || jQuery(el).find('.scroll-this')) {
+    if (collapse.scroll || jQuery(el).find('.scroll-this')[0]) {
       scrollToElement(el); }
   } else {
     jQuery(el).siblings().hide('slow');
