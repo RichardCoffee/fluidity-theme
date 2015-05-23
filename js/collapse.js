@@ -1,7 +1,10 @@
 // js/collapse.js
 
+var collapse = { scroll: false }
+
 jQuery(document).ready(function() {
   assignCollapse();
+  collapse.scroll = jQuery('.scroll-auto')[0];
 });
 
 function assignCollapse(elID) { // Attach toggle event to collapsible areas
@@ -17,7 +20,8 @@ function assignCollapse(elID) { // Attach toggle event to collapsible areas
 function clickCollapse(el) {
   if (jQuery(el).next().is(":hidden")) {
     jQuery(el).siblings().show('slow');
-    scrollToElement(el);
+    if (collapse.scroll || jQuery(el).find('.scroll-this')) {
+      scrollToElement(el); }
   } else {
     jQuery(el).siblings().hide('slow');
   }
