@@ -1,0 +1,14 @@
+/*
+ *  fluidity/css/success.css
+ *
+ *  bootstrap warning color scheme
+ *
+ */
+
+$colorName : warning;
+$colors    : ( "background"    : #F0AD4E,
+               "bgHighlight"   : #EEA236,
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";
