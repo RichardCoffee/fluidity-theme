@@ -43,6 +43,6 @@ if (!function_exists('tcc_color_scheme')) {
  */
 #    return 'success';
 #    return 'primary';
-    return 'info';
-  }
+#    return 'info';
+    return 'warning';
 }
