@@ -4,63 +4,60 @@
  *  bootstrap success color scheme
  *
  */
-.btn-success-inverse, .navbar-success .btn-success {
+.btn-primary-inverse, .navbar-primary .btn-primary {
   background-color: #ffffff;
   border-color: #2E6DA4;
   color: #337AB7; }
-  .btn-success-inverse:hover, .navbar-success .btn-success:hover, .btn-success-inverse:focus, .navbar-success .btn-success:focus {
-    background-color: #ffffff;
-    color: #2E6DA4; }
+.btn-primary-inverse:hover, .navbar-primary .btn-primary:hover, .btn-primary-inverse:focus, .navbar-primary .btn-primary:focus {
+  background-color: #ffffff;
+  color: #2E6DA4; }
 
-.navbar-success {
+.navbar-primary {
   background-color: #337AB7;
   border-color: #2E6DA4; }
-  .navbar-success .navbar-brand {
-    color: #ffffff; }
-    .navbar-success .navbar-brand:hover, .navbar-success .navbar-brand:focus {
-      color: #ffffff; }
-  .navbar-success .navbar-text {
-    color: #ffffff; }
-  .navbar-success .navbar-nav > li > a {
-    color: #ffffff; }
-    .navbar-success .navbar-nav > li > a:hover, .navbar-success .navbar-nav > li > a:focus {
-      color: #ffffff; }
-  .navbar-success .navbar-nav > .active > a, .navbar-success .navbar-nav > .active > a:hover, .navbar-success .navbar-nav > .active > a:focus {
-    color: #ffffff;
-    background-color: #2E6DA4; }
-  .navbar-success .navbar-nav > .open > a, .navbar-success .navbar-nav > .open > a:hover, .navbar-success .navbar-nav > .open > a:focus {
-    color: #ffffff;
-    background-color: #2E6DA4; }
-  .navbar-success .navbar-toggle {
-    border-color: #2E6DA4; }
-    .navbar-success .navbar-toggle:hover, .navbar-success .navbar-toggle:focus {
-      background-color: #2E6DA4; }
-    .navbar-success .navbar-toggle .icon-bar {
-      background-color: #ffffff; }
-  .navbar-success .navbar-collapse,
-  .navbar-success .navbar-form {
-    border-color: #ffffff; }
-  .navbar-success .navbar-link {
-    color: #ffffff; }
-    .navbar-success .navbar-link:hover {
-      color: #ffffff; }
+.navbar-primary .navbar-brand {
+  color: #ffffff; }
+.navbar-primary .navbar-brand:hover, .navbar-primary .navbar-brand:focus {
+  color: #ffffff; }
+.navbar-primary .navbar-text {
+  color: #ffffff; }
+.navbar-primary .navbar-nav > li > a {
+  color: #ffffff; }
+.navbar-primary .navbar-nav > li > a:hover, .navbar-primary .navbar-nav > li > a:focus {
+  color: #ffffff; }
+.navbar-primary .navbar-nav > .active > a, .navbar-primary .navbar-nav > .active > a:hover, .navbar-primary .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #2E6DA4; }
+.navbar-primary .navbar-nav > .open > a, .navbar-primary .navbar-nav > .open > a:hover, .navbar-primary .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #2E6DA4; }
+.navbar-primary .navbar-toggle {
+  border-color: #2E6DA4; }
+.navbar-primary .navbar-toggle:hover, .navbar-primary .navbar-toggle:focus {
+  background-color: #2E6DA4; }
+.navbar-primary .navbar-toggle .icon-bar {
+  background-color: #ffffff; }
+.navbar-primary .navbar-collapse, .navbar-primary .navbar-form {
+  border-color: #ffffff; }
+.navbar-primary .navbar-link {
+  color: #ffffff; }
+.navbar-primary .navbar-link:hover {
+  color: #ffffff; }
 
 @media (max-width: 767px) {
-  .navbar-success .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-primary .navbar-nav .open .dropdown-menu > li > a {
     color: #ffffff; }
-    .navbar-success .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-success .navbar-nav .open .dropdown-menu > li > a:focus {
-      color: #ffffff; }
-  .navbar-success .navbar-nav .open .dropdown-menu > .active > a, .navbar-success .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-success .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-primary .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-primary .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff; }
+  .navbar-primary .navbar-nav .open .dropdown-menu > .active > a, .navbar-primary .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-primary .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #ffffff;
     background-color: #2E6DA4; } }
-.panel-success {
+.panel-primary {
   border-color: #2E6DA4; }
-  .panel-success > .panel-heading {
-    background-color: #337AB7;
-    border-color: #2E6DA4;
-    color: #ffffff; }
+.panel-primary > .panel-heading {
+  background-color: #337AB7;
+  border-color: #2E6DA4;
+  color: #ffffff; }
 
-.content-success {
+.content-primary {
   border-color: #2E6DA4; }
-
-/*# sourceMappingURL=primary.css.map */
