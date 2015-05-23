@@ -41,6 +41,7 @@ if (!function_exists('tcc_color_scheme')) {
  *     red: danger
  *   white: default
  */
-    return 'success';
+#    return 'success';
+    return 'primary';
   }
 }
