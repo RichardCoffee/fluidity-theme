@@ -42,6 +42,7 @@ if (!function_exists('tcc_color_scheme')) {
  *   white: default
  */
 #    return 'success';
-    return 'primary';
+#    return 'primary';
+    return 'info';
   }
 }
