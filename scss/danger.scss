@@ -1,0 +1,14 @@
+/*
+ *  tcc-fluidity/css/success.css
+ *
+ *  bootstrap danger color scheme
+ * #f2dede #f2dede #a94442
+ */
+
+$colorName : danger;
+$colors    : ( "background"    : #d9534f,
+               "bgHighlight"   : #d43f3a,
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";

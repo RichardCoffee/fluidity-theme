@@ -1,0 +1,96 @@
+/*
+ *  tcc-fluidity/css/success.css
+ *
+ *  bootstrap danger color scheme
+ * #f2dede #f2dede #a94442
+ */
+.btn-danger-inverse, .navbar-danger .btn-danger {
+  background-color: #FFFFFF;
+  border-color: #d43f3a;
+  color: #d9534f;
+}
+.btn-danger-inverse:hover, .navbar-danger .btn-danger:hover, .btn-danger-inverse:focus, .navbar-danger .btn-danger:focus {
+  background-color: #FFFFFF;
+  color: #d43f3a;
+}
+
+.navbar-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.navbar-danger .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar-danger .navbar-brand:hover, .navbar-danger .navbar-brand:focus {
+  color: #FFFFFF;
+}
+.navbar-danger .navbar-text {
+  color: #FFFFFF;
+}
+.navbar-danger .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+.navbar-danger .navbar-nav > li > a:hover, .navbar-danger .navbar-nav > li > a:focus {
+  color: #FFFFFF;
+}
+.navbar-danger .navbar-nav > .active > a, .navbar-danger .navbar-nav > .active > a:hover, .navbar-danger .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #d43f3a;
+}
+.navbar-danger .navbar-nav > .open > a, .navbar-danger .navbar-nav > .open > a:hover, .navbar-danger .navbar-nav > .open > a:focus {
+  color: #FFFFFF;
+  background-color: #d43f3a;
+}
+.navbar-danger .navbar-toggle {
+  border-color: #d43f3a;
+}
+.navbar-danger .navbar-toggle:hover, .navbar-danger .navbar-toggle:focus {
+  background-color: #d43f3a;
+}
+.navbar-danger .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-danger .navbar-collapse,
+.navbar-danger .navbar-form {
+  border-color: #FFFFFF;
+}
+.navbar-danger .navbar-link {
+  color: #FFFFFF;
+}
+.navbar-danger .navbar-link:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .navbar-danger .navbar-nav .open .dropdown-menu > li > a {
+    color: #FFFFFF;
+  }
+  .navbar-danger .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-danger .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #FFFFFF;
+  }
+  .navbar-danger .navbar-nav .open .dropdown-menu > .active > a, .navbar-danger .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-danger .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #d43f3a;
+  }
+}
+.input-group .btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: #FFFFFF;
+}
+.input-group .form-control {
+  border-color: #d43f3a;
+}
+
+.panel-danger {
+  border-color: #d43f3a;
+}
+.panel-danger > .panel-heading {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: #FFFFFF;
+}
+
+.content-danger {
+  border-color: #d43f3a;
+}
