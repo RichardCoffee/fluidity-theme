@@ -91,6 +91,20 @@
 }
 
 
+// input groups
+
+.input-group {
+  & .btn-#{$colorName} {
+    background-color: color(background);
+    border-color: color(bgHighlight);
+    color: color(textcolor);
+  }
+  & .formcontrol {
+    border-color: color(bgHighlight);
+  }
+}
+
+
 // panels
 
 .panel-#{$colorName} {
