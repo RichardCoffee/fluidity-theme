@@ -1,0 +1,87 @@
+/*
+ *  fluidity/css/success.css
+ *
+ *  bootstrap info color scheme
+ *
+ */
+.btn-info-inverse, .navbar-info .btn-info {
+  background-color: #31708F;
+  border-color: #BCE8F1;
+  color: #D9EDF7;
+}
+.btn-info-inverse:hover, .navbar-info .btn-info:hover, .btn-info-inverse:focus, .navbar-info .btn-info:focus {
+  background-color: #31708F;
+  color: #BCE8F1;
+}
+
+.navbar-info {
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+}
+.navbar-info .navbar-brand {
+  color: #31708F;
+}
+.navbar-info .navbar-brand:hover, .navbar-info .navbar-brand:focus {
+  color: #31708F;
+}
+.navbar-info .navbar-text {
+  color: #31708F;
+}
+.navbar-info .navbar-nav > li > a {
+  color: #31708F;
+}
+.navbar-info .navbar-nav > li > a:hover, .navbar-info .navbar-nav > li > a:focus {
+  color: #31708F;
+}
+.navbar-info .navbar-nav > .active > a, .navbar-info .navbar-nav > .active > a:hover, .navbar-info .navbar-nav > .active > a:focus {
+  color: #31708F;
+  background-color: #BCE8F1;
+}
+.navbar-info .navbar-nav > .open > a, .navbar-info .navbar-nav > .open > a:hover, .navbar-info .navbar-nav > .open > a:focus {
+  color: #31708F;
+  background-color: #BCE8F1;
+}
+.navbar-info .navbar-toggle {
+  border-color: #BCE8F1;
+}
+.navbar-info .navbar-toggle:hover, .navbar-info .navbar-toggle:focus {
+  background-color: #BCE8F1;
+}
+.navbar-info .navbar-toggle .icon-bar {
+  background-color: #31708F;
+}
+.navbar-info .navbar-collapse,
+.navbar-info .navbar-form {
+  border-color: #31708F;
+}
+.navbar-info .navbar-link {
+  color: #31708F;
+}
+.navbar-info .navbar-link:hover {
+  color: #31708F;
+}
+
+@media (max-width: 767px) {
+  .navbar-info .navbar-nav .open .dropdown-menu > li > a {
+    color: #31708F;
+  }
+  .navbar-info .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-info .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #31708F;
+  }
+  .navbar-info .navbar-nav .open .dropdown-menu > .active > a, .navbar-info .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-info .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #31708F;
+    background-color: #BCE8F1;
+  }
+}
+.panel-info {
+  border-color: #BCE8F1;
+}
+.panel-info > .panel-heading {
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  color: #31708F;
+}
+
+.content-info {
+  border-color: #BCE8F1;
+}
