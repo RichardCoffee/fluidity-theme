@@ -1,0 +1,14 @@
+/*
+ *  fluidity/css/success.css
+ *
+ *  bootstrap success color scheme
+ *
+ */
+
+$colorName : success;
+$colors    : ( "background"    : #337AB7,
+               "bgHighlight"   : #2E6DA4,
+               "textcolor"     : #ffffff,
+               "textHighlight" : #ffffff);
+
+@import "color_template";
