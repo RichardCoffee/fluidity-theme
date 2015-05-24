@@ -1,0 +1,14 @@
+/*
+ *  tcc-fluidity/css/success-inverse.css
+ *
+ *  based on bootstrap success color scheme
+ *
+ */
+
+$colorName : success-inverse;
+$colors    : ( "background"    : #dff0d8,
+               "bgHighlight"   : #d6e9c6,
+               "textcolor"     : #3c763d,
+               "textHighlight" : #3c763d);
+
+@import "color_template";

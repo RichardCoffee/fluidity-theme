@@ -41,7 +41,8 @@ if (!function_exists('tcc_color_scheme')) {
  *     red: danger
  *   white: default
  */
-    return 'success';
+#    return 'success';
+    return 'success-inverse';
 #    return 'primary';
 #    return 'info';
 #    return 'warning';

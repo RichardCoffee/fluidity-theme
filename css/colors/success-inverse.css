@@ -1,0 +1,96 @@
+/*
+ *  tcc-fluidity/css/success-inverse.css
+ *
+ *  based on bootstrap success color scheme
+ *
+ */
+.btn-success-inverse-inverse, .navbar-success-inverse .btn-success-inverse {
+  background-color: #3c763d;
+  border-color: #d6e9c6;
+  color: #dff0d8;
+}
+.btn-success-inverse-inverse:hover, .navbar-success-inverse .btn-success-inverse:hover, .btn-success-inverse-inverse:focus, .navbar-success-inverse .btn-success-inverse:focus {
+  background-color: #3c763d;
+  color: #d6e9c6;
+}
+
+.navbar-success-inverse {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.navbar-success-inverse .navbar-brand {
+  color: #3c763d;
+}
+.navbar-success-inverse .navbar-brand:hover, .navbar-success-inverse .navbar-brand:focus {
+  color: #3c763d;
+}
+.navbar-success-inverse .navbar-text {
+  color: #3c763d;
+}
+.navbar-success-inverse .navbar-nav > li > a {
+  color: #3c763d;
+}
+.navbar-success-inverse .navbar-nav > li > a:hover, .navbar-success-inverse .navbar-nav > li > a:focus {
+  color: #3c763d;
+}
+.navbar-success-inverse .navbar-nav > .active > a, .navbar-success-inverse .navbar-nav > .active > a:hover, .navbar-success-inverse .navbar-nav > .active > a:focus {
+  color: #3c763d;
+  background-color: #d6e9c6;
+}
+.navbar-success-inverse .navbar-nav > .open > a, .navbar-success-inverse .navbar-nav > .open > a:hover, .navbar-success-inverse .navbar-nav > .open > a:focus {
+  color: #3c763d;
+  background-color: #d6e9c6;
+}
+.navbar-success-inverse .navbar-toggle {
+  border-color: #d6e9c6;
+}
+.navbar-success-inverse .navbar-toggle:hover, .navbar-success-inverse .navbar-toggle:focus {
+  background-color: #d6e9c6;
+}
+.navbar-success-inverse .navbar-toggle .icon-bar {
+  background-color: #3c763d;
+}
+.navbar-success-inverse .navbar-collapse,
+.navbar-success-inverse .navbar-form {
+  border-color: #3c763d;
+}
+.navbar-success-inverse .navbar-link {
+  color: #3c763d;
+}
+.navbar-success-inverse .navbar-link:hover {
+  color: #3c763d;
+}
+
+@media (max-width: 767px) {
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #3c763d;
+  }
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #3c763d;
+  }
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #3c763d;
+    background-color: #d6e9c6;
+  }
+}
+.input-group .btn-success-inverse {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+.input-group .form-control {
+  border-color: #d6e9c6;
+}
+
+.panel-success-inverse {
+  border-color: #d6e9c6;
+}
+.panel-success-inverse > .panel-heading {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
+.content-success-inverse {
+  border-color: #d6e9c6;
+}
