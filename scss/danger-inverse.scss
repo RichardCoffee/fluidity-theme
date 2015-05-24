@@ -1,0 +1,14 @@
+/*
+ *  tcc-fluidity/css/danger-inverse.css
+ *
+ *  based on bootstrap danger color scheme
+ *
+ */
+
+$colorName : danger-inverse;
+$colors    : ( "background"    : #f2dede,
+               "bgHighlight"   : #f2dede,
+               "textcolor"     : #a94442,
+               "textHighlight" : #a94442);
+
+@import "color_template";

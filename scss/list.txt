@@ -1,0 +1,10 @@
+danger-inverse
+danger
+info-inverse
+info
+primary
+primary-inverse
+success
+success-inverse
+warning
+warning-inverse
