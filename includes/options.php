@@ -47,7 +47,7 @@ if (!function_exists('tcc_color_scheme')) {
 #    return 'success-inverse';
 #    return 'primary';
 #    return 'info';
-    return 'warning';
+    return 'warning-inverse';
 #    return 'danger';
   }
 }
