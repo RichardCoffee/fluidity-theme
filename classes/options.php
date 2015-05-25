@@ -12,7 +12,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                  'describe'  => array(__('Support Site:','tcc-fluid'),
                                       __('For help with this theme, or any other general support items, please contact us at any time','tcc-fluid'),
                                       __('Copyright 2014-2015 TCC','tcc-fluid')),
-                 'theme' ,   => array('label'  => __('Theme Settings','tcc-fluid'),
+                 'theme'     => array('label'  => __('Theme Settings','tcc-fluid'),
                                       'text'   => __("These following options control the theme's behavior",'tcc-fluid')),
                  'loca'      => array('label'  => __('Page Location','tcc-fluid'),
                                       'text'   => __('You can choose where the Theme Options page appears','tcc-fluid'),
