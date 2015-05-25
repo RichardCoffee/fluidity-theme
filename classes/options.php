@@ -2,7 +2,7 @@
 
 // FIXME: add option for editor default content - http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
 
-class TCC_Theme_Options_Values {
+class Fluidity_Theme_Options extends Basic_Admin_Form {
 
   private static $TCC_text = array();
 

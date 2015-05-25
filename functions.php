@@ -18,6 +18,12 @@ require_once('includes/third-party.php');
 require_once('classes/layout.php');
 require_once('classes/microdata.php');
 require_once('classes/widgets.php');
+require_once('classes/pagetemplater.php');
+if (is_admin()) {
+  require_once('classes/basic_form');
+  require_once('classes/typography.php');
+  require_once('classes/options.php');
+}
 
 if (!function_exists('fluidity_enqueue')) {
   function fluidity_enqueue() {
