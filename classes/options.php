@@ -1,16 +1,18 @@
 <?php /* arrays.php */
 
-// FIXME: add option for editor default content - http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
+include_once('basic-form.php');
 
-class Fluidity_Theme_Options extends Basic_Admin_Form {
+class Theme_Options_Form extends Basic_Admin_Form {
 
-  private static $TCC_text = array();
+  private static $instance;
+  private static $text;
 
-  protected static function translate_text() {
-    return array('title'     => array('about'  => __('About / Contact','tcc-theme-options')),
+  private static function translated_text() {
+    return array('title'     => array('about'  => __('About / Contact','tcc-theme-options'),
+                                      'menu'   => __('Theme Options','tcc-theme-options')),
                  'describe'  => array(__('Support Site:','tcc-theme-options'),
                                       __('For help with this plugin, or any other general support items, please contact us at any time','tcc-theme-options'),
-                                      __('Copyright 2014-2015 TCC','tcc-theme-options')),
+                                      __('Copyright 2014 TCC','tcc-theme-options')),
                  'plugin'    => array('label'  => __('Plugin Settings','tcc-theme-options'),
                                       'text'   => __("These following options control the plugin's behavior",'tcc-theme-options')),
                  'loca'      => array('label'  => __('Page Location','tcc-theme-options'),
@@ -22,16 +24,58 @@ class Fluidity_Theme_Options extends Basic_Admin_Form {
                                       'text'   => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-theme-options'),
                                       'source' => array('top'    => __('Top','tcc-theme-options'),
                                                         'bottom' => __('default','tcc-theme-options'))),
-                 'collect'   => array('label'  => __('Share Usage','tcc-theme'),
-                                      'text'   => __('Help us improve our programs by sharing how they get used','tcc-theme-options'),
-                                      'source' => array('no'  => __("No, that info belongs to me and The Creative Collective can't have it.",'tcc-theme-option'),
-                                                        'yes' => __("Yes, but only so long as The Creative Collective doesn't share it...With anyone...Ever.",'tcc-theme-options'))),
                  'deactive'  => array('label'  => __('Plugin Deactivation','tcc-theme-options'),
                                       'text'   => __('Data will be deleted when deactivating the plugin.','tcc-theme-options')),
                  'uninstall' => array('label'  => __('Plugin Removal','tcc-theme-options'),
                                       'text'   => __('Data will be deleted when removing the plugin.','tcc-theme-options')),
                  'version'   => array('label'  => __('Program Version','tcc-theme-options')),
                  'dbvers'    => array('label'  => __('Database Version','tcc-theme-options')));
+  }
+
+  protected function form_trans_text($text,$orig) {
+    $text = parent::form_trans_text();
+    $text['object']  = __('Options','tcc-theme-options');
+    $text['subject'] = __('Theme','tcc-theme-options');
+    return apply_filters('tcc_form_text',$text,$text);
+  }
+
+  protected function __construct() {
+    self::$instance = $this;
+    $this->prefix = 'tcc_options_';
+    $this->slug   = 'tcc_theme_options';
+    $this->type   = 'tabbed';
+    add_filter('basic_form_text',10,2);
+    parent::__construct();
+    add_action('admin_init',array($this,$this->register));
+  }
+
+  public static function get_instance() {
+    if (!self::$instance)
+      self::$instance = new Theme_Options_Form;
+    if (empty(self::$text))
+      self::$text = self::translated_text();
+    return self::$instance;
+  }
+
+  public static function add_menu_option() {
+    $menu_cap  = 'edit_theme_options';
+    if (current_user_can($menu_cap)) {
+      $about = get_option('tcc_options_about');
+      if (!$about) $about = $this->get_defaults('about');
+      $page_title = self::$text['title']['menu'];
+      $menu_title = self::$text['title']['menu'];
+      $menu_func  = array($this,$this->render);
+      if ($about['loca']=='appearance') {
+        add_theme_page($page_title,$menu_title,$menu_cap,$this->slug,$menu_func);
+      } else if ($about['loca']=='settings') {
+        add_options_page($page_title,$menu_title,$menu_cap,$this->slug,$menu_func);
+      } else {
+        $icon_name = 'dashicons-admin-settings';
+        $priority  = ($about['wp_posi']=='top') ? '1.01302014' : '99.9122473024';
+        add_menu_page($page_title,$menu_title,$menu_cap,$this->slug,$menu_func,$icon_name,$priority);
+      }
+      do_action('tcc_admin_menu_setup');
+    }
   }
 
 /*
@@ -47,19 +91,17 @@ class Fluidity_Theme_Options extends Basic_Admin_Form {
  *            layout: (array)  field data - see the section below describing the layout array
  *
  */
-  public static function options_menu_array($section='') {
-    if (empty(self::$TCC_text)) self::$TCC_text = self::translate_text();
-#    static $options = array();
-    $options = array();
-    if (empty($options)) {
-      $options = apply_filters('tcc_options_menu_array',$options);
-      if (!isset($options['about'])) {
-        $options['about'] = array('describe' => array('TCC_Theme_Options_Values','describe_about'),
-                                  'title'    => self::$TCC_text['title']['about'],
-                                  'layout'   => self::options_layout('about'));
+  protected function form_layout($section='') {
+    if (empty($this->form)) {
+      $this->form = apply_filters('tcc_options_menu_array',$this->form);
+      if (!isset($this->form['about'])) {
+        $this->form['about'] = array('describe' => array($this,'describe_about'),
+                                     'title'    => self::$text['title']['about'],
+                                     'option'   => 'tcc_options_about',
+                                     'layout'   => $this->options_layout('about'));
       }
     }
-    return (empty($section)) ? $options : $options[$section];
+    return (empty($section)) ? $this->form : $this->form[$section];
   }
 
 /*
@@ -96,120 +138,87 @@ class Fluidity_Theme_Options extends Basic_Admin_Form {
  *                            The layout array is passed to the rendering function.
  *
  */
-  public static function about_options_layout() {
+  private function about_options_layout() {
     $instance = Theme_Options_Plugin::get_instance();
     if (!$instance) $instance = new Theme_Options_Plugin(tcc_theme_plugin_info());
     $layout = array('version'   => array('default' => $instance->version,
-                                         'label'   => self::$TCC_text['version']['label'],
+                                         'label'   => self::$text['version']['label'],
                                          'render'  => 'display'),
                     'dbvers'    => array('default' => $instance->dbvers,
-                                         'label'   => self::$TCC_text['dbvers']['label'],
+                                         'label'   => self::$text['dbvers']['label'],
                                          'render'  => 'skip'),
-                    'plugin'    => array('label'   => self::$TCC_text['plugin']['label'],
-                                         'text'    => self::$TCC_text['plugin']['text'],
+                    'plugin'    => array('label'   => self::$text['plugin']['label'],
+                                         'text'    => self::$text['plugin']['text'],
                                          'render'  => 'title'),
                     'loca'      => array('default' => 'dashboard',
-                                         'label'   => self::$TCC_text['loca']['label'],
-                                         'text'    => self::$TCC_text['loca']['text'],
+                                         'label'   => self::$text['loca']['label'],
+                                         'text'    => self::$text['loca']['text'],
                                          'render'  => 'radio',
-                                         'source'  => self::$TCC_text['loca']['source'],
+                                         'source'  => self::$text['loca']['source'],
                                          'change'  => 'showhidePosi();',
                                          'class'   => 'tcc-loca'),
                     'wp_posi'   => array('default' => 'Top',
-                                         'label'   => self::$TCC_text['wp_posi']['label'],
-                                         'text'    => self::$TCC_text['wp_posi']['text'],
+                                         'label'   => self::$text['wp_posi']['label'],
+                                         'text'    => self::$text['wp_posi']['text'],
                                          'render'  => 'select',
-                                         'source'  => self::$TCC_text['wp_posi']['source'],
+                                         'source'  => self::$text['wp_posi']['source'],
                                          'class'   => 'tcc-wp_posi'),
-                    'collect'   => array('default' => 'no',
-                                         'label'   => self::$TCC_text['collect']['label'],
-                                         'text'    => self::$TCC_text['collect']['text'],
-                                         'render'  => 'radio',
-                                         'source'  => self::$TCC_text['collect']['source']),
                     'deactive'  => array('default' => 'no',
-                                         'label'   => self::$TCC_text['deactive']['label'],
-                                         'text'    => self::$TCC_text['deactive']['text'],
+                                         'label'   => self::$text['deactive']['label'],
+                                         'text'    => self::$text['deactive']['text'],
                                          'render'  => 'checkbox'),
                     'uninstall' => array('default' => 'yes',
-                                         'label'   => self::$TCC_text['uninstall']['label'],
-                                         'text'    => self::$TCC_text['uninstall']['text'],
+                                         'label'   => self::$text['uninstall']['label'],
+                                         'text'    => self::$text['uninstall']['text'],
                                          'render'  => 'checkbox'));
     $layout = apply_filters('tcc_about_options_layout',$layout);
     return $layout;
   }
 
-  public static function describe_about() {
-    echo '<p>'.self::$TCC_text['describe'][0].' <a href="the-creative-collective.com" target="tcc">The Creative Collective</a></p>';
-    echo '<p>'.self::$TCC_text['describe'][1].'</p>';
-    echo '<p>&copy; '.self::$TCC_text['describe'][2].'</p>';
+  public function describe_about() {
+    echo '<p>'.self::$text['describe'][0].' <a href="the-creative-collective.com" target="tcc">The Creative Collective</a></p>';
+    echo '<p>'.self::$text['describe'][1].'</p>';
+    echo '<p>&copy; '.self::$text['describe'][2].'</p>';
   }
 
-  public static function options_layout($section) {
+  protected function options_layout($section) {
     $lookup = $section.'_options_layout';
     $layout = array();
-    $myclass = get_called_class();
-    if (method_exists($myclass,$lookup)) {
-      $layout = $myclass::$lookup();
+    if (method_exists($this,$lookup)) {
+      $layout = $this->$lookup();
     }
     return $layout;
   }
 
-  public static function get_options_layout($section) {
-    $mysection = self::options_menu_array($section);
-    return $mysection['layout'];
+  protected function get_options_layout($section) {
+    return $this->form[$section]['layout'];
   }
 
-  /*  Retrieve option defaults  */
-  public static function options_defaults($section='') {
-    static $options = array();
-    if (empty($options)) {
-      $menu = self::options_menu_array();
-      foreach($menu as $tab=>$list) {
-        if (empty($list['layout'])) continue;
-        foreach($list['layout'] as $option=>$settings) {
-          if (isset($settings['default'])) $options[$tab][$option] = $settings['default'];
-        }
-      }
-    }
-    return (empty($section)) ? $options : ((isset($options[$section])) ? $options[$section] : array());
-  }
-
-  protected static function create_option_select($slug='',$base='',$full=false) {
+  protected function create_file_select($slug='',$base='',$full=false) {
     if (empty($slug)) return array();
+    $dir = get_stylesheet_directory();
+    if (!empty($base)) $dir .= '/'.$base;
+    $files  = scandir($dir);
     $result = array();
-    $dir = self::check_dir($base);
-    if (file_exists($dir)) {
-      $files  = scandir($dir);
-      foreach($files as $filename) {
-        if (strpos($filename,$slug)===false) continue;
-        $handle = fopen($dir.'/'.$filename, "r");
-        if ($handle) {
-          $descrip = self::get_descript($handle);
-          if ($descrip) {
-            $sname = $filename;
-            if (!$full) {
-              $pos1  = strpos($filename,'-');
-              $pos1  = ($pos1===false) ? 0 : $pos1+1;
-              $pos2  = strpos($filename,'.');
-              $sname = substr($filename,$pos1,($pos2-$pos1));
-            }
-            $result[$sname] = $descrip;
+    foreach($files as $filename) {
+      if (strpos($filename,$slug)===false) continue;
+      $handle = fopen($dir.'/'.$filename, "r");
+      if ($handle) {
+        $descrip = self::get_descript($handle);
+        if ($descrip) {
+          $sname = $filename;
+          if (!$full) {
+            $pos1  = strpos($filename,'-');
+            $pos1  = ($pos1===false) ? 0 : $pos1+1;
+            $pos2  = strpos($filename,'.');
+            $sname = substr($filename,$pos1,($pos2-$pos1));
           }
-          fclose($handle);
+          $result[$sname] = $descrip;
         }
+        fclose($handle);
       }
     }
     return $result;
-  }
-
-  private static function check_dir($base='') {
-    $dir = get_stylesheet_directory();
-    if (!empty($base)) $dir .= '/'.$base;
-    if (!file_exists($dir)) {
-      $dir = get_template_directory();
-      if (!empty($base)) $dir .= '/'.$base;
-    }
-    return $dir;
   }
 
   private static function get_descript($fh) {

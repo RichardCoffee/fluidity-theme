@@ -38,8 +38,8 @@ function admin_menu_setup() {
   }
 
 
-add_action('admin_menu',           array('TCC_Theme_Options_Admin',   'admin_menu_setup'));
+add_action('admin_menu',       array('TCC_Theme_Options_Admin',   'admin_menu_setup'));
 
-add_action('admin_init',           array('TCC_Theme_Options_Admin',   'initialize_admin'));
+add_action('admin_init',       array('TCC_Theme_Options_Admin',   'initialize_admin'));
 
-add_action('admin_enqueue_scripts',array('TCC_Theme_Options_Admin',   'load_admin_scripts'));
+add_action('tcc_admin_enqueue',array('TCC_Theme_Options_Admin',   'load_admin_scripts'));

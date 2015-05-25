@@ -6,21 +6,18 @@
 
 require_once('includes/theme-support.php');
 require_once('includes/library.php');
-require_once('includes/filters.php');
 require_once('includes/footer.php');
 require_once('includes/header.php');
 require_once('includes/login.php');
 require_once('includes/misc.php');
-require_once('includes/options.php');
+require_once('includes/options.php'); // DEPRECATED
 require_once('includes/sidebars.php');
 require_once('includes/wp_bootstrap_navwalker.php');
 require_once('includes/third-party.php');
-require_once('classes/layout.php');
+require_once('classes/layout.php'); // Experiment - see archive.php
 require_once('classes/microdata.php');
 require_once('classes/widgets.php');
-require_once('classes/pagetemplater.php');
 if (is_admin()) {
-  require_once('classes/basic_form');
   require_once('classes/typography.php');
   require_once('classes/options.php');
 }
@@ -54,6 +51,7 @@ if (!function_exists('fluidity_admin_enqueue')) {
   function fluidity_admin_enqueue() {
     fluidity_register_fontawesome();
     wp_enqueue_style('tcc-fawe');
+    do_action('tcc_admin_enqueue');
   }
   add_action('admin_enqueue_scripts','fluidity_admin_enqueue');
 }

@@ -8,7 +8,7 @@ $micro  = TCC_Microdata::get_instance();
 $layout = "";
 get_header(); ?>
 
-<div class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
+<div id="fluid-index" class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12"><?php
 
