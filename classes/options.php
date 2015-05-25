@@ -2,58 +2,49 @@
 
 include_once('basic-form.php');
 
-class Theme_Options_Form extends Basic_Admin_Form {
+class Fluidity_Options_Form extends Basic_Admin_Form {
 
   private static $instance;
-  private static $text;
 
   private static function translated_text() {
-    return array('title'     => array('about'  => __('About / Contact','tcc-theme-options'),
-                                      'menu'   => __('Theme Options','tcc-theme-options')),
-                 'describe'  => array(__('Support Site:','tcc-theme-options'),
-                                      __('For help with this plugin, or any other general support items, please contact us at any time','tcc-theme-options'),
-                                      __('Copyright 2014 TCC','tcc-theme-options')),
-                 'plugin'    => array('label'  => __('Plugin Settings','tcc-theme-options'),
-                                      'text'   => __("These following options control the plugin's behavior",'tcc-theme-options')),
-                 'loca'      => array('label'  => __('Page Location','tcc-theme-options'),
-                                      'text'   => __('You can choose where the Theme Options page appears','tcc-theme-options'),
-                                      'source' => array('dashboard'  => __('Dashboard menu','tcc-theme-options'),
-                                                        'appearance' => __('Appearance menu','tcc-theme-options'),
-                                                        'settings'   => __('Settings menu','tcc-theme-options'))),
-                 'wp_posi'   => array('label'  => __('Dashboard location','tcc-theme-options'),
-                                      'text'   => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-theme-options'),
-                                      'source' => array('top'    => __('Top','tcc-theme-options'),
-                                                        'bottom' => __('default','tcc-theme-options'))),
-                 'deactive'  => array('label'  => __('Plugin Deactivation','tcc-theme-options'),
-                                      'text'   => __('Data will be deleted when deactivating the plugin.','tcc-theme-options')),
-                 'uninstall' => array('label'  => __('Plugin Removal','tcc-theme-options'),
-                                      'text'   => __('Data will be deleted when removing the plugin.','tcc-theme-options')),
-                 'version'   => array('label'  => __('Program Version','tcc-theme-options')),
-                 'dbvers'    => array('label'  => __('Database Version','tcc-theme-options')));
+    return array('title'     => array('about'  => __('About / Contact','tcc-fluid'),
+                                      'menu'   => __('Theme Options','tcc-fluid')),
+                 'describe'  => array(__('Support Site:','tcc-fluid'),
+                                      __('For help with this theme, or any other general support items, please contact us at any time','tcc-fluid'),
+                                      __('Copyright 2014-2015 TCC','tcc-fluid')),
+                 'theme' ,   => array('label'  => __('Theme Settings','tcc-fluid'),
+                                      'text'   => __("These following options control the theme's behavior",'tcc-fluid')),
+                 'loca'      => array('label'  => __('Page Location','tcc-fluid'),
+                                      'text'   => __('You can choose where the Theme Options page appears','tcc-fluid'),
+                                      'source' => array('dashboard'  => __('Dashboard menu','tcc-fluid'),
+                                                        'appearance' => __('Appearance menu','tcc-fluid'),
+                                                        'settings'   => __('Settings menu','tcc-fluid'))),
+                 'wp_posi'   => array('label'  => __('Dashboard location','tcc-fluid'),
+                                      'text'   => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-fluid'),
+                                      'source' => array('top'    => __('Top','tcc-fluid'),
+                                                        'bottom' => __('default','tcc-fluid'))),
+                 'version'   => array('label'  => __('Theme Version','tcc-fluid')));
   }
 
-  protected function form_trans_text($text,$orig) {
+/*  protected function form_trans_text($text,$orig) {
     $text = parent::form_trans_text();
-    $text['object']  = __('Options','tcc-theme-options');
-    $text['subject'] = __('Theme','tcc-theme-options');
+    $text['object']  = __('Options','tcc-fluid');
+    $text['subject'] = __('Theme','tcc-fluid');
     return apply_filters('tcc_form_text',$text,$text);
-  }
+  } //*/
 
   protected function __construct() {
     self::$instance = $this;
     $this->prefix = 'tcc_options_';
-    $this->slug   = 'tcc_theme_options';
+    $this->slug   = 'fluidity_options';
     $this->type   = 'tabbed';
-    add_filter('basic_form_text',10,2);
+#    add_filter('basic_form_text','form_trans_text',10,2);
     parent::__construct();
-    add_action('admin_init',array($this,$this->register));
   }
 
   public static function get_instance() {
-    if (!self::$instance)
-      self::$instance = new Theme_Options_Form;
-    if (empty(self::$text))
-      self::$text = self::translated_text();
+    if (!self::$instance)   self::$instance = new Fluidity_Options_Form;
+    if (empty(self::$text)) self::$text     = self::translated_text();
     return self::$instance;
   }
 
@@ -139,18 +130,24 @@ class Theme_Options_Form extends Basic_Admin_Form {
  *
  */
   private function about_options_layout() {
+
+
     $instance = Theme_Options_Plugin::get_instance();
     if (!$instance) $instance = new Theme_Options_Plugin(tcc_theme_plugin_info());
+
+
+
+
     $layout = array('version'   => array('default' => $instance->version,
                                          'label'   => self::$text['version']['label'],
                                          'render'  => 'display'),
                     'dbvers'    => array('default' => $instance->dbvers,
                                          'label'   => self::$text['dbvers']['label'],
                                          'render'  => 'skip'),
-                    'plugin'    => array('label'   => self::$text['plugin']['label'],
-                                         'text'    => self::$text['plugin']['text'],
+                    'theme'     => array('label'   => self::$text['theme']['label'],
+                                         'text'    => self::$text['theme']['text'],
                                          'render'  => 'title'),
-                    'loca'      => array('default' => 'dashboard',
+                    'loca'      => array('default' => 'appearance',
                                          'label'   => self::$text['loca']['label'],
                                          'text'    => self::$text['loca']['text'],
                                          'render'  => 'radio',
@@ -162,15 +159,7 @@ class Theme_Options_Form extends Basic_Admin_Form {
                                          'text'    => self::$text['wp_posi']['text'],
                                          'render'  => 'select',
                                          'source'  => self::$text['wp_posi']['source'],
-                                         'class'   => 'tcc-wp_posi'),
-                    'deactive'  => array('default' => 'no',
-                                         'label'   => self::$text['deactive']['label'],
-                                         'text'    => self::$text['deactive']['text'],
-                                         'render'  => 'checkbox'),
-                    'uninstall' => array('default' => 'yes',
-                                         'label'   => self::$text['uninstall']['label'],
-                                         'text'    => self::$text['uninstall']['text'],
-                                         'render'  => 'checkbox'));
+                                         'class'   => 'tcc-wp_posi'));
     $layout = apply_filters('tcc_about_options_layout',$layout);
     return $layout;
   }

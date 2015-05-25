@@ -6,7 +6,7 @@ abstract class Basic_Admin_Form {
   protected $err_func =  null;
   protected $form     =  array();
   protected $options  = 'render_single_options';
-  protected $prefix   = '';
+  protected $prefix   = 'options_prefix_';
   protected $register = 'register_single_form';
   protected $render   = 'render_single_form';
   protected $slug     = 'default_page_slug';
@@ -18,13 +18,13 @@ abstract class Basic_Admin_Form {
   public function description() { return ''; }
 
   private function form_text() {
-    $text = array('error'  => array('render'    => _x('ERROR: Unable to locate function %s','string - a function name','basic-form')),
-                                    'subscript' => _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form'),
-                  'submit' => array('save'      => __('Save Changes','basic-form'),
-                                    'object'    => __('Form','basic-form'),
-                                    'reset'     => _x('Reset %s','placeholder is a noun, may be plural','basic-form'),
-                                    'subject'   => __('Form','basic-form'),
-                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','basic-form')));
+    $text = array('error'  => array('render'    => __('ERROR: Unable to locate function %s','tcc-fluid')),
+                                    'subscript' => __('ERROR: Not able to locate form data subscript:  %s','tcc-fluid'),
+                  'submit' => array('save'      => __('Save Changes','tcc-fluid'),
+                                    'object'    => __('Form','tcc-fluid'),
+                                    'reset'     => _x('Reset %s','placeholder is a noun, may be plural','tcc-fluid'),
+                                    'subject'   => __('Form','tcc-fluid'),
+                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','tcc-fluid')));
     return apply_filters('basic_form_text',$text,$text);
   }
 
@@ -39,6 +39,7 @@ abstract class Basic_Admin_Form {
       $defs = $this->defaults;
       add_option($option,$defs);
     }
+    add_action('admin_init',array($this,$this->register));
   }
 
   private function screen_type() {

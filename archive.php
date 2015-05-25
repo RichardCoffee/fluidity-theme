@@ -9,12 +9,10 @@ $micro = $fluid->microdata;
 
 get_header(); ?>
 
-<div id="fluid-archive" class="<?php echo container_type($fluid->sidebar_name); ?>" <?php if (is_search()) $micro->SearchResultsPage(); ?>>
+<div id="fluid-archive" class="<?php echo container_type('archive'); ?>" <?php if (is_search()) $micro->SearchResultsPage(); ?>>
   <div class="row"><?php
     who_am_i();
-
     $fluid->get_sidebar(); ?>
-
     <div class="<?php echo $fluid->primary_class; ?>" <?php $micro->Blog(); ?>>
       <h1 class="text-center"><?php the_archive_title(); ?></h1><?php
       if (have_posts()) {
@@ -30,7 +28,7 @@ get_header(); ?>
           </div><?php
         }
         if ($wp_query->max_num_pages>1) tcc_navigation('above');
-        $cnt  = 0;
+        $cnt = 0;
         while(have_posts()) {
           the_post(); ?>
           <div class="<?php echo $fluid->inner_class; ?> content content-<?php echo $fluid->color_scheme; ?>" <?php $micro->BlogPosting(); ?>><?php
@@ -53,7 +51,6 @@ get_header(); ?>
         </div><!-- #post-0 --><?php
       } ?>
     </div>
-
   </div><!-- .row -->
 </div><!-- .container --><?php
 
