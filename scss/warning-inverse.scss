@@ -1,0 +1,15 @@
+/*
+ *  tcc-fluidity/css/warning-inverse.css
+ *
+ *  based on bootstrap warning color scheme
+ *
+ */
+
+$colorName : warning-inverse;
+$colors    : ( "background"    : #FCF8E3,
+               "bgHighlight"   : #FAEBCC,
+               "textcolor"     : #8A6D3B,
+               "textHighlight" : #8A6D3B);
+
+
+@import "color_template";

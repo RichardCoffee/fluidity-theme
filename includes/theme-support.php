@@ -38,3 +38,11 @@ $defaults = array(
 add_theme_support('custom-header',$defaults);
 
 add_editor_style();
+
+// menu
+if (!function_exists('tcc_setup')) {
+  function tcc_menu_theme_support() {
+    register_nav_menu('primary',__( 'Primary Menu','tcc-fluid'));
+  }
+  add_action('after_setup_theme','tcc_menu_theme_support');
+}

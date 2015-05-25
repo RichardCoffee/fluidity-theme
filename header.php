@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title itemprop="name"> <?php wp_title('>',true,'right'); ?> </title>
-<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" type="image/x-icon" />
+<link rel="icon"          href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
-<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>  
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+<link rel="stylesheet"    href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' type='text/css'>  
+<link rel="profile"       href="http://gmpg.org/xfn/11" />
+<link rel="pingback"      href="<?php bloginfo('pingback_url'); ?>" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

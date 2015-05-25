@@ -1,0 +1,96 @@
+/*
+ *  tcc-fluidity/css/warning-inverse.css
+ *
+ *  based on bootstrap warning color scheme
+ *
+ */
+.btn-warning-inverse-inverse, .navbar-warning-inverse .btn-warning-inverse {
+  background-color: #8A6D3B;
+  border-color: #FAEBCC;
+  color: #FCF8E3;
+}
+.btn-warning-inverse-inverse:hover, .navbar-warning-inverse .btn-warning-inverse:hover, .btn-warning-inverse-inverse:focus, .navbar-warning-inverse .btn-warning-inverse:focus {
+  background-color: #8A6D3B;
+  color: #FAEBCC;
+}
+
+.navbar-warning-inverse {
+  background-color: #FCF8E3;
+  border-color: #FAEBCC;
+}
+.navbar-warning-inverse .navbar-brand {
+  color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-brand:hover, .navbar-warning-inverse .navbar-brand:focus {
+  color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-text {
+  color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-nav > li > a {
+  color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-nav > li > a:hover, .navbar-warning-inverse .navbar-nav > li > a:focus {
+  color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-nav > .active > a, .navbar-warning-inverse .navbar-nav > .active > a:hover, .navbar-warning-inverse .navbar-nav > .active > a:focus {
+  color: #8A6D3B;
+  background-color: #FAEBCC;
+}
+.navbar-warning-inverse .navbar-nav > .open > a, .navbar-warning-inverse .navbar-nav > .open > a:hover, .navbar-warning-inverse .navbar-nav > .open > a:focus {
+  color: #8A6D3B;
+  background-color: #FAEBCC;
+}
+.navbar-warning-inverse .navbar-toggle {
+  border-color: #FAEBCC;
+}
+.navbar-warning-inverse .navbar-toggle:hover, .navbar-warning-inverse .navbar-toggle:focus {
+  background-color: #FAEBCC;
+}
+.navbar-warning-inverse .navbar-toggle .icon-bar {
+  background-color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-collapse,
+.navbar-warning-inverse .navbar-form {
+  border-color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-link {
+  color: #8A6D3B;
+}
+.navbar-warning-inverse .navbar-link:hover {
+  color: #8A6D3B;
+}
+
+@media (max-width: 767px) {
+  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #8A6D3B;
+  }
+  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #8A6D3B;
+  }
+  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-warning-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-warning-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #8A6D3B;
+    background-color: #FAEBCC;
+  }
+}
+.input-group .btn-warning-inverse {
+  background-color: #FCF8E3;
+  border-color: #FAEBCC;
+  color: #8A6D3B;
+}
+.input-group .form-control {
+  border-color: #FAEBCC;
+}
+
+.panel-warning-inverse {
+  border-color: #FAEBCC;
+}
+.panel-warning-inverse > .panel-heading {
+  background-color: #FCF8E3;
+  border-color: #FAEBCC;
+  color: #8A6D3B;
+}
+
+.content-warning-inverse {
+  border-color: #FAEBCC;
+}
