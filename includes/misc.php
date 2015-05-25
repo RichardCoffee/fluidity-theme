@@ -37,6 +37,9 @@ if (!function_exists('single_search_result')) {
       if ($wp_query->post_count==1) {
         wp_redirect(get_permalink($wp_query->posts['0']->ID));
       }
+    } else {
+      global $wp_query;
+      logMe('wp_query',$wp_query);
     }
   }
   add_action('template_redirect','single_search_result');
