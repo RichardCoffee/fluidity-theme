@@ -39,7 +39,7 @@ if (!function_exists('single_search_result')) {
       }
     } else {
       global $wp_query;
-      logMe('wp_query',$wp_query);
+      log_entry('wp_query',$wp_query);
     }
   }
   add_action('template_redirect','single_search_result');
