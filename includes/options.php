@@ -43,7 +43,7 @@ if (!function_exists('tcc_color_scheme')) {
  */
     $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
     $color  = rand(0,count($colors)-1);
-    return $color;
+    return $colors[$color];
 #    return 'success-inverse';
 #    return 'primary';
 #    return 'info';
