@@ -32,7 +32,7 @@ add_filter('excerpt_more', 'fluid_read_more_link');
 if (!function_exists('single_search_result')) {
   // http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
   function single_search_result() {
-    if (is_search() || is_archive() || is_category) {
+    if (is_search() || is_archive() || is_category()) {
       global $wp_query;
       if ($wp_query->post_count==1) {
         wp_redirect(get_permalink($wp_query->posts['0']->ID));
