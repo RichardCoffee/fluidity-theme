@@ -41,13 +41,13 @@ if (!function_exists('tcc_color_scheme')) {
  *     red: danger
  *   white: default
  */
-#    $colors - array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
-#    $color  = rand(0,count($colors)-1);
-#    return $color;
+    $colors - array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
+    $color  = rand(0,count($colors)-1);
+    return $color;
 #    return 'success-inverse';
 #    return 'primary';
 #    return 'info';
-    return 'warning-inverse';
+#    return 'warning-inverse';
 #    return 'danger';
   }
 }
