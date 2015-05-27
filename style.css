@@ -17,6 +17,9 @@ body {
   font-size: 18px
 }
 
+#header-topmenu.navbar {
+  margin-bottom: 0;
+}
 
 .article,
 .article pre {
