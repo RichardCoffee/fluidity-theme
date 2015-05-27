@@ -94,3 +94,7 @@
 .content-success-inverse {
   border-color: #d6e9c6;
 }
+
+#header-body {
+  background-color: #dff0d8;
+}

@@ -94,3 +94,7 @@
 .content-danger-inverse {
   border-color: #f2dede;
 }
+
+#header-body {
+  background-color: #f2dede;
+}

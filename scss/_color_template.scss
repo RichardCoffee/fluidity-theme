@@ -121,3 +121,7 @@
 .content-#{$colorName} {
   border-color: color(bgHighlight);
 }
+
+#header-body {
+  background-color: color(background);
+}

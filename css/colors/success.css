@@ -1,5 +1,5 @@
 /*
- *  fluidity/css/success.css
+ *  tcc-fluidity/css/success.css
  *
  *  bootstrap success color scheme
  *
@@ -93,4 +93,8 @@
 
 .content-success {
   border-color: #4cae4c;
+}
+
+#header-body {
+  background-color: #5cb85c;
 }

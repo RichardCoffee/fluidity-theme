@@ -94,3 +94,7 @@
 .content-danger {
   border-color: #d43f3a;
 }
+
+#header-body {
+  background-color: #d9534f;
+}
