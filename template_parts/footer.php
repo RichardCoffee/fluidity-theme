@@ -1,7 +1,7 @@
 <?php
 
 /*
- * fluidity/template_parts/footer.php
+ * tcc-fluidity/template_parts/footer.php
  *
  */
 
@@ -22,11 +22,11 @@ if (!$has_sidebar) {
 
 <div class="footer"><?php
   who_am_i(); ?>
-  <div class="<?php echo $class_logo; ?>" itemprop='author' itemscope itemtype='http://schema.org/Organization'><?php
+  <div class="<?php echo $class_logo; ?>" itemprop='author' <?php $micro->Organization(); ?>><?php
     $logo = tcc_design('logo');
     if ($logo) { ?>
       <a href="<?php bloginfo('url'); ?>/">
-        <img itemprop="logo" style="width:200px;  margin:0 auto;" class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>">
+        <img itemprop="logo" class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>">
       </a><?php
     } ?>
     <h4 class="text-center" itemprop="name"><?php bloginfo('title'); ?></h4>

@@ -85,6 +85,21 @@ function get_valid_gravatar($email,$size=96) {
   return $avatar;
 }
 
+if (!function_exists('tcc_navigation')) {
+  function tcc_navigation($suffix='above') {
+    $older = __('Older posts','tcc-fluid');
+    $newer = __('Newer posts','tcc-fluid'); ?>
+    <div id="nav-<?php echo $suffix; ?>" class="navigation">
+      <div class="nav-previous"><?php
+        next_posts_link('<span class="meta-nav">&larr;</span> '.$older); ?>
+      </div>
+      <div class="nav-next"><?php
+        previous_posts_link($newer.' <span class="meta-nav">&rarr;</span>'); ?>
+      </div>
+    </div><?php
+  }
+}
+
 // http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 if (!function_exists('page_exists')) {
   function page_exists($search='') {

@@ -5,9 +5,7 @@
  *
  */
 
-global $micro;
-
-?>
+global $micro; ?>
 
 <div id="fluid-footer" class="<? echo container_type('footer'); ?>" <?php $micro->WPFooter(); ?>>
   <div class="row"><?php
