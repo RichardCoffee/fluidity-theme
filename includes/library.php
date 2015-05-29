@@ -1,8 +1,8 @@
 <?php
 
 // Use bootstrap's clearfix
-if (!function_exists('apply_clearfix')) {
-  function apply_clearfix($args) {
+if (!function_exists('tcc_apply_clearfix')) {
+  function tcc_apply_clearfix($args) {
     $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
     $args = wp_parse_args($args,$defs);
     if (empty($args['cnt'])) return;
@@ -12,6 +12,24 @@ if (!function_exists('apply_clearfix')) {
     if ($sm && ($cnt%(intval((12/$sm)))==0)) echo "<div class='clearfix visible-sm-block'></div>";
     if ($xs && ($cnt%(intval((12/$xs)))==0)) echo "<div class='clearfix visible-xs-block'></div>";
   }
+}
+
+if (!function_exists('tcc_browser_body_class')) {
+  // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
+  function tcc_browser_body_class($classes) {
+    global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+    if($is_lynx)       $classes[] = 'lynx';
+    elseif($is_gecko)  $classes[] = 'gecko';
+    elseif($is_opera)  $classes[] = 'opera';
+    elseif($is_NS4)    $classes[] = 'ns4';
+    elseif($is_safari) $classes[] = 'safari';
+    elseif($is_chrome) $classes[] = 'chrome';
+    elseif($is_IE)     $classes[] = 'ie';
+    else               $classes[] = 'unknown';
+    if($is_iphone)     $classes[] = 'iphone';
+    return $classes;
+  }
+  add_filter('body_class','tcc_browser_body_class');
 }
 
 if (!function_exists('fluid_color_scheme')) {
@@ -76,6 +94,23 @@ if (!function_exists('page_exists')) {
         return true;
     }
     return false;
+  }
+}
+
+if (!function_exists('sanitize_array')) {
+  function sanitize_array($array,$method='title') {
+    $output = array();
+    $func   = "sanitize_$method";
+    if ((array)$array==$array && function_exists($func)) {
+      foreach($array as $key=>$data) {
+        if ((array)$data==$data) {
+          $output[$key] = sanitize_array($data,$method); // recurse
+        } else if ((string)$data==$data) {
+          $output[$key] = $func($data);
+        } else { $output[$key] = $data; }
+      }
+    } else { $output = $array; }
+    return $output;
   }
 }
 

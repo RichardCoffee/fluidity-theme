@@ -17,10 +17,10 @@ add_theme_support('automatic-feed-links');
 // Code for custom background support
 add_theme_support('custom-background');
 
-// supports title tag
+// Supports title tag
 add_theme_support('title-tag');
 
-// enable custom header support
+// Enable custom header support
 $defaults = array(
   'default-image'          => '',
   'random-default'         => false,
@@ -38,11 +38,19 @@ $defaults = array(
 add_theme_support('custom-header',$defaults);
 
 add_editor_style();
+if (!function_exists('tcc_editor_styles')) {
+  if (file_exists(get_template_directory().'custom-editor-style.css')) {
+    function tcc_editor_styles() {
+      add_editor_style('custom-editor-style.css');
+    }
+    add_action('admin_init','tcc_editor_styles' ); //*/
+  }
+}
 
 // menu
-if (!function_exists('tcc_setup')) {
+if (!function_exists('tcc_menu_theme_support')) {
   function tcc_menu_theme_support() {
-    register_nav_menu('primary',__( 'Primary Menu','tcc-fluid'));
+    register_nav_menu('primary',__('Primary Menu','tcc-fluid'));
   }
   add_action('after_setup_theme','tcc_menu_theme_support');
 }

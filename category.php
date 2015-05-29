@@ -24,7 +24,7 @@ get_header(); ?>
             $slug = apply_filters('tcc_archive_content_slug',$wp_query->post_type);
             get_template_part('template_parts/content',$slug); ?>
           </div><?php
-          apply_clearfix($fluid->clearfix.'&cnt='.(++$cnt));
+          tcc_apply_clearfix($fluid->clearfix.'&cnt='.(++$cnt));
         }
         if ($wp_query->max_num_pages>1) tcc_navigation('below');
       } else { ?>

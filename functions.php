@@ -1,6 +1,6 @@
 <?php
 /*
- *  functions.php
+ *  tcc-fluidity/functions.php
  *
  */
 

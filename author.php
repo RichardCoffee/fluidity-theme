@@ -38,7 +38,7 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
               <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"><?php
                 get_template_part('template_parts/content',get_post_type()); ?>
               </div><?php
-              apply_clearfix('lg=4&md=4&sm=6&xs=12');
+              tcc_apply_clearfix('lg=4&md=4&sm=6&xs=12');
             }
             tcc_navigation('below'); ?>
           </div><?php
