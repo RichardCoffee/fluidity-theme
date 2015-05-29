@@ -65,7 +65,7 @@ if (!function_exists('fluidity_sidebar_parameter')) {
         return $item['args'][0];
       }
     }
-    return array();
+    return '';
   }
 }
 
