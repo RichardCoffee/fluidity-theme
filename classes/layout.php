@@ -34,7 +34,7 @@ class Fluid_Layout {
   }
 
   private function determine_sidebar() {
-    // FIXME:  this needs to be coordinated in register_fluid_sidebars() in sidebars.php
+    // FIXME:  this needs to be coordinated with register_fluid_sidebars() in includes/sidebars.php
     $known = array('standard','front','three_column','footer');
     $known = apply_filters('fluidity_known_sidebars',$known);
     if ((empty($this->sidebar_name)) || (!in_array($this->sidebar_name,$known))) {
