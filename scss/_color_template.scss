@@ -123,5 +123,5 @@
 }
 
 #header-body {
-  background-color: color(background);
+  background-color: lighten(color(background),50%);
 }
