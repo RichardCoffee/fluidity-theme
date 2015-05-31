@@ -1,3 +1,8 @@
+blue
+green
+orange
+red
+yellow
 danger-inverse
 danger
 info-inverse

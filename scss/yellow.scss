@@ -1,0 +1,13 @@
+/*
+ *  tcc-fluidity/css/colors/yellow.css
+ *
+ */
+
+$colorName : yellow;
+$primaryColor : #fff200;
+$colors    : ( "background"    : $primaryColor,
+               "bgHighlight"   : scale-color($primaryColor,$lightness:-20%),
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";

@@ -1,0 +1,98 @@
+/*
+ *  tcc-fluidity/css/colors/red.css
+ *
+ */
+.btn-red-inverse, .navbar-red .btn-red {
+  background-color: #FFFFFF;
+  border-color: #cc0000;
+  color: #ff0000;
+}
+.btn-red-inverse:hover, .navbar-red .btn-red:hover, .btn-red-inverse:focus, .navbar-red .btn-red:focus {
+  background-color: #FFFFFF;
+  color: #cc0000;
+}
+
+.navbar-red {
+  background-color: #ff0000;
+  border-color: #cc0000;
+}
+.navbar-red .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar-red .navbar-brand:hover, .navbar-red .navbar-brand:focus {
+  color: #FFFFFF;
+}
+.navbar-red .navbar-text {
+  color: #FFFFFF;
+}
+.navbar-red .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+.navbar-red .navbar-nav > li > a:hover, .navbar-red .navbar-nav > li > a:focus {
+  color: #FFFFFF;
+}
+.navbar-red .navbar-nav > .active > a, .navbar-red .navbar-nav > .active > a:hover, .navbar-red .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #cc0000;
+}
+.navbar-red .navbar-nav > .open > a, .navbar-red .navbar-nav > .open > a:hover, .navbar-red .navbar-nav > .open > a:focus {
+  color: #FFFFFF;
+  background-color: #cc0000;
+}
+.navbar-red .navbar-toggle {
+  border-color: #cc0000;
+}
+.navbar-red .navbar-toggle:hover, .navbar-red .navbar-toggle:focus {
+  background-color: #cc0000;
+}
+.navbar-red .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-red .navbar-collapse,
+.navbar-red .navbar-form {
+  border-color: #FFFFFF;
+}
+.navbar-red .navbar-link {
+  color: #FFFFFF;
+}
+.navbar-red .navbar-link:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .navbar-red .navbar-nav .open .dropdown-menu > li > a {
+    color: #FFFFFF;
+  }
+  .navbar-red .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-red .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #FFFFFF;
+  }
+  .navbar-red .navbar-nav .open .dropdown-menu > .active > a, .navbar-red .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-red .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #cc0000;
+  }
+}
+.input-group .btn-red {
+  background-color: #ff0000;
+  border-color: #cc0000;
+  color: #FFFFFF;
+}
+.input-group .form-control {
+  border-color: #cc0000;
+}
+
+.panel-red {
+  border-color: #cc0000;
+}
+.panel-red > .panel-heading {
+  background-color: #ff0000;
+  border-color: #cc0000;
+  color: #FFFFFF;
+}
+
+.content-red {
+  border-color: #cc0000;
+}
+
+#header-body {
+  background-color: #ff3333;
+}

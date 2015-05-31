@@ -1,0 +1,98 @@
+/*
+ *  tcc-fluidity/css/colors/yellow.css
+ *
+ */
+.btn-yellow-inverse, .navbar-yellow .btn-yellow {
+  background-color: #FFFFFF;
+  border-color: #ccc200;
+  color: #fff200;
+}
+.btn-yellow-inverse:hover, .navbar-yellow .btn-yellow:hover, .btn-yellow-inverse:focus, .navbar-yellow .btn-yellow:focus {
+  background-color: #FFFFFF;
+  color: #ccc200;
+}
+
+.navbar-yellow {
+  background-color: #fff200;
+  border-color: #ccc200;
+}
+.navbar-yellow .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar-yellow .navbar-brand:hover, .navbar-yellow .navbar-brand:focus {
+  color: #FFFFFF;
+}
+.navbar-yellow .navbar-text {
+  color: #FFFFFF;
+}
+.navbar-yellow .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+.navbar-yellow .navbar-nav > li > a:hover, .navbar-yellow .navbar-nav > li > a:focus {
+  color: #FFFFFF;
+}
+.navbar-yellow .navbar-nav > .active > a, .navbar-yellow .navbar-nav > .active > a:hover, .navbar-yellow .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #ccc200;
+}
+.navbar-yellow .navbar-nav > .open > a, .navbar-yellow .navbar-nav > .open > a:hover, .navbar-yellow .navbar-nav > .open > a:focus {
+  color: #FFFFFF;
+  background-color: #ccc200;
+}
+.navbar-yellow .navbar-toggle {
+  border-color: #ccc200;
+}
+.navbar-yellow .navbar-toggle:hover, .navbar-yellow .navbar-toggle:focus {
+  background-color: #ccc200;
+}
+.navbar-yellow .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-yellow .navbar-collapse,
+.navbar-yellow .navbar-form {
+  border-color: #FFFFFF;
+}
+.navbar-yellow .navbar-link {
+  color: #FFFFFF;
+}
+.navbar-yellow .navbar-link:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .navbar-yellow .navbar-nav .open .dropdown-menu > li > a {
+    color: #FFFFFF;
+  }
+  .navbar-yellow .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-yellow .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #FFFFFF;
+  }
+  .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a, .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #ccc200;
+  }
+}
+.input-group .btn-yellow {
+  background-color: #fff200;
+  border-color: #ccc200;
+  color: #FFFFFF;
+}
+.input-group .form-control {
+  border-color: #ccc200;
+}
+
+.panel-yellow {
+  border-color: #ccc200;
+}
+.panel-yellow > .panel-heading {
+  background-color: #fff200;
+  border-color: #ccc200;
+  color: #FFFFFF;
+}
+
+.content-yellow {
+  border-color: #ccc200;
+}
+
+#header-body {
+  background-color: #fff533;
+}

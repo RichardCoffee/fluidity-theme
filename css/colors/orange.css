@@ -1,0 +1,98 @@
+/*
+ *  tcc-fluidity/css/colors/orange.css
+ *
+ */
+.btn-orange-inverse, .navbar-orange .btn-orange {
+  background-color: #FFFFFF;
+  border-color: #d57808;
+  color: #f7941d;
+}
+.btn-orange-inverse:hover, .navbar-orange .btn-orange:hover, .btn-orange-inverse:focus, .navbar-orange .btn-orange:focus {
+  background-color: #FFFFFF;
+  color: #d57808;
+}
+
+.navbar-orange {
+  background-color: #f7941d;
+  border-color: #d57808;
+}
+.navbar-orange .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar-orange .navbar-brand:hover, .navbar-orange .navbar-brand:focus {
+  color: #FFFFFF;
+}
+.navbar-orange .navbar-text {
+  color: #FFFFFF;
+}
+.navbar-orange .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+.navbar-orange .navbar-nav > li > a:hover, .navbar-orange .navbar-nav > li > a:focus {
+  color: #FFFFFF;
+}
+.navbar-orange .navbar-nav > .active > a, .navbar-orange .navbar-nav > .active > a:hover, .navbar-orange .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #d57808;
+}
+.navbar-orange .navbar-nav > .open > a, .navbar-orange .navbar-nav > .open > a:hover, .navbar-orange .navbar-nav > .open > a:focus {
+  color: #FFFFFF;
+  background-color: #d57808;
+}
+.navbar-orange .navbar-toggle {
+  border-color: #d57808;
+}
+.navbar-orange .navbar-toggle:hover, .navbar-orange .navbar-toggle:focus {
+  background-color: #d57808;
+}
+.navbar-orange .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-orange .navbar-collapse,
+.navbar-orange .navbar-form {
+  border-color: #FFFFFF;
+}
+.navbar-orange .navbar-link {
+  color: #FFFFFF;
+}
+.navbar-orange .navbar-link:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .navbar-orange .navbar-nav .open .dropdown-menu > li > a {
+    color: #FFFFFF;
+  }
+  .navbar-orange .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-orange .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #FFFFFF;
+  }
+  .navbar-orange .navbar-nav .open .dropdown-menu > .active > a, .navbar-orange .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-orange .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #d57808;
+  }
+}
+.input-group .btn-orange {
+  background-color: #f7941d;
+  border-color: #d57808;
+  color: #FFFFFF;
+}
+.input-group .form-control {
+  border-color: #d57808;
+}
+
+.panel-orange {
+  border-color: #d57808;
+}
+.panel-orange > .panel-heading {
+  background-color: #f7941d;
+  border-color: #d57808;
+  color: #FFFFFF;
+}
+
+.content-orange {
+  border-color: #d57808;
+}
+
+#header-body {
+  background-color: #f9ab4e;
+}

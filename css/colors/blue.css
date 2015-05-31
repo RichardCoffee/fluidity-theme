@@ -1,0 +1,98 @@
+/*
+ *  tcc-fluidity/css/colors/blue.css
+ *
+ */
+.btn-blue-inverse, .navbar-blue .btn-blue {
+  background-color: #FFFFFF;
+  border-color: #252775;
+  color: #2e3192;
+}
+.btn-blue-inverse:hover, .navbar-blue .btn-blue:hover, .btn-blue-inverse:focus, .navbar-blue .btn-blue:focus {
+  background-color: #FFFFFF;
+  color: #252775;
+}
+
+.navbar-blue {
+  background-color: #2e3192;
+  border-color: #252775;
+}
+.navbar-blue .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar-blue .navbar-brand:hover, .navbar-blue .navbar-brand:focus {
+  color: #FFFFFF;
+}
+.navbar-blue .navbar-text {
+  color: #FFFFFF;
+}
+.navbar-blue .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+.navbar-blue .navbar-nav > li > a:hover, .navbar-blue .navbar-nav > li > a:focus {
+  color: #FFFFFF;
+}
+.navbar-blue .navbar-nav > .active > a, .navbar-blue .navbar-nav > .active > a:hover, .navbar-blue .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #252775;
+}
+.navbar-blue .navbar-nav > .open > a, .navbar-blue .navbar-nav > .open > a:hover, .navbar-blue .navbar-nav > .open > a:focus {
+  color: #FFFFFF;
+  background-color: #252775;
+}
+.navbar-blue .navbar-toggle {
+  border-color: #252775;
+}
+.navbar-blue .navbar-toggle:hover, .navbar-blue .navbar-toggle:focus {
+  background-color: #252775;
+}
+.navbar-blue .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-blue .navbar-collapse,
+.navbar-blue .navbar-form {
+  border-color: #FFFFFF;
+}
+.navbar-blue .navbar-link {
+  color: #FFFFFF;
+}
+.navbar-blue .navbar-link:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .navbar-blue .navbar-nav .open .dropdown-menu > li > a {
+    color: #FFFFFF;
+  }
+  .navbar-blue .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-blue .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #FFFFFF;
+  }
+  .navbar-blue .navbar-nav .open .dropdown-menu > .active > a, .navbar-blue .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-blue .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #252775;
+  }
+}
+.input-group .btn-blue {
+  background-color: #2e3192;
+  border-color: #252775;
+  color: #FFFFFF;
+}
+.input-group .form-control {
+  border-color: #252775;
+}
+
+.panel-blue {
+  border-color: #252775;
+}
+.panel-blue > .panel-heading {
+  background-color: #2e3192;
+  border-color: #252775;
+  color: #FFFFFF;
+}
+
+.content-blue {
+  border-color: #252775;
+}
+
+#header-body {
+  background-color: #3a3eb9;
+}

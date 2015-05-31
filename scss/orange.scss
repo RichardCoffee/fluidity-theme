@@ -1,0 +1,13 @@
+/*
+ *  tcc-fluidity/css/colors/orange.css
+ *
+ */
+
+$colorName : orange;
+$primaryColor : #f7941d;
+$colors    : ( "background"    : $primaryColor,
+               "bgHighlight"   : scale-color($primaryColor,$lightness:-20%),
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";
