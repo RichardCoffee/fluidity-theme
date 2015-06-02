@@ -129,6 +129,12 @@ class TCC_Microdata {
   *
   */
 
+  public function bloginfo($show,$filter='raw') {
+    $string = get_bloginfo($show,$filter);
+    if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
+    echo $string;
+  }
+
   public function get_bloginfo($show,$filter='raw') {
     $string = get_bloginfo($show,$filter);
     if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
