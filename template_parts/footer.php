@@ -5,44 +5,15 @@
  *
  */
 
-global $micro;
-
-$class_logo  = "col-lg-3 col-md-3 hidden-sm hidden-xs";
-$class_side  = "col-lg-9 col-md-9 col-sm-12 col-xs-12";
-$has_sidebar = is_active_sidebar('footer');
-if (!$has_sidebar) {
-  $class_logo = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
-}
-
-
-
- ?>
+global $micro; ?>
 
 <div class="ribbon"></div>
 
 <div class="footer"><?php
   who_am_i(); ?>
-  <div class="<?php echo $class_logo; ?>" itemprop='author' <?php $micro->Organization(); ?>><?php
-    $logo = tcc_design('logo');
-    if ($logo) { ?>
-      <a href="<?php bloginfo('url'); ?>/">
-        <img itemprop="logo" class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>">
-      </a><?php
-    } ?>
-    <h4 class="text-center" itemprop="name"><?php bloginfo('title'); ?></h4>
-    <!-- FIXME: address needs to be editable option in theme options -->
-    <address class="text-center" <?php $micro->PostalAddress(); ?>>
-      <span itemprop="streetAddress">123 Main Street</span><br>
-      <span itemprop="addressLocality">Van</span> <span itemprop="addressRegion">TX</span>, <span itemprop="postalCode">75790</span><br>
-      Office: <span itemprop="telephone">888 555 1212</span><br>
-      Email: <a href="mailto:<?php echo get_option('admin_email'); ?>"><?php bloginfo ('title');?> </a>
-    </address>
-  </div><?php
-  if ($has_sidebar) { ?>
-    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" <?php $micro->WPSideBar(); ?>><?php
-      get_sidebar('footer'); ?>
-    </div><?php
-  } ?>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" <?php $micro->WPSideBar(); ?>><?php
+    fluidity_get_sidebar('footer'); ?>
+  </div>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
     <p class="text-center"><?php
       $format = _x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');

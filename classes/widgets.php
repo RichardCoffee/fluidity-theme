@@ -5,16 +5,17 @@ class TCC_Basic_Widget extends WP_Widget {
   protected $title = '';
   protected $desc  = '';
   protected $slug  = '';
+  public static $micro = null;
 
   function __construct($slug='',$title='',$desc=array()) {
-    if (empty($this->slug)) $this->slug = $slug; // FIXME:  update all current widgets to use $this->slug
     parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
+    if (!self::$micro) self::$micro = TCC_Microdata::get_instance();
   }
 
   protected function pre_widget($args) {
     $title = apply_filters('widget_title',$args['tcc-title']);
     echo $args['before_widget'];
-    if (!empty($title))
+    if (!empty($title)) 
       echo $args['before_title'].$title.$args['after_title'];
   }
 
@@ -53,6 +54,30 @@ class TCC_Basic_Widget extends WP_Widget {
 
 }
 
+class TCC_Address_Widget extends TCC_Basic_Widget {
+
+  function __construct() {
+    $this->title = __('Address','tcc-fluid');
+    $this->desc  = $this->title;
+    $this->slug  = 'tcc_address';
+    parent::__construct();
+  }
+
+  public function inner_widget($args,$instance) { ?>
+    <div <?php $micro->Organization(); ?>>
+      <h4 class="text-center" itemprop="name"><?php bloginfo('title'); ?></h4>
+      <!-- FIXME: address needs to be editable option in theme options -->
+      <address class="text-center" <?php self::$micro->PostalAddress(); ?>>
+        <span itemprop="streetAddress">123 Main Street</span><br>
+        <span itemprop="addressLocality">Van</span> <span itemprop="addressRegion">TX</span>, <span itemprop="postalCode">75790</span><br>
+        Office: <span itemprop="telephone">888 555 1212</span><br>
+        Email: <a href="mailto:<?php echo get_option('admin_email'); ?>"><?php bloginfo ('title');?> </a>
+      </address>
+    </div><?php
+  }
+  
+}
+
 class TCC_Login_Widget extends TCC_Basic_Widget {
 
   function __construct() {
@@ -67,10 +92,30 @@ class TCC_Login_Widget extends TCC_Basic_Widget {
   }
 
 }
+
+class TCC_Logo_Widget extends TCC_Basic_Widget {
+
+  function __construct() {
+    $this->title = __('Site Logo','tcc-fluid');
+    $this->desc  = $this->title;
+    $this->slug  = 'tcc_logo';
+    parent::__construct();
+  }
+
+  public function inner_widget($args,$instance) {
+    $logo = tcc_design('logo'); ?>
+    <a href="<?php self::$micro->bloginfo('url'); ?>/">
+      <img itemprop="logo" class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
+    </a><?php
+  }
+
+}
+
 do_action('tcc_widget_class_loaded');
 
 function register_fluid_widgets() {
   register_widget('TCC_Login_Widget');
+  register_widget('TCC_Logo_Widget');
   do_action('tcc_register_widgets');
 }
 add_action('widgets_init','register_fluid_widgets'); ?>

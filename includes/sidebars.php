@@ -69,8 +69,8 @@ if (!function_exists('fluidity_sidebar_parameter')) {
   }
 }
 
-if (!function_exists('load_sidebar')) {
-  function load_sidebar($sidebars) {
+if (!function_exists('fluidity_load_sidebar')) {
+  function fluidity_load_sidebar($sidebars) {
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {

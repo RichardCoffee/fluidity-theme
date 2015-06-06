@@ -1,7 +1,7 @@
 <?php
 
 /*
- * classes/microdata.php
+ * tcc-fluidity/classes/microdata.php
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
  * General Public License as published by the Free Software Foundation; either version 2 of the License, 
@@ -72,11 +72,6 @@ class TCC_Microdata {
   }
 
   // first tier type
-  public function Organization() {
-    echo "itemscope itemtype='http://schema.org/Organization'";
-  }
-
-  // first tier type
   public function Person() {
     echo "itemscope itemtype='http://schema.org/Person'";
   }
@@ -117,6 +112,11 @@ class TCC_Microdata {
   }
 
   // descendant of 'CreativeWork->WebPage->WebPageElement'
+  public function WPHeader() {
+    echo "itemscope itemtype='http://schema.org/WPHeader'";
+  }
+
+  // descendant of 'CreativeWork->WebPage->WebPageElement'
   public function WPSideBar() {
     echo "itemscope itemtype='http://schema.org/WPSideBar'";
   }
@@ -130,12 +130,14 @@ class TCC_Microdata {
   */
 
   public function bloginfo($show,$filter='raw') {
+    if ($show=='url') { echo esc_url(home_url()); return; } // bloginfo('url') now deprecated
     $string = get_bloginfo($show,$filter);
     if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
     echo $string;
   }
 
   public function get_bloginfo($show,$filter='raw') {
+    if ($show=='url') return echo esc_url(home_url()); // bloginfo('url') now deprecated
     $string = get_bloginfo($show,$filter);
     if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
     return $string;
@@ -185,17 +187,6 @@ class TCC_Microdata {
   public function comment_reply_link($link) {
     return preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
   }
-
-  public function get_archives_link($link) {
-    $patterns = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); #<?
-    $result =  preg_replace($patterns,'$1 itemprop="url" $2',$link);
-    return preg_replace($patterns,'$1 itemprop="url" $2',$link);
-  }
-
-  public function get_avatar($avatar) {
-    return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$avatar);
-  }
-
   public function get_comment_author_link($link) {
     $patterns = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
     $replaces = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
