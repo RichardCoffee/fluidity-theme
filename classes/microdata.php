@@ -132,7 +132,7 @@ class TCC_Microdata {
   }
 
   public function get_bloginfo($show,$filter='raw') {
-    if ($show=='url') return echo esc_url(home_url()); // bloginfo('url') now deprecated
+    if ($show=='url') return esc_url(home_url()); // bloginfo('url') now deprecated
     $string = get_bloginfo($show,$filter);
     if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
     return $string;
