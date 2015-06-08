@@ -112,11 +112,6 @@ class TCC_Microdata {
   }
 
   // descendant of 'CreativeWork->WebPage->WebPageElement'
-  public function WPHeader() {
-    echo "itemscope itemtype='http://schema.org/WPHeader'";
-  }
-
-  // descendant of 'CreativeWork->WebPage->WebPageElement'
   public function WPSideBar() {
     echo "itemscope itemtype='http://schema.org/WPSideBar'";
   }
