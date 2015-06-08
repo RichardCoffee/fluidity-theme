@@ -257,3 +257,6 @@ if (!function_exists('who_am_i')) {
     }
   }
 }
+
+$perm_struct = get_option('permalink_structure');
+log_entry("permalink structure: $perm_struct");
