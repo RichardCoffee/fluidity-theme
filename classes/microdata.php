@@ -1,7 +1,7 @@
 <?php
 
 /*
- * tcc-fluidity/classes/microdata.php
+ * classes/microdata.php
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
  * General Public License as published by the Free Software Foundation; either version 2 of the License, 
@@ -69,6 +69,11 @@ class TCC_Microdata {
   // descendant of 'CreativeWork->WebPage'
   public function ItemPage() {
     echo "itemscope itemtype='http://schema.org/ItemPage'";
+  }
+
+  // first tier type
+  public function Organization() {
+    echo "itemscope itemtype='http://schema.org/Organization'";
   }
 
   // first tier type
