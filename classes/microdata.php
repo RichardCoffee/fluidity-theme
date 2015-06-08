@@ -182,6 +182,17 @@ class TCC_Microdata {
   public function comment_reply_link($link) {
     return preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
   }
+
+  public function get_archives_link($link) {
+    $patterns = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); #<?
+    $result =  preg_replace($patterns,'$1 itemprop="url" $2',$link);
+    return preg_replace($patterns,'$1 itemprop="url" $2',$link);
+  }
+
+  public function get_avatar($avatar) {
+    return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$avatar);
+  }
+
   public function get_comment_author_link($link) {
     $patterns = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
     $replaces = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
