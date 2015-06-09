@@ -38,7 +38,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     $this->prefix = 'tcc_options_';
     $this->slug   = 'fluidity_options';
     $this->type   = 'tabbed';
-    add_action('admin_menu',     array($this,'admin_menu_setup'));
+    add_action('admin_menu',     array($this,'add_menu_option'));
     add_filter('basic_form_text',array($this,'form_trans_text'),10,2);
     parent::__construct();
   }
