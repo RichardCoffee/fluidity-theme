@@ -1,13 +1,16 @@
 <?php
-/* 
- *  tcc-fluidity/sidebar.php
+/*
+ *  sidebar.php
  *
  */
 
 who_am_i();
 
 $loaded = false;
-if (is_front_page()) {
+$called = fluidity_sidebar_parameter();
+if ($called=='footer') {
+  $loaded = fluidity_load_sidebar(array('footer'));
+} else if (is_front_page()) {
   $loaded = fluidity_load_sidebar(array('front','standard'));
 } else {
   $loaded = fluidity_load_sidebar(array(fluidity_sidebar_parameter(),'standard'));
