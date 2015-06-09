@@ -71,6 +71,7 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 
 if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($sidebars) {
+    if (in_array('footer',$sidebars)) $sidebars = array('footer'); // FIXME: do this another way
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
