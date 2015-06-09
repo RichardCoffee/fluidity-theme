@@ -74,7 +74,7 @@ abstract class Basic_Admin_Form {
 
   public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
-log_entry("backtrace",debug_backtrace());
+#log_entry("backtrace",debug_backtrace());
 log_entry($this->form);
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
