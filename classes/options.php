@@ -236,4 +236,6 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
 
 }
 
+$fluidity_theme_options = Fluidity_Options_Form::get_instance();
+
 ?>

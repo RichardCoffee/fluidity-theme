@@ -10,7 +10,6 @@ require_once('includes/misc.php');
 require_once('includes/options.php'); // DEPRECATED
 require_once('classes/widgets.php');
 if (is_admin()) {
-  require_once('classes/basic-form.php');
   require_once('classes/options.php');
   require_once('classes/typography.php');
   require_once('classes/options.php');
