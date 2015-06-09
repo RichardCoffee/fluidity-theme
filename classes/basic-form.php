@@ -2,17 +2,17 @@
 
 abstract class Basic_Admin_Form {
 
-  protected $defaults =  array();
-  protected $err_func =  null;
-  protected $form     =  array();
-  protected $options  = 'render_single_options';
-  protected $prefix   = 'options_prefix_';
-  protected $register = 'register_single_form';
-  protected $render   = 'render_single_form';
-  protected $slug     = 'default_page_slug';
-  protected $text     =  array();
-  protected $type     = 'single';
-  protected $validate = 'validate_single_form';
+  protected $defaults  =  array();
+  protected $err_func  =  null;
+  protected $form      =  array();
+  protected $options   = 'render_single_options';
+  protected $prefix    = 'options_prefix_';
+  protected $register  = 'register_single_form';
+  protected $render    = 'render_single_form';
+  protected $slug      = 'default_page_slug';
+  protected $form_text =  array();
+  protected $type      = 'single';
+  protected $validate  = 'validate_single_form';
 
   abstract protected function form_layout($option);
   public function description() { return ''; }
@@ -30,9 +30,9 @@ abstract class Basic_Admin_Form {
 
   protected function __construct() {
     $this->screen_type();
-    $this->text     = $this->form_text();
-    $this->form     = $this->form_layout();
-    $this->defaults = $this->get_defaults();
+    $this->form_text = $this->form_text();
+    $this->form      = $this->form_layout();
+    $this->defaults  = $this->get_defaults();
     $option = $this->determine_option();
     $curr   = get_option($option);
     if (!$curr) {
@@ -128,8 +128,8 @@ abstract class Basic_Admin_Form {
           $defs[$key] = $item['default'];
         }
       } else {
-        if (!empty($this->err_func)) 
-          $this->err_func(sprintf($this->text['error']['subscript'],$option));
+        if (!empty($this->err_func))
+          $this->err_func(sprintf($this->form_text['error']['subscript'],$option));
       }
     }
     return $defs;
@@ -199,7 +199,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function submit_buttons($title='') {
-    $buttons = $this->text['submit']; ?>
+    $buttons = $this->form_text['submit']; ?>
     <p><?php
       submit_button($buttons['save'],'primary','submit',false); ?>
       <span style='float:right;'><?php
@@ -237,7 +237,7 @@ abstract class Basic_Admin_Form {
         $render_func($render_arr);
       } else {
         if (!empty($this->err_func)) 
-          $this->err_func(sprintf($this->text['error']['render'],$render_func));
+          $this->err_func(sprintf($this->form_text['error']['render'],$render_func));
       }
     }
     echo "</div>";
@@ -262,7 +262,7 @@ abstract class Basic_Admin_Form {
         $render_func($render_arr);
       } else {
         if (!empty($this->err_func))
-          $this->err_func(sprintf($this->text['error']['render'],$render_func));
+          $this->err_func(sprintf($this->form_text['error']['render'],$render_func));
       }
     }
     echo "</div>"; //*/
