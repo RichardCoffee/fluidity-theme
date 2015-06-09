@@ -132,20 +132,9 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *
  */
   private function about_options_layout() {
-
-
-    $instance = Theme_Options_Plugin::get_instance();
-    if (!$instance) $instance = new Theme_Options_Plugin(tcc_theme_plugin_info());
-
-
-
-
-    $layout = array('version'   => array('default' => $instance->version,
+    $layout = array('version'   => array('default' => '1.0',
                                          'label'   => self::$text['version']['label'],
                                          'render'  => 'display'),
-                    'dbvers'    => array('default' => $instance->dbvers,
-                                         'label'   => self::$text['dbvers']['label'],
-                                         'render'  => 'skip'),
                     'theme'     => array('label'   => self::$text['theme']['label'],
                                          'text'    => self::$text['theme']['text'],
                                          'render'  => 'title'),
