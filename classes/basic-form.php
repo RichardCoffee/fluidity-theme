@@ -185,7 +185,7 @@ abstract class Basic_Admin_Form {
         } ?>
       </h2>
       <form method="post" action="options.php"><?php
-        $section = determine_option($active_tab);
+        $section = $this->determine_option($active_tab);
         do_action("basic_form_pre_display_$active_tab");
         settings_fields($section);
         do_settings_sections($section);
@@ -245,7 +245,7 @@ abstract class Basic_Admin_Form {
 
   public function render_tabbed_options($args) {
     extract($args);
-    $option = determine_option($key);
+    $option = $this->determine_option($key);
     $data   = get_form_options($key);
     $layout = $this->form[$key];
     $class  = (!empty($layout[$itemID]['class'])) ? "class='{$layout[$itemID]['class']}'" : '';
