@@ -28,7 +28,6 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   }
 
   public function form_trans_text($text,$orig) {
-    $text = parent::form_trans_text();
     $text['object']  = __('Options','tcc-fluid');
     $text['subject'] = __('Theme','tcc-fluid');
     return $text;
