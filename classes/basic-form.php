@@ -11,7 +11,7 @@ abstract class Basic_Admin_Form {
   protected $render    = 'render_single_form';
   protected $slug      = 'default_page_slug';
   protected $form_text =  array();
-  protected $type      = 'single';
+  protected $type      = 'single'; // or 'tabbed'
   protected $validate  = 'validate_single_form';
 
   abstract protected function form_layout($option);
@@ -73,13 +73,14 @@ abstract class Basic_Admin_Form {
   }
 
   public function register_tabbed_form() {
-    $validate = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
+    $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
 log_entry("section: $key",$section);
       $option   = $this->determine_option($key);
+log_entry("option: $option");
       $title    = (isset($section['title']))    ? $section['title']    : '';
-      $validate = (isset($section['validate'])) ? $section['validate'] : $validate;
+      $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $slug     = (isset($section['slug']))     ? $section['slug']     : $this->slug;
       register_setting($option,$option,array($this,$validate));
@@ -94,6 +95,7 @@ log_entry("section: $key",$section);
   public function register_multi_form() {   }
 
   private function register_field($item,$itemID,$key,$args) {
+log_entry("item: $itemID",$item);
     static $larr = array('display','skip');
     if (!((array)$item===$item)) return; // skip string variables
     if (!isset($item['render'])) return;
