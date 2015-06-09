@@ -26,11 +26,11 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                  'version'   => array('label'  => __('Theme Version','tcc-fluid')));
   }
 
-/*  protected function form_trans_text($text,$orig) {
+  protected function form_trans_text($text,$orig) {
     $text = parent::form_trans_text();
     $text['object']  = __('Options','tcc-fluid');
     $text['subject'] = __('Theme','tcc-fluid');
-    return apply_filters('tcc_form_text',$text,$text);
+    return $text;
   } //*/
 
   protected function __construct() {
@@ -38,7 +38,8 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     $this->prefix = 'tcc_options_';
     $this->slug   = 'fluidity_options';
     $this->type   = 'tabbed';
-#    add_filter('basic_form_text','form_trans_text',10,2);
+    add_action('admin_menu',     array($this,'admin_menu_setup'));
+    add_filter('basic_form_text',array($this,'form_trans_text'),10,2);
     parent::__construct();
   }
 
@@ -48,7 +49,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     return self::$instance;
   }
 
-  public static function add_menu_option() {
+  public function add_menu_option() {
     $menu_cap  = 'edit_theme_options';
     if (current_user_can($menu_cap)) {
       $about = get_option('tcc_options_about');

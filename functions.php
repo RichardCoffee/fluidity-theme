@@ -18,6 +18,8 @@ require_once('classes/layout.php'); // Experiment - see archive.php
 require_once('classes/microdata.php');
 require_once('classes/widgets.php');
 if (is_admin()) {
+  require_once('classes/basic_form.php');
+  require_once('classes/options.php');
   require_once('classes/typography.php');
   require_once('classes/options.php');
 }
