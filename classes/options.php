@@ -4,7 +4,8 @@ include_once('basic-form.php');
 
 class Fluidity_Options_Form extends Basic_Admin_Form {
 
-  private static $instance;
+  private static $instance = null;
+  private static $text     = null;
 
   private static function translated_text() {
     return array('title'     => array('about'  => __('About / Contact','tcc-fluid'),
@@ -26,7 +27,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                  'version'   => array('label'  => __('Theme Version','tcc-fluid')));
   }
 
-  protected function form_trans_text($text,$orig) {
+  public function form_trans_text($text,$orig) {
     $text = parent::form_trans_text();
     $text['object']  = __('Options','tcc-fluid');
     $text['subject'] = __('Theme','tcc-fluid');
@@ -35,9 +36,10 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
 
   protected function __construct() {
     self::$instance = $this;
-    $this->prefix = 'tcc_options_';
-    $this->slug   = 'fluidity_options';
-    $this->type   = 'tabbed';
+    self::$text     = self::translated_text();
+    $this->prefix   = 'tcc_options_';
+    $this->slug     = 'fluidity_options';
+    $this->type     = 'tabbed';
     add_action('admin_menu',     array($this,'add_menu_option'));
     add_filter('basic_form_text',array($this,'form_trans_text'),10,2);
     parent::__construct();
