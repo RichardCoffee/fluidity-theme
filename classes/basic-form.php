@@ -111,7 +111,7 @@ abstract class Basic_Admin_Form {
     return $option;
   } //*/
 
-  private function get_defaults($option='') {
+  protected function get_defaults($option='') {
     $defs = array();
     if (empty($option)) { // single
       foreach($this->form as $key=>$group) {
