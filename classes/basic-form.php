@@ -60,8 +60,8 @@ abstract class Basic_Admin_Form {
     foreach($this->form as $key=>$group) {
       if (is_string($group)) continue; // skip string variables
       $title = (isset($group['title']))    ? $group['title']    : '';
-      $desc  = (isset($group['describe'])) ? array($this,$group['describe']) : 'description';
-      add_settings_section($key,$title,$desc,$this->slug);
+      $desc  = (isset($group['describe'])) ? $group['describe'] : 'description';
+      add_settings_section($key,$title,array($this,$desc),$this->slug);
       foreach($group['layout'] as $itemID=>$item) {
         if (is_string($item)) continue; // skip string variables
         if (!isset($item['render'])) continue;

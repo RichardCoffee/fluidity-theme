@@ -87,9 +87,10 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   protected function form_layout($section='') {
 log_entry('form_layout');
     if (empty($this->form)) {
+      $this->form['title'] = self::$text['title']['menu'];
       $this->form = apply_filters('tcc_options_menu_array',$this->form);
       if (!isset($this->form['about'])) {
-        $this->form['about'] = array('describe' => array($this,'describe_about'),
+        $this->form['about'] = array('describe' => 'describe_about',
                                      'title'    => self::$text['title']['about'],
                                      'option'   => 'tcc_options_about',
                                      'layout'   => $this->options_layout('about'));
@@ -157,7 +158,7 @@ log_entry($this->form);
     return $layout;
   }
 
-  public function describe_about() {
+  private function describe_about() {
     echo '<p>'.self::$text['describe'][0].' <a href="the-creative-collective.com" target="tcc">The Creative Collective</a></p>';
     echo '<p>'.self::$text['describe'][1].'</p>';
     echo '<p>&copy; '.self::$text['describe'][2].'</p>';
