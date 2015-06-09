@@ -76,6 +76,7 @@ abstract class Basic_Admin_Form {
     $validate = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
+log_entry("section: $key",$section);
       $option   = $this->determine_option($key);
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $validate = (isset($section['validate'])) ? $section['validate'] : $validate;
