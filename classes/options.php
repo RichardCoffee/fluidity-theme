@@ -85,7 +85,6 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *
  */
   protected function form_layout($section='') {
-log_entry('form_layout');
     if (empty($this->form)) {
       $this->form['title'] = self::$text['title']['menu'];
       $this->form = apply_filters('tcc_options_menu_array',$this->form);
@@ -95,7 +94,6 @@ log_entry('form_layout');
                                      'option'   => 'tcc_options_about',
                                      'layout'   => $this->options_layout('about'));
       }
-log_entry($this->form);
     }
     return (empty($section)) ? $this->form : $this->form[$section];
   }

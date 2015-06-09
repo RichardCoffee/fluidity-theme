@@ -248,6 +248,7 @@ abstract class Basic_Admin_Form {
     $option = $this->determine_option($key);
     $data   = get_form_options($key);
     $layout = $this->form[$key];
+log_entry("layout: $key",$layout);
     $class  = (!empty($layout[$itemID]['class'])) ? "class='{$layout[$itemID]['class']}'" : '';
     echo "<div $class>";
     if (empty($layout[$itemID]['render'])) {
