@@ -5,11 +5,11 @@ class TCC_Basic_Widget extends WP_Widget {
   protected $title = '';
   protected $desc  = '';
   protected $slug  = '';
-  public static $micro = null;
+  protected static $micro = null;
 
   function __construct($slug='',$title='',$desc=array()) {
     parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
-    if (!self::$micro) self::$micro = TCC_Microdata::get_instance();
+    if (!self::$micro && class_exists('TCC_Microdata')) self::$micro = TCC_Microdata::get_instance();
   }
 
   protected function pre_widget($args) {
