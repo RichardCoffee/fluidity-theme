@@ -13,7 +13,7 @@ class TCC_Basic_Widget extends WP_Widget {
   }
 
   protected function pre_widget($args) {
-    $title = apply_filters('widget_title',$args['tcc-title']);
+    $title = apply_filters('widget_title',$args['tcc-title'],$this->id_base);
     echo $args['before_widget'];
     if (!empty($title)) 
       echo $args['before_title'].$title.$args['after_title'];
@@ -75,7 +75,7 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
       </address>
     </div><?php
   }
-  
+
 }
 
 class TCC_Login_Widget extends TCC_Basic_Widget {

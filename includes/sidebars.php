@@ -2,8 +2,8 @@
 
 //This sets up the widget area sidebars
 
-if (!function_exists('register_fluid_sidebars')) {
-  function register_fluid_sidebars() {
+if (!function_exists('fluidity_register__sidebars')) {
+  function fluidity_register_sidebars() {
 
     $color    = tcc_color_scheme('sidebars');
     $b_widget = "<div class='panel panel-$color'>";
@@ -48,8 +48,8 @@ if (!function_exists('register_fluid_sidebars')) {
     }
 
   }
+  add_action('widgets_init','fluidity_register_sidebars');
 }
-register_fluid_sidebars();
 
 if (!function_exists('fluidity_get_sidebar')) {
   function fluidity_get_sidebar($sidebar='standard') {
