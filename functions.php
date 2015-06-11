@@ -8,6 +8,7 @@ require_once('includes/theme-support.php');
 require_once('includes/library.php');
 require_once('includes/misc.php');
 require_once('includes/options.php'); // DEPRECATED
+require_once('includes/sidebars.php');
 require_once('classes/widgets.php');
 if (is_admin()) {
   require_once('classes/options.php');
@@ -17,7 +18,6 @@ if (is_admin()) {
   require_once('includes/footer.php');
   require_once('includes/header.php');
   require_once('includes/login.php');
-  require_once('includes/sidebars.php');
   require_once('includes/wp_bootstrap_navwalker.php');
   require_once('includes/third-party.php');
   require_once('classes/layout.php'); // Experiment - see archive.php
