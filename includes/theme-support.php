@@ -51,6 +51,7 @@ if (!function_exists('tcc_editor_styles')) {
 if (!function_exists('tcc_menu_theme_support')) {
   function tcc_menu_theme_support() {
     register_nav_menu('primary',__('Primary Menu','tcc-fluid'));
+    register_nav_menu('footer',__('Footer Menu','tcc-fluid'));
   }
   add_action('after_setup_theme','tcc_menu_theme_support');
 }
