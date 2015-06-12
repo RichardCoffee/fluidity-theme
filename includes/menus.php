@@ -12,5 +12,6 @@ if (!function_exists('tcc_register_nav_menu')) {
     register_nav_menu('footer',__('Footer Menu','tcc-fluid'));
     log_entry("theme name: ".wp_get_theme());
   }
+  log_entry('adding hook for nav menu');
   add_action('after_setup_theme','tcc_register_nav_menu');
 }
