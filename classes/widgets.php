@@ -114,6 +114,7 @@ class TCC_Logo_Widget extends TCC_Basic_Widget {
 do_action('tcc_widget_class_loaded');
 
 function tcc_register_widgets() {
+  register_widget('TCC_Address_Widget');
   register_widget('TCC_Login_Widget');
   register_widget('TCC_Logo_Widget');
   do_action('tcc_register_widgets');

@@ -15,7 +15,7 @@ add_theme_support('post-thumbnails');
 add_theme_support('automatic-feed-links');
 
 // Code for custom background support
-add_theme_support('custom-background');
+//add_theme_support('custom-background');
 
 // Supports title tag
 add_theme_support('title-tag');
@@ -39,9 +39,10 @@ add_theme_support('custom-header',$defaults);
 
 add_editor_style();
 if (!function_exists('tcc_editor_styles')) {
-  if (file_exists(get_template_directory().'custom-editor-style.css')) {
+  // FIXME:  check for file in child
+  if (file_exists(get_template_directory().'tcc-editor-style.css')) {
     function tcc_editor_styles() {
-      add_editor_style('custom-editor-style.css');
+      add_editor_style('tcc-editor-style.css');
     }
     add_action('admin_init','tcc_editor_styles' ); //*/
   }
