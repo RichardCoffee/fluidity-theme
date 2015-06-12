@@ -13,7 +13,9 @@ if (!function_exists('tcc_register_nav_menu')) {
 $theme = strtolower(str_replace(' ','_',wp_get_theme()));
 log_entry("theme name: $theme");
 $theme_mods = get_option ( 'theme_mods_' . $theme );
-log_entry('theme mods',$theme_mods);
+log_entry('Theme Mods',$theme_mods);
+$mods = get_theme_mods();
+log_entry('theme mods',$mods);
   }
   add_action('after_setup_theme','tcc_register_nav_menu');
 }
