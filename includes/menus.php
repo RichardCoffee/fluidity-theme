@@ -7,6 +7,16 @@
 
 if (!function_exists('tcc_register_nav_menu')) {
   function tcc_register_nav_menu() {
+    $menus = array('primary' => __('Primary Menu','tcc-fluid'),
+                   'header'  => __('Header Menu','tcc-fluid'),
+                   'footer'  => __('Footer Menu','tcc-fluid'));
+    register_nav_menus($menus);
+  }
+  add_action('init','tcc_register_nav_menu');
+}
+
+/*if (!function_exists('tcc_register_nav_menu')) {
+  function tcc_register_nav_menu() {
     $menus = array(array('slug'  => 'primary',
                          'title' => __('Primary Menu','tcc-fluid'),
                          'items' => array()),
