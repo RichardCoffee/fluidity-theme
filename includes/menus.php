@@ -25,17 +25,25 @@ if (!function_exists('tcc_register_nav_menu')) {
     foreach($menus as $key=>$title) {
       if (count($items[$key])==0) continue;
       if (!is_nav_menu($key)) {
-log_entry("menu slug: $key");
-#        $menu_id = wp_create_nav_menu($title);
-#        foreach($items[$key] as $item) {
-#          wp_update_nav_menu_item($menu_id,0,$item);
-#        }
+#log_entry("menu slug: $key");
+        $menu_id = wp_create_nav_menu($title);
+        if ($menu_id===(int)$menu_id) {
+          foreach($items[$key] as $item) {
+            $result = wp_update_nav_menu_item($menu_id,0,$item);
+            if (!$result===(int)$result) {
+              log_entry("Error creating $title item {$items[$key]['menu-item-title']}",$result);
+              return;
+            }
+          }
 #        if (!isset($theme_mods['nav_menu_locations']))
 #          $theme_mods['nav_menu_locations'] = array();
 #        if (!isset($theme_mods['nav_menu_locations'][$key])) {
 #          $theme_mods['nav_menu_locations'][$key] = $menu_id;
 #          $updated = true;
 #        }
+        } else {
+          log_entry("Error creating $title",$menu_id);
+        }
       }
     }
     if ($updated) update_option('theme_mods_'.$theme_slug,$theme_mods);
