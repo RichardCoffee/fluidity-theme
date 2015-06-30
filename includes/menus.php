@@ -27,7 +27,9 @@ if (!function_exists('tcc_register_nav_menu')) {
       if (!is_nav_menu($key)) {
 #log_entry("menu slug: $key");
         $menu_id = wp_create_nav_menu($title);
-        if ($menu_id===(int)$menu_id) {
+        if (is_wp_error($menu_id)) {
+          log_entry("error creating menu $key",$menu_id);
+        } else {
           foreach($items[$key] as $item) {
             $result = wp_update_nav_menu_item($menu_id,0,$item);
             if (!$result===(int)$result) {
