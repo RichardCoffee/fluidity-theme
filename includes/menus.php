@@ -43,8 +43,6 @@ if (!function_exists('tcc_register_nav_menu')) {
 #          $theme_mods['nav_menu_locations'][$key] = $menu_id;
 #          $updated = true;
 #        }
-        } else {
-          log_entry("Error creating $title",$menu_id);
         }
       }
     }
