@@ -29,7 +29,9 @@ if (!function_exists('tcc_register_nav_menu')) {
         $menu_id = wp_create_nav_menu($title);
         if (is_wp_error($menu_id)) {
           log_entry("error creating menu $key",$menu_id);
-          log_entry("theme mods",$theme_mods);
+          log_entry("registered menus",get_registered_nav_menus());
+          log_entry("menu locations",get_nav_menu_locations());
+#          log_entry("theme mods",$theme_mods);
         } else {
           foreach($items[$key] as $item) {
             $result = wp_update_nav_menu_item($menu_id,0,$item);
