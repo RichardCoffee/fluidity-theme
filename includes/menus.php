@@ -19,19 +19,16 @@ if (!function_exists('tcc_register_nav_menu')) {
                    'header'  => array(),
                    'footer'  => array());
     register_nav_menus($menus);
-    $theme_slug = strtolower(str_replace(' ','_',wp_get_theme()));
-    $theme_mods = get_option('theme_mods_'.$theme_slug);
-    $updated    = false;
     foreach($menus as $key=>$title) {
       if (count($items[$key])==0) continue;
-      if (!has_nav_menu($key)) {
+      if (has_nav_menu($title)) {
+      } else {
         log_entry("$key menu not found");
         $menu_id = wp_create_nav_menu($title);
         if (is_wp_error($menu_id)) {
           log_entry("error creating menu $key",$menu_id);
           log_entry("registered menus",get_registered_nav_menus());
           log_entry("menu locations",get_nav_menu_locations());
-#          log_entry("theme mods",$theme_mods);
         } else {
           foreach($items[$key] as $item) {
             $result = wp_update_nav_menu_item($menu_id,0,$item);
@@ -39,16 +36,12 @@ if (!function_exists('tcc_register_nav_menu')) {
               log_entry("Error creating $title item {$items[$key]['menu-item-title']}",$result);
             }
           }
-#        if (!isset($theme_mods['nav_menu_locations']))
-#          $theme_mods['nav_menu_locations'] = array();
-#        if (!isset($theme_mods['nav_menu_locations'][$key])) {
-#          $theme_mods['nav_menu_locations'][$key] = $menu_id;
-#          $updated = true;
-#        }
+          $locations = get_theme_mod('nav_menu_locations');
+          $locations[$key] = $menu_id;
+          set_theme_mod('nav_menu_locations',$locations);
         }
       }
     }
-    if ($updated) update_option('theme_mods_'.$theme_slug,$theme_mods);
   }
   add_action('init','tcc_register_nav_menu');
 }
