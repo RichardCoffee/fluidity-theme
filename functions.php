@@ -6,7 +6,7 @@
 
 require_once('includes/theme-support.php');
 require_once('includes/library.php');
-require_once('includes/menus.php');
+#require_once('includes/menus.php');
 require_once('includes/misc.php');
 require_once('includes/options.php'); // DEPRECATED
 require_once('includes/sidebars.php');
