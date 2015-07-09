@@ -19,9 +19,12 @@ if (!function_exists('tcc_register_nav_menu')) {
                    'header'  => array(),
                    'footer'  => array());
     register_nav_menus($menus);
+    $locations  = get_theme_mod('nav_menu_locations');
+    $registered = get_registered_nav_menus();
     foreach($menus as $key=>$title) {
       if (count($items[$key])==0) continue;
       if (has_nav_menu($title)) {
+
       } else {
         log_entry("$key menu not found");
         $menu_id = wp_create_nav_menu($title);
@@ -36,12 +39,11 @@ if (!function_exists('tcc_register_nav_menu')) {
               log_entry("Error creating $title item {$items[$key]['menu-item-title']}",$result);
             }
           }
-          $locations = get_theme_mod('nav_menu_locations');
           $locations[$key] = $menu_id;
-          set_theme_mod('nav_menu_locations',$locations);
         }
       }
     }
+    set_theme_mod('nav_menu_locations',$locations);
   }
   add_action('init','tcc_register_nav_menu');
 }
