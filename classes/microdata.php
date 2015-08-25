@@ -209,9 +209,12 @@ class TCC_Microdata {
   }
 
   public function get_post_time($time,$format,$gmt) {
-    $post = $this->get_post_time_post();
+    $string = '';
+    $post = $this->get_post_time_post(); // FIXME:  what's going on here?
     $date = mysql2date('Y-m-d\TH:i:s',get_post($post)->post_date);
-    return "<time itemprop='datePublished' datetime='$date'>$time</time>";
+    if ($date) { $string = "<time itemprop='datePublished' datetime='$date'>$time</time>";
+    } else { log_entry(__FILE__.':'.__LINE__.') invalid publish date?',$post,get_post()); }
+    return $string;
   }
 
   private function get_post_time_post() {
