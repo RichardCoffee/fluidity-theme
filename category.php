@@ -14,7 +14,7 @@ get_header(); ?>
     who_am_i();
     $fluid->get_sidebar(); ?>
     <div class="<?php echo $fluid->primary_class; ?>" <?php $micro->Blog(); ?>>
-      <h1 class="text-center"><?php the_category_title(); ?></h1><?php
+      <h1 class="text-center"><?php single_cat_title(); ?></h1><?php
       if (have_posts()) {
         if ($wp_query->max_num_pages>1) tcc_navigation('above');
         $cnt = 0;
