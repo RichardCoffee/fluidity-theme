@@ -106,6 +106,11 @@ class TCC_Microdata {
     echo "itemscope itemtype='http://schema.org/WebPage'";
   }
 
+  // descendant of 'CreativeWork->WebPage'
+  public function WebPageElement() {
+    echo "itemscope itemtype='http://schema.org/WebPageElement'";
+  }
+
   // descendant of 'CreativeWork->WebPage->WebPageElement'
   public function WPFooter() {
     echo "itemscope itemtype='http://schema.org/WPFooter'";
