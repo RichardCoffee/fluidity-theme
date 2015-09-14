@@ -241,7 +241,7 @@ abstract class Basic_Admin_Form {
       } else if (function_exists($render_func)) {
         $render_func($render_arr);
       } else {
-        if (!empty($this->err_func)) 
+        if (!empty($this->err_func))
           $this->err_func(sprintf($this->form_text['error']['render'],$render_func));
       }
     }

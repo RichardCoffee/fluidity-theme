@@ -47,8 +47,8 @@ function fluid_title($length=0,$echo=true,$after='...',$before='') {
   $title = get_the_title(get_post()->ID);
   if (strlen($title)>0) {
     if ($length && is_numeric($length)) {
+      $title = strip_tags($title);
       if (strlen($title)>$length) {
-        $title = strip_tags($title);
         $title = substr($title,0,$length);
         $title = substr($title,0,strripos($title,' '));
         $title = $before.$title.$after;
