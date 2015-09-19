@@ -18,7 +18,7 @@ $layout = 'sidebar-right'; ?>
 
       $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
       $sidebar_class.= ($layout=='sidebar-right') ? ' pull-right' : ''; ?>
-      <div class="<? echo $sidebar_class; ?> collapse-auto" <?php $micro->WPSideBar(); ?>><?php
+      <div class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?>><?php
         fluidity_get_sidebar('single'); ?>
       </div>
 
