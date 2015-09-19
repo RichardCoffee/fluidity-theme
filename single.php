@@ -48,7 +48,7 @@ $layout = 'sidebar-right'; ?>
                 the_category(', ');
                 echo ' | ';
                 edit_post_link(__('Edit','tcc-fluid'), '', ' | ');
-                comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
+                comments_popup_link(__('No Comments','tcc-fluid'),__('1 Comment','tcc-fluid'),_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid')); ?>
               </p><?php
 
               wp_link_pages();
