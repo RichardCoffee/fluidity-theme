@@ -18,13 +18,13 @@ abstract class Basic_Admin_Form {
   public function description() { return ''; }
 
   private function form_text() {
-    $text = array('error'  => array('render'    => __('ERROR: Unable to locate function %s','tcc-fluid')),
-                                    'subscript' => __('ERROR: Not able to locate form data subscript:  %s','tcc-fluid'),
-                  'submit' => array('save'      => __('Save Changes','tcc-fluid'),
-                                    'object'    => __('Form','tcc-fluid'),
-                                    'reset'     => _x('Reset %s','placeholder is a noun, may be plural','tcc-fluid'),
-                                    'subject'   => __('Form','tcc-fluid'),
-                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','tcc-fluid')));
+    $text = array('error'  => array('render'    => _x('ERROR: Unable to locate function %s','string - a function name','basic-form')),
+                                    'subscript' => _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form'),
+                  'submit' => array('save'      => __('Save Changes','basic-form'),
+                                    'object'    => __('Form','basic-form'),
+                                    'reset'     => _x('Reset %s','placeholder is a noun, may be plural','basic-form'),
+                                    'subject'   => __('Form','basic-form'),
+                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','basic-form')));
     return apply_filters('basic_form_text',$text,$text);
   }
 
@@ -60,7 +60,7 @@ abstract class Basic_Admin_Form {
     foreach($this->form as $key=>$group) {
       if (is_string($group)) continue; // skip string variables
       $title = (isset($group['title']))    ? $group['title']    : '';
-      $desc  = (isset($group['describe'])) ? $group['describe'] : 'description';
+      $desc  = (isset($group['describe'])) ? array($this,$group['describe']) : 'description';
       add_settings_section($key,$title,array($this,$desc),$this->slug);
       foreach($group['layout'] as $itemID=>$item) {
         if (is_string($item)) continue; // skip string variables
@@ -74,13 +74,9 @@ abstract class Basic_Admin_Form {
 
   public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
-#log_entry("backtrace",debug_backtrace());
-#log_entry($this->form);
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
-#log_entry("section: $key",$section);
       $option   = $this->determine_option($key);
-#log_entry("option: $option");
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
@@ -97,7 +93,6 @@ abstract class Basic_Admin_Form {
   public function register_multi_form() {   }
 
   private function register_field($item,$itemID,$key,$args) {
-#log_entry("item: $itemID",$item);
     static $larr = array('display','skip');
     if (!((array)$item===$item)) return; // skip string variables
     if (!isset($item['render'])) return;
@@ -253,7 +248,6 @@ abstract class Basic_Admin_Form {
     $option = $this->determine_option($key);
     $data   = get_form_options($key);
     $layout = $this->form[$key];
-log_entry("layout: $key",$layout);
     $class  = (!empty($layout[$itemID]['class'])) ? "class='{$layout[$itemID]['class']}'" : '';
     echo "<div $class>";
     if (empty($layout[$itemID]['render'])) {
