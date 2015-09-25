@@ -5,13 +5,13 @@ abstract class Basic_Admin_Form {
   protected $defaults  =  array();
   protected $err_func  =  null;
   protected $form      =  array();
+  protected $form_text =  array();
   protected $options   = 'render_single_options';
   protected $prefix    = 'options_prefix_';
   protected $register  = 'register_single_form';
   protected $render    = 'render_single_form';
   protected $slug      = 'default_page_slug';
-  protected $form_text =  array();
-  protected $type      = 'single'; // or 'tabbed'
+  protected $type      = 'single'; // or 'tabbed', 'multi' pending
   protected $validate  = 'validate_single_form';
 
   abstract protected function form_layout($option);
@@ -28,6 +28,12 @@ abstract class Basic_Admin_Form {
     return apply_filters('basic_form_text',$text,$text);
   }
 
+  private function default_render_image_text() {
+    return array('title'  => __('Assign/Upload Image','basic-form'),
+                 'button' => __('Assign Image','basic-form'),
+                 'remove' => __('Unassign Image','basic-form'));
+  }
+
   protected function __construct() {
     $this->screen_type();
     $this->form_text = $this->form_text();
@@ -39,6 +45,7 @@ abstract class Basic_Admin_Form {
       $defs = $this->defaults;
       add_option($option,$defs);
     }
+    add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
     add_action('admin_init',array($this,$this->register));
   }
 
@@ -48,6 +55,17 @@ abstract class Basic_Admin_Form {
     $this->render   = "render_{$type}_form";
     $this->options  = "render_{$type}_options";
     $this->validate = "validate_{$type}_form";
+  }
+
+  public function enqueue_scripts() {
+    $base_url = plugin_dir_url(__FILE__).'..';
+    wp_register_style('basic-form.css', "$base_url/css/basic-form.css", false);
+    wp_register_script('basic-form.js', "$base_url/js/basic-form.js", array('jquery','wp-color-picker'), false, true);
+    wp_enqueue_media();
+    wp_enqueue_style('basic-form.css');
+    wp_enqueue_style('wp-color-picker');
+    wp_enqueue_script('basic-form.js');
+  }
   }
 
 
@@ -280,6 +298,21 @@ abstract class Basic_Admin_Form {
     $change = (isset($layout['change'])) ? "onchange='{$layout['change']}'" : '';
     $html   = "<label><input type='checkbox' id='$ID' name='$name' value='yes' $state $change/>";
     $html  .= " <span>{$layout['text']}</span></label>";
+    echo $html;
+  }
+
+  private function render_image($data) {
+    extract $data;
+    $media = $this->default_render_image_text();
+    if (isset($layout['media'])) $media = array_merge($media,$layout['media']);
+    $html = "<div data-title='{$media['title']}' data-button='{$media['button']}'>";
+    $html.= "<button class='form-image'>{$media['button']}</button>";
+    $html.= "<input type='text' class='hidden' name='$name' value='$value' />";
+    $html.= "<div class='form-image-container'><img src='$value'></div>";
+    $html.= "<button class='form-image-delete";
+    $html.= (empty($value)) ? " hidden'" : "'";
+    $html.= " onclick='imageDelete(this);'>{$media['remove']}</button>";
+    $html.= "</div>";
     echo $html;
   }
 
