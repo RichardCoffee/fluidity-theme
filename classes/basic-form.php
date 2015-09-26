@@ -17,6 +17,33 @@ abstract class Basic_Admin_Form {
   abstract protected function form_layout($option);
   public function description() { return ''; }
 
+  protected function __construct() {
+    $this->screen_type();
+    $this->form_text = $this->form_text();
+    $this->form      = $this->form_layout();
+    $this->defaults  = $this->get_defaults();
+    $option = $this->determine_option();
+    $curr   = get_option($option);
+    if (!$curr) {
+      $defs = $this->defaults;
+      add_option($option,$defs);
+    }
+    add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
+    add_action('admin_init',array($this,$this->register));
+  }
+
+  public function enqueue_scripts() {
+    $base_url = plugin_dir_url(__FILE__).'..';
+    wp_register_style('basic-form.css', "$base_url/css/basic-form.css", false);
+    wp_register_script('basic-form.js', "$base_url/js/basic-form.js", array('jquery','wp-color-picker'), false, true);
+    wp_enqueue_media();
+    wp_enqueue_style('basic-form.css');
+    wp_enqueue_style('wp-color-picker');
+    wp_enqueue_script('basic-form.js');
+  }
+
+  /**  Form text functions **/
+
   private function form_text() {
     $text = array('error'  => array('render'    => _x('ERROR: Unable to locate function %s','string - a function name','basic-form')),
                                     'subscript' => _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form'),
@@ -34,20 +61,8 @@ abstract class Basic_Admin_Form {
                  'remove' => __('Unassign Image','basic-form'));
   }
 
-  protected function __construct() {
-    $this->screen_type();
-    $this->form_text = $this->form_text();
-    $this->form      = $this->form_layout();
-    $this->defaults  = $this->get_defaults();
-    $option = $this->determine_option();
-    $curr   = get_option($option);
-    if (!$curr) {
-      $defs = $this->defaults;
-      add_option($option,$defs);
-    }
-    add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
-    add_action('admin_init',array($this,$this->register));
-  }
+
+  /**  Register Screen functions **/
 
   private function screen_type() {
     $type = $this->type;
@@ -57,23 +72,9 @@ abstract class Basic_Admin_Form {
     $this->validate = "validate_{$type}_form";
   }
 
-  public function enqueue_scripts() {
-    $base_url = plugin_dir_url(__FILE__).'..';
-    wp_register_style('basic-form.css', "$base_url/css/basic-form.css", false);
-    wp_register_script('basic-form.js', "$base_url/js/basic-form.js", array('jquery','wp-color-picker'), false, true);
-    wp_enqueue_media();
-    wp_enqueue_style('basic-form.css');
-    wp_enqueue_style('wp-color-picker');
-    wp_enqueue_script('basic-form.js');
-  }
-  }
-
-
-  /**  Register Screen functions **/
-
   public function register_single_form() {
-    $option   = $this->determine_option();
-    $data     = $this->get_form_options($option);
+    $option = $this->determine_option();
+    $data   = $this->get_form_options($option);
     register_setting($option,$option,array($this,$this->validate));
     foreach($this->form as $key=>$group) {
       if (is_string($group)) continue; // skip string variables
@@ -302,7 +303,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_image($data) {
-    extract $data;
+    extract($data);
     $media = $this->default_render_image_text();
     if (isset($layout['media'])) $media = array_merge($media,$layout['media']);
     $html = "<div data-title='{$media['title']}' data-button='{$media['button']}'>";
