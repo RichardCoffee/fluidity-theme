@@ -2,9 +2,11 @@
 
 abstract class Basic_Admin_Form {
 
+  protected $current   = '';
   protected $defaults  =  array();
   protected $err_func  =  null;
   protected $form      =  array();
+  protected $form_opts =  array();
   protected $form_text =  array();
   protected $options   = 'render_single_options';
   protected $prefix    = 'options_prefix_';
@@ -18,18 +20,21 @@ abstract class Basic_Admin_Form {
   public function description() { return ''; }
 
   protected function __construct() {
-    $this->screen_type();
-    $this->form_text = $this->form_text();
-    $this->form      = $this->form_layout();
-    $this->defaults  = $this->get_defaults();
-    $option = $this->determine_option();
-    $curr   = get_option($option);
-    if (!$curr) {
-      $defs = $this->defaults;
-      add_option($option,$defs);
+    add_action('admin_init',array($this,'load_form_page'));
+  }
+
+  public function load_form_page() {
+    global $plugin_page;
+    if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
+      $this->form_text = $this->form_text();
+      $this->form      = $this->form_layout();
+      $this->current   = $this->determine_option();
+      $this->get_defaults();
+      $this->get_form_options();
+      $this->screen_type();
+      $this->register();
+      add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
     }
-    add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
-    add_action('admin_init',array($this,$this->register));
   }
 
   public function enqueue_scripts() {
@@ -42,7 +47,7 @@ abstract class Basic_Admin_Form {
     wp_enqueue_script('basic-form.js');
   }
 
-  /**  Form text functions **/
+  /**  Form text functions  **/
 
   private function form_text() {
     $text = array('error'  => array('render'    => _x('ERROR: Unable to locate function %s','string - a function name','basic-form')),
@@ -51,41 +56,35 @@ abstract class Basic_Admin_Form {
                                     'object'    => __('Form','basic-form'),
                                     'reset'     => _x('Reset %s','placeholder is a noun, may be plural','basic-form'),
                                     'subject'   => __('Form','basic-form'),
-                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','basic-form')));
-    return apply_filters('basic_form_text',$text,$text);
-  }
-
-  private function default_render_image_text() {
-    return array('title'  => __('Assign/Upload Image','basic-form'),
-                 'button' => __('Assign Image','basic-form'),
-                 'remove' => __('Unassign Image','basic-form'));
+                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','basic-form')),
+                  'media'  => array('title'     => __('Assign/Upload Image','basic-form'),
+                                    'button'    => __('Assign Image','basic-form'),
+                                    'delete'    => __('Unassign Image','basic-form')));
+    return apply_filters($this->slug.'_form_text',$text,$text);
   }
 
 
   /**  Register Screen functions **/
 
   private function screen_type() {
-    $type = $this->type;
-    $this->register = "register_{$type}_form";
-    $this->render   = "render_{$type}_form";
-    $this->options  = "render_{$type}_options";
-    $this->validate = "validate_{$type}_form";
+    $this->register = "register_{$this->type}_form";
+    $this->render   = "render_{$this->type}_form";
+    $this->options  = "render_{$this->type}_options";
+    $this->validate = "validate_{$this->type}_form";
   }
 
   public function register_single_form() {
-    $option = $this->determine_option();
-    $data   = $this->get_form_options($option);
-    register_setting($option,$option,array($this,$this->validate));
+    register_setting($this->current,$this->current,array($this,$this->validate));
     foreach($this->form as $key=>$group) {
       if (is_string($group)) continue; // skip string variables
-      $title = (isset($group['title']))    ? $group['title']    : '';
+      $title = (isset($group['title']))    ? $group['title'] : '';
       $desc  = (isset($group['describe'])) ? array($this,$group['describe']) : 'description';
       add_settings_section($key,$title,array($this,$desc),$this->slug);
-      foreach($group['layout'] as $itemID=>$item) {
+      foreach($group['layout'] as $itemkey=>$item) {
         if (is_string($item)) continue; // skip string variables
         if (!isset($item['render'])) continue;
-        $name = "{$key}_$itemID";
-        $args = array('key'=>$key,'item'=>$itemID);
+        $name = "{$key}_$itemkey";
+        $args = array('key'=>$key,'item'=>$itemkey);
         $this->register_field($item,$name,$key,$args);
       }
     }
@@ -124,49 +123,48 @@ abstract class Basic_Admin_Form {
 
   /**  Data functions  **/
 
-  private function determine_option($option='') {
-    $option = (empty($option)) ? $this->slug : $this->prefix.$option ;
-    $option = (isset($this->form[$option]['option'])) ? $this->form[$option]['option'] : $option;
+  private function determine_option($current='') {
+    $option = (empty($current)) ? $this->slug : $this->prefix.$option ;
+    if (isset($this->form[$option]['option'])) { $option = $this->form[$option]['option'];
     return $option;
-  } //*/
+  }
 
-  protected function get_defaults($option='') {
-    $defs = array();
-    if (empty($option)) { // single
+  protected function get_defaults() {
+    if ($this->type=='single') {
       foreach($this->form as $key=>$group) {
         if (is_string($group)) continue;
         foreach($group['layout'] as $ID=>$item) {
           if (empty($item['default'])) continue;
-          $defs[$key][$ID] = $item['default'];
+          $this->defaults[$key][$ID] = $item['default'];
         }
       }
     } else { // tabbed
       if (isset($this->form[$option])) {
         foreach($this->form[$option]['layout'] as $key=>$item) {
           if (empty($item['default'])) continue;
-          $defs[$key] = $item['default'];
+          $this->defaults[$key] = $item['default'];
         }
       } else {
         if (!empty($this->err_func))
           $this->err_func(sprintf($this->form_text['error']['subscript'],$option));
       }
     }
-    return $defs;
   }
 
   private function get_form_options($option) {
-    $data = get_option($option);
-    if (empty($data)) $data = $this->defaults;
-    $data = array_replace_recursive($this->defaults,$data);
-    return $data;
+    $this->form_opts = get_option($this->current);
+    if (empty($this->form_opts)) {
+      $this->form_opts = $this->defaults;
+      add_option($this->current,$this->form_opts);
+    }
+    $this->form_opts = array_replace_recursive($this->defaults,$this->form_opts);
   }
 
 
   /**  Render Screen functions  **/
 
   public function render_single_form() {
-    $form   = $this->form_layout();
-    $option = $this->determine_option(); ?>
+    $form = $this->form_layout(); ?>
     <div class="wrap"><?php
       if (isset($form['title'])) {
         echo "<h2>{$form['title']}</h2>";
@@ -174,10 +172,10 @@ abstract class Basic_Admin_Form {
       settings_errors(); ?>
       <form method="post" action="options.php"><?php
         do_action("form_pre_display");
-        do_action("form_pre_display_$option");
-        settings_fields($option);
-        do_settings_sections($option);
-        do_action("form_post_display_$option");
+        do_action("form_pre_display_".$this->current);
+        settings_fields($this->current);
+        do_settings_sections($this->current);
+        do_action("form_post_display_".$this->current);
         do_action("form_post_display");
         $this->submit_buttons(); ?>
       </form>
@@ -223,7 +221,7 @@ abstract class Basic_Admin_Form {
       submit_button($buttons['save'],'primary','submit',false); ?>
       <span style='float:right;'><?php
         $object = (empty($title)) ? $buttons['object'] : $title;
-        $reset = sprintf($buttons['reset'],$object);
+        $reset  = sprintf($buttons['reset'],$object);
         submit_button($reset,'secondary','reset',false); ?>
       </span>
     </p><?php
@@ -304,15 +302,14 @@ abstract class Basic_Admin_Form {
 
   private function render_image($data) {
     extract($data);
-    $media = $this->default_render_image_text();
+    $media = $this->form_text['media'];
     if (isset($layout['media'])) $media = array_merge($media,$layout['media']);
-    $html = "<div data-title='{$media['title']}' data-button='{$media['button']}'>";
-    $html.= "<button class='form-image'>{$media['button']}</button>";
-    $html.= "<input type='text' class='hidden' name='$name' value='$value' />";
-    $html.= "<div class='form-image-container'><img src='$value'></div>";
-    $html.= "<button class='form-image-delete";
-    $html.= (empty($value)) ? " hidden'" : "'";
-    $html.= " onclick='imageDelete(this);'>{$media['remove']}</button>";
+    $field = str_replace(array('[',']'),array('_',''),$name);
+    $html = "<div data-title='{$media['title']}' data-button='{$media['button']}' data-field='$field'>";
+    $html.= "  <button type='button' class='form-image'>{$media['button']}</button>";
+    $html.= "  <input id='{$field}_input' type='text' class='hidden' name='$name' value='$value' />";
+    $html.= "  <div class='form-image-container".((empty($value)) ? " hidden'" : "'")."><img id='{$field}_img' src='$value'></div>";
+    $html.= "  <button type='button' class='form-image-delete".((empty($value)) ? " hidden'" : "'").">{$media['delete']}</button>";
     $html.= "</div>";
     echo $html;
   }
