@@ -32,7 +32,8 @@ abstract class Basic_Admin_Form {
       $this->get_defaults();
       $this->get_form_options();
       $this->screen_type();
-      $this->register();
+      $func = $this->register;
+      $this->$func();
       add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
     }
   }
@@ -83,9 +84,22 @@ abstract class Basic_Admin_Form {
       foreach($group['layout'] as $itemkey=>$item) {
         if (is_string($item)) continue; // skip string variables
         if (!isset($item['render'])) continue;
-        $name = "{$key}_$itemkey";
-        $args = array('key'=>$key,'item'=>$itemkey);
-        $this->register_field($item,$name,$key,$args);
+        if ($item['render']=='skip') continue;
+        $itemID = "{$key}_$itemkey";
+        if ($item['render']=='array') {
+          $count = max(count($item['default']),count($this->form_opts[$key][$itemkey]));
+          for ($i=0;$i<$count;$i++) {
+            $itemID = "{$key}_{$itemkey}_$i";
+            $label  = "<label for='$itemID'>{$item['label']} ".($i+1)."</label>";
+            $args   = array('key'=>$key,'item'=>$itemkey,'num'=>$i);
+            add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+          }
+        } else {
+          $label  = "<label for='$itemID'>{$item['label']}</label>";
+          $label  = ($item['render']=='title') ? "<span class='form-title'>{$item['label']}</span>" : $label;
+          $args   = array('key'=>$key,'item'=>$itemkey);
+          add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+        }
       }
     }
   }
@@ -125,7 +139,7 @@ abstract class Basic_Admin_Form {
 
   private function determine_option($current='') {
     $option = (empty($current)) ? $this->slug : $this->prefix.$option ;
-    if (isset($this->form[$option]['option'])) { $option = $this->form[$option]['option'];
+    if (isset($this->form[$option]['option'])) { $option = $this->form[$option]['option']; }
     return $option;
   }
 
@@ -151,7 +165,7 @@ abstract class Basic_Admin_Form {
     }
   }
 
-  private function get_form_options($option) {
+  private function get_form_options() {
     $this->form_opts = get_option($this->current);
     if (empty($this->form_opts)) {
       $this->form_opts = $this->defaults;
@@ -228,9 +242,7 @@ abstract class Basic_Admin_Form {
   }
 
   public function render_single_options($args) {
-    static $data;
-    $option = $this->determine_option();
-    if (empty($data)) $data = $this->get_form_options($option);
+    $data = $this->form_opts;
     extract($args);
     $layout = $this->form[$key]['layout'];
     $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
@@ -240,12 +252,12 @@ abstract class Basic_Admin_Form {
     } else {
       $render_func = "render_{$layout[$item]['render']}";
       $itemID      = "{$key}_$item";
-      $item_name   = $option."[$key][$item]";
+      $item_name   = $this->slug."[$key][$item]";
       $value       = (isset($data[$key][$item])) ? $data[$key][$item] : '';
       if ($layout[$item]['render']=='array') {
-        $itemID    .= "_$num";
-        $item_name .= "[$num]";
-        $value      = (isset($data[$key][$item][$num])) ? $data[$key][$item][$num] : '';
+        $itemID   .= "_$num";
+        $item_name.= "[$num]";
+        $value     = (isset($data[$key][$item][$num])) ? $data[$key][$item][$num] : '';
       }
       $render_arr  = array('ID'=>$itemID, 'value'=>$value, 'layout'=>$layout[$item], 'name'=>$item_name);
       if (method_exists($this,$render_func)) {
@@ -253,8 +265,8 @@ abstract class Basic_Admin_Form {
       } else if (function_exists($render_func)) {
         $render_func($render_arr);
       } else {
-        if (!empty($this->err_func))
-          $this->err_func(sprintf($this->form_text['error']['render'],$render_func));
+        if (!empty($this->err_func)) {
+          $this->err_func(sprintf($this->form_text['error']['render'],$render_func)); }
       }
     }
     echo "</div>";
@@ -290,6 +302,17 @@ abstract class Basic_Admin_Form {
 
 
   /**  Render Items functions  **/
+
+  // FIXME:  needs add/delete/sort
+  private function render_array($data) {
+    $this->render_text($data);
+  }
+
+  private function render_colorpicker($data) {
+    extract($data);
+    echo "<input type='text' value='$value' class='form-colorpicker' data-default-color='{$layout['default']}' name='$name'/>";
+    if (!empty($layout['text'])) echo " <span style='vertical-align: top;'>{$layout['text']}</span>";
+  }
 
   private function render_checkbox($data) {
     extract($data);
@@ -370,10 +393,10 @@ abstract class Basic_Admin_Form {
   }
 
   private function determine_validate($item=array()) { // FIXME: re: sanitize_callback()
-    $defs  = array('render'=>'non_existing_function_name');
-    $item  = array_merge($defs,$item);
-    $func  = 'validate_';
-    $func .= (isset($item['validate'])) ? $item['validate'] : $item['render'];
+    $defs = array('render'=>'non_existing_function_name');
+    $item = array_merge($defs,$item);
+    $func = 'validate_';
+    $func.= (isset($item['validate'])) ? $item['validate'] : $item['render'];
     return $func;
   }
 
