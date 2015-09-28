@@ -344,7 +344,7 @@ abstract class Basic_Admin_Form {
     echo "<select id='$ID' name='$name'>";
     if (is_array($source_func)) {
       foreach($source_func as $key=>$text) {
-        $select = ($key==$data['value']) ? "selected='selected'" : '';
+        $select = ($key==$value) ? "selected='selected'" : '';
         echo "<option value='$key' $select> $text </option>";
       }
     } else if (method_exists($this,$source_func)) {
@@ -367,15 +367,33 @@ abstract class Basic_Admin_Form {
 
   /**  Validate functions  **/
 
-  public function validate_settings($input) {
-    if (isset($_POST['tab'])) {
-      $option = sanitize_key($_POST['tab']);
-      $output = $this->defaults[$key];
-    } else {
-      $output = $this->defaults;
-    }
+  public function validate_single_form($input) {
+    $form   = $this->form;
+    $output = $this->defaults;
     if (isset($_POST['reset'])) {
-      add_settings_error('creatom','restore_defaults',__('Default values restored','creatom'),'updated fade');
+      $object = (isset($this->form['title'])) ? $this->form['title'] : $this->form_test['submit']['object'];
+      $string = sprintf($this->form_text['submit']['restore'],$object);
+      add_settings_error($this->slug,'restore_defaults',$string,'updated fade');
+      return $output;
+    }
+    foreach($input as $key=>$data) {
+      if (!((array)$data==$data)) continue;
+      foreach($data as $ID=>$subdata) {
+        $item = $form[$key]['layout'][$ID];
+        $valid_func = $this->determine_validate($item);
+        $output[$key][$ID] = $this->do_validate_function($subdata,$valid_func);
+      }
+    }
+    return apply_filters($this->slug.'_validate_settings',$output,$input);
+  }
+
+  public function validate_tabbed_form($input) {
+    $option = sanitize_key($_POST['tab']);
+    $output = $this->defaults[$option];
+    if (isset($_POST['reset'])) {
+      $object = (isset($this->form[$option]['title'])) ? $this->form[$option]['title'] : $this->form_test['submit']['object'];
+      $string = sprintf($this->form_text['submit']['restore'],$object);
+      add_settings_error('creatom','restore_defaults',$string,'updated fade');
       return $output;
     }
     foreach($input as $key=>$data) {
@@ -393,7 +411,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function determine_validate($item=array()) { // FIXME: re: sanitize_callback()
-    $defs = array('render'=>'non_existing_function_name');
+    $defs = array('render'=>'non_existing_render_type');
     $item = array_merge($defs,$item);
     $func = 'validate_';
     $func.= (isset($item['validate'])) ? $item['validate'] : $item['render'];
@@ -405,7 +423,7 @@ abstract class Basic_Admin_Form {
       $output = $this->$func($input);
     } else if (function_exists($func)) {
       $output = $func($input);
-    } else {
+    } else { // FIXME:  test for data type
       $output = $this->validate_text($input);
     }
     return $output;
@@ -439,4 +457,17 @@ abstract class Basic_Admin_Form {
     return esc_url_raw(strip_tags(stripslashes($input)));
   }
 
+}
+
+if (!function_exists('log_entry')) {
+  function log_entry($message,$mess2='') {
+    if (WP_DEBUG) {
+      if (is_array($message) || is_object($message)) {
+        error_log(print_r($message, true));
+      } else {
+        error_log($message);
+      }
+      if ($mess2) log_entry($mess2);
+    }
+  }
 }
