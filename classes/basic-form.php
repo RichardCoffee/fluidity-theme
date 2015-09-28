@@ -391,6 +391,15 @@ abstract class Basic_Admin_Form {
         $output[$key][$ID] = $this->do_validate_function($subdata,$valid_func);
       }
     }
+    foreach($this->defaults as $key=>$data) {
+      if (!((array)$data==$data)) continue;
+      foreach($data as $ID=>$subdata) {
+        if (!isset($form[$key]['layout'][$ID]['force'])) { continue; }
+        if (empty($output[$key][$ID])) {
+          $output[$key][$ID] = $subdata;
+        }
+      }
+    }
     return apply_filters($this->slug.'_validate_settings',$output,$input);
   }
 
