@@ -366,7 +366,8 @@ abstract class Basic_Admin_Form {
     extract($data);
     $value = sanitize_text_field($value);
     $class = (isset($layout['large'])) ? 'large-text' : 'regular-text';
-    echo "<input type='text' id='$ID' class='$class' name='$name' value='$value'/> ";
+    $quote   = (strpos($value,"'")===false) ? "'" : '"'; // needed in case the string contains a single quote - FIXME
+    echo "<input type='text' id='$ID' class='$class' name='$name' value=$quote{$value}$quote />";
     if (!empty($layout['text'])) echo esc_attr($layout['text']);
   }
 
