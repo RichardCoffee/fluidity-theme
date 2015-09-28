@@ -1,5 +1,11 @@
 <?php
 
+/*
+ *  classes/basic-form.php
+ *
+ *  copyright 2014, The Creative Collective, the-creative-collective.com
+ */
+
 abstract class Basic_Admin_Form {
 
   protected $current   = '';
