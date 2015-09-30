@@ -35,7 +35,6 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
 
   protected function __construct() {
     self::$instance = $this;
-    self::$text     = self::translated_text();
     $this->prefix   = 'tcc_options_';
     $this->slug     = 'fluidity_options';
     $this->type     = 'tabbed';
@@ -105,31 +104,37 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *
  *   secondary associative keys: (all keys are required unless stated otherwise)
  *
- *          default: (mixed)  The default value of the field
- *            label: (string) Title of the field (required unless render is set to 'skip')
- *                            see: http://codex.wordpress.org/Function_Reference/add_settings_field
- *             text: (string) Text displayed to the right of the field (optional field)
- *           render: (string) How the field is to be displayed
- *                            Possible pre-set values are: checkbox, colorpicker, display, image, radio, select, text, textarea, wp_dropdown, skip
- *                            This string is interpreted as a function call, prefixed with 'render_'
- *                            The rendering function is given one parameter, an associative array, like so:
- *                                array('ID'=>$key, 'value'=>$value, 'layout'=>$layout, 'name'=>"option_screen[$key]");
- *           source: This key is required only if render is set to 'radio', 'select', or 'wp_dropdown'
- *                   (array)  The array values will be used to generate the 'select' listing.
- *                            This must be an associative array.
+ *          default: (mixed)   The default value of the field
+ *            label: (string)  Title of the field (required unless render is set to 'skip')
+ *                               see: http://codex.wordpress.org/Function_Reference/add_settings_field
+ *             text: (string)  Text displayed to the right of the field (optional field)
+ *           render: (string)  How the field is to be displayed
+ *                             Possible pre-set values are: checkbox, colorpicker, display, image, radio, select, text, textarea, wp_dropdown, skip
+ *                             Another possible value is 'array', see notes for 'type'.
+ *                             This string is interpreted as a function call, prefixed with 'render_'
+ *                             The rendering function is given one parameter, an associative array, like so:
+ *                               array('ID'=>$key, 'value'=>$value, 'layout'=>$layout, 'name'=>"option_screen[$key]");
+ *            large: (boolean) Used only if render is set to 'text'.  If set to true, then 'large-text' will be used as the input class
+ *             type: (string)  required only if render is set to 'array'. possible values are 'image' and 'text'.
+ *                             functionality for this is only partially implemented.
+ *           source:           This key is required only if render is set to 'radio', 'select', or 'wp_dropdown'
+ *                   (array)   The array values will be used to generate the radio buttons / select listing.
+ *                             This must be an associative array.
  *                     -or-
- *                   (string) Name of the function that returns the select options (render: select)
- *                            example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
- *                   (string) suffix name of the wp_dropdown_* function (render:  wp_dropdown)
- *                            example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
- *            media: This key is required only if render is set to 'image'
- *                   (array)  title:  (string) Title displayed in media uploader
- *                            button: (string) Button text - used for both the admin and the media buttons
- *             args: (array)  Used only if render is set to 'wp_dropdown'.
- *                            This array will be passed to the called function.
- *            class: (string) A span is created to surround the rendered object.  This class is applied to that span (optional field)
- *         (string): (mixed)  Any other key can be added to this array.
- *                            The layout array is passed to the rendering function.
+ *                   (string)  Name of the function that returns the select options (render: select)
+ *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
+ *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
+ *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
+ *            media:           Used only if render is set to 'image'.
+ *                   (array)   title:  (string) Title displayed in media uploader
+ *                             button: (string) Button text - used for both the admin and the media buttons
+ *             args: (array)   Used only if render is set to 'wp_dropdown'.
+ *                             This array will be passed to the called function.
+ *            class: (string)  A span is created to surround the rendered object.  If set, this class is applied to that span
+ *          require: (boolean) If set, then when saving (as currently implemented) a blank field will be set to the default value.
+ *         (string): (mixed)   Any other key can be added to this array.
+ *
+ *                             The layout array is passed to the rendering function.
  *
  */
   private function about_options_layout() {

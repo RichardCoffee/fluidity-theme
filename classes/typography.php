@@ -2,11 +2,13 @@
 
 /* sources: http://wptheming.com/2012/06/loading-google-fonts-from-theme-options/
  *          http://theme.fm/2011/08/providing-typography-options-in-your-wordpress-themes-1576/
+ *          http://themeshaper.com/2014/08/13/how-to-add-google-fonts-to-wordpress-themes/
  */
 
 
 class TCC_Typography {
 
+  private static $option = 'tcc_options_design';
 
   public static function os_fonts() {
     // OS Font Defaults
@@ -21,10 +23,23 @@ class TCC_Typography {
     return apply_filters('tcc_os_fonts',$os_faces);
   }
 
+  public static function os_fonts_filter($fonts) {
+    $check = array('Arial'          => _x('on',"Arial font: translate as 'on' or 'off'",'tcc-fluid'),
+                   'Avant Garde'    => _x('on',"Avant Garde font: translate as 'on' or 'off'",'tcc-fluid'),
+                   'Cambria'        => _x('on',"Cambria font: translate as 'on' or 'off'",'tcc-fluid'),
+                   'Copse'          => _x('on',"Copse font: translate as 'on' or 'off'",'tcc-fluid'),
+                   'Garamond'       => _x('on',"Garamond font: translate as 'on' or 'off'",'tcc-fluid'),
+                   'Georgia'        => _x('on',"Georgia font: translate as 'on' or 'off'",'tcc-fluid'),
+                   'Helvitica Neue' => _x('on',"Helvitica Neue font: translate as 'on' or 'off'",'tcc-fluid'),
+                   'Tahoma'         => _x('on',"Tahoma font: translate as 'on' or 'off'",'tcc-fluid'));
+    foreach($check as $font=>$state) { if ((isset($fonts[$font])) && ($state==='off')) { unset($fonts[$font]); } }
+    return $fonts;
+  }
+
   public static function google_fonts() {
     // Google Font Defaults
     $google_faces = array('Arvo'         => 'Arvo, serif',
-                          'Copse'        => 'Copse, sans-serif', // duplicate in so_fonts()
+                          'Copse'        => 'Copse, sans-serif', // duplicate in os_fonts()
                           'Droid Sans'   => 'Droid Sans, sans-serif',
                           'Droid Serif'  => 'Droid Serif, serif',
                           'Lato'         => 'Lato, sans-serif',
@@ -42,26 +57,50 @@ class TCC_Typography {
     return apply_filters('tcc_google_fonts',$google_faces);
   }
 
+  public static function google_fonts_filter($fonts) {
+    $check = array('Arvo'         => _x('on',"Arvo font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Copse'        => _x('on',"Copse font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Droid Sans'   => _x('on',"Droid Sans font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Droid Serif'  => _x('on',"Droid Serif font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Lato'         => _x('on',"Lato font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Lobster'      => _x('on',"Lobster font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Nobile'       => _x('on',"Nobile font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Open Sans'    => _x('on',"Open Sans font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Oswald'       => _x('on',"Oswald font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Pacifico'     => _x('on',"Pacifico font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Rokkit'       => _x('on',"Rokkit font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'PT Sans'      => _x('on',"PT Sans font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Quattrocento' => _x('on',"Quattrocento font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Raleway'      => _x('on',"Raleway font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Ubuntu'       => _x('on',"Ubuntu font: translate as 'on' or 'off'", 'tcc-fluid'),
+                   'Yanone Kaffeesatz' => _x('on',"Yanone Kaffeesatz font: translate as 'on' or 'off'", 'tcc-fluid'));
+    foreach($check as $font=>$state) { if ((isset($fonts[$font])) && ($state==='off')) { unset($fonts[$font]); } }
+    return $fonts;
+  }
+
+
   public static function mixed_fonts() {
     $mixed_fonts = array_unique(array_merge(self::os_fonts(),self::google_fonts()));
     asort($mixed_fonts);
     return apply_filters('tcc_mixed_fonts',$mixed_fonts);
   }
 
-  public static function load_google_fonts() {
+  public static function load_google_font() {
     $google_fonts = array_keys(self::google_fonts());
-    $font_options = get_option('tcc_options_design');
-    if ($font_options) {
-      if (isset($font_options['font'])) {
-        $current  = $font_options['font'];
+    $theme_opts   = get_option(self::$option);
+    if ($theme_opts) {
+      if (isset($theme_opts['font'])) {
+        $current  = $theme_opts['font'];
         $os_fonts = self::os_fonts();
-        if (!in_array($current,$os_fonts)) {
+        if (!in_array($current,$os_fonts)) { // Really?  Are we sure about this?
           $google_fonts = self::google_fonts();
           if (in_array($current,$google_fonts)) {
             $myfont = explode(',',$google_fonts[$current]);
-            $myfont = str_replace(" ","+",$myfont[0]);
-            if ($myfont=='Raleway') $myfont = 'Raleway:100';
-            wp_enqueue_style("typography_$myfont","http://fonts.googleapis.com/css?family=$myfont",false,null,'all');
+            if ($myfont[0]==='Raleway') $myfont[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?
+            $query_args = array('family' => urlencode(implode('|',$myfont)),
+                                'subset' => urlencode('latin,latin-ext')); // FIXME: when should subset be something different?
+            $fonts_url = add_query_arg($query_args,'https://fonts.googleapis.com/css');
+            wp_enqueue_style("typography_font",$fonts_url,false,null,'all');
           }
         }
       }
@@ -69,7 +108,7 @@ class TCC_Typography {
   }
 
   public static function typography_styles() {
-    $font_options = get_option('tcc_options_design');
+    $font_options = get_option(self::$option);
     if ($font_options) {
       if (isset($font_options['font'])) {
         $current = $font_options['font'];
@@ -90,6 +129,8 @@ class TCC_Typography {
 }
 
 add_action('tcc_custom_css',    array('TCC_Typography','typography_styles'),1);
-add_action('wp_enqueue_scripts',array('TCC_Typography','load_google_fonts'));
+add_action('wp_enqueue_scripts',array('TCC_Typography','load_google_font'));
+add_action('tcc_os_fonts',      array('TCC_Typography','os_fonts_filter'));
+add_action('tcc_google_fonts',  array('TCC_Typography','google_fonts_filter'));
 
 ?>

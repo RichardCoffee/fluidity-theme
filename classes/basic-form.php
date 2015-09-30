@@ -87,23 +87,23 @@ abstract class Basic_Admin_Form {
       $title = (isset($group['title']))    ? $group['title'] : '';
       $desc  = (isset($group['describe'])) ? array($this,$group['describe']) : 'description';
       add_settings_section($key,$title,array($this,$desc),$this->slug);
-      foreach($group['layout'] as $itemkey=>$item) {
-        if (is_string($item)) continue; // skip string variables
-        if (!isset($item['render'])) continue;
-        if ($item['render']=='skip') continue;
-        $itemID = "{$key}_$itemkey";
-        if ($item['render']=='array') {
-          $count = max(count($item['default']),count($this->form_opts[$key][$itemkey]));
+      foreach($group['layout'] as $item=>$data) {
+        if (is_string($data))        continue; // skip string variables
+        if (!isset($data['render'])) continue;
+        if ($data['render']=='skip') continue;
+        $itemID = "{$key}_$item";
+        if ($data['render']=='array') {
+          $count = max(count($data['default']),count($this->form_opts[$key][$item]));
           for ($i=0;$i<$count;$i++) {
-            $itemID = "{$key}_{$itemkey}_$i";
-            $label  = "<label for='$itemID'>{$item['label']} ".($i+1)."</label>";
-            $args   = array('key'=>$key,'item'=>$itemkey,'num'=>$i);
+            $itemID = "{$key}_{$item}_$i";
+            $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
+            $args   = array('itemID'=>$itemID,'key'=>$key,'item'=>$item,'num'=>$i);
+#            if ($i+1==$count) { $args['add'] = true; }
             add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
           }
         } else {
-          $label  = "<label for='$itemID'>{$item['label']}</label>";
-          $label  = ($item['render']=='title') ? "<span class='form-title'>{$item['label']}</span>" : $label;
-          $args   = array('key'=>$key,'item'=>$itemkey);
+          $label = $this->field_label($data,$itemID);
+          $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
           add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
         }
       }
@@ -121,23 +121,29 @@ abstract class Basic_Admin_Form {
       $slug     = (isset($section['slug']))     ? $section['slug']     : $this->slug;
       register_setting($option,$option,array($this,$validate));
       add_settings_section($option,$title,array($this,$describe),$slug);
-      foreach($section['layout'] as $itemID=>$item) {
-        $args = array('key'=>$key,'item'=>$itemID);
-        $this->register_field($item,$itemID,$option,$args);
+      foreach($section['layout'] as $item=>$data) {
+        if (is_string($data))        continue; // skip string variables
+        if (!isset($data['render'])) continue;
+        if ($data['render']=='skip') continue;
+        $itemID = "{$key}_$item";
+        $args   = array('key'=>$key,'item'=>$item);
+        $label  = $this->field_label($data,$args);
+        add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
       }
     } //*/
   }
 
   public function register_multi_form() {   }
 
-  private function register_field($item,$itemID,$key,$args) {
-    static $larr = array('display','skip');
-    if (!((array)$item===$item)) return; // skip string variables
-    if (!isset($item['render'])) return;
-    if ($item['render']=='skip') return;
-    $label = (in_array($item['render'],$larr)) ? $item['label'] : "<label for='$itemID'>{$item['label']}</label>";
-    $label = ($item['render']=='title') ? "<span class='form-title'>{$item['label']}</span>" : $label;
-    add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+  private function field_label($data,$ID) {
+    if ($data['render']=='display') {
+      $return = $data['label'];
+    } else if ($data['render']=='title') {
+      $return = "<span class='form-title'>{$data['label']}</span>";
+    } else {
+      $return = "<label for='$ID'>{$data['label']}</label>";
+    }
+    return $return;
   }
 
 
@@ -186,9 +192,7 @@ abstract class Basic_Admin_Form {
   public function render_single_form() {
     $form = $this->form_layout(); ?>
     <div class="wrap"><?php
-      if (isset($form['title'])) {
-        echo "<h2>{$form['title']}</h2>";
-      }
+      if (isset($form['title'])) { echo "<h1>{$form['title']}</h1>"; }
       settings_errors(); ?>
       <form method="post" action="options.php"><?php
         do_action("form_pre_display");
@@ -247,6 +251,7 @@ abstract class Basic_Admin_Form {
     </p><?php
   }
 
+  // $args = array('itemID'=>$itemID,'key'=>$key,'item'=>$item); // ,'num'=>$i);
   public function render_single_options($args) {
     $data = $this->form_opts;
     extract($args);
@@ -256,23 +261,23 @@ abstract class Basic_Admin_Form {
     if (empty($layout[$item]['render'])) {
       echo $data[$key][$item];
     } else {
-      $render_func = "render_{$layout[$item]['render']}";
-      $itemID      = "{$key}_$item";
-      $item_name   = $this->slug."[$key][$item]";
-      $value       = (isset($data[$key][$item])) ? $data[$key][$item] : '';
+      $func  = "render_{$layout[$item]['render']}";
+      $name  = $this->slug."[$key][$item]";
+      $value = (isset($data[$key][$item])) ? $data[$key][$item] : '';
       if ($layout[$item]['render']=='array') {
-        $itemID   .= "_$num";
-        $item_name.= "[$num]";
-        $value     = (isset($data[$key][$item][$num])) ? $data[$key][$item][$num] : '';
+        $name .= "[$num]";
+#        if ((isset($add)) && ($add)) { $layout[$item]['add'] = true; }
+        $value = (isset($data[$key][$item][$num])) ? $data[$key][$item][$num] : '';
       }
-      $render_arr  = array('ID'=>$itemID, 'value'=>$value, 'layout'=>$layout[$item], 'name'=>$item_name);
-      if (method_exists($this,$render_func)) {
-        $this->$render_func($render_arr);
-      } else if (function_exists($render_func)) {
-        $render_func($render_arr);
+      $field = str_replace(array('[',']'),array('_',''),$name);
+      $fargs = array('ID'=>$field, 'value'=>$value, 'layout'=>$layout[$item], 'name'=>$name);
+      if (method_exists($this,$func)) {
+        $this->$func($fargs);
+      } else if (function_exists($func)) {
+        $func($fargs);
       } else {
         if (!empty($this->err_func)) {
-          $this->err_func(sprintf($this->form_text['error']['render'],$render_func)); }
+          $this->err_func(sprintf($this->form_text['error']['render'],$func)); }
       }
     }
     echo "</div>";
@@ -307,11 +312,22 @@ abstract class Basic_Admin_Form {
   }
 
 
-  /**  Render Items functions  **/
+  /**  Render Items functions
+    *
+    *
+    *  $data = array('ID'=>$field, 'value'=>$value, 'layout'=>$layout[$item], 'name'=>$name);
+    *
+    **/
 
   // FIXME:  needs add/delete/sort
   private function render_array($data) {
-    $this->render_text($data);
+    extract($data);
+    if (!(isset($layout['type']))) { $layout['type'] = 'text'; }
+    if ($layout['type']==='image') {
+      $this->render_image($data);
+    } else {
+      $this->render_text($data);
+    }
   }
 
   private function render_colorpicker($data) {
@@ -333,11 +349,10 @@ abstract class Basic_Admin_Form {
     extract($data);
     $media = $this->form_text['media'];
     if (isset($layout['media'])) $media = array_merge($media,$layout['media']);
-    $field = str_replace(array('[',']'),array('_',''),$name);
-    $html = "<div data-title='{$media['title']}' data-button='{$media['button']}' data-field='$field'>";
+    $html = "<div data-title='{$media['title']}' data-button='{$media['button']}' data-field='$ID'>";
     $html.= "  <button type='button' class='form-image'>{$media['button']}</button>";
-    $html.= "  <input id='{$field}_input' type='text' class='hidden' name='$name' value='$value' />";
-    $html.= "  <div class='form-image-container".((empty($value)) ? " hidden'" : "'")."><img id='{$field}_img' src='$value'></div>";
+    $html.= "  <input id='{$ID}_input' type='text' class='hidden' name='$name' value='$value' />";
+    $html.= "  <div class='form-image-container".((empty($value)) ? " hidden'" : "'")."><img id='{$ID}_img' src='$value'></div>";
     $html.= "  <button type='button' class='form-image-delete".((empty($value)) ? " hidden'" : "'").">{$media['delete']}</button>";
     $html.= "</div>";
     echo $html;
@@ -366,7 +381,7 @@ abstract class Basic_Admin_Form {
     extract($data);
     $value = sanitize_text_field($value);
     $class = (isset($layout['large'])) ? 'large-text' : 'regular-text';
-    $quote   = (strpos($value,"'")===false) ? "'" : '"'; // needed in case the string contains a single quote - FIXME
+    $quote = (strpos($value,"'")===false) ? "'" : '"'; // needed in case the string contains a single quote - FIXME
     echo "<input type='text' id='$ID' class='$class' name='$name' value=$quote{$value}$quote />";
     if (!empty($layout['text'])) echo esc_attr($layout['text']);
   }
@@ -387,14 +402,25 @@ abstract class Basic_Admin_Form {
       if (!((array)$data==$data)) continue;
       foreach($data as $ID=>$subdata) {
         $item = $form[$key]['layout'][$ID];
-        $valid_func = $this->determine_validate($item);
-        $output[$key][$ID] = $this->do_validate_function($subdata,$valid_func);
+        if ($item['render']==='array') {
+          $item['render'] = (isset($item['type'])) ? $item['type'] : 'text';
+          $vals = array();
+          foreach($subdata as $indiv) {
+            $valid_func = $this->determine_validate($item);
+            $vals[] = $this->do_validate_function($indiv,$valid_func);
+          }
+          $output[$key][$ID] = $vals;
+        } else {
+          $valid_func = $this->determine_validate($item);
+          $output[$key][$ID] = $this->do_validate_function($subdata,$valid_func);
+        }
       }
     }
+    // check for required fields
     foreach($this->defaults as $key=>$data) {
       if (!((array)$data==$data)) continue;
       foreach($data as $ID=>$subdata) {
-        if (!isset($form[$key]['layout'][$ID]['force'])) { continue; }
+        if (!isset($form[$key]['layout'][$ID]['require'])) { continue; }
         if (empty($output[$key][$ID])) {
           $output[$key][$ID] = $subdata;
         }
