@@ -53,9 +53,9 @@ class Fluid_Layout {
   public function get_sidebar() {
     if (is_active_sidebar($this->sidebar_name)) {
       $this->sidebar_class.= ($this->sidebar_side=='right') ? ' pull-right' : ''; ?>
-      <div class="<?php echo $this->sidebar_class; ?>" <?php $this->microdata->WPSideBar(); ?>><?php
+      <aside class="<?php echo $this->sidebar_class; ?>" <?php $this->microdata->WPSideBar(); ?>><?php
         fluidity_get_sidebar($this->sidebar_name); ?>
-      </div><?php
+      </aside><?php
     } else {
       $this->primary_class = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
       $this->inner_class   = "col-lg-3  col-md-3  col-sm-6  col-xs-12";

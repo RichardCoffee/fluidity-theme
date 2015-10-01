@@ -3,7 +3,7 @@
 /*
  *  classes/basic-form.php
  *
- *  copyright 2014, The Creative Collective, the-creative-collective.com
+ *  copyright 2014-2015, The Creative Collective, the-creative-collective.com
  */
 
 abstract class Basic_Admin_Form {
@@ -88,24 +88,7 @@ abstract class Basic_Admin_Form {
       $desc  = (isset($group['describe'])) ? array($this,$group['describe']) : 'description';
       add_settings_section($key,$title,array($this,$desc),$this->slug);
       foreach($group['layout'] as $item=>$data) {
-        if (is_string($data))        continue; // skip string variables
-        if (!isset($data['render'])) continue;
-        if ($data['render']=='skip') continue;
-        $itemID = "{$key}_$item";
-        if ($data['render']=='array') {
-          $count = max(count($data['default']),count($this->form_opts[$key][$item]));
-          for ($i=0;$i<$count;$i++) {
-            $itemID = "{$key}_{$item}_$i";
-            $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
-            $args   = array('itemID'=>$itemID,'key'=>$key,'item'=>$item,'num'=>$i);
-#            if ($i+1==$count) { $args['add'] = true; }
-            add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
-          }
-        } else {
-          $label = $this->field_label($data,$itemID);
-          $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
-          add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
-        }
+        $this->register_field($key,$item,$data);
       }
     }
   }
@@ -122,18 +105,33 @@ abstract class Basic_Admin_Form {
       register_setting($option,$option,array($this,$validate));
       add_settings_section($option,$title,array($this,$describe),$slug);
       foreach($section['layout'] as $item=>$data) {
-        if (is_string($data))        continue; // skip string variables
-        if (!isset($data['render'])) continue;
-        if ($data['render']=='skip') continue;
-        $itemID = "{$key}_$item";
-        $args   = array('key'=>$key,'item'=>$item);
-        $label  = $this->field_label($data,$args);
-        add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+        $this->register_field($key,$item,$data);
       }
     } //*/
   }
 
   public function register_multi_form() {   }
+
+  private function register_field($key,$item,$data) {
+    if (is_string($data))        return; // skip string variables
+    if (!isset($data['render'])) continue;
+    if ($data['render']=='skip') continue;
+    $itemID = "{$key}_$item";
+    if ($data['render']=='array') {
+      $count = max(count($data['default']),count($this->form_opts[$key][$item]));
+      for ($i=0;$i<$count;$i++) {
+        $itemID = "{$key}_{$item}_$i";
+        $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
+        $args   = array('itemID'=>$itemID,'key'=>$key,'item'=>$item,'num'=>$i);
+#        if ($i+1==$count) { $args['add'] = true; }
+        add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+      }
+    } else {
+      $label = $this->field_label($data,$itemID);
+      $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
+      add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+    }
+  }
 
   private function field_label($data,$ID) {
     if ($data['render']=='display') {
@@ -265,7 +263,7 @@ abstract class Basic_Admin_Form {
       $name  = $this->slug."[$key][$item]";
       $value = (isset($data[$key][$item])) ? $data[$key][$item] : '';
       if ($layout[$item]['render']=='array') {
-        $name .= "[$num]";
+        $name.= "[$num]";
 #        if ((isset($add)) && ($add)) { $layout[$item]['add'] = true; }
         $value = (isset($data[$key][$item][$num])) ? $data[$key][$item][$num] : '';
       }
