@@ -171,7 +171,7 @@ abstract class Basic_Admin_Form {
       } else {
         if (!empty($this->err_func)) {
           $func   = $this->err_func;
-          $string = _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form')
+          $string = _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form');
           $func(sprintf($string,$option));
         }
       }
