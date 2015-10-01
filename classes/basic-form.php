@@ -155,7 +155,7 @@ log_entry("refer: $refer");
     return $option;
   }
 
-/*  protected function get_defaults() {
+  protected function get_defaults($option) {
     if ($this->type=='single') {
       foreach($this->form as $key=>$group) {
         if (is_string($group)) continue;
