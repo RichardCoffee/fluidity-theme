@@ -170,6 +170,7 @@ abstract class Basic_Admin_Form {
         }
       } else {
         if (!empty($this->err_func)) {
+log_entry('form text',$this->form_text);
           $func = $this->err_func;
           $func(sprintf($this->form_text['error']['subscript'],$option));
         }
