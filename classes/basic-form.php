@@ -170,10 +170,9 @@ abstract class Basic_Admin_Form {
         }
       } else {
         if (!empty($this->err_func)) {
-log_entry('form text',$this->form_text);
-log_entry(debug_backtrace());
-          $func = $this->err_func;
-          $func(sprintf($this->form_text['error']['subscript'],$option));
+          $func   = $this->err_func;
+          $string = _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form')
+          $func(sprintf($string,$option));
         }
       }
     }
@@ -279,7 +278,8 @@ log_entry(debug_backtrace());
         $func($fargs);
       } else {
         if (!empty($this->err_func)) {
-          $this->err_func(sprintf($this->form_text['error']['render'],$func)); }
+          $func = $this->err_func;
+          $func(sprintf($this->form_text['error']['render'],$func)); }
       }
     }
     echo "</div>";
@@ -304,7 +304,8 @@ log_entry(debug_backtrace());
         $render_func($render_arr);
       } else {
         if (!empty($this->err_func))
-          $this->err_func(sprintf($this->form_text['error']['render'],$render_func));
+          $func = $this->err_func;
+          $func(sprintf($this->form_text['error']['render'],$render_func));
       }
     }
     echo "</div>"; //*/
