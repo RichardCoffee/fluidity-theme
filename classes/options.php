@@ -1,6 +1,6 @@
 <?php /* arrays.php */
 
-include_once('basic-form.php');
+require_once('basic-form.php');
 
 class Fluidity_Options_Form extends Basic_Admin_Form {
 
@@ -161,7 +161,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     return $layout;
   }
 
-  private function describe_about() {
+  public function describe_about() {
     echo '<p>'.self::$text['describe'][0].' <a href="the-creative-collective.com" target="tcc">The Creative Collective</a></p>';
     echo '<p>'.self::$text['describe'][1].'</p>';
     echo '<p>&copy; '.self::$text['describe'][2].'</p>';

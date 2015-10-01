@@ -10,7 +10,7 @@ abstract class Basic_Admin_Form {
 
   protected $current   = '';
   protected $defaults  =  array();
-  protected $err_func  =  null;
+  protected $err_func  =  'log_entry';
   protected $form      =  array();
   protected $form_opts =  array();
   protected $form_text =  array();
@@ -32,8 +32,6 @@ abstract class Basic_Admin_Form {
   public function load_form_page() {
     global $plugin_page;
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
-log_entry(" slug: {$this->slug}");
-log_entry("refer: $refer");
       $this->form_text = $this->form_text();
       $this->form      = $this->form_layout();
       $this->current   = $this->determine_option();
@@ -155,7 +153,7 @@ log_entry("refer: $refer");
     return $option;
   }
 
-  protected function get_defaults($option) {
+  protected function get_defaults($option='about') {
     if ($this->type=='single') {
       foreach($this->form as $key=>$group) {
         if (is_string($group)) continue;
@@ -171,8 +169,10 @@ log_entry("refer: $refer");
           $this->defaults[$key] = $item['default'];
         }
       } else {
-        if (!empty($this->err_func))
-          $this->err_func(sprintf($this->form_text['error']['subscript'],$option));
+        if (!empty($this->err_func)) {
+          $func = $this->err_func;
+          $func(sprintf($this->form_text['error']['subscript'],$option));
+        }
       }
     }
   } //*/
