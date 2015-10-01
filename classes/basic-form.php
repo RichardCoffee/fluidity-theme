@@ -32,6 +32,8 @@ abstract class Basic_Admin_Form {
   public function load_form_page() {
     global $plugin_page;
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
+log_entry(" slug: {$this->slug}");
+log_entry("refer: $refer");
       $this->form_text = $this->form_text();
       $this->form      = $this->form_layout();
       $this->current   = $this->determine_option();
