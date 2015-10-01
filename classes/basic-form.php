@@ -155,7 +155,7 @@ log_entry("refer: $refer");
     return $option;
   }
 
-  protected function get_defaults() {
+/*  protected function get_defaults() {
     if ($this->type=='single') {
       foreach($this->form as $key=>$group) {
         if (is_string($group)) continue;
@@ -175,7 +175,7 @@ log_entry("refer: $refer");
           $this->err_func(sprintf($this->form_text['error']['subscript'],$option));
       }
     }
-  }
+  } //*/
 
   private function get_form_options() {
     $this->form_opts = get_option($this->current);
