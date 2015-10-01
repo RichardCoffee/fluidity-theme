@@ -7,26 +7,6 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   private static $instance = null;
   private static $text     = null;
 
-  private static function translated_text() {
-    return array('title'     => array('about'  => __('About / Contact','tcc-fluid'),
-                                      'menu'   => __('Theme Options','tcc-fluid')),
-                 'describe'  => array(__('Support Site:','tcc-fluid'),
-                                      __('For help with this theme, or any other general support items, please contact us at any time','tcc-fluid'),
-                                      __('Copyright 2014-2015 TCC','tcc-fluid')),
-                 'theme'     => array('label'  => __('Theme Settings','tcc-fluid'),
-                                      'text'   => __("These following options control the theme's behavior",'tcc-fluid')),
-                 'loca'      => array('label'  => __('Page Location','tcc-fluid'),
-                                      'text'   => __('You can choose where the Theme Options page appears','tcc-fluid'),
-                                      'source' => array('dashboard'  => __('Dashboard menu','tcc-fluid'),
-                                                        'appearance' => __('Appearance menu','tcc-fluid'),
-                                                        'settings'   => __('Settings menu','tcc-fluid'))),
-                 'wp_posi'   => array('label'  => __('Dashboard location','tcc-fluid'),
-                                      'text'   => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-fluid'),
-                                      'source' => array('top'    => __('Top','tcc-fluid'),
-                                                        'bottom' => __('default','tcc-fluid'))),
-                 'version'   => array('label'  => __('Theme Version','tcc-fluid')));
-  }
-
   public function form_trans_text($text,$orig) {
     $text['object']  = __('Options','tcc-fluid');
     $text['subject'] = __('Theme','tcc-fluid');
@@ -45,26 +25,25 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
 
   public static function get_instance() {
     if (!self::$instance)   self::$instance = new Fluidity_Options_Form;
-    if (empty(self::$text)) self::$text     = self::translated_text();
     return self::$instance;
   }
 
   public function add_menu_option() {
-    $menu_cap  = 'edit_theme_options';
-    if (current_user_can($menu_cap)) {
+    $cap  = 'edit_theme_options';
+    if (current_user_can($cap)) {
       $about = get_option('tcc_options_about');
       if (!$about) $about = $this->get_defaults('about');
-      $page_title = self::$text['title']['menu'];
-      $menu_title = self::$text['title']['menu'];
-      $menu_func  = array($this,$this->render);
+      $page = __('Theme Options','tcc-fluid')
+      $menu = __('Theme Options','tcc-fluid')
+      $func  = array($this,$this->render);
       if ($about['loca']=='appearance') {
-        add_theme_page($page_title,$menu_title,$menu_cap,$this->slug,$menu_func);
+        add_theme_page($page,$menu,$cap,$this->slug,$func);
       } else if ($about['loca']=='settings') {
-        add_options_page($page_title,$menu_title,$menu_cap,$this->slug,$menu_func);
+        add_options_page($page,$menu,$cap,$this->slug,$func);
       } else {
-        $icon_name = 'dashicons-admin-settings';
-        $priority  = ($about['wp_posi']=='top') ? '1.01302014' : '99.9122473024';
-        add_menu_page($page_title,$menu_title,$menu_cap,$this->slug,$menu_func,$icon_name,$priority);
+        $icon = 'dashicons-admin-settings';
+        $priority = ($about['wp_posi']=='top') ? '1.01302014' : '99.9122473024';
+        add_menu_page($page,$menu,$cap,$this->slug,$func,$icon,$priority);
       }
       do_action('tcc_admin_menu_setup');
     }
@@ -85,11 +64,11 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  */
   protected function form_layout($section='') {
     if (empty($this->form)) {
-      $this->form['title'] = self::$text['title']['menu'];
+      $this->form['title'] = __('Theme Options','tcc-fluid')
       $this->form = apply_filters('tcc_options_menu_array',$this->form);
       if (!isset($this->form['about'])) {
         $this->form['about'] = array('describe' => 'describe_about',
-                                     'title'    => self::$text['title']['about'],
+                                     'title'    => __('About / Contact','tcc-fluid'),
                                      'option'   => 'tcc_options_about',
                                      'layout'   => $this->options_layout('about'));
       }
@@ -125,6 +104,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
  *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
+ *           change: (string)  Will be applied as an 'onchange' html attribute.
  *            media:           Used only if render is set to 'image'.
  *                   (array)   title:  (string) Title displayed in media uploader
  *                             button: (string) Button text - used for both the admin and the media buttons
@@ -139,32 +119,39 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  */
   private function about_options_layout() {
     $layout = array('version'   => array('default' => '1.0',
-                                         'label'   => self::$text['version']['label'],
+                                         'label'   => __('Theme Version','tcc-fluid'),
                                          'render'  => 'display'),
-                    'theme'     => array('label'   => self::$text['theme']['label'],
-                                         'text'    => self::$text['theme']['text'],
+                    'theme'     => array('label'   => __('Theme Settings','tcc-fluid'),
+                                         'text'    => __("These following options control the theme's behavior",'tcc-fluid'),
                                          'render'  => 'title'),
                     'loca'      => array('default' => 'appearance',
-                                         'label'   => self::$text['loca']['label'],
-                                         'text'    => self::$text['loca']['text'],
+                                         'label'   => __('Page Location','tcc-fluid'),
+                                         'text'    => __('You can choose where the Theme Options page appears','tcc-fluid'),
                                          'render'  => 'radio',
-                                         'source'  => self::$text['loca']['source'],
+                                         'source'  => array('dashboard'  => __('Dashboard menu','tcc-fluid'),
+                                                            'appearance' => __('Appearance menu','tcc-fluid'),
+                                                            'settings'   => __('Settings menu','tcc-fluid')),
                                          'change'  => 'showhidePosi();',
                                          'class'   => 'tcc-loca'),
                     'wp_posi'   => array('default' => 'Top',
-                                         'label'   => self::$text['wp_posi']['label'],
-                                         'text'    => self::$text['wp_posi']['text'],
+                                         'label'   => __('Dashboard location','tcc-fluid'),
+                                         'text'    => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-fluid'),
                                          'render'  => 'select',
-                                         'source'  => self::$text['wp_posi']['source'],
+                                         'source'  => array('top'    => __('Top','tcc-fluid'),
+                                                            'bottom' => __('default','tcc-fluid')),
                                          'class'   => 'tcc-wp_posi'));
     $layout = apply_filters('tcc_about_options_layout',$layout);
     return $layout;
   }
 
   public function describe_about() {
-    echo '<p>'.self::$text['describe'][0].' <a href="the-creative-collective.com" target="tcc">The Creative Collective</a></p>';
-    echo '<p>'.self::$text['describe'][1].'</p>';
-    echo '<p>&copy; '.self::$text['describe'][2].'</p>';
+    $describe = array(__('Support Site:','tcc-fluid'),
+                      _x('The Creative Collective','company name','tcc-fluid'),
+                      __('For help with this theme, or any other general support items, please contact us at any time','tcc-fluid'),
+                      __('Copyright 2014-2015 TCC','tcc-fluid'));
+    echo "<p>{$describe[0]} <a href='the-creative-collective.com' target='tcc'>{$describe[1]}</a></p>";
+    echo "<p>{$describe[2]}</p>";
+    echo "<p>&copy; {$describe[3]}</p>";
   }
 
   protected function options_layout($section) {

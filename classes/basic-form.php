@@ -148,7 +148,7 @@ abstract class Basic_Admin_Form {
   /**  Data functions  **/
 
   private function determine_option($current='') {
-    $option = (empty($current)) ? $this->slug : $this->prefix.$option ;
+    $option = (empty($current)) ? $this->slug : $this->prefix.$current ;
     if (isset($this->form[$option]['option'])) { $option = $this->form[$option]['option']; }
     return $option;
   }
