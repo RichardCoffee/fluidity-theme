@@ -10,23 +10,24 @@ abstract class Basic_Admin_Form {
 
   protected $current   = '';
   protected $defaults  =  array();
-  protected $err_func  =  'log_entry';
+  protected $err_func  = 'log_entry';
   protected $form      =  array();
   protected $form_opts =  array();
   protected $form_text =  array();
-  protected $options   = 'render_single_options';
+  protected $options;
   protected $prefix    = 'options_prefix_';
-  protected $register  = 'register_single_form';
-  protected $render    = 'render_single_form';
+  protected $register;
+  protected $render;
   protected $slug      = 'default_page_slug';
-  protected $tab       = '';
+  protected $tab;
   protected $type      = 'single'; // or 'tabbed', 'multi' pending
-  protected $validate  = 'validate_single_form';
+  protected $validate;
 
   abstract protected function form_layout($option);
   public function description() { return ''; }
 
   protected function __construct() {
+    $this->screen_type();
     add_action('admin_init',array($this,'load_form_page'));
   }
 
@@ -38,7 +39,6 @@ abstract class Basic_Admin_Form {
       $this->determine_option();
       $this->get_defaults();
       $this->get_form_options();
-      $this->screen_type();
       $func = $this->register;
       $this->$func();
       add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
