@@ -33,8 +33,8 @@ abstract class Basic_Admin_Form {
     global $plugin_page;
     $this->form_text = $this->form_text();
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
-      $this->form      = $this->form_layout();
-      $this->current   = $this->determine_option();
+      $this->form = $this->form_layout();
+      $this->determine_option();
       $this->get_defaults();
       $this->get_form_options();
       $this->screen_type();
@@ -98,13 +98,12 @@ log_entry($this);
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
-      $option   = $this->determine_option($key);
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $slug     = (isset($section['slug']))     ? $section['slug']     : $this->slug;
-      register_setting($option,$option,array($this,$validate));
-      add_settings_section($option,$title,array($this,$describe),$slug);
+      register_setting($this->current,$this->current,array($this,$validate));
+      add_settings_section($this->current,$title,array($this,$describe),$slug);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($key,$item,$data);
       }
@@ -148,10 +147,16 @@ log_entry($this);
 
   /**  Data functions  **/
 
-  private function determine_option($current='') {
-    $option = (empty($current)) ? $this->slug : $this->prefix.$current ;
-    if (isset($this->form[$option]['option'])) { $option = $this->form[$option]['option']; }
-    return $option;
+  private function determine_option() {
+    if ($this->type=='single') {
+      $this->current = $this->slug;
+    } else if ($this->type=='tabbed') {
+      $tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'about';
+      if (isset($this->form[$tab]['option'])) { 
+        $this->current = $this->form[$tab]['option']; }
+      } else {
+        $this->current = $this->prefix."_$tab" ;
+    }
   }
 
   protected function get_defaults($option='about') {
@@ -228,10 +233,9 @@ log_entry($this);
         } ?>
       </h2>
       <form method="post" action="options.php"><?php
-        $section = $this->determine_option($active_tab);
         do_action("basic_form_pre_display_$active_tab");
-        settings_fields($section);
-        do_settings_sections($section);
+        settings_fields($this->current);
+        do_settings_sections($this->current);
         do_action("basic_form_post_display_$active_tab");
         $this->submit_buttons($this->form[$active_tab]['title']); ?>
       </form>
@@ -255,8 +259,8 @@ log_entry($this);
 
   // $args = array('itemID'=>$itemID,'key'=>$key,'item'=>$item); // ,'num'=>$i);
   public function render_single_options($args) {
-    $data = $this->form_opts;
     extract($args);
+    $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
     $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
     echo "<div $class>";
@@ -288,25 +292,25 @@ log_entry($this);
 
   public function render_tabbed_options($args) {
     extract($args);
-    $option = $this->determine_option($key);
-    $data   = get_form_options($key);
-    $layout = $this->form[$key];
+    $data   = $this->form_opts;
+    $layout = $this->form[$key]['layout'];
     $class  = (!empty($layout[$itemID]['class'])) ? "class='{$layout[$itemID]['class']}'" : '';
     echo "<div $class>";
     if (empty($layout[$itemID]['render'])) {
       echo $data[$itemID];
     } else {
-      $render_func = "render_{$layout[$itemID]['render']}";
+      $func = "render_{$layout[$itemID]['render']}";
+      $name = $this->current."[$key][$item]";
       if (!isset($data[$itemID])) $data[$itemID] = '';
-      $render_arr  = array('ID'=>$itemID, 'value'=>$data[$itemID], 'layout'=>$layout[$itemID], 'name'=>"$option[$itemID]");
-      if (method_exists($this,$render_func)) {
-        $this->$render_func($render_arr);
-      } else if (function_exists($render_func)) {
-        $render_func($render_arr);
+      $fargs = array('ID'=>$itemID, 'value'=>$data[$itemID], 'layout'=>$layout[$itemID], 'name'=>$name);
+      if (method_exists($this,$func)) {
+        $this->$func($fargs);
+      } else if (function_exists($func)) {
+        $func($fargs);
       } else {
         if (!empty($this->err_func))
           $func = $this->err_func;
-          $func(sprintf($this->form_text['error']['render'],$render_func));
+          $func(sprintf($this->form_text['error']['render'],$func));
       }
     }
     echo "</div>"; //*/
@@ -435,7 +439,7 @@ log_entry($this);
 
   public function validate_tabbed_form($input) {
     $option = sanitize_key($_POST['tab']);
-    $output = $this->defaults[$option];
+    $output = $this->defaults;
     if (isset($_POST['reset'])) {
       $object = (isset($this->form[$option]['title'])) ? $this->form[$option]['title'] : $this->form_test['submit']['object'];
       $string = sprintf($this->form_text['submit']['restore'],$object);
@@ -445,15 +449,15 @@ log_entry($this);
     foreach($input as $key=>$data) {
       if ((array)$data==$data) {
         foreach($data as $ID=>$subdata) {
-          $valid_func = $this->determine_validate($this->form[$key]['layout'][$ID]);
-          $output[$key][$ID] = $this->do_validate_function($subdata,$valid_func);
+          $func = $this->determine_validate($this->form[$key]['layout'][$ID]);
+          $output[$key][$ID] = $this->do_validate_function($subdata,$func);
         }
       } else {
 #        $valid_func = $this->determine_validate($form[$key]);
 #        $output[$key] = $this->do_validate_function($data,$valid_func);
       }
     }
-    return apply_filters('basic_form_validate_settings',$output,$input);
+    return apply_filters($this->current.'_validate_settings',$output,$input);
   }
 
   private function determine_validate($item=array()) { // FIXME: re: sanitize_callback()
