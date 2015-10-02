@@ -104,7 +104,8 @@ log_entry($this);
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
       register_setting($current,$current,array($this,$validate));
-      add_settings_section($current,$title,array($this,$describe),$current);
+log_entry("register: $current ");
+      add_settings_section($current,$title,array($this,$describe),$this->slug);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
@@ -126,12 +127,12 @@ log_entry("key: $key  item: $item");
         $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
         $args   = array('itemID'=>$itemID,'key'=>$key,'item'=>$item,'num'=>$i);
 #        if ($i+1==$count) { $args['add'] = true; }
-        add_settings_field($itemID,$label,array($this,$this->options),$current,$key,$args);
+        add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
       }
     } else {
       $label = $this->field_label($data,$itemID);
       $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
-      add_settings_field($itemID,$label,array($this,$this->options),$current,$key,$args);
+      add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
     }
   }
 
@@ -222,7 +223,7 @@ log_entry("key: $key  item: $item");
     $active_page = sanitize_key($_GET['page']); ?>
     <div class="wrap">
       <div id="icon-themes" class="icon32"></div>
-      <h2><?php echo $this->form['title']; ?></h2><?php
+      <h1 class='centered'><?php echo $this->form['title']; ?></h1><?php
       settings_errors(); ?>
       <h2 class="nav-tab-wrapper"><?php
         $refer = "admin.php?page=$active_page";
