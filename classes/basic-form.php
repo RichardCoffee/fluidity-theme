@@ -48,6 +48,7 @@ log_entry($this);
 
   public function enqueue_scripts() {
     $base_url = plugin_dir_url(__FILE__).'..';
+log_entry("base url: $base_url");
     wp_register_style('basic-form.css', "$base_url/css/basic-form.css", false);
     wp_register_script('basic-form.js', "$base_url/js/basic-form.js", array('jquery','wp-color-picker'), false, true);
     wp_enqueue_media();
@@ -104,8 +105,14 @@ log_entry($this);
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
       register_setting($current,$current,array($this,$validate));
-log_entry("register: $current ");
+log_entry("register    group: $current");
+log_entry("register   option: $current");
+log_entry("register callback: $validate");
       add_settings_section($current,$title,array($this,$describe),$this->slug);
+log_entry("section       id: $current");
+log_entry("section    title: $title");
+log_entry("section callback: $describe");
+log_entry("section     page: {$this->slug}");
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
@@ -133,6 +140,11 @@ log_entry("key: $key  item: $item");
       $label = $this->field_label($data,$itemID);
       $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
       add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
+log_entry("field       ID: $itemID");
+log_entry("field    title: $label");
+log_entry("field callback: {$this->options}");
+log_entry("field     page: {$this->slug}");
+log_entry("field  section: $current");
     }
   }
 
