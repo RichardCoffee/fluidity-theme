@@ -111,7 +111,7 @@ log_entry(debug_backtrace());
 #log_entry("section       id: $current");
 #log_entry("section    title: $title");
 #log_entry("section callback: $describe");
-3log_entry("section     page: {$this->slug}");
+#log_entry("section     page: {$this->slug}");
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
