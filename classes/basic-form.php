@@ -42,7 +42,8 @@ abstract class Basic_Admin_Form {
       $func = $this->register;
       $this->$func();
       add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
-log_entry($this);
+#log_entry($this);
+log_entry(debug_backtrace());
     }
   }
 
@@ -103,14 +104,14 @@ log_entry($this);
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
       register_setting($current,$current,array($this,$validate));
-log_entry("register    group: $current");
-log_entry("register   option: $current");
-log_entry("register callback: $validate");
+#log_entry("register    group: $current");
+#log_entry("register   option: $current");
+#log_entry("register callback: $validate");
       add_settings_section($current,$title,array($this,$describe),$this->slug);
-log_entry("section       id: $current");
-log_entry("section    title: $title");
-log_entry("section callback: $describe");
-log_entry("section     page: {$this->slug}");
+#log_entry("section       id: $current");
+#log_entry("section    title: $title");
+#log_entry("section callback: $describe");
+3log_entry("section     page: {$this->slug}");
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
@@ -120,7 +121,7 @@ log_entry("section     page: {$this->slug}");
   public function register_multi_form() {   }
 
   private function register_field($current,$key,$item,$data) {
-log_entry("key: $key  item: $item");
+#log_entry("key: $key  item: $item");
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) continue;
     if ($data['render']=='skip') continue;
@@ -138,11 +139,11 @@ log_entry("key: $key  item: $item");
       $label = $this->field_label($data,$itemID);
       $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
       add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
-log_entry("field       ID: $itemID");
-log_entry("field    title: $label");
-log_entry("field callback: {$this->options}");
-log_entry("field     page: {$this->slug}");
-log_entry("field  section: $current");
+#log_entry("field       ID: $itemID");
+#log_entry("field    title: $label");
+#log_entry("field callback: {$this->options}");
+#log_entry("field     page: {$this->slug}");
+#log_entry("field  section: $current");
     }
   }
 
