@@ -35,7 +35,8 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
       if (!$about) $about = $this->get_defaults('about');
       $page = __('Theme Options','tcc-fluid');
       $menu = __('Theme Options','tcc-fluid');
-      $func  = array($this,$this->render);
+      $func = array($this,$this->render);
+log_entry("render:  {$this->render}");
       if ($about['loca']=='appearance') {
         add_theme_page($page,$menu,$cap,$this->slug,$func);
       } else if ($about['loca']=='settings') {
