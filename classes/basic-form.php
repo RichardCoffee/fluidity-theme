@@ -154,6 +154,7 @@ abstract class Basic_Admin_Form {
   }
 
   protected function get_defaults($option='about') {
+    if (empty($this->form)) { $this->form = $this->form_layout(); }
     if ($this->type=='single') {
       foreach($this->form as $key=>$group) {
         if (is_string($group)) continue;
