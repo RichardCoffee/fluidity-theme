@@ -160,7 +160,7 @@ log_entry("key: $key  item: $item");
     } else if ($this->type=='tabbed') {
       $tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'about';
       if (isset($this->form[$tab]['option'])) { 
-        $this->current = $this->form[$tab]['option']; }
+        $this->current = $this->form[$tab]['option'];
       } else {
         $this->current = $this->prefix.$tab ;
       }
