@@ -19,6 +19,7 @@ abstract class Basic_Admin_Form {
   protected $register  = 'register_single_form';
   protected $render    = 'render_single_form';
   protected $slug      = 'default_page_slug';
+  protected $tab       = '';
   protected $type      = 'single'; // or 'tabbed', 'multi' pending
   protected $validate  = 'validate_single_form';
 
@@ -96,12 +97,17 @@ log_entry($this);
 
   public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
+log_entry("validate: $validater");
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
       $title    = (isset($section['title']))    ? $section['title']    : '';
+log_entry("title: $title");
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
+log_entry("validate: $validate");
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
-      $slug     = (isset($section['slug']))     ? $section['slug']     : $this->slug;
+log_entry("describe: $describe");
+      $slug     = (isset($section['slug']))     ? $section['slug']     : $this->slug; // FIXME:  is this used?
+log_entry("slug: $slug");
       register_setting($this->current,$this->current,array($this,$validate));
       add_settings_section($this->current,$title,array($this,$describe),$slug);
       foreach($section['layout'] as $item=>$data) {
@@ -113,6 +119,7 @@ log_entry($this);
   public function register_multi_form() {   }
 
   private function register_field($key,$item,$data) {
+log_entry("key: $key  item: $item");
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) continue;
     if ($data['render']=='skip') continue;
@@ -155,7 +162,9 @@ log_entry($this);
       if (isset($this->form[$tab]['option'])) { 
         $this->current = $this->form[$tab]['option']; }
       } else {
-        $this->current = $this->prefix."_$tab" ;
+        $this->current = $this->prefix.$tab ;
+      }
+      $this->tab = $tab;
     }
   }
 
@@ -215,9 +224,7 @@ log_entry($this);
 }
 
   public function render_tabbed_form() {
-    $active_page = sanitize_key($_GET['page']);
-    $active_tab  = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'design';
-    if (!isset($this->form[$active_tab])) { $active_tab = 'about'; } ?>
+    $active_page = sanitize_key($_GET['page']); ?>
     <div class="wrap">
       <div id="icon-themes" class="icon32"></div>
       <h2><?php echo $this->form['title']; ?></h2><?php
@@ -227,17 +234,17 @@ log_entry($this);
         foreach($this->form as $key=>$menu_item) {
           if (is_string($menu_item)) continue;
           $tab_css  = 'nav-tab';
-          $tab_css .= ($active_tab==$key) ? ' nav-tab-active' : '';
+          $tab_css .= ($this->tab==$key) ? ' nav-tab-active' : '';
           $tab_ref  = "$refer&tab=$key";
           echo "<a href='$tab_ref' class='$tab_css'>{$menu_item['title']}</a>";
         } ?>
       </h2>
       <form method="post" action="options.php"><?php
-        do_action("basic_form_pre_display_$active_tab");
+        do_action("basic_form_pre_display_".$this->tab);
         settings_fields($this->current);
         do_settings_sections($this->current);
-        do_action("basic_form_post_display_$active_tab");
-        $this->submit_buttons($this->form[$active_tab]['title']); ?>
+        do_action("basic_form_post_display_".$this->tab);
+        $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
     </div><?php //*/
   }
