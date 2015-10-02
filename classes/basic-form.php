@@ -41,6 +41,7 @@ abstract class Basic_Admin_Form {
       $func = $this->register;
       $this->$func();
       add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
+log_entry($this);
     }
   }
 
