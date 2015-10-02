@@ -43,7 +43,6 @@ abstract class Basic_Admin_Form {
       $this->$func();
       add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
 #log_entry($this);
-log_entry(debug_backtrace());
     }
   }
 
@@ -96,6 +95,7 @@ log_entry(debug_backtrace());
   }
 
   public function register_tabbed_form() {
+log_entry(debug_backtrace());
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
