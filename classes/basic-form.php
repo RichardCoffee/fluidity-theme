@@ -47,10 +47,8 @@ log_entry($this);
   }
 
   public function enqueue_scripts() {
-    $base_url = plugin_dir_url(__FILE__).'..';
-log_entry("base url: $base_url");
-    wp_register_style('basic-form.css', "$base_url/css/basic-form.css", false);
-    wp_register_script('basic-form.js', "$base_url/js/basic-form.js", array('jquery','wp-color-picker'), false, true);
+    wp_register_style('basic-form.css', get_stylesheet_directory_uri()."/css/basic-form.css", false);
+    wp_register_script('basic-form.js', get_stylesheet_directory_uri()."/js/basic-form.js", array('jquery','wp-color-picker'), false, true);
     wp_enqueue_media();
     wp_enqueue_style('basic-form.css');
     wp_enqueue_style('wp-color-picker');
