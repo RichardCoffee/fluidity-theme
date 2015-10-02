@@ -106,10 +106,8 @@ log_entry("title: $title");
 log_entry("validate: $validate");
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
 log_entry("describe: $describe");
-      $slug     = (isset($section['slug']))     ? $section['slug']     : $this->slug; // FIXME:  is this used?
-log_entry("slug: $slug");
       register_setting($this->current,$this->current,array($this,$validate));
-      add_settings_section($this->current,$title,array($this,$describe),$slug);
+      add_settings_section($this->current,$title,array($this,$describe),$this->current);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($key,$item,$data);
       }
