@@ -90,33 +90,30 @@ log_entry($this);
       $desc  = (isset($group['describe'])) ? array($this,$group['describe']) : 'description';
       add_settings_section($key,$title,array($this,$desc),$this->slug);
       foreach($group['layout'] as $item=>$data) {
-        $this->register_field($key,$item,$data);
+        $this->register_field($this->slug,$key,$item,$data);
       }
     }
   }
 
   public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
-log_entry("validate: $validater");
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
       $title    = (isset($section['title']))    ? $section['title']    : '';
-log_entry("title: $title");
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
-log_entry("validate: $validate");
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
-log_entry("describe: $describe");
-      register_setting($this->current,$this->current,array($this,$validate));
-      add_settings_section($this->current,$title,array($this,$describe),$this->current);
+      $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
+      register_setting($current,$current,array($this,$validate));
+      add_settings_section($current,$title,array($this,$describe),$current);
       foreach($section['layout'] as $item=>$data) {
-        $this->register_field($key,$item,$data);
+        $this->register_field($current,$key,$item,$data);
       }
     } //*/
   }
 
   public function register_multi_form() {   }
 
-  private function register_field($key,$item,$data) {
+  private function register_field($current,$key,$item,$data) {
 log_entry("key: $key  item: $item");
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) continue;
@@ -129,12 +126,12 @@ log_entry("key: $key  item: $item");
         $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
         $args   = array('itemID'=>$itemID,'key'=>$key,'item'=>$item,'num'=>$i);
 #        if ($i+1==$count) { $args['add'] = true; }
-        add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+        add_settings_field($itemID,$label,array($this,$this->options),$current,$key,$args);
       }
     } else {
       $label = $this->field_label($data,$itemID);
       $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
-      add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$key,$args);
+      add_settings_field($itemID,$label,array($this,$this->options),$current,$key,$args);
     }
   }
 
