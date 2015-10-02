@@ -50,8 +50,6 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   }
 
 /*
- *  options array - note: the array is only built once!
- *
  *      primary associative key: (string) section slug name
  *
  *   secondary associative keys: (all keys are required)
@@ -63,17 +61,13 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *
  */
   protected function form_layout($section='') {
-    if (empty($this->form)) {
-      $this->form['title'] = __('Theme Options','tcc-fluid');
-      $this->form = apply_filters('tcc_options_menu_array',$this->form);
-      if (!isset($this->form['about'])) {
-        $this->form['about'] = array('describe' => 'describe_about',
-                                     'title'    => __('About / Contact','tcc-fluid'),
-                                     'option'   => 'tcc_options_about',
-                                     'layout'   => $this->options_layout('about'));
-      }
-    }
-    return (empty($section)) ? $this->form : $this->form[$section];
+    $form['title'] = __('Theme Options','tcc-fluid');
+    $form = apply_filters('tcc_options_form_layout',$form);
+    $form['about'] = array('describe' => 'describe_about',
+                           'title'    => __('About / Contact','tcc-fluid'),
+                           'option'   => 'tcc_options_about',
+                           'layout'   => $this->options_layout('about'));
+    return (empty($section)) ? $form : $form[$section];
   }
 
 /*

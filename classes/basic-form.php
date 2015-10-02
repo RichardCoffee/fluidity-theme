@@ -190,10 +190,9 @@ abstract class Basic_Admin_Form {
 
   /**  Render Screen functions  **/
 
-  public function render_single_form() {
-    $form = $this->form_layout(); ?>
+  public function render_single_form() { ?>
     <div class="wrap"><?php
-      if (isset($form['title'])) { echo "<h1>{$form['title']}</h1>"; }
+      if (isset($this->form['title'])) { echo "<h1>{$this->form['title']}</h1>"; }
       settings_errors(); ?>
       <form method="post" action="options.php"><?php
         do_action("form_pre_display");
