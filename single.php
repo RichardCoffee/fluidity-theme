@@ -31,12 +31,12 @@ $layout = 'sidebar-right'; ?>
             <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
 
               <h1 class="text-center"><?php
-                echo fluid_title(); ?>
+                echo fluid_title(); ?> <?php // inserts a space
+                edit_post_link(__('{Edit}','tcc-fluid'), ''); ?>
               </h1>
 
               <h3 class="text-center"><?php
-                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?> <?php // inserts a space
-                edit_post_link(__('{Edit}','tcc-fluid'), ''); ?>
+                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?>
               </h3>
 
               <div class="article" itemprop="text"><?php
