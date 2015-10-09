@@ -148,10 +148,17 @@ class TCC_Microdata {
     return $string;
   }
 
-  public function get_the_author() {
-    $string = "<span itemprop='author'>";
+  public function get_the_author($showlink=false) {
+    $string = '';
+    if ($showlink) {
+      $string.= "<a itemprop='url' rel='author' title='";
+      $string.= sprintf(_x('Posts by %s',"Placeholder is the Author's name",'tcc-fluid'),get_the_author); // FIXME: adjust text domain as required
+      $string.= "' href='".get_author_posts_url(get_the_author_meta('ID'))."'>";
+    }
+    $string.= "<span itemprop='author'>";
     $string.= get_the_author();
     $string.= "</span>";
+    if ($showlink) { $string.= "</a>"; }
     return $string;
   }
 
