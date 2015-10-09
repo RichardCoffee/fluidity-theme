@@ -35,7 +35,8 @@ $layout = 'sidebar-right'; ?>
               </h1>
 
               <h3 class="text-center"><?php
-                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?>
+                echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?> <?php // inserts a space
+                edit_post_link(__('{Edit}','tcc-fluid'), ''); ?>
               </h3>
 
               <div class="article" itemprop="text"><?php
