@@ -1,0 +1,13 @@
+/*
+ *  css/colors/green.css
+ *
+ */
+
+$colorName : green;
+$primary   : #39b54a;
+$colors    : ( "background"    : $primary,
+               "bgHighlight"   : scale-color($primary,$lightness:-20%),
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";

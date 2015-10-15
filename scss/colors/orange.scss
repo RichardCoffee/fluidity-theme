@@ -1,0 +1,13 @@
+/*
+ *  css/colors/orange.css
+ *
+ */
+
+$colorName : orange;
+$primary   : #f7941d;
+$colors    : ( "background"    : $primary,
+               "bgHighlight"   : scale-color($primary,$lightness:-20%),
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";

@@ -21,7 +21,7 @@
   border-color: color(bgHighlight);
   .navbar-brand {
     color: color(textcolor);
-    &:hover, &:focus { 
+    &:hover, &:focus {
       color: color(textHighlight);
     }
   }

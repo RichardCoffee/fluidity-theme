@@ -1,0 +1,13 @@
+/*
+ *  css/colors/yellow.css
+ *
+ */
+
+$colorName : yellow;
+$primary   : #fff200;
+$colors    : ( "background"    : $primary,
+               "bgHighlight"   : scale-color($primary,$lightness:-20%),
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";

@@ -16,7 +16,7 @@ if (!function_exists('tcc_apply_clearfix')) {
 
 if (!function_exists('tcc_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
-  function tcc_browser_body_class($classes) {
+  function tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead
     global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
     if($is_lynx)       $classes[] = 'lynx';
     elseif($is_gecko)  $classes[] = 'gecko';
@@ -59,6 +59,19 @@ if (!function_exists('convert_user_meta')) {
       $out->$key = $meta[0];
     }
     return $out;
+  }
+}
+
+if (!function_exists('wp_menu_id_by_name')) {
+  // http://wordpress.stackexchange.com/questions/104301/get-menu-id-using-its-name
+  function wp_menu_id_by_name($name) {
+    $menus = get_terms('nav_menu');
+    foreach ($menus as $menu) {
+      if($name===$menu->name) {
+        return $menu->term_id;
+      }
+    }
+    return false;
   }
 }
 

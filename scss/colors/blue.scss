@@ -1,0 +1,13 @@
+/*
+ *  css/colors/blue.css
+ *
+ */
+
+$colorName : blue;
+$primary   : #2e3192;
+$colors    : ( "background"    : $primary,
+               "bgHighlight"   : scale-color($primary,$lightness:-20%),
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";
