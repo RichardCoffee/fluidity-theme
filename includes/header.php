@@ -99,6 +99,7 @@ if (!function_exists('fluidity_header_logo')) {
 
 if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_directory().'/template_parts/menu.php'))) {
   function fluidity_main_menubar() {
+echo "Color Scheme: $color_scheme";
 log_entry("layout menu: ".tcc_layout('menu'));
 $menu = tcc_layout('menu');
 assert( "locate_template( array('template_parts/menu-$menu.php', 'template_parts/menu.php'), false, false )" );
