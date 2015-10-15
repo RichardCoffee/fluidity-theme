@@ -231,6 +231,7 @@ class TCC_Microdata {
 
   private function get_post_time_post() {
     $trace = debug_backtrace();
+log_entry('debug trace for get_post_time_post',$trace);
     foreach($trace as $item) {
       if ($item['function']=='get_post_time') {
         return $item['args'][2];
