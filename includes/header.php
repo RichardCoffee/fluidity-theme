@@ -99,6 +99,7 @@ if (!function_exists('fluidity_header_logo')) {
 
 if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_directory().'/template_parts/menu.php'))) {
   function fluidity_main_menubar() {
+log_entry("layout menu: ".tcc_layout('menu'));
     get_template_part('template_parts/menu',tcc_layout('menu'));
   }
   add_action('tcc_header_bottom_menubar','fluidity_main_menubar');
