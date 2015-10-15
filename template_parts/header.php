@@ -24,6 +24,7 @@ $color_scheme = tcc_color_scheme(); ?>
 <?php
 $wp_filter = $GLOBALS['wp_filter'];
 log_entry('tcc_header_bottom_menubar',$wp_filter['tcc_header_bottom_menubar']);
+?>
 
 
 
