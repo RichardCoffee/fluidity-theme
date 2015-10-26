@@ -20,15 +20,6 @@ $color_scheme = tcc_color_scheme(); ?>
   </div><?php
 
   if (has_action('tcc_header_bottom_menubar')) { ?>
-
-<?php
-$wp_filter = $GLOBALS['wp_filter'];
-log_entry('tcc_header_bottom_menubar',$wp_filter['tcc_header_bottom_menubar']);
-?>
-
-
-
-
     <div id="header-menubar" class="navbar navbar-<?php echo $color_scheme; ?>" <?php $micro->SiteNavigationElement(); ?> role="navigation"><?php
       do_action('tcc_header_bottom_menubar'); ?>
     </div><?php
