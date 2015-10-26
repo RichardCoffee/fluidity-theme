@@ -221,23 +221,13 @@ class TCC_Microdata {
   }
 
   public function get_post_time($time,$format,$gmt) {
-    $string = '';
-    $post = $this->get_post_time_post(); // FIXME:  what's going on here?
-    $date = mysql2date('Y-m-d\TH:i:s',get_post($post)->post_date);
-    if ($date) { $string = "<time itemprop='datePublished' datetime='$date'>$time</time>";
-    } else { log_entry(__FILE__.':'.__LINE__.') invalid publish date?',$post,get_post()); }
-    return $string;
-  }
-
-  private function get_post_time_post() {
-    $trace = debug_backtrace();
-log_entry('debug trace for get_post_time_post',$trace);
-    foreach($trace as $item) {
-      if ($item['function']=='get_post_time') {
-        return $item['args'][2];
-      }
+    if ($format==='Y-m-d H:i:s') {
+      $date = $time;
+    } else {
+      $Date = DateTime::createFromFormat($format,$time);
+      $date = $Date->format('Y-m-d H:i:s');
     }
-    return array();
+    return "<time itemprop='datePublished' datetime='$date'>$time</time>";
   }
 
   public function get_the_archive_description($descrip) {
