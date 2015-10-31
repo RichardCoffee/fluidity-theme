@@ -17,38 +17,7 @@ body {
   font-size: 18px
 }
 
-table.posting-table {
-  border-collapse: collapse;
-  border: 1px solid #333;
-  & caption {
-    padding: 0.5em;
-  }
-  & th, & td {
-    padding: 0.5em;
-    border: 1px dotted #666;
-    color: #632a39;
-    text-align: center;
-  }
-  & th[scope=col] {
-    border-bottom: 2px solid #333;
-    border-right: 2px solid #333;
-    color: #000;
-    background-color: #8fadcc;
-  }
-  & th+th[scope=col] {
-    border-right: 1px dotted #666;
-    color: #fff;
-    background-color: #7d98b3;
-  }
-  & th[scope=row] {
-    border-right: 2px solid #333;
-    background-color: #b8cfe5;
-  }
-  & tr:hover th[scope=row], & tr:hover td { 
-    background-color: #632a2a;
-    color: #fff;
-  }
-}
+@import "components/components";
 
 .article,
 .article pre {
