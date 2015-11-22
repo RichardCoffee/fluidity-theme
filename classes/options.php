@@ -169,6 +169,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     $result = array();
     foreach($files as $filename) {
       if (strpos($filename,$slug)===false) continue;
+      // FIXME:  use WP's get_file_data instead of this mess
       $handle = fopen($dir.'/'.$filename, "r");
       if ($handle) {
         $descrip = self::get_descript($handle);
