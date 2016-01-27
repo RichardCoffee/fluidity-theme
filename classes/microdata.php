@@ -57,6 +57,7 @@ class TCC_Microdata {
 
   public function microdata($type) {
     if (method_exists($this,$type)) { $this->$type(); }
+    
   }
 
   // descendant of 'CreativeWork->WebPage'
@@ -222,34 +223,41 @@ class TCC_Microdata {
   }
 
   public function comments_popup_link_attributes($attr) {
+if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
     return 'itemprop="discussionURL"';
   }
 
   public function comment_reply_link($link) {
+    if (strpos($link,'itemprop')>-1) return $link;
     return preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
   }
 
   public function get_archives_link($link) {
+    if (strpos($link,'itemprop')>-1) return $link;
     $patterns = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); #<?
     $result =  preg_replace($patterns,'$1 itemprop="url" $2',$link);
     return preg_replace($patterns,'$1 itemprop="url" $2',$link);
   }
 
   public function get_avatar($avatar) {
+    if (strpos($avatar,'itemprop')>-1) return $avatar;
     return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$avatar);
   }
 
   public function get_comment_author_link($link) {
+    if (strpos($link,'itemprop')>-1) return $link;
     $patterns = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
     $replaces = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
     return preg_replace($patterns,$replaces,$link);
   }
 
   public function get_comment_author_url_link($link) {
+    if (strpos($link,'itemprop')>-1) return $link;
     return preg_replace('/(<a.*?)(>)/i','$1 itemprop="url"$2',$link);
   }
 
   public function get_post_time($time,$format,$gmt) {
+    if (strpos($time,'itemprop')>-1) return $time;
     if ($format==='Y-m-d H:i:s') {
       $date = $time;
     } else {
@@ -260,10 +268,12 @@ class TCC_Microdata {
   }
 
   public function get_the_archive_description($descrip) {
+    if (strpos($descrip,'itemprop')>-1) return $descrip;
     return "<span itemprop='description'>$descrip</span>";
   }
 
   public function get_the_archive_title($title) {
+    if (strpos($title,'itemprop')>-1) return $title;
     if (is_author()) {
       $title = preg_replace('/(<span.*?)(>)/i','$1 itemprop="author"$2',$title);
     } else if ($title==__('Archives')) { // do not add text domain to this
@@ -273,34 +283,40 @@ class TCC_Microdata {
   }
 
   public function get_the_date($the_date,$format,$postID) {
+    if (strpos($the_date,'itemprop')>-1) return $the_date;
     $date = mysql2date('Y-m-d',get_post($postID)->post_date);
     return "<time itemprop='datePublished' datetime='$date'>$the_date</time>";
   }
 
   public function get_the_title($title,$id) {
+    if (strpos($title,'itemprop')>-1) return $title;
     return "<span itemprop='headline'>$title</span>";
   }
 
   public function post_thumbnail_html($html) {
+    if (strpos($html,'itemprop')>-1) return $html;
     return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$html);
   }
 
   public function single_term_title($title) {
+    if (strpos($title,'itemprop')>-1) return $title;
     return "<span itemprop='headline'>$title</span>";
   }
 
   public function the_author_posts_link($link) {
+    if (strpos($link,'itemprop')>-1) return $link;
     $pattern = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
     $replace = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
     return preg_replace($pattern,$replace,$link);
   }
 
   public function wp_get_attachment_image_attributes($attr,$attachment) {
-    $attr['itemprop'] = 'thumbnail';
+    if (!isset($attr['itemprop'])) { $attr['itemprop'] = 'thumbnail'; }
     return $attr;
   }
 
   public function wp_get_attachment_link($link) {
+    if (strpos($link,'itemprop')>-1) return $link;
     return preg_replace('/(<a.*?)>/i','$1 itemprop="contentURL">',$link);
   }
 
