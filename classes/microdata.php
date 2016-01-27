@@ -135,14 +135,14 @@ class TCC_Microdata {
   */
 
   public function bloginfo($show,$filter='raw') {
-    if ($show=='url') { echo esc_url(home_url()); return; } // bloginfo('url') now deprecated
+    if ($show=='url') { echo esc_url(home_url()); return; } // bloginfo('url') has been deprecated by WordPress
     $string = get_bloginfo($show,$filter);
     if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
     echo $string;
   }
 
   public function get_bloginfo($show,$filter='raw') {
-    if ($show=='url') return esc_url(home_url()); // bloginfo('url') now deprecated
+    if ($show=='url') return esc_url(home_url()); // get_bloginfo('url') has been deprecated by WordPress
     $string = get_bloginfo($show,$filter);
     if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
     return $string;
