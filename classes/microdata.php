@@ -5,6 +5,8 @@
  *
  *  Usage: $micro = TCC_Microdata::get_instance();
  *
+ *  Text Domain:  Only one instance of a text domain is utilized in the get_the_author method - change it as required.
+ *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
  * General Public License as published by the Free Software Foundation; either version 2 of the License,
  * or (at your option) any later version.
@@ -46,9 +48,19 @@ class TCC_Microdata {
   *    whatsoever over how these attributes are interpreted by the browser
   *    or search engine.  The itemprop will always apply to any -previously-
   *    declared itemtype.  Do not misinterprete what 'previously' means.
+  *
+  *  I am not real happy with the naming convention here.  If you can come
+  *    up with a better methodology, send me an email.
+  *    I added the alternate methods as another strategy
+  *
   */
 
+  public function microdata($type) {
+    if (method_exists($this,$type)) { $this->$type(); }
+  }
+
   // descendant of 'CreativeWork->WebPage'
+  public function about() { $this->AboutPage(); }
   public function AboutPage() {
     echo "itemscope itemtype='http://schema.org/AboutPage'";
   }
@@ -59,21 +71,26 @@ class TCC_Microdata {
   }
 
   // descendant of 'CreativeWork->Blog'
+  public function post() { $this->BlogPosting(); }
   public function BlogPosting() {
     echo "itemprop='blogPost' itemscope itemtype='http://schema.org/BlogPosting'";
   }
 
   // descendant of 'CreativeWork->WebPage'
+  public function contact() { $this->ContactPage(); }
   public function ContactPage() {
     echo "itemscope itemtype='http://schema.org/ContactPage'";
   }
 
   // descendant of 'CreativeWork->WebPage'
+  public function item() { $this->ItemPage(); }
   public function ItemPage() {
     echo "itemscope itemtype='http://schema.org/ItemPage'";
   }
 
   // first tier type
+  public function company()      { $this->Organization(); } // ???
+  public function group()        { $this->Organization(); } // ???
   public function Organization() {
     echo "itemscope itemtype='http://schema.org/Organization'";
   }
@@ -84,46 +101,55 @@ class TCC_Microdata {
   }
 
   // descendant of many types - see itemtype link
+  public function address() { $this->PostalAddress(); }
   public function PostalAddress() {
     echo "itemprop='address' itemscope itemtype='http://schema.org/PostalAddress'";
   }
 
   // descendant of 'CreativeWork->WebPage'
+  public function profile() { $this->ProfilePage(); }
   public function ProfilePage() {
     echo "itemscope itemtype='http://schema.org/ProfilePage'";
   }
 
   // descendant of 'CreativeWork->WebPage'
+  public function search() { $this->SearchResultsPage(); }
   public function SearchResultsPage() {
     echo "itemscope itemtype='http://schema.org/SearchResultsPage'";
   }
 
   // descendant of 'CreativeWork->WebPage->WebPageElement'
+  public function navigate() { $this->SiteNavigationElement(); }
   public function SiteNavigationElement() {
     echo "itemscope itemtype='http://schema.org/SiteNavigationElement'";
   }
 
   // descendant of 'CreativeWork'
+  public function page() { $this->WebPage(); }
   public function WebPage() {
     echo "itemscope itemtype='http://schema.org/WebPage'";
   }
 
   // descendant of 'CreativeWork->WebPage'
+  public function element() { $this->WebPageElement(); }
   public function WebPageElement() {
     echo "itemscope itemtype='http://schema.org/WebPageElement'";
   }
 
   // descendant of 'CreativeWork->WebPage->WebPageElement'
+  public function footer() { $this->WPFooter(); }
   public function WPFooter() {
     echo "itemscope itemtype='http://schema.org/WPFooter'";
   }
 
   // descendant of 'CreativeWork->WebPage->WebPageElement'
+  public function header() { $this->WPHeader(); }
   public function WPHeader() {
     echo "itemscope itemtype='http://schema.org/WPHeader'";
   }
 
   // descendant of 'CreativeWork->WebPage->WebPageElement'
+  public function sidebar() { $this->WPSideBar(); }
   public function WPSideBar() {
     echo "itemscope itemtype='http://schema.org/WPSideBar'";
   }
@@ -153,9 +179,8 @@ class TCC_Microdata {
   public function get_the_author($showlink=false) {
     $string = '';
     if ($showlink) {
-      $string.= "<a itemprop='url' rel='author' title='";
-      $string.= sprintf(_x('Posts by %s',"Placeholder is the Author's name",'tcc-fluid'),get_the_author()); // FIXME: adjust text domain as required
-      $string.= "' href='".get_author_posts_url(get_the_author_meta('ID'))."'>";
+      $title  = sprintf(_x('Posts by %s',"Placeholder is the Author's name",'tcc-fluid'),get_the_author()); // FIXME: adjust text domain as required
+      $string.= "<a itemprop='url' rel='author' title='$title' href='".get_author_posts_url(get_the_author_meta('ID'))."'>";
     }
     $string.= "<span itemprop='author'>";
     $string.= get_the_author();
@@ -168,6 +193,8 @@ class TCC_Microdata {
   *  These are filters, and will do their work behind the scenes.  Nothing else is required.
   *
   *  Note the priority on these.  Extend the class if you need a different priority.
+  *  If you find you do need to change the priority, please send me an email if the change
+  *    needs to be reflected in the 'core' code.
   *
   */
 
