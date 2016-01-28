@@ -38,128 +38,69 @@ class TCC_Microdata {
  /*
   *  These functions should be inserted into elements like so:
   *
-  *  <?php $instance = TCC_Microdata::get_instance(); ?>
-  *  <div class="container" role="main" <?php $instance->Blog(); ?>>
+  *       <?php $instance = TCC_Microdata::get_instance(); ?>
+  *       <div class="container" role="main" <?php $instance->Blog(); ?>>
+  *  or:  <div class="container" role="main" <?php $instance->microdata('Blog'); ?>>
   *
+  *  Due to the sheer number of entries in the schema.org hierarchy, I have
+  *    chosen to use the php magic __call method.  This is not what many
+  *    people would refer to as 'best practice'.  I am simply going with
+  *    what works for 'me'.  In some cases I have provided myself with
+  *    'shortcuts'.
   *
-  *  The attributes itemprop and itemscope sometimes appear either before
-  *    or after the itemtype.  This serves merely as a reminder to the
-  *    programmer of what the function is designed for, and has no impact
-  *    whatsoever over how these attributes are interpreted by the browser
-  *    or search engine.  The itemprop will always apply to any -previously-
-  *    declared itemtype.  Do not misinterprete what 'previously' means.
+  *  Certain use cases have their own method.  These are simply ones I
+  *    have encountered in my programming.  Extend the class for your
+  *    own use cases.  The attributes itemprop and itemscope sometimes
+  *    appear either before or after the itemtype.  This serves merely
+  *    as a reminder to the programmer of what the function is designed
+  *    for, and has no impact whatsoever over how these attributes are
+  *    interpreted by the browser or search engine.  The itemprop will
+  *    always apply to any -previously- declared itemtype.  Do not
+  *    misinterprete what 'previously' means.
   *
-  *  I am not real happy with the naming convention here.  If you can come
-  *    up with a better methodology, send me an email.
-  *    I added the alternate methods as another strategy
   *
   */
 
+  public function __call($name,$arguments) {
+    $this->microdata($name);
+  }
+
   public function microdata($type) {
-    if (method_exists($this,$type)) { $this->$type(); }
-    
+    if (method_exists($this,$type)) { $this->$type();
+    } else { echo "itemscope itemtype='http://schema.org/$type'"; }
   }
 
-  // descendant of 'CreativeWork->WebPage'
-  public function about() { $this->AboutPage(); }
-  public function AboutPage() {
-    echo "itemscope itemtype='http://schema.org/AboutPage'";
-  }
+  public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
+  public function address()  { $this->PostalAddress(); }          // descendant of many types - see itemtype link
+  public function agent()    { $this->RealEstateAgent(); }        // Organization|Place > LocalBusiness > RealEstateAgent
+  public function company()  { $this->Organization(); }           // first tier type
+  public function contact()  { $this->ContactPage(); }            // CreativeWork > WebPage > ContactPage
+  public function element()  { $this->WebPageElement(); }         // CreativeWork > WebPage > WebPageElement
+  public function footer()   { $this->WPFooter(); }               // CreativeWork > WebPage > WebPageElement > WPFooter
+  public function group()    { $this->Organization(); }           // first tier type
+  public function header()   { $this->WPHeader(); }               // CreativeWork > WebPage > WebPageElement > WPHeader
+  public function item()     { $this->ItemPage(); }               // CreativeWork > WebPage > ItemPage
+  public function navigate() { $this->SiteNavigationElement(); }  // CreativeWork > WebPage > WebPageElement > SiteNavigationElement
+  public function page()     { $this->WebPage(); }                // CreativeWork > WebPage
+  public function post()     { $this->BlogPosting(); }            // CreativeWork > Blog > BlogPosting
+  public function profile()  { $this->ProfilePage(); }            // CreativeWork > WebPage > ProfilePage
+  public function search()   { $this->SearchResultsPage(); }      // CreativeWork > WebPage > SearchResultsPage
+  public function sidebar()  { $this->WPSideBar(); }              // CreativeWork > WebPage > WebPageElement > WPSideBar
 
-  // descendant of 'CreativeWork'
-  public function Blog() {
-    echo "itemscope itemtype='http://schema.org/Blog'";
-  }
-
-  // descendant of 'CreativeWork->Blog'
-  public function post() { $this->BlogPosting(); }
-  public function BlogPosting() {
+  public function BlogPosting() { // descendant of 'CreativeWork->Blog'
     echo "itemprop='blogPost' itemscope itemtype='http://schema.org/BlogPosting'";
   }
 
-  // descendant of 'CreativeWork->WebPage'
-  public function contact() { $this->ContactPage(); }
-  public function ContactPage() {
-    echo "itemscope itemtype='http://schema.org/ContactPage'";
-  }
-
-  // descendant of 'CreativeWork->WebPage'
-  public function item() { $this->ItemPage(); }
-  public function ItemPage() {
-    echo "itemscope itemtype='http://schema.org/ItemPage'";
-  }
-
-  // first tier type
-  public function company()      { $this->Organization(); } // ???
-  public function group()        { $this->Organization(); } // ???
-  public function Organization() {
-    echo "itemscope itemtype='http://schema.org/Organization'";
-  }
-
-  // first tier type
-  public function Person() {
-    echo "itemscope itemtype='http://schema.org/Person'";
-  }
-
-  // descendant of many types - see itemtype link
-  public function address() { $this->PostalAddress(); }
-  public function PostalAddress() {
+  public function PostalAddress() { // descendant of many types - see itemtype link
     echo "itemprop='address' itemscope itemtype='http://schema.org/PostalAddress'";
   }
 
-  // descendant of 'CreativeWork->WebPage'
-  public function profile() { $this->ProfilePage(); }
-  public function ProfilePage() {
-    echo "itemscope itemtype='http://schema.org/ProfilePage'";
-  }
-
-  // descendant of 'CreativeWork->WebPage'
-  public function search() { $this->SearchResultsPage(); }
-  public function SearchResultsPage() {
-    echo "itemscope itemtype='http://schema.org/SearchResultsPage'";
-  }
-
-  // descendant of 'CreativeWork->WebPage->WebPageElement'
-  public function navigate() { $this->SiteNavigationElement(); }
-  public function SiteNavigationElement() {
-    echo "itemscope itemtype='http://schema.org/SiteNavigationElement'";
-  }
-
-  // descendant of 'CreativeWork'
-  public function page() { $this->WebPage(); }
-  public function WebPage() {
-    echo "itemscope itemtype='http://schema.org/WebPage'";
-  }
-
-  // descendant of 'CreativeWork->WebPage'
-  public function element() { $this->WebPageElement(); }
-  public function WebPageElement() {
-    echo "itemscope itemtype='http://schema.org/WebPageElement'";
-  }
-
-  // descendant of 'CreativeWork->WebPage->WebPageElement'
-  public function footer() { $this->WPFooter(); }
-  public function WPFooter() {
-    echo "itemscope itemtype='http://schema.org/WPFooter'";
-  }
-
-  // descendant of 'CreativeWork->WebPage->WebPageElement'
-  public function header() { $this->WPHeader(); }
-  public function WPHeader() {
-    echo "itemscope itemtype='http://schema.org/WPHeader'";
-  }
-
-  // descendant of 'CreativeWork->WebPage->WebPageElement'
-  public function sidebar() { $this->WPSideBar(); }
-  public function WPSideBar() {
-    echo "itemscope itemtype='http://schema.org/WPSideBar'";
-  }
 
  /*
   *  These functions can be utilized like so:
   *
   *  $instance = TCC_Microdata::get_instance();
-  *  echo sprintf(__('Posted on %1$s by %2$s','text-domain'),get_the_date(),$instance->get_the_author());
+  *  echo sprintf(_x('Posted on %1$s by %2$s','1: formatted date, 2: author name','text-domain'),get_the_date(),$instance->get_the_author());
   *
   */
 
@@ -200,26 +141,28 @@ class TCC_Microdata {
   */
 
   private function filters() {
-    add_filter('comments_popup_link_attributes',     array($this,'comments_popup_link_attributes'),     5);
-    add_filter('comment_reply_link',                 array($this,'comment_reply_link'),                 5);
-    add_filter('get_archives_link',                  array($this,'get_archives_link'),                  5);
-    add_filter('get_avatar',                         array($this,'get_avatar'),                         5);
-    add_filter('get_comment_author_link',            array($this,'get_comment_author_link'),            5);
-    add_filter('get_comment_author_url_link',        array($this,'get_comment_author_url_link'),        5);
-    add_filter('get_post_time',                      array($this,'get_post_time'),                      5, 3);
-    add_filter('get_the_archive_description',        array($this,'get_the_archive_description'),        5);
-    add_filter('get_the_archive_title',              array($this,'get_the_archive_title'),              5);
-    add_filter('get_the_date',                       array($this,'get_the_date'),                       5, 3);
-    add_filter('get_the_title',                      array($this,'get_the_title'),                      5, 2);
-    add_filter('post_thumbnail_html',                array($this,'post_thumbnail_html'),                5);
-    add_filter('post_type_archive_title',            array($this,'get_the_title'),                      5, 2);
-    add_filter('single_cat_title',                   array($this,'single_term_title'),                  5);
-    add_filter('single_post_title',                  array($this,'get_the_title'),                      5, 2);
-    add_filter('single_tag_title',                   array($this,'single_term_title'),                  5);
-    add_filter('single_term_title',                  array($this,'single_term_title'),                  5);
-    add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              5);
-    add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), 5, 2);
-    add_filter('wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             5);
+    $pri = 20;
+    add_filter('comments_popup_link_attributes',     array($this,'comments_popup_link_attributes'),     $pri);
+    add_filter('comment_reply_link',                 array($this,'comment_reply_link'),                 $pri);
+    add_filter('get_archives_link',                  array($this,'get_archives_link'),                  $pri);
+    add_filter('get_avatar',                         array($this,'get_avatar'),                         $pri);
+    add_filter('get_comment_author_link',            array($this,'get_comment_author_link'),            $pri);
+    add_filter('get_comment_author_url_link',        array($this,'get_comment_author_url_link'),        $pri);
+    add_filter('get_post_time',                      array($this,'get_post_time'),                      $pri, 3);
+    add_filter('get_the_archive_description',        array($this,'get_the_archive_description'),        $pri);
+    add_filter('get_the_archive_title',              array($this,'get_the_archive_title'),              $pri);
+    add_filter('get_the_date',                       array($this,'get_the_date'),                       $pri, 3);
+    add_filter('get_the_title',                      array($this,'get_the_title'),                      $pri, 2);
+    add_filter('post_thumbnail_html',                array($this,'post_thumbnail_html'),                $pri);
+    add_filter('post_type_archive_title',            array($this,'get_the_title'),                      $pri, 2);
+    add_filter('single_cat_title',                   array($this,'single_term_title'),                  $pri);
+    add_filter('single_post_title',                  array($this,'get_the_title'),                      $pri, 2);
+    add_filter('single_tag_title',                   array($this,'single_term_title'),                  $pri);
+    add_filter('single_term_title',                  array($this,'single_term_title'),                  $pri);
+    add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              $pri);
+    add_filter('the_content',                        array($this,'the_content'),                        $pri);
+    add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), $pri, 2);
+    add_filter('wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             $pri);
   }
 
   public function comments_popup_link_attributes($attr) {
@@ -228,36 +171,36 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function comment_reply_link($link) {
-    if (strpos($link,'itemprop')>-1) return $link;
+    if (!strpos($link,'itemprop')===false) return $link;
     return preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
   }
 
   public function get_archives_link($link) {
-    if (strpos($link,'itemprop')>-1) return $link;
+    if (!strpos($link,'itemprop')===false) return $link;
     $patterns = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); #<?
     $result =  preg_replace($patterns,'$1 itemprop="url" $2',$link);
     return preg_replace($patterns,'$1 itemprop="url" $2',$link);
   }
 
   public function get_avatar($avatar) {
-    if (strpos($avatar,'itemprop')>-1) return $avatar;
+    if (!strpos($avatar,'itemprop')===false) return $avatar;
     return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$avatar);
   }
 
   public function get_comment_author_link($link) {
-    if (strpos($link,'itemprop')>-1) return $link;
+    if (!strpos($link,'itemprop')===false) return $link;
     $patterns = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
     $replaces = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
     return preg_replace($patterns,$replaces,$link);
   }
 
   public function get_comment_author_url_link($link) {
-    if (strpos($link,'itemprop')>-1) return $link;
+    if (!strpos($link,'itemprop')===false) return $link;
     return preg_replace('/(<a.*?)(>)/i','$1 itemprop="url"$2',$link);
   }
 
   public function get_post_time($time,$format,$gmt) {
-    if (strpos($time,'itemprop')>-1) return $time;
+    if (!strpos($time,'itemprop')===false) return $time;
     if ($format==='Y-m-d H:i:s') {
       $date = $time;
     } else {
@@ -268,12 +211,12 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_archive_description($descrip) {
-    if (strpos($descrip,'itemprop')>-1) return $descrip;
+    if (!strpos($descrip,'itemprop')===false) return $descrip;
     return "<span itemprop='description'>$descrip</span>";
   }
 
   public function get_the_archive_title($title) {
-    if (strpos($title,'itemprop')>-1) return $title;
+    if (!strpos($title,'itemprop')===false) return $title;
     if (is_author()) {
       $title = preg_replace('/(<span.*?)(>)/i','$1 itemprop="author"$2',$title);
     } else if ($title==__('Archives')) { // do not add text domain to this
@@ -283,40 +226,44 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_date($the_date,$format,$postID) {
-    if (strpos($the_date,'itemprop')>-1) return $the_date;
+    if (!strpos($the_date,'itemprop')===false) return $the_date;
     $date = mysql2date('Y-m-d',get_post($postID)->post_date);
     return "<time itemprop='datePublished' datetime='$date'>$the_date</time>";
   }
 
   public function get_the_title($title,$id) {
-    if (strpos($title,'itemprop')>-1) return $title;
+    if (!strpos($title,'itemprop')===false) return $title;
     return "<span itemprop='headline'>$title</span>";
   }
 
   public function post_thumbnail_html($html) {
-    if (strpos($html,'itemprop')>-1) return $html;
+    if (!strpos($html,'itemprop')===false) return $html;
     return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$html);
   }
 
   public function single_term_title($title) {
-    if (strpos($title,'itemprop')>-1) return $title;
+    if (!strpos($title,'itemprop')===false) return $title;
     return "<span itemprop='headline'>$title</span>";
   }
 
   public function the_author_posts_link($link) {
-    if (strpos($link,'itemprop')>-1) return $link;
+    if (!strpos($link,'itemprop')===false) return $link;
     $pattern = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
     $replace = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
     return preg_replace($pattern,$replace,$link);
   }
 
+  public function the_content($content) {
+    return "<span itemprop='description'>$content</span>";
+  }
+
   public function wp_get_attachment_image_attributes($attr,$attachment) {
-    if (!isset($attr['itemprop'])) { $attr['itemprop'] = 'thumbnail'; }
+    if (!isset($attr['itemprop'])) { $attr['itemprop'] = 'image'; }
     return $attr;
   }
 
   public function wp_get_attachment_link($link) {
-    if (strpos($link,'itemprop')>-1) return $link;
+    if (!strpos($link,'itemprop')===false) return $link;
     return preg_replace('/(<a.*?)>/i','$1 itemprop="contentURL">',$link);
   }
 
