@@ -23,7 +23,9 @@ wp_head();
 
 tcc_custom_colors(); ?>
 
-</head>
+</head><?php
+
+$micro = TCC_Microdata::get_instance(); ?>
 
 <body <?php body_class('background'); ?>>
   <div id="overlay" class="hidden translucent fullview"></div><?php

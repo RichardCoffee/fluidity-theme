@@ -267,5 +267,37 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
     return preg_replace('/(<a.*?)>/i','$1 itemprop="contentURL">',$link);
   }
 
+  /**  Helper functions  **/
+
+  public function description($text) {
+    if (!strpos($text,'itemprop')===false) return $text;
+    return "<span itemprop='description'>$text</span>";
+  }
+
+  public function email_format($email) {
+    if (!strpos($email,'itemprop')===false) return $email;
+    return "<a href='mailto:$email' itemprop='email'>$email</a>";
+  }
+
+  public function image_html($image) {
+    return $this->post_thumbnail_html($image);
+  }
+
+  public function name($name) {
+    if (!strpos($name,'itemprop')===false) return $name;
+    return "<span itemprop='name'>$name</span>";
+  }
+
+  public function telephone($phone) {
+    if (!strpos($phone,'itemprop')===false) return $phone;
+    return "<span itemprop='telephone'>$phone</span>";
+  }
+
+  public function url_format($url) {
+    if (!strpos($url,'itemprop')===false) return $url;
+    return "<a href='$url' itemprop='url'>$url</a>";
+  }
+
+
 }
 

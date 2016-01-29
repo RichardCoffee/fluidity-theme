@@ -7,8 +7,8 @@ Template Name: Standard Page
  *
  */
 
-$micro = TCC_Microdata::get_instance();
 get_header();
+$micro = TCC_Microdata::get_instance();
 
 $col_primary = "col-lg-8 col-md-8 col-sm-12 col-sm-12";
 

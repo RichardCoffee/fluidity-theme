@@ -5,9 +5,8 @@
  *
  */
 
-$micro = TCC_Microdata::get_instance();
-
 get_header();
+$micro = TCC_Microdata::get_instance();
 
 $sidebar     = (is_search()) ? 'archive' : 'author';
 $has_sidebar = is_active_sidebar($sidebar);

@@ -3,10 +3,10 @@
  * The template for displaying 404 pages (Not Found)
  */
 
-$micro = TCC_Microdata::get_instance();
 
 get_header();
 
+$micro = TCC_Microdata::get_instance();
 $color = tcc_color_scheme('404');
 
 if (WP_DEBUG) { ?>

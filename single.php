@@ -5,9 +5,8 @@
  *
  */
 
-$micro = TCC_Microdata::get_instance();
-
 get_header();
+$micro = TCC_Microdata::get_instance();
 
 #$layout = 'sidebar-left';
 $layout = 'sidebar-right'; ?>
