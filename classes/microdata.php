@@ -48,15 +48,13 @@ class TCC_Microdata {
   *    what works for 'me'.  In some cases I have provided myself with
   *    'shortcuts'.
   *
-  *  Certain use cases have their own method.  These are simply ones I
-  *    have encountered in my programming.  Extend the class for your
-  *    own use cases.  The attributes itemprop and itemscope sometimes
-  *    appear either before or after the itemtype.  This serves merely
-  *    as a reminder to the programmer of what the function is designed
-  *    for, and has no impact whatsoever over how these attributes are
-  *    interpreted by the browser or search engine.  The itemprop will
-  *    always apply to any -previously- declared itemtype.  Do not
-  *    misinterprete what 'previously' means.
+  *  Certain use cases have their own method.  These are simply ones I have
+  *    encountered in my programming.  Extend the class for your own use cases.
+  *    The attributes itemprop and itemscope can appear either before or after
+  *    the itemtype, and has no impact whatsoever over how these attributes are
+  *    interpreted by the browser or search engine.  The itemprop will always
+  *    apply to any -previously- declared itemtype.  Do not misinterprete what
+  *    'previously' means.
   *
   *
   */
@@ -160,7 +158,6 @@ class TCC_Microdata {
     add_filter('single_tag_title',                   array($this,'single_term_title'),                  $pri);
     add_filter('single_term_title',                  array($this,'single_term_title'),                  $pri);
     add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              $pri);
-    add_filter('the_content',                        array($this,'the_content'),                        $pri);
     add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), $pri, 2);
     add_filter('wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             $pri);
   }
@@ -232,6 +229,8 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_title($title,$id) {
+    #tcc_log_entry(debug_backtrace());
+    if ($this->called_by('wp_title')) return $title;
     if (!strpos($title,'itemprop')===false) return $title;
     return "<span itemprop='headline'>$title</span>";
   }
@@ -253,11 +252,8 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
     return preg_replace($pattern,$replace,$link);
   }
 
-  public function the_content($content) {
-    return "<span itemprop='description'>$content</span>";
-  }
-
   public function wp_get_attachment_image_attributes($attr,$attachment) {
+    #tcc_log_entry('wp_get_attachment_image_attributes',$attr,$attachment);
     if (!isset($attr['itemprop'])) { $attr['itemprop'] = 'image'; }
     return $attr;
   }
@@ -299,5 +295,45 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
 
+  /**  Address functions  **/
+
+  public function city($city) {
+    return "<span itemprop='addressLocality'>$city</span>";
+  }
+
+  public function pobox($pobox) {
+    return "<span itemprop='postOfficeBoxNumber'>$pobox</span>";
+  }
+
+  public function state($state) {
+    return "<span itemprop='addressRegion'>$state</span>";
+  }
+
+  public function street($street) {
+    return "<span itemprop='streetAddress'>$street</span>";
+  }
+
+  public function zipcode($zipcode) {
+    return "<span itemprop='postalCode'>$zipcode</span>";
+  }
+
+
+  /**  Private functions  **/
+
+  private function called_by($test) {
+    $stack  = debug_backtrace();
+    foreach($stack as $entry) {
+      if (!isset($entry['function'])) continue;
+      if ($entry['function']===$test) return true;
+    }
+    return false;
+  }
+
+
 }
 
+if (!function_exists('microdata')) {
+  function microdata() {
+    return TCC_Microdata::get_instance();
+  }
+}

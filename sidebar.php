@@ -9,11 +9,11 @@ who_am_i();
 $loaded = false;
 $called = fluidity_sidebar_parameter();
 if ($called=='footer') {
-  $loaded = fluidity_load_sidebar(array('footer'));
+  $loaded = fluidity_load_sidebar('footer');
 } else if (is_front_page()) {
-  $loaded = fluidity_load_sidebar(array('front','standard'));
+  $loaded = fluidity_load_sidebar('home');
 } else {
-  $loaded = fluidity_load_sidebar(array(fluidity_sidebar_parameter(),'standard'));
+  $loaded = fluidity_load_sidebar($called);
 }
 if (!$loaded) {
   global $wp_query;

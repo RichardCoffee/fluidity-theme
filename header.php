@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); global $micro; $micro->WebPage(); ?>>
+<html <?php language_attributes(); ?> <?php $micro=microdata(); $micro->WebPage(); ?>>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,12 +20,9 @@
 <![endif]--><?php
 
 wp_head();
-
 tcc_custom_colors(); ?>
 
-</head><?php
-
-$micro = TCC_Microdata::get_instance(); ?>
+</head>
 
 <body <?php body_class('background'); ?>>
   <div id="overlay" class="hidden translucent fullview"></div><?php
