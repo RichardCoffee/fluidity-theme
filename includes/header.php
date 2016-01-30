@@ -61,13 +61,12 @@ if (!function_exists('fluidity_header_bar_login')) {
 
 if (!function_exists('fluidity_header_body')) {
   function fluidity_header_body() {
-    $defaults = array('split' => true,
-                      'left'  => 'col-lg-4  col-md-4  col-sm-12 col-xs-12',
+    $defaults = array('left'  => 'col-lg-4  col-md-4  col-sm-12 col-xs-12',
                       'body'  => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
                       'right' => 'col-lg-8  col-md-8  col-sm-12 col-xs-12');
-    $classes = apply_filters('tcc_header_body',$defaults);
+    $classes = apply_filters('tcc_header_body_class',$defaults);
     extract($classes);
-    if ($split) { ?>
+    if (has_action('tcc_left_header_body') || has_action('tcc_right_header_body')) { ?>
       <div class="<?php echo $left; ?>"><?php
         do_action('tcc_left_header_body'); ?>
       </div>
@@ -84,24 +83,24 @@ if (!function_exists('fluidity_header_body')) {
 }
 
 if (!function_exists('fluidity_header_logo')) {
-  function fluidity_header_logo() {
-    $logo = tcc_design('logo');
-    if ($logo) { ?>
-      <div class="logo">
-        <a href="<?php echo home_url(); ?>/">
-          <img class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>" >
-        </a>
-      </div><?php
-    }
+  function fluidity_header_logo() { ?>
+    <div class='logo' itemprop='logo' <?php microdata()->ImageObject(); ?>>
+      <a href='<?php echo home_url(); ?>/' itemprop='relatedLink'>
+        <img class='img-responsive' src='<?php echo tcc_design('logo'); ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'>
+      </a>
+    </div><?php
   }
-  add_action('tcc_left_header_body','fluidity_header_logo');
+  if (tcc_design('logo')) {
+    $logo_side = (tcc_design('logo_side')=='right') ? 'right' : 'left';
+    add_action("tcc_{$logo_side}_header_body",'fluidity_header_logo');
+  }
 }
 
 if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_directory().'/template_parts/menu.php'))) {
   function fluidity_main_menubar() {
 echo "Color Scheme: ".tcc_color_scheme();
-log_entry("layout menu: ".tcc_layout('menu'));
 $menu = tcc_layout('menu');
+log_entry("layout menu: $menu");
 assert( "locate_template( array('template_parts/menu-$menu.php', 'template_parts/menu.php'), false, false )" );
     get_template_part('template_parts/menu',tcc_layout('menu'));
   }

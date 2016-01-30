@@ -6,7 +6,7 @@
 
 get_header();
 
-$micro = TCC_Microdata::get_instance();
+$micro = microdata();
 $color = tcc_color_scheme('404');
 
 if (WP_DEBUG) { ?>
