@@ -33,6 +33,8 @@ abstract class Basic_Admin_Form {
 
   public function load_form_page() {
     global $plugin_page;
+    $screen = get_current_screen();
+log_entry("screen: $screen");
     $this->form_text = $this->form_text();
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
       $this->form = $this->form_layout();
@@ -112,15 +114,15 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
       add_settings_section($current,$title,array($this,$describe),$this->slug);
 #log_entry("section       id: $current");
 #log_entry("section    title: $title");
-log_entry("section callback: $describe");
+#log_entry("section callback: $describe");
 #log_entry("section     page: {$this->slug}");
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
     } //*/
-log_entry($new_whitelist_options);
-log_entry($wp_settings_sections);
-log_entry($wp_settings_fields);
+#log_entry($new_whitelist_options);
+#log_entry($wp_settings_sections);
+#log_entry($wp_settings_fields);
   }
 
   public function register_multi_form() {   }
@@ -146,7 +148,7 @@ log_entry($wp_settings_fields);
       add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
 #log_entry("field       ID: $itemID");
 #log_entry("field    title: $label");
-log_entry("field callback: {$this->options}");
+#log_entry("field callback: {$this->options}");
 #log_entry("field     page: {$this->slug}");
 #log_entry("field  section: $current");
     }
@@ -252,6 +254,8 @@ log_entry("field callback: {$this->options}");
         } ?>
       </h2>
       <form method="post" action="options.php"><?php
+log_entry("tab: ".$this->tab);
+log_entry("key: ".$this->current);
         do_action("basic_form_pre_display_".$this->tab);
         settings_fields($this->current);
         do_settings_sections($this->current);

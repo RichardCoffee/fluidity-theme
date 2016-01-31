@@ -5,6 +5,39 @@
  *
  */
 
+if (!function_exists('tcc_color_scheme')) {
+  function tcc_color_scheme($location='') {
+/*
+ *    blue: primary
+ *   green: success
+ * lt blue: info
+ *  orange: warning
+ *     red: danger
+ *   white: default
+ */
+    static $color = null;
+    if (!$color) {
+      $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
+      $index  = rand(0,count($colors)-1);
+      $color  = $colors[$index];
+    }
+    return $color;
+#    return 'success-inverse';
+#    return 'primary';
+#    return 'info';
+#    return 'warning-inverse';
+#    return 'danger';
+  }
+}
+
+if (!function_exists('tcc_currency_symbol')) {
+  function tcc_currency_symbol() {
+    $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>__('Currency Symbol','tcc-fluid'));
+    $ins = new Admin_Field($set);
+  }
+  add_action('setup_theme','tcc_currency_symbol');
+}
+
 if (!function_exists('tcc_design')) {
   function tcc_design($option) {
     static $data;
@@ -31,27 +64,3 @@ if (!function_exists('tcc_layout')) {
   }
 }
 
-if (!function_exists('tcc_color_scheme')) {
-  function tcc_color_scheme($location='') {
-/*
- *    blue: primary
- *   green: success
- * lt blue: info
- *  orange: warning
- *     red: danger
- *   white: default
- */
-    static $color = null;
-    if (!$color) {
-      $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
-      $index  = rand(0,count($colors)-1);
-      $color  = $colors[$index];
-    }
-    return $color;
-#    return 'success-inverse';
-#    return 'primary';
-#    return 'info';
-#    return 'warning-inverse';
-#    return 'danger';
-  }
-}
