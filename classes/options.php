@@ -1,6 +1,6 @@
 <?php /* arrays.php */
 
-require_once('basic-form.php');
+require_once('admin-form.php');
 
 class Fluidity_Options_Form extends Basic_Admin_Form {
 
@@ -142,7 +142,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     $describe = array(__('Support Site:','tcc-fluid'),
                       _x('The Creative Collective','company name','tcc-fluid'),
                       __('For help with this theme, or any other general support items, please contact us at any time','tcc-fluid'),
-                      __('Copyright 2014-2015 TCC','tcc-fluid'));
+                      __('Copyright 2014-2016 TCC','tcc-fluid'));
     echo "<p>{$describe[0]} <a href='the-creative-collective.com' target='tcc'>{$describe[1]}</a></p>";
     echo "<p>{$describe[2]}</p>";
     echo "<p>&copy; {$describe[3]}</p>";
