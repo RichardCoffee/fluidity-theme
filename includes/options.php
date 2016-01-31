@@ -31,7 +31,7 @@ if (!function_exists('tcc_currency_symbol')) {
     $ins = new Admin_Field($set);
 log_entry('Admin_Field',$ins);
   }
-  add_action('setup_theme','tcc_currency_symbol');
+  add_action('admin_init','tcc_currency_symbol');
   log_entry('action defined for currency_symbol');
 }
 

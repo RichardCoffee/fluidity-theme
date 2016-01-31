@@ -33,8 +33,7 @@ abstract class Basic_Admin_Form {
 
   public function load_form_page() {
     global $plugin_page;
-    $screen = get_current_screen();
-log_entry("screen: $screen");
+log_entry("page: $plugin_page");
     $this->form_text = $this->form_text();
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
       $this->form = $this->form_layout();
