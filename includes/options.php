@@ -25,8 +25,6 @@ if (!function_exists('tcc_color_scheme')) {
   }
 }
 
-call_non_existant_fake_function(); // cause error
-
 if (!function_exists('tcc_currency_symbol')) {
   function tcc_currency_symbol() {
     $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>__('Currency Symbol','tcc-fluid'));
