@@ -46,24 +46,23 @@ class Admin_Field extends Form_Field {
   protected $group;
 
   public function __construct($args) {
-global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
     parent::__construct($args);
     $clean = $this->clean;
     $value = $clean(get_option($this->name));
     if (empty($value)) $value = $clean($this->default);
     add_filter('admin_init',array(&$this,'register_field'),9);
-log_entry('Admin_Field',$this);
-log_entry($new_whitelist_options);
-log_entry($wp_settings_sections);
-log_entry($wp_settings_fields);
   }
 
   public function register_field() {
+global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
     if (!empty($this->group)) {
       register_setting($this->group,$this->name,$this->clean);
       $label = "<label for='{$this->name}'>{$this->text}</label>";
       add_settings_field($this->name,$label,array(&$this,$this->callback),$this->group);
     }
+log_entry($new_whitelist_options);
+log_entry($wp_settings_sections);
+log_entry($wp_settings_fields);
   }
 
   public function input() {
