@@ -2,6 +2,8 @@
 
 //This sets up the widget area sidebars
 
+require_once('includes/options.php');
+
 if (!function_exists('fluidity_register_sidebars')) {
   function fluidity_register_sidebars() {
 echo "<pre>";
