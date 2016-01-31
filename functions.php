@@ -10,7 +10,7 @@ require_once('includes/library.php');
 require_once('includes/misc.php');
 require_once('includes/options.php');
 require_once('includes/sidebars.php');
-require_once('classes/form_fields.php');
+require_once('classes/form-fields.php');
 require_once('classes/widgets.php');
 if (is_admin()) {
   require_once('classes/typography.php');
