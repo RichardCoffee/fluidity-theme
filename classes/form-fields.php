@@ -50,8 +50,12 @@ class Admin_Field extends Form_Field {
     $clean = $this->clean;
     $value = $clean(get_option($this->name));
     if (empty($value)) $value = $clean($this->default);
-    add_filter('admin_init',array(&$this,'register_field'));
+    add_filter('admin_init',array(&$this,'register_field'),9);
 log_entry('Admin_Field',$this);
+global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
+log_entry($new_whitelist_options);
+log_entry($wp_settings_sections);
+log_entry($wp_settings_fields);
   }
 
   public function register_field() {
