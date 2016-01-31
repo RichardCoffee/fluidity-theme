@@ -115,8 +115,9 @@ abstract class Basic_Admin_Form {
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
-global $new_whitelist_options;
+global $new_whitelist_options, $wp_settings_sections;
 log_entry($new_whitelist_options);
+log_entry($wp_settings_sections);
     } //*/
   }
 
@@ -141,11 +142,11 @@ log_entry($new_whitelist_options);
       $label = $this->field_label($data,$itemID);
       $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
       add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
-log_entry("field       ID: $itemID");
-log_entry("field    title: $label");
-log_entry("field callback: {$this->options}");
-log_entry("field     page: {$this->slug}");
-log_entry("field  section: $current");
+#log_entry("field       ID: $itemID");
+#log_entry("field    title: $label");
+#log_entry("field callback: {$this->options}");
+#log_entry("field     page: {$this->slug}");
+#log_entry("field  section: $current");
     }
   }
 
