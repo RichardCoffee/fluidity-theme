@@ -110,7 +110,7 @@ abstract class Basic_Admin_Form {
       add_settings_section($current,$title,array($this,$describe),$this->slug);
 #log_entry("section       id: $current");
 #log_entry("section    title: $title");
-#log_entry("section callback: $describe");
+log_entry("section callback: $describe");
 #log_entry("section     page: {$this->slug}");
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
