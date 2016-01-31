@@ -2,13 +2,9 @@
 
 //This sets up the widget area sidebars
 
-if (!function_exists('tcc_color_scheme')) {
-  die("Missing 'tcc_color_scheme' function.");
-}
-
 if (!function_exists('fluidity_register_sidebars')) {
   function fluidity_register_sidebars() {
-    $color = tcc_color_scheme('sidebars');
+    $color = (is_admin()) ? 'primary' : tcc_color_scheme('sidebars');
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading'><h3 class='panel-title text-center'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
