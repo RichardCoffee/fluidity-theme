@@ -60,7 +60,7 @@ log_entry($wp_settings_fields);
 
   public function register_field() {
     if (!empty($this->group)) {
-      register_setting($this->group,$this->name,$this->call);
+      register_setting($this->group,$this->name,$this->clean);
       $label = "<label for='{$this->name}'>{$this->text}</label>";
       add_settings_field($this->name,$label,array(&$this,$this->callback),$this->group);
     }
