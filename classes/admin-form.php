@@ -96,7 +96,7 @@ log_entry("page: $plugin_page");
   }
 
   public function register_tabbed_form() {
-global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
+global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $whitelist_options;
 #log_entry(debug_backtrace());
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
@@ -119,7 +119,8 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
         $this->register_field($current,$key,$item,$data);
       }
     } //*/
-#log_entry($new_whitelist_options);
+log_entry($new_whitelist_options);
+log_entry($whitelist_options);
 #log_entry($wp_settings_sections);
 #log_entry($wp_settings_fields);
   }
