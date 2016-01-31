@@ -22,21 +22,16 @@ if (!function_exists('tcc_color_scheme')) {
       $color  = $colors[$index];
     }
     return $color;
-#    return 'success-inverse';
-#    return 'primary';
-#    return 'info';
-#    return 'warning-inverse';
-#    return 'danger';
   }
 }
-
+non_existant_function();
 if (!function_exists('tcc_currency_symbol')) {
   function tcc_currency_symbol() {
     $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>__('Currency Symbol','tcc-fluid'));
     $ins = new Admin_Field($set);
   }
   add_action('setup_theme','tcc_currency_symbol');
-log_entry('action defined for currency_symbol');
+  log_entry('action defined for currency_symbol');
 }
 
 if (!function_exists('tcc_design')) {
