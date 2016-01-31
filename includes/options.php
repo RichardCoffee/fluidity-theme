@@ -29,6 +29,7 @@ if (!function_exists('tcc_currency_symbol')) {
   function tcc_currency_symbol() {
     $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>__('Currency Symbol','tcc-fluid'));
     $ins = new Admin_Field($set);
+log_entry('Admin_Field',$ins);
   }
   add_action('setup_theme','tcc_currency_symbol');
   log_entry('action defined for currency_symbol');

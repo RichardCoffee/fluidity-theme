@@ -8,15 +8,10 @@ require_once('includes/theme-support.php');
 require_once('includes/library.php');
 #require_once('includes/menus.php');
 require_once('includes/misc.php');
-log_entry('misc loaded');
 require_once(plugin_dir_path(__FILE__).'includes/options.php'); // needs full path or wp-admin/includes/options.php gets loaded instead
-log_entry('options loaded');
 require_once('includes/sidebars.php');
-log_entry('sidebars loaded');
 require_once('classes/form-fields.php');
-log_entry('form-fields loaded');
 require_once('classes/widgets.php');
-log_entry('widgets loaded');
 if (is_admin()) {
   require_once('classes/typography.php');
   require_once('classes/options.php');
