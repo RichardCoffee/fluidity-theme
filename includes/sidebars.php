@@ -2,36 +2,8 @@
 
 //This sets up the widget area sidebars
 
-if (!function_exists('tcc_color_scheme')) {
-  function tcc_color_scheme($location='') {
-/*
- *    blue: primary
- *   green: success
- * lt blue: info
- *  orange: warning
- *     red: danger
- *   white: default
- */
-    static $color = null;
-    if (!$color) {
-      $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
-      $index  = rand(0,count($colors)-1);
-      $color  = $colors[$index];
-    }
-    return $color;
-#    return 'success-inverse';
-#    return 'primary';
-#    return 'info';
-#    return 'warning-inverse';
-#    return 'danger';
-  }
-}
-
 if (!function_exists('fluidity_register_sidebars')) {
   function fluidity_register_sidebars() {
-#echo "<pre>";
-#print_r(debug_backtrace());
-#echo "</pre>";
     $color = tcc_color_scheme('sidebars');
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading'><h3 class='panel-title text-center'><b>";
