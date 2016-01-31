@@ -27,9 +27,8 @@ if (!function_exists('tcc_color_scheme')) {
 
 if (!function_exists('tcc_currency_symbol')) {
   function tcc_currency_symbol() {
-    $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>__('Currency Symbol','tcc-fluid'));
+    $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>__('Currency Symbol','tcc-fluid'),'css'=>'small-text');
     $ins = new Admin_Field($set);
-#log_entry('Admin_Field',$ins);
   }
   add_action('admin_init','tcc_currency_symbol',5);
 }
