@@ -9,13 +9,13 @@ class Form_Field {
 
   protected $callback = 'input';
   protected $click;
-  protected $css;
-  protected $echo = true;
+  protected $css      = '';
+  protected $echo     = true;
   protected $label; // label css
   protected $name;
   protected $placeholder;
   protected $post_id;
-  protected $text = '';
+  protected $text     = '';
 
   public function __construct($args) {
     foreach($args as $key=>$value) {
@@ -70,7 +70,7 @@ log_entry($wp_settings_fields);
     $clean = $this->clean;
     $value = $clean(get_option($this->name));
     if (empty($value)) $value = $clean($this->default);
-    echo "<input type='text' id='{$this->name}' name='{$this->name}' value='$value' />";
+    echo "<input type='text' id='{$this->name}' class='{$this->css}' name='{$this->name}' value='$value' />";
   }
 
 }
