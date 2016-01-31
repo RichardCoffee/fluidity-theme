@@ -116,7 +116,7 @@ abstract class Basic_Admin_Form {
         $this->register_field($current,$key,$item,$data);
       }
 global $new_whitelist_options;
-log_entry($new_whitelist_options;);
+log_entry($new_whitelist_options);
     } //*/
   }
 
