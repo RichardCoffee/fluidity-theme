@@ -95,7 +95,8 @@ abstract class Basic_Admin_Form {
   }
 
   public function register_tabbed_form() {
-log_entry(debug_backtrace());
+global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
+#log_entry(debug_backtrace());
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
@@ -107,6 +108,7 @@ log_entry(debug_backtrace());
 #log_entry("register    group: $current");
 #log_entry("register   option: $current");
 #log_entry("register callback: $validate");
+#log_entry($new_whitelist_options);
       add_settings_section($current,$title,array($this,$describe),$this->slug);
 #log_entry("section       id: $current");
 #log_entry("section    title: $title");
@@ -115,10 +117,10 @@ log_entry("section callback: $describe");
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
-#global $new_whitelist_options, $wp_settings_sections;
-#log_entry($new_whitelist_options);
-#log_entry($wp_settings_sections);
     } //*/
+log_entry($new_whitelist_options);
+log_entry($wp_settings_sections);
+log_entry($wp_settings_fields);
   }
 
   public function register_multi_form() {   }
