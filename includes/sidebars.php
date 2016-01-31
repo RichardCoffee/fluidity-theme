@@ -4,7 +4,9 @@
 
 if (!function_exists('fluidity_register_sidebars')) {
   function fluidity_register_sidebars() {
+echo "<pre>";
 print_r(debug_backtrace());
+echo "</pre>";
     $color = tcc_color_scheme('sidebars');
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading'><h3 class='panel-title text-center'><b>";
