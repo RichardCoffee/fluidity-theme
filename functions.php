@@ -9,22 +9,18 @@ require_once('includes/library.php');
 #require_once('includes/menus.php');
 require_once('includes/misc.php');
 log_entry('misc loaded');
-include('includes/options.php');
+require_once(plugin_dir_path(__FILE__).'includes/options.php'); // needs full path or wp-admin/includes/options.php gets loaded instead
 log_entry('options loaded');
 require_once('includes/sidebars.php');
 log_entry('sidebars loaded');
-include('includes/options.php');
 require_once('classes/form-fields.php');
 log_entry('form-fields loaded');
-include('includes/options.php');
 require_once('classes/widgets.php');
 log_entry('widgets loaded');
 if (is_admin()) {
-include('includes/options.php');
   require_once('classes/typography.php');
   require_once('classes/options.php');
 } else {
-include('includes/options.php');
   require_once('includes/footer.php');
   require_once('includes/header.php');
   require_once('includes/login.php');
