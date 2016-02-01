@@ -32,6 +32,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     $cap  = 'edit_theme_options';
     if (current_user_can($cap)) {
       $about = get_option('tcc_options_about');
+log_entry('about',$about);
       if (!$about) $about = $this->get_defaults('about');
       $page = __('Theme Options','tcc-fluid');
       $menu = __('Theme Options','tcc-fluid');
