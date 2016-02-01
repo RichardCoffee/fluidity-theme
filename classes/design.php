@@ -1,5 +1,7 @@
 <?php
 
+new Design_Theme_Options;
+
 class Design_Theme_Options {
 
   private $translated;
