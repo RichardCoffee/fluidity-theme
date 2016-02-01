@@ -5,7 +5,7 @@ class Design_Theme_Options {
   private $translated;
 
   public function __construct() {
-    add_filter('tcc_options_menu_array', array($this,'form_layout'),4);
+    add_filter('tcc_options_form_layout', array($this,'form_layout'),4);
   }
 
   public function form_layout($form) {

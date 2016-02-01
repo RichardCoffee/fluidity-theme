@@ -232,6 +232,7 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
 }
 
   public function render_tabbed_form() {
+log_entry($this->form);
     $active_page = sanitize_key($_GET['page']); ?>
     <div class="wrap">
       <div id="icon-themes" class="icon32"></div>
@@ -308,7 +309,6 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
 
   public function render_tabbed_options($args) {
     extract($args);
-log_entry($this->form);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
     $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
