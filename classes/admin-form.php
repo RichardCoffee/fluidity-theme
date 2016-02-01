@@ -105,12 +105,12 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      #register_setting($this->slug,$current,array($this,$validate));
-      register_setting($this->slug,'tcc_options_about',array($this,$validate));
+      register_setting($this->slug,$current,array($this,$validate));
+      #register_setting($this->slug,'tcc_options_about',array($this,$validate));
 #log_entry("register  group: ".$this->slug);
 #log_entry("register option: $current");
-      #add_settings_section($current,$title,array($this,$describe),$this->slug);
-      add_settings_section('tcc_options_about',$title,array($this,$describe),$this->slug);
+      add_settings_section($current,$title,array($this,$describe),$this->slug);
+      #add_settings_section('tcc_options_about',$title,array($this,$describe),$this->slug);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
@@ -139,8 +139,8 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
     } else {
       $label = $this->field_label($data,$item);
       $args  = array('key'=>$key,'item'=>$item);
-      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-      add_settings_field($item,$label,array($this,$this->options),$this->slug,'tcc_options_about',$args);
+      add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
+      #add_settings_field($item,$label,array($this,$this->options),$this->slug,'tcc_options_about',$args);
 #log_entry("field    title: $label");
 #log_entry("field callback: {$this->options}");
 #log_entry("field     page: {$this->slug}");
