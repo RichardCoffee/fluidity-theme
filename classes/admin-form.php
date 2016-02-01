@@ -115,16 +115,16 @@ log_entry("register option: $current");
         $this->register_field($current,$key,$item,$data);
       }
     } //*/
-log_entry('new whitelist',$new_whitelist_options);
-log_entry('whitelist',$whitelist_options);
-log_entry('sections',$wp_settings_sections);
-log_entry('fields',$wp_settings_fields);
+#log_entry('new whitelist',$new_whitelist_options);
+#log_entry('whitelist',$whitelist_options);
+#log_entry('sections',$wp_settings_sections);
+#log_entry('fields',$wp_settings_fields);
   }
 
   public function register_multi_form() {   }
 
   private function register_field($current,$key,$item,$data) {
-log_entry("key: $key  item: $item");
+log_entry("current: $current  key: $key  item: $item");
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) continue;
     if ($data['render']=='skip') continue;
