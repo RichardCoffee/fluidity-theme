@@ -20,7 +20,7 @@ abstract class Basic_Admin_Form {
   protected $render;
   protected $slug      = 'default_page_slug';
   protected $tab;
-  protected $type      = 'single'; // or 'tabbed', 'multi' pending
+  protected $type      = 'single'; // or 'tabbed', with 'multi' pending
   protected $validate;
 
   abstract protected function form_layout($option);
@@ -33,7 +33,7 @@ abstract class Basic_Admin_Form {
 
   public function load_form_page() {
     global $plugin_page;
-log_entry("page: $plugin_page");
+if ($plugin_page) log_entry("page: $plugin_page");
     $this->form_text = $this->form_text();
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
       $this->form = $this->form_layout();
@@ -105,12 +105,12 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      register_setting($this->slug,$current,array($this,$validate));
-#log_entry("register    group: $current");
+      register_setting($current,$current,array($this,$validate));
+#log_entry("register    group: ".$this->slug);
 #log_entry("register   option: $current");
 #log_entry("register callback: $validate");
 #log_entry($new_whitelist_options);
-      add_settings_section($current,$title,array($this,$describe),$this->slug);
+      add_settings_section($current,$title,array($this,$describe),$current);
 #log_entry("section       id: $current");
 #log_entry("section    title: $title");
 #log_entry("section callback: $describe");
@@ -119,8 +119,8 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
         $this->register_field($current,$key,$item,$data);
       }
     } //*/
-log_entry($new_whitelist_options);
-log_entry($whitelist_options);
+log_entry('new whitelist',$new_whitelist_options);
+log_entry('whitelist',$whitelist_options);
 #log_entry($wp_settings_sections);
 #log_entry($wp_settings_fields);
   }

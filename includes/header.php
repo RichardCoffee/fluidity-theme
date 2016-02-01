@@ -3,6 +3,8 @@
 /*
  *  tcc-fluidity/includes/header.php
  *
+ *  IMPORTANT:  this file is in flux, nothing here is guaranteed to remain the same
+ *
  */
 
 if (!function_exists('fluidity_browser_body_class')) {
@@ -99,10 +101,11 @@ if (!function_exists('fluidity_header_logo')) {
 if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_directory().'/template_parts/menu.php'))) {
   function fluidity_main_menubar() {
 echo "Color Scheme: ".tcc_color_scheme();
-$menu = tcc_layout('menu');
-log_entry("layout menu: $menu");
-assert( "locate_template( array('template_parts/menu-$menu.php', 'template_parts/menu.php'), false, false )" );
-    get_template_part('template_parts/menu',tcc_layout('menu'));
+    if ($menu=tcc_layout('menu')) {
+#log_entry("layout menu: $menu");
+#assert( "locate_template( array('template_parts/menu-$menu.php', 'template_parts/menu.php'), false, false )" );
+      get_template_part('template_parts/menu',tcc_layout('menu'));
+    }
   }
   add_action('tcc_header_bottom_menubar','fluidity_main_menubar');
 }
