@@ -254,8 +254,8 @@ log_entry('fields',$wp_settings_fields);
 log_entry("tab: ".$this->tab);
 log_entry("key: ".$this->current);
         do_action("basic_form_pre_display_".$this->tab);
-        settings_fields('tcc_options_about'); #$this->current);
-        do_settings_sections('tcc_options_about'); #$this->current);
+        settings_fields('fluidity_options'); #$this->current);
+        do_settings_sections('fluidity_options'); #$this->current);
         do_action("basic_form_post_display_".$this->tab);
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
