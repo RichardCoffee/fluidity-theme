@@ -128,22 +128,19 @@ log_entry("key: $key  item: $item");
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) continue;
     if ($data['render']=='skip') continue;
-    $itemID = "{$key}_$item";
     if ($data['render']=='array') {
-      $count = max(count($data['default']),count($this->form_opts[$key][$item]));
+/*      $count = max(count($data['default']),count($this->form_opts[$key][$item]));
       for ($i=0;$i<$count;$i++) {
-        $itemID = "{$key}_{$item}_$i";
-        $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
-        $args   = array('itemID'=>$itemID,'key'=>$key,'item'=>$item,'num'=>$i);
+        $label  = "<label for='$item'>{$data['label']} ".($i+1)."</label>";
+        $args   = array('key'=>$key,'item'=>$item,'num'=>$i);
 #        if ($i+1==$count) { $args['add'] = true; }
-        add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
-      }
+        add_settings_field("{$item}_$i",$label,array($this,$this->options),$this->slug,$current,$args);
+      } //*/
     } else {
-      $label = $this->field_label($data,$itemID);
-      $args  = array('itemID'=>$itemID,'key'=>$key,'item'=>$item);
-      #add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
-      add_settings_field($itemID,$label,array($this,$this->options),$this->slug,'tcc_options_about',$args);
-#log_entry("field       ID: $itemID");
+      $label = $this->field_label($data,$item);
+      $args  = array('key'=>$key,'item'=>$item);
+      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
+      add_settings_field($item,$label,array($this,$this->options),$this->slug,'tcc_options_about',$args);
 #log_entry("field    title: $label");
 #log_entry("field callback: {$this->options}");
 #log_entry("field     page: {$this->slug}");
@@ -277,7 +274,7 @@ log_entry("key: ".$this->current);
     </p><?php
   }
 
-  // $args = array('itemID'=>$itemID,'key'=>$key,'item'=>$item); // ,'num'=>$i);
+  // $args = array('key'=>$key,'item'=>$item); // ,'num'=>$i);
   public function render_single_options($args) {
     extract($args);
     $data   = $this->form_opts;
@@ -316,15 +313,15 @@ log_entry('args',$args);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
 log_entry('layout',$layout);
-    $class  = (!empty($layout[$itemID]['class'])) ? "class='{$layout[$itemID]['class']}'" : '';
+    $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
     echo "<div $class>";
-    if (empty($layout[$itemID]['render'])) {
-      echo $data[$itemID];
+    if (empty($layout[$item]['render'])) {
+      echo $data[$item];
     } else {
-      $func = "render_{$layout[$itemID]['render']}";
+      $func = "render_{$layout[$item]['render']}";
       $name = $this->current."[$key][$item]";
-      if (!isset($data[$itemID])) $data[$itemID] = '';
-      $fargs = array('ID'=>$itemID, 'value'=>$data[$itemID], 'layout'=>$layout[$itemID], 'name'=>$name);
+      if (!isset($data[$item])) $data[$item] = '';
+      $fargs = array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name);
       if (method_exists($this,$func)) {
         $this->$func($fargs);
       } else if (function_exists($func)) {
