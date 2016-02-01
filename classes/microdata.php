@@ -229,11 +229,11 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_title($title,$id) {
-log_entry("in title: $title");
+log_entry("md - in title: $title");
     if ((!$this->called_by('wp_title')) && (strpos($title,'itemprop')===false)) {
       $title = "<span itemprop='headline'>$title</span>";
     }
-log_entry("out title: $title");
+log_entry("md - out title: $title");
     return $title;
   }
 
