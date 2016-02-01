@@ -124,7 +124,7 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
   public function register_multi_form() {   }
 
   private function register_field($current,$key,$item,$data) {
-log_entry("current: $current  key: $key  item: $item");
+#log_entry("current: $current  key: $key  item: $item");
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) continue;
     if ($data['render']=='skip') continue;
@@ -308,6 +308,7 @@ log_entry("current: $current  key: $key  item: $item");
 
   public function render_tabbed_options($args) {
     extract($args);
+log_entry($this->form);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
     $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
@@ -482,10 +483,10 @@ log_entry("current: $current  key: $key  item: $item");
   }
 
   public function validate_tabbed_form($input) {
-log_entry('_GET',$_GET);
-log_entry('_POST',$_POST);
-log_entry('form',$this->form);
-log_entry('input',$input);
+#log_entry('_GET',$_GET);
+#log_entry('_POST',$_POST);
+#log_entry('form',$this->form);
+#log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
     $output = $this->defaults;
     if (isset($_POST['reset'])) {
@@ -503,7 +504,7 @@ log_entry('input',$input);
         $output[$key] = $this->do_validate_function($data,$this->form[$option]['layout'][$key]);
       }
     }
-log_entry('output',$output);
+#log_entry('output',$output);
     return apply_filters($this->current.'_validate_settings',$output,$input);
   }
 
