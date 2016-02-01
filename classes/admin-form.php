@@ -497,10 +497,10 @@ log_entry('input',$input);
     foreach($input as $key=>$data) {
       if ((array)$data==$data) {
         foreach($data as $ID=>$subdata) {
-          $output[$key][$ID] = $this->do_validate_function($subdata,$this->form[$key]['layout'][$ID]);
+          $output[$key][$ID] = $this->do_validate_function($subdata,$this->form[$option]['layout'][$key]);
         }
       } else {
-        $output[$key] = $this->do_validate_function($data,$this->form[$key]['layout'][$ID]);
+        $output[$key] = $this->do_validate_function($data,$this->form[$option]['layout'][$key]);
       }
     }
 log_entry('output',$output);
