@@ -124,7 +124,7 @@ log_entry('fields',$wp_settings_fields);
   public function register_multi_form() {   }
 
   private function register_field($current,$key,$item,$data) {
-#log_entry("key: $key  item: $item");
+log_entry("key: $key  item: $item");
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) continue;
     if ($data['render']=='skip') continue;
@@ -311,9 +311,11 @@ log_entry("key: ".$this->current);
   }
 
   public function render_tabbed_options($args) {
+log_entry('args',$args);
     extract($args);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
+log_entry('layout',$layout);
     $class  = (!empty($layout[$itemID]['class'])) ? "class='{$layout[$itemID]['class']}'" : '';
     echo "<div $class>";
     if (empty($layout[$itemID]['render'])) {
