@@ -372,6 +372,12 @@ log_entry('layout',$layout);
     echo $html;
   }
 
+  private function render_display($data) {
+    extract($data);
+    if (!empty($value)) echo $value;
+    if (!empty($layout['text'])) echo " <span>{$layout['text']}</span>";
+  }
+
   private function render_image($data) {
     extract($data);
     $media = $this->form_text['media'];
