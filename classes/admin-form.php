@@ -503,7 +503,7 @@ log_entry('input',$input);
           $output[$key][$ID] = $this->do_validate_function($subdata,$func);
         }
       } else {
-        $valid_func   = $this->determine_validate($form[$key]);
+        $valid_func   = $this->determine_validate($this->form[$key]);
         $output[$key] = $this->do_validate_function($data,$valid_func);
       }
     }
