@@ -31,10 +31,14 @@ if (!function_exists('fluidity_browser_title')) {
 log_entry("fbt - in title: $title");
     if (!is_feed()) {
       $test = get_bloginfo('name');
-      $spot = strpos($title,$test);
-      if ($spot) {
-        $new = substr($title,0,$spot);
-        $title = $new.' > '.$test;
+      if (empty($title)) {
+        $title = $test;
+      } else {
+        $spot = strpos($title,$test);
+        if ($spot) {
+          $new = substr($title,0,$spot);
+          $title = $new.' > '.$test;
+        }
       }
     }
 log_entry("fbt - out title: $title");
