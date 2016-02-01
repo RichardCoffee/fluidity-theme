@@ -419,6 +419,13 @@ log_entry('layout',$layout);
     if (!empty($layout['text'])) echo esc_attr($layout['text']);
   }
 
+  private function render_title($data) {
+    extract($data);
+    if (!empty($layout['text']))
+      $layout['text'] = "<strong>{$layout['text']}</strong>";
+    $this->render_display($data);
+  }
+
 
   /**  Validate functions  **/
 
