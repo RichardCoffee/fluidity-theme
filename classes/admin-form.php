@@ -285,7 +285,7 @@ log_entry("key: ".$this->current);
       echo $data[$key][$item];
     } else {
       $func  = "render_{$layout[$item]['render']}";
-      $name  = $this->slug."[$key][$item]";
+      $name  = $this->slug."[$item]";
       $value = (isset($data[$key][$item])) ? $data[$key][$item] : '';
       if ($layout[$item]['render']=='array') {
         $name.= "[$num]";
@@ -319,7 +319,7 @@ log_entry('layout',$layout);
       echo $data[$item];
     } else {
       $func = "render_{$layout[$item]['render']}";
-      $name = $this->current."[$key][$item]";
+      $name = $this->current."[$item]";
       if (!isset($data[$item])) $data[$item] = '';
       $fargs = array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name);
       if (method_exists($this,$func)) {
