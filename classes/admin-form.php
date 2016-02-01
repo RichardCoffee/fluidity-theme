@@ -107,8 +107,8 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
       #register_setting($this->slug,$current,array($this,$validate));
       register_setting($this->slug,'tcc_options_about',array($this,$validate));
-log_entry("register  group: ".$this->slug);
-log_entry("register option: $current");
+#log_entry("register  group: ".$this->slug);
+#log_entry("register option: $current");
       #add_settings_section($current,$title,array($this,$describe),$this->slug);
       add_settings_section('tcc_options_about',$title,array($this,$describe),$this->slug);
       foreach($section['layout'] as $item=>$data) {
@@ -247,9 +247,8 @@ log_entry("current: $current  key: $key  item: $item");
           echo "<a href='$tab_ref' class='$tab_css'>{$menu_item['title']}</a>";
         } ?>
       </h2>
-      <form method="post" action="options.php"><?php
-log_entry("tab: ".$this->tab);
-log_entry("key: ".$this->current);
+      <form method="post" action="options.php">
+        <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
         do_action("basic_form_pre_display_".$this->tab);
         settings_fields('fluidity_options'); #$this->current);
         do_settings_sections('fluidity_options'); #$this->current);
@@ -308,11 +307,9 @@ log_entry("key: ".$this->current);
   }
 
   public function render_tabbed_options($args) {
-log_entry('args',$args);
     extract($args);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
-log_entry('layout',$layout);
     $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
     echo "<div $class>";
     if (empty($layout[$item]['render'])) {
