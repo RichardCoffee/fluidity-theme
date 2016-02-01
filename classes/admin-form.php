@@ -391,6 +391,23 @@ log_entry('layout',$layout);
     echo $html;
   }
 
+  private function render_radio($data) {
+    extract($data);
+    if (empty($layout['source'])) return;
+    $uniq = uniqid();
+    if (isset($layout['text'])) echo "<div id='$uniq'>{$layout['text']}</div>";
+    foreach($layout['source'] as $key=>$text) {
+      $html = "<div><label>";
+      $html.= "<input type='radio' name='$name' value='$key'";
+      $html.= ($value==$key) ? " checked='yes'" : '';
+      $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : '';
+      $html.= (isset($layout['text'])) ? " aria-describedby='$uniq'" : "";
+      $html.= "> $text</label></div>";
+      echo $html;
+    }
+    if (isset($layout['postext'])) echo "<div>{$layout['postext']}</div>";
+  }
+
   private function render_select($data) {
     extract($data);
     if (empty($layout['source'])) return;
