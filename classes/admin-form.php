@@ -487,6 +487,7 @@ log_entry("current: $current  key: $key  item: $item");
 log_entry('_GET',$_GET);
 log_entry('_POST',$_POST);
 log_entry('form',$this->form);
+log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
     $output = $this->defaults;
     if (isset($_POST['reset'])) {
@@ -502,10 +503,11 @@ log_entry('form',$this->form);
           $output[$key][$ID] = $this->do_validate_function($subdata,$func);
         }
       } else {
-#        $valid_func = $this->determine_validate($form[$key]);
-#        $output[$key] = $this->do_validate_function($data,$valid_func);
+        $valid_func   = $this->determine_validate($form[$key]);
+        $output[$key] = $this->do_validate_function($data,$valid_func);
       }
     }
+log_entry('output',$output);
     return apply_filters($this->current.'_validate_settings',$output,$input);
   }
 
