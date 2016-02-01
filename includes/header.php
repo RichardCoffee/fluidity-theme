@@ -28,7 +28,6 @@ if (!function_exists('fluidity_browser_body_class')) {
 // Limit length of title string
 if (!function_exists('fluidity_browser_title')) {
   function fluidity_browser_title($title,$sep) {
-log_entry("fbt - in title: $title");
     if (!is_feed()) {
       $test = get_bloginfo('name');
       if (empty($title)) {
@@ -41,7 +40,6 @@ log_entry("fbt - in title: $title");
         }
       }
     }
-log_entry("fbt - out title: $title");
     return $title;
   }
   add_filter('wp_title','fluidity_browser_title',10,2);

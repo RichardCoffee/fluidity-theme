@@ -223,17 +223,17 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_date($the_date,$format,$postID) {
-    if (!strpos($the_date,'itemprop')===false) return $the_date;
-    $date = mysql2date('Y-m-d',get_post($postID)->post_date);
-    return "<time itemprop='datePublished' datetime='$date'>$the_date</time>";
+    if (strpos($the_date,'itemprop')===false) {
+      $datetime = mysql2date('Y-m-d',get_post($postID)->post_date);
+      $the_date = "<time itemprop='datePublished' datetime='$datetime'>$the_date</time>";
+    }
+    return $the_date;
   }
 
   public function get_the_title($title,$id) {
-log_entry("md - in title: $title");
     if ((!$this->called_by('wp_title')) && (strpos($title,'itemprop')===false)) {
       $title = "<span itemprop='headline'>$title</span>";
     }
-log_entry("md - out title: $title");
     return $title;
   }
 
