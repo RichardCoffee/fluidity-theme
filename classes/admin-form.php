@@ -460,13 +460,11 @@ log_entry("current: $current  key: $key  item: $item");
           $item['render'] = (isset($item['type'])) ? $item['type'] : 'text';
           $vals = array();
           foreach($subdata as $indiv) {
-            $valid_func = $this->determine_validate($item);
-            $vals[] = $this->do_validate_function($indiv,$valid_func);
+            $vals[] = $this->do_validate_function($indiv,$item);
           }
           $output[$key][$ID] = $vals;
         } else {
-          $valid_func = $this->determine_validate($item);
-          $output[$key][$ID] = $this->do_validate_function($subdata,$valid_func);
+          $output[$key][$ID] = $this->do_validate_function($subdata,$item);
         }
       }
     }
@@ -499,27 +497,20 @@ log_entry('input',$input);
     foreach($input as $key=>$data) {
       if ((array)$data==$data) {
         foreach($data as $ID=>$subdata) {
-          $func = $this->determine_validate($this->form[$key]['layout'][$ID]);
-          $output[$key][$ID] = $this->do_validate_function($subdata,$func);
+          $output[$key][$ID] = $this->do_validate_function($subdata,$this->form[$key]['layout'][$ID]);
         }
       } else {
-        $valid_func   = $this->determine_validate($this->form[$key]);
-        $output[$key] = $this->do_validate_function($data,$valid_func);
+        $output[$key] = $this->do_validate_function($data,$this->form[$key]['layout'][$ID]);
       }
     }
 log_entry('output',$output);
     return apply_filters($this->current.'_validate_settings',$output,$input);
   }
 
-  private function determine_validate($item=array()) { // FIXME: re: sanitize_callback()
-    $defs = array('render'=>'non_existing_render_type');
-    $item = array_merge($defs,$item);
+  private function do_validate_function($input,$item) {
+    if (empty($item['render'])) $item['render'] = 'non_existing_render_type';
     $func = 'validate_';
     $func.= (isset($item['validate'])) ? $item['validate'] : $item['render'];
-    return $func;
-  }
-
-  private function do_validate_function($input,$func) {
     if (method_exists($this,$func)) {
       $output = $this->$func($input);
     } else if (function_exists($func)) {
