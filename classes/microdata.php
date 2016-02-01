@@ -229,10 +229,12 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_title($title,$id) {
-    #tcc_log_entry(debug_backtrace());
-    if ($this->called_by('wp_title')) return $title;
-    if (!strpos($title,'itemprop')===false) return $title;
-    return "<span itemprop='headline'>$title</span>";
+log_entry("in title: $title");
+    if ((!$this->called_by('wp_title')) && (strpos($title,'itemprop')===false)) {
+      $title = "<span itemprop='headline'>$title</span>";
+    }
+log_entry("out title: $title");
+    return $title;
   }
 
   public function post_thumbnail_html($html) {
