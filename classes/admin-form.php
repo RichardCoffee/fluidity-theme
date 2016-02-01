@@ -105,7 +105,7 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      register_setting($current,$current,array($this,$validate));
+      register_setting($this->slug,$current,array($this,$validate));
 log_entry("register  group: ".$this->slug);
 log_entry("register option: $current");
       add_settings_section($current,$title,array($this,$describe),$this->slug);
@@ -113,10 +113,10 @@ log_entry("register option: $current");
         $this->register_field($current,$key,$item,$data);
       }
     } //*/
-#log_entry('new whitelist',$new_whitelist_options);
-#log_entry('whitelist',$whitelist_options);
-#log_entry('sections',$wp_settings_sections);
-#log_entry('fields',$wp_settings_fields);
+log_entry('new whitelist',$new_whitelist_options);
+log_entry('whitelist',$whitelist_options);
+log_entry('sections',$wp_settings_sections);
+log_entry('fields',$wp_settings_fields);
   }
 
   public function register_multi_form() {   }
