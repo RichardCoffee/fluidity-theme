@@ -487,6 +487,7 @@ log_entry('layout',$layout);
   }
 
   public function validate_tabbed_form($input) {
+log_entry($_POST);
     $option = sanitize_key($_POST['tab']);
     $output = $this->defaults;
     if (isset($_POST['reset'])) {
