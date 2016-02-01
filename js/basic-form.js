@@ -1,6 +1,7 @@
 // js/basic-form.js
 
 jQuery(document).ready(function() {
+  showhidePosi();
   jQuery('.form-colorpicker' ).wpColorPicker();
   jQuery('.form-image'       ).click(function(e) { imageUploader(this,e); });
   jQuery('.form-image-delete').click(function(e) { imageDelete(this); });
@@ -40,6 +41,16 @@ console.log(attachment);
     }
   });
   custom_uploader.open();
+}
+
+function showhidePosi() {
+  if (jQuery('.tcc-wp_posi')) {
+    if (jQuery(".tcc-loca input:radio:checked").val()=='dashboard') {
+      jQuery('.tcc-wp_posi').parent().parent().removeClass('hidden');
+    } else {
+      jQuery('.tcc-wp_posi').parent().parent().addClass('hidden');
+    }
+  }
 }
 
 // Browser compatibility function taken from http://stackoverflow.com/questions/6548748/portability-of-nextelementsibling-nextsibling
