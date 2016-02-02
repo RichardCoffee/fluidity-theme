@@ -5,20 +5,29 @@
  *
  *  Usage: $micro = TCC_Microdata::get_instance();
  *
- *  Text Domain:  Only one instance of a text domain is utilized in the get_the_author method - change it as required.
+ *  Text Domain:  Only one instance of a text domain is utilized, in the
+ *                get_the_author method - change it as required.
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 2 of the License,
- * or (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
- * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  *  Sources: http://www.bloggingspell.com/add-schema-org-markup-wordpress/
  *           http://leaves-and-love.net/how-to-improve-wordpress-seo-with-schema-org/
  *           https://github.com/justintadlock/hybrid-core
  *
  */
+
+if (!function_exists('microdata')) {
+  function microdata() {
+    return TCC_Microdata::get_instance();
+  }
+}
 
 class TCC_Microdata {
 
@@ -42,19 +51,18 @@ class TCC_Microdata {
   *       <div class="container" role="main" <?php $instance->Blog(); ?>>
   *  or:  <div class="container" role="main" <?php $instance->microdata('Blog'); ?>>
   *
-  *  Due to the sheer number of entries in the schema.org hierarchy, I have
-  *    chosen to use the php magic __call method.  This is not what many
-  *    people would refer to as 'best practice'.  I am simply going with
-  *    what works for 'me'.  In some cases I have provided myself with
-  *    'shortcuts'.
+  *  Due to the sheer number of entries in the schema.org hierarchy, I
+  *    have chosen to utilize the php magic __call method.  This is not
+  *    what many people would refer to as 'best practice'.  I am simply
+  *    going with what works for 'me'.  YMMV
   *
-  *  Certain use cases have their own method.  These are simply ones I have
-  *    encountered in my programming.  Extend the class for your own use cases.
-  *    The attributes itemprop and itemscope can appear either before or after
-  *    the itemtype, and has no impact whatsoever over how these attributes are
-  *    interpreted by the browser or search engine.  The itemprop will always
-  *    apply to any -previously- declared itemtype.  Do not misinterprete what
-  *    'previously' means.
+  *  Certain use cases have their own method.  These are simply ones I
+  *    have encountered in my programming.  Extend the class for your own
+  *    use cases.  The attributes itemprop and itemscope can appear either
+  *    before or after the itemtype, and has no impact whatsoever over how
+  *    these attributes are interpreted by the browser or search engine.
+  *    The itemprop will always apply to any -previously- declared
+  *    itemtype.  Do not misinterprete what 'previously' means. :)
   *
   *
   */
@@ -85,7 +93,7 @@ class TCC_Microdata {
   public function search()   { $this->SearchResultsPage(); }      // CreativeWork > WebPage > SearchResultsPage
   public function sidebar()  { $this->WPSideBar(); }              // CreativeWork > WebPage > WebPageElement > WPSideBar
 
-  public function BlogPosting() { // descendant of 'CreativeWork->Blog'
+  public function BlogPosting() { // CreativeWork > Blog > BlogPosting
     echo "itemprop='blogPost' itemscope itemtype='http://schema.org/BlogPosting'";
   }
 
@@ -168,43 +176,53 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function comment_reply_link($link) {
-    if (!strpos($link,'itemprop')===false) return $link;
-    return preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
+    if (strpos($link,'itemprop')===false)
+      $link = preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
+    return $link;
   }
 
   public function get_archives_link($link) {
-    if (!strpos($link,'itemprop')===false) return $link;
-    $patterns = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); #<?
-    $result =  preg_replace($patterns,'$1 itemprop="url" $2',$link);
-    return preg_replace($patterns,'$1 itemprop="url" $2',$link);
+    if (strpos($link,'itemprop')===false) {
+      $patts = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); # <?php
+      $link  = preg_replace($patts,'$1 itemprop="url" $2',$link);
+    }
+    return $link;
   }
 
   public function get_avatar($avatar) {
-    if (!strpos($avatar,'itemprop')===false) return $avatar;
-    return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$avatar);
+    if (strpos($avatar,'itemprop')===false) {
+      $avatar = preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$avatar);
+    }
+    return $avatar;
   }
 
   public function get_comment_author_link($link) {
-    if (!strpos($link,'itemprop')===false) return $link;
-    $patterns = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
-    $replaces = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
-    return preg_replace($patterns,$replaces,$link);
+    if (strpos($link,'itemprop')===false) {
+      $pats = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
+      $reps = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
+      $link = preg_replace($pats,$reps,$link);
+    }
+    return $link;
   }
 
   public function get_comment_author_url_link($link) {
-    if (!strpos($link,'itemprop')===false) return $link;
-    return preg_replace('/(<a.*?)(>)/i','$1 itemprop="url"$2',$link);
+    if (strpos($link,'itemprop')===false) {
+      $link = preg_replace('/(<a.*?)(>)/i','$1 itemprop="url"$2',$link);
+    }
+    return $link;
   }
 
   public function get_post_time($time,$format,$gmt) {
-    if (!strpos($time,'itemprop')===false) return $time;
-    if ($format==='Y-m-d H:i:s') {
-      $date = $time;
-    } else {
-      $Date = DateTime::createFromFormat($format,$time);
-      $date = $Date->format('Y-m-d H:i:s');
+    if (strpos($time,'itemprop')===false) {
+      if ($format==='Y-m-d H:i:s') {  #  This check is not strictly necessary
+        $date = $time;
+      } else {
+        $Date = DateTime::createFromFormat($format,$time);
+        $date = $Date->format('Y-m-d H:i:s');
+      }
+      $time = "<time itemprop='datePublished' datetime='$date'>$time</time>";
     }
-    return "<time itemprop='datePublished' datetime='$date'>$time</time>";
+    return $time;
   }
 
   public function get_the_archive_description($descrip) {
@@ -255,7 +273,6 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function wp_get_attachment_image_attributes($attr,$attachment) {
-    #tcc_log_entry('wp_get_attachment_image_attributes',$attr,$attachment);
     if (!isset($attr['itemprop'])) { $attr['itemprop'] = 'image'; }
     return $attr;
   }
@@ -299,6 +316,8 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
 
   /**  Address functions  **/
 
+// FIXME: check for pre-existing itemprop
+
   public function city($city) {
     return "<span itemprop='addressLocality'>$city</span>";
   }
@@ -332,10 +351,4 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
 
-}
-
-if (!function_exists('microdata')) {
-  function microdata() {
-    return TCC_Microdata::get_instance();
-  }
 }
