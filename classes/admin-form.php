@@ -301,8 +301,10 @@ abstract class Basic_Admin_Form {
     extract($args);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
-    $class  = (!empty($layout[$item]['divcss'])) ? "class='{$layout[$item]['divcss']}'" : '';
-    echo "<div $class>";
+    $html   = "<div";
+    $html  .= (!empty($layout[$item]['divcss'])) ? " class='{$layout[$item]['divcss']}'" : "";
+    $html  .= (isset($layout['help'])) ? " title='{$layout['help']}'>" : ">";
+    echo $html;
     if (empty($layout[$item]['render'])) {
       echo $data[$item];
     } else {
