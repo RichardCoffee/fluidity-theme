@@ -10,6 +10,7 @@ class Design_Theme_Options {
   public function form_layout($form) {
     $form['design'] = array('describe' => array($this,'describe_design'),
                             'title'    => __('Design','tcc-fluid'),
+                            'option'   => 'tcc_options_design',
                             'layout'   => $this->design_layout());
     return $form;
   }
