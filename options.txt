@@ -1,0 +1,40 @@
+
+This file describes how to implement a new tab on the Theme Options screen.
+
+The admin options screen is controlled by the form array.  The array is
+initialized in the Fluidity_Options_Form class, which is defined in
+classes/options.php.  That file contains an explanation of the item arrays,
+and is the definitive guide.  In cases where this document conflicts with
+the options.php file, the options.php should be considered the more
+reliable source.  The various tabs on the options screen are defined in
+these files:
+
+  Design: classes/design.php
+  Layout: classes/layout.php
+  Colors: classes/colors.php
+  About:  classes/options.php
+
+When adding a tab to the screen, classes/design.php can be used as a guide.
+
+
+The form array has this structure:
+
+  Array (  'describe'  =>  name of, or pointer to, a function which will
+                           display desired content at the top of the
+                           screen, appearing just under the title.
+           'title'     =>  text that will appear on the tab itself.
+           'option'    =>  option name, used to save and retrieve the data array
+           'layout'    =>  main array, used to display and format all the options
+
+The layout array contains the keys of every item appearing on the form screen
+
+  Array ( 'option1' =>  option 1 item array
+          'option2' =>  option 2 item array
+          'option3' =>  option 3 item array
+
+
+The item array has these required fields:
+
+  'default' =>  must be present, even if blank.
+  'label'   =>  text that appears on the left side of the screen.  Identifies the option.
+  'render'  =>  determines how

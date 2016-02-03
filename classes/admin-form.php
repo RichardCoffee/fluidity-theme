@@ -134,14 +134,23 @@ abstract class Basic_Admin_Form {
   }
 
   private function field_label($ID,$data) {
+    $html = "<span";
     if ($data['render']=='display') {
-      $return = $data['label'];
+      $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
+      $html.= $data['label'];
+      $html.= "</span>";
     } else if ($data['render']=='title') {
-      $return = "<span class='form-title'>{$data['label']}</span>";
+      $html.= " class='form-title'";
+      $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
+      $html.= $data['label'];
+      $html.= "</span>";
     } else {
-      $return = "<label for='$ID'>{$data['label']}</label>";
+      $html = "<label for='$ID'";
+      $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
+      $html.= $data['label'];
+      $html.= "</label>";
     }
-    return $return;
+    return $html;
   }
 
 
@@ -338,17 +347,21 @@ abstract class Basic_Admin_Form {
 
   private function render_checkbox($data) {
     extract($data);
-    $html = "<label><input type='checkbox' id='$ID' name='$name' value='yes' ";
+    $html = "<label";
+    $html.= (isset($layout['help'])) ? " title='{$layout['help']}'>" : ">";
+    $html.= "<input type='checkbox' id='$ID' name='$name' value='yes' ";
     $html.= checked('yes',$value,false);
-    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : '';
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
     $html.= "/> <span>{$layout['text']}</span></label>";
     echo $html;
   }
 
   private function render_colorpicker($data) {
     extract($data);
-    echo "<input type='text' value='$value' class='form-colorpicker' data-default-color='{$layout['default']}' name='$name'/>";
-    if (!empty($layout['text'])) echo " <span style='vertical-align: top;'>{$layout['text']}</span>";
+    $html = "<input type='text' value='$value' class='form-colorpicker' data-default-color='{$layout['default']}' name='$name'";
+    $html.= (isset($layout['help'])) ? " title='{$layout['help']}' />" : " />";
+    if (!empty($layout['text'])) $html.= " <span style='vertical-align: top;'>{$layout['text']}</span>";
+    echo $html;
   }
 
   private function render_display($data) {
@@ -360,7 +373,8 @@ abstract class Basic_Admin_Form {
   private function render_font($data) {
     extract($data);
     $html = "<select id='$ID' name='$name'";
-    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : '>';
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
+    $html.= (isset($layout['help']))   ? " title='{$layout['help']}'>"     : ">";
     foreach($layout['source'] as $key=>$text) {
       $htnl.= "<option value='$key'";
       $html.= ($key===$value) ? " selected='selected'" : '';
@@ -388,13 +402,14 @@ abstract class Basic_Admin_Form {
     extract($data);
     if (empty($layout['source'])) return;
     $uniq = uniqid();
-    if (isset($layout['text'])) echo "<div id='$uniq'>{$layout['text']}</div>";
+    if (isset($layout['text'])) echo "<div id='$uniq'>".esc_attr($layout['text'])."</div>";
     foreach($layout['source'] as $key=>$text) {
       $html = "<div><label>";
       $html.= "<input type='radio' name='$name' value='$key'";
-      $html.= ($value==$key) ? " checked='yes'" : '';
-      $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : '';
-      $html.= (isset($layout['text'])) ? " aria-describedby='$uniq'" : "";
+      $html.= ($value==$key) ? " checked='yes'" : "";
+      $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
+      $html.= (isset($layout['text']))   ? " aria-describedby='$uniq'"       : "";
+      $html.= (isset($layout['help']))   ? " title='{$layout['help']}'"      : "";
       $html.= "> $text</label></div>";
       echo $html;
     }
@@ -406,7 +421,8 @@ abstract class Basic_Admin_Form {
     if (empty($layout['source'])) return;
     $source_func = $layout['source'];
     $html = "<select id='$ID' name='$name'";
-    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : '>';
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
+    $html.= (isset($layout['help']))   ? " title='{$layout['help']}'>"     : ">";
     echo $html;
     if (is_array($source_func)) {
       foreach($source_func as $key=>$text) {
@@ -428,9 +444,9 @@ abstract class Basic_Admin_Form {
     $html.= (isset($layout['class'])) ? $layout['class'] : 'regular-text';
     $html.= "' name='$name' value='";
     $html.= esc_attr(sanitize_text_field($value));
-    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : '';
-    $html.= "' />";
-    $html.= (!empty($layout['text'])) ? "<span class=''> ".esc_attr($layout['text'])."</span>" : '';
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
+    $html.= (isset($layout['help']))   ? " title='{$layout['help']}' />"   : " />";
+    $html.= (!empty($layout['text']))  ? "<span class=''> ".esc_attr($layout['text'])."</span>" : '';
     echo $html;
   }
 

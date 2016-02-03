@@ -56,9 +56,11 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *
  *   secondary associative keys: (all keys are required)
  *          describe: (string) name of the function to display the description text
- *                             see: http://codex.wordpress.org/Function_Reference/add_settings_section
+ *                       or      see: http://codex.wordpress.org/Function_Reference/add_settings_section
+ *                    (array)  class reference - see classes/design.php for example of this usage
  *             title: (string) title of the section tab
- *                             see: http://codex.wordpress.org/Function_Reference/add_settings_section
+ *                               see: http://codex.wordpress.org/Function_Reference/add_settings_section
+ *            option: (string) option name, used to save and retrieve the options
  *            layout: (array)  field data - see the section below describing the layout array
  *
  */
@@ -80,6 +82,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *   secondary associative keys: (all keys are required unless stated otherwise)
  *
  *          default: (mixed)   The default value of the field
+ *             help: (string)  Help text, displayed as a title attribute
  *            label: (string)  Title of the field (required unless render is set to 'skip')
  *                               see: http://codex.wordpress.org/Function_Reference/add_settings_field
  *             text: (string)  Text displayed to the right of the field (optional field)
@@ -91,9 +94,9 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                                 array('ID'=>{primary key}, 'value'=>{option value}, 'layout'=>{key array}, 'name'=>"{option}[{primary key}]");
  *            class: (string)  Used only if render is set to 'text'.  If set, the input class attribute will be set to this value.
  *                               Default class for a text input is 'regular-text'.
- *             type: (string)  required only if render is set to 'array'. possible values are 'image' and 'text'.
+ *             type: (string)  Required only if render is set to 'array'. possible values are 'image' and 'text'.
  *                               functionality for this is only partially implemented.
- *           source:           This key is required only if render is set to 'font', 'radio', 'select', or 'wp_dropdown'
+ *           source:           Required only if render is set to 'font', 'radio', 'select', or 'wp_dropdown'
  *                   (array)   The array values will be used to generate the radio buttons / select listing.
  *                               This must be an associative array.
  *                     -or-
@@ -101,11 +104,11 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
  *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
- *           change: (string)  Used only if render is set to 'checkbox','font','radio','select', and 'text'.  Will be applied as an 'onchange' html attribute (optional)
- *            media:           Used only if render is set to 'image'.
+ *           change: (string)  Required only if render is set to 'checkbox','font','radio','select', and 'text'.  Will be applied as an 'onchange' html attribute (optional)
+ *            media:           Required only if render is set to 'image'.
  *                   (array)     title:  (string) Title displayed in media uploader
  *                               button: (string) Button text - used for both the admin and the media buttons
- *             args: (array)   Used only if render is set to 'wp_dropdown'.
+ *             args: (array)   Required only if render is set to 'wp_dropdown'.
  *                               This array will be passed to the called function.
  *           divcss: (string)  A div is created to surround the rendered object.  If set, this string is assigned to the class attribute of that div (optional)
  *          require: (boolean) If set, then when saving (as currently implemented) a blank field will be set to the default value.
@@ -124,18 +127,20 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                     'loca'      => array('default' => 'appearance',
                                          'label'   => __('Page Location','tcc-fluid'),
                                          'text'    => __('You can choose where the Theme Options page appears','tcc-fluid'),
+                                         'help'    => __('I recommend you leave it on the default setting, which is Appearance','tcc-fluid'),
                                          'render'  => 'radio',
                                          'source'  => array('dashboard'  => __('Dashboard menu','tcc-fluid'),
                                                             'appearance' => __('Appearance menu','tcc-fluid'),
                                                             'settings'   => __('Settings menu','tcc-fluid')),
                                          'change'  => 'showhidePosi();',
                                          'divcss'  => 'tcc-loca'),
-                    'wp_posi'   => array('default' => 'Top',
+                    'wp_posi'   => array('default' => 'bottom',
                                          'label'   => __('Dashboard location','tcc-fluid'),
                                          'text'    => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-fluid'),
+                                         'help'    => __('Bottom is best for this option.  Having it at the top can be annoying','tcc-fluid'),
                                          'render'  => 'select',
                                          'source'  => array('top'    => __('Top','tcc-fluid'),
-                                                            'bottom' => __('default','tcc-fluid')),
+                                                            'bottom' => __('Bottom','tcc-fluid')),
                                          'divcss'  => 'tcc-wp_posi'));
     $layout = apply_filters('tcc_about_options_layout',$layout);
     return $layout;
