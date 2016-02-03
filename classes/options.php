@@ -84,7 +84,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                               see: http://codex.wordpress.org/Function_Reference/add_settings_field
  *             text: (string)  Text displayed to the right of the field (optional field)
  *           render: (string)  How the field is to be displayed
- *                               Possible pre-set values are: checkbox, colorpicker, display, image, radio, select, text, textarea, wp_dropdown, skip
+ *                               Possible pre-set values are: checkbox, colorpicker, display, font, image, radio, select, text, textarea, wp_dropdown, skip
  *                               Another possible value is 'array', see notes for 'type'.
  *                               This string is interpreted as a function call, prefixed with 'render_'
  *                               The rendering function is passed one parameter, an associative array, like so:
@@ -93,7 +93,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                               Default class for a text input is 'regular-text'.
  *             type: (string)  required only if render is set to 'array'. possible values are 'image' and 'text'.
  *                               functionality for this is only partially implemented.
- *           source:           This key is required only if render is set to 'radio', 'select', or 'wp_dropdown'
+ *           source:           This key is required only if render is set to 'font', 'radio', 'select', or 'wp_dropdown'
  *                   (array)   The array values will be used to generate the radio buttons / select listing.
  *                               This must be an associative array.
  *                     -or-
@@ -101,7 +101,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
  *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
- *           change: (string)  Used only if render is set to checkbox, radio, select, and text.  Will be applied as an 'onchange' html attribute (optional)
+ *           change: (string)  Used only if render is set to 'checkbox','font','radio','select', and 'text'.  Will be applied as an 'onchange' html attribute (optional)
  *            media:           Used only if render is set to 'image'.
  *                   (array)     title:  (string) Title displayed in media uploader
  *                               button: (string) Button text - used for both the admin and the media buttons

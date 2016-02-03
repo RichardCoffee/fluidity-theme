@@ -60,16 +60,16 @@ abstract class Basic_Admin_Form {
   /**  Form text functions  **/
 
   private function form_text() {
-    $text = array('error'  => array('render'    => _x('ERROR: Unable to locate function %s','string - a function name','basic-form')),
-                                    'subscript' => _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form'),
-                  'submit' => array('save'      => __('Save Changes','basic-form'),
-                                    'object'    => __('Form','basic-form'),
-                                    'reset'     => _x('Reset %s','placeholder is a noun, may be plural','basic-form'),
-                                    'subject'   => __('Form','basic-form'),
-                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','basic-form')),
-                  'media'  => array('title'     => __('Assign/Upload Image','basic-form'),
-                                    'button'    => __('Assign Image','basic-form'),
-                                    'delete'    => __('Unassign Image','basic-form')));
+    $text = array('error'  => array('render'    => _x('ERROR: Unable to locate function %s','string - a function name','tcc-fluid'),
+                                    'subscript' => _x('ERROR: Not able to locate form data subscript:  %s','placeholder will be an ASCII character string','tcc-fluid')),
+                  'submit' => array('save'      => __('Save Changes','tcc-fluid'),
+                                    'object'    => __('Form','tcc-fluid'),
+                                    'reset'     => _x('Reset %s','placeholder is a noun, may be plural','tcc-fluid'),
+                                    'subject'   => __('Form','tcc-fluid'),
+                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','tcc-fluid')),
+                  'media'  => array('title'     => __('Assign/Upload Image','tcc-fluid'),
+                                    'button'    => __('Assign Image','tcc-fluid'),
+                                    'delete'    => __('Unassign Image','tcc-fluid')));
     return apply_filters($this->slug.'_form_text',$text,$text);
   }
 
@@ -109,12 +109,6 @@ abstract class Basic_Admin_Form {
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
       add_settings_section($current,$title,$describe,$this->slug);
       foreach($section['layout'] as $item=>$data) {
-#        if (is_string($data))        continue; // skip string variables
-#        if (!isset($data['render'])) continue;
-#        if ($data['render']=='skip') continue;
-#        $label = $this->field_label($data,$item);
-#        $args  = array('key'=>$key,'item'=>$item);
-#        add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
         $this->register_field($current,$key,$item,$data);
       }
     } //*/
@@ -133,13 +127,13 @@ abstract class Basic_Admin_Form {
         add_settings_field("{$item}_$i",$label,array($this,$this->options),$this->slug,$current,$args);
       } //*/
     } else {
-      $label = $this->field_label($data,$item);
+      $label = $this->field_label($item,$data);
       $args  = array('key'=>$key,'item'=>$item);
       add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
     }
   }
 
-  private function field_label($data,$ID) {
+  private function field_label($ID,$data) {
     if ($data['render']=='display') {
       $return = $data['label'];
     } else if ($data['render']=='title') {
@@ -184,8 +178,7 @@ abstract class Basic_Admin_Form {
       } else {
         if (!empty($this->err_func)) {
           $func   = $this->err_func;
-          $string = _x('ERROR: Not able to locate form data subscript:  %s','placeholder is an ASCII character string','basic-form');
-          $func(sprintf($string,$option));
+          $func(sprintf($this->form_text['error']['subscript'],$option));
         }
       }
     }
@@ -362,6 +355,20 @@ abstract class Basic_Admin_Form {
     extract($data);
     if (!empty($value)) echo $value;
     if (!empty($layout['text'])) echo " <span>{$layout['text']}</span>";
+  }
+
+  private function render_font($data) {
+    extract($data);
+    $html = "<select id='$ID' name='$name'";
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : '>';
+    foreach($layout['source'] as $key=>$text) {
+      $htnl.= "<option value='$key'";
+      $html.= ($key===$value) ? " selected='selected'" : '';
+      $html.= "> $key </option>";
+    }
+    $html.= '</select>';
+    $html.= (!empty($data['layout']['text'])) ? "<span class=''> {$data['layout']['text']}</span>" : '';
+    echo $html;
   }
 
   private function render_image($data) {
