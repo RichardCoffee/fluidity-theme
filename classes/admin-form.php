@@ -306,7 +306,7 @@ abstract class Basic_Admin_Form {
     } else {
       $func = "render_{$layout[$item]['render']}";
       $name = $this->current."[$item]";
-      if (!isset($data[$item])) $data[$item] = (empty$layout[$item]['default'])) ? '' : $layout[$item]['default'];
+      if (!isset($data[$item])) $data[$item] = (empty($layout[$item]['default'])) ? '' : $layout[$item]['default'];
       $fargs = array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name);
       if (method_exists($this,$func)) {
         $this->$func($fargs);
