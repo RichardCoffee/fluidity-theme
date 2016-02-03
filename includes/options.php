@@ -48,6 +48,7 @@ if (!function_exists('tcc_design')) {
 
 if (!function_exists('tcc_font_size')) {
   function tcc_font_size() {
+log_entry('size: '.tcc_design('size'));
     $size = intval(tcc_design('size') || '18');
     if ($size) {
       echo "body { font-size: {$size}px }";

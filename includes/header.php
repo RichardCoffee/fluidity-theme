@@ -9,7 +9,7 @@
 
 if (!function_exists('fluidity_custom_css')) {
   function fluidity_custom_css() { ?>
-    <style id='custom-color-css' type='text/css'><?php
+    <style id='fluidity-custom-css' type='text/css'><?php
       tcc_custom_colors();
       do_action('tcc_custom_css'); ?>
     </style><?php
