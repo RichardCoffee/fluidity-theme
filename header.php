@@ -20,7 +20,7 @@
 <![endif]--><?php
 
 wp_head();
-tcc_custom_colors(); ?>
+fluidity_custom_css(); ?>
 
 </head>
 

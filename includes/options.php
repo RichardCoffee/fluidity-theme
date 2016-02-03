@@ -46,6 +46,16 @@ if (!function_exists('tcc_design')) {
   }
 }
 
+if (!function_exists('tcc_font_size')) {
+  function tcc_font_size() {
+    $size = intval(tcc_design('size') || '18');
+    if ($size) {
+      echo "body { font-size: {$size}px }";
+    }
+  }
+  add_action('tcc_custom_css','tcc_font_size');
+}
+
 if (!function_exists('tcc_layout')) {
   function tcc_layout($option) {
     static $data;

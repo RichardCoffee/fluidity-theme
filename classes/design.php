@@ -34,7 +34,7 @@ class Design_Theme_Options {
                               'label'   => __('Font Type','tcc-fluid'),
                               'render'  => 'font',
                               'source'  => TCC_Typography::mixed_fonts());
-    $layout['size']   = array('default' => 14,
+    $layout['size']   = array('default' => 18,
                               'label'   => __('Font Size','tcc-fluid'),
                               'text'    => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
                               'render'  => 'text',

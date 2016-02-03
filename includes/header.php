@@ -7,6 +7,15 @@
  *
  */
 
+if (!function_exists('fluidity_custom_css')) {
+  function fluidity_custom_css() { ?>
+    <style id='custom-color-css' type='text/css'><?php
+      tcc_custom_colors();
+      do_action('tcc_custom_css'); ?>
+    </style><?php
+  }
+}
+
 if (!function_exists('fluidity_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
   function fluidity_browser_body_class($classes) {
