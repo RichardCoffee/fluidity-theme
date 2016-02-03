@@ -19,8 +19,7 @@ abstract class Basic_Admin_Form {
   protected $register;
   protected $render;
   protected $slug      = 'default_page_slug';
-  protected $tab;
-  protected $type      = 'single'; // or 'tabbed', with 'multi' pending
+  protected $tab       = 'design';
   protected $validate;
 
   abstract protected function form_layout($option);
@@ -98,36 +97,33 @@ abstract class Basic_Admin_Form {
   public function register_tabbed_form() {
 global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $whitelist_options;
 #log_entry(debug_backtrace());
+
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
-      $title    = (isset($section['title']))    ? $section['title']    : '';
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
-      $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      #register_setting($current,$current,array($this,$validate));
-      register_setting($this->slug,'tcc_options_about',array($this,$validate));
-#log_entry("register  group: ".$this->slug);
-#log_entry("register option: $current");
-      #add_settings_section($current,$title,array($this,$describe),$current);
-      add_settings_section('tcc_options_about',$title,array($this,$describe),$this->slug);
+      register_setting($current,$current,array($this,$validate));
+      $title    = (isset($section['title']))    ? $section['title']    : '';
+      $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
+      add_settings_section($current,$title,array($this,$describe),$current);
       foreach($section['layout'] as $item=>$data) {
-        $this->register_field($current,$key,$item,$data);
+        if (is_string($data))        continue; // skip string variables
+        if (!isset($data['render'])) continue;
+        if ($data['render']=='skip') continue;
+        $label = $this->field_label($data,$item);
+        $args  = array('key'=>$key,'item'=>$item);
+        add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
+#        $this->register_field($current,$key,$item,$data);
       }
     } //*/
-log_entry('new whitelist',$new_whitelist_options);
-log_entry('whitelist',$whitelist_options);
-log_entry('sections',$wp_settings_sections);
-log_entry('fields',$wp_settings_fields);
+#log_entry('new whitelist',$new_whitelist_options);
+#log_entry('whitelist',$whitelist_options);
+#log_entry('sections',$wp_settings_sections);
+#log_entry('fields',$wp_settings_fields);
   }
 
-  public function register_multi_form() {   }
-
   private function register_field($current,$key,$item,$data) {
-#log_entry("current: $current  key: $key  item: $item");
-    if (is_string($data))        return; // skip string variables
-    if (!isset($data['render'])) continue;
-    if ($data['render']=='skip') continue;
     if ($data['render']=='array') {
 /*      $count = max(count($data['default']),count($this->form_opts[$key][$item]));
       for ($i=0;$i<$count;$i++) {
@@ -139,9 +135,7 @@ log_entry('fields',$wp_settings_fields);
     } else {
       $label = $this->field_label($data,$item);
       $args  = array('key'=>$key,'item'=>$item);
-      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-      add_settings_field($item,$label,array($this,$this->options),$this->slug,'tcc_options_about',$args);
-      #add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
+      add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
 #log_entry("field    title: $label");
 #log_entry("field callback: {$this->options}");
 #log_entry("field     page: {$this->slug}");

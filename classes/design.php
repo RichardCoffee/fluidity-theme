@@ -22,7 +22,7 @@ class Design_Theme_Options {
   }
 
   protected static function design_layout() {
-    $layout = array();
+    $layout = array('default'=>true);
     $layout['logo']   = array('default' => '',
                               'label'   => __('Theme Logo','fluid'),
                               'render'  => 'image',
@@ -40,8 +40,8 @@ class Design_Theme_Options {
                               'label'   => __('Font Size','tcc-fluid'),
                               'text'    => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
                               'render'  => 'text',
-                              'class'   => 'tcc_text_3em');
-    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
+                              'class'   => 'small-text');
+/*    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
                               'text'    => __('Use these options to add/change the background images','tcc-fluid'),
                               'render'  => 'title');
     $layout['header'] = array('label'   => __('Header',      'tcc-fluid'),
@@ -52,7 +52,7 @@ class Design_Theme_Options {
                               'render'  => 'display');
     $layout['site']   = array('label'   => __('Site',        'tcc-fluid'),
                               'text'    => __('Coming Soon!','tcc-fluid'),
-                              'render'  => 'display');
+                              'render'  => 'display'); //*/
     return $layout;
   }
   
