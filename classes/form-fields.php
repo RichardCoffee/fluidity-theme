@@ -61,7 +61,7 @@ class Admin_Field extends Form_Field {
   public function __construct($args) {
     parent::__construct($args);
     $sanit = $this->sanit;
-    $this->value = $clean(get_option($this->name));
+    $this->value = $sanit(get_option($this->name));
     if (empty($value)) $value = $sanit($this->default);
     add_filter('admin_init',array(&$this,'register_field'),9);
   }
