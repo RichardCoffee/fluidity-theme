@@ -376,7 +376,7 @@ abstract class Basic_Admin_Form {
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
     $html.= (isset($layout['help']))   ? " title='{$layout['help']}'>"     : ">";
     foreach($layout['source'] as $key=>$text) {
-      $htnl.= "<option value='$key'";
+      $html.= "<option value='$key'";
       $html.= ($key===$value) ? " selected='selected'" : '';
       $html.= "> $key </option>";
     }
