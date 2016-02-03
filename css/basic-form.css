@@ -11,3 +11,5 @@
     width:  50%;
     height: auto;
 }
+
+.tcc_text_3em  input[type="text"]  { width: 3em;  }

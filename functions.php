@@ -8,13 +8,12 @@ require_once('includes/theme-support.php');
 require_once('includes/library.php');
 #require_once('includes/menus.php');
 require_once('includes/misc.php');
-require_once(plugin_dir_path(__FILE__).'includes/options.php'); // needs full path or wp-admin/includes/options.php gets loaded instead
+require_once(plugin_dir_path(__FILE__).'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/sidebars.php');
 require_once('classes/form-fields.php');
 require_once('classes/widgets.php');
 if (is_admin()) {
   require_once('classes/typography.php');
-  require_once('classes/design.php');
   require_once('classes/options.php');
 } else {
   require_once('includes/footer.php');
@@ -32,7 +31,7 @@ if (!function_exists('fluidity_enqueue')) {
     fluidity_register_bootstrap();
     fluidity_register_fontawesome();
     wp_register_style('library', "$base_url/css/library.css");
-    wp_register_style('fluid',   get_bloginfo('stylesheet_url'));
+    wp_register_style('fluid',    get_bloginfo('stylesheet_url'));
     wp_enqueue_style('bootstrap');
     wp_enqueue_style('library');
     wp_enqueue_style('fluid');

@@ -38,7 +38,7 @@ class Design_Theme_Options {
                               'label'   => __('Font Size','tcc-fluid'),
                               'text'    => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
                               'render'  => 'text',
-                              'class'   => 'small-text');
+                              'class'   => 'tcc_text_3em');
 /*    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
                               'text'    => __('Use these options to add/change the background images','tcc-fluid'),
                               'render'  => 'title');
