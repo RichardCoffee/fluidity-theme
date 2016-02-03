@@ -33,17 +33,17 @@ abstract class Basic_Admin_Form {
 
   public function load_form_page() {
     global $plugin_page;
-if ($plugin_page) log_entry("page: $plugin_page");
-    $this->form_text = $this->form_text();
-    if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
-      $this->form = $this->form_layout();
-      $this->determine_option();
-      $this->get_defaults();
-      $this->get_form_options();
-      $func = $this->register;
-      $this->$func();
-      add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
-#log_entry($this);
+    if ($plugin_page===$this->slug) {
+      $this->form_text = $this->form_text();
+      if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
+        $this->form = $this->form_layout();
+        $this->determine_option();
+        $this->get_defaults();
+        $this->get_form_options();
+        $func = $this->register;
+        $this->$func();
+        add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
+      }
     }
   }
 
@@ -139,8 +139,8 @@ log_entry('fields',$wp_settings_fields);
     } else {
       $label = $this->field_label($data,$item);
       $args  = array('key'=>$key,'item'=>$item);
-      add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-      #add_settings_field($item,$label,array($this,$this->options),$this->slug,'tcc_options_about',$args);
+      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
+      add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
 #log_entry("field    title: $label");
 #log_entry("field callback: {$this->options}");
 #log_entry("field     page: {$this->slug}");
