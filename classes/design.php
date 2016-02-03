@@ -1,13 +1,10 @@
 <?php
 
-$fluid_design = new Design_Theme_Options();
-
 class Design_Theme_Options {
 
-  private $translated;
-
-  public function __construct() {
+  public function __construct(Fluidity_Options_Form $form) {
     add_filter('tcc_options_form_layout', array($this,'form_layout'),4);
+    $form->tab = 'design';
   }
 
   public function form_layout($form) {
@@ -55,6 +52,6 @@ class Design_Theme_Options {
                               'render'  => 'display'); //*/
     return $layout;
   }
-  
-  
+
+
 }

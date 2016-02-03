@@ -1,6 +1,7 @@
 <?php /* arrays.php */
 
 require_once('admin-form.php');
+require_once('design.php');
 
 class Fluidity_Options_Form extends Basic_Admin_Form {
 
@@ -21,6 +22,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     add_action('admin_menu',     array($this,'add_menu_option'));
     add_filter('basic_form_text',array($this,'form_trans_text'),10,2);
     parent::__construct();
+    $fluid_design = new Design_Theme_Options($this);
   }
 
   public static function get_instance() {

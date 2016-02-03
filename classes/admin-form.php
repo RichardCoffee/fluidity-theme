@@ -19,7 +19,8 @@ abstract class Basic_Admin_Form {
   protected $register;
   protected $render;
   protected $slug      = 'default_page_slug';
-  protected $tab       = 'design';
+  public    $tab       = 'about';
+  protected $type      = 'single'; # two values: single, tabbed
   protected $validate;
 
   abstract protected function form_layout($option);
@@ -33,6 +34,7 @@ abstract class Basic_Admin_Form {
   public function load_form_page() {
     global $plugin_page;
     if ($plugin_page===$this->slug) {
+      if (isset($_GET['tab'])) $this->tab = sanitize_key($_GET['tab']);
       $this->form_text = $this->form_text();
       if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
         $this->form = $this->form_layout();
@@ -95,35 +97,33 @@ abstract class Basic_Admin_Form {
   }
 
   public function register_tabbed_form() {
-global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $whitelist_options;
-#log_entry(debug_backtrace());
-
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
+      if (!($section['option']===$this->current)) continue;
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      register_setting($current,$current,array($this,$validate));
+      register_setting($this->slug,$current,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
-      add_settings_section($current,$title,array($this,$describe),$current);
+      $describe = (is_array($describe)) ? $describe : array($this,$describe);
+      add_settings_section($current,$title,$describe,$this->slug);
       foreach($section['layout'] as $item=>$data) {
-        if (is_string($data))        continue; // skip string variables
-        if (!isset($data['render'])) continue;
-        if ($data['render']=='skip') continue;
-        $label = $this->field_label($data,$item);
-        $args  = array('key'=>$key,'item'=>$item);
-        add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
-#        $this->register_field($current,$key,$item,$data);
+#        if (is_string($data))        continue; // skip string variables
+#        if (!isset($data['render'])) continue;
+#        if ($data['render']=='skip') continue;
+#        $label = $this->field_label($data,$item);
+#        $args  = array('key'=>$key,'item'=>$item);
+#        add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
+        $this->register_field($current,$key,$item,$data);
       }
     } //*/
-#log_entry('new whitelist',$new_whitelist_options);
-#log_entry('whitelist',$whitelist_options);
-#log_entry('sections',$wp_settings_sections);
-#log_entry('fields',$wp_settings_fields);
   }
 
   private function register_field($current,$key,$item,$data) {
+    if (is_string($data))        return; // skip string variables
+    if (!isset($data['render'])) return;
+    if ($data['render']=='skip') return;
     if ($data['render']=='array') {
 /*      $count = max(count($data['default']),count($this->form_opts[$key][$item]));
       for ($i=0;$i<$count;$i++) {
@@ -136,10 +136,6 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       $label = $this->field_label($data,$item);
       $args  = array('key'=>$key,'item'=>$item);
       add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-#log_entry("field    title: $label");
-#log_entry("field callback: {$this->options}");
-#log_entry("field     page: {$this->slug}");
-#log_entry("field  section: $current");
     }
   }
 
@@ -161,13 +157,11 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
     if ($this->type=='single') {
       $this->current = $this->slug;
     } else if ($this->type=='tabbed') {
-      $tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'about';
-      if (isset($this->form[$tab]['option'])) { 
-        $this->current = $this->form[$tab]['option'];
+      if (isset($this->form[$this->tab]['option'])) {
+        $this->current = $this->form[$this->tab]['option'];
       } else {
-        $this->current = $this->prefix.$tab ;
+        $this->current = $this->prefix.$this->tab;
       }
-      $this->tab = $tab;
     }
   }
 
@@ -190,7 +184,7 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       } else {
         if (!empty($this->err_func)) {
           $func   = $this->err_func;
-          $string = _x('ERROR: Not able to locate form data subscript:  %s','string - an array subscript','basic-form');
+          $string = _x('ERROR: Not able to locate form data subscript:  %s','placeholder is an ASCII character string','basic-form');
           $func(sprintf($string,$option));
         }
       }
@@ -227,7 +221,6 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
 }
 
   public function render_tabbed_form() {
-log_entry($this->form);
     $active_page = sanitize_key($_GET['page']); ?>
     <div class="wrap">
       <div id="icon-themes" class="icon32"></div>
