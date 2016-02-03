@@ -303,7 +303,7 @@ abstract class Basic_Admin_Form {
     $layout = $this->form[$key]['layout'];
     $html   = "<div";
     $html  .= (!empty($layout[$item]['divcss'])) ? " class='{$layout[$item]['divcss']}'" : "";
-    $html  .= (isset($layout['help'])) ? " title='{$layout['help']}'>" : ">";
+    $html  .= (isset($layout[$item]['help'])) ? " title='{$layout[$item]['help']}'>" : ">";
     echo $html;
     if (empty($layout[$item]['render'])) {
       echo $data[$item];
