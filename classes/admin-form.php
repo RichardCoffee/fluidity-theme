@@ -140,7 +140,7 @@ log_entry('fields',$wp_settings_fields);
       $label = $this->field_label($data,$item);
       $args  = array('key'=>$key,'item'=>$item);
       #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-      add_settings_field($item,$label,array($this,$this->options),$this->slug,'tcc_options_about'$current,$args);
+      add_settings_field($item,$label,array($this,$this->options),$this->slug,'tcc_options_about',$args);
       #add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
 #log_entry("field    title: $label");
 #log_entry("field callback: {$this->options}");
