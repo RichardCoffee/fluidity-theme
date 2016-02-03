@@ -84,29 +84,30 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                               see: http://codex.wordpress.org/Function_Reference/add_settings_field
  *             text: (string)  Text displayed to the right of the field (optional field)
  *           render: (string)  How the field is to be displayed
- *                             Possible pre-set values are: checkbox, colorpicker, display, image, radio, select, text, textarea, wp_dropdown, skip
- *                             Another possible value is 'array', see notes for 'type'.
- *                             This string is interpreted as a function call, prefixed with 'render_'
- *                             The rendering function is given one parameter, an associative array, like so:
- *                               array('ID'=>$key, 'value'=>$value, 'layout'=>$layout, 'name'=>"option_screen[$key]");
- *            large: (boolean) Used only if render is set to 'text'.  If set to true, then 'large-text' will be used as the input class
+ *                               Possible pre-set values are: checkbox, colorpicker, display, image, radio, select, text, textarea, wp_dropdown, skip
+ *                               Another possible value is 'array', see notes for 'type'.
+ *                               This string is interpreted as a function call, prefixed with 'render_'
+ *                               The rendering function is passed one parameter, an associative array, like so:
+ *                                 array('ID'=>{primary key}, 'value'=>{option value}, 'layout'=>{key array}, 'name'=>"{option}[{primary key}]");
+ *            class: (string)  Used only if render is set to 'text'.  If set, the input class attribute will be set to this value.
+ *                               Default class for a text input is 'regular-text'.
  *             type: (string)  required only if render is set to 'array'. possible values are 'image' and 'text'.
- *                             functionality for this is only partially implemented.
+ *                               functionality for this is only partially implemented.
  *           source:           This key is required only if render is set to 'radio', 'select', or 'wp_dropdown'
  *                   (array)   The array values will be used to generate the radio buttons / select listing.
- *                             This must be an associative array.
+ *                               This must be an associative array.
  *                     -or-
  *                   (string)  Name of the function that returns the select options (render: select)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
  *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
- *           change: (string)  Will be applied as an 'onchange' html attribute.
+ *           change: (string)  Used only if render is set to checkbox, radio, select, and text.  Will be applied as an 'onchange' html attribute (optional)
  *            media:           Used only if render is set to 'image'.
- *                   (array)   title:  (string) Title displayed in media uploader
- *                             button: (string) Button text - used for both the admin and the media buttons
+ *                   (array)     title:  (string) Title displayed in media uploader
+ *                               button: (string) Button text - used for both the admin and the media buttons
  *             args: (array)   Used only if render is set to 'wp_dropdown'.
- *                             This array will be passed to the called function.
- *            class: (string)  A span is created to surround the rendered object.  If set, this class is applied to that span
+ *                               This array will be passed to the called function.
+ *           divcss: (string)  A div is created to surround the rendered object.  If set, this string is assigned to the class attribute of that div (optional)
  *          require: (boolean) If set, then when saving (as currently implemented) a blank field will be set to the default value.
  *         (string): (mixed)   Any other key can be added to this array.
  *
@@ -128,14 +129,14 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                                                             'appearance' => __('Appearance menu','tcc-fluid'),
                                                             'settings'   => __('Settings menu','tcc-fluid')),
                                          'change'  => 'showhidePosi();',
-                                         'class'   => 'tcc-loca'),
+                                         'divcss'  => 'tcc-loca'),
                     'wp_posi'   => array('default' => 'Top',
                                          'label'   => __('Dashboard location','tcc-fluid'),
                                          'text'    => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-fluid'),
                                          'render'  => 'select',
                                          'source'  => array('top'    => __('Top','tcc-fluid'),
                                                             'bottom' => __('default','tcc-fluid')),
-                                         'class'   => 'tcc-wp_posi'));
+                                         'divcss'  => 'tcc-wp_posi'));
     $layout = apply_filters('tcc_about_options_layout',$layout);
     return $layout;
   }

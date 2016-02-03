@@ -267,7 +267,7 @@ abstract class Basic_Admin_Form {
     extract($args);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
-    $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
+    $class  = (!empty($layout[$item]['divcss'])) ? "class='{$layout[$item]['divcss']}'" : '';
     echo "<div $class>";
     if (empty($layout[$item]['render'])) {
       echo $data[$key][$item];
@@ -299,7 +299,7 @@ abstract class Basic_Admin_Form {
     extract($args);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
-    $class  = (!empty($layout[$item]['class'])) ? "class='{$layout[$item]['class']}'" : '';
+    $class  = (!empty($layout[$item]['divcss'])) ? "class='{$layout[$item]['divcss']}'" : '';
     echo "<div $class>";
     if (empty($layout[$item]['render'])) {
       echo $data[$item];
@@ -343,19 +343,19 @@ abstract class Basic_Admin_Form {
     }
   }
 
+  private function render_checkbox($data) {
+    extract($data);
+    $html = "<label><input type='checkbox' id='$ID' name='$name' value='yes' ";
+    $html.= checked('yes',$value,false);
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : '';
+    $html.= "/> <span>{$layout['text']}</span></label>";
+    echo $html;
+  }
+
   private function render_colorpicker($data) {
     extract($data);
     echo "<input type='text' value='$value' class='form-colorpicker' data-default-color='{$layout['default']}' name='$name'/>";
     if (!empty($layout['text'])) echo " <span style='vertical-align: top;'>{$layout['text']}</span>";
-  }
-
-  private function render_checkbox($data) {
-    extract($data);
-    $state  = checked('yes',$value,false);
-    $change = (isset($layout['change'])) ? "onchange='{$layout['change']}'" : '';
-    $html   = "<label><input type='checkbox' id='$ID' name='$name' value='yes' $state $change/>";
-    $html  .= " <span>{$layout['text']}</span></label>";
-    echo $html;
   }
 
   private function render_display($data) {
@@ -398,7 +398,9 @@ abstract class Basic_Admin_Form {
     extract($data);
     if (empty($layout['source'])) return;
     $source_func = $layout['source'];
-    echo "<select id='$ID' name='$name'>";
+    $html = "<select id='$ID' name='$name'";
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : '>';
+    echo $html;
     if (is_array($source_func)) {
       foreach($source_func as $key=>$text) {
         $select = ($key==$value) ? "selected='selected'" : '';
@@ -415,11 +417,14 @@ abstract class Basic_Admin_Form {
 
   private function render_text($data) {
     extract($data);
-    $value = sanitize_text_field($value);
-    $class = (isset($layout['large'])) ? 'large-text' : 'regular-text';
-    $quote = (strpos($value,"'")===false) ? "'" : '"'; // needed in case the string contains a single quote - FIXME
-    echo "<input type='text' id='$ID' class='$class' name='$name' value=$quote{$value}$quote />";
-    if (!empty($layout['text'])) echo esc_attr($layout['text']);
+    $html = "<input type='text' id='$ID' class='";
+    $html.= (isset($layout['class'])) ? $layout['class'] : 'regular-text';
+    $html.= "' name='$name' value='";
+    $html.= esc_attr(sanitize_text_field($value));
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : '';
+    $html.= "' />";
+    $html.= (!empty($layout['text'])) ? "<span class=''> ".esc_attr($layout['text'])."</span>" : '';
+    echo $html;
   }
 
   private function render_title($data) {
@@ -428,7 +433,6 @@ abstract class Basic_Admin_Form {
       $layout['text'] = "<strong>{$layout['text']}</strong>";
     $this->render_display($data);
   }
-
 
   /**  Validate functions  **/
 

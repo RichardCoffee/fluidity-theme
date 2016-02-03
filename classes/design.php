@@ -24,7 +24,7 @@ class Design_Theme_Options {
     $layout['logo']   = array('default' => '',
                               'label'   => __('Theme Logo','fluid'),
                               'render'  => 'image',
-                              'class'   => 'upload-img',
+                              'divcss'  => 'upload-img',
                               'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
                                                  'button' => __('Assign Logo',             'tcc-fluid')));
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
@@ -38,7 +38,7 @@ class Design_Theme_Options {
                               'label'   => __('Font Size','tcc-fluid'),
                               'text'    => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
                               'render'  => 'text',
-                              'class'   => 'tcc_text_3em');
+                              'divcss'  => 'tcc_text_3em');
 /*    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
                               'text'    => __('Use these options to add/change the background images','tcc-fluid'),
                               'render'  => 'title');
