@@ -74,8 +74,8 @@ class Admin_Field extends Form_Field {
     }
   }
 
-  public function input() {
-    parent::input(false);
+  public function input($label=false) {
+    parent::input($label);
   }
 
 }

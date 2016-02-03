@@ -1,6 +1,6 @@
 <?php
 
-new Design_Theme_Options;
+$fluid_design = new Design_Theme_Options();
 
 class Design_Theme_Options {
 
@@ -18,7 +18,7 @@ class Design_Theme_Options {
   }
 
   public function describe_design() {
-    _e('Design Options','tcc-theme-options');
+    _e('Design Options','tcc-fluid');
   }
 
   protected static function design_layout() {
