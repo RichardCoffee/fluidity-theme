@@ -109,13 +109,13 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       #register_setting($this->slug,'tcc_options_about',array($this,$validate));
 #log_entry("register  group: ".$this->slug);
 #log_entry("register option: $current");
-      add_settings_section($current,$title,array($this,$describe),$this->slug);
+      add_settings_section($current,$title,array($this,$describe),$current);
       #add_settings_section('tcc_options_about',$title,array($this,$describe),$this->slug);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
     } //*/
-#log_entry('new whitelist',$new_whitelist_options);
+log_entry('new whitelist',$new_whitelist_options);
 log_entry('whitelist',$whitelist_options);
 log_entry('sections',$wp_settings_sections);
 log_entry('fields',$wp_settings_fields);

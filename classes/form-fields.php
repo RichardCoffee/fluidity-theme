@@ -7,18 +7,19 @@
 
 abstract class Form_Field {
 
-  protected $callback = 'input';
-  protected $click;
-  protected $css      = '';
-  protected $echo     = true;
-  protected $id;
-  protected $label; // label css
-  protected $name;
-  protected $placeholder;
-  protected $post_id;
-  protected $text     = '';
-  protected $type     = 'text';
-  protected $value;
+  protected $callback = 'input';    # function to display field
+  protected $click;                 # onchange attribute
+  protected $css      = '';         # field css
+  protected $echo     = true;       # echo html
+  protected $id;                    # field id
+  protected $label;                 # label css
+  protected $name;                  # field name
+  protected $placeholder;           # placeholder text
+  protected $post_id;               # word press post id number
+  protected $sanit    = 'esc_attr'; # sanitize value before display
+  protected $text     = '';         # label text
+  protected $type     = 'text';     # type of field
+  protected $value;                 # field value
 
   public function __construct($args) {
     foreach($args as $key=>$value) {
@@ -54,7 +55,6 @@ abstract class Form_Field {
 
 class Admin_Field extends Form_Field {
 
-  protected $sanit   = 'esc_attr';
   protected $default = '';
   protected $group;
 
@@ -68,7 +68,7 @@ class Admin_Field extends Form_Field {
 
   public function register_field() {
     if (!empty($this->group)) {
-      register_setting($this->group,$this->name,$this->clean);
+      register_setting($this->group,$this->name,$this->sanit);
       $callback = (is_array($this->callback)) ? $this->callback : array(&$this,$this->callback);
       add_settings_field($this->name, $this->label(), $callback, $this->group);
     }
