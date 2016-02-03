@@ -105,7 +105,7 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      register_setting($this->slug,$current,array($this,$validate));
+      register_setting($current,$current,array($this,$validate));
       #register_setting($this->slug,'tcc_options_about',array($this,$validate));
 #log_entry("register  group: ".$this->slug);
 #log_entry("register option: $current");
