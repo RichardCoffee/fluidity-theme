@@ -116,9 +116,9 @@ global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields, $white
       }
     } //*/
 #log_entry('new whitelist',$new_whitelist_options);
-#log_entry('whitelist',$whitelist_options);
-#log_entry('sections',$wp_settings_sections);
-#log_entry('fields',$wp_settings_fields);
+log_entry('whitelist',$whitelist_options);
+log_entry('sections',$wp_settings_sections);
+log_entry('fields',$wp_settings_fields);
   }
 
   public function register_multi_form() {   }

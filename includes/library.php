@@ -207,7 +207,7 @@ if (!function_exists('list_filter_hooks')) {
 
 // generate log entry, with comment
 if (!function_exists('log_entry')) {
-  function log_entry($message,$mess2='') {
+  function log_entry($message,$mess2='',$mess3='') {
     if (WP_DEBUG) {
       if (is_array($message) || is_object($message)) {
         error_log(print_r($message, true));
@@ -215,6 +215,7 @@ if (!function_exists('log_entry')) {
         error_log($message);
       }
       if ($mess2) log_entry($mess2);
+      if ($mess3) log_entry($mess3);
     }
   }
 }

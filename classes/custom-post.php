@@ -24,11 +24,11 @@ abstract class TCC_Custom_Post_Type {
   private static $types = array('posts');
 
   private static function translated_text() {
-    return array('add'    => _x('Add New %s', 'placeheader string will be singular form','tcc-theme-options'),
-                 'all'    => _x('All %s',     'placeholder string will be plural form',  'tcc-theme-options'),
-                 'edit'   => _x('Edit %s',    'placeholder string will be singular form','tcc-theme-options'),
-                 'new'    => _x('New %s',     'placeholder string will be singular form','tcc-theme-options'),
-                 'search' => _x('Search %s',  'placeholder string will be plural form',  'tcc-theme-options'));
+    return array('add'    => _x('Add New %s', 'placeheader string will be singular form','tcc-fluid'),
+                 'all'    => _x('All %s',     'placeholder string will be plural form',  'tcc-fluid'),
+                 'edit'   => _x('Edit %s',    'placeholder string will be singular form','tcc-fluid'),
+                 'new'    => _x('New %s',     'placeholder string will be singular form','tcc-fluid'),
+                 'search' => _x('Search %s',  'placeholder string will be plural form',  'tcc-fluid'));
   }
 
   public function __construct($data) {
@@ -67,7 +67,7 @@ abstract class TCC_Custom_Post_Type {
     if (property_exists($this,$name)) {
       return $this->$name; }
     $trace = debug_backtrace();
-    tcc_log_entry('Error:  invalid property',$trace);
+    log_entry('Error:  invalid property',$trace);
     return null;
   }
 
@@ -108,16 +108,16 @@ abstract class TCC_Custom_Post_Type {
       'singular_name' => $this->label,
       'add_new'       => sprintf($phrases['add'],   $this->label),
       'add_new_item'  => sprintf($phrases['add'],   $this->label),
-      'edit'          => sprintf(_x('Edit %s',     'placeholder will be in plural form',  'tcc-theme-options'),$this->plural),
+      'edit'          => sprintf(_x('Edit %s',     'placeholder will be in plural form',  'tcc-fluid'),$this->plural),
       'edit_item'     => sprintf($phrases['edit'],  $this->label),
       'new_item'      => sprintf($phrases['new'],   $this->label),
       'all_items'     => sprintf($phrases['all'],   $this->plural),
-      'view'          => sprintf(_x('View %s',     'placeholder will be in plural form',  'tcc-theme-options'),$this->plural),
-      'view_item'     => sprintf(_x('View %s',     'placeholder will be in singular form','tcc-theme-options'),$this->label),
-      'items_archive' => sprintf(_x('%s Archive',  'placeholder will be in singular form','tcc-theme-options'),$this->label),
+      'view'          => sprintf(_x('View %s',     'placeholder will be in plural form',  'tcc-fluid'),$this->plural),
+      'view_item'     => sprintf(_x('View %s',     'placeholder will be in singular form','tcc-fluid'),$this->label),
+      'items_archive' => sprintf(_x('%s Archive',  'placeholder will be in singular form','tcc-fluid'),$this->label),
       'search_items'  => sprintf($phrases['search'],$this->plural),
-      'not_found'     => sprintf(_x('No %s found', 'placeholder will be in plural form',  'tcc-theme-options'),$this->plural),
-      'not_found_in_trash' => sprintf(_x('No %s found in trash','placeholder will be in plural form','tcc-theme-options'),$this->plural));
+      'not_found'     => sprintf(_x('No %s found', 'placeholder will be in plural form',  'tcc-fluid'),$this->plural),
+      'not_found_in_trash' => sprintf(_x('No %s found in trash','placeholder will be in plural form','tcc-fluid'),$this->plural));
     return $arr;
   }
 
@@ -131,7 +131,7 @@ abstract class TCC_Custom_Post_Type {
                  'search_items'      => sprintf($phrases['search'],$plural),
                  'all_items'         => sprintf($phrases['all'],   $plural),
                  'edit_item'         => sprintf($phrases['edit'],  $single),
-                 'update_item'       => sprintf(_x('Update %s','placeholder will be in singular form','tcc-theme-options'),$single),
+                 'update_item'       => sprintf(_x('Update %s','placeholder will be in singular form','tcc-fluid'),$single),
                  'add_new_item'      => sprintf($phrases['add'],   $single),
                  'new_item_name'     => sprintf($phrases['new'],   $single),
                  'menu_name'         => $plural);
@@ -220,7 +220,7 @@ abstract class TCC_Custom_Post_Type {
       if (isset($data['columns']['content'])) {
         if (is_callable(array($this,$this->columns['content']))) {
           add_action('manage_posts_custom_column',array($this,$this->columns['content']),10,2);
-        } else { tcc_log_entry('columns[content] not callable',$this); }
+        } else { log_entry('columns[content] not callable',$this); }
       }
     }
   }
@@ -259,7 +259,7 @@ abstract class TCC_Custom_Post_Type {
             $open = $this->comments;
           } else {
 #            $postime = get_the_time('U', $post_id);
-             tcc_log_entry('WARNING: Numeric values for custom_post_type->comments is not yet supported.');
+             log_entry('WARNING: Numeric values for custom_post_type->comments is not yet supported.');
           }
         }
       }

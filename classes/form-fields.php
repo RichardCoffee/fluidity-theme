@@ -5,17 +5,20 @@
  *
  */
 
-class Form_Field {
+abstract class Form_Field {
 
   protected $callback = 'input';
   protected $click;
   protected $css      = '';
   protected $echo     = true;
+  protected $id;
   protected $label; // label css
   protected $name;
   protected $placeholder;
   protected $post_id;
   protected $text     = '';
+  protected $type     = 'text';
+  protected $value;
 
   public function __construct($args) {
     foreach($args as $key=>$value) {
@@ -25,51 +28,54 @@ class Form_Field {
       $this->placeholder = $this->text; }
   }
 
-  public function input() {
+  public function input($label=true) {
     $html = '';
-    if ($this->text) {
-      $html.= "<label";
-      $html.= ($this->label) ? " class='{$this->label}'" : "";
-      $html.= " for='{$this->name}'>{$this->text}</label>";
-    }
-    $html.= "<input id='{$this->name}' type='text' class='{$this->css}' name='{$this->name}'";
-    $html.= "value='{$this->value}' placeholder='{$this->placeholder}' />";
+    if ($label && $this->text) { $html.= $this->label(); }
+    $html.= "<input";
+    $html.= (empty($this->id)) ? " id='{$this->name}'" : " id='{$this->id}'";
+    $html.= " type='{$this->type}'";
+    $html.= " class='{$this->css}'";
+    $html.= " name='{$this->name}'";
+    $html.= " value='{$this->value}'";
+    $html.= " placeholder='{$this->placeholder}'";
+    $html.= " />";
     echo $html;
+  }
+
+  protected function label() {
+    $html = "<label";
+    $html.= ($this->label) ? " class='{$this->label}'" : "";
+    $html.= " for='".((empty($this->id)) ? $this->name : $this->id);
+    $html.= "'>{$this->text}</label>";
+    return $html;
   }
 
 }
 
 class Admin_Field extends Form_Field {
 
-  protected $clean   = 'esc_attr';
+  protected $sanit   = 'esc_attr';
   protected $default = '';
   protected $group;
 
   public function __construct($args) {
     parent::__construct($args);
-    $clean = $this->clean;
-    $value = $clean(get_option($this->name));
-    if (empty($value)) $value = $clean($this->default);
+    $sanit = $this->sanit;
+    $this->value = $clean(get_option($this->name));
+    if (empty($value)) $value = $sanit($this->default);
     add_filter('admin_init',array(&$this,'register_field'),9);
   }
 
   public function register_field() {
-#global $new_whitelist_options, $wp_settings_sections,$wp_settings_fields;
     if (!empty($this->group)) {
       register_setting($this->group,$this->name,$this->clean);
-      $label = "<label for='{$this->name}'>{$this->text}</label>";
-      add_settings_field($this->name,$label,array(&$this,$this->callback),$this->group);
+      $callback = (is_array($this->callback)) ? $this->callback : array(&$this,$this->callback);
+      add_settings_field($this->name, $this->label(), $callback, $this->group);
     }
-#log_entry($new_whitelist_options);
-#log_entry($wp_settings_sections);
-#log_entry($wp_settings_fields);
   }
 
   public function input() {
-    $clean = $this->clean;
-    $value = $clean(get_option($this->name));
-    if (empty($value)) $value = $clean($this->default);
-    echo "<input type='text' id='{$this->name}' class='{$this->css}' name='{$this->name}' value='$value' />";
+    parent::input(false);
   }
 
 }
@@ -81,24 +87,8 @@ class Meta_Field extends Form_Field {
     $this->value = get_post_meta($this->post_id,$this->name,true);
   }
 
-  public function input() {
-    $html = '';
-    if ($this->text) {
-      $html.= "<label";
-      $html.= ($this->label) ? " class='{$this->label}'" : "";
-      $html.= " for='{$this->name}'>{$this->text}</label>";
-    }
-    $html.= "<input id='{$this->name}' type='text' class='{$this->css}' name='{$this->name}'";
-    $html.= "value='{$this->value}' placeholder='{$this->placeholder}' />";
-    echo $html;
-  }
-
 }
 
 class Theme_Field extends Form_Field {
-
-  public function input() {
-
-  }
 
 }
