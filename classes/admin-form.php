@@ -98,6 +98,29 @@ abstract class Basic_Admin_Form {
 
   public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
+    $larr = array('display','skip');
+    foreach($this->form as $key=>$data) {
+      if (!$this->tab===$key) continue;
+      $option   = (isset($data['option']))   ? $data['option']   : $this->prefix.$key; #  also used for the group and section
+      $validate = (isset($data['validate'])) ? $data['validate'] : $validater;
+      register_setting($option,$option,array($this,$validate));
+      $title    = (isset($data['title']))    ? $data['title']    : '';
+      $describe = (isset($data['describe'])) ? $data['describe'] : 'description';
+      $describe = (is_array($describe)) ? $describe : array($this,$describe);
+      add_settings_section($option,$title,$describe,$option);
+      foreach($data['layout'] as $itemID=>$item) {
+        $this->register_field($option,$key,$itemID,$item);
+#        if (!isset($item['render'])) continue;
+#        if ($item['render']=='skip') continue;
+#        $label = (in_array($item['render'],$larr)) ? $item['label'] : "<label for='$itemID'>{$item['label']}</label>";
+#        $label = ($item['render']=='title') ? "<span class='tcc-title'>{$item['label']}</span>" : $label;
+#        add_settings_field($itemID, $label, array(__CLASS__,'render_options'), $option, $option, array($key,$itemID));
+      }
+    }
+  }
+
+/*  public function register_tabbed_form() {
+    $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
       if (!($section['option']===$this->current)) continue;
@@ -113,26 +136,26 @@ abstract class Basic_Admin_Form {
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
-    } //*/
-  }
+    }
+  } //*/
 
-  private function register_field($current,$key,$item,$data) {
+  private function register_field($option,$key,$itemID,$data) {
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) return;
     if ($data['render']=='skip') return;
     if ($data['render']=='array') {
-/*      $count = max(count($data['default']),count($this->form_opts[$key][$item]));
+/*      $count = max(count($data['default']),count($this->form_opts[$key][$itemID]));
       for ($i=0;$i<$count;$i++) {
-        $label  = "<label for='$item'>{$data['label']} ".($i+1)."</label>";
-        $args   = array('key'=>$key,'item'=>$item,'num'=>$i);
+        $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
+        $args   = array('key'=>$key,'item'=>$itemID,'num'=>$i);
 #        if ($i+1==$count) { $args['add'] = true; }
         add_settings_field("{$item}_$i",$label,array($this,$this->options),$this->slug,$current,$args);
       } //*/
     } else {
-      $label = $this->field_label($item,$data);
-      $args  = array('key'=>$key,'item'=>$item);
-      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-      add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
+      $label = $this->field_label($itemID,$data);
+      $args  = array('key'=>$key,'item'=>$itemID);
+      #add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
+      add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
     }
   }
 
