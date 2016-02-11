@@ -111,6 +111,33 @@ class TCC_Logo_Widget extends TCC_Basic_Widget {
 
 }
 
+class TCC_Search_Widget extends TCC_Basic_Widget {
+
+  function __construct() {
+    $this->title = __('Search','tcc-fluid');
+    $this->desc  = $this->title;
+    $this->slug  = 'tcc_search';
+    parent::__construct();
+    unregister_widget('WP_Widget_Search');
+  }
+
+  protected function pre_widget($args) {
+    $title = apply_filters('widget_title',$args['tcc-title'],$this->id_base);
+    echo $args['before_widget'];
+    if (!empty($title)) {
+      echo $args['before_title'].$title.$args['after_title'];
+    }
+    else {
+      echo "<div class='panel-body'>";
+    }
+  }
+
+  public function inner_widget($args,$instance) {
+    get_search_form();
+  }
+
+}
+
 do_action('tcc_widget_class_loaded');
 
 function tcc_register_widgets() {

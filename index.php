@@ -5,7 +5,7 @@
  */
 
 get_header();
-$micro  = TCC_Microdata::get_instance();
+$micro  = microdata();
 $layout = ""; ?>
 
 <div id="fluid-index" class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
