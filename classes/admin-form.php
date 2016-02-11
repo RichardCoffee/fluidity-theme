@@ -108,8 +108,8 @@ abstract class Basic_Admin_Form {
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      add_settings_section($current,$title,$describe,$this->slug);
-      #add_settings_section($current,$title,$describe,$current);
+      #add_settings_section($current,$title,$describe,$this->slug);
+      add_settings_section($current,$title,$describe,$current);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
@@ -131,8 +131,8 @@ abstract class Basic_Admin_Form {
     } else {
       $label = $this->field_label($item,$data);
       $args  = array('key'=>$key,'item'=>$item);
-      add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-      #add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
+      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
+      add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
     }
   }
 
@@ -243,9 +243,10 @@ abstract class Basic_Admin_Form {
       </h2>
       <form method="post" action="options.php">
         <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
+        $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
         do_action("basic_form_pre_display_".$this->tab);
-        settings_fields('fluidity_options'); #$this->current);
-        do_settings_sections('fluidity_options'); #$this->current);
+        settings_fields($current); #'fluidity_options'); #$this->current);
+        do_settings_sections($current); #'fluidity_options'); #$this->current);
         do_action("basic_form_post_display_".$this->tab);
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
