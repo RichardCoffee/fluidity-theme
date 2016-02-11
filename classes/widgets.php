@@ -128,7 +128,7 @@ class TCC_Search_Widget extends TCC_Basic_Widget {
       echo $args['before_title'].$title.$args['after_title'];
     }
     else {
-      echo "<div class='panel-body'>";
+      echo "<div>";  #  replace .panel-body div
     }
   }
 
