@@ -100,6 +100,7 @@ abstract class Basic_Admin_Form {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     $larr = array('display','skip');
     foreach($this->form as $key=>$data) {
+      if (!((array)$data===$data)) continue;  #  skip string variables
       if (!$this->tab===$key) continue;
       $option   = (isset($data['option']))   ? $data['option']   : $this->prefix.$key; #  also used for the group and section
       $validate = (isset($data['validate'])) ? $data['validate'] : $validater;
