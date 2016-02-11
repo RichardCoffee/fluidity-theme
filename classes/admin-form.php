@@ -131,8 +131,8 @@ abstract class Basic_Admin_Form {
     } else {
       $label = $this->field_label($item,$data);
       $args  = array('key'=>$key,'item'=>$item);
-      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
-      add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
+      add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
+      #add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
     }
   }
 
