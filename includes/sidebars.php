@@ -56,6 +56,10 @@ if (!function_exists('fluidity_get_sidebar')) {
 if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($args) {
     $sidebars = (array)$args;
+    #if (always use sidebar) { // FIXME
+      $sidebars[] = 'standard';
+      $sidebars[] = 'home';
+    #}
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
