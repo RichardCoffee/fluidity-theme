@@ -103,11 +103,13 @@ abstract class Basic_Admin_Form {
       if (!($section['option']===$this->current)) continue;
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      register_setting($this->slug,$current,array($this,$validate));
+      #register_setting($this->slug,$current,array($this,$validate));
+      register_setting($current,$current,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      add_settings_section($current,$title,$describe,$this->slug);
+      #add_settings_section($current,$title,$describe,$this->slug);
+      add_settings_section($current,$title,$describe,$current);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
@@ -129,7 +131,8 @@ abstract class Basic_Admin_Form {
     } else {
       $label = $this->field_label($item,$data);
       $args  = array('key'=>$key,'item'=>$item);
-      add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
+      #add_settings_field($item,$label,array($this,$this->options),$this->slug,$current,$args);
+      add_settings_field($item,$label,array($this,$this->options),$current,$current,$args);
     }
   }
 
