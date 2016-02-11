@@ -8,7 +8,7 @@ who_am_i();
 
 $loaded = false;
 $called = fluidity_sidebar_parameter();
-echo "<p>$called</p>";
+echo "<p>called = $called</p>";
 if ($called=='footer') {
   $loaded = fluidity_load_sidebar('footer');
 } else if (is_front_page()) {
