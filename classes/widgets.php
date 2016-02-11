@@ -115,7 +115,7 @@ class TCC_Search_Widget extends TCC_Basic_Widget {
 
   function __construct() {
     $this->title = __('Search','tcc-fluid');
-    $this->desc  = __('Search Form (Theme specific)','tcc-fluid');
+    $this->desc  = __('Search form  - Fluidity theme specific','tcc-fluid');
     $this->slug  = 'tcc_search';
     parent::__construct();
     unregister_widget('WP_Widget_Search');
@@ -144,6 +144,7 @@ function tcc_register_widgets() {
   register_widget('TCC_Address_Widget');
   register_widget('TCC_Login_Widget');
   register_widget('TCC_Logo_Widget');
+  register_widget('TCC_Search_Widget');
   do_action('tcc_register_widgets');
 }
 add_action('widgets_init','tcc_register_widgets'); ?>
