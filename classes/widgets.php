@@ -115,7 +115,7 @@ class TCC_Search_Widget extends TCC_Basic_Widget {
 
   function __construct() {
     $this->title = __('Search','tcc-fluid');
-    $this->desc  = $this->title;
+    $this->desc  = __('Search Form (Theme specific)','tcc-fluid');
     $this->slug  = 'tcc_search';
     parent::__construct();
     unregister_widget('WP_Widget_Search');
