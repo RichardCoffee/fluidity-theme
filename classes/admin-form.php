@@ -108,8 +108,8 @@ abstract class Basic_Admin_Form {
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      #add_settings_section($current,$title,$describe,$this->slug);
-      add_settings_section($current,$title,$describe,$current);
+      add_settings_section($current,$title,$describe,$this->slug);
+      #add_settings_section($current,$title,$describe,$current);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
