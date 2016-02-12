@@ -130,13 +130,15 @@ abstract class Basic_Admin_Form {
       if (!($section['option']===$this->current)) continue;
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      register_setting($this->slug,$current,array($this,$validate));
+      register_setting($this->slug,$this->slug,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      add_settings_section($current,$title,$describe,$this->slug);
+      #add_settings_section($current,$title,$describe,$this->slug);
+      add_settings_section($this->slug,$title,$describe,$this->slug);
       foreach($section['layout'] as $item=>$data) {
-        $this->register_field($current,$key,$item,$data);
+        #$this->register_field($current,$key,$item,$data);
+        $this->register_field($this->slug,$key,$item,$data);
       }
     }
   } //*/
@@ -270,8 +272,8 @@ abstract class Basic_Admin_Form {
         <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
         $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
         do_action("fluid_pre_display_".$this->tab);
-        settings_fields('fluidity_options'); #$this->current);
-        do_settings_sections('fluidity_options'); #$this->current);
+        settings_fields($this->slug); #$this->current);
+        do_settings_sections($this->slug); #$this->current);
         do_action("fluid_post_display_".$this->tab);
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
