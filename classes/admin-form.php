@@ -35,7 +35,9 @@ abstract class Basic_Admin_Form {
   public function load_form_page() {
     global $plugin_page;
     if ($plugin_page===$this->slug) {
+log_entry("hook_suffix: ".$this->hook_suffix);
       if (isset($_GET['tab'])) $this->tab = sanitize_key($_GET['tab']);
+log_entry("tab: ".$this->tab);
       $this->form_text = $this->form_text();
       if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
         $this->form = $this->form_layout();
