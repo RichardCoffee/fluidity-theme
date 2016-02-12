@@ -3,7 +3,7 @@
 class Design_Theme_Options {
 
   public function __construct(Fluidity_Options_Form $form) {
-    add_filter('tcc_options_form_layout', array($this,'form_layout'),4);
+    add_filter('fluidity_options_form_layout', array($this,'form_layout'),10);
     $form->tab = 'design';
   }
 

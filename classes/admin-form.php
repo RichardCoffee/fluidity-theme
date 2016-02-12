@@ -14,6 +14,7 @@ abstract class Basic_Admin_Form {
   protected $form      =  array();
   protected $form_opts =  array();
   protected $form_text =  array();
+  protected $hook_suffix;
   protected $options;
   protected $prefix    = 'options_prefix_';
   protected $register;

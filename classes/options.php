@@ -39,13 +39,13 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
       $menu = __('Theme Options','tcc-fluid');
       $func = array($this,$this->render);
       if ($about['loca']=='appearance') {
-        add_theme_page($page,$menu,$cap,$this->slug,$func);
+        $this->hook_suffix = add_theme_page($page,$menu,$cap,$this->slug,$func);
       } else if ($about['loca']=='settings') {
-        add_options_page($page,$menu,$cap,$this->slug,$func);
+        $this->hook_suffix = add_options_page($page,$menu,$cap,$this->slug,$func);
       } else {
         $icon = 'dashicons-admin-settings';
         $priority = ($about['wp_posi']=='top') ? '1.01302014' : '99.9122473024';
-        add_menu_page($page,$menu,$cap,$this->slug,$func,$icon,$priority);
+        $this->hook_suffix = add_menu_page($page,$menu,$cap,$this->slug,$func,$icon,$priority);
       }
       do_action('tcc_admin_menu_setup');
     }
@@ -66,7 +66,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  */
   protected function form_layout($section='') {
     $form['title'] = __('Theme Options','tcc-fluid');
-    $form = apply_filters('tcc_options_form_layout',$form);
+    $form = apply_filters('fluidity_options_form_layout',$form);
     $form['about'] = array('describe' => 'describe_about',
                            'title'    => __('About / Contact','tcc-fluid'),
                            'option'   => 'tcc_options_about',
@@ -104,7 +104,8 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
  *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
- *           change: (string)  Required only if render is set to 'checkbox','font','radio','select', and 'text'.  Will be applied as an 'onchange' html attribute (optional)
+ *           change: (string)  Required only if render is set to 'checkbox','font','radio','select', and 'text'.
+ ^                             Will be applied as an 'onchange' html attribute (optional)
  *            media:           Required only if render is set to 'image'.
  *                   (array)     title:  (string) Title displayed in media uploader
  *                               button: (string) Button text - used for both the admin and the media buttons

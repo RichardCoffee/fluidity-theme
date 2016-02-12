@@ -1,29 +1,41 @@
 
 This file describes how to implement a new tab on the Theme Options screen.
 
-The admin options screen is controlled by the form array.  The array is
-initialized in the Fluidity_Options_Form class, which is defined in
+The admin options screen is controlled by the form layout array.  The array
+is initialized in the Fluidity_Options_Form class, which is defined in
 classes/options.php.  That file contains an explanation of the item arrays,
 and is the definitive guide.  In cases where this document conflicts with
 the options.php file, the options.php should be considered the more
 reliable source.  The various tabs on the options screen are defined in
 these files:
 
-  Design: classes/design.php
-  Layout: classes/layout.php
-  Colors: classes/colors.php
-  About:  classes/options.php
+  Design: classes/design.php, filter priority 10
+  Layout: classes/layout.php, filter priority 20
+  Colors: classes/colors.php, filter priority 30
+  About:  classes/options.php, no priority, will always be last
 
 When adding a tab to the screen, classes/design.php can be used as a guide.
 
+The form layout array has this structure:
 
-The form array has this structure:
+  Array ( 'design' => Design form tab array,
+          'layout' => Layout form tab array,
+          'colors' => Colors form tab array,
+          'about'  => About form tab array );
 
-  Array (  'describe'  =>  name of, or pointer to, a function which will
+
+
+
+The form tab array has this structure:
+
+  Array (  'title'     =>  text that will appear on the tab itself.  WordPress
+                           will also display this as the section title.
+           'describe'  =>  name of, or pointer to, a function which will
                            display desired content at the top of the
                            screen, appearing just under the title.
-           'title'     =>  text that will appear on the tab itself.
-           'option'    =>  option name, used to save and retrieve the data array
+           'option'    =>  option name, used to save and retrieve the data
+                           array.  If not specified, the default will be set
+                           as "fluidity_options_{key}".
            'layout'    =>  main array, used to display and format all the options
 
 The layout array contains the keys of every item appearing on the form screen
@@ -33,8 +45,14 @@ The layout array contains the keys of every item appearing on the form screen
           'option3' =>  option 3 item array
 
 
-The item array has these required fields:
+The option item array has these required fields:
 
   'default' =>  must be present, even if blank.
-  'label'   =>  text that appears on the left side of the screen.  Identifies the option.
-  'render'  =>  determines how
+  'label'   =>  text that appears on the left side of the screen.  Identifies
+                the option.
+  'render'  =>  suffix of method used to display the item, ie: 'radio' will
+                cause the 'render_radio' method to be called.  Possible
+                values are checkbox, colorpicker, display, font, image,
+                radio, select, text, textarea, wp_dropdown, skip
+  'help'    =>  text displayed as a title attribute.  set for both the label
+                and the input item.
