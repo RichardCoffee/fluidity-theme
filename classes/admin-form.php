@@ -134,15 +134,15 @@ abstract class Basic_Admin_Form {
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      #add_settings_section($current,$title,$describe,$this->slug);
-      add_settings_section($this->slug,$title,$describe,$this->slug);
+      add_settings_section($current,$title,$describe,$this->slug);
+      #add_settings_section($this->slug,$title,$describe,$this->slug);
       foreach($section['layout'] as $item=>$data) {
-        #$this->register_field($current,$key,$item,$data);
-        $this->register_field($this->slug,$key,$item,$data);
+        $this->register_field($current,$key,$item,$data);
+        #$this->register_field($this->slug,$key,$item,$data);
       }
     }
 global $whitelist_options;
-log_entry($whitelist_options);
+log_entry('after register',$whitelist_options);
   } //*/
 
   private function register_field($option,$key,$itemID,$data) {
