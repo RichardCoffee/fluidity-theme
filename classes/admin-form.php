@@ -141,6 +141,8 @@ abstract class Basic_Admin_Form {
         $this->register_field($this->slug,$key,$item,$data);
       }
     }
+global $whitelist_options;
+log_entry($whitelist_options);
   } //*/
 
   private function register_field($option,$key,$itemID,$data) {
