@@ -111,7 +111,7 @@ log_entry("tab: ".$this->tab);
       $title    = (isset($data['title']))    ? $data['title']    : '';
       $describe = (isset($data['describe'])) ? $data['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      add_settings_section($option,$title,$describe,$option);
+      add_settings_section($option,$title,$describe,$this->slug);
       foreach($data['layout'] as $itemID=>$item) {
         $this->register_field($option,$key,$itemID,$item);
 #        if (!isset($item['render'])) continue;
@@ -158,8 +158,8 @@ log_entry("tab: ".$this->tab);
     } else {
       $label = $this->field_label($itemID,$data);
       $args  = array('key'=>$key,'item'=>$itemID);
-      #add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$current,$args);
-      add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
+      add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$option,$args);
+      #add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
     }
   }
 
