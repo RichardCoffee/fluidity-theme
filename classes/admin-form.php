@@ -99,7 +99,7 @@ abstract class Basic_Admin_Form {
     }
   }
 
-  public function register_tabbed_form() {
+/*  public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     $larr = array('display','skip');
     foreach($this->form as $key=>$data) {
@@ -121,22 +121,20 @@ abstract class Basic_Admin_Form {
 #        add_settings_field($itemID, $label, array(__CLASS__,'render_options'), $option, $option, array($key,$itemID));
       }
     }
-  }
+  } //*/
 
-/*  public function register_tabbed_form() {
+  public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
       if (!((array)$section===$section)) continue; // skip string variables
       if (!($section['option']===$this->current)) continue;
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      #register_setting($this->slug,$current,array($this,$validate));
-      register_setting($current,$current,array($this,$validate));
+      register_setting($this->slug,$current,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      #add_settings_section($current,$title,$describe,$this->slug);
-      add_settings_section($current,$title,$describe,$current);
+      add_settings_section($current,$title,$describe,$this->slug);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
       }
@@ -147,20 +145,20 @@ abstract class Basic_Admin_Form {
     if (is_string($data))        return; // skip string variables
     if (!isset($data['render'])) return;
     if ($data['render']=='skip') return;
-    if ($data['render']=='array') {
-/*      $count = max(count($data['default']),count($this->form_opts[$key][$itemID]));
+/*    if ($data['render']=='array') {
+      $count = max(count($data['default']),count($this->form_opts[$key][$itemID]));
       for ($i=0;$i<$count;$i++) {
         $label  = "<label for='$itemID'>{$data['label']} ".($i+1)."</label>";
         $args   = array('key'=>$key,'item'=>$itemID,'num'=>$i);
 #        if ($i+1==$count) { $args['add'] = true; }
         add_settings_field("{$item}_$i",$label,array($this,$this->options),$this->slug,$current,$args);
-      } //*/
-    } else {
+      }
+    } else { //*/
       $label = $this->field_label($itemID,$data);
       $args  = array('key'=>$key,'item'=>$itemID);
       add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$option,$args);
       #add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
-    }
+#    }
   }
 
   private function field_label($ID,$data) {
@@ -271,10 +269,10 @@ abstract class Basic_Admin_Form {
       <form method="post" action="options.php">
         <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
         $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
-        do_action("basic_form_pre_display_".$this->tab);
-        settings_fields($current); #'fluidity_options'); #$this->current);
-        do_settings_sections($current); #'fluidity_options'); #$this->current);
-        do_action("basic_form_post_display_".$this->tab);
+        do_action("fluid_pre_display_".$this->tab);
+        settings_fields('fluidity_options'); #$this->current);
+        do_settings_sections('fluidity_options'); #$this->current);
+        do_action("fluid_post_display_".$this->tab);
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
     </div><?php //*/

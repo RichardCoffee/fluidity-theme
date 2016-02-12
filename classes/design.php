@@ -1,5 +1,7 @@
 <?php
 
+require_once('typography.php');
+
 class Theme_Design_Options {
 
   public function __construct(Fluidity_Options_Form $form) {
