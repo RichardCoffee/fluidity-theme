@@ -1,10 +1,9 @@
 <?php
 
-class Design_Theme_Options {
+class Theme_Design_Options {
 
   public function __construct(Fluidity_Options_Form $form) {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),10);
-    $form->tab = 'design';
   }
 
   public function form_layout($form) {

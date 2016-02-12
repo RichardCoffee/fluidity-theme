@@ -9,8 +9,8 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   private static $text     = null;
 
   public function form_trans_text($text,$orig) {
-    $text['object']  = __('Options','tcc-fluid');
-    $text['subject'] = __('Theme','tcc-fluid');
+    $text['submit']['object']  = __('Options','tcc-fluid');
+    $text['submit']['subject'] = __('Theme','tcc-fluid');
     return $text;
   } //*/
 
@@ -20,9 +20,9 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     $this->slug     = 'fluidity_options';
     $this->type     = 'tabbed';
     add_action('admin_menu',     array($this,'add_menu_option'));
-    add_filter('basic_form_text',array($this,'form_trans_text'),10,2);
+    add_filter('form_text_'.$this->slug,array($this,'form_trans_text'),10,2);
     parent::__construct();
-    $fluid_design = new Design_Theme_Options($this);
+    $fluid_design = new Theme_Design_Options($this);
   }
 
   public static function get_instance() {

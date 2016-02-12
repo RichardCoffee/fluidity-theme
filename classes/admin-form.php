@@ -35,9 +35,9 @@ abstract class Basic_Admin_Form {
   public function load_form_page() {
     global $plugin_page;
     if ($plugin_page===$this->slug) {
-log_entry("hook_suffix: ".$this->hook_suffix);
+//log_entry("hook_suffix: ".$this->hook_suffix);
       if (isset($_GET['tab'])) $this->tab = sanitize_key($_GET['tab']);
-log_entry("tab: ".$this->tab);
+//log_entry("tab: ".$this->tab);
       $this->form_text = $this->form_text();
       if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
         $this->form = $this->form_layout();
@@ -73,7 +73,7 @@ log_entry("tab: ".$this->tab);
                   'media'  => array('title'     => __('Assign/Upload Image','tcc-fluid'),
                                     'button'    => __('Assign Image','tcc-fluid'),
                                     'delete'    => __('Unassign Image','tcc-fluid')));
-    return apply_filters($this->slug.'_form_text',$text,$text);
+    return apply_filters('form_text_'.$this->slug,$text,$text);
   }
 
 
