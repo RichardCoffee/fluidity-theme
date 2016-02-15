@@ -2,7 +2,7 @@
 
 // Source? Purpose?
 function contextual_static_front_page_section($wp_customize) {
-    $wp_customize->get_section('static_front_page')->active_callback = 'is_front_page';
+  $wp_customize->get_section('static_front_page')->active_callback = 'is_front_page';
 }
 add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 

@@ -98,8 +98,8 @@ function get_valid_gravatar($email,$size=96) {
   return $avatar;
 }
 
-if (!function_exists('tcc_navigation')) {
-  function tcc_navigation($suffix='above') {
+if (!function_exists('fluid_navigation')) {
+  function fluid_navigation($suffix='above') {
     $older = __('Older posts','tcc-fluid');
     $newer = __('Newer posts','tcc-fluid'); ?>
     <div id="nav-<?php echo $suffix; ?>" class="navigation">
@@ -202,20 +202,20 @@ if (!function_exists('list_filter_hooks')) {
       #return $hooks;
     }
   }
-  #add_action('wp_footer','tcc_list_hooks');
+  #add_action('wp_footer','list_filter_hooks');
 }
 
 // generate log entry, with comment
 if (!function_exists('log_entry')) {
-  function log_entry($message,$mess2='',$mess3='') {
+  function log_entry() {
     if (WP_DEBUG) {
-      if (is_array($message) || is_object($message)) {
-        error_log(print_r($message, true));
-      } else {
-        error_log($message);
+      foreach (func_get_args() as $message) {
+        if (is_array($message) || is_object($message)) {
+          error_log(print_r($message, true));
+        } else {
+          error_log($message);
+        }
       }
-      if ($mess2) log_entry($mess2);
-      if ($mess3) log_entry($mess3);
     }
   }
 }

@@ -16,7 +16,7 @@ get_header(); ?>
     <div class="<?php echo $fluid->primary_class; ?>" <?php $micro->Blog(); ?>>
       <h1 class="text-center"><?php single_cat_title(); ?></h1><?php
       if (have_posts()) {
-        if ($wp_query->max_num_pages>1) tcc_navigation('above');
+        if ($wp_query->max_num_pages>1) fluid_navigation('above');
         $cnt = 0;
         while (have_posts()) {
           the_post(); ?>
@@ -26,7 +26,7 @@ get_header(); ?>
           </div><?php
           tcc_apply_clearfix($fluid->clearfix.'&cnt='.(++$cnt));
         }
-        if ($wp_query->max_num_pages>1) tcc_navigation('below');
+        if ($wp_query->max_num_pages>1) fluid_navigation('below');
       } else { ?>
         <div id="post-0" class="post error404 not-found">
           <h1 class="text-center"><?php _e('Not Found','tcc-fluid' ); ?></h1>

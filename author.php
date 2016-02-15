@@ -30,7 +30,7 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
           <div class='<?php echo $title_class; ?>' itemprop='headline'>
             <h3 class='text-center'><?php echo $title_posts; ?></h3>
           </div><?php
-          tcc_navigation('above'); ?>
+          fluid_navigation('above'); ?>
           <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' itemprop='blogPost' itemscope itemtype='http://schema.org/Blog'><?php
             $cnt = 0;
             while (have_posts()) {
@@ -41,7 +41,7 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
               tcc_apply_clearfix('lg=4&md=4&sm=6&xs=12&cnt='.++$cnt);
             } ?>
           </div><?php
-          tcc_navigation('below');
+          fluid_navigation('below');
         } else {
           // FIXME: this needs to point to the correct template
           //get_template_part('content','none');

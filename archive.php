@@ -27,7 +27,7 @@ get_header(); ?>
             do_action('tcc_pre_search'); ?>
           </div><?php
         }
-        if ($wp_query->max_num_pages>1) tcc_navigation('above');
+        if ($wp_query->max_num_pages>1) fluid_navigation('above');
         $cnt = 0;
         while(have_posts()) {
           the_post(); ?>
@@ -37,7 +37,7 @@ get_header(); ?>
           </div><?php
           tcc_apply_clearfix($fluid->clearfix.'&cnt='.(++$cnt));
         }
-        if ($wp_query->max_num_pages>1) tcc_navigation('below');
+        if ($wp_query->max_num_pages>1) fluid_navigation('below');
         if (is_search()) { ?>
           <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
             do_action('tcc_post_search'); ?>
