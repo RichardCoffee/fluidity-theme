@@ -21,7 +21,7 @@ if (!function_exists('tcc_color_scheme')) {
       $index  = rand(0,count($colors)-1);
       $color  = $colors[$index];
     }
-    return $color;
+    return apply_filter('tcc_color_scheme',$color);
   }
 }
 
