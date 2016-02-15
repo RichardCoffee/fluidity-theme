@@ -6,7 +6,8 @@
  */
 
 $micro = microdata();
-$color_scheme = tcc_color_scheme(); ?>
+$color_scheme = tcc_color_scheme();
+do_action('tcc_pre_header'); ?>
 
 <div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>" <?php $micro->WPHeader(); ?> role="banner">
 
@@ -25,4 +26,6 @@ $color_scheme = tcc_color_scheme(); ?>
     </div><?php
   } ?>
 
-</div>
+</div><?php
+
+do_action('tcc_post_header');

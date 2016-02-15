@@ -13,16 +13,16 @@ if (!isset($post->ID)) {
 require_once('classes/printer.php');
 
 // create new PDF document
-$pdf = new Fluidiety_Printer(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new Fluidity_Printer(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(__('Fluidity Printer','tcc-fluid'));
 $pdf->SetAuthor(get_the_author_meta('user_nicename',$post->post_author));  #  post author
 $pdf->SetTitle(get_the_title($post->ID));  #  post title
 $pdf->SetSubject(wp_title(null,false,'right'));  #  page title
-$terms  = tcc_get_post_terms($post->ID,'all',array('fields'=>'name'));
-$string = implode(',',$terms);
-$pdf->SetKeywords($string);  #  taxonomy terms go here
+//$terms  = fluid_get_post_terms($post->ID,'all',array('fields'=>'name'));
+//$string = implode(',',$terms);
+//$pdf->SetKeywords($string);  #  taxonomy terms go here
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));

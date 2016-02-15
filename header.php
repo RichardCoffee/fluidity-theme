@@ -20,6 +20,7 @@
 <![endif]--><?php
 
 wp_head();
+
 fluidity_custom_css(); ?>
 
 </head>

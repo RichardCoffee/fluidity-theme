@@ -37,7 +37,7 @@ if (!function_exists('fluid_color_scheme')) {
     $color    = tcc_color_scheme();
     $base_dir = get_template_directory();
     if (file_exists("$base_dir/css/colors/$color.css")) { return $color; }
-    return false;
+    return '';
   }
 }
 
@@ -61,6 +61,21 @@ if (!function_exists('convert_user_meta')) {
     return $out;
   }
 }
+
+/*if (!function_exists('fluid_get_post_terms')) {
+  function fluid_get_post_terms($post_id,$taxonomy,$args) {
+    $terms = array();
+    if ($post_id) {
+      if (is_string($taxonomy) && ($taxonomy=='all')) {
+        $post = get_post($post_id);
+      }
+      foreach((array)$taxonomy as $tax) {
+        $taxterms = wp_get_post_terms($post_id,$tax,$args);
+      }
+    }
+    return $terms;
+  }
+} //*/
 
 if (!function_exists('wp_menu_id_by_name')) {
   // http://wordpress.stackexchange.com/questions/104301/get-menu-id-using-its-name
