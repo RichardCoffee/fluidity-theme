@@ -37,6 +37,7 @@ console.log(attachment);
       var iuImage = document.getElementById(iuField+'_img');
       iuInput.value = attachment.url;
       iuImage.src   = attachment.url;
+      jQuery(el.parentNode).children('.form-image-container').removeClass('hidden');
       jQuery(el.parentNode).children('.form-image-delete').removeClass('hidden');
     }
   });
