@@ -171,7 +171,7 @@ log_entry('after register',$whitelist_options);
       $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
       $html.= $data['label'];
       $html.= "</span>";
-    } else if ($data['render']=='title') {
+    } elseif ($data['render']=='title') {
       $html.= " class='form-title'";
       $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
       $html.= $data['label'];
@@ -191,7 +191,7 @@ log_entry('after register',$whitelist_options);
   private function determine_option() {
     if ($this->type=='single') {
       $this->current = $this->slug;
-    } else if ($this->type=='tabbed') {
+    } elseif ($this->type=='tabbed') {
       if (isset($this->form[$this->tab]['option'])) {
         $this->current = $this->form[$this->tab]['option'];
       } else {
@@ -319,7 +319,7 @@ log_entry('after register',$whitelist_options);
       $fargs = array('ID'=>$field, 'value'=>$value, 'layout'=>$layout[$item], 'name'=>$name);
       if (method_exists($this,$func)) {
         $this->$func($fargs);
-      } else if (function_exists($func)) {
+      } elseif (function_exists($func)) {
         $func($fargs);
       } else {
         if (!empty($this->err_func)) {
@@ -347,7 +347,7 @@ log_entry('after register',$whitelist_options);
       $fargs = array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name);
       if (method_exists($this,$func)) {
         $this->$func($fargs);
-      } else if (function_exists($func)) {
+      } elseif (function_exists($func)) {
         $func($fargs);
       } else {
         if (!empty($this->err_func))
@@ -460,9 +460,9 @@ log_entry('after register',$whitelist_options);
         $select = ($key==$value) ? "selected='selected'" : '';
         echo "<option value='$key' $select> $text </option>";
       }
-    } else if (method_exists($this,$source_func)) {
+    } elseif (method_exists($this,$source_func)) {
       $this->$source_func($value);
-    } else if (function_exists($source_func)) {
+    } elseif (function_exists($source_func)) {
       $source_func($value);
     }
     echo '</select>';
@@ -558,7 +558,7 @@ log_entry('after register',$whitelist_options);
     $func.= (isset($item['validate'])) ? $item['validate'] : $item['render'];
     if (method_exists($this,$func)) {
       $output = $this->$func($input);
-    } else if (function_exists($func)) {
+    } elseif (function_exists($func)) {
       $output = $func($input);
     } else { // FIXME:  test for data type
       $output = $this->validate_text($input);

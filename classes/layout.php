@@ -40,9 +40,9 @@ class Fluid_Layout {
     if ((empty($this->sidebar_name)) || (!in_array($this->sidebar_name,$known))) {
       if (is_front()) {
         $this->sidebar_name = 'front';
-      } else if (is_search()) {
+      } elseif (is_search()) {
         $this->sidebar_name = 'search';
-      } else if (is_archive()) {
+      } elseif (is_archive()) {
         $this->sidebar_name = 'archive';
       } else {
         $this->sidebar_name = 'standard';

@@ -148,7 +148,7 @@ if (!function_exists('sanitize_array')) {
       foreach($array as $key=>$data) {
         if ((array)$data==$data) {
           $output[$key] = sanitize_array($data,$method); // recurse
-        } else if ((string)$data==$data) {
+        } elseif ((string)$data==$data) {
           $output[$key] = $func($data);
         } else { $output[$key] = $data; }
       }

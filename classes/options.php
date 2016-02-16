@@ -40,7 +40,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
       $func = array($this,$this->render);
       if ($about['loca']=='appearance') {
         $this->hook_suffix = add_theme_page($page,$menu,$cap,$this->slug,$func);
-      } else if ($about['loca']=='settings') {
+      } elseif ($about['loca']=='settings') {
         $this->hook_suffix = add_options_page($page,$menu,$cap,$this->slug,$func);
       } else {
         $icon = 'dashicons-admin-settings';

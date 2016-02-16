@@ -234,7 +234,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
     if (!strpos($title,'itemprop')===false) return $title;
     if (is_author()) {
       $title = preg_replace('/(<span.*?)(>)/i','$1 itemprop="author"$2',$title);
-    } else if ($title==__('Archives')) { // do not add text domain to this
+    } elseif ($title==__('Archives')) {  #  do not add text domain to this
       $title = "<span itemprop='headline'>$title</span>";
     }
     return $title;
