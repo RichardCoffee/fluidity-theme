@@ -4,6 +4,8 @@
  *
  */
 
+define('FLUIDITY_VERSION','1.0.0');
+
 require_once('includes/theme-support.php');
 require_once('includes/library.php');
 #require_once('includes/menus.php');
@@ -30,14 +32,14 @@ if (!function_exists('fluidity_enqueue')) {
     $base_url = get_template_directory_uri();
     fluidity_register_bootstrap();
     fluidity_register_fontawesome();
-    wp_register_style('library', "$base_url/css/library.css");
-    wp_register_style('fluid',    get_bloginfo('stylesheet_url'));
+    fluidity_register_color_scheme();
+    wp_register_style('library', "$base_url/css/library.css",    false, FLUIDITY_VERSION);
+    wp_register_style('fluid',    get_bloginfo('stylesheet_url'),false, FLUIDITY_VERSION);
     wp_enqueue_style('bootstrap');
+    wp_enqueue_style('tcc-fawe');
     wp_enqueue_style('library');
     wp_enqueue_style('fluid');
-    wp_enqueue_style('tcc-fawe');
-    if ($color_file=fluid_color_scheme()) {
-      wp_enqueue_style('fcolor',  "$base_url/css/colors/$color_file.css"); }
+    wp_enqueue_style('fluid-color');
     wp_register_script('sprintf', "$base_url/js/sprintf.js", null,                     false,true);
     wp_register_script('library', "$base_url/js/library.js", array('jquery','sprintf'),false,true);
     wp_register_script('collapse',"$base_url/js/collapse.js",array('jquery','library'),false,true);
@@ -45,7 +47,7 @@ if (!function_exists('fluidity_enqueue')) {
     wp_enqueue_script('collapse');
     if (is_singular() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); } // enable threaded comments
-    do_action('tcc_enqueue');
+    do_action('fluidity_enqueue');
   }
   add_action('wp_enqueue_scripts','fluidity_enqueue');
 }
@@ -54,7 +56,7 @@ if (!function_exists('fluidity_admin_enqueue')) {
   function fluidity_admin_enqueue() {
     fluidity_register_fontawesome();
     wp_enqueue_style('tcc-fawe');
-    do_action('tcc_admin_enqueue');
+    do_action('fluidity_admin_enqueue');
   }
   add_action('admin_enqueue_scripts','fluidity_admin_enqueue');
 }
@@ -70,6 +72,14 @@ if (!function_exists('fluidity_register_bootstrap')) {
 if (!function_exists('fluidity_register_fontawesome')) {
   function fluidity_register_fontawesome() {
     wp_register_style('tcc-fawe', get_template_directory_uri()."/css/font-awesome.min.css",false,'4.3.0');
+  }
+}
+
+if (!function_exists('fluidity_register_color_scheme')) {
+  function fluidity_register_color_scheme() {
+    if ($color_file=fluid_color_scheme()) {
+      wp_register_style('fluid-color',  get_template_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
+    }
   }
 }
 
