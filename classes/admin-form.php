@@ -143,6 +143,8 @@ abstract class Basic_Admin_Form {
     }
 global $whitelist_options;
 log_entry('after register',$whitelist_options);
+global $new_whitelist_options;
+log_entry('after register',$new_whitelist_options);
   } //*/
 
   private function register_field($option,$key,$itemID,$data) {
