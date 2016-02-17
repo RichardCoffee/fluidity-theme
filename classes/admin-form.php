@@ -531,8 +531,20 @@ log_entry('after register',$new_whitelist_options);
 #log_entry('_POST',$_POST);
 #log_entry('form',$this->form);
 log_entry('input',$input);
-if (empty($input)) { log_entry(debug_backtrace()); }
     $option = sanitize_key($_POST['tab']);
+if (empty($input)) {
+
+log_entry(debug_backtrace());
+log_entry($_POST);
+$current  = (isset($this->form[$option]['option'])) ? $this->form[$option]['option'] : $this->prefix.$option;
+if (isset($_POST[$current])) {
+$input = $_POST[$current];
+} else {
+  die('invalid parameter passed to validate_tabbed_form');
+}
+
+
+ }
     $output = $this->defaults;
     if (isset($_POST['reset'])) {
       $object = (isset($this->form[$option]['title'])) ? $this->form[$option]['title'] : $this->form_test['submit']['object'];
