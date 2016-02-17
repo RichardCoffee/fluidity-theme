@@ -34,7 +34,7 @@ abstract class Basic_Admin_Form {
 
   public function load_form_page() {
     global $plugin_page;
-    if ($plugin_page===$this->slug) {
+    if (true) { #if ($plugin_page===$this->slug) {
 //log_entry("hook_suffix: ".$this->hook_suffix);
       if (isset($_GET['tab'])) $this->tab = sanitize_key($_GET['tab']);
 //log_entry("tab: ".$this->tab);
