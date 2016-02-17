@@ -18,18 +18,20 @@ abstract class Custom_Post_Type {
 //  protected $comments   = null;        #  or true
   protected $debug      = false;       # used in conjunction with $this->logging
   protected $icon       = 'dashicon-admin-post'; #  admin dashboard icon
-  protected $logging    = 'log_entry'; #  logging function
+  protected $logging    = 'log_entry'; #  assign your own logging function here
+  protected $main_blog  = true;        #  set to false to not force inclusion in WP post queries
   private   $nodelete   = array();     #  used in $this->taxonomy_registration($args)
-  protected $position   = 6;
+  protected $position   = 6;           #  position on admin dashboard
   protected $rewrite    = array();     #  array('slug'=>$this->type));
-  protected $role_caps  = 'normal';    #  any other value will cause only the administrator caps to be updated - FIXME: allow array of roles
+  protected $role_caps  = 'normal';    #  value of 'admin' will cause only the administrator caps to be updated - FIXME: allow array of roles
   protected $sidebars   = array();
   protected $slug_edit  = true;        #  whether to allow editing of taxonomy slugs in admin screen
   protected $supports   = array('title','editor','author','thumbnail','revisions','comments');
   protected $tax_list   = array();
-  protected $taxonomies = array();     #  array('post_tag','category');
-  protected $tax_keep   = array();     #  example: array( 'taxonomy_slug' => array('Term One Name','Term Two Name') )
-  protected $templates  = false;       #  example: array( 'single' => WP_PLUGIN_DIR.'/plugin_dir/templates/single-<custom_post_type>.php' )
+  protected $taxonomies = array();     #  array('post_tag','category');  passed to register_post_type() - FIXME:  possible auto call of $this->taxonomy_registration()
+  protected $tax_keep   = array();     #  example: array( 'taxonomy-slug' => array('Term One Name','Term Two Name','term-three-slug') )
+  protected $templates  = false;       #  example: array( 'single' => WP_PLUGIN_DIR.'/plugin_dir/templates/single-{cpt-slug}.php' )
+
   private static $types = array('posts');
 
   public function __construct($data) {
@@ -37,24 +39,23 @@ abstract class Custom_Post_Type {
       foreach($data as $prop=>$value) {
         $this->{$prop} = $value;
       }
-      if (!isset($this->type)) { $this->type = sanitize_title($this->label); }
+      if (!isset($this->type)) { $this->type = sanitize_title($this->label); }  // seriously?
       add_action('init',                 array($this,'create_post_type'));
-      add_filter('pre_get_posts',        array($this,'pre_get_posts'),5); // run early
       add_filter('post_updated_messages',array($this,'post_type_messages'));
       if (isset($this->columns)) { $this->setup_columns(); }
-/*
-      if (isset($this->comments)) {
+      /*if (isset($this->comments)) {
         add_filter('comments_open',array($this,'comments_limit'),10,2);
         add_filter('pings_open',   array($this,'comments_limit'),10,2);
       } //*/
-
       add_action('add_meta_boxes_'.$this->type, array($this,'check_meta_boxes'));
+      if ($this->main_blog) {
+        add_filter('pre_get_posts',        array($this,'pre_get_posts'),5); } #  run early
       if ($this->sidebars) {
         add_filter('tcc_register_sidebars',array($this,'custom_post_sidebars')); }
-      if ($this->templates) {
-        add_filter('template_include',array($this,'assign_template')); }
-      if (!$this->slug_edit) {
+      if ( !$this->slug_edit) {
         add_action('admin_enqueue_scripts',array($this,'stop_slug_edit'));
+      if ($this->templates) {
+        add_filter('template_include',     array($this,'assign_template')); }
       }
     }
   }
@@ -190,7 +191,7 @@ abstract class Custom_Post_Type {
 
   private function process_caps($name) {
     $role = get_role($name);
-$this->log_entry('user role',$role);
+    $this->log_entry('user role',$role);
     $sing = sanitize_title($this->label); # not sure what these singular caps are supposed to do...
     $plur = sanitize_title($this->plural);
     $caps = array("delete_$sing","edit_$sing","read_$sing","delete_$plur","edit_$plur");
@@ -323,12 +324,8 @@ $this->log_entry('user role',$role);
     return $output;
   } //*/
 
-  public function get_tax_list() {
-    return $this->tax_list;
-  }
 
-
-  /* Post Column functions */
+  /*  Post Admin Column functions/filters  */
 
   private function setup_columns() {
     if (isset($this->columns['remove'])) {
@@ -339,7 +336,7 @@ $this->log_entry('user role',$role);
       if (isset($data['columns']['content'])) {
         if (is_callable(array($this,$this->columns['content']))) {
           add_action('manage_posts_custom_column',array($this,$this->columns['content']),10,2);
-        } else { 
+        } else {
           $this->log_entry('columns[content] not callable: '.$this->columns['content']); }
       }
     }
@@ -350,6 +347,15 @@ $this->log_entry('user role',$role);
       if (!isset($columns[$key])) $columns[$key] = $col; }
     return $columns;
   } //*/
+
+  public function remove_custom_post_columns($columns) {
+    foreach($this->columns['remove'] as $no_col) {
+      if (isset($columns[$no_col])) { unset($columns[$no_col]); } }
+    return $columns;
+  } //*/
+
+
+  /*  Template filters  */
 
   #  http://codex.wordpress.org/Function_Reference/locate_template
   #  https://wordpress.org/support/topic/stylesheetpath-in-plugin
@@ -435,12 +441,6 @@ $this->log_entry('user role',$role);
     }
     return $query;
   }
-
-  public function remove_custom_post_columns($columns) {
-    foreach($this->columns['remove'] as $no_col) {
-      if (isset($columns[$no_col])) { unset($columns[$no_col]); } }
-    return $columns;
-  } //*/
 
   public function check_meta_boxes() {
     $cap = "edit_others_".sanitize_title($this->plural);
