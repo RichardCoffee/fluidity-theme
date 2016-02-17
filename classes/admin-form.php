@@ -532,7 +532,7 @@ log_entry('after register',$new_whitelist_options);
 #log_entry('_GET',$_GET);
 #log_entry('_POST',$_POST);
 #log_entry('form',$this->form);
-#log_entry('input',$input);
+log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
     $output = $this->defaults;
     if (isset($_POST['reset'])) {
