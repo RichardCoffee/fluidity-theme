@@ -130,7 +130,8 @@ abstract class Basic_Admin_Form {
       if (!($section['option']===$this->current)) continue;
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-      register_setting($this->slug,$this->slug,array($this,$validate));
+      #register_setting($this->slug,$this->slug,array($this,$validate));
+      register_setting($this->slug,$current,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
@@ -282,9 +283,6 @@ log_entry('after register',$new_whitelist_options);
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
     </div><?php //*/
-  }
-
-  private function render_multi_form() {
   }
 
   private function submit_buttons($title='') {
