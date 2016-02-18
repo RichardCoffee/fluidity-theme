@@ -35,9 +35,10 @@ abstract class Basic_Admin_Form {
   public function load_form_page() {
     global $plugin_page;
     if (true) { #if ($plugin_page===$this->slug) {
-//log_entry("hook_suffix: ".$this->hook_suffix);
+log_entry("plugin page: $plugin_page");
+log_entry("hook_suffix: ".$this->hook_suffix);
       if (isset($_GET['tab'])) $this->tab = sanitize_key($_GET['tab']);
-//log_entry("tab: ".$this->tab);
+log_entry("tab: ".$this->tab);
       $this->form_text = $this->form_text();
       if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
         $this->form = $this->form_layout();
@@ -99,37 +100,14 @@ abstract class Basic_Admin_Form {
     }
   }
 
-/*  public function register_tabbed_form() {
-    $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
-    $larr = array('display','skip');
-    foreach($this->form as $key=>$data) {
-      if (!((array)$data===$data)) continue;  #  skip string variables
-      if (!$this->tab===$key) continue;
-      $option   = (isset($data['option']))   ? $data['option']   : $this->prefix.$key; #  also used for the group and section
-      $validate = (isset($data['validate'])) ? $data['validate'] : $validater;
-      register_setting($option,$option,array($this,$validate));
-      $title    = (isset($data['title']))    ? $data['title']    : '';
-      $describe = (isset($data['describe'])) ? $data['describe'] : 'description';
-      $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      add_settings_section($option,$title,$describe,$this->slug);
-      foreach($data['layout'] as $itemID=>$item) {
-        $this->register_field($option,$key,$itemID,$item);
-#        if (!isset($item['render'])) continue;
-#        if ($item['render']=='skip') continue;
-#        $label = (in_array($item['render'],$larr)) ? $item['label'] : "<label for='$itemID'>{$item['label']}</label>";
-#        $label = ($item['render']=='title') ? "<span class='tcc-title'>{$item['label']}</span>" : $label;
-#        add_settings_field($itemID, $label, array(__CLASS__,'render_options'), $option, $option, array($key,$itemID));
-      }
-    }
-  } //*/
-
   public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
     foreach($this->form as $key=>$section) {
-      if (!((array)$section===$section)) continue; // skip string variables
+      if (!((array)$section===$section)) continue; // skip string variabler
       if (!($section['option']===$this->current)) continue;
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
+log_entry("current:  $current");
       #register_setting($this->slug,$this->slug,array($this,$validate));
       register_setting($current,$current,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
