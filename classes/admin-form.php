@@ -34,14 +34,9 @@ abstract class Basic_Admin_Form {
 
   public function load_form_page() {
     global $plugin_page;
-    if (true) { #if ($plugin_page===$this->slug) {
-log_entry("plugin page: $plugin_page");
-log_entry("hook_suffix: ".$this->hook_suffix);
+    if ($plugin_page===$this->slug) {
       if (isset($_GET['tab']))  $this->tab = sanitize_key($_GET['tab']);
       if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
-log_entry("tab: ".$this->tab);
-log_entry("GET",$_GET);
-log_entry("POST",$_POST);
       $this->form_text = $this->form_text();
       if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
         $this->form = $this->form_layout();
@@ -110,23 +105,17 @@ log_entry("POST",$_POST);
       if (!($section['option']===$this->current)) continue;
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
-log_entry("current:  $current");
-      #register_setting($this->slug,$this->slug,array($this,$validate));
+      #register_setting($this->slug,$current,array($this,$validate));
       register_setting($current,$current,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
+      #add_settings_section($current,$title,$describe,$this->slug);
       add_settings_section($current,$title,$describe,$current);
-      #add_settings_section($this->slug,$title,$describe,$this->slug);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
-        #$this->register_field($this->slug,$key,$item,$data);
       }
     }
-global $whitelist_options;
-log_entry('after register',$whitelist_options);
-global $new_whitelist_options;
-log_entry('after register',$new_whitelist_options);
   } //*/
 
   private function register_field($option,$key,$itemID,$data) {
@@ -144,8 +133,8 @@ log_entry('after register',$new_whitelist_options);
     } else { //*/
       $label = $this->field_label($itemID,$data);
       $args  = array('key'=>$key,'item'=>$itemID);
+      #add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$option,$args);
       add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
-      #add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
 #    }
   }
 
