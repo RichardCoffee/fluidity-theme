@@ -131,11 +131,11 @@ abstract class Basic_Admin_Form {
       $validate = (isset($section['validate'])) ? $section['validate'] : $validater;
       $current  = (isset($this->form[$key]['option'])) ? $this->form[$key]['option'] : $this->prefix.$key;
       #register_setting($this->slug,$this->slug,array($this,$validate));
-      register_setting($this->slug,$current,array($this,$validate));
+      register_setting($current,$current,array($this,$validate));
       $title    = (isset($section['title']))    ? $section['title']    : '';
       $describe = (isset($section['describe'])) ? $section['describe'] : 'description';
       $describe = (is_array($describe)) ? $describe : array($this,$describe);
-      add_settings_section($current,$title,$describe,$this->slug);
+      add_settings_section($current,$title,$describe,$current);
       #add_settings_section($this->slug,$title,$describe,$this->slug);
       foreach($section['layout'] as $item=>$data) {
         $this->register_field($current,$key,$item,$data);
@@ -163,7 +163,7 @@ log_entry('after register',$new_whitelist_options);
     } else { //*/
       $label = $this->field_label($itemID,$data);
       $args  = array('key'=>$key,'item'=>$itemID);
-      add_settings_field($itemID,$label,array($this,$this->options),$this->slug,$option,$args);
+      add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
       #add_settings_field($itemID,$label,array($this,$this->options),$option,$option,$args);
 #    }
   }
@@ -312,7 +312,7 @@ log_entry('after register',$new_whitelist_options);
       $value = (isset($data[$key][$item])) ? $data[$key][$item] : '';
       if ($layout[$item]['render']=='array') {
         $name.= "[$num]";
-#        if ((isset($add)) && ($add)) { $layout[$item]['add'] = true; }
+        #if ((isset($add)) && ($add)) { $layout[$item]['add'] = true; }
         $value = (isset($data[$key][$item][$num])) ? $data[$key][$item][$num] : '';
       }
       $field = str_replace(array('[',']'),array('_',''),$name);
@@ -527,24 +527,11 @@ log_entry('after register',$new_whitelist_options);
   }
 
   public function validate_tabbed_form($input) {
-#log_entry('_GET',$_GET);
-#log_entry('_POST',$_POST);
-#log_entry('form',$this->form);
-log_entry('input',$input);
+    #log_entry('_GET',$_GET);
+    #log_entry('_POST',$_POST);
+    #log_entry('form',$this->form);
+    #log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
-if (empty($input)) {
-
-log_entry(debug_backtrace());
-log_entry($_POST);
-$current  = (isset($this->form[$option]['option'])) ? $this->form[$option]['option'] : $this->prefix.$option;
-if (isset($_POST[$current])) {
-$input = $_POST[$current];
-} else {
-  die('invalid parameter passed to validate_tabbed_form');
-}
-
-
- }
     $output = $this->defaults;
     if (isset($_POST['reset'])) {
       $object = (isset($this->form[$option]['title'])) ? $this->form[$option]['title'] : $this->form_test['submit']['object'];
@@ -561,7 +548,7 @@ $input = $_POST[$current];
         $output[$key] = $this->do_validate_function($data,$this->form[$option]['layout'][$key]);
       }
     }
-#log_entry('output',$output);
+    #log_entry('output',$output);
     return apply_filters($this->current.'_validate_settings',$output,$input);
   }
 
