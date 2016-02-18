@@ -5,10 +5,11 @@
  *
  */
 
-if (has_nav_menu('primary')) { ?>
+if (has_nav_menu('primary')) {
+  $color_scheme = tcc_color_scheme(); ?>
   <div>
     <nav class="navbar navbar-<?php echo $color_scheme; ?>" role="navigation">
-      <?php echo "Color Scheme: $color_scheme"; ?>
+      <?php #echo "Color Scheme: $color_scheme"; ?>
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
           <span class="sr-only">Toggle navigation</span>
