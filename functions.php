@@ -94,6 +94,7 @@ log_entry("file two exists");
  else { log_entry("file two does not exist"); }
       }
     }
+else { log_entry("color file: $color_file"); }
   }
 }
 
