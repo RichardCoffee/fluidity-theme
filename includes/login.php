@@ -98,6 +98,7 @@ if (!function_exists('tcc_login_form')) {
           $action = ($navbar) ? 'tcc_navbar_signout' : 'tcc_widget_signout';
           do_action($action);
           $out  = wp_logout_url(home_url());
+          #if (!$navbar) $color .= '-inverse';
           $html = "<a class='btn btn-$color' href='$out'";
           $html.= " title='$signout'> $signout <i class='fa fa-sign-out'></i></a>";
           echo $html; ?>

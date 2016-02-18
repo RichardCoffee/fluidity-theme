@@ -277,8 +277,8 @@ log_entry('after register',$new_whitelist_options);
         <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
         $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
         do_action("fluid_pre_display_".$this->tab);
-        settings_fields($this->slug); #$this->current);
-        do_settings_sections($this->slug); #$this->current);
+        settings_fields($current); #$this->slug); #$this->current);
+        do_settings_sections($current); #$this->slug); #$this->current);
         do_action("fluid_post_display_".$this->tab);
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
