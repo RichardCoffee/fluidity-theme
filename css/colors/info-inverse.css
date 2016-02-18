@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/info-inverse.css
+ *  css/colors/info-inverse.css
  *
  *  based on bootstrap info color scheme
  *
@@ -97,4 +97,8 @@
 
 #header-body {
   background-color: white;
+}
+
+#header-menubar {
+  background-color: #D9EDF7;
 }

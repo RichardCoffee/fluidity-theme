@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/colors/green.css
+ *  css/colors/green.css
  *
  */
 .btn-green-inverse, .navbar-green .btn-green {
@@ -95,4 +95,8 @@
 
 #header-body {
   background-color: #cbefd0;
+}
+
+#header-menubar {
+  background-color: #39b54a;
 }

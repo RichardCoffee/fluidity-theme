@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/colors/yellow.css
+ *  css/colors/yellow.css
  *
  */
 .btn-yellow-inverse, .navbar-yellow .btn-yellow {
@@ -95,4 +95,8 @@
 
 #header-body {
   background-color: #fffccc;
+}
+
+#header-menubar {
+  background-color: #fff200;
 }

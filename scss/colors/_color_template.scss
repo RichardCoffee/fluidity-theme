@@ -126,3 +126,7 @@ $headerBody: color(background);
 #header-body {
   background-color: lighten($headerBody,40%);
 }
+
+#header-menubar {
+  background-color: color(background);
+}

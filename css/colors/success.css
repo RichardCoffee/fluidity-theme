@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/success.css
+ *  css/colors/success.css
  *
  *  bootstrap success color scheme
  *
@@ -97,4 +97,8 @@
 
 #header-body {
   background-color: #eaf6ea;
+}
+
+#header-menubar {
+  background-color: #5cb85c;
 }

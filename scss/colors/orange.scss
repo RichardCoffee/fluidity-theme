@@ -3,7 +3,7 @@
  *
  */
 
-$colorName : orange;
+$colorName : "orange";
 $primary   : #f7941d;
 $colors    : ( "background"    : $primary,
                "bgHighlight"   : scale-color($primary,$lightness:-20%),

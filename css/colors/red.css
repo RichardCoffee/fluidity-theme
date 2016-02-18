@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/colors/red.css
+ *  css/colors/red.css
  *
  */
 .btn-red-inverse, .navbar-red .btn-red {
@@ -95,4 +95,8 @@
 
 #header-body {
   background-color: #ffcccc;
+}
+
+#header-menubar {
+  background-color: #ff0000;
 }

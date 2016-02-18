@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/colors/orange.css
+ *  css/colors/orange.css
  *
  */
 .btn-orange-inverse, .navbar-orange .btn-orange {
@@ -95,4 +95,8 @@
 
 #header-body {
   background-color: #fef1e2;
+}
+
+#header-menubar {
+  background-color: #f7941d;
 }

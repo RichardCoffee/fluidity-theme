@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/warning-inverse.css
+ *  css/colors/warning-inverse.css
  *
  *  based on bootstrap warning color scheme
  *
@@ -97,4 +97,8 @@
 
 #header-body {
   background-color: white;
+}
+
+#header-menubar {
+  background-color: #FCF8E3;
 }

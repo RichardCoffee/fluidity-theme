@@ -1,5 +1,5 @@
 /*
- *  fluidity/css/info.css
+ *  css/colors/info.css
  *
  *  bootstrap info color scheme
  *
@@ -97,4 +97,8 @@
 
 #header-body {
   background-color: white;
+}
+
+#header-menubar {
+  background-color: #5BC0DE;
 }

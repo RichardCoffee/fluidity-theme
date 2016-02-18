@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/colors/blue.css
+ *  css/colors/blue.css
  *
  */
 .btn-blue-inverse, .navbar-blue .btn-blue {
@@ -95,4 +95,8 @@
 
 #header-body {
   background-color: #a8aae4;
+}
+
+#header-menubar {
+  background-color: #2e3192;
 }

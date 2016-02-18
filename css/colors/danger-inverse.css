@@ -1,5 +1,5 @@
 /*
- *  tcc-fluidity/css/danger-inverse.css
+ *  css/colors/danger-inverse.css
  *
  *  based on bootstrap danger color scheme
  *
@@ -97,4 +97,8 @@
 
 #header-body {
   background-color: white;
+}
+
+#header-menubar {
+  background-color: #f2dede;
 }
