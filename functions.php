@@ -78,7 +78,15 @@ if (!function_exists('fluidity_register_fontawesome')) {
 if (!function_exists('fluidity_register_color_scheme')) {
   function fluidity_register_color_scheme() {
     if ($color_file=fluid_color_scheme()) {
-      wp_register_style('fluid-color',  get_template_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
+      $file = get_template_directory()."/css/colors/$color_file.css";
+      if (file_exists($file)) {
+        wp_register_style('fluid-color',  get_template_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
+      } else {
+        $file = get_stylesheet_directory()."/css/colors/$color_file.css";
+        if (file_exists($file)) {
+          wp_register_style('fluid-color',  get_stylesheet_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
+        }
+      }
     }
   }
 }

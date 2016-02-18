@@ -22,9 +22,10 @@ if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
   function tcc_dashboard_logo() {
     $logo = tcc_option('logo');
     if ($logo) {
-     echo "<style type='text/css'>
-       #header-logo { background-image: url($logo) !important; }
-     </style>";
+      $dash = "<style type='text/css'>";
+      $dash.= "  #header-logo { background-image: url($logo) !important; }";
+      $dash.= "</style>";
+      echo $dash;
     }
   }
   add_action('admin_head','tcc_dashboard_logo');
