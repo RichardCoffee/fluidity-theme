@@ -34,9 +34,9 @@ if (!function_exists('tcc_browser_body_class')) {
 
 if (!function_exists('fluid_color_scheme')) {
   function fluid_color_scheme() {
-    $color    = tcc_color_scheme();
-    $base_dir = get_template_directory();
-    if (file_exists("$base_dir/css/colors/$color.css")) { return $color; }
+    $color = tcc_color_scheme();
+    if (file_exists(get_template_directory() . "/css/colors/$color.css")) { return $color; }
+    if (file_exists(get_stylesheet_directory()."/css/colors/$color.css")) { return $color; }
     return '';
   }
 }
