@@ -37,7 +37,8 @@ abstract class Basic_Admin_Form {
     if (true) { #if ($plugin_page===$this->slug) {
 log_entry("plugin page: $plugin_page");
 log_entry("hook_suffix: ".$this->hook_suffix);
-      if (isset($_GET['tab'])) $this->tab = sanitize_key($_GET['tab']);
+      if (isset($_GET['tab']))  $this->tab = sanitize_key($_GET['tab']);
+      if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
 log_entry("tab: ".$this->tab);
 log_entry("GET",$_GET);
 log_entry("POST",$_POST);
