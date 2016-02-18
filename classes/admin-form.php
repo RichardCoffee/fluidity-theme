@@ -39,6 +39,8 @@ log_entry("plugin page: $plugin_page");
 log_entry("hook_suffix: ".$this->hook_suffix);
       if (isset($_GET['tab'])) $this->tab = sanitize_key($_GET['tab']);
 log_entry("tab: ".$this->tab);
+log_entry("GET",$_GET);
+log_entry("POST",$_POST);
       $this->form_text = $this->form_text();
       if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
         $this->form = $this->form_layout();
