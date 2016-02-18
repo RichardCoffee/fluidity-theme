@@ -8,14 +8,16 @@
  tcc_footer                   footer body                                                                  footer.php
  tcc_header_body_content      control what goes into the header body                                       template_parts/header.php
                                 used by fluidity_header_body
- tcc_header_bottom_menubar    bottom menubar of header                                                     template_parts/header.php
+ tcc_header_menubar           bottom menubar of header                                                     template_parts/header.php
                                 used by fluidity_main_menubar
  tcc_header_top_menubar       top menubar of header                                                        template_parts/header.php
  tcc_left_header_body         left side of header body                          fluidity_header_body       includes/header.php
                                 used by fluidity_header_logo
  tcc_main_header_body         used as replacement for left/right body           fluidity_header_body       includes/header.php
  tcc_navbar_signout           insert navbar html before signout button          tcc_login_form             includes/login.php
+ tcc_pre_header               prior to display of header                                                   template_parts/header.php
  tcc_pre_search               prior to content of search/archive page                                      archive.php
+ tcc_post_header              after display of header                                                      template_parts/header.php
  tcc_post_search              after content os search/archive page                                         archive.php
  tcc_register_widgets         register widgets that extend TCC_Basic_Widget     register_fluid_widgets     classes/widgets.php
  tcc_right_header_body        right side of header body                         fluidity_header_body       includes/header.php

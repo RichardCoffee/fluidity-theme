@@ -122,5 +122,5 @@ if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_dir
       get_template_part('template_parts/menu');
 //    }
   }
-  add_action('tcc_header_bottom_menubar','fluidity_main_menubar');
+  add_action('tcc_header_menubar','fluidity_main_menubar');
 }

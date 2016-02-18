@@ -20,9 +20,9 @@ do_action('tcc_pre_header'); ?>
     do_action('tcc_header_body_content'); ?>
   </div><?php
 
-  if (has_action('tcc_header_bottom_menubar')) { ?>
-    <div id="header-menubar" class="navbar navbar-<?php echo $color_scheme; ?>" <?php $micro->SiteNavigationElement(); ?> role="navigation"><?php
-      do_action('tcc_header_bottom_menubar'); ?>
+  if (has_action('tcc_header_menubar')) { ?>
+    <div id="header-menubar"><?php
+      do_action('tcc_header_menubar'); ?>
     </div><?php
   } ?>
 
