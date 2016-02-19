@@ -83,9 +83,8 @@ if (!function_exists('fluidity_sidebar_parameter')) {
   }
 }
 
-if (!function_exists('fluidity_load_sidebar')) {
+if (!function_exists('fluidity_sidebar_side')) {
   function fluidity_sidebar_side($sidebar) {
     return 'left';
   }
 }
-?>

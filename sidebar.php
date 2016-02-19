@@ -8,15 +8,14 @@ who_am_i();
 
 $loaded = false;
 $called = fluidity_sidebar_parameter();
-echo "<p>called = $called</p>";
 if ($called=='footer') {
-  echo "<p>loaded = footer</p>";
+  echo "<p>called '$called', loaded 'footer'</p>";
   $loaded = fluidity_load_sidebar('footer');
 } elseif (is_front_page()) {
-  echo "<p>loaded = home</p>";
+  echo "<p>called '$called', loaded 'home'</p>";
   $loaded = fluidity_load_sidebar('home');
 } else {
-  echo "<p>loaded = $called</p>";
+  echo "<p>called '$called', loaded '$called'</p>";
   $loaded = fluidity_load_sidebar($called);
 }
 if (!$loaded) {
@@ -24,7 +23,7 @@ if (!$loaded) {
   $post_type = $wp_query->get('post_type');
   if ($post_type) {
     tellme("<p>looking for sidebar '$post_type'</p>");
-    $loaded = fluidity_load_sidebar(array($post_type,$post_type.'_sidebar','standard'));
+    $loaded = fluidity_load_sidebar(array($post_type,$post_type.'_sidebar'));
   }
 }
 
