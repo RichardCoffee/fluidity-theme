@@ -42,6 +42,7 @@ abstract class Basic_Admin_Form {
       $this->form = $this->form_layout();
       $this->determine_option();
       $this->get_defaults();
+log_entry('form defaults',$this->defaults);
       $this->get_form_options();
       $func = $this->register;
       $this->$func();
