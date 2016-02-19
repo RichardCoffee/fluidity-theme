@@ -2,6 +2,7 @@
 
 require_once('admin-form.php');
 require_once('design.php');
+require_once('social.php');
 
 class Fluidity_Options_Form extends Basic_Admin_Form {
 
@@ -22,7 +23,8 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     add_action('admin_menu',     array($this,'add_menu_option'));
     add_filter('form_text_'.$this->slug,array($this,'form_trans_text'),10,2);
     parent::__construct();
-    $fluid_design = new Theme_Design_Options($this);
+    $fluid_design = new Theme_Design_Options();
+    $fluid_social = new Theme_Social_Icons();
   }
 
   public static function get_instance() {

@@ -12,6 +12,7 @@ these files:
   Design: classes/design.php, filter priority 10
   Layout: classes/layout.php, filter priority 20
   Colors: classes/colors.php, filter priority 30
+  Social: classes/social.php, filter priority 90
   About:  classes/options.php, no priority, will always be last
 
 When adding a tab to the screen, classes/design.php can be used as a guide.
@@ -21,6 +22,7 @@ The form layout array has this structure:
   Array ( 'design' => Design form tab array,
           'layout' => Layout form tab array,
           'colors' => Colors form tab array,
+          'social' => Social Icons form tab array,
           'about'  => About form tab array );
 
 
@@ -31,8 +33,8 @@ The form tab array has this structure:
   Array (  'title'     =>  text that will appear on the tab itself.  WordPress
                            will also display this as the section title.
            'describe'  =>  name of, or pointer to, a function which will
-                           display desired content at the top of the
-                           screen, appearing just under the title.
+                           display content at the top of the screen,
+                           appearing just under the title.
            'option'    =>  option name, used to save and retrieve the data
                            array.  If not specified, the default will be set
                            as "fluidity_options_{key}".

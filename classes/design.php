@@ -23,7 +23,7 @@ class Theme_Design_Options {
   protected static function design_layout() {
     $layout = array('default'=>true);
     $layout['logo']   = array('default' => '',
-                              'label'   => __('Theme Logo','fluid'),
+                              'label'   => __('Theme Logo','tcc-fluid'),
                               'render'  => 'image',
                               'divcss'  => 'upload-img',
                               'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
