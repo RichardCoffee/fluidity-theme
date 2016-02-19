@@ -35,19 +35,17 @@ abstract class Basic_Admin_Form {
   public function load_form_page() {
     global $plugin_page;
     log_entry("plugin page: $plugin_page");
-    if ($plugin_page===$this->slug) {
+    if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
       if (isset($_GET['tab']))  $this->tab = sanitize_key($_GET['tab']);
       if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
       $this->form_text = $this->form_text();
-      if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
-        $this->form = $this->form_layout();
-        $this->determine_option();
-        $this->get_defaults();
-        $this->get_form_options();
-        $func = $this->register;
-        $this->$func();
-        add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
-      }
+      $this->form = $this->form_layout();
+      $this->determine_option();
+      $this->get_defaults();
+      $this->get_form_options();
+      $func = $this->register;
+      $this->$func();
+      add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
     }
   }
 
