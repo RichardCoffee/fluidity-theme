@@ -186,11 +186,11 @@ abstract class Basic_Admin_Form {
       if (isset($this->form[$option])) {
         foreach($this->form[$option]['layout'] as $key=>$item) {
           if (empty($item['default'])) continue;
-          $this->defaults[$key] = $item['default'];
+          $this->defaults[$option][$key] = $item['default'];
         }
       } else {
         if (!empty($this->err_func)) {
-          $func   = $this->err_func;
+          $func = $this->err_func;
           $func(sprintf($this->form_text['error']['subscript'],$option));
         }
       }
@@ -501,7 +501,7 @@ abstract class Basic_Admin_Form {
     #log_entry('form',$this->form);
     #log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
-    $output = $this->defaults;
+    $output = $this->defaults[$option];
     if (isset($_POST['reset'])) {
       $object = (isset($this->form[$option]['title'])) ? $this->form[$option]['title'] : $this->form_test['submit']['object'];
       $string = sprintf($this->form_text['submit']['restore'],$object);
