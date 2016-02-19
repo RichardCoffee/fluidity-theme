@@ -11,10 +11,13 @@ $called = fluidity_sidebar_parameter();
 echo "<p>called = $called</p>";
 if ($called=='footer') {
   $loaded = fluidity_load_sidebar('footer');
+  echo "<p>loaded = footer</p>";
 } elseif (is_front_page()) {
   $loaded = fluidity_load_sidebar('home');
+  echo "<p>loaded = home</p>";
 } else {
   $loaded = fluidity_load_sidebar($called);
+  echo "<p>loaded = $called</p>";
 }
 if (!$loaded) {
   global $wp_query;
