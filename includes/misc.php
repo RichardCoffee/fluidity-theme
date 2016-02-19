@@ -28,7 +28,7 @@ function fluid_read_more_link($output) {
 add_filter('excerpt_more', 'fluid_read_more_link');
 
 function fluidity_social_icons() {
-  $icons = tcc_options('social');
+  $icons = get_option('tcc_options_social');
   if ($icons['active']==='yes') {
     if (has_action('fluidity_social_icons')) {
       do_action('fluidity_social_icons');
