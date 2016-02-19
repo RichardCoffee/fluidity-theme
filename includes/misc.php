@@ -37,7 +37,7 @@ function fluidity_social_icons() {
       $html = "<div class='fluidity-social-icons'>";
       foreach($icons as $key=>$icon) {
         if (empty($icon)) continue;
-        $html.= "<a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='$icon'></a>";
+        $html.= " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='$icon'> </a>";
       }
       $html.="</div>";
       echo $html;
