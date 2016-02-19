@@ -9,7 +9,6 @@
 abstract class Basic_Admin_Form {
 
   protected $current   = '';
-  protected $defaults  =  array();
   protected $err_func  = 'log_entry';
   protected $form      =  array();
   protected $form_opts =  array();
@@ -41,8 +40,6 @@ abstract class Basic_Admin_Form {
       $this->form_text = $this->form_text();
       $this->form = $this->form_layout();
       $this->determine_option();
-      $this->get_defaults();
-log_entry('form defaults',$this->defaults);
       $this->get_form_options();
       $func = $this->register;
       $this->$func();
@@ -173,21 +170,22 @@ log_entry('form defaults',$this->defaults);
     }
   }
 
-  protected function get_defaults($option='about') {
+  protected function get_defaults($option) {
     if (empty($this->form)) { $this->form = $this->form_layout(); }
+    $defaults = array();
     if ($this->type=='single') {
       foreach($this->form as $key=>$group) {
         if (is_string($group)) continue;
         foreach($group['layout'] as $ID=>$item) {
           if (empty($item['default'])) continue;
-          $this->defaults[$key][$ID] = $item['default'];
+          $defaults[$key][$ID] = $item['default'];
         }
       }
     } else { // tabbed
       if (isset($this->form[$option])) {
         foreach($this->form[$option]['layout'] as $key=>$item) {
           if (empty($item['default'])) continue;
-          $this->defaults[$option][$key] = $item['default'];
+          $defaults[$key] = $item['default'];
         }
       } else {
         if (!empty($this->err_func)) {
@@ -196,15 +194,15 @@ log_entry('form defaults',$this->defaults);
         }
       }
     }
+    return $defaults;
   } //*/
 
   private function get_form_options() {
     $this->form_opts = get_option($this->current);
     if (empty($this->form_opts)) {
-      $this->form_opts = $this->defaults;
+      $this->form_opts = $this->get_defaults($this->current);
       add_option($this->current,$this->form_opts);
     }
-    $this->form_opts = array_replace_recursive($this->defaults,$this->form_opts);
   }
 
 
@@ -460,7 +458,7 @@ log_entry('form defaults',$this->defaults);
 
   public function validate_single_form($input) {
     $form   = $this->form;
-    $output = $this->defaults;
+    $output = $this->get_defaults();
     if (isset($_POST['reset'])) {
       $object = (isset($this->form['title'])) ? $this->form['title'] : $this->form_test['submit']['object'];
       $string = sprintf($this->form_text['submit']['restore'],$object);
@@ -484,7 +482,7 @@ log_entry('form defaults',$this->defaults);
       }
     }
     // check for required fields
-    foreach($this->defaults as $key=>$data) {
+    foreach($output as $key=>$data) {
       if (!((array)$data==$data)) continue;
       foreach($data as $ID=>$subdata) {
         if (!isset($form[$key]['layout'][$ID]['require'])) { continue; }
