@@ -25,9 +25,9 @@ if (!function_exists('tcc_register_nav_menu')) {
       if (count($items[$key])==0) continue;
       if (has_nav_menu($key)) {
         $menu = wp_get_nav_menu_object($key);
-        log_entry("$title menu",$menu);
+        #log_entry("$title menu",$menu);
       } else {
-        log_entry("$key menu not found");
+        #log_entry("$key menu not found");
         $menu_id = wp_create_nav_menu($title);
         if (is_wp_error($menu_id)) {
           log_entry("error creating menu $key",$menu_id);

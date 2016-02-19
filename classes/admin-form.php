@@ -502,7 +502,7 @@ log_entry('form defaults',$this->defaults);
     #log_entry('form',$this->form);
     #log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
-    $output = $this->defaults[$option];
+    $output = $this->get_defaults($option);
     if (isset($_POST['reset'])) {
       $object = (isset($this->form[$option]['title'])) ? $this->form[$option]['title'] : $this->form_test['submit']['object'];
       $string = sprintf($this->form_text['submit']['restore'],$object);
