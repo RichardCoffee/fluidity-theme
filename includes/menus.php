@@ -23,8 +23,9 @@ if (!function_exists('tcc_register_nav_menu')) {
     $registered = get_registered_nav_menus();
     foreach($menus as $key=>$title) {
       if (count($items[$key])==0) continue;
-      if (has_nav_menu($title)) {
-
+      if (has_nav_menu($key)) {
+        $menu = wp_get_nav_menu_object();
+        log_entry("$title menu",$menu);
       } else {
         log_entry("$key menu not found");
         $menu_id = wp_create_nav_menu($title);
