@@ -28,7 +28,7 @@ class Theme_Social_Icons {
                               'render'  => 'select',
                               'source'  => array('yes' => 'Yes',
                                                  'no'  => 'No'));
-    $icons = array('Bitbucket','Facebook','GitHub','Google Plus','LinkedIN','Pinterest','RSS Feed','Tumblr','Twitter','Xing','YouTube');
+    $icons = array('Bitbucket','Facebook','GitHub','Google Plus','LinkedIN','Pinterest','RSS','Tumblr','Twitter','Xing','YouTube');
     foreach($icons as $icon) {
       $key = sanitize_title($icon);
       $layout[$key] = array('default' => '',

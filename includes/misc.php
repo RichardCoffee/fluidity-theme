@@ -27,6 +27,24 @@ function fluid_read_more_link($output) {
 }
 add_filter('excerpt_more', 'fluid_read_more_link');
 
+function fluidity_social_icons() {
+  $icons = tcc_options('social');
+  if ($icons['active']==='yes') {
+    if (has_action('fluidity_social_icons')) {
+      do_action('fluidity_social_icons');
+    } else {
+      unset($icons['active']);
+      $html = "<div class='fluidity-social-icons'>";
+      foreach($icons as $key=>$icon) {
+        if (empty($icon)) continue;
+        $html.= "<a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='$icon'></a>";
+      }
+      $html.="</div>";
+      echo $html;
+    }
+  }
+} //*/
+
 if (!function_exists('single_search_result')) {
   // http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
   function single_search_result() {

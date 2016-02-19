@@ -6,15 +6,13 @@
  */
 
 
-if (!function_exists('fluidity_social_icons')) {
-  function fluidity_social_icons() { ?>
+if (function_exists('wpfai_social')) {
+  function fluidity_wpfai_social() {
+    $attributes = array('icons' => 'twitter,facebook,google-plus,pinterest,linkedin', // FIXME: can we assign list from options data?
+      'shape' => 'square', 'inverse' => 'yes', 'size' => 'lg', 'loadfa' => 'no'); ?>
     <div class="fluidity-social-icons"><?php
-      if (function_exists('wpfai_social')) {
-        $attributes = array('icons' => 'twitter,facebook,google-plus,pinterest,linkedin',
-          'shape' => 'square', 'inverse' => 'yes', 'size' => 'lg', 'loadfa' => 'no');
-        echo wpfai_social($attributes);
-      } ?>
+        echo wpfai_social($attributes); ?>
     </div><?php
   }
-  add_action('tcc_top_left_header','fluidity_social_icons');
+  add_action('fluidity_social_icons','fluid_wpfai_social');
 }
