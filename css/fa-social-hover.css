@@ -1,0 +1,93 @@
+/*  fa-social-hover.css 
+
+  CSS for hover on social icons from Font Awesome
+
+*/
+
+.fa-bitbucket:hover:before {
+  content: "\f172";
+}
+
+.fa-bitbucket-square:hover:before {
+  content: "\f171";
+}
+
+.fa-facebook:hover:before {
+  content: "\f082";
+}
+
+.fa-facebook-square:hover:before {
+  content: "\f09a";
+}
+
+.fa-github:hover:before {
+  content: "\f092";
+}
+
+.fa-github-square:hover:before {
+  content: "\f09b";
+}
+
+.fa-google-plus:hover:before {
+  content: "\f0d4";
+}
+
+.fa-google-plus-square:hover:before {
+  content: "\f0d5";
+}
+
+.fa-linkedin:hover:before {
+  content: "\f08c";
+}
+
+.fa-linkedin-square:hover:before {
+  content: "\f0e1";
+}
+
+.fa-pinterest:hover:before {
+  content: "\f0d3";
+}
+
+.fa-pinterest-square:hover:before {
+  content: "\f0d2";
+}
+
+.fa-rss:hover:before {
+  content: "\f143";
+}
+
+.fa-rss-square:hover:before {
+  content: "\f09e";
+}
+
+.fa-tumblr:hover:before {
+  content: "\f174";
+}
+
+.fa-tumblr-square:hover:before {
+  content: "\f173";
+}
+
+.fa-twitter:hover:before {
+  content: "\f081";
+}
+
+.fa-twitter-square:hover:before {
+  content: "\f099";
+}
+
+.fa-xing:hover:before {
+  content: "\f169";
+}
+
+.fa-xing-square:hover:before {
+  content: "\f168";
+}
+
+.fa-youtube:hover:before {
+  content: "\f166";
+}
+
+.fa-youtube-square:hover:before {
+  content: "\f167";
+}
