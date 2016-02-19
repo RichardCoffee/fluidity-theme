@@ -16,7 +16,7 @@
   content: "\f082";
 }
 
-.fa-facebook-official,
+.fa-facebook-official:hover:before,
 .fa-facebook-square:hover:before {
   content: "\f09a";
 }
