@@ -10,14 +10,14 @@ $loaded = false;
 $called = fluidity_sidebar_parameter();
 echo "<p>called = $called</p>";
 if ($called=='footer') {
-  $loaded = fluidity_load_sidebar('footer');
   echo "<p>loaded = footer</p>";
+  $loaded = fluidity_load_sidebar('footer');
 } elseif (is_front_page()) {
-  $loaded = fluidity_load_sidebar('home');
   echo "<p>loaded = home</p>";
+  $loaded = fluidity_load_sidebar('home');
 } else {
-  $loaded = fluidity_load_sidebar($called);
   echo "<p>loaded = $called</p>";
+  $loaded = fluidity_load_sidebar($called);
 }
 if (!$loaded) {
   global $wp_query;
