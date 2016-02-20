@@ -81,7 +81,7 @@ if (!function_exists('fluidity_header_body')) {
                       'body'  => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
                       'right' => 'col-lg-8  col-md-8  col-sm-12 col-xs-12');
     $classes = apply_filters('tcc_header_body_class',$defaults);
-    extract($classes);
+    extract($classes);  #  $defaults array
     if (has_action('tcc_left_header_body') || has_action('tcc_right_header_body')) { ?>
       <div class="<?php echo $left; ?>"><?php
         do_action('tcc_left_header_body'); ?>

@@ -6,7 +6,7 @@ if (!function_exists('tcc_apply_clearfix')) {
     $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
     $args = wp_parse_args($args,$defs);
     if (empty($args['cnt'])) return;
-    extract($args);
+    extract($args);  #  $defs array + $cnt
     if ($lg && ($cnt%(intval((12/$lg)))==0)) echo "<div class='clearfix visible-lg-block'></div>";
     if ($md && ($cnt%(intval((12/$md)))==0)) echo "<div class='clearfix visible-md-block'></div>";
     if ($sm && ($cnt%(intval((12/$sm)))==0)) echo "<div class='clearfix visible-sm-block'></div>";

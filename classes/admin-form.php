@@ -265,9 +265,8 @@ abstract class Basic_Admin_Form {
     </p><?php
   }
 
-  // $args = array('key'=>$key,'item'=>$item); // ,'num'=>$i);
   public function render_single_options($args) {
-    extract($args);
+    extract($args);  #  array( 'key'=>$key, 'item'=>$item, 'num'=>$i);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
     $class  = (!empty($layout[$item]['divcss'])) ? "class='{$layout[$item]['divcss']}'" : '';
@@ -299,7 +298,7 @@ abstract class Basic_Admin_Form {
   }
 
   public function render_tabbed_options($args) {
-    extract($args);
+    extract($args);  #  $args = array( 'key' => {group-slug}, 'item' => {item-slug})
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
     $html   = "<div";
@@ -339,7 +338,7 @@ abstract class Basic_Admin_Form {
 
   // FIXME:  needs add/delete/sort
   private function render_array($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (!(isset($layout['type']))) { $layout['type'] = 'text'; }
     if ($layout['type']==='image') {
       $this->render_image($data);
@@ -349,7 +348,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_checkbox($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     $html = "<label>";
     $html.= "<input type='checkbox' id='$ID' name='$name' value='yes' ";
     $html.= checked('yes',$value,false);
@@ -359,7 +358,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_colorpicker($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     $html = "<input type='text' value='$value' class='form-colorpicker'";
     $html.= " data-default-color='{$layout['default']}' name='$name' />";
     if (!empty($layout['text'])) $html.= " <span style='vertical-align: top;'>{$layout['text']}</span>";
@@ -367,13 +366,13 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_display($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (!empty($value)) echo $value;
     if (!empty($layout['text'])) echo " <span>{$layout['text']}</span>";
   }
 
   private function render_font($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     $html = "<select id='$ID' name='$name'";
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : ">";
     foreach($layout['source'] as $key=>$text) {
@@ -387,7 +386,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_image($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     $media = $this->form_text['media'];
     if (isset($layout['media'])) $media = array_merge($media,$layout['media']);
     $html = "<div data-title='{$media['title']}' data-button='{$media['button']}' data-field='$ID'>";
@@ -400,7 +399,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_radio($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (empty($layout['source'])) return;
     $uniq = uniqid();
     if (isset($layout['text'])) echo "<div id='$uniq'>".esc_attr($layout['text'])."</div>";
@@ -417,7 +416,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_select($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (empty($layout['source'])) return;
     $source_func = $layout['source'];
     $html = "<select id='$ID' name='$name'";
@@ -438,7 +437,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_text($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     $html = "<input type='text' id='$ID' class='";
     $html.= (isset($layout['class'])) ? $layout['class'] : 'regular-text';
     $html.= "' name='$name' value='".esc_attr(sanitize_text_field($value))."'";
@@ -448,7 +447,7 @@ abstract class Basic_Admin_Form {
   }
 
   private function render_title($data) {
-    extract($data);
+    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (!empty($layout['text']))
       $layout['text'] = "<strong>{$layout['text']}</strong>";
     $this->render_display($data);
