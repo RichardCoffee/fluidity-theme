@@ -33,7 +33,6 @@ abstract class Basic_Admin_Form {
 
   public function load_form_page() {
     global $plugin_page;
-    log_entry("plugin page: $plugin_page");
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
       if (isset($_GET['tab']))  $this->tab = sanitize_key($_GET['tab']);
       if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
