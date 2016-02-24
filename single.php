@@ -6,13 +6,13 @@
  */
 
 get_header();
-$micro = TCC_Microdata::get_instance();
+$micro = microdata();
 
 #$layout = 'sidebar-left';
 $layout = 'sidebar-right'; ?>
 
 <div class="<?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
-  <div class="row">
+  <div class="row pad05perc">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
 
       $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12";

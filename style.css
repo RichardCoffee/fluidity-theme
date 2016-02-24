@@ -61,3 +61,8 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
 .no-padding {
   padding: 0;
 }
+
+.pad05perc {
+  padding-right: 5%;
+  padding-left: 5%;
+}
