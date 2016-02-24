@@ -17,7 +17,7 @@ abstract class Custom_Post_Type {
   protected $columns    = null;        #  array('remove'=>array()','add'=>array())
   protected $comments   = false;       #  boolean:  allow comments
   protected $debug      = false;       #  used in conjunction with $this->logging
-  protected $icon       = 'dashicon-admin-post'; #  admin dashboard icon
+  protected $icon       = 'dashicons-admin-post'; #  admin dashboard icon
   protected $logging    = 'log_entry'; #  assign your own logging function here
   protected $main_blog  = true;        #  set to false to not force inclusion in WP post queries
   private   $nodelete   = array();     #  used in $this->taxonomy_registration($args)
@@ -326,10 +326,10 @@ abstract class Custom_Post_Type {
 
   private function setup_columns() {
     if (isset($this->columns['remove'])) {
-      add_filter("manage_edit-{$type}_columns",array($this,'remove_custom_post_columns')); }
+      add_filter("manage_edit-{$this->type}_columns",array($this,'remove_custom_post_columns')); }
     if (isset($data['columns']['add'])) {
-      add_filter("manage_edit-{$type}_columns",array($this,'add_custom_post_columns'));
-      add_filter("manage_edit-{$type}_sortable_columns",array($this,'add_custom_post_columns'));
+      add_filter("manage_edit-{$this->type}_columns",array($this,'add_custom_post_columns'));
+      add_filter("manage_edit-{$this->type}_sortable_columns",array($this,'add_custom_post_columns'));
       if (isset($data['columns']['content'])) {
         if (is_callable(array($this,$this->columns['content']))) {
           add_action('manage_posts_custom_column',array($this,$this->columns['content']),10,2);

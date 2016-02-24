@@ -95,17 +95,19 @@ if (!function_exists('fluidity_register_color_scheme')) {
 
 /** Temporary Construction functions **/
 
-function show_construction_title() {
-  $site  = "<a href='".home_url()."'>This site</a>";
-  $refer = "<a href='http://the-creative-collective.com' target='TCC'>The Creative Collective</a>"; ?>
-  <h1 class='text-center'><?php
-    echo "$site currently under construction by $refer"; ?>
-  </h1><?php
-}
-add_action('tcc_header_body_content','show_construction_title');
+if (!is_child_theme()) {
+  function show_construction_title() {
+    $site  = "<a href='".home_url()."'>This site</a>";
+    $refer = "<a href='http://the-creative-collective.com' target='TCC'>The Creative Collective</a>"; ?>
+    <h1 class='text-center'><?php
+      echo "$site currently under construction by $refer"; ?>
+    </h1><?php
+  }
+  add_action('tcc_header_body_content','show_construction_title');
 
-function control_construction_header($args) {
-  $args['split'] = false;
-  return $args;
+  function control_construction_header($args) {
+    $args['split'] = false;
+    return $args;
+  }
+  add_filter('tcc_header_body','control_construction_header');
 }
-add_filter('tcc_header_body','control_construction_header');
