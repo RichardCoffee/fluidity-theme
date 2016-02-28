@@ -16,11 +16,12 @@ if (!function_exists('fluid_layout')) {
 }
 
 if (!function_exists('sidebar_layout')) {
-  function sidebar_layout($sidebar='standard') {
+  function sidebar_layout($sidebar='standard',$side=null) {
     $layout = fluid_layout();
-    if ($layout->sb_locate!=='none') {
+    $side   = ($side) ? $side : $layout->sb_locate;
+    if ($side!=='none') {
       $micro = microdata();
-      $sidebar_class = $layout->sb_class.(($layout->sb_locate=='right') ? ' pull-right' : ''); ?>
+      $sidebar_class = $layout->sb_class.(($side=='right') ? ' pull-right' : ''); ?>
       <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?>><?php
         fluidity_get_sidebar($sidebar); ?>
       </aside><?php
