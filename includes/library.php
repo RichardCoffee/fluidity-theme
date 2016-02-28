@@ -89,7 +89,27 @@ if (!function_exists('wp_menu_id_by_name')) {
   }
 }
 
-// get term name string
+#  https://developer.wordpress.org/themes/basics/template-hierarchy/
+if (!function_exists('author_role_template')) {
+  function author_role_template( $templates = '' ) {
+    $author = get_queried_object();
+    $role = $author->roles[0];
+    if ( ! is_array( $templates ) && ! empty( $templates ) ) {
+      $templates = locate_template( array( "author-$role.php", $templates ), false );
+    } elseif ( empty( $templates ) ) {
+      $templates = locate_template( "author-$role.php", false );
+    } else {
+      $new_template = locate_template( array( "author-$role.php" ) );
+      if ( ! empty( $new_template ) ) {
+        array_unshift( $templates, $new_template );
+      }
+    }
+    return $templates;
+  }
+  add_filter( 'author_template', 'author_role_template' );
+}
+
+#  get term name string
 if (!function_exists('get_term_name')) {
   function get_term_name($tax,$slug) {
     $term = get_term_by('slug',$slug,$tax);
@@ -98,7 +118,7 @@ if (!function_exists('get_term_name')) {
   }
 }
 
-// https://codex.wordpress.org/Using_Gravatars
+#  https://codex.wordpress.org/Using_Gravatars
 function get_valid_gravatar($email,$size=96) {
   // Craft a potential url and test its headers
   $hash = md5(strtolower(trim($email)));
@@ -138,7 +158,7 @@ if (!function_exists('next_post_exists')) {
   }
 }
 
-// http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
+#  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 if (!function_exists('page_exists')) {
   function page_exists($search='') {
     $pages = get_pages();
@@ -169,7 +189,7 @@ if (!function_exists('sanitize_array')) {
 
 /*  Debugging functions  */
 
-// https://docs.dev4press.com/tutorial/wordpress/debug-wordpress-rewrite-rules-matching/
+#  https://docs.dev4press.com/tutorial/wordpress/debug-wordpress-rewrite-rules-matching/
 if (!function_exists('debug_rewrite_rules')) {
   function debug_rewrite_rules() {
     global $wp_rewrite;
@@ -230,7 +250,7 @@ if (!function_exists('list_filter_hooks')) {
   #add_action('wp_footer','list_filter_hooks');
 }
 
-// generate log entry, with comment
+#  generate log entry, with comment
 if (!function_exists('log_entry')) {
   function log_entry() {
     if (WP_DEBUG) {
@@ -245,7 +265,7 @@ if (!function_exists('log_entry')) {
   }
 }
 
-//  show data inline
+#  show data inline
 if (!function_exists('showme')) {
   function showme($title,$data) {
     if (WP_DEBUG) { ?>
@@ -267,7 +287,7 @@ if (!function_exists('showme')) {
   }
 }
 
-//  show string inline
+#  show string inline
 if (!function_exists('tellme')) {
   function tellme($string) {
     if (WP_DEBUG) {
