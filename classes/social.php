@@ -16,14 +16,14 @@ class Theme_Social_Icons {
   }
 
   public function describe_social() {
-    _e('Social Icons (powered by Font Awesome)','tcc-fluid');
+    _e('Fluidity Social Icons (powered by Font Awesome)','tcc-fluid');
   }
 
   protected static function social_layout() {
     $layout = array('default'=>true);
     $layout['active'] = array('default' => 'no',
                               'label'   => __('Use Theme','tcc-fluid'),
-                              'text'    => __("choose Yes if you want to use the theme's internal social icons",'tcc-fluid'),
+                              'text'    => __("choose Yes if you want to use the theme's internal social icons, No if you are using a plugin",'tcc-fluid'),
                               'help'    => __('Contact us if you need help with a third-party plugin','tcc-fluid'),
                               'render'  => 'select',
                               'source'  => array('yes' => 'Yes',
