@@ -23,7 +23,7 @@ $micro = microdata(); ?>
             <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
 
               <h1 class="text-center"><?php
-                echo fluid_title(); ?> <?php // inserts a space
+                echo fluid_title(); // inserts a space
                 edit_post_link(__('{Edit}','tcc-fluid'), 'tcc-fluid'); ?>
               </h1>
 
