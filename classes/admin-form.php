@@ -28,7 +28,8 @@ abstract class Basic_Admin_Form {
 
   protected function __construct() {
     $this->screen_type();
-    add_action('admin_init',array($this,'load_form_page'));
+    add_action('admin_init',         array($this,'load_form_page'));
+    add_action('customize_register', array($this,'customize_register'));
   }
 
   public function load_form_page() {
@@ -44,6 +45,12 @@ abstract class Basic_Admin_Form {
       $this->$func();
       add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
     }
+  }
+
+  public function customize_register($wp_customize) {
+    $this->form_text = $this->form_text();
+    $this->form = $this->form_layout();
+    do_action('fluid-customizer',$wp_customize,$this);
   }
 
   public function enqueue_scripts() {
@@ -152,6 +159,71 @@ abstract class Basic_Admin_Form {
       $html.= "</label>";
     }
     return $html;
+  }
+
+
+  /**  Customizer  **/
+
+  public function customizer_settings($wp_customize,$base) {
+    if ($base && $this->form[$base]) {
+      $layout = $this->form[$base];
+      foreach($layout as $key=>$option) {
+        if (!isset($option['default'])) continue;
+        if ($option['render']==='skip') continue;
+        $name = "tcc_options_{$base}[$key]";
+        $settings = array('default'    => $option['default'],
+                          'type'       => 'option',
+                          'capability' => 'edit_theme_options',
+                          'sanitize_callback' => $this->sanitize_callback($option));
+        $wp_customize->add_setting($name,$settings);
+        #  default WordPress sections
+        $wp_sections = array('title_tagline','colors','header_image','background_image','nav','static_front_page');
+        $section  = (in_array($base,$wp_sections)) ? $base : "fluid_$base";
+        $controls = array('label'    => $option['label'], // FIXME: use $this->field_label($ID,$option) instead, what would $ID be?
+                          'section'  => $section,
+                          'settings' => $name);
+        switch($option['render']) {
+          case "checkbox":
+            $controls['type'] = 'checkbox';
+            break;
+          case "colorpicker":
+            $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,$name,$controls));
+            $name = false;
+            break;
+          case "image": // FIXME: does not work as advertised
+            //$controls['type'] = 'image';
+            if (isset($option['context'])) $controls['context'] = $option['context'];
+tcc_log_entry($controls);
+            $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,$name,$controls));
+            break;
+          case "radio":
+            $controls['type']    = 'radio';
+            $controls['choices'] = $option['source'];
+            break;
+          case "select":
+            if (!is_array($option['source'])) continue; // FIXME: this action leaves an orphaned setting with no control
+            $controls['type']    = 'select';
+            $controls['choices'] = $option['source'];
+            break;
+          default:
+            tcc_log_entry("WARNING:  switch case needed in customizer_settings for {$option['render']}");
+            $name = false;
+        }
+        if ($name) $wp_customize->add_control($name,$controls);
+      }
+    }
+  }
+
+  private function sanitize_callback($option) {
+    $valid_func = "validate_{$option['render']}";
+    if (method_exists($this,$valid_func)) {
+      $retval = array($this,$valid_func);
+    } else if (function_exists($valid_func)) {
+      $retval = $valid_func;
+    } else {
+      $retval = 'wp_kses_post';
+    }
+    return $retval;
   }
 
 
@@ -559,6 +631,8 @@ abstract class Basic_Admin_Form {
   private function validate_url($input) {
     return esc_url_raw(strip_tags(stripslashes($input)));
   }
+
+  public 
 
 }
 

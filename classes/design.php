@@ -4,23 +4,31 @@ require_once('typography.php');
 
 class Theme_Design_Options {
 
+  private $base     = 'design';
+  private $priority = 34; # customizer priority
+
   public function __construct() { #Fluidity_Options_Form $form) {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),10);
+    add_action('fluid-customizer', array($this,'options_customize_register'),$this->priority,2);
+  }
+
+  private function form_title() {
+    return __('Design','tcc-fluid');
   }
 
   public function form_layout($form) {
-    $form['design'] = array('describe' => array($this,'describe_design'),
-                            'title'    => __('Design','tcc-fluid'),
-                            'option'   => 'tcc_options_design',
-                            'layout'   => $this->design_layout());
+    $form[$this->base] = array('describe' => array($this,'describe_options'),
+                               'title'    => $this->form_title(),
+                               'option'   => 'tcc_options_'.$this->base,
+                               'layout'   => $this->options_layout());
     return $form;
   }
 
-  public function describe_design() {
+  public function describe_options() {
     _e('Design Options','tcc-fluid');
   }
 
-  protected static function design_layout() {
+  protected static function options_layout() {
     $layout = array('default'=>true);
     $layout['logo']   = array('default' => '',
                               'label'   => __('Theme Logo','tcc-fluid'),
@@ -54,6 +62,11 @@ class Theme_Design_Options {
                               'text'    => __('Coming Soon!','tcc-fluid'),
                               'render'  => 'display'); //*/
     return $layout;
+  }
+
+  public function options_customize_register($wp_customize, Fluidity_Options_Form $form) {
+    $wp_customize->add_section( 'fluid_'.$this->base, array('title' => $this->form_title(), 'priority' => $this->priority));
+    $form->customizer_settings($wp_customize,$this->base);
   }
 
 

@@ -1,66 +1,87 @@
 <?php
 
-class Fluid_Layout {
 
-  private static $instance = null;
-  public $clearfix      = 'lg=4&md=4&sm=6&xs=12';
-  public $color_scheme  = '';
-  public $current_page  = '';
-  public $inner_class   = 'col-lg-4 col-md-4 col-sm-6 col-xs-12';
-  public $microdata     = null;
-  public $primary_class = 'col-lg-8 col-md-8 col-sm-12 col-xs-12';
-  public $sidebar_class = 'col-lg-4 col-md-4 hidden-sm hidden-xs';
-  public $sidebar_name  = 'standard';
-  public $sidebar_side  = 'right';
 
-  public function __construct($args=array()) {
-    if (self::$instance) return self::$instance;
-    $this->color_scheme = tcc_color_scheme();
-    $this->microdata    = TCC_Microdata::get_instance();
-    foreach($args as $key=>$value) {
-      if (property_exists($this,$key))
-        $this->$key = $value;
-    }
-    $this->determine_sidebar();
-    self::$instance = $this;
-    return $this;
+class Theme_Layout_Options {
+
+  private $base     = 'layout';
+  private $priority = 35; # customizer priority
+
+  public function __construct() { #Fluidity_Options_Form $form) {
+    add_filter('fluidity_options_form_layout', array($this,'form_layout'),10);
+    add_action('fluid-customizer', array($this,'options_customize_register'),$this->priority,2);
   }
 
-  public static function get_instance($page='') {
-    if (self::$instance===null) {
-      self::$instance = new Fluid_Layout($page);
-    }
-    return self::$instance;
+  private function form_title() {
+    return __('Layout','tcc-fluid');
   }
 
-  private function determine_sidebar() {
-    // FIXME:  this needs to be coordinated with register_fluid_sidebars() in includes/sidebars.php
-    $known = array('standard','front','three_column','footer');
-    $known = apply_filters('fluidity_known_sidebars',$known);
-    if ((empty($this->sidebar_name)) || (!in_array($this->sidebar_name,$known))) {
-      if (is_front()) {
-        $this->sidebar_name = 'front';
-      } elseif (is_search()) {
-        $this->sidebar_name = 'search';
-      } elseif (is_archive()) {
-        $this->sidebar_name = 'archive';
-      } else {
-        $this->sidebar_name = 'standard';
-      }
-    }
+  public function form_layout($form) {
+    $form[$this->base] = array('describe' => array($this,'describe_options'),
+                               'title'    => $this->form_title(),
+                               'option'   => 'tcc_options_'.$this->base,
+                               'layout'   => $this->options_layout());
+    return $form;
   }
 
-  public function get_sidebar() {
-    if (is_active_sidebar($this->sidebar_name)) {
-      $this->sidebar_class.= ($this->sidebar_side=='right') ? ' pull-right' : ''; ?>
-      <aside class="<?php echo $this->sidebar_class; ?>" <?php $this->microdata->WPSideBar(); ?>><?php
-        fluidity_get_sidebar($this->sidebar_name); ?>
-      </aside><?php
-    } else {
-      $this->primary_class = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
-      $this->inner_class   = "col-lg-3  col-md-3  col-sm-6  col-xs-12";
-      $this->clearfix      = "lg=3&md=3&sm=6&xs=12";
-    }
+  public function describe_options() {
+    _e("Utilize these options to change the theme's style and layout.",'tcc-fluid');
   }
+
+  protected static function options_layout() {
+    $layout = array('default'=>true);
+    $layout['width'] = array('default' => 'full',
+                             'label'   => __('Width','tcc-fluid'),
+                             'text'    => __('How much screen real estate do you want the theme to use?','tcc-fluid'),
+                             'help'    => __('This determines the margins for the main body of the website','tcc-fluid'),
+                             'render'  => 'select',
+                             'source'  => array('fluid'  => __('Full Width (small margins)','tcc-fluid'),
+                                                'narrow' => __('Standard Margins','tcc-fluid')));
+    $layout['sidebar'] = array('default' => 'left',
+                               'label'   => __('Sidebar','tcc-fluid'),
+                               'text'    => __('Which side of the screen should the sidebar show up on?'),
+                               'render'  => 'select',
+                               'source'  => array('none'  => __('No Sidebar','tcc-fluid'),
+                                                  'left'  => __('Left side','tcc-fluid'),
+                                                  'right' => __('Right side','tcc-fluid')));
+/*    $layout['logo']   = array('default' => '',
+                              'label'   => __('Theme Logo','tcc-fluid'),
+                              'render'  => 'image',
+                              'divcss'  => 'upload-img',
+                              'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
+                                                 'button' => __('Assign Logo',             'tcc-fluid'),
+                                                 'delete' => __('Remove Logo',             'tcc-fluid')));
+    $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
+                              'text'    => __('Site typography options','tcc-fluid'),
+                              'render'  => 'title');
+    $layout['font']   = array('default' => 'Helvitica Neue',
+                              'label'   => __('Font Type','tcc-fluid'),
+                              'render'  => 'font',
+                              'source'  => TCC_Typography::mixed_fonts());
+    $layout['size']   = array('default' => 18,
+                              'label'   => __('Font Size','tcc-fluid'),
+                              'text'    => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
+                              'render'  => 'text',
+                              'divcss'  => 'tcc_text_3em');
+/*    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
+                              'text'    => __('Use these options to add/change the background images','tcc-fluid'),
+                              'render'  => 'title');
+    $layout['header'] = array('label'   => __('Header',      'tcc-fluid'),
+                              'text'    => __('Coming Soon!','tcc-fluid'),
+                              'render'  => 'display');
+    $layout['footer'] = array('label'   => __('Footer',      'tcc-fluid'),
+                              'text'    => __('Coming Soon!','tcc-fluid'),
+                              'render'  => 'display');
+    $layout['site']   = array('label'   => __('Site',        'tcc-fluid'),
+                              'text'    => __('Coming Soon!','tcc-fluid'),
+                              'render'  => 'display'); //*/
+    return $layout;
+  }
+
+  public function options_customize_register($wp_customize, Fluidity_Options_Form $form) {
+    $wp_customize->add_section( 'fluid_'.$this->base, array('title' => $this->form_title(), 'priority' => $this->priority));
+    $form->customizer_settings($wp_customize,$this->base);
+  }
+
 
 }

@@ -43,10 +43,9 @@ if (!function_exists('fluid_color_scheme')) {
 
 if (!function_exists('container_type')) {
   function container_type($location='post') {
-    $base = 'container-fluid';
-    if ($location=='fluid-header')
-      return "$base no-padding";
-    return $base;
+    if ($location=='fluid-header') return "container-fluid no-padding";
+    $option = get_option('tcc_options_layout');
+    return ($option['width']=='narrow') ? 'container' : 'container-fluid';
   }
 }
 
