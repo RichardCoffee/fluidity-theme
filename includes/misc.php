@@ -52,7 +52,7 @@ if (!function_exists('fluid_user_profile_link')) {
     $html = "<a href='";
     $html = get_option('siteurl');
     $html = "/wp-admin/profile.php'>";
-    $html = $current_user->display_name
+    $html = $current_user->display_name;
     $html = "</a>";
     return apply_filters('tcc_user_profile_link',$html);
   }
