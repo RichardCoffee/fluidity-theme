@@ -8,6 +8,7 @@ define('FLUIDITY_VERSION','1.0.0');
 
 require_once('includes/theme-support.php');
 require_once('includes/library.php');
+require_once('includes/layout.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
 require_once(plugin_dir_path(__FILE__).'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
