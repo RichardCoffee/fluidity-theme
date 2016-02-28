@@ -12,4 +12,8 @@
     height: auto;
 }
 
+.form-title {
+  font-size: 16px;
+}
+
 .tcc_text_3em  input[type="text"]  { width: 3em;  }
