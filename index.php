@@ -1,22 +1,19 @@
 <?php
 /*
- *  tcc-fluidity/index.php
+ *  File Name: index.php
  *
  */
 
 get_header();
+
 $micro  = microdata();
-$layout = ""; ?>
+$layout = fluid_layout(); ?>
 
 <div id="fluid-index" class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12"><?php
 
-      $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
-      $sidebar_class.= ($layout=='sidebar-right') ? ' pull-right' : ''; ?>
-      <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?>><?php
-        fluidity_get_sidebar('standard'); ?>
-      </aside>
+      sidebar_layout('standard'); ?>
 
       <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>><?php
         who_am_i(__FILE__);

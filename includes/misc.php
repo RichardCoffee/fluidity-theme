@@ -45,6 +45,19 @@ function fluidity_social_icons() {
   }
 } //*/
 
+if (!function_exists('fluid_user_profile_link')) {
+  function fluid_user_profile_link() {
+    global $current_user;
+    get_currentuserinfo();
+    $html = "<a href='";
+    $html = get_option('siteurl');
+    $html = "/wp-admin/profile.php'>";
+    $html = $current_user->display_name
+    $html = "</a>";
+    return apply_filters('tcc_user_profile_link',$html);
+  }
+}
+
 if (!function_exists('single_search_result')) {
   // http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
   function single_search_result() {

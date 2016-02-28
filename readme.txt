@@ -30,6 +30,7 @@
 
    Filters                       Description                                      Function                      File
 ========================     ==============================================    ========================   ============================
+ tcc_user_profile_link        html link to user profile page, with name         fluid_user_profile_link    includes/misc.php
  tcc_author_posts_header      main header for author's posts                                               author.php
  tcc_bottom_menu              footer menu below copyright                                                  template_parts/footer.php
  tcc_header_body_class        control the header body layout                    fluidity_header_body       includes/header.php

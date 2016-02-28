@@ -6,20 +6,13 @@
  */
 
 get_header();
-$micro = microdata();
-
-#$layout = 'sidebar-left';
-$layout = 'sidebar-right'; ?>
+$micro = microdata(); ?>
 
 <div class="<?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
   <div class="row pad05perc">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
 
-      $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
-      $sidebar_class.= ($layout=='sidebar-right') ? ' pull-right' : ''; ?>
-      <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?>><?php
-        fluidity_get_sidebar('single'); ?>
-      </aside>
+      sidebar_layout('single'); ?>
 
       <div id="content" role="main"><?php
         who_am_i(__FILE__);
@@ -31,7 +24,7 @@ $layout = 'sidebar-right'; ?>
 
               <h1 class="text-center"><?php
                 echo fluid_title(); ?> <?php // inserts a space
-                edit_post_link(__('{Edit}','tcc-fluid'), ''); ?>
+                edit_post_link(__('{Edit}','tcc-fluid'), 'tcc-fluid'); ?>
               </h1>
 
               <h3 class="text-center"><?php
