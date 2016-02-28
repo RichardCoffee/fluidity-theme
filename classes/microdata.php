@@ -47,7 +47,7 @@ class TCC_Microdata {
  /*
   *  These functions should be inserted into elements like so:
   *
-  *       <?php $instance = TCC_Microdata::get_instance(); ?>
+  *       <?php $instance = microdata(); ?>
   *       <div class="container" role="main" <?php $instance->Blog(); ?>>
   *  or:  <div class="container" role="main" <?php $instance->microdata('Blog'); ?>>
   *
@@ -105,7 +105,7 @@ class TCC_Microdata {
  /*
   *  These functions can be utilized like so:
   *
-  *  $instance = TCC_Microdata::get_instance();
+  *  $instance = microdata();
   *  echo sprintf(_x('Posted on %1$s by %2$s','1: formatted date, 2: author name','text-domain'),get_the_date(),$instance->get_the_author());
   *
   */
@@ -124,16 +124,16 @@ class TCC_Microdata {
     return $string;
   }
 
-  public function get_the_author($showlink=false) {
+  public function get_the_author($addlink=false) {
     $string = '';
-    if ($showlink) {
-      $title  = sprintf(_x('Posts by %s',"Placeholder is the Author's name",'tcc-fluid'),get_the_author()); // FIXME: adjust text domain as required
+    if ($addlink) {
+      $title  = sprintf(__('Posts by %s'),get_the_author());
       $string.= "<a itemprop='url' rel='author' title='$title' href='".get_author_posts_url(get_the_author_meta('ID'))."'>";
     }
     $string.= "<span itemprop='author'>";
     $string.= get_the_author();
     $string.= "</span>";
-    if ($showlink) { $string.= "</a>"; }
+    if ($addlink) { $string.= "</a>"; }
     return $string;
   }
 

@@ -11,14 +11,14 @@ $micro  = microdata();
 $layout = fluid_layout();
 who_am_i(); ?>
 
-<div class="<?php echo container_type('page'); ?>">
+<div id="fluid-page" class="<?php echo container_type('page'); ?>" role="main" <?php $micro->Blog(); ?>>
   <div class="row">
-    <div class="col-xs-12"><?php
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><?php
 
       sidebar_layout('standard');
 
       if (have_posts()) {
-        while (have_posts()) {
+        while(have_posts()) {
           the_post(); ?>
           <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
             <h1 class="text-center"><?php
@@ -36,8 +36,8 @@ who_am_i(); ?>
         }
       } ?>
 
-    </div>
-  </div>
-</div><?php
+    </div><!-- .col-*-* -->
+  </div><!-- .row -->
+</div><!-- .container-* --><?php
 
 get_footer(); ?>

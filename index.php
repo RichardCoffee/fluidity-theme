@@ -8,7 +8,7 @@ get_header();
 
 $micro  = microdata();
 $layout = fluid_layout();
-who_am_i(__FILE__); ?>
+who_am_i(); ?>
 
 <div id="fluid-index" class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
   <div class="row">
@@ -38,6 +38,6 @@ who_am_i(__FILE__); ?>
 
     </div><!-- .col-*-* -->
   </div><!-- .row -->
-</div><?php
+</div><!-- .container-* --><?php
 
 get_footer(); ?>
