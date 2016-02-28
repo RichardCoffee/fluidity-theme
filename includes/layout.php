@@ -6,7 +6,7 @@
  */
 
 if (!function_exists('fluid_layout')) {
-  function fluid_layout($sidebar) {
+  function fluid_layout($sidebar='standard') {
     $layout = new stdClass();
     $layout->sidebar    = $sidebar;
     $layout->sb_locate  = fluidity_sidebar_side($sidebar);
