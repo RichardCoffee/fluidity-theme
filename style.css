@@ -15,6 +15,14 @@ body {
   font-size: 18px;
 }
 
+.no-padding {
+  padding: 0;
+}
+
+.padbott {
+  padding-bottom: 1em;
+}
+
 table.posting-table {
   border-collapse: collapse;
   border: 1px solid #333;
@@ -56,10 +64,6 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
 .content {
   border-radius: 5px;
   border: 1px solid;
-}
-
-.no-padding {
-  padding: 0;
 }
 
 .pad05perc {
