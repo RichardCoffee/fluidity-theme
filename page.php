@@ -8,19 +8,19 @@
 get_header();
 
 $micro  = microdata();
-$layout = fluid_layout(); ?>
+$layout = fluid_layout();
+who_am_i(); ?>
 
 <div class="<?php echo container_type('page'); ?>">
   <div class="row">
     <div class="col-xs-12"><?php
 
-      sidebar_layout('standard'); ?>
+      sidebar_layout('standard');
 
-      <div class="<?php echo $col_primary; ?>"><?php
-        who_am_i();
-        if (have_posts()) {
-          while (have_posts()) {
-            the_post(); ?>
+      if (have_posts()) {
+        while (have_posts()) {
+          the_post(); ?>
+          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
             <h1 class="text-center"><?php
               echo fluid_title(); // inserts a space
               edit_post_link(__('{Edit}','tcc-fluid'), ' '); ?>
@@ -30,11 +30,11 @@ $layout = fluid_layout(); ?>
             </h3>
             <div class="article"><?php
               the_content(); ?>
-            </div><?php
-            if (have_posts()) echo "<hr class='padbott'>";
-          }
-        } ?>
-      </div>
+            </div>
+          </article><?php
+          if (next_post_exists()) echo "<hr class='padbott'>";
+        }
+      } ?>
 
     </div>
   </div>

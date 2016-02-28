@@ -128,6 +128,16 @@ if (!function_exists('fluid_navigation')) {
   }
 }
 
+if (!function_exists('next_post_exists')) {
+  function next_post_exists() {
+    global $wp_query;
+    if ( $wp_query->current_post + 1 < $wp_query->post_count ) {
+      return true;
+    }
+    return false'
+  }
+}
+
 // http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 if (!function_exists('page_exists')) {
   function page_exists($search='') {

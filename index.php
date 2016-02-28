@@ -7,19 +7,19 @@
 get_header();
 
 $micro  = microdata();
-$layout = fluid_layout(); ?>
+$layout = fluid_layout();
+who_am_i(__FILE__); ?>
 
 <div id="fluid-index" class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12"><?php
 
-      sidebar_layout('standard'); ?>
+      sidebar_layout('standard');
 
-      <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>><?php
-        who_am_i(__FILE__);
-        if (have_posts()) {
-          while(have_posts()) {
-            the_post();
+      if (have_posts()) {
+        while(have_posts()) {
+          the_post(); ?>
+          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>><?php
             $format  = __('Permanent Link to %s','tcc-fluid');
             $tooltip = sprintf($format,get_the_title()); ?>
             <h1 class="text-center" itemprop="headline">
@@ -31,10 +31,10 @@ $layout = fluid_layout(); ?>
             <div class="article" itemprop="articleBody"><?php
               the_excerpt(); ?>
             </div><?php
-            comments_template();
-          }
-        } ?>
-      </article>
+            comments_template(); ?>
+          </article><?php
+        }
+      } ?>
 
     </div><!-- .col-*-* -->
   </div><!-- .row -->
