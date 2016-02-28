@@ -56,16 +56,14 @@ if (!function_exists('fluidity_get_sidebar')) {
 if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($args) {
     $sidebars = (array)$args;
-    #if (always use sidebar) { // FIXME
-      $sidebars[] = 'standard';
-      $sidebars[] = 'home';
-    #}
+    $sidebars[] = 'standard';
+    $sidebars[] = 'home';
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
           return true;
         } else { /*echo "<p>$sidebar non-dynamic</p>";*/ }
-      } else { /*echo "<p>$sidebar not active</p>";*/ }
+      } else {   /*echo "<p>$sidebar not active</p>";*/ }
     }
     return false;
   }
@@ -83,8 +81,16 @@ if (!function_exists('fluidity_sidebar_parameter')) {
   }
 }
 
-if (!function_exists('fluidity_sidebar_side')) {
-  function fluidity_sidebar_side($sidebar) {
-    return 'left';
+if (!function_exists('sidebar_layout')) {
+  function sidebar_layout($sidebar='standard',$side=null) {
+    $option = get_option('tcc_option_layout');
+    $side   = ($side) ? $side : $option['sidebar'];
+    if ($side!=='none') {
+      $micro = microdata();
+      $sidebar_class = 'col-lg-4  col-md-4  col-sm-12 col-xs-12'.(($side=='right') ? ' pull-right' : ''); ?>
+      <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?>><?php
+        fluidity_get_sidebar($sidebar); ?>
+      </aside><?php
+    }
   }
 }

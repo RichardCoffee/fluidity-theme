@@ -8,7 +8,6 @@
 get_header();
 
 $micro  = microdata();
-$layout = fluid_layout();
 who_am_i(); ?>
 
 <div id="fluid-page" class="<?php echo container_type('page'); ?>" role="main" <?php $micro->Blog(); ?>>

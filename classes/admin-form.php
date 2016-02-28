@@ -632,7 +632,6 @@ tcc_log_entry($controls);
     return esc_url_raw(strip_tags(stripslashes($input)));
   }
 
-  public 
 
 }
 

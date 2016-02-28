@@ -7,7 +7,6 @@
 get_header();
 
 $micro  = microdata();
-$layout = fluid_layout();
 who_am_i(); ?>
 
 <div id="fluid-index" class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Blog(); ?>>
