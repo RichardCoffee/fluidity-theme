@@ -129,12 +129,13 @@ if (!function_exists('fluid_navigation')) {
 }
 
 if (!function_exists('next_post_exists')) {
+  #  can only be used within The Loop
   function next_post_exists() {
     global $wp_query;
     if ( $wp_query->current_post + 1 < $wp_query->post_count ) {
       return true;
     }
-    return false'
+    return false;
   }
 }
 
