@@ -19,6 +19,7 @@ if (!function_exists('sidebar_layout')) {
   function sidebar_layout($sidebar='standard') {
     $layout = fluid_layout();
     if ($layout->sb_locate!=='none') {
+      $micro = microdata();
       $sidebar_class = $layout->sb_class.(($layout->sb_locate=='right') ? ' pull-right' : ''); ?>
       <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?>><?php
         fluidity_get_sidebar($sidebar); ?>
