@@ -44,8 +44,8 @@ if (!function_exists('fluidity_browser_title')) {
       } else {
         $spot = strpos($title,$test);
         if ($spot) {
-          $new = substr($title,0,$spot);
-          $title = $new.' > '.$test;
+          $title = substr($title,0,$spot);
+          $title.= ($test) ? ' > '.$test : '';
         }
       }
     }
