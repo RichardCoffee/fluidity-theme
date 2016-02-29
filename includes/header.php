@@ -100,8 +100,8 @@ if (!function_exists('fluidity_header_body')) {
 
 if (!function_exists('fluidity_header_logo')) {
   function fluidity_header_logo() { ?>
-    <div class='logo' itemprop='logo' <?php microdata()->ImageObject(); ?>>
-      <a href='<?php echo home_url(); ?>/' itemprop='relatedLink'>
+    <div itemprop='logo' <?php microdata()->ImageObject(); ?>>
+      <a class='logo' href='<?php echo home_url(); ?>/' itemprop='relatedLink'>
         <img class='img-responsive' src='<?php echo tcc_design('logo'); ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'>
       </a>
     </div><?php
