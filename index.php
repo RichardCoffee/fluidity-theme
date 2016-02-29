@@ -33,7 +33,9 @@ who_am_i(); ?>
             comments_template(); ?>
           </article><?php
         }
-      } ?>
+      }
+
+      wp_link_pages(); ?>
 
     </div><!-- .col-*-* -->
   </div><!-- .row -->
