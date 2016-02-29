@@ -72,6 +72,8 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   align: center;
   text-align: center;
   vertical-align: middle;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .pad05perc {
