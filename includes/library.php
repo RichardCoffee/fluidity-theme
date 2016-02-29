@@ -150,6 +150,17 @@ if (!function_exists('fluid_navigation')) {
   }
 }
 
+if (!function_exists('fluid_thumbnail')) {
+  #  can only be used inside The Loop
+  function fluid_thumbnail() {
+    $option = get_option('tcc_options_layout');
+    $css    = ($option['sidebar']=='none') ? 'col-lg-8 col-md-8 col-sm-12 col-xs-12' : 'col-lg-12 col-md-12 col-sm-12 col-xs-12'; ?>
+    <div class='<?php echo $css; ?> logo'><?php
+       the_post_thumbnail(); ?>
+    </div><?php
+  }
+}
+
 if (!function_exists('next_post_exists')) {
   #  can only be used within The Loop
   function next_post_exists() {
