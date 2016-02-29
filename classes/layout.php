@@ -44,6 +44,12 @@ class Theme_Layout_Options {
                                'source'  => array('none'  => __('No Sidebar','tcc-fluid'),
                                                   'left'  => __('Left side','tcc-fluid'),
                                                   'right' => __('Right side','tcc-fluid')));
+    $layout['widget'] = array('default' => 'open',
+                              'label'   => __('Widgets','tcc-fluid'),
+                              'text'    => __('Should the sidebar widgets start open or closed, where applicable','tcc-fluid'),
+                              'render'  => 'radio',
+                              'source'  =>array('open'   => __('Open','tcc-fluid'),
+                                                'closed' => __('Closed','tcc-fluid')));
 /*    $layout['logo']   = array('default' => '',
                               'label'   => __('Theme Logo','tcc-fluid'),
                               'render'  => 'image',
