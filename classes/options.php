@@ -23,6 +23,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     add_action('admin_menu',     array($this,'add_menu_option'));
     add_filter('form_text_'.$this->slug,array($this,'form_trans_text'),10,2);
     parent::__construct();
+    $fluid_layout = new Theme_Layout_Options();
     $fluid_design = new Theme_Design_Options();
     $fluid_social = new Theme_Social_Icons();
   }
