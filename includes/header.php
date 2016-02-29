@@ -55,7 +55,7 @@ log_entry("title result: $title");
         }
       }
     }
-log_entry("");
+log_entry("return title: $title");
     return $title;
   }
   add_filter('wp_title','fluidity_browser_title',10,2);
