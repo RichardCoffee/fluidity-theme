@@ -7,7 +7,7 @@ if (!function_exists('fluidity_register_sidebars')) {
     $color  = (is_admin()) ? 'primary' : tcc_color_scheme('sidebars');
     $option = get_option('tcc_options_layout');
     $before_widget = "<div class='panel panel-$color'>";
-    $before_title  = "<div class='panel-heading scroll-this'";
+    $before_title  = "<div class='panel-heading'";
     $before_title .= ($option['widget']=='closed') ? " data-collapse='1'>" : ">";
     $before_title .= "<h3 class='panel-title text-center scroll-this'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
