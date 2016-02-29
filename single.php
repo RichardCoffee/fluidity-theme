@@ -32,6 +32,7 @@ $micro = microdata(); ?>
               </h3>
 
               <div class="article" itemprop="text"><?php
+                if ( has_post_thumbnail() ) { the_post_thumbnail(); }
                 the_content(); ?>
               </div>
 
