@@ -80,3 +80,7 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   padding-right: 5%;
   padding-left: 5%;
 }
+
+.sticky {
+  color: red;
+}
