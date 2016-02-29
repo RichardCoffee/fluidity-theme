@@ -38,25 +38,17 @@ if (!function_exists('fluidity_browser_body_class')) {
 if (!function_exists('fluidity_browser_title')) {
   function fluidity_browser_title($title,$sep) {
     if (!is_feed()) {
-      log_entry("initial title: $title");
-      log_entry("separator: $sep");
       $test = get_bloginfo('name');
-      log_entry("blog name: $test");
       if (empty($title)) {
         $title = $test;
-        log_entry("title was empty");
       } else {
         $spot = strpos($title,$test);
-        log_entry("spot: $spot");
         if ($spot) {
           $title = substr($title,0,$spot);
-          log_entry("title substr: $title");
         }
         $title.= ($test) ? " $test" : '';
-        log_entry("title result: $title");
       }
     }
-    log_entry("return title: $title");
     return $title;
   }
   add_filter('wp_title','fluidity_browser_title',10,2);
