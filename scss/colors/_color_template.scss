@@ -124,7 +124,7 @@
   border-color: color(bgHighlight);
 }
 
-$headerBody: color(background);
+$headerBody: color(background) !default;
 #header-body {
   background-color: lighten($headerBody,40%);
 }

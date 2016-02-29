@@ -104,7 +104,7 @@ if (!is_child_theme()) {
       echo "$site currently under construction by $refer"; ?>
     </h1><?php
   }
-  add_action('tcc_header_body_content','show_construction_title');
+  add_action('tcc_left_header_body','show_construction_title');
 
   function control_construction_header($args) {
     $args['split'] = false;
