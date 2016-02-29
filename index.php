@@ -17,7 +17,8 @@ who_am_i(); ?>
 
       if (have_posts()) {
         while(have_posts()) {
-          the_post(); ?>
+          the_post();
+          fluid_navigation('above'); ?>
           <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>><?php
             $format  = __('Permanent Link to %s','tcc-fluid');
             $tooltip = sprintf($format,get_the_title()); ?>
@@ -32,7 +33,7 @@ who_am_i(); ?>
             </div><?php
             comments_template(); ?>
           </article><?php
-          wp_link_pages();
+          fluid_navigation('below');
         }
       } ?>
 
