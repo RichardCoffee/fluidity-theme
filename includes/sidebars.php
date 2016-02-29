@@ -9,7 +9,7 @@ if (!function_exists('fluidity_register_sidebars')) {
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading scroll-this'";
     $before_title .= ($option['widget']=='closed') ? " data-collapse='1'>" : ">";
-    $before_title .= "<h3 class='panel-title text-center'><b>";
+    $before_title .= "<h3 class='panel-title text-center scroll-this'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
     $after_widget  = "</div></div>";
     $sidebars   = array();
