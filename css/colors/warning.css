@@ -31,7 +31,8 @@
   color: #FFFFFF;
 }
 .navbar-warning .navbar-nav > li > a:hover, .navbar-warning .navbar-nav > li > a:focus {
-  color: #FFFFFF;
+  color: #EEA236;
+  background-color: #FFFFFF;
 }
 .navbar-warning .navbar-nav > .active > a, .navbar-warning .navbar-nav > .active > a:hover, .navbar-warning .navbar-nav > .active > a:focus {
   color: #FFFFFF;

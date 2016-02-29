@@ -31,7 +31,8 @@
   color: #FFFFFF;
 }
 .navbar-danger .navbar-nav > li > a:hover, .navbar-danger .navbar-nav > li > a:focus {
-  color: #FFFFFF;
+  color: #d43f3a;
+  background-color: #FFFFFF;
 }
 .navbar-danger .navbar-nav > .active > a, .navbar-danger .navbar-nav > .active > a:hover, .navbar-danger .navbar-nav > .active > a:focus {
   color: #FFFFFF;

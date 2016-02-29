@@ -29,7 +29,8 @@
   color: #FFFFFF;
 }
 .navbar-yellow .navbar-nav > li > a:hover, .navbar-yellow .navbar-nav > li > a:focus {
-  color: #FFFFFF;
+  color: #ccc200;
+  background-color: #FFFFFF;
 }
 .navbar-yellow .navbar-nav > .active > a, .navbar-yellow .navbar-nav > .active > a:hover, .navbar-yellow .navbar-nav > .active > a:focus {
   color: #FFFFFF;

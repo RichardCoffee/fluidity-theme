@@ -31,7 +31,8 @@
   color: #a94442;
 }
 .navbar-danger-inverse .navbar-nav > li > a:hover, .navbar-danger-inverse .navbar-nav > li > a:focus {
-  color: #a94442;
+  color: #f2dede;
+  background-color: #a94442;
 }
 .navbar-danger-inverse .navbar-nav > .active > a, .navbar-danger-inverse .navbar-nav > .active > a:hover, .navbar-danger-inverse .navbar-nav > .active > a:focus {
   color: #a94442;

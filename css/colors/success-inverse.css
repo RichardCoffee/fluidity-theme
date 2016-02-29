@@ -31,7 +31,8 @@
   color: #3c763d;
 }
 .navbar-success-inverse .navbar-nav > li > a:hover, .navbar-success-inverse .navbar-nav > li > a:focus {
-  color: #3c763d;
+  color: #d6e9c6;
+  background-color: #3c763d;
 }
 .navbar-success-inverse .navbar-nav > .active > a, .navbar-success-inverse .navbar-nav > .active > a:hover, .navbar-success-inverse .navbar-nav > .active > a:focus {
   color: #3c763d;

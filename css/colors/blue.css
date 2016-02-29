@@ -29,7 +29,8 @@
   color: #FFFFFF;
 }
 .navbar-blue .navbar-nav > li > a:hover, .navbar-blue .navbar-nav > li > a:focus {
-  color: #FFFFFF;
+  color: #252775;
+  background-color: #FFFFFF;
 }
 .navbar-blue .navbar-nav > .active > a, .navbar-blue .navbar-nav > .active > a:hover, .navbar-blue .navbar-nav > .active > a:focus {
   color: #FFFFFF;
