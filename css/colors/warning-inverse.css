@@ -22,7 +22,8 @@
   color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-brand:hover, .navbar-warning-inverse .navbar-brand:focus {
-  color: #8A6D3B;
+  color: #FAEBCC;
+  background-color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-text {
   color: #8A6D3B;

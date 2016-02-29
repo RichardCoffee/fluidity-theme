@@ -22,7 +22,8 @@
   color: #FFFFFF;
 }
 .navbar-danger .navbar-brand:hover, .navbar-danger .navbar-brand:focus {
-  color: #FFFFFF;
+  color: #d43f3a;
+  background-color: #FFFFFF;
 }
 .navbar-danger .navbar-text {
   color: #FFFFFF;

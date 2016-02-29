@@ -20,7 +20,8 @@
   color: #FFFFFF;
 }
 .navbar-orange .navbar-brand:hover, .navbar-orange .navbar-brand:focus {
-  color: #FFFFFF;
+  color: #d57808;
+  background-color: #FFFFFF;
 }
 .navbar-orange .navbar-text {
   color: #FFFFFF;

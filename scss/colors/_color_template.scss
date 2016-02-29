@@ -22,7 +22,8 @@
   .navbar-brand {
     color: color(textcolor);
     &:hover, &:focus {
-      color: color(textHighlight);
+      color: color(bgHighlight);
+      background-color: color(textHighlight);
     }
   }
   .navbar-text {

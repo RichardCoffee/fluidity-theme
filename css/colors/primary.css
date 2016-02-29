@@ -22,7 +22,8 @@
   color: #ffffff;
 }
 .navbar-primary .navbar-brand:hover, .navbar-primary .navbar-brand:focus {
-  color: #ffffff;
+  color: #2E6DA4;
+  background-color: #ffffff;
 }
 .navbar-primary .navbar-text {
   color: #ffffff;
