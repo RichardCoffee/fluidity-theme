@@ -12,7 +12,7 @@ $micro = microdata(); ?>
   <div class="row pad05perc">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
 
-      sidebar_layout('single'); ?>
+      sidebar_layout(); ?>
 
       <div id="content" role="main"><?php
         who_am_i(__FILE__);
