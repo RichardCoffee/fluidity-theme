@@ -47,9 +47,7 @@ $micro = microdata(); ?>
                 echo ' | ';
                 edit_post_link(__('Edit','tcc-fluid'), '', ' | ');
                 comments_popup_link(__('No Comments','tcc-fluid'),__('1 Comment','tcc-fluid'),_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid')); ?>
-              </p><?php
-
-#              wp_link_pages(); ?>
+              </p>
 
               <div class='row'>
                 <div class='pull-left'><?php
@@ -58,8 +56,7 @@ $micro = microdata(); ?>
                 <div class='pull-right'><?php
                   next_post_link(); ?>
                 </div>
-              </div>
-
+              </div><?php
 
               comments_template(); ?>
 
