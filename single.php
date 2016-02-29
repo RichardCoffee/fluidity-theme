@@ -49,7 +49,18 @@ $micro = microdata(); ?>
                 comments_popup_link(__('No Comments','tcc-fluid'),__('1 Comment','tcc-fluid'),_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid')); ?>
               </p><?php
 
-              wp_link_pages();
+#              wp_link_pages(); ?>
+
+              <div class='row'>
+                <div class='pull-left'><?php
+                  previous_post_link(); ?>
+                </div>
+                <div class='pull-right'><?php
+                  next_post_link(); ?>
+                </div>
+              </div>
+
+
               comments_template(); ?>
 
             </div><?php
