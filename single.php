@@ -47,14 +47,14 @@ $micro = microdata(); ?>
                 comments_popup_link(__('No Comments','tcc-fluid'),__('1 Comment','tcc-fluid'),_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid')); ?>
               </p>
 
-              <p>
+              <div>
               <span class='pull-left'><?php
                 previous_post_link(); ?>
               </span>
               <span class='pull-right'><?php
                 next_post_link(); ?>
               </span>
-              </p><?php
+              </div><?php
 
               comments_template(); ?>
 
