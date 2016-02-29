@@ -82,8 +82,8 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 }
 
 if (!function_exists('sidebar_layout')) {
-  function sidebar_layout($sidebar='standard',$side=null) {
-    $option = get_option('tcc_option_layout');
+  function sidebar_layout($sidebar='standard',$side='') {
+    $option = get_option('tcc_options_layout');
     $side   = ($side) ? $side : $option['sidebar'];
     if ($side!=='none') {
       $micro = microdata();
