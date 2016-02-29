@@ -24,7 +24,7 @@ $micro = microdata(); ?>
 
               <h1 class="text-center"><?php
                 echo fluid_title(); // inserts a space
-                edit_post_link(__('{Edit}','tcc-fluid'), 'tcc-fluid'); ?>
+                edit_post_link(__('{Edit}','tcc-fluid'), ' '); ?>
               </h1>
 
               <h3 class="text-center"><?php
