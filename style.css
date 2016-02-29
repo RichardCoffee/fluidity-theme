@@ -66,6 +66,10 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   border: 1px solid;
 }
 
+img {
+  overflow: hidden;
+}
+
 .logo {
   margin-right: auto;
   margin-left: auto;
@@ -74,7 +78,6 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   vertical-align: middle;
 /*  max-height: 100%; */
 /*  max-width: 100%; */
-  overflow: hidden;
 }
 
 .pad05perc {
