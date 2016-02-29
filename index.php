@@ -32,10 +32,9 @@ who_am_i(); ?>
             </div><?php
             comments_template(); ?>
           </article><?php
+          wp_link_pages();
         }
-      }
-
-      wp_link_pages(); ?>
+      } ?>
 
     </div><!-- .col-*-* -->
   </div><!-- .row -->
