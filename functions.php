@@ -94,6 +94,17 @@ if (!function_exists('fluidity_register_color_scheme')) {
   }
 }
 
+if (!function_exists('stop_heartbeat')) {
+  function stop_heartbeat() {
+    global $pagenow;
+    #if ( $pagenow != 'post.php' && $pagenow != 'post-new.php' && $pagenow != 'admin.php' )
+    $authorized = array('post.php','post-new.php','admin.php');
+    if (!in_array($pagenow,$authorized))
+      wp_deregister_script('heartbeat');
+  }
+  add_action( 'init', 'stop_heartbeat', 1 );
+}
+
 /** Temporary Construction functions **/
 
 if (!is_child_theme()) {
