@@ -77,8 +77,6 @@ img {
   align: center;
   text-align: center;
   vertical-align: middle;
-/*  max-height: 100%; */
-/*  max-width: 100%; */
 }
 
 .pad05perc {
@@ -87,7 +85,7 @@ img {
 }
 
 .post div {
-  max-width:100%;
+  max-width: 100%;
 }
 
 .sticky {

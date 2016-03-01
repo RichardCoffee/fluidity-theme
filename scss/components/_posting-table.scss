@@ -7,7 +7,8 @@ table.posting-table {
   & caption {
     padding: 0.5em;
   }
-  & th, & td {
+  & th,
+  & td {
     padding: 0.5em;
     border: 1px dotted #666;
     color: #632a39;
@@ -28,7 +29,8 @@ table.posting-table {
     border-right: 2px solid #333;
     background-color: #b8cfe5;
   }
-  & tr:hover th[scope=row], & tr:hover td {
+  & tr:hover th[scope=row],
+  & tr:hover td {
     background-color: #632a2a;
     color: #fff;
   }
