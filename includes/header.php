@@ -112,7 +112,7 @@ if (!function_exists('fluidity_header_logo')) {
   }
 }
 
-if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_directory().'/template-parts/menu.php'))) {
+if (!function_exists('fluidity_main_menubar')) {
   function fluidity_main_menubar() {
 echo "Color Scheme: ".tcc_color_scheme();
 //    if ($menu=tcc_layout('menu')) {
