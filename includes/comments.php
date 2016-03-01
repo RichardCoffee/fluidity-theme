@@ -42,11 +42,12 @@ if (!function_exists('fluid_list_comments')) {
         #</li> - wordpress add closing tag
         break;
       default: # comment
+        $comm_type = $comm_type || 'comment';
         $css = ( get_the_author_meta('user_email') === get_comment_author_email() ) ? 'post-author' : $striping; ?>
         <li id="comment-<?php echo $comment->comment_ID; ?>" class="<?php comment_class($css); ?>">
           <div class="comment-author vcard"><?php
             echo get_avatar( $comment, 40 );
-echo "<p>comm type: $comm_type</p>";
+#echo "<p>comm type: $comm_type</p>";
             echo sprintf( $string, $type_arr[$comm_type], get_comment_author_link(), get_comment_date() ); ?>
           </div><!-- .comment-author .vcard --><?php
           if ( $comment->comment_approved == '0' ) { ?>
