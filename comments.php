@@ -85,6 +85,7 @@ if (!function_exists('fluid_list_comments')) {
 }
 
 if (!function_exists('fluid_comment_navigation')) {
+  log_entry('fluid_comment_navigation');
   function fluid_comment_navigation() {
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
       <nav class="navigation comment-navigation" role="navigation">
