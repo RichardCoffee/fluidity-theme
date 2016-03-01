@@ -12,20 +12,20 @@ these files:
   Design: classes/design.php, filter priority 10
   Layout: classes/layout.php, filter priority 20
   Colors: classes/colors.php, filter priority 30
-  Social: classes/social.php, filter priority 90
+  Social: classes/social.php, filter priority 100
+  Admin:  classes/settings.php, filter priority 500
   About:  classes/options.php, no priority, will always be last
 
 When adding a tab to the screen, classes/design.php can be used as a guide.
 
-The form layout array has this structure:
+The form layout array should have this structure:
 
-  Array ( 'design' => Design form tab array,
-          'layout' => Layout form tab array,
-          'colors' => Colors form tab array,
-          'social' => Social Icons form tab array,
-          'about'  => About form tab array );
-
-
+  Array ( 'design' => Design form array,
+          'layout' => Layout form array,
+          'colors' => Colors form array,
+          'social' => Social Icons form array,
+          'admin'  => Admin form array
+          'about'  => About form array );
 
 
 The form tab array has this structure:
@@ -40,21 +40,23 @@ The form tab array has this structure:
                            as "fluidity_options_{key}".
            'layout'    =>  main array, used to display and format all the options
 
+
 The layout array contains the keys of every item appearing on the form screen
 
-  Array ( 'option1' =>  option 1 item array
-          'option2' =>  option 2 item array
-          'option3' =>  option 3 item array
+  Array ( 'option1' =>  option 1 array
+          'option2' =>  option 2 array
+          'option3' =>  option 3 array
 
 
-The option item array has these required fields:
+The item option array has these fields:
 
-  'default' =>  must be present, even if blank.
-  'label'   =>  text that appears on the left side of the screen.  Identifies
-                the option.
-  'render'  =>  suffix of method used to display the item, ie: 'radio' will
-                cause the 'render_radio' method to be called.  Possible
-                values are checkbox, colorpicker, display, font, image,
-                radio, select, text, textarea, wp_dropdown, skip
-  'help'    =>  text displayed as a title attribute.  set for both the label
-                and the input item.
+  'default' =>  required - must be present, even if blank.
+  'label'   =>  required - text that appears on the left side of the screen.
+                Identifies the option.
+  'text'    =>  optional - text displayed with the option.
+  'help'    =>  optional - text displayed as a title attribute.  set for both
+                the label and the input item.
+  'render'  =>  required - suffix of method used to display the item,
+                ie: 'radio' will cause the 'render_radio' method to be called.
+                Possible values are checkbox, colorpicker, display, font,
+                image, radio, select, text, textarea, wp_dropdown, skip

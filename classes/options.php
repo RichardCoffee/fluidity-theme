@@ -4,6 +4,7 @@ require_once('admin-form.php');
 require_once('layout.php');
 require_once('design.php');
 require_once('social.php');
+require_once('settings.php');
 
 class Fluidity_Options_Form extends Basic_Admin_Form {
 
@@ -27,6 +28,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     $fluid_layout = new Theme_Layout_Options();
     $fluid_design = new Theme_Design_Options();
     $fluid_social = new Theme_Social_Icons();
+    $fluid_admin  = new Theme_Admin_Options();
   }
 
   public static function get_instance() {
@@ -113,6 +115,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *            media:           Required only if render is set to 'image'.
  *                   (array)     title:  (string) Title displayed in media uploader
  *                               button: (string) Button text - used for both the admin and the media buttons
+ *                               delete: (string) Delete text - used for admin button
  *             args: (array)   Required only if render is set to 'wp_dropdown'.
  *                               This array will be passed to the called function.
  *           divcss: (string)  A div is created to surround the rendered object.  If set, this string is assigned to the class attribute of that div (optional)
