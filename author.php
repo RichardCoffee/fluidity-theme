@@ -22,7 +22,7 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
       <div class=""><?php
         $current = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
         $role = $current->roles[0];
-        get_template_part('template_parts/profile',$role);
+        get_template_part('template-parts/profile',$role);
         if (have_posts()) {
           $col = min(12,$wp_query->post_count*4);
           $title_class = "col-lg-$col col-md-$col col-sm-12 col-xs-12";
@@ -36,7 +36,7 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
             while (have_posts()) {
               the_post(); ?>
               <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"><?php
-                get_template_part('template_parts/content',get_post_type()); ?>
+                get_template_part('template-parts/content',get_post_type()); ?>
               </div><?php
               tcc_apply_clearfix('lg=4&md=4&sm=6&xs=12&cnt='.++$cnt);
             } ?>

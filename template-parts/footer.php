@@ -1,7 +1,7 @@
 <?php
 
 /*
- * tcc-fluidity/template_parts/footer.php
+ *  File Name:  template-parts/footer.php
  *
  */
 

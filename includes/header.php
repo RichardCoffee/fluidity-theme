@@ -112,14 +112,14 @@ if (!function_exists('fluidity_header_logo')) {
   }
 }
 
-if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_directory().'/template_parts/menu.php'))) {
+if ((!function_exists('fluidity_main_menubar')) && (file_exists(get_template_directory().'/template-parts/menu.php'))) {
   function fluidity_main_menubar() {
 #echo "Color Scheme: ".tcc_color_scheme();
 //    if ($menu=tcc_layout('menu')) {
 #log_entry("layout menu: $menu");
-#assert( "locate_template( array('template_parts/menu-$menu.php', 'template_parts/menu.php'), false, false )" );
-//      get_template_part('template_parts/menu',tcc_layout('menu'));
-      get_template_part('template_parts/menu');
+#assert( "locate_template( array('template-parts/menu-$menu.php', 'template-parts/menu.php'), false, false )" );
+//      get_template_part('template-parts/menu',tcc_layout('menu'));
+      get_template_part('template-parts/menu');
 //    }
   }
   add_action('tcc_header_menubar','fluidity_main_menubar');

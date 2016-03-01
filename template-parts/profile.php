@@ -1,6 +1,6 @@
 <?php
 /*
- *  tcc-fluidity/template_parts/profile.php
+ *  File Name:  template-parts/profile.php
  *
  */
 

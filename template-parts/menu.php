@@ -1,7 +1,7 @@
 <?php  /* Name: Menu Default */
 
 /*
- *  tcc-fluidity/template_parts/menu.php
+ *  File Name:  template-parts/menu.php
  *
  */
 

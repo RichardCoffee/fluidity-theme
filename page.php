@@ -13,24 +13,13 @@ who_am_i(); ?>
 <div id="fluid-page" class="<?php echo container_type('page'); ?>" role="main" <?php $micro->Blog(); ?>>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><?php
-
       sidebar_layout('standard');
-
       if (have_posts()) {
         while(have_posts()) {
-          the_post(); ?>
-          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
-            <h1 class="text-center"><?php
-              echo fluid_title(); // inserts a space
-              edit_post_link(__('{Edit}','tcc-fluid'), ' '); ?>
-            </h1>
-            <h3 class="text-center"><?php
-              echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?>
-            </h3>
-            <div class="article"><?php
-              the_content(); ?>
-            </div>
-          </article><?php
+          the_post();
+          $slug = apply_filters('tcc-content-slug',get_post_type());
+          $slug = apply_filters('tcc-page-content-slug',$slug);
+          get_template_part('template-parts/content',$slug);
           if (next_post_exists()) echo "<hr class='padbott'>";
         }
       } ?>

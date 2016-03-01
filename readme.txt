@@ -6,18 +6,18 @@
                                 registered
  tcc_enqueue                  enqueue front-end styles/scripts                  fluid_enqueue              functions.php
  tcc_footer                   footer body                                                                  footer.php
- tcc_header_body_content      control what goes into the header body                                       template_parts/header.php
+ tcc_header_body_content      control what goes into the header body                                       template-parts/header.php
                                 used by fluidity_header_body
- tcc_header_menubar           bottom menubar of header                                                     template_parts/header.php
+ tcc_header_menubar           bottom menubar of header                                                     template-parts/header.php
                                 used by fluidity_main_menubar
- tcc_header_top_menubar       top menubar of header                                                        template_parts/header.php
+ tcc_header_top_menubar       top menubar of header                                                        template-parts/header.php
  tcc_left_header_body         left side of header body                          fluidity_header_body       includes/header.php
                                 used by fluidity_header_logo
  tcc_main_header_body         used as replacement for left/right body           fluidity_header_body       includes/header.php
  tcc_navbar_signout           insert navbar html before signout button          tcc_login_form             includes/login.php
- tcc_pre_header               prior to display of header                                                   template_parts/header.php
+ tcc_pre_header               prior to display of header                                                   template-parts/header.php
  tcc_pre_search               prior to content of search/archive page                                      archive.php
- tcc_post_header              after display of header                                                      template_parts/header.php
+ tcc_post_header              after display of header                                                      template-parts/header.php
  tcc_post_search              after content os search/archive page                                         archive.php
  tcc_register_widgets         register widgets that extend TCC_Basic_Widget     register_fluid_widgets     classes/widgets.php
  tcc_right_header_body        right side of header body                         fluidity_header_body       includes/header.php
@@ -32,7 +32,7 @@
 ========================     ==============================================    ========================   ============================
  tcc_user_profile_link        html link to user profile page, with name         fluid_user_profile_link    includes/misc.php
  tcc_author_posts_header      main header for author's posts                                               author.php
- tcc_bottom_menu              footer menu below copyright                                                  template_parts/footer.php
+ tcc_bottom_menu              footer menu below copyright                                                  template-parts/footer.php
  tcc_header_body_class        control the header body layout                    fluidity_header_body       includes/header.php
  tcc_login_username           placeholder for user name                         tcc_login_form             includes/login.php
  tcc_login_userpass           placeholder for user password                     tcc_login_form             includes/login.php
