@@ -23,7 +23,7 @@ $color_scheme = tcc_color_scheme(); ?>
   </div><?php
 
   if (has_action('tcc_header_menubar')) { ?>
-    <div id="header-menubar">menu bar<?php
+    <div id="header-menubar"><?php
       do_action('tcc_header_menubar'); ?>
     </div><?php
   }
