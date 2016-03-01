@@ -46,6 +46,7 @@ if (!function_exists('fluid_list_comments')) {
         <li id="comment-<?php echo $comment->comment_ID; ?>" class="<?php comment_class($css); ?>">
           <div class="comment-author vcard"><?php
             echo get_avatar( $comment, 40 );
+echo "<p>comm type: $comm_type</p>";
             echo sprintf( $string, $type_arr[$comm_type], get_comment_author_link(), get_comment_date() ); ?>
           </div><!-- .comment-author .vcard --><?php
           if ( $comment->comment_approved == '0' ) { ?>
