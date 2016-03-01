@@ -40,7 +40,7 @@ who_am_i(); ?>
   comment_form(array('title_reply'=>__('Leave a Comment','tcc-fluid'))); ?>
 </div><!-- #comments --><?php
 
-if (!function_exists('fluid_list_comments') {
+if (!function_exists('fluid_list_comments')) {
   function fluid_list_comments($comment,$args,$depth) {
     static $striping = 'odd';
     $GLOBALS['comment'] = $comment;
