@@ -16,7 +16,7 @@ who_am_i(); ?>
         while(have_posts()) {
           the_post();
           $slug = apply_filters('tcc-excerpt-slug',get_post_type());
-          $slug = apply_filters('tcc-index-excerpt-slug',$slug());
+          $slug = apply_filters('tcc-index-excerpt-slug',$slug);
           get_template_part('template-parts/excerpt',$slug);
         }
       }
