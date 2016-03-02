@@ -130,8 +130,8 @@ if (!function_exists('tcc_login_form')) {
 
 if (!function_exists('tcc_logout_url')) {
   function tcc_logout_url($logouturl, $redir) {
-    $redir = get_option(‘siteurl’);
-    return $logouturl . ‘&amp;redirect_to=’ . urlencode($redir);
+    $redir = get_option('siteurl');
+    return $logouturl . '&amp;redirect_to='. urlencode($redir);
   }
-  add_filter(‘logout_url’, ‘tcc_logout_url’, 10, 2);
+  add_filter('logout_url', 'tcc_logout_url', 10, 2);
 }
