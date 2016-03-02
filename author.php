@@ -26,7 +26,7 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
         if (have_posts()) {
           $col = min(12,$wp_query->post_count*4);
           $title_class = "col-lg-$col col-md-$col col-sm-12 col-xs-12";
-          $title_posts = apply_filters('tcc_author_posts_header',__('Most Recent Posts','tcc-fluid')); ?>
+          $title_posts = apply_filters('tcc_author_posts_header',esc_attr(('Most Recent Posts','tcc-fluid'))); ?>
           <div class='<?php echo $title_class; ?>' itemprop='headline'>
             <h3 class='text-center'><?php echo $title_posts; ?></h3>
           </div><?php

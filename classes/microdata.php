@@ -232,6 +232,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
 
   public function get_the_archive_title($title) {
     if (!strpos($title,'itemprop')===false) return $title;
+    #if ($this->called_by('wp_title')) return $title;
     if (is_author()) {
       $title = preg_replace('/(<span.*?)(>)/i','$1 itemprop="author"$2',$title);
     } elseif ($title==__('Archives')) {  #  do not add text domain to this
@@ -249,10 +250,9 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_title($title,$id) {
-    if ((!$this->called_by('wp_title')) && (strpos($title,'itemprop')===false)) {
-      $title = "<span itemprop='headline'>$title</span>";
-    }
-    return $title;
+    if (!strpos($title,'itemprop')===false) return $title;
+    if ($this->called_by('wp_title')) return $title;
+    return "<span itemprop='headline'>$title</span>";
   }
 
   public function post_thumbnail_html($html) {
@@ -262,6 +262,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
 
   public function single_term_title($title) {
     if (!strpos($title,'itemprop')===false) return $title;
+    if ($this->called_by('wp_title')) return $title;
     return "<span itemprop='headline'>$title</span>";
   }
 

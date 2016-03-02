@@ -9,7 +9,7 @@ class Theme_Admin_Options {
   }
 
   private function form_title() {
-    return __('Design','tcc-fluid');
+    return __('Settings','tcc-fluid');
   }
 
   public function form_layout($form) {
@@ -21,7 +21,7 @@ class Theme_Admin_Options {
   }
 
   public function describe_options() {
-    _e('Design Options','tcc-fluid');
+    _e('Theme Behavior Options','tcc-fluid');
   }
 
   protected static function options_layout() {

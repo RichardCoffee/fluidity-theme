@@ -44,7 +44,10 @@ who_am_i(); ?>
       } else { ?>
         <div id="post-0" class="post error404 not-found">
           <h1 class="text-center"><?php _e('Not Found','tcc-fluid' ); ?></h1>
-          <p><?php _e( 'Apologies, but no results were found for the requested Archive. Perhaps searching will help find a related post.','tcc-fluid' ); ?></p><?php
+          <p><?php
+            $string = __( 'Apologies, but no results were found for the requested Archive. Perhaps searching will help find a related post.','tcc-fluid' ));
+             esc_att_e($string); ?>
+          </p><?php
           get_search_form(); ?>
         </div><!-- #post-0 --><?php
       } ?>
