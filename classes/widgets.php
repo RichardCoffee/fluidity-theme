@@ -29,7 +29,7 @@ class TCC_Basic_Widget extends WP_Widget {
     if (!empty($title)) {
       echo $args['before_title'].$title.$args['after_title'];
     } else {
-      echo "<div class='panel-body'>";
+      echo "<div>";
     }
     $this->inner_widget($args,$instance);
     #$this->post_widget($args);
