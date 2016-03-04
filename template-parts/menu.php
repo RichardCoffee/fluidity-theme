@@ -6,10 +6,11 @@
  */
 
 if (has_nav_menu('primary')) {
-  $micro = microdata();
-  $color_scheme = tcc_color_scheme(); ?>
-  <div>
-    <nav class="navbar navbar-<?php echo $color_scheme; ?>" <?php $micro->SiteNavigationElement(); ?> role="navigation">
+  $micro   = microdata();
+  $menucss = (tcc_layout()=='narrow') ? 'standard-width' : '';
+  $color   = tcc_color_scheme(); ?>
+  <div class="<?php echo $menucss; ?>">
+    <nav class="navbar navbar-<?php echo $color; ?>" <?php $micro->SiteNavigationElement(); ?> role="navigation">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
           <span class="sr-only">Toggle navigation</span>
