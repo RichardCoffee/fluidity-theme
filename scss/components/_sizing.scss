@@ -1,21 +1,26 @@
 
-.standard-width {
+.width-fluid {
+  padding-left:  20px;
+  padding-right: 20px;
+}
+
+.width-narrow {
   margin-right: auto;
   margin-left: auto;
 }
 
 @media (min-width: 768px) {
-  .standard-width {
+  .width-narrow {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  .standard-width {
+  .width-narrow {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  .standard-width {
+  .width-narrow {
     width: 1170px;
   }
 }

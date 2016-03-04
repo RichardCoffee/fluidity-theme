@@ -18,13 +18,17 @@ $color_scheme = tcc_color_scheme(); ?>
     </div><?php
   } ?>
 
-  <div id="header-body" class="row"><?php
-    do_action('tcc_header_body_content'); ?>
+  <div id="header-body" class="row">
+    <div class="width-<?php echo tcc_layout('width'); ?>"><?php
+      do_action('tcc_header_body_content'); ?>
+    </div>
   </div><?php
 
   if (has_action('tcc_header_menubar')) { ?>
-    <div id="header-menubar"><?php
-      do_action('tcc_header_menubar'); ?>
+    <div id="header-menubar">
+      <div class="width-<?php echo tcc_layout('width'); ?>"><?php
+        do_action('tcc_header_menubar'); ?>
+      </div>
     </div><?php
   }
 
