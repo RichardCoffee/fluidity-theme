@@ -116,6 +116,7 @@ add_filter('nav_menu_css_class', function($classes, $item, $args) {
 /*
  *  Append the dropdown class to the output class array.
  */
+log_entry('walker args',$args);
   if ($args && $args->walker->has_children) {
     $classes[] = 'dropdown';
   }
