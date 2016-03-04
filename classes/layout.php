@@ -25,7 +25,7 @@ class Theme_Layout_Options {
   }
 
   public function describe_options() {
-    _e("Utilize these options to change the theme's style and layout.  These options also show up in the WordPress Customizer",'tcc-fluid');
+    _e("Utilize these options to change the theme's style and layout.  These options also show up in the WordPress Customizer.",'tcc-fluid');
   }
 
   protected static function options_layout() {

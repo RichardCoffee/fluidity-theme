@@ -25,7 +25,7 @@ class Theme_Design_Options {
   }
 
   public function describe_options() {
-    _e('Design Options','tcc-fluid');
+    _e('Design Options - these options also show up in the WordPress Customizer.','tcc-fluid');
   }
 
   protected static function options_layout() {
