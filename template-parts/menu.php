@@ -7,7 +7,7 @@
 
 if (has_nav_menu('primary')) {
   $micro   = microdata();
-  $menucss = (tcc_layout()=='narrow') ? 'standard-width' : '';
+  $menucss = (tcc_layout('width')=='narrow') ? 'standard-width' : '';
   $color   = tcc_color_scheme(); ?>
   <div class="<?php echo $menucss; ?>">
     <nav class="navbar navbar-<?php echo $color; ?>" <?php $micro->SiteNavigationElement(); ?> role="navigation">
