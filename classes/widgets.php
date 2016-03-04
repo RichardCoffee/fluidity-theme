@@ -67,7 +67,7 @@ class TCC_Basic_Widget extends WP_Widget {
 class TCC_Address_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Address','tcc-fluid');
+    $this->title = __('Fluidity Address','tcc-fluid');
     $this->desc  = $this->title;
     $this->slug  = 'tcc_address';
     parent::__construct();
@@ -91,7 +91,7 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
 class TCC_Login_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Login & Registration','tcc-fluid');
+    $this->title = __('Fluidity Login','tcc-fluid');
     $this->desc  = $this->title;
     $this->slug  = 'tcc_login';
     parent::__construct();
@@ -106,7 +106,7 @@ class TCC_Login_Widget extends TCC_Basic_Widget {
 class TCC_Logo_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Site Logo','tcc-fluid');
+    $this->title = __('Fluidity Site Logo','tcc-fluid');
     $this->desc  = $this->title;
     $this->slug  = 'tcc_logo';
     parent::__construct();
@@ -125,7 +125,7 @@ class TCC_Search_Widget extends TCC_Basic_Widget {
 
   function __construct() {
     $this->title = __('Search','tcc-fluid');
-    $this->desc  = __('Search form  - Fluidity theme specific','tcc-fluid');
+    $this->desc  = __('Fluidity Search Form','tcc-fluid');
     $this->slug  = 'tcc_search';
     parent::__construct();
     unregister_widget('WP_Widget_Search');
