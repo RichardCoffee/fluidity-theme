@@ -8,7 +8,7 @@ if (!function_exists('tcc_admin_login_redirect')) {
   function tcc_admin_login_redirect($redirect_to,$request,$user) {
     if (get_class($user)=='WP_Error') return $redirect_to;
     $from = wp_get_referer();
-log_entry("referrer: $from");
+#log_entry("referrer: $from");
 #    if (!(strpos($from,'wp-admin')===false)) return $from;
 #    if (!in_array("administrator",$user->roles)) return home_url();
     return home_url();
