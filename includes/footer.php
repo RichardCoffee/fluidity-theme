@@ -5,13 +5,6 @@
  *
  */
 
-if (!function_exists('fluidity_footer')) {
-  function fluidity_footer() {
-    get_template_part('template-parts/footer',tcc_layout('footer'));
-  }
-  add_action('tcc_footer','fluidity_footer');
-}
-
 //  Uses earliest published post to generate copyright date
 if (!function_exists('site_copyright_dates')) {
   function site_copyright_dates() {

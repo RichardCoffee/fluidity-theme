@@ -11,24 +11,34 @@ class TCC_Basic_Widget extends WP_Widget {
     parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
     if (!self::$micro && class_exists('TCC_Microdata')) self::$micro = TCC_Microdata::get_instance();
   }
-
+/*
   protected function pre_widget($args) {
-    $title = apply_filters('widget_title',$args['tcc-title'],$this->id_base);
     echo $args['before_widget'];
-    if (!empty($title)) 
+    if (!empty($args['tcc-title'])) {
       echo $args['before_title'].$title.$args['after_title'];
-  }
+    } else {
+      echo "<div class='panel-body'>";
+    }
+  } //*/
 
   public function widget($args,$instance) {
-    $args['tcc-title'] = $instance['title'];
-    $this->pre_widget($args);
+    #$args['tcc-title'] = apply_filters('widget_title',$instance['title'],$this->id_base);
+    #$this->pre_widget($args);
+    $title = apply_filters('widget_title',$instance['title'],$this->id_base);
+    echo $args['before_widget'];
+    if (!empty($title)) {
+      echo $args['before_title'].$title.$args['after_title'];
+    } else {
+      echo "<div class='panel-body'>";
+    }
     $this->inner_widget($args,$instance);
-    $this->post_widget($args);
-  }
-
-  protected function post_widget($args) {
+    #$this->post_widget($args);
     echo $args['after_widget'];
   }
+/*
+  protected function post_widget($args) {
+    echo $args['after_widget'];
+  } //*/
 
   public function form($instance) {
     $this->form_title($instance);
@@ -119,17 +129,6 @@ class TCC_Search_Widget extends TCC_Basic_Widget {
     $this->slug  = 'tcc_search';
     parent::__construct();
     unregister_widget('WP_Widget_Search');
-  }
-
-  protected function pre_widget($args) {
-    $title = apply_filters('widget_title',$args['tcc-title'],$this->id_base);
-    echo $args['before_widget'];
-    if (!empty($title)) {
-      echo $args['before_title'].$title.$args['after_title'];
-    }
-    else {
-      echo "<div>";  #  replace .panel-body div
-    }
   }
 
   public function inner_widget($args,$instance) {
