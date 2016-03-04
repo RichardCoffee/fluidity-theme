@@ -4,11 +4,10 @@
 
 if (!function_exists('fluidity_register_sidebars')) {
   function fluidity_register_sidebars() {
-    $color  = (is_admin()) ? 'primary' : tcc_color_scheme('sidebars');
-    $option = get_option('tcc_options_layout');
+    $color = (is_admin()) ? 'primary' : tcc_color_scheme('sidebars');
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading'";
-    $before_title .= ($option['widget']=='closed') ? " data-collapse='1'>" : ">";
+    $before_title .= (tcc_layout('widget')=='closed') ? " data-collapse='1'>" : ">";
     $before_title .= "<h3 class='panel-title text-center scroll-this'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
     $after_widget  = "</div></div>";
@@ -86,8 +85,7 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 
 if (!function_exists('sidebar_layout')) {
   function sidebar_layout($sidebar='standard',$side='') {
-    $option = get_option('tcc_options_layout');
-    $side   = ($side) ? $side : $option['sidebar'];
+    $side = ($side) ? $side : tcc_layout('sidebar');
     if ($side!=='none') {
       $micro = microdata();
       $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12'.(($side=='right') ? ' pull-right' : ''); ?>

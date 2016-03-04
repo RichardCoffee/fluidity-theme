@@ -44,8 +44,7 @@ if (!function_exists('fluid_color_scheme')) {
 if (!function_exists('container_type')) {
   function container_type($location='post') {
     if ($location=='fluid-header') return "container-fluid no-padding";
-    $option = get_option('tcc_options_layout');
-    return ($option['width']=='narrow') ? 'container' : 'container-fluid';
+    return (tcc_layout('width')=='narrow') ? 'container' : 'container-fluid';
   }
 }
 
@@ -153,8 +152,7 @@ if (!function_exists('fluid_navigation')) {
 if (!function_exists('fluid_thumbnail')) {
   #  can only be used inside The Loop
   function fluid_thumbnail() {
-    $option = get_option('tcc_options_layout');
-    $css    = ($option['sidebar']=='none') ? 'col-lg-12 col-md-12 col-sm-12 col-xs-12' : 'col-lg-8 col-md-8 col-sm-12 col-xs-12'; ?>
+    $css = (tcc_layout('sidebar')=='none') ? 'col-lg-12 col-md-12 col-sm-12 col-xs-12' : 'col-lg-8 col-md-8 col-sm-12 col-xs-12'; ?>
     <div class='<?php echo $css; ?> logo'><?php
        the_post_thumbnail(); ?>
     </div><?php

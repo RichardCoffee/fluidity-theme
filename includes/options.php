@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  fluidity/includes/options.php
+ *  File:  includes/options.php
  *
  */
 
@@ -59,11 +59,15 @@ if (!function_exists('tcc_font_size')) {
 if (!function_exists('tcc_layout')) {
   function tcc_layout($option) {
     static $data;
-    if (empty($data)) { $data = get_option('tcc_options_layout'); }
-    if (isset($data[$option])) {
-      return $data[$option];
-    } elseif (function_exists('tcc_option')) {
-      return tcc_option($option);
+    if ($option) {
+      if (empty($data)) {
+        $data = get_option('tcc_options_layout');
+      }
+      if (isset($data[$option])) {
+        return $data[$option];
+      } elseif (function_exists('tcc_option')) {
+        return tcc_option($option);
+      }
     }
     return '';
   }
