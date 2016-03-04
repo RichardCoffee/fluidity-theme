@@ -49,6 +49,18 @@ if (!function_exists('fluidity_register_sidebars')) {
   add_action('widgets_init','fluidity_register_sidebars');
 }
 
+function fluidity_the_widget($widget,$instance,$args) {
+  log_entry('the widget',$widget,$instance,$args);
+}
+add_action('the_widget','fluidity_the_widget',999,3);
+/*
+if (!function_exists('fluidity_sidebar_param_filter')) {
+  function fluidity_sidebar_param_filter($params) {
+    
+  }
+  add_filter('dynamic_sidebar_params','fluidity_sidebar_param_filter');
+} //*/
+
 if (!function_exists('fluidity_get_sidebar')) {
   function fluidity_get_sidebar($sidebar='standard') {
     get_template_part('sidebar',$sidebar);
