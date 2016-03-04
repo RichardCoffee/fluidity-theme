@@ -137,7 +137,7 @@ add_filter('nav_menu_css_class', function($classes, $item, $args) {
  *   This filter is used to customize the <li> attributes.
  */
 add_filter('nav_menu_link_attributes', function($atts, $item, $args) {
-  if ($args && $args->walker->has_children) {
+  if (!empty($args->walker->has_children) && $args->walker->has_children) {
   /*
    *  Append the data-toggle and dropdown attributes to the
    *  anchor element inside the list item dropdown.
