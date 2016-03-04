@@ -116,7 +116,7 @@ add_filter('nav_menu_css_class', function($classes, $item, $args) {
 /*
  *  Append the dropdown class to the output class array.
  */
-  if ($args->walker->has_children) {
+  if ($args && $args->walker->has_children) {
     $classes[] = 'dropdown';
   }
   if (in_array('current-menu-item', $classes)){
@@ -137,7 +137,7 @@ add_filter('nav_menu_css_class', function($classes, $item, $args) {
  *   This filter is used to customize the <li> attributes.
  */
 add_filter('nav_menu_link_attributes', function($atts, $item, $args) {
-  if ($args->walker->has_children) {
+  if ($args && $args->walker->has_children) {
   /*
    *  Append the data-toggle and dropdown attributes to the
    *  anchor element inside the list item dropdown.
