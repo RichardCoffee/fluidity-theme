@@ -48,7 +48,7 @@ if (!function_exists('fluidity_enqueue')) {
     wp_register_script('collapse',"$base_url/js/collapse.js",array('jquery','library'),false,true);
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('collapse');
-    if (is_singular() && get_option('thread_comments')) {
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); } // enable threaded comments
     do_action('fluidity_enqueue');
   }
