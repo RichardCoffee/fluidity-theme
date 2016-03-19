@@ -43,7 +43,7 @@ class Theme_Social_Icons {
   }
 
   public function admin_enqueue_scripts() {
-    wp_register_script('tcc-social-icons.js', get_template_directory_uri()."../js/options.js", array('jquery'), false, true);
+    wp_register_script('tcc-social-icons.js', get_template_directory_uri()."/js/options.js", array('jquery'), false, true);
     wp_enqueue_script('tcc-social-icons.js');
   }
 
