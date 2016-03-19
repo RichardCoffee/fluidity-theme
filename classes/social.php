@@ -5,6 +5,7 @@ class Theme_Social_Icons {
 
   public function __construct() { # Fluidity_Options_Form $form) {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),100);
+    add_action('admin_enqueue_scripts',array($this,'admin_enqueue_scripts'));
   }
 
   public function form_layout($form) {
@@ -23,20 +24,27 @@ class Theme_Social_Icons {
     $layout = array('default'=>true);
     $layout['active'] = array('default' => 'no',
                               'label'   => __('Use Theme Icons','tcc-fluid'),
-                              'text'    => __("choose Yes if you want to use the theme's internal social icons, No if you are using a plugin",'tcc-fluid'),
                               'help'    => __('Contact us if you need help with a third-party plugin','tcc-fluid'),
-                              'render'  => 'select',
-                              'source'  => array('yes' => 'Yes',
-                                                 'no'  => 'No'));
+                              'render'  => 'radio',
+                              'source'  => array('yes' => __("Yes - you want to use the theme's internal social icons",'tcc-fluid'),
+                                                 'no'  => __("No -- you are using a plugin, or do not want social icons",'tcc-fluid')),
+                              'change'  => 'showhideSocialIcons();',
+                              'divcss'  => 'social-option-active');
     $icons = array('Bitbucket','Facebook','GitHub','Google Plus','LinkedIN','Pinterest','RSS','Tumblr','Twitter','Xing','YouTube');
     foreach($icons as $icon) {
       $key = sanitize_title($icon);
       $layout[$key] = array('default' => '',
                             'label'   => $icon,
                             'help'    => __('Your link information goes here','tcc-fluid'),
-                            'render'  => 'text');
+                            'render'  => 'text',
+                            'divcss'  => 'social-option-icon');
     }
     return $layout;
+  }
+
+  public function admin_enqueue_scripts() {
+    wp_register_script('tcc-social-icons.js', plugin_dir_url(__FILE__)."../js/options.js", array('jquery'), false, true);
+    wp_enqueue_script('tcc-social-icons.js');
   }
 
 
