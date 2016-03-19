@@ -14,10 +14,11 @@ abstract class Custom_Post_Type {
   protected $plural   = '';  #  _x('Custom Post Types','plural form','textdomain')
   protected $descrip  = '';  #  __('Custom Post Type Title','textdomain')
 
+  protected $caps       = 'post';      #  default is to not create custom capabilities
   protected $columns    = null;        #  array('remove'=>array()','add'=>array())
   protected $comments   = false;       #  boolean:  allow comments
   protected $debug      = false;       #  used in conjunction with $this->logging
-  protected $icon       = 'dashicons-admin-post'; #  admin dashboard icon
+  protected $menu_icon  = 'dashicons-admin-post'; #  admin dashboard icon
   protected $logging    = 'log_entry'; #  assign your own logging function here
   protected $main_blog  = true;        #  set to false to not force inclusion in WP post queries
   private   $nodelete   = array();     #  used in $this->taxonomy_registration($args)
@@ -38,7 +39,7 @@ abstract class Custom_Post_Type {
       foreach($data as $prop=>$value) {
         $this->{$prop} = $value;
       }
-      if (!isset($this->type)) { $this->type = sanitize_title($this->label); }  // seriously?
+      if (empty($this->type)) { $this->type = sanitize_title($this->label); }  // seriously?
       add_action('init',                 array($this,'create_post_type'));
       add_action('add_meta_boxes_'.$this->type, array($this,'check_meta_boxes'));
       add_filter('post_updated_messages',array($this,'post_type_messages'));
@@ -49,7 +50,7 @@ abstract class Custom_Post_Type {
         add_filter('pings_open',   array($this,'comments_limit'),10,2);
       } //*/
       if ($this->main_blog) {
-        add_filter('pre_get_posts',        array($this,'pre_get_posts'),5); } #  run early
+        add_filter('pre_get_posts',        array($this,'pre_get_posts'),5); } #  run early - priority 5
       if ( ! $this->slug_edit) {
         add_action('admin_enqueue_scripts',array($this,'stop_slug_edit')); }
       if ($this->templates) {
@@ -103,18 +104,19 @@ abstract class Custom_Post_Type {
 
   public function create_post_type() {
     if (empty($this->rewrite) || empty($this->rewrite['slug'])) { $this->rewrite['slug'] = $this->type; }
-    $args = array (
+    $caps = array( sanitize_title($this->label), sanitize_title($this->plural) ); # Note: method add_caps
+    $args = array(
         'label'             => $this->plural,
         'labels'            => $this->post_type_labels(),
         'description'       => $this->descrip,
-        'public'            => true,
-        'show_in_admin_bar' => false,
+        'public'            => (isset($this->public)) ? $this->public : true,
+        'show_in_admin_bar' => (isset($this->show_in_admin_bar)) ? $this->show_in_admin_bar : false,
         'menu_position'     => $this->position,
-        'menu_icon'         => $this->icon,
-        'capability_type'   => array(sanitize_title($this->label),sanitize_title($this->plural)), # Note: method add_caps
-        'map_meta_cap'      => true,
-        'hierarchical'      => false,
-        'query_var'         => false,
+        'menu_icon'         => $this->menu_icon,
+        'capability_type'   => (isset($this->capability_type)) ? $this->capability_type : (empty($this->caps)) ? $caps : $this->caps,
+        'map_meta_cap'      => (isset($this->map_meta_cap))    ? $this->map_meta_cap : true,
+        'hierarchical'      => (isset($this->hierarchical))    ? $this->hierarchical : false,
+        'query_var'         => (isset($this->query_var))       ? $this->query_var    : false,
         'supports'          => $this->supports,
         'taxonomies'        => $this->taxonomies,
         'has_archive'       => $this->type,
@@ -146,6 +148,7 @@ abstract class Custom_Post_Type {
       'search_items'  => sprintf($phrases['search'], $this->plural),
       'not_found'     => sprintf($phrases['404'],    $this->plural),
       'not_found_in_trash' => sprintf($phrases['trash'],$this->plural));
+    $arr = apply_filters('tcc_post_labels_'.$this->type,$arr);
     return $arr;
   }
 
@@ -250,15 +253,11 @@ abstract class Custom_Post_Type {
           $defs = $terms;
         }
         if ($defs) {
-          if (!isset($slug)) {
-            $test = array_slice($defs,0,1,true);
-            $slug = (!isset($test[0]));
-          }
           foreach($defs as $key=>$term) { // FIXME:  provide for description
-            if ($slug) {
-              wp_insert_term($each,$tax,array('slug'=>$key));
+            if (is_numeric($key)) {
+              wp_insert_term($term,$tax);
             } else {
-              wp_insert_term($each,$tax);
+              wp_insert_term($term,$tax,array('slug'=>$key));
             }
           }
         }
