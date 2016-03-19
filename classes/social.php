@@ -5,7 +5,6 @@ class Theme_Social_Icons {
 
   public function __construct() { # Fluidity_Options_Form $form) {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),100);
-    add_action('admin_enqueue_scripts',array($this,'admin_enqueue_scripts'));
   }
 
   public function form_layout($form) {
@@ -40,11 +39,6 @@ class Theme_Social_Icons {
                             'divcss'  => 'social-option-icon');
     }
     return $layout;
-  }
-
-  public function admin_enqueue_scripts() {
-    wp_register_script('tcc-social-icons.js', get_template_directory_uri()."/js/options.js", array('jquery'), false, true);
-    wp_enqueue_script('tcc-social-icons.js');
   }
 
 

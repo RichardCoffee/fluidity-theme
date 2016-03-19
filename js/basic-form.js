@@ -2,6 +2,7 @@
 
 jQuery(document).ready(function() {
   showhidePosi();
+  showhideSocialIcons();
   jQuery('.form-colorpicker' ).wpColorPicker();
   jQuery('.form-image'       ).click(function(e) { imageUploader(this,e); });
   jQuery('.form-image-delete').click(function(e) { imageDelete(this); });
@@ -46,10 +47,20 @@ console.log(attachment);
 
 function showhidePosi() {
   if (jQuery('.tcc-wp_posi')) {
-    if (jQuery(".tcc-loca input:radio:checked").val()=='dashboard') {
+    if (jQuery('.tcc-loca input:radio:checked').val()=='dashboard') {
       jQuery('.tcc-wp_posi').parent().parent().removeClass('hidden');
     } else {
       jQuery('.tcc-wp_posi').parent().parent().addClass('hidden');
+    }
+  }
+}
+
+function showhideSocialIcons() {
+  if (jQuery('.social-option-icon')) {
+    if (jQuery('.social-option-active input:radio:checked').val()=='yes') {
+      jQuery('.social-option-icon').parent().parent().removeClass('hidden');
+    } else {
+      jQuery('.social-option-icon').parent().parent().addClass('hidden');
     }
   }
 }
