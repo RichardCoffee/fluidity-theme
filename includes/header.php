@@ -21,6 +21,9 @@ if (!function_exists('fluidity_header_background')) {
     $back = tcc_design('header');
     if ($back) {
       echo "#fluid-header { background-image: url($back); }";
+      echo "#header_topmenu { opacity: 0.5; }";
+      echo "#header-body    { opacity: 0.5; }";
+      echo "#header-menubar { opacity: 0.5; }";
     }
   }
   add_action('tcc_custom_css','fluidity_header_background');
