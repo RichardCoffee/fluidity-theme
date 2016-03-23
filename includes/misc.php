@@ -33,14 +33,13 @@ function fluidity_social_icons() {
     if (has_action('fluidity_social_icons')) {
       do_action('fluidity_social_icons');
     } else {
-      unset($icons['active']);
-      $html = "<div class='fluidity-social-icons'>";
-      foreach($icons as $key=>$icon) {
-        if (empty($icon)) continue;
-        $html.= " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='$icon'> </a>";
-      }
-      $html.="</div>";
-      echo $html;
+      unset($icons['active']); ?>
+      <span class='fluidity-social-icons'><?php
+        foreach($icons as $key=>$icon) {
+          if (empty($icon)) continue;
+          echo " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='$icon'> </a>";
+        } ?>
+      </span><?php
     }
   }
 } //*/
