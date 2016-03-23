@@ -28,7 +28,7 @@ class Theme_Design_Options {
     _e('Design Options - these options also show up in the WordPress Customizer.','tcc-fluid');
   }
 
-  protected static function options_layout() {
+  protected function options_layout() {
     $layout = array('default'=>true);
     $layout['logo']   = array('default' => '',
                               'label'   => __('Theme Logo','tcc-fluid'),
