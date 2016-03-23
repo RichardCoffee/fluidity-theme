@@ -18,7 +18,7 @@ if (!function_exists('fluidity_custom_css')) {
 
 if (!function_exists('fluidity_header_background')) {
   function fluidity_header_background() {
-    $back = tcc_options('header','design');
+    $back = tcc_design('header');
     if ($back) {
       echo "#fluid-header { background-image: url($back); }";
     }
