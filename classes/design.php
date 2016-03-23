@@ -35,8 +35,15 @@ class Theme_Design_Options {
                               'render'  => 'image',
                               'divcss'  => 'upload-img',
                               'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
-                                                 'button' => __('Assign Logo',             'tcc-fluid'),
-                                                 'delete' => __('Remove Logo',             'tcc-fluid')));
+                                                 'button' => __('Assign Logo', 'tcc-fluid'),
+                                                 'delete' => __('Remove Logo', 'tcc-fluid')));
+    $layout['header'] = array('default' => '',
+                              'label'   => __('Header Background','tcc-fluid'),
+                              'render'  => 'image',
+                              'divcss'  => 'upload-img',
+                              'media'   => array('title'  => __('Assign/Upload Header Background Image','tcc-fluid'),
+                                                 'button' => __('Assign Background', 'tcc-fluid'),
+                                                 'delete' => __('Remove Background', 'tcc-fluid')));
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
                               'text'    => __('Site typography options','tcc-fluid'),
                               'render'  => 'title');

@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  tcc-fluidity/includes/header.php
+ *  includes/header.php
  *
  *  IMPORTANT:  this file is in flux, nothing here is guaranteed to remain the same
  *
@@ -14,6 +14,16 @@ if (!function_exists('fluidity_custom_css')) {
       do_action('tcc_custom_css'); ?>
     </style><?php
   }
+}
+
+if (!function_exists('fluidity_header_background')) {
+  function fluidity_header_background() {
+    $back = tcc_options('header','design');
+    if ($back) {
+      echo "#fluid-header { background-image: url($back); }";
+    }
+  }
+  add_action('tcc_custom_css','fluidity_header_background');
 }
 
 if (!function_exists('fluidity_browser_body_class')) {
