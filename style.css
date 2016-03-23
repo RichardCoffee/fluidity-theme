@@ -102,6 +102,8 @@ img {
   align: center;
   text-align: center;
   vertical-align: middle;
+}
+.logo img {
   opacity: 1.0;
 }
 
