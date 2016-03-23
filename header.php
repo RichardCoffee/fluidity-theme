@@ -25,6 +25,5 @@ fluidity_custom_css(); ?>
 
 </head>
 
-<body <?php body_class('background'); ?>>
-  <div id="overlay" class="hidden translucent fullview"></div><?php
+<body <?php body_class('background'); ?>><?php
   get_template_part('template-parts/header'); ?>

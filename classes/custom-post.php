@@ -14,23 +14,26 @@ abstract class Custom_Post_Type {
   protected $plural   = '';  #  _x('Custom Post Types','plural form','textdomain')
   protected $descrip  = '';  #  __('Custom Post Type Title','textdomain')
 
-  protected $caps       = 'post';      #  default is to not create custom capabilities
-  protected $columns    = null;        #  array('remove'=>array()','add'=>array())
-  protected $comments   = false;       #  boolean:  allow comments
-  protected $debug      = false;       #  used in conjunction with $this->logging
+
+  # I have marked properties with '**' that I believe people may want to change more often.
+  protected $caps       = 'post';      #    default is to not create custom capabilities
+  protected $columns    = null;        #    array('remove'=>array()','add'=>array())
+  protected $comments   = false;       # ** boolean:  allow comments
+  protected $debug      = false;       #    used in conjunction with $this->logging
+  #protected $has_archive = false;     #    can be set to the archive template path
   protected $menu_icon  = 'dashicons-admin-post'; #  admin dashboard icon
-  protected $logging    = 'log_entry'; #  assign your own logging function here
-  protected $main_blog  = true;        #  set to false to not force inclusion in WP post queries
-  private   $nodelete   = array();     #  used in $this->taxonomy_registration($args)
-  protected $position   = 6;           #  position on admin dashboard
-  protected $rewrite    = array();     #  array('slug'=>$this->type));
-  protected $role_caps  = 'normal';    #  value of 'admin' will cause only the administrator caps to be updated - FIXME: allow array of roles
-  protected $slug_edit  = true;        #  whether to allow editing of taxonomy slugs in admin screen
+  protected $logging    = 'log_entry'; #    assign your own logging function here
+  protected $main_blog  = false;       # ** set to true to force inclusion in WP post queries
+  private   $nodelete   = array();     #    used in $this->taxonomy_registration($args)
+  protected $menu_position = null;     # ** position on admin dashboard
+  protected $rewrite    = array();     #    array('slug'=>$this->type));
+  protected $role_caps  = 'normal';    #    value of 'admin' will cause only the administrator caps to be updated - FIXME: allow array of roles
+  protected $slug_edit  = true;        # ** whether to allow editing of taxonomy slugs in admin screen
   protected $supports   = array('title','editor','author','thumbnail','revisions','comments');
   protected $tax_list   = array();
-  protected $taxonomies = array();     #  array('post_tag','category');  passed to register_post_type() - FIXME:  possible auto call of $this->taxonomy_registration()
-  protected $tax_keep   = array();     #  example: array( 'taxonomy-slug' => array('Term One Name','Term Two Name','term-three-slug') )
-  protected $templates  = false;       #  example: array( 'single' => WP_PLUGIN_DIR.'/plugin_dir/templates/single-{cpt-slug}.php' )
+  protected $taxonomies = array();     # ** array('post_tag','category'); passed to register_post_type() FIXME: possible auto call of $this->taxonomy_registration()
+  protected $tax_keep   = array();     #    example: array( 'taxonomy-slug' => array('Term One Name','Term Two Name','term-three-slug') )
+  protected $templates  = false;       #    example: array( 'single' => WP_PLUGIN_DIR.'/plugin_dir/templates/single-{cpt-slug}.php' )
 
   private static $types = array('posts');
 
@@ -73,18 +76,23 @@ abstract class Custom_Post_Type {
   protected function translated_text() {
     static $text;
     if (empty($text)) {
-      $text =  array('404'     => _x('No %s found','placeholder is plural form',  'tcc-custom-post'),
-                     'add'     => _x('Add New %s', 'placeheader is singular form','tcc-custom-post'),
-                     'all'     => _x('All %s',     'placeholder is plural form',  'tcc-custom-post'),
-                     'archive' => _x('%s Archive', 'placeholder is singular form','tcc-custom-post'),
-                     'edit_p'  => _x('Edit %s',    'placeholder is plural form',  'tcc-custom-post'),
-                     'edit_s'  => _x('Edit %s',    'placeholder is singular form','tcc-custom-post'),
-                     'new'     => _x('New %s',     'placeholder is singular form','tcc-custom-post'),
-                     'search'  => _x('Search %s',  'placeholder is plural form',  'tcc-custom-post'),
-                     'trash'   => _x('No %s found in trash','placeholder is plural form','tcc-custom-post'),
-                     'update'  => _x('Update %s',  'placeholder is singular form','tcc-custom-post'),
-                     'view_p'  => _x('View %s',    'placeholder is plural form',  'tcc-custom-post'),
-                     'view_s'  => _x('View %s',    'placeholder is singular form','tcc-custom-post'),
+      $text =  array('404'     => _x('No %s found',          'placeholder is plural form',  'tcc-custom-post'),
+                     'add'     => _x('Add New %s',           'placeheader is singular form','tcc-custom-post'),
+                     'all'     => _x('All %s',               'placeholder is plural form',  'tcc-custom-post'),
+                     'archive' => _x('%s Archive',           'placeholder is singular form','tcc-custom-post'),
+                     'edit_p'  => _x('Edit %s',              'placeholder is plural form',  'tcc-custom-post'),
+                     'edit_s'  => _x('Edit %s',              'placeholder is singular form','tcc-custom-post'),
+                     'filter'  => _x('Filter %s list',       'placeholder is plural form',  'tcc-custom-post'),
+                     'insert'  => _x('Insert into %s',       'placeholder is singular form','tcc-custom-post'),
+                     'list'    => _x('%s list',              'placeholder is singular form','tcc-custom-post'),
+                     'navig'   => _x('%s list navigation',   'placeholder is plural form',  'tcc-custom-post'),
+                     'new'     => _x('New %s',               'placeholder is singular form','tcc-custom-post'),
+                     'search'  => _x('Search %s',            'placeholder is plural form',  'tcc-custom-post'),
+                     'trash'   => _x('No %s found in trash', 'placeholder is plural form',  'tcc-custom-post'),
+                     'update'  => _x('Update %s',            'placeholder is singular form','tcc-custom-post'),
+                     'upload'  => _x('Uploaded to this %s',  'placeholder is singular form','tcc-custom-post'),
+                     'view_p'  => _x('View %s',              'placeholder is plural form',  'tcc-custom-post'),
+                     'view_s'  => _x('View %s',              'placeholder is singular form','tcc-custom-post'),
                      'messages'=> array('custom_u' => __('Custom field updated.', 'tcc-custom-post'),
                          'custom_d' => __('Custom field deleted.','tcc-custom-post' ),
                          'draft'    => _x('%s draft updated.','placeholder is singular form', 'tcc-custom-post'),
@@ -111,7 +119,7 @@ abstract class Custom_Post_Type {
         'description'       => $this->descrip,
         'public'            => (isset($this->public)) ? $this->public : true,
         'show_in_admin_bar' => (isset($this->show_in_admin_bar)) ? $this->show_in_admin_bar : false,
-        'menu_position'     => $this->position,
+        'menu_position'     => $this->menu_position,
         'menu_icon'         => $this->menu_icon,
         'capability_type'   => (isset($this->capability_type)) ? $this->capability_type : (empty($this->caps)) ? $caps : $this->caps,
         'map_meta_cap'      => (isset($this->map_meta_cap))    ? $this->map_meta_cap : true,
@@ -119,7 +127,7 @@ abstract class Custom_Post_Type {
         'query_var'         => (isset($this->query_var))       ? $this->query_var    : false,
         'supports'          => $this->supports,
         'taxonomies'        => $this->taxonomies,
-        'has_archive'       => $this->type,
+        'has_archive'       => (isset($this->has_archive)) ? $this->has_archive : $this->type,
         'rewrite'           => $this->rewrite);
     $args = apply_filters('tcc_register_post_'.$this->type,$args);
     register_post_type($this->type,$args);
@@ -138,16 +146,22 @@ abstract class Custom_Post_Type {
       'singular_name' => $this->label,
       'add_new'       => sprintf($phrases['add'],    $this->label),
       'add_new_item'  => sprintf($phrases['add'],    $this->label),
-      'edit'          => sprintf($phrases['edit_p'], $this->plural),
       'edit_item'     => sprintf($phrases['edit_s'], $this->label),
       'new_item'      => sprintf($phrases['new'],    $this->label),
-      'all_items'     => sprintf($phrases['all'],    $this->plural),
-      'view'          => sprintf($phrases['view_p'], $this->plural),
       'view_item'     => sprintf($phrases['view_s'], $this->label),
-      'items_archive' => sprintf($phrases['archive'],$this->label),
       'search_items'  => sprintf($phrases['search'], $this->plural),
       'not_found'     => sprintf($phrases['404'],    $this->plural),
-      'not_found_in_trash' => sprintf($phrases['trash'],$this->plural));
+      'not_found_in_trash'    => sprintf($phrases['trash'],  $this->plural),
+      'all_items'             => sprintf($phrases['all'],    $this->plural),
+      'archives'              => sprintf($phrases['all'],    $this->plural),
+      'insert_into_item'      => sprintf($phrases['insert'], $this->label),
+      'uploaded_to_this_item' => sprintf($phrases['upload'], $this->label),
+      'filter_items_list'     => sprintf($phrases['filter'], $this->plural),
+      'items_list_navigation' => sprintf($phrases['navig'],  $this->plural),
+      'items_list'    => sprintf($phrases['list'],   $this->label),
+      'edit'          => sprintf($phrases['edit_p'], $this->plural),
+      'view'          => sprintf($phrases['view_p'], $this->plural),
+      'items_archive' => sprintf($phrases['archive'],$this->label));
     $arr = apply_filters('tcc_post_labels_'.$this->type,$arr);
     return $arr;
   }
@@ -299,6 +313,7 @@ abstract class Custom_Post_Type {
       }
       if ($keep_list) {
         $keep_list = array_unique($keep_list);
+log_entry($keep_list);
         wp_register_script('tax_nodelete',plugins_url('../js/tax_nodelete.js',__FILE__),array('jquery'),false,true);
         wp_localize_script('tax_nodelete','term_list',$keep_list);
         wp_enqueue_script('tax_nodelete');
@@ -356,12 +371,15 @@ abstract class Custom_Post_Type {
   #  http://codex.wordpress.org/Function_Reference/locate_template
   #  https://wordpress.org/support/topic/stylesheetpath-in-plugin
   public function assign_template($template) {
-    if ($post_id=get_the_ID()) {
+    $post_id = get_the_ID();
+    if ($post_id) {
       $mytype = get_post_type($post_id);
       if ($mytype && ($this->type==$mytype)) {
         if (is_single()) {
           $template = $this->locate_template($template,'single');
-        } // FIXME: search, archive
+        } else if (is_search || is_post_type_archive($this->type)) {
+          $template = $this->locate_template($template,'archive');
+        }
         $template = apply_filters('tcc_assign_template_'.$this->type,$template);
       }
     }
@@ -371,6 +389,8 @@ abstract class Custom_Post_Type {
   private function locate_template($template,$slug) {
     if (isset($this->templates[$slug])) {
       $template = $this->templates[$slug];
+    } elseif (($slug==='archive') && isset($this->has_archive) && is_string($this->has_archive)) {
+      $template = $this->has_archives;
     } elseif (isset($this->templates['folders'])) {
       foreach((array)$this->templates['folders'] as $folder) {
         $test = $folder."/$slug-{$this->type}.php";

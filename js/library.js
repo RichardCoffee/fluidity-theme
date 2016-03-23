@@ -81,30 +81,3 @@ function scrollToElement(selector, time, verticalOffset) {
   }, time);
 }
 
-function showBusy(show) {
-//console.log('showBusy');
-  var back = document.getElementById('overlay');
-  if (show) {
-//console.log('showBusy - show');
-    toggleOverlay();
-    jQuery(back).addClass('center-item');
-    appendElement(back,'i','busy-spinner',null,'fa fa-spinner fa-pulse');
-//alert('in showBusy');
-  } else {
-//console.log('showBusy - hide');
-    jQuery(back).removeClass('center-item').empty();;
-    toggleOverlay(null,true);
-  }
-}
-
-function toggleOverlay(nodeID,action) {
-  nodeID = nodeID || 'overlay';
-  var toggleMe = document.getElementById(nodeID);
-  if (toggleMe) {
-    if (action) {
-      jQuery(toggleMe).addClass('hidden');
-    } else {
-      jQuery(toggleMe).toggleClass('hidden');
-    }
-  }
-}
