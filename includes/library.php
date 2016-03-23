@@ -199,6 +199,25 @@ if (!function_exists('sanitize_array')) {
   }
 }
 
+/*  Non-wordPress specific */
+
+if (!function_exists('array_insert_after')) {
+  #  http://eosrei.net/comment/287
+  function array_insert_after($array, $key, $new_key, $new_value) {
+    if (array_key_exists($key, $array)) {
+      $new = array();
+      foreach ($array as $k => $value) {
+        $new[$k] = $value;
+        if ($k === $key) {
+          $new[$new_key] = $new_value;
+        }
+      }
+      return $new;
+    }
+    return $array;
+  }
+}
+
 /*  Debugging functions  */
 
 #  https://docs.dev4press.com/tutorial/wordpress/debug-wordpress-rewrite-rules-matching/
