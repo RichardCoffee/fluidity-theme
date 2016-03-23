@@ -3,6 +3,8 @@
 
 class Theme_Social_Icons {
 
+  private $base = 'social';
+
   public function __construct() { # Fluidity_Options_Form $form) {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),100);
   }

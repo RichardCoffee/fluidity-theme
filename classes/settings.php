@@ -24,7 +24,7 @@ class Theme_Admin_Options {
     _e('Theme Behavior Options','tcc-fluid');
   }
 
-  protected static function options_layout() {
+  protected function options_layout() {
     $layout = array('default'=>true);
     $layout['heart'] = array('default' => 'on',
                              'label'   => __('WP Heartbeat','tcc-fluid'),
