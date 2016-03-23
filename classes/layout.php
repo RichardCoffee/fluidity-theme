@@ -28,7 +28,7 @@ class Theme_Layout_Options {
     _e("Utilize these options to change the theme's style and layout.  These options also show up in the WordPress Customizer.",'tcc-fluid');
   }
 
-  protected static function options_layout() {
+  protected function options_layout() {
     $layout = array('default'=>true);
     $layout['width'] = array('default' => 'full',
                              'label'   => __('Width','tcc-fluid'),
@@ -81,9 +81,7 @@ class Theme_Layout_Options {
     $layout['site']   = array('label'   => __('Site',        'tcc-fluid'),
                               'text'    => __('Coming Soon!','tcc-fluid'),
                               'render'  => 'display'); //*/
-log_entry($this->base);
-    $filter = 'tcc_'.$this->base.'_options_layout';
-    $layout = apply_filters($filter,$layout);
+    $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
 
