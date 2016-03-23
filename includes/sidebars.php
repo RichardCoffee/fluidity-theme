@@ -36,9 +36,9 @@ if (!function_exists('fluidity_register_sidebars')) {
     #  Footer sidebar
     $sidebars[] = array('name'          => __('Footer Widget Area (4 col)','tcc-fluid'),
                         'id'            => 'footer',
-                        'before_widget' => "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>$before_widget",
-                        'before_title'  => $before_title,
-                        'after_title'   => $after_title,
+                        'before_widget' => "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>$before_widget<div class='panel-body'>",
+                        'before_title'  => '',
+                        'after_title'   => '',
                         'after_widget'  => "$after_widget</div>");
     #  apply filters
     $sidebars = apply_filters('tcc_register_sidebars',$sidebars);
