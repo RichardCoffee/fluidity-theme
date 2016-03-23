@@ -68,6 +68,7 @@ class Theme_Design_Options {
     $layout['site']   = array('label'   => __('Site',        'tcc-fluid'),
                               'text'    => __('Coming Soon!','tcc-fluid'),
                               'render'  => 'display'); //*/
+    $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
 

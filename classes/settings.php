@@ -33,6 +33,7 @@ class Theme_Admin_Options {
                              'render'  => 'radio',
                              'source'  => array('on'  => __('On','tcc-fluid'),
                                                 'off' => __('Off','tcc-fluid')));
+    $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
 
