@@ -16,7 +16,7 @@ if (!function_exists('fluidity_custom_css')) {
   }
 }
 
-if (!function_exists('fluidity_header_background')) {
+/*if (!function_exists('fluidity_header_background')) {
   function fluidity_header_background() {
     $back = tcc_design('header');
     if ($back) {
@@ -27,7 +27,7 @@ if (!function_exists('fluidity_header_background')) {
     }
   }
   add_action('tcc_custom_css','fluidity_header_background');
-}
+} //*/
 
 if (!function_exists('fluidity_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
