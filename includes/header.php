@@ -16,19 +16,6 @@ if (!function_exists('fluidity_custom_css')) {
   }
 }
 
-/*if (!function_exists('fluidity_header_background')) {
-  function fluidity_header_background() {
-    $back = tcc_design('header');
-    if ($back) {
-      echo "#fluid-header { background-image: url($back); }";
-      echo "#header_topmenu { opacity: 0.5; }";
-      echo "#header-body    { opacity: 0.5; }";
-      echo "#header-menubar { opacity: 0.5; }";
-    }
-  }
-  add_action('tcc_custom_css','fluidity_header_background');
-} //*/
-
 if (!function_exists('fluidity_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
   function fluidity_browser_body_class($classes) {
@@ -113,16 +100,34 @@ if (!function_exists('fluidity_header_body')) {
 
 if (!function_exists('fluidity_header_logo')) {
   function fluidity_header_logo() { ?>
-    <div itemprop='logo' <?php microdata()->ImageObject(); ?>>
-      <a class='logo' href='<?php echo home_url(); ?>/' itemprop='relatedLink'>
-        <img class='img-responsive' src='<?php echo tcc_design('logo'); ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'>
-      </a>
+    <div itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
+      if (function_exists('jetpack_the_site_logo')) {
+        jetpack_the_site_logo();
+      } else { ?>
+        <a class='logo' href='<?php echo home_url(); ?>/' itemprop='relatedLink'><?php
+          $logo_id = get_theme_mod( 'header_logo' );
+          if ($logo_id) {
+            $size = 'medium';
+            $attr = array( 'class'     => "img-responsive attachment-$size",
+                           'data-size' => $size,
+                           'itemprop'  => "image" );
+            echo wp_get_attachment_image( $logo_id, $size, false, $attr );
+          } else { ?>
+            <img class='img-responsive' src='<?php echo tcc_design('logo'); ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'><?php
+          } ?>
+        </a><?php
+      } ?>
     </div><?php
   }
-  if (tcc_design('logo')) {
-    $logo_side = (tcc_design('logo_side')=='right') ? 'right' : 'left';
-    add_action("tcc_{$logo_side}_header_body",'fluidity_header_logo');
+}
+
+if (!function_exists('fluidity_jetpack_site_logo_to_bootstrap')) {
+  function fluidity_jetpack_site_logo_to_bootstrap($html) {
+    // FIXME:  replace first instance of 'site-logo' with 'logo site-logo'.  Actual result should be 'logo site-logo-link'
+    // FIXME:  replace second occurance of 'site-logo' with 'img-responsive site-logo'
+    return $html;
   }
+  add_filter('jetpack_the_site_logo','fluidity_jetpack_site_logo_to_bootstrap');
 }
 
 if (!function_exists('fluidity_main_menubar')) {

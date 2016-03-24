@@ -37,6 +37,12 @@ $defaults = array(
 );
 add_theme_support('custom-header',$defaults);
 
+// Jetpack site logo
+#$args = array( 'header-text' => array( 'site-title',
+#                                       'site-description' ),
+#               'size' => 'medium');
+add_theme_support( 'site-logo' ); #, $args );
+
 add_editor_style();
 if (!function_exists('tcc_editor_styles')) {
   // FIXME:  check for file in child
