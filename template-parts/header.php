@@ -13,7 +13,7 @@ $color_scheme = tcc_color_scheme(); ?>
   do_action('tcc_pre_header');
 
   if (has_action('tcc_header_top_menubar')) { ?>
-    <div id="header-topmenu"><?php
+    <div id="header-topmenu" class="navbar-<?php echo $color_scheme; ?>"><?php
       do_action('tcc_header_top_menubar'); ?>
     </div><?php
   } ?>
@@ -25,7 +25,7 @@ $color_scheme = tcc_color_scheme(); ?>
   </div><?php
 
   if (has_action('tcc_header_menubar')) { ?>
-    <div id="header-menubar">
+    <div id="header-menubar" class="navbar-<?php echo $color_scheme; ?>">
       <div class="width-<?php echo tcc_layout('width'); ?>"><?php
         do_action('tcc_header_menubar'); ?>
       </div>
