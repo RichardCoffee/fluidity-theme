@@ -6,6 +6,19 @@
  */
 
 
+/**  Jetpack  **/
+
+/*  jetpack_the_site_logo() called in includes/header.php, function fluidity_header_logo() */
+if (!function_exists('fluidity_jetpack_site_logo_to_bootstrap')) {
+  function fluidity_jetpack_site_logo_to_bootstrap($html) {
+    // FIXME:  replace first instance of 'site-logo' with 'logo site-logo'.  Actual result should be 'logo site-logo-link'
+    // FIXME:  replace second occurance of 'site-logo' with 'img-responsive site-logo'
+    return $html;
+  }
+  add_filter('jetpack_the_site_logo','fluidity_jetpack_site_logo_to_bootstrap');
+}
+
+
 /**  MailChimp for WordPress **/
 
 if (!defined('FLUID_MC4WP_LOG_LEVEL')) { define('FLUID_MC4WP_LOG_LEVEL','info'); }
