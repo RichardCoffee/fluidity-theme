@@ -14,7 +14,6 @@ abstract class RC_Custom_Post_Type {
   protected $plural   = '';  #  _x('Custom Post Types','plural form','textdomain')
   protected $descrip  = '';  #  __('Custom Post Type Title','textdomain')
 
-
   # I have marked properties with '**' that I believe people may want to change more often.
   protected $caps       = 'post';      #    default is to not create custom capabilities
   protected $columns    = null;        #    array('remove'=>array()','add'=>array())
@@ -24,7 +23,6 @@ abstract class RC_Custom_Post_Type {
   protected $menu_icon  = 'dashicons-admin-post'; #  admin dashboard icon
   protected $logging    = 'log_entry'; #    assign your own logging function here
   protected $main_blog  = false;       # ** set to true to force inclusion in WP post queries
-  private   $nodelete   = array();     #    used in $this->taxonomy_registration($args)
   protected $menu_position = null;     # ** position on admin dashboard
   protected $rewrite    = array();     #    defaults to: array('slug'=>$this->type));
   protected $role_caps  = 'normal';    #    value of 'admin' will cause only the administrator caps to be updated - FIXME: allow array of roles
@@ -33,31 +31,44 @@ abstract class RC_Custom_Post_Type {
   protected $tax_list   = array();
   protected $taxonomies = array();     # ** array('post_tag','category'); passed to register_post_type() FIXME: possible auto call of $this->taxonomy_registration()
   protected $tax_keep   = array();     #    example: array( 'taxonomy-slug' => array('Term One Name','Term Two Name','term-three-slug') )
+  protected $tax_omit   = array();     #    taxonomy terms to omit from normal queries - not yet implemented
   protected $templates  = false;       #    example: array( 'single' => WP_PLUGIN_DIR.'/plugin_dir/templates/single-{cpt-slug}.php' )
 
   private static $types = array('posts');
+  //  FIXME:  this needs to be handled differently
+  private $cpt_nodelete = false;       #    if true then implement no deletion policy on builtin taxonomies assigned to this cpt
+  private $enqueue_flag = false;       #    flag to indicate that js_nodelete.js needs to be enqueued
+  private $nodelete     = array();     #    used in $this->taxonomy_registration($args)
 
   public function __construct($data) {
     if (!post_type_exists($data['type'])) {
+      if (isset($data['nodelete'])) { $this->cpt_nodelete = true; }
+      unset($data['enqueue_flag'],$data['nodelete']);
       foreach($data as $prop=>$value) {
         $this->{$prop} = $value;
       }
       if (empty($this->type)) { $this->type = sanitize_title($this->label); }  // seriously?
-      add_action('init',                 array($this,'create_post_type'));
+      add_action('init', array( $this, 'create_post_type'));
       add_action('add_meta_boxes_'.$this->type, array($this,'check_meta_boxes'));
-      add_filter('post_updated_messages',array($this,'post_type_messages'));
+      add_action('admin_enqueue_scripts', array($this,'admin_enqueue_scripts'));
+      add_filter('post_updated_messages', array($this,'post_type_messages'));
       if ($this->columns) {
         $this->setup_columns(); }
       if ($this->comments) {
-        add_filter('comments_open',array($this,'comments_limit'),10,2);
-        add_filter('pings_open',   array($this,'comments_limit'),10,2);
-      } //*/
+        add_filter('comments_open', array($this,'comments_limit'),10,2);
+        add_filter('pings_open',    array($this,'comments_limit'),10,2);
+      }
+      if ($this->cpt_nodelete) {
+        $this->add_builtins();
+      }
       if ($this->main_blog) {
-        add_filter('pre_get_posts',        array($this,'pre_get_posts'),5); } #  run early - priority 5
+        add_filter('pre_get_posts', array($this,'pre_get_posts'),5); } #  run early - priority 5
+      if ($this->tax_omit) {
+        add_filter('pre_get_posts', array($this,'omit_get_posts'),6); }
       if ( ! $this->slug_edit) {
         add_action('admin_enqueue_scripts',array($this,'stop_slug_edit')); }
       if ($this->templates) {
-        add_filter('template_include',     array($this,'assign_template')); }
+        add_filter('template_include', array($this,'assign_template')); }
     }
   }
 
@@ -280,8 +291,26 @@ abstract class RC_Custom_Post_Type {
         add_filter('wp_get_nav_menu_items',array($this,$submenu)); }
       if ($nodelete) {
         $this->nodelete[] = $tax;
-        add_action('admin_enqueue_scripts',array($this,'stop_term_deletion'));
+        $this->enqueue_flag = true;
       }
+      if (!empty($omit)) {
+        $this->omit[$tax] = (empty($this->omit[$tax])) ? $omit : array_merge($this->omit[$tax],$omit);
+        if (!has_filter('pre_get_posts', array($this,'omit_get_posts'))) { add_filter('pre_get_posts', array($this,'omit_get_posts'),6); }
+      }
+    }
+  }
+
+  private function add_builtins() {
+    $check = array('post_tag','category');
+    foreach($check as $tax) {
+      $this->nodelete[] = $tax;
+      $this->enqueue_flag = true;
+    }
+  }
+
+  public function admin_enqueue_scripts() {
+    if ($this->enqueue_flag) {
+      $this->stop_term_deletion();
     }
   }
 
@@ -293,17 +322,16 @@ abstract class RC_Custom_Post_Type {
     }
   }
 
+
+  /*  Term functions  */
+
   public function stop_term_deletion() {
     $screen = get_current_screen();
     if (($screen->base=='edit-tags') && (in_array($screen->taxonomy,$this->nodelete))) {
       $keep_list = array();
       if (!empty($this->tax_keep[$screen->taxonomy])) {
         foreach($this->tax_keep[$screen->taxonomy] as $term) {
-          if ($term===sanitize_title($term)) {
-            $keep_list[] = get_term_by('slug',$term,$screen->taxonomy)->term_id;
-          } else {
-            $keep_list[] = get_term_by('name',$term,$screen->taxonomy)->term_id;
-          }
+          $keep_list[] = $this->get_term_id($term,$screen->taxonomy);
         }
       }
       $term_list = get_terms($screen->taxonomy,'hide_empty=1');
@@ -318,6 +346,14 @@ log_entry($keep_list);
         wp_localize_script('tax_nodelete','term_list',$keep_list);
         wp_enqueue_script('tax_nodelete');
       }
+    }
+  }
+
+  private function get_term_id($term,$tax) {
+    if ($term===sanitize_title($term)) {
+      return get_term_by('slug',$term,$tax)->term_id;
+    } else {
+      return get_term_by('name',$term,$tax)->term_id;
     }
   }
 
@@ -406,6 +442,9 @@ log_entry($keep_list);
     return $template;
   }
 
+
+  /*  Comments  */
+
   public function comments_limit($open,$post_id) {
     $mytype = get_post_type($post_id);
     if ($this->type==$mytype) {
@@ -424,25 +463,54 @@ log_entry($keep_list);
   } //*/
 
 
+  /*  Query modifications  */
+
   // https://wordpress.org/support/topic/custom-post-type-posts-not-displayed
   public function pre_get_posts($query) {
-    if (!is_admin()) {
-      if ($query->is_main_query()) {
-        if ((!$query->is_page()) || (is_feed())) {
-          $check = $query->get('post_type');
-          if (empty($check)) {
-            $query->set('post_type',array('post',$this->type));
-          } elseif (!((array)$check==$check)) {
-            if ($check!==$this->type) $query->set('post_type',array($check,$this->type));
-          } elseif (!in_array($this->type,$check)) {
-            $check[] = $this->type;
-            $query->set('post_type',$check);
-          }
+    if (!is_admin() && $query->is_main_query()) {
+      if ((!$query->is_page()) || (is_feed())) {  #  || (is_post_type_archive($this->type))) {
+        $check = $query->get('post_type');
+        if (empty($check)) {
+          $query->set('post_type',array('post',$this->type));
+        } elseif (!((array)$check==$check)) {
+          if ($check!==$this->type) $query->set('post_type',array($check,$this->type));
+        } elseif (!in_array($this->type,$check)) {
+          $check[] = $this->type;
+          $query->set('post_type',$check);
         }
       }
     }
     return $query;
   }
+
+  public function omit_get_posts($query) {
+    if ($this->tax_omit) {
+      if (!is_admin()) {  #  && $query->is_main_query()) {
+        if ((!$query->is_page()) || (is_feed())) {
+          $check = $query->get('post_type');
+          if (in_array($this->type,(array)$check)) {
+            foreach($this->tax_omit as $tax) {
+              $terms = array();
+              foreach($tax as $term) {
+                $terms[] = $this->get_term_id($term,$tax);
+              }
+              $omit = '-'.implode(',-',$terms);
+              if ($tax=='category') {
+                $query->set('cat',$omit);
+              } elseif ($tax=='post_tag') {
+                $query->set('tag',$omit);
+              } else {
+                $query->set('tax_query', array( array( 'taxonomy'=>$tax, 'field'=>'id', 'terms'=>$terms, 'operator'=>'NOT IN' ) ) );
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  /*  Meta box  */
 
   public function check_meta_boxes() {
     $cap = "edit_others_".sanitize_title($this->plural);
@@ -451,12 +519,18 @@ log_entry($keep_list);
     }
   }
 
+
+  /*  Debugging  */
+
   private function log_entry() {
     if ($this->debug && isset($this->logging)) {
-      $log = $this->logging; // FIXME:  check for array, ie: method of a different class
-      if (function_exists($log)) {
+      $log = $this->logging;
+      if (is_array($log) && method_exists($log)) {  #  Method in a different class
+        extract($log,EXTR_PREFIX_INVALID,'logger');
+        foreach (func_get_args() as $message) { $logger_0->$logger_1($message); }
+      } elseif (function_exists($log)) {            #  Function
         foreach (func_get_args() as $message) { $log($message); }
-      } elseif (method_exists($this,$log)) {
+      } elseif (method_exists($this,$log)) {        #  Method in this class
         foreach (func_get_args() as $message) { $this->$log($message); }
       }
     }
