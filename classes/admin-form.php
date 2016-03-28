@@ -3,7 +3,7 @@
 /*
  *  classes/admin-form.php
  *
- *  copyright 2014-2015, The Creative Collective, the-creative-collective.com
+ *  copyright 2014-2016, The Creative Collective, the-creative-collective.com
  */
 
 abstract class Basic_Admin_Form {

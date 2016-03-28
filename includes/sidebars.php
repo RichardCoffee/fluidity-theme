@@ -101,7 +101,7 @@ if (!function_exists('sidebar_layout')) {
     if ($side!=='none') {
       $micro = microdata();
       $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12'.(($side=='right') ? ' pull-right' : ''); ?>
-      <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?>><?php
+      <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?> role="complementary"><?php
         fluidity_get_sidebar($sidebar); ?>
       </aside><?php
     }
