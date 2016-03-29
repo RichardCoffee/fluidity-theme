@@ -31,7 +31,7 @@ abstract class RC_Custom_Post_Type {
   protected $slug_edit  = true;        # ** whether to allow editing of taxonomy slugs in admin screen
   protected $supports   = array('title','editor','author','thumbnail','revisions','comments');
   protected $tax_list   = array();
-  protected $taxonomies = array();     # ** array('post_tag','category'); passed to register_post_type() FIXME: possible auto call of $this->taxonomy_registration()
+  protected $taxonomies = array('post_tag','category'); # passed to register_post_type() FIXME: possible auto call of $this->taxonomy_registration()
   protected $tax_keep   = array();     #    example: array( 'taxonomy-slug' => array('Term One Name','Term Two Name','term-three-slug') )
   protected $tax_omit   = array();     #    taxonomy terms to omit from normal queries - not yet implemented
   protected $templates  = false;       #    example: array( 'single' => WP_PLUGIN_DIR.'/plugin_dir/templates/single-{cpt-slug}.php' )
@@ -115,7 +115,7 @@ abstract class RC_Custom_Post_Type {
                      'messages'=> array('custom_u' => __('Custom field updated.', 'tcc-custom-post'),
                          'custom_d' => __('Custom field deleted.','tcc-custom-post' ),
                          'draft'    => _x('%s draft updated.','placeholder is singular form', 'tcc-custom-post'),
-                         'preview'  => _x('Preview $s',       'placeholder is singular form', 'tcc-custom-post'),
+                         'preview'  => _x('Preview %s',       'placeholder is singular form', 'tcc-custom-post'),
                          'publish'  => _x('%s published.',    'placeholder is singular form', 'tcc-custom-post'),
                          'revision' => _x('%1$s restored to revision from %2$s', '1: label in singular form, 2: date and time of the revision','tcc-custom-post'),
                          'saved'    => _x('%s saved.',        'placeholder is singular form', 'tcc-custom-post'),
