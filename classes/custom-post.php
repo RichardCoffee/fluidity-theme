@@ -79,6 +79,7 @@ abstract class RC_Custom_Post_Type {
       if (!isset(static::$types[$this->type])) {
         static::$types[$this->type] = $this;
       }
+log_entry($this);
     }
   }
 
