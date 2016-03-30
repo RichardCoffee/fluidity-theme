@@ -61,3 +61,11 @@ if (!function_exists('tcc_layout')) {
   }
 }
 
+if (!function_exists('tcc_settings')) {
+  function tcc_settings($option) {
+    static $data;
+    if (empty($data)) { $data = get_option('tcc_options_settings'); }
+    if (isset($data[$option])) { return $data[$option]; }
+    return '';
+  }
+}
