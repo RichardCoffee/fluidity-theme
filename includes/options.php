@@ -5,6 +5,19 @@
  *
  */
 
+if (!function_exists('stop_heartbeat')) {
+  function stop_heartbeat() {
+    $heart = tcc_settings('heart');
+    if ($heart=='off') {
+      global $pagenow;
+      $authorized = array('post.php','post-new.php','admin.php');
+      if (!in_array($pagenow,$authorized))
+        wp_deregister_script('heartbeat');
+    }
+  }
+  add_action( 'init', 'stop_heartbeat', 1 );
+}
+
 if (!function_exists('tcc_color_scheme')) {
   function tcc_color_scheme($location='') {
 /*

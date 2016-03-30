@@ -96,31 +96,20 @@ if (!function_exists('fluidity_register_color_scheme')) {
   }
 }
 
+##  simple query template
 if (!function_exists('fluidity_show_query')) {
-  function fluidity_show_query( $args, $template ) {
+  function fluidity_show_query( $args, $template, $slug='' ) {
     $query = new WP_Query($args);
     if ($query->have_posts()) {
       while ($query->have_posts()) {
         $query->the_post();
-        get_template_part($template);
+        get_template_part($template,$slug);
       }
     }
     wp_reset_postdata();
   }
 }
 
-if (!function_exists('stop_heartbeat')) {
-  function stop_heartbeat() {
-    $heart = tcc_settings('heart');
-    if ($heart=='off') {
-      global $pagenow;
-      $authorized = array('post.php','post-new.php','admin.php');
-      if (!in_array($pagenow,$authorized))
-        wp_deregister_script('heartbeat');
-    }
-  }
-  add_action( 'init', 'stop_heartbeat', 1 );
-}
 
 /** Temporary Construction functions **/
 
