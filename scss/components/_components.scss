@@ -1,6 +1,9 @@
 
 //  components/_components.scss
 
+@import "mixins";
+
+@import "effects";
 @import "general";
 @import "posting-table";
 @import "sizing";

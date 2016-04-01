@@ -22,7 +22,7 @@ abstract class RC_Custom_Post_Type {
   protected $debug       =  false;      #    used in conjunction with $this->logging
   protected $has_archive =  false;      #    boolean or string - can be set to the archive template path
   protected $logging     = 'log_entry'; #    assign your own logging function here
-  protected $main_blog   =  false;      # ** set to true to force inclusion in WP post queries
+  protected $main_blog   =  true;       # ** set to false to not include the cpt in WP post queries
   protected $menu_icon   = 'dashicons-admin-post'; # ** admin dashboard icon
   protected $menu_position = null;      # ** position on admin dashboard
   protected $rewrite     = array();     #    defaults to: array('slug'=>$this->type));
@@ -41,20 +41,22 @@ abstract class RC_Custom_Post_Type {
   protected static $types = array('posts'=>null);
   //  FIXME:  this needs to be handled differently
   private $cpt_nodelete = false;       #    if true then implement no deletion policy on builtin taxonomies assigned to this cpt
-  private $enqueue_flag = false;       #    flag to indicate that js_nodelete.js needs to be enqueued
   private $nodelete     = array();     #    used in $this->taxonomy_registration($args)
 
   public function __construct($data) {
     if ((isset($data['type']) && !post_type_exists($data['type'])) || !post_type_exists($this->type)) {
       if (isset($data['nodelete'])) { $this->cpt_nodelete = true; }
-      unset($data['cpt_nodelete'],$data['enqueue_flag'],$data['nodelete']);
+      unset($data['cpt_nodelete'],$data['nodelete']);
       foreach($data as $prop=>$value) {
         $this->{$prop} = $value;
       }
+#      foreach((array)$this as $key=>$value) {
+#        if (isset($data[$key])) $this->{$key} = $data[$key];
+#      }
       $this->type = (empty($this->type)) ? sanitize_title($this->label) : sanitize_title($this->type);
       add_action('init', array( $this, 'create_post_type'));
       add_action('add_meta_boxes_'.$this->type, array($this,'check_meta_boxes'));
-      add_action('admin_enqueue_scripts', array($this,'admin_enqueue_scripts'));
+      add_action('contextual_help', array($this,'contextual_help'), 10, 3 );
       add_filter('post_updated_messages', array($this,'post_type_messages'));
       if ($this->columns) {      #  Add/Remove cpt screen columns
         $this->setup_columns(); }
@@ -65,9 +67,11 @@ abstract class RC_Custom_Post_Type {
       if ($this->cpt_nodelete) { #  Add nodelete code for builtin taxonomies
         $this->add_builtins(); }
       if ($this->main_blog) {    #  Force cpt in main wp query
-        add_filter('pre_get_posts', array($this,'pre_get_posts'),5); } #  run early - priority 5
+        add_filter('pre_get_posts', array($this,'pre_get_posts'),5); }   #  run early - priority 5
       if ($this->tax_omit) {     #  Stop posts with tax term from showing in any query
-        add_filter('pre_get_posts', array($this,'omit_get_posts'),6); }
+        add_filter('pre_get_posts', array($this,'omit_get_posts'),6); }  #  run early - priority 6
+      if ($this->sidebar) {
+        add_action('widgets_init',array($this,'register_sidebar'),11); } # run late - priority 11
       if ( ! $this->slug_edit) { #  Deny admin ability to edit taxonomy term slugs
         add_action('admin_enqueue_scripts',array($this,'stop_slug_edit')); }
       if ($this->templates) {    #  Handle templates
@@ -79,7 +83,6 @@ abstract class RC_Custom_Post_Type {
       if (!isset(static::$types[$this->type])) {
         static::$types[$this->type] = $this;
       }
-log_entry($this);
     }
   }
 
@@ -99,8 +102,21 @@ log_entry($this);
     return isset($this->$name); #  Allow read access to private/protected variables
   } //*/
 
+
+  /**  Text functions  **/
+
+  public function contextual_help( $contextual_help, $screen_id, $screen ) {
+    $this->logging("contextual help:  $screen_id");
+    if ( $screen->id == $this->type ) {
+      if (isset($this->contextual_help)) $contextual_help = $this->contextual_help;
+    } elseif ( $screen->id == "edit-{$this->type}") {
+      if (isset($this->contextual_edit)) $contextual_help = $this->contextual_edit;
+    }
+    return $contextual_help;
+  }
+
   protected function translate_post_count($count) {
-    return _nx('%1$s %2$s by this author','%1$s %2$s by this author',$count,'first placeholder is numeric, second is singular/plural form','tcc-custom-post');
+    return _nx('%1$s %2$s by this author','%1$s %2$s by this author',$count,'first placeholder is numeric, second should be a noun','tcc-custom-post');
   }
 
   protected function translated_text() {
@@ -117,6 +133,7 @@ log_entry($this);
                      'filter'  => _x('Filter %s list',       'placeholder is plural form',  'tcc-custom-post'),
                      'insert'  => _x('Insert into %s',       'placeholder is singular form','tcc-custom-post'),
                      'list'    => _x('%s list',              'placeholder is singular form','tcc-custom-post'),
+                     'menu'    => _x('%s',                   'placeholder is plural form',  'tcc-custom-post'),
                      'navig'   => _x('%s list navigation',   'placeholder is plural form',  'tcc-custom-post'),
                      'new'     => _x('New %s',               'placeholder is singular form','tcc-custom-post'),
                      'none'    => _x('No %s',                'placeholder is plural form',  'tcc-custom-post'),
@@ -169,10 +186,10 @@ log_entry($this);
     register_post_type($this->type,$args);
     do_action('tcc_custom_post_'.$this->type);
     if ($args['map_meta_cap'])  add_action('admin_init', array($this,'add_caps'));
-    if ($this->sidebar)         $this->register_sidebar();
-    $this->log_entry('post type settings',$GLOBALS['wp_post_types'][$this->type]);
+    $this->logging('cpt object',$this);
+   #$this->logging('post type settings',$GLOBALS['wp_post_types'][$this->type]);
     foreach($this->supports as $support) {
-      $this->log_entry("supports $support: ".((post_type_supports($this->type,$support)) ? 'true' : 'false'));
+      #$this->logging("supports $support: ".((post_type_supports($this->type,$support)) ? 'true' : 'false'));
     }
   }
 
@@ -189,16 +206,16 @@ log_entry($this);
       'search_items'  => sprintf($phrases['search'], $this->plural),
       'not_found'     => sprintf($phrases['404'],    $this->plural),
       'not_found_in_trash'    => sprintf($phrases['trash'],  $this->plural),
-      #'parent_item_colon' – This string isn’t used on non-hierarchical types. In hierarchical ones the default is ‘Parent Page:’.
+      'parent_item_colon'     => sprintf($phrases['parent'], $this->label).':',
       'all_items'             => sprintf($phrases['all'],    $this->plural),
       'archives'              => sprintf($phrases['all'],    $this->plural),
       'insert_into_item'      => sprintf($phrases['insert'], $this->label),
       'uploaded_to_this_item' => sprintf($phrases['upload'], $this->label),
-      #'featured_image' – Default is Featured Image.
-      #'set_featured_image' – Default is Set featured image.
-      #'remove_featured_image' – Default is Remove featured image.
-      #'use_featured_image' – Default is Use as featured image.
-      #'menu_name' – Default is the same as name.
+     #'featured_image' – Default is Featured Image.
+     #'set_featured_image' – Default is Set featured image.
+     #'remove_featured_image' – Default is Remove featured image.
+     #'use_featured_image' – Default is Use as featured image.
+      'menu_name'             => sprintf($phrases['menu'],   $this->plural),
       'filter_items_list'     => sprintf($phrases['filter'], $this->plural),
       'items_list_navigation' => sprintf($phrases['navig'],  $this->plural),
       'items_list'    => sprintf($phrases['list'],   $this->label),
@@ -237,7 +254,8 @@ log_entry($this);
     return $messages;
   }
 
-  protected function register_sidebar() {
+  public function register_sidebar() {
+   #$this->logging('register sidebar');
     $sidebar = array('id' => $this->type, 'name' => $this->label);
     if (is_array($this->sidebar)) $sidebar = array_merge($sidebar,$this->sidebar);
     register_sidebar($sidebar);
@@ -256,7 +274,7 @@ log_entry($this);
 
   private function process_caps($name) {
     $role = get_role($name);
-    $this->log_entry('user role',$role);
+    $this->logging('user role',$role);
     $sing = sanitize_title($this->label);
     $plur = sanitize_title($this->plural);
     $caps = array("delete_$sing","edit_$sing","read_$sing","delete_$plur","edit_$plur");
@@ -342,7 +360,7 @@ log_entry($this);
         add_filter('wp_get_nav_menu_items',array($this,$submenu)); }
       if ($nodelete) {
         $this->nodelete[] = $tax;
-        $this->enqueue_flag = true;
+        add_action('admin_enqueue_scripts', array($this,'stop_term_deletion'));
       }
       if (!empty($omit)) {
         $this->omit[$tax] = (empty($this->omit[$tax])) ? $omit : array_merge($this->omit[$tax],$omit);
@@ -352,18 +370,12 @@ log_entry($this);
   }
 
   private function add_builtins() {
+    $this->logging('function: add_builtins');
     $check = array('post_tag','category');
     foreach($check as $tax) {
       $this->nodelete[] = $tax;
-      $this->enqueue_flag = true;
     }
-  }
-
-  public function admin_enqueue_scripts() {
-log_entry('admin_enqueue_scripts',$this);
-    if ($this->enqueue_flag) {
-      $this->stop_term_deletion();
-    }
+    add_action('admin_enqueue_scripts', array($this,'stop_term_deletion'));
   }
 
   public function stop_slug_edit() {
@@ -393,7 +405,7 @@ log_entry('admin_enqueue_scripts',$this);
       }
       if ($keep_list) {
         $keep_list = array_unique($keep_list);
-        $this->log_entry($keep_list);
+        $this->logging($keep_list);
         wp_register_script('tax_nodelete',plugins_url('../js/tax_nodelete.js',__FILE__),array('jquery'),false,true);
         wp_localize_script('tax_nodelete','term_list',$keep_list);
         wp_enqueue_script('tax_nodelete');
@@ -438,7 +450,7 @@ log_entry('admin_enqueue_scripts',$this);
         if (is_callable(array($this,$this->columns['content']))) {
           add_action('manage_posts_custom_column',array($this,$this->columns['content']),10,2);
         } else {
-          $this->log_entry('columns[content] not callable: '.$this->columns['content']); }
+          $this->logging('columns[content] not callable: '.$this->columns['content']); }
       }
     }
   }
@@ -554,7 +566,7 @@ log_entry('admin_enqueue_scripts',$this);
             $open = $this->comments;
           } else { // FIXME:  support numeric values
 #            $postime = get_the_time('U', $post_id);
-             $this->log_entry("WARNING: Numeric values for {$this->type}->comments is not yet supported.");
+             $this->logging("WARNING: Numeric values for {$this->type}->comments is not yet supported.");
           }
         }
       }
@@ -622,7 +634,7 @@ log_entry('admin_enqueue_scripts',$this);
 
   /*  Debugging  */
 
-  private function log_entry() {
+  private function logging() {
     if ($this->debug && isset($this->logging)) {
       $log = $this->logging;
       if (is_array($log) && method_exists($log)) {  #  Method in a different class
