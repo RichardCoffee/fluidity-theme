@@ -121,11 +121,12 @@ if (!is_child_theme()) {
       echo "$site currently under construction by $refer"; ?>
     </h1><?php
   }
+  add_action('tcc_left_header_body','fluidity_header_logo');
   add_action('tcc_right_header_body','show_construction_title');
 
-  function control_construction_header($args) {
+/*  function control_construction_header($args) {
     $args['split'] = false;
     return $args;
   }
-  add_filter('tcc_header_body','control_construction_header');
+  add_filter('tcc_header_body','control_construction_header'); //*/
 }

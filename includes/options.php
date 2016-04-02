@@ -14,7 +14,11 @@ if (!function_exists('stop_heartbeat')) {
       if (!in_array($pagenow,$authorized))
         add_action('admin_enqueue_scripts', function() { wp_deregister_script('heartbeat'); }, 999);
         add_action('wp_enqueue_scripts',    function() { wp_deregister_script('heartbeat'); }, 999);
-        add_filter('heartbeat_settings', function ( $settings ) { $settings['minimalInterval'] = 600; return $settings; } );
+        add_filter('heartbeat_settings', function ( $settings ) {
+          $settings['minimalInterval'] = 600;
+          $settings['autostart']       = false; // default is true
+          $settings['interval']        = 600; // 15 sec by default
+          return $settings; } );
     }
   }
   add_action( 'init', 'stop_heartbeat', 1 );
