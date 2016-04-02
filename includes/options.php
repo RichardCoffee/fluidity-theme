@@ -12,7 +12,9 @@ if (!function_exists('stop_heartbeat')) {
       global $pagenow;
       $authorized = array('post.php','post-new.php','admin.php');
       if (!in_array($pagenow,$authorized))
-        wp_deregister_script('heartbeat');
+        add_action('admin_enqueue_scripts', function() { wp_deregister_script('heartbeat'); }, 999);
+        add_action('wp_enqueue_scripts',    function() { wp_deregister_script('heartbeat'); }, 999);
+        add_filter('heartbeat_settings', function ( $settings ) { $settings['minimalInterval'] = 600; return $settings; } );
     }
   }
   add_action( 'init', 'stop_heartbeat', 1 );
