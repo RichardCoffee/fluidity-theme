@@ -1,5 +1,9 @@
 // js/library.js
 
+jQuery(document).ready(function() {
+  wp.heartbeat = '';
+});
+
 function appendElement(elParent,elType,elId,elName,elClass,elIType) {
   if (elParent && elType) {
     var newEl = document.createElement(elType);
