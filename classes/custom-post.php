@@ -133,7 +133,6 @@ abstract class RC_Custom_Post_Type {
                      'filter'  => _x('Filter %s list',       'placeholder is plural form',  'tcc-custom-post'),
                      'insert'  => _x('Insert into %s',       'placeholder is singular form','tcc-custom-post'),
                      'list'    => _x('%s list',              'placeholder is singular form','tcc-custom-post'),
-                     'menu'    => _x('%s',                   'placeholder is plural form',  'tcc-custom-post'),
                      'navig'   => _x('%s list navigation',   'placeholder is plural form',  'tcc-custom-post'),
                      'new'     => _x('New %s',               'placeholder is singular form','tcc-custom-post'),
                      'none'    => _x('No %s',                'placeholder is plural form',  'tcc-custom-post'),
@@ -186,8 +185,8 @@ abstract class RC_Custom_Post_Type {
     register_post_type($this->type,$args);
     do_action('tcc_custom_post_'.$this->type);
     if ($args['map_meta_cap'])  add_action('admin_init', array($this,'add_caps'));
-    $this->logging('cpt object',$this);
-   #$this->logging('post type settings',$GLOBALS['wp_post_types'][$this->type]);
+    #$this->logging('cpt object',$this);
+    #$this->logging('post type settings',$GLOBALS['wp_post_types'][$this->type]);
     foreach($this->supports as $support) {
       #$this->logging("supports $support: ".((post_type_supports($this->type,$support)) ? 'true' : 'false'));
     }
@@ -215,7 +214,7 @@ abstract class RC_Custom_Post_Type {
      #'set_featured_image' – Default is Set featured image.
      #'remove_featured_image' – Default is Remove featured image.
      #'use_featured_image' – Default is Use as featured image.
-      'menu_name'             => sprintf($phrases['menu'],   $this->plural),
+      'menu_name'             => $this->plural,
       'filter_items_list'     => sprintf($phrases['filter'], $this->plural),
       'items_list_navigation' => sprintf($phrases['navig'],  $this->plural),
       'items_list'    => sprintf($phrases['list'],   $this->label),
@@ -260,6 +259,7 @@ abstract class RC_Custom_Post_Type {
     if (is_array($this->sidebar)) $sidebar = array_merge($sidebar,$this->sidebar);
     register_sidebar($sidebar);
   }
+
 
   /*  Capabilities  */
 
@@ -326,7 +326,8 @@ abstract class RC_Custom_Post_Type {
     if (empty($plural) && empty($taxargs['labels']['name']) && empty($taxargs['label'])) return;
     $plural = (isset($taxargs['labels']['name'])) ? $taxargs['labels']['name'] : (isset($taxargs['label'])) ? $taxargs['label'] : $plural;
     $labels = $this->taxonomy_labels($single,$plural);
-    $taxargs['labels'] = (isset($taxargs['labels'])) ? array_merge($labels,$taxargs['labels']) : $labels;
+    $labels = apply_filters('tcc_taxonomy_labels_'.$tax,$labels);
+    $taxargs['labels']  = (isset($taxargs['labels'])) ? array_merge($labels,$taxargs['labels']) : $labels;
     $taxargs['show_admin_column'] = (isset($taxargs['show_admin_column'])) ? $taxargs['show_admin_column'] : $admin;
     $taxargs['rewrite'] = (isset($taxargs['rewrite'])) ? $taxargs['rewrite'] : (isset($rewrite)) ? array('slug'=>$rewrite) : array('slug'=>$tax);
     register_taxonomy($tax,$this->type,$taxargs);
@@ -525,7 +526,7 @@ abstract class RC_Custom_Post_Type {
       if ($mytype && ($this->type==$mytype)) {
         if (is_single()) {
           $template = $this->locate_template($template,'single');
-        } else if (is_search || is_post_type_archive($this->type)) {
+        } else if (is_search() || is_post_type_archive($this->type)) {
           $template = $this->locate_template($template,'archive');
         }
         $template = apply_filters('tcc_assign_template_'.$this->type,$template);
@@ -580,16 +581,15 @@ abstract class RC_Custom_Post_Type {
   // https://wordpress.org/support/topic/custom-post-type-posts-not-displayed
   public function pre_get_posts($query) {
     if (!is_admin() && $query->is_main_query()) {
-      if ((!$query->is_page()) || (is_feed())) {  #  || (is_post_type_archive($this->type))) {
-        $check = $query->get('post_type');
-        if (empty($check)) {
-          $query->set('post_type',array('post',$this->type));
-        } elseif (!((array)$check==$check)) {
-          if ($check!==$this->type) $query->set('post_type',array($check,$this->type));
-        } elseif (!in_array($this->type,$check)) {
-          $check[] = $this->type;
-          $query->set('post_type',$check);
-        }
+      $check = $query->get('post_type');
+      if ($query->is_page()) {
+      } elseif (is_feed()) {  #  || (is_post_type_archive($this->type))) {
+        $query->set('post_type',array('post',$this->type));
+      } elseif (!((array)$check==$check)) {
+        if ($check!==$this->type) $query->set('post_type',array($check,$this->type));
+      } elseif (!in_array($this->type,$check)) {
+        $check[] = $this->type;
+        $query->set('post_type',$check);
       }
     }
     return $query;
