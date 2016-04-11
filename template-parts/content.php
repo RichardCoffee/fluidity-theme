@@ -51,9 +51,9 @@ who_am_i(); ?>
       </span>
       <br>
     </div><?php
-
-    comments_template();
-
+    if ( comments_open() || get_comments_number() ) {
+      comments_template();
+    }
   } ?>
 
 </article>
