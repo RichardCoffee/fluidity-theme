@@ -168,6 +168,7 @@ abstract class Basic_Admin_Form {
   public function customizer_settings($wp_customize,$base) {
     if ($base && $this->form[$base]) {
       $layout = $this->form[$base];
+log_entry('customizer',"base: $base",$layout,$wp_customize);
       foreach($layout as $key=>$option) {
         if (!isset($option['default'])) continue;
         if ($option['render']==='skip') continue;
