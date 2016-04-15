@@ -4,7 +4,7 @@ add_theme_support('automatic-feed-links');
 add_theme_support('html5',array('comment-list','comment-form','search-form','gallery','caption'));
 add_theme_support('post-thumbnails');  # thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
 add_theme_support('post-thumbnails');
-#add_theme_support('title-tag');
+add_theme_support('title-tag');
 
 
 
