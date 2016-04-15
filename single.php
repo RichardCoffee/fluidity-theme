@@ -9,7 +9,7 @@ get_header();
 $micro = microdata();
 who_am_i(); ?>
 
-<div class="<?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
+<div id="fluid-content" class="<?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
   <div class="row pad05perc">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
       sidebar_layout('single'); ?>

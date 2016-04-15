@@ -13,11 +13,11 @@ $has_sidebar = is_active_sidebar($sidebar);
 $col_primary = ($has_sidebar) ? "col-lg-8 col-md-8" : "col-lg-12 col-md-12";
 $col_primary.= " col-sm-12 col-xs-12"; ?>
 
-<div id="fluid-author" class="<?php echo container_type('post'); ?>" role="main" <?php $micro->Person(); ?>><?php
+<div id="fluid-content" class="fluid-author <?php echo container_type('post'); ?>" role="main" <?php $micro->Person(); ?>><?php
   who_am_i(); ?>
   <div class="row">
 
-    <div class="<?php echo $col_primary; ?>">
+    <div id="content" class="<?php echo $col_primary; ?>">
 
       <div class=""><?php
         $current = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));

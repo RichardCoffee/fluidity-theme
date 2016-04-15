@@ -9,10 +9,10 @@ get_header();
 $micro = microdata();
 who_am_i(); ?>
 
-<div id="fluid-category" class="<?php echo container_type('category'); ?>">
+<div id="fluid-content" class="fluid-category <?php echo container_type('category'); ?>">
   <div class="row"><?php
     $fluid->get_sidebar(); ?>
-    <div <?php $micro->Blog(); ?>>
+    <div id="content" <?php $micro->Blog(); ?>>
       <h1 class="text-center"><?php single_cat_title(); ?></h1><?php
       if (have_posts()) {
         fluid_navigation('above');

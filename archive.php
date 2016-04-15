@@ -8,10 +8,10 @@ get_header();
 $micro = microdata();
 who_am_i(); ?>
 
-<div id="fluid-archive" class="<?php echo container_type('archive'); ?>" <?php if (is_search()) $micro->SearchResultsPage(); ?>>
+<div id="fluid-content" class="fluid-archive <?php echo container_type('archive'); ?>" <?php if (is_search()) $micro->SearchResultsPage(); ?>>
   <div class="row"><?php
     sidebar_layout('archive'); ?>
-    <div <?php $micro->Blog(); ?>>
+    <div id="content" <?php $micro->Blog(); ?>>
       <h1 class="text-center"><?php the_archive_title(); ?></h1><?php
       if (have_posts()) {
         if (is_search()) {
