@@ -253,6 +253,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
     if (!strpos($title,'itemprop')===false) return $title;
     if (!strpos($title,'screen-reader-text')===false) return $title;
     if ($this->called_by('wp_title')) return $title;
+log_entry(debug_backtrace());
     return "<span itemprop='headline'>$title</span>";
   }
 
@@ -283,6 +284,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
     if (!strpos($link,'itemprop')===false) return $link;
     return preg_replace('/(<a.*?)>/i','$1 itemprop="contentURL">',$link);
   }
+
 
   /**  Helper functions  **/
 
@@ -343,11 +345,11 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
 
   /**  Private functions  **/
 
-  private function called_by($test) {
+  private function called_by($test=array()) {
     $stack  = debug_backtrace();
     foreach($stack as $entry) {
       if (!isset($entry['function'])) continue;
-      if ($entry['function']===$test) return true;
+      if (in_array($entry['function'],(array)$test)) return true;
     }
     return false;
   }
