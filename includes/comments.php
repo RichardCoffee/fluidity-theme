@@ -36,14 +36,14 @@ if (!function_exists('fluid_list_comments')) {
       case 'pingback' :
       case 'trackback' :
         $comm_css = "post $comm_type $striping" ?>
-        <li id="comment-<?php echo $comment->comment_ID ?>" class="<?php comment_class($comm_css); ?>"><?php
+        <li id="comment-<?php echo $comment->comment_ID ?>" <?php comment_class($comm_css); ?>><?php
           echo sprintf( $string, $type_arr[$comm_type], get_comment_author_link(), get_comment_date() );
         #</li> - wordpress add closing tag
         break;
       default: # comment
         if (empty($comm_type)) $comm_type = 'comment';
         $css = ( get_the_author_meta('user_email') === get_comment_author_email() ) ? 'post-author' : $striping; ?>
-        <li id="comment-<?php echo $comment->comment_ID; ?>" class="<?php comment_class($css); ?>">
+        <li id="comment-<?php echo $comment->comment_ID; ?>" <?php comment_class($css); ?>>
           <div class="comment-author vcard"><?php
             echo get_avatar( $comment, 34 );
             echo ' '.sprintf( $string, $type_arr[$comm_type], get_comment_author_link(), get_comment_date() ); ?>
