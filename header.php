@@ -30,5 +30,6 @@
 
 </head>
 
-<body <?php body_class('background'); ?>><?php
+<body <?php body_class('background'); ?>>
+  <a class="skip-link screen-reader-text" href="#content">Skip to content</a><?php
   get_template_part('template-parts/header'); ?>

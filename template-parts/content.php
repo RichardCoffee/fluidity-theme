@@ -14,7 +14,17 @@ who_am_i(); ?>
 
   <h1 class="text-center"><?php
     fluid_title();
-    edit_post_link(__('{Edit}','tcc-fluid'), ' '); # inserts a space ?>
+#    edit_post_link(__('{Edit}','tcc-fluid'), ' '); # inserts a space
+    edit_post_link(
+                sprintf(
+                        /* translators: %s: Name of current post */
+                        esc_html__( 'Edit %s', 'tcc-fluid' ),
+                        the_title( '<span class="screen-reader-text">"', '"</span>', false )
+                ),
+                '<span class="edit-link">',
+                '</span>'
+        );
+ ?>
   </h1>
 
   <h3 class="text-center"><?php
