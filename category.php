@@ -12,7 +12,7 @@ who_am_i(); ?>
 <div id="fluid-content" class="fluid-category <?php echo container_type('category'); ?>">
   <div class="row"><?php
     $fluid->get_sidebar(); ?>
-    <div id="content" <?php $micro->Blog(); ?>>
+    <div id="content" <?php $micro->Blog(); ?> role="main" tabindex="-1">
       <h1 class="text-center"><?php single_cat_title(); ?></h1><?php
       if (have_posts()) {
         fluid_navigation('above');

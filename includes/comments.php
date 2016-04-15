@@ -9,9 +9,9 @@ if (!function_exists('fluid_comment_navigation')) {
   function fluid_comment_navigation() {
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
       <nav class="navigation comment-navigation" role="navigation">
-        <h1 class="screen-reader-text"><?php
+        <h2 class="screen-reader-text"><?php
           _e('Comment navigation','tcc-fluid'); ?>
-        </h1>
+        </h2>
         <div class="nav-previous"><?php // FIXME:  poor translation string
           previous_comments_link('&larr; '.__('Older Comments','tcc-fluid')); ?>
         </div>

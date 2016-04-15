@@ -131,13 +131,25 @@ function get_valid_gravatar($email,$size=96) {
   return $avatar;
 }
 
+if (!function_exists('fluid_edit_post_link')) {
+  #  can only be used inside The Loop
+  function fluid_edit_post_link($separator=' ') {
+    $title  = the_title( '<span class="screen-reader-text">"', '"</span>', false );
+    $string = sprintf( esc_attr_x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), $title );
+    edit_post_link( $string, $separator.'<span class="edit-link">', '</span>' );
+  }
+}
+
 if (!function_exists('fluid_navigation')) {
   function fluid_navigation($suffix='above') {
     global $wp_query;
     if ($wp_query->max_num_pages>1) {
-      $older = __('Older posts','tcc-fluid');
-      $newer = __('Newer posts','tcc-fluid'); ?>
+      $older = esc_html__('Older posts','tcc-fluid');
+      $newer = esc_html__('Newer posts','tcc-fluid'); ?>
       <div id="nav-<?php echo $suffix; ?>" class="navigation">
+        <h2 class="screen-reader-text"><?php
+          esc_html_e( 'Post Navigation', 'tcc-fluid' ); ?>
+        </h2>
         <div class="nav-previous pull-left"><?php
           next_posts_link('<span class="meta-nav">&larr;</span> '.$older); ?>
         </div>
@@ -156,6 +168,31 @@ if (!function_exists('fluid_thumbnail')) {
     <div class='<?php echo $css; ?> logo'><?php
        the_post_thumbnail(); ?>
     </div><?php
+  }
+}
+
+if (!function_exists('get_term_name')) {
+  #  get term name string
+  function get_term_name($tax,$slug) {
+    $term = get_term_by('slug',$slug,$tax);
+    if ($term) return $term->name;
+    return '';
+  }
+}
+
+if (!function_exists('get_valid_gravatar')) {
+  #  https://codex.wordpress.org/Using_Gravatars
+  function get_valid_gravatar($email,$size=96) {
+    // Craft a potential url and test its headers
+    $hash = md5(strtolower(trim($email)));
+    $uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
+    $headers = @get_headers($uri);
+    if (!preg_match("|200|", $headers[0])) {
+      $avatar = FALSE;
+    } else {
+      $avatar = get_avatar($email,$size);
+    }
+    return $avatar;
   }
 }
 
@@ -198,6 +235,7 @@ if (!function_exists('sanitize_array')) {
     return $output;
   }
 }
+
 
 /*  Non-wordPress specific */
 

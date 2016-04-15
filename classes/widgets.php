@@ -75,7 +75,7 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
 
   public function inner_widget($args,$instance) { ?>
     <div <?php self::$micro->Organization(); ?>>
-      <h4 class="text-center" itemprop="name"><?php bloginfo('title'); ?></h4>
+      <h4 class="text-center" itemprop="name"><?php bloginfo('name'); ?></h4>
       <!-- FIXME: address needs to be editable option in theme options -->
       <address class="text-center" <?php self::$micro->PostalAddress(); ?>>
         <span itemprop="streetAddress">123 Main Street</span><br>

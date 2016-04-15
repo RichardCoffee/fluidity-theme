@@ -14,7 +14,7 @@ who_am_i(); ?>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><?php
       sidebar_layout('standard'); ?>
-      <div id="content"><?php
+      <div id="content" role="main" tabindex="-1"><?php
         if (have_posts()) {
           while(have_posts()) {
             the_post();

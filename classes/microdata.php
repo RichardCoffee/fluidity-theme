@@ -251,6 +251,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
 
   public function get_the_title($title,$id) {
     if (!strpos($title,'itemprop')===false) return $title;
+    if (!strpos($title,'screen-reader-text')===false) return $title;
     if ($this->called_by('wp_title')) return $title;
     return "<span itemprop='headline'>$title</span>";
   }

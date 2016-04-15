@@ -17,7 +17,7 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
   who_am_i(); ?>
   <div class="row">
 
-    <div id="content" class="<?php echo $col_primary; ?>">
+    <div id="content" class="<?php echo $col_primary; ?>" role="main" tabindex="-1">
 
       <div class=""><?php
         $current = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));

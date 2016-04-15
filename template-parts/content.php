@@ -14,17 +14,7 @@ who_am_i(); ?>
 
   <h1 class="text-center"><?php
     fluid_title();
-#    edit_post_link(__('{Edit}','tcc-fluid'), ' '); # inserts a space
-    edit_post_link(
-                sprintf(
-                        /* translators: %s: Name of current post */
-                        esc_html__( 'Edit %s', 'tcc-fluid' ),
-                        the_title( '<span class="screen-reader-text">"', '"</span>', false )
-                ),
-                ' <span class="edit-link">',
-                '</span>'
-        );
- ?>
+    fluid_edit_post_link(); ?>
   </h1>
 
   <h3 class="text-center"><?php
@@ -42,13 +32,13 @@ who_am_i(); ?>
 
     <p class="postmetadata"><?php
       the_tags(__('Tags','tcc-fluid').': ', ', ', '<br>');
-      esc_attr_e(_x('Posted in ','string will be followed by a category or list of categories','tcc-fluid'));
+      esc_html_e(_x('Posted in ','string will be followed by a category or list of categories','tcc-fluid'));
       the_category(', ');
       echo ' | ';
-      edit_post_link(__('Edit','tcc-fluid'), '', ' | ');
-      $comm_0 = __('No Comments','tcc-fluid');
-      $comm_1 = __('1 Comment','tcc-fluid');
-      $comm_2 = _x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid');
+      fluid_edit_post_link(' | ');
+      $comm_0 = esc_html__('No Comments','tcc-fluid');
+      $comm_1 = esc_html__('1 Comment','tcc-fluid');
+      $comm_2 = esc_html_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid');
       comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
     </p>
 
