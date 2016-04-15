@@ -136,7 +136,7 @@ if (!function_exists('fluid_edit_post_link')) {
   function fluid_edit_post_link($separator=' ') {
     $title  = the_title( '<span class="screen-reader-text">"', '"</span>', false );
     $string = sprintf( esc_attr_x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), $title );
-    edit_post_link( $string, $separator.'<span class="edit-link">', '</span>' );
+    edit_post_link( '{'.$string.'}', $separator.'<span class="edit-link">', '</span>' );
   }
 }
 
