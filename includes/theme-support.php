@@ -1,24 +1,24 @@
 <?php
 
-the_post_thumbnail();                  // without parameter -> 'post-thumbnail'
-the_post_thumbnail('thumbnail');       // Thumbnail (default 150px x 150px max)
-the_post_thumbnail('medium');          // Medium resolution (default 300px x 300px max)
-the_post_thumbnail('large');           // Large resolution (default 640px x 640px max)
-the_post_thumbnail('full');            // Full resolution (original size uploaded)
-#the_post_thumbnail(array(100, 100));   // Other resolutions
-
-// Enable post thumbnails
-add_theme_support('post-thumbnails');
-#set_post_thumbnail_size(245, 165);
-
-// Enable post and comments RSS feed links to head
 add_theme_support('automatic-feed-links');
+add_theme_support('html5',array('comment-list','comment-form','search-form','gallery','caption'));
+add_theme_support('post-thumbnails');  # thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
+add_theme_support('post-thumbnails');
+#add_theme_support('title-tag');
+
+
 
 // Code for custom background support
-//add_theme_support('custom-background');
-
-// Supports title tag
-add_theme_support('title-tag');
+$defaults = array(
+  'default-color'          => 'ffffff',
+  'default-image'          => '',
+  'default-repeat'         => '',
+  'default-position-x'     => '',
+#  'wp-head-callback'       => '',
+#  'admin-head-callback'    => '',
+#  'admin-preview-callback' => '',
+);
+add_theme_support( 'custom-background', $defaults );
 
 // Enable custom header support
 $defaults = array(
@@ -41,7 +41,16 @@ add_theme_support('custom-header',$defaults);
 #$args = array( 'header-text' => array( 'site-title',
 #                                       'site-description' ),
 #               'size' => 'medium');
-add_theme_support( 'site-logo' ); #, $args );
+add_theme_support('site-logo'); #,$args);
+
+$defaults = array(
+#   'height'      => 100,
+#   'width'       => 400,
+   'flex-height' => true,
+   'flex-width'  => true,
+#   'header-text' => array( 'site-title', 'site-description' ),
+);
+add_theme_support('custom-logo',$defaults);
 
 add_editor_style();
 if (!function_exists('tcc_editor_styles')) {
