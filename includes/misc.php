@@ -82,7 +82,7 @@ function fluid_title($length=0,$echo=true,$after='...',$before='') {
         $title = $before.$title.$after;
       }
     }
-    $title = esc_attr(apply_filters('the_title',$title,get_post()->ID));
+    $title = esc_html(apply_filters('the_title',$title,get_post()->ID));
     if ($echo) { echo $title; } else { return $title; }
   }
 }
