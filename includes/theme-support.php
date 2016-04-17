@@ -5,10 +5,8 @@ add_theme_support('html5',array('comment-list','comment-form','search-form','gal
 add_theme_support('post-thumbnails');  # thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
-
-
-
-// Code for custom background support
+/*
+// Enable custom background support
 $defaults = array(
   'default-color'          => 'ffffff',
   'default-image'          => '',
@@ -18,8 +16,8 @@ $defaults = array(
 #  'admin-head-callback'    => '',
 #  'admin-preview-callback' => '',
 );
-add_theme_support( 'custom-background', $defaults );
-
+add_theme_support( 'custom-background', $defaults ); //*/
+/*
 // Enable custom header support
 $defaults = array(
   'default-image'          => '',
@@ -35,14 +33,8 @@ $defaults = array(
   'admin-head-callback'    => '',
   'admin-preview-callback' => '',
 );
-add_theme_support('custom-header',$defaults);
-
-// Jetpack site logo
-#$args = array( 'header-text' => array( 'site-title',
-#                                       'site-description' ),
-#               'size' => 'medium');
-add_theme_support('site-logo'); #,$args);
-
+add_theme_support('custom-header',$defaults); //*/
+/*
 $defaults = array(
 #   'height'      => 100,
 #   'width'       => 400,
@@ -50,12 +42,17 @@ $defaults = array(
    'flex-width'  => true,
 #   'header-text' => array( 'site-title', 'site-description' ),
 );
-add_theme_support('custom-logo',$defaults);
+add_theme_support('custom-logo',$defaults); //*/
+
+// Jetpack site logo
+#$args = array( 'header-text' => array( 'site-title',
+#                                       'site-description' ),
+#               'size' => 'medium');
+add_theme_support('site-logo'); #,$args); //*/
 
 add_editor_style();
 if (!function_exists('tcc_editor_styles')) {
-  // FIXME:  check for file in child
-  if (file_exists(get_template_directory().'tcc-editor-style.css')) {
+  if (file_exists(get_stylesheet_directory().'tcc-editor-style.css')) {
     function tcc_editor_styles() {
       add_editor_style('tcc-editor-style.css');
     }
