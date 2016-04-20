@@ -1,1 +1,5 @@
-#fluid-header { border-bottom: 1em solid transparent; }
+#fluid-header {
+  border-bottom: 1em solid transparent;
+  position: fixed;
+  top: 0;
+}

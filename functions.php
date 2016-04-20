@@ -35,6 +35,7 @@ if (!function_exists('fluidity_enqueue')) {
     fluidity_register_fontawesome();
     fluidity_register_color_scheme();
     #  Stylesheets
+    wp_register_style('autohide',  "$base_url/css/autohide.css",        false, FLUIDITY_VERSION);
     wp_register_style('library',   "$base_url/css/library.css",         false, FLUIDITY_VERSION);
     wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", false, FLUIDITY_VERSION);
     wp_register_style('fluid',      get_stylesheet_directory_uri(),     false, FLUIDITY_VERSION);
@@ -45,17 +46,19 @@ if (!function_exists('fluidity_enqueue')) {
     wp_enqueue_style('fluid');
     wp_enqueue_style('fluid-color');
     #  Javascript
-    wp_register_script('sprintf', "$base_url/js/sprintf.js", null,                     false,true);
-    wp_register_script('library', "$base_url/js/library.js", array('jquery','sprintf'),false,true);
-    wp_register_script('collapse',"$base_url/js/collapse.js",array('jquery','library'),false,true);
+    wp_register_script('sprintf',     "$base_url/js/sprintf.js",  null,                     false,true);
+    wp_register_script('library',     "$base_url/js/library.js",  array('jquery','sprintf'),false,true);
+    wp_register_script('collapse',    "$base_url/js/collapse.js", array('jquery','library'),false,true);
+    wp_register_script('autohide.js', "$base_url/js/autohide.js", array('jquery'),          false,true);
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('collapse');
     if (is_singular() && comments_open() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); } // enable threaded comments
-    if (tcc_layout('header')=='hide') {
-      wp_register_style('autohide.css', "$base_url/css/autohide.css", false, FLUIDITY_VERSION);
-      wp_enqueue_style('autohide.css');
-      wp_register_script('autohide.js', "$base_url/js/autohide.js", array('jquery'),false,true);
+    $hdr_state = tcc_layout('header');
+    if ($hdr_state==='fixed') {
+      wp_enqueue_style('autohide');
+    } else if ($hdr_state==='hide') {
+      wp_enqueue_style('autohide');
       wp_enqueue_script('autohide.js');
     }
     do_action('fluidity_enqueue');
