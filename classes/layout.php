@@ -42,8 +42,8 @@ class Theme_Layout_Options {
                                'text'    => __('How do you want the header to behave?','tcc-fluid'),
                                'render'  =>'select',
                                'source'  => array('static' => __('Static - Simple standard layout','tcc-fluid'),
-                                                  'fixed'  => __('Fixed - Stays at top of screen when scrolling','tcc-fluid'),
-                                                  'reduce' => __('Reducing - Gets smaller when scrolling down','tcc-fluid'),
+#                                                 'fixed'  => __('Fixed - Stays at top of screen when scrolling','tcc-fluid'),
+#                                                 'reduce' => __('Reducing - Gets smaller when scrolling down','tcc-fluid'),
                                                   'hide'   => __('Hiding - Totally hidden when scrolling down','tcc-fluid')));
     $layout['sidebar'] = array('default' => 'left',
                                'label'   => __('Sidebar','tcc-fluid'),

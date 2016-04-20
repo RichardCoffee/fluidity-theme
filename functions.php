@@ -52,6 +52,12 @@ if (!function_exists('fluidity_enqueue')) {
     wp_enqueue_script('collapse');
     if (is_singular() && comments_open() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); } // enable threaded comments
+    if (tcc_option('layout','header')=='hide') {
+      wp_register_style('autohide.css', "$base_url/css/autohide.css", false, FLUIDITY_VERSION);
+      wp_enqueue_style('autohide.css');
+      wp_register_script('autohide.js', "$base_url/js/autohide.js", array('jquery'),false,true);
+      wp_enqueue_script('autohide.js');
+    }
     do_action('fluidity_enqueue');
   }
   add_action('wp_enqueue_scripts','fluidity_enqueue');
