@@ -492,7 +492,7 @@ tcc_log_entry($controls);
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (empty($layout['source'])) return;
     $source_func = $layout['source'];
-    if (!empty($layout['text'])) echo "<div class=''> ".esc_attr($layout['text'])."</div>";
+    if (!empty($layout['text'])) echo "<div class='form-select-text'> ".esc_attr($layout['text'])."</div>";
     $html = "<select id='$ID' name='$name'";
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : ">";
     echo $html;
