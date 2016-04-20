@@ -28,7 +28,7 @@ if (!function_exists('autohide_inline_script')) {
 <script type="text/javascript">
   jQuery(document).ready(function() {
     jQuery('#fluid-header').next().css({"padding-top":autohide.bar});
-  }
+  });
 </script><?php
     }
   }
