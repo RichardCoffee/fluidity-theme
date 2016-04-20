@@ -2,6 +2,7 @@
 //  https://medium.com/@mariusc23/hide-header-on-scroll-down-show-on-scroll-up-67bbaae9a78c
 //  http://stackoverflow.com/questions/24765185/hide-fixed-header-on-scroll-down-show-on-scroll-up-and-hover
 //  http://www.jqueryscript.net/other/Smooth-Auto-Hide-Header-Navigation-with-jQuery-CSS3.html
+//  http://ideasandpixels.com/wp_enqueue_script-inline-script-to-load-after-jquery
 
 var autohide = { did:   false, // did a scroll occur?
                  last:  0,     // last scroll position
