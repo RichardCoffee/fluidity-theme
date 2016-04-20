@@ -9,9 +9,9 @@ var autohide = { did:   false, // did a scroll occur?
                  bar:   jQuery('#fluid-header').outerHeight() // height of header
                }
 
-jQuery(document).ready(function() {
-  jQuery('#fluid-header').next().css({padding-top:autohide.bar});
-}
+//jQuery(document).ready(function() {
+//  jQuery('#fluid-header').next().css({"padding-top":autohide.bar});
+//}
 
 jQuery(window).scroll(function(event){
   autohide.did = true;

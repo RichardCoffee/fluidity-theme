@@ -57,9 +57,11 @@ if (!function_exists('fluidity_enqueue')) {
     $hdr_state = tcc_layout('header');
     if ($hdr_state==='fixed') {
       wp_enqueue_style('autohide');
+      add_action('wp_footer','autohide_inline_script',99);
     } else if ($hdr_state==='hide') {
       wp_enqueue_style('autohide');
       wp_enqueue_script('autohide.js');
+      add_action('wp_footer','autohide_inline_script',99);
     }
     do_action('fluidity_enqueue');
   }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  tcc-fluidity/includes/footer.php
+ *  includes/footer.php
  *
  */
 
@@ -20,4 +20,17 @@ if (!function_exists('site_copyright_dates')) {
     }
     return $output;
   }
+}
+
+if (!function_exists('autohide_inline_script')) {
+  function autohide_inline_script() {
+    if (wp_script_is('jquery','done')) { ?>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery('#fluid-header').next().css({"padding-top":autohide.bar});
+  }
+</script><?php
+    }
+  }
+  #add_action( 'wp_footer', 'autohide_inline_script' );
 }
