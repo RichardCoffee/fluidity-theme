@@ -27,7 +27,8 @@ if (!function_exists('autohide_inline_script')) {
     if (wp_script_is('jquery','done')) { ?>
 <script type="text/javascript">
   jQuery(document).ready(function() {
-    jQuery('#fluid-header').next().css({"padding-top":autohide.bar});
+    var hdrHeight = jQuery('#fluid-header').outerHeight();
+    jQuery('#fluid-header').next().css({"padding-top":hdrHeight});
   });
 </script><?php
     }
