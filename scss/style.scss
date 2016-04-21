@@ -25,8 +25,8 @@ body {
 }
 
 .content {
-  border-radius: 5px;
   border:1px solid;
+  border-radius: 5px;
 }
 
 img {
@@ -35,18 +35,18 @@ img {
 }
 
 logo {
-  margin-right: auto;
-  margin-left: auto;
   align: center;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   vertical-align: middle;
-//  max-height:100%;
-//  max-width:100%;
+//max-height:100%;
+//max-width:100%;
 }
 
 .pad05perc {
-  padding-right: 5%;
   padding-left: 5%;
+  padding-right: 5%;
 }
 
 .post div {

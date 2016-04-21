@@ -36,3 +36,4 @@ $color_scheme = tcc_color_scheme(); ?>
 
 </div><?php
 
+do_action('tcc_after_header');
