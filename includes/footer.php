@@ -28,7 +28,7 @@ if (!function_exists('autohide_inline_script')) {
 <script type="text/javascript">
   jQuery(document).ready(function() {
     var wpHeight  = (jQuery('#wpadminbar')) ? jQuery('#wpadminbar').outerHeight() : 0;
-    var hdrHeight = jQuery('#fluid-header').outerHeight() - wpHeight;
+    var hdrHeight = jQuery('#fluid-header').outerHeight();
     if (jQuery('#wpadminbar')) {
       var wpHeight = jQuery('#wpadminbar').outerHeight();
       jQuery('#fluid-header').css({top:wpHeight});
