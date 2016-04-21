@@ -8,6 +8,7 @@ var autohide = { did:   false, // did a scroll occur?
                  last:  0,     // last scroll position
                  delta: 5,     // action threshold
                  bar:   jQuery('#fluid-header').outerHeight() // height of header
+                 top:   (jQuery('#wpadminbar')) ? jQuery('#wpadminbar').outerHeight() : 0;
                }
 
 //jQuery(document).ready(function() {
@@ -26,7 +27,7 @@ setInterval(function() {
 }, 250);
 
 function hasScrolled() {
-  var st = jQuery(this).scrollTop();
+  var st = Math.max(0,jQuery(this).scrollTop() - autohide.top);
 console.log('st: '+st);
   if(Math.abs(autohide.last - st) <= delta) return;
 console.log('last: '+autohide.last+'   bar: '+autohide.bar);
@@ -34,12 +35,12 @@ console.log('last: '+autohide.last+'   bar: '+autohide.bar);
 console.log('scroll down');
     jQuery('#fluid-header').css({top:(-autohide.bar)+'px'}); // .hide('slow') // .addClass('nav-hide')
       .hover(function() {
-        jQuery("#fluid-header").css({top:'0px'}); // .show('slow'); // .removeClass('nav-hide');
+        jQuery("#fluid-header").css({top:autohide.top+'px'}); // .show('slow'); // .removeClass('nav-hide');
       });
   } else {
 console.log('scroll up');
     if(st + jQuery(window).height() < jQuery(document).height()) {
-      jQuery('#fluid-header').css({top:'0px'}); // .show('slow'); // .removeClass('nav-hide');
+      jQuery('#fluid-header').css({top:autohide.top+'px'}); // .show('slow'); // .removeClass('nav-hide');
     }
   }
   autohide.last = st;

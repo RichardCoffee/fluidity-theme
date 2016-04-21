@@ -38,7 +38,7 @@ if (!function_exists('fluidity_enqueue')) {
     wp_register_style('autohide',  "$base_url/css/autohide.css",        false, FLUIDITY_VERSION);
     wp_register_style('library',   "$base_url/css/library.css",         false, FLUIDITY_VERSION);
     wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", false, FLUIDITY_VERSION);
-    wp_register_style('fluid',      get_stylesheet_directory_uri(),     false, FLUIDITY_VERSION);
+    wp_register_style('fluid',      get_template_directory_uri(),       false, FLUIDITY_VERSION);
     wp_enqueue_style('bootstrap');
     wp_enqueue_style('tcc-fawe');
     wp_enqueue_style('fa-social');

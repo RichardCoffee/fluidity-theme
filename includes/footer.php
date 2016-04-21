@@ -29,6 +29,10 @@ if (!function_exists('autohide_inline_script')) {
   jQuery(document).ready(function() {
     var hdrHeight = jQuery('#fluid-header').outerHeight();
     jQuery('#fluid-header').next().css({"padding-top":hdrHeight});
+    if (jQuery('#wpadminbar')) {
+      var wpHeight = jQuery('#wpadminbar').outerHeight();
+      jQuery('#fluid-header').css({top:wpHeight});
+    }
   });
 </script><?php
     }
