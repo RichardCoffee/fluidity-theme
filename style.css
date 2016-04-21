@@ -136,3 +136,7 @@ img {
 .sticky {
   color: red;
 }
+
+.container-fluid {
+  padding: 0;
+}
