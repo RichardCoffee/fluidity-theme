@@ -34,7 +34,7 @@ console.log('header: '+hdrHeight);
     if (jQuery('#wpadminbar')) {
       jQuery('#fluid-header').css({top:wpHeight});
     }
-    jQuery('#fluid-header').next().css({"padding-top":hdrHeight});
+    jQuery('#fluid-header').next().css({"padding-top":(hdrHeight+wpHeight)+'px'});
   });
 </script><?php
     }
