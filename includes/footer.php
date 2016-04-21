@@ -27,12 +27,13 @@ if (!function_exists('autohide_inline_script')) {
     if (wp_script_is('jquery','done')) { ?>
 <script type="text/javascript">
   jQuery(document).ready(function() {
-    var hdrHeight = jQuery('#fluid-header').outerHeight();
-    jQuery('#fluid-header').next().css({"padding-top":hdrHeight});
+    var wpHeight  = (jQuery('#wpadminbar')) ? jQuery('#wpadminbar').outerHeight() : 0;
+    var hdrHeight = jQuery('#fluid-header').outerHeight() - wpHeight;
     if (jQuery('#wpadminbar')) {
       var wpHeight = jQuery('#wpadminbar').outerHeight();
       jQuery('#fluid-header').css({top:wpHeight});
     }
+    jQuery('#fluid-header').next().css({"padding-top":hdrHeight});
   });
 </script><?php
     }
