@@ -45,8 +45,9 @@ class Theme_Layout_Options {
                                                   'fixed'  => __('Fixed - Stays at top of screen when scrolling','tcc-fluid'),
                                                   'reduce' => __('Reducing - Gets smaller when scrolling down','tcc-fluid'),
                                                   'hide'   => __('Hiding - Hidden when scrolling, show on hover','tcc-fluid')));
-    if (!file_exists(get_stylesheet_directory().'/template-parts/header-reduce.php'))
-      && !file_exists(get_template_directory().'/template-parts/header-reduce.php')) { unset($layout['header']['source']['reduce']); }
+    if (!file_exists(get_stylesheet_directory().'/template-parts/header-reduce.php')
+      && !file_exists(get_template_directory().'/template-parts/header-reduce.php')) {
+        unset($layout['header']['source']['reduce']); }
     $layout['sidebar'] = array('default' => 'left',
                                'label'   => __('Sidebar','tcc-fluid'),
                                'text'    => __('Which side of the screen should the sidebar show up on?'),
