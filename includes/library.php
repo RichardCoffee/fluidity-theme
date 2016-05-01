@@ -141,7 +141,7 @@ if (!function_exists('fluid_edit_post_link')) {
     $link = get_edit_post_link(get_the_ID());
     if ($link) { ?>
       <span class="edit-link">
-        <a class="post-edit-link" href="<?php echo $link; ?>" target="_blank"> {<?php
+        <a class="post-edit-link" href="<?php echo $link; ?>" target="_blank"> { <?php
           echo $string; ?>}
         </a>
       </span><?php
