@@ -106,11 +106,6 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
     width: 1170px;
   }
 }
-.article,
-.article pre {
-  font-size: 20px;
-}
-
 .content {
   border: 1px solid;
   border-radius: 5px;
