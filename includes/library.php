@@ -136,7 +136,16 @@ if (!function_exists('fluid_edit_post_link')) {
   function fluid_edit_post_link($separator=' ') {
     $title  = the_title( '<span class="screen-reader-text">"', '"</span>', false );
     $string = sprintf( esc_attr_x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), $title );
-    edit_post_link( '{'.$string.'}', $separator.'<span class="edit-link">', '</span>' );
+    #edit_post_link( '{'.$string.'}', $separator.'<span class="edit-link">', '</span>' );
+    ##  This code replaces the edit_post_link call so that I could add the target attribute
+    $link = get_edit_post_link(get_the_ID());
+    if ($link) { ?>
+      <span class="edit-link">
+        <a class="post-edit-link" href="<?php echo $link; ?>" target="_blank"> {<?php
+          echo $string; ?>}
+        </a>
+      </span><?php
+    }
   }
 }
 
