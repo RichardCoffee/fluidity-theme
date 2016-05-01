@@ -15,6 +15,11 @@ body {
   font-size: 18px;
 }
 
+#content {
+  font-size: 20px;
+  line-height: 30px;
+}
+
 .updraft {
   background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
   border-top: 3px solid #fff;

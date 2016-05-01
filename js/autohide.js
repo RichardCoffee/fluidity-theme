@@ -3,12 +3,15 @@
 //  http://stackoverflow.com/questions/24765185/hide-fixed-header-on-scroll-down-show-on-scroll-up-and-hover
 //  http://www.jqueryscript.net/other/Smooth-Auto-Hide-Header-Navigation-with-jQuery-CSS3.html
 //  http://ideasandpixels.com/wp_enqueue_script-inline-script-to-load-after-jquery
+//  http://stackoverflow.com/questions/18604022/slide-header-up-if-you-scroll-down-and-vice-versa
 
-var autohide = { did:   false, // did a scroll occur?
-                 last:  0,     // last scroll position
+var autohide = { bar:   jQuery('#fluid-header').outerHeight() // height of header
                  delta: 5,     // action threshold
-                 bar:   jQuery('#fluid-header').outerHeight() // height of header
-                 top:   (jQuery('#wpadminbar')) ? jQuery('#wpadminbar').outerHeight() : 0;
+                 did:   false, // did a scroll occur?
+                 doc:   jQuery(document).height(),
+                 last:  0,     // last scroll position
+                 top:   (jQuery('#wpadminbar')) ? jQuery('#wpadminbar').outerHeight() : 0,
+                 win:   jQuery(window).height()
                }
 
 //jQuery(document).ready(function() {
@@ -27,11 +30,13 @@ setInterval(function() {
 }, 250);
 
 function hasScrolled() {
-  var st = Math.max(0,jQuery(this).scrollTop() - autohide.top);
-console.log('st: '+st);
-  if(Math.abs(autohide.last - st) <= delta) return;
+console.log(autohide);
+  var curr = Math.max(0,(jQuery(this).scrollTop() - autohide.top));
+  var diff = curr - autohide.last;
+console.log('st: '+curr);
+  if(Math.abs(autohide.last - curr) <= autohide.delta) return;
 console.log('last: '+autohide.last+'   bar: '+autohide.bar);
-  if (st > autohide.last && st > autohide.bar){
+  if (curr > autohide.last && curr > autohide.bar){
 console.log('scroll down');
     jQuery('#fluid-header').css({top:(-autohide.bar)+'px'}); // .hide('slow') // .addClass('nav-hide')
       .hover(function() {
@@ -39,9 +44,14 @@ console.log('scroll down');
       });
   } else {
 console.log('scroll up');
-    if(st + jQuery(window).height() < jQuery(document).height()) {
+    if((curr + autohide.win) < autohide.doc) {
       jQuery('#fluid-header').css({top:autohide.top+'px'}); // .show('slow'); // .removeClass('nav-hide');
     }
   }
   autohide.last = st;
 }
+
+//// normalize treshold range
+//autohide.delta = Math.max(0,(((autohide.delta+diff)>headerHeight) ? headerHeight : (autohide.delta+diff)));
+//header.css('top', (-autohide.delta)+'px');
+//autohide.last = curr;
