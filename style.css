@@ -81,6 +81,18 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   color: #fff;
 }
 
+body {
+  margin: 0;
+  background: white;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  color: black;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
 .width-fluid {
   padding-left: 20px;
   padding-right: 20px;

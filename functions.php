@@ -132,8 +132,12 @@ if (!is_child_theme()) {
       echo "$site currently under construction by $refer"; ?>
     </h1><?php
   }
-  add_action('tcc_left_header_body','fluidity_header_logo');
-  add_action('tcc_right_header_body','show_construction_title');
+  if (function_exists('jetpack_the_site_logo') || get_theme_mod('header_logo') || tcc_design('logo')) {
+    add_action('tcc_left_header_body','fluidity_header_logo');
+    add_action('tcc_right_header_body','show_construction_title');
+  } else {
+    add_action('tcc_header_body','show_construction_title');
+  }
 
 /*  function control_construction_header($args) {
     $args['split'] = false;
