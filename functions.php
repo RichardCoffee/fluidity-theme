@@ -136,7 +136,7 @@ if (!is_child_theme()) {
     add_action('tcc_left_header_body','fluidity_header_logo');
     add_action('tcc_right_header_body','show_construction_title');
   } else {
-    add_action('tcc_header_body','show_construction_title');
+    add_action('tcc_main_header_body','show_construction_title');
   }
 
 /*  function control_construction_header($args) {
