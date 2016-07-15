@@ -87,7 +87,7 @@ if (!function_exists('fluidity_register_bootstrap')) {
 
 if (!function_exists('fluidity_register_fontawesome')) {
   function fluidity_register_fontawesome() {
-    wp_register_style('tcc-fawe', get_template_directory_uri()."/css/font-awesome.min.css",false,'4.3.0');
+    wp_register_style('tcc-fawe', get_template_directory_uri()."/css/font-awesome.min.css",false,'4.6.3');
   }
 }
 
