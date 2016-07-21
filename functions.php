@@ -4,7 +4,7 @@
  *
  */
 
-define('FLUIDITY_VERSION','1.0.0');
+define('FLUIDITY_VERSION','1.1.0');
 
 require_once('includes/theme-support.php');
 require_once('includes/library.php');
@@ -39,9 +39,9 @@ if (!function_exists('fluidity_enqueue')) {
     wp_register_style('library',   "$base_url/css/library.css",         false, FLUIDITY_VERSION);
     wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", false, FLUIDITY_VERSION);
     wp_register_style('fluid',     "$base_url/style.css",               false, FLUIDITY_VERSION);
+    wp_enqueue_style('tcc-fawe');  #  font-awesome needs to be loaded before bootstrap, due to possible css conflict (sr-only)
     wp_enqueue_style('bootstrap');
-    wp_enqueue_style('tcc-fawe');
-    wp_enqueue_style('fa-social');
+    wp_enqueue_style('fa-social'); // FIXME:  need to check for conditional loading
     wp_enqueue_style('library');
     wp_enqueue_style('fluid');
     wp_enqueue_style('fluid-color');
@@ -53,7 +53,7 @@ if (!function_exists('fluidity_enqueue')) {
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('collapse');
     if (is_singular() && comments_open() && get_option('thread_comments')) {
-      wp_enqueue_script('comment-reply'); } // enable threaded comments
+      wp_enqueue_script('comment-reply'); }  #  enable threaded comments
     $hdr_state = tcc_layout('header');
     if ($hdr_state==='fixed') {
       wp_enqueue_style('autohide');

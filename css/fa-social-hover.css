@@ -4,6 +4,14 @@
 
 */
 
+.fa-behance:hover:before {
+  content: "\f1b5";
+}
+
+.fa-behance-square:hover:before {
+  content: "\f1b4";
+}
+
 .fa-bitbucket:hover:before {
   content: "\f172";
 }
@@ -21,10 +29,19 @@
   content: "\f09a";
 }
 
+.fa-git:hover:before {
+  content: "\f1d2";
+}
+
+.fa-git-square:hover:before {
+  content: "\f1d3";
+}
+
 .fa-github:hover:before {
   content: "\f092";
 }
 
+.fa-github-alt:hover:before,
 .fa-github-square:hover:before {
   content: "\f09b";
 }
@@ -33,8 +50,18 @@
   content: "\f0d4";
 }
 
+.fa-google-plus-circle:hover:before,
+.fa-google-plus-official:hover:before,
 .fa-google-plus-square:hover:before {
   content: "\f0d5";
+}
+
+.fa-lastfm:hover:before {
+  content: "\f203";
+}
+
+.fa-lastfm-square:hover:before {
+  content: "\f202";
 }
 
 .fa-linkedin:hover:before {
@@ -45,6 +72,14 @@
   content: "\f0e1";
 }
 
+.fa-odnoklassniki:hover:before {
+  content: "\f264";
+}
+
+.fa-odnoklassniki-square:hover:before {
+  content: "\f263";
+}
+
 .fa-pinterest:hover:before {
   content: "\f0d3";
 }
@@ -53,12 +88,38 @@
   content: "\f0d2";
 }
 
+.fa-reddit:hover:before,
+.fa-reddit-square:hover:before {
+  content: "\f281";
+}
+
+.fa-reddit-alien:hover:before {
+  content: "\f1a1";
+}
+
 .fa-rss:hover:before {
   content: "\f143";
 }
 
 .fa-rss-square:hover:before {
   content: "\f09e";
+}
+
+.fa-snapchat:hover:before,
+.fa-snapchat-square:hover:before {
+  content: "\f2ac";
+}
+
+.fa-reddit-ghost:hover:before {
+  content: "\f2ab";
+}
+
+.fa-steam:hover:before {
+  content: "\f1b7";
+}
+
+.fa-steam-square:hover:before {
+  content: "\f1b6";
 }
 
 .fa-tumblr:hover:before {
@@ -75,6 +136,22 @@
 
 .fa-twitter-square:hover:before {
   content: "\f099";
+}
+
+.fa-viadeo:hover:before {
+  content: "\f2aa";
+}
+
+.fa-viadeo-square:hover:before {
+  content: "\f2a9";
+}
+
+.fa-vimeo:hover:before {
+  content: "\f194";
+}
+
+.fa-vimeo-square:hover:before {
+  content: "\f27d";
 }
 
 .fa-xing:hover:before {
