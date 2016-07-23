@@ -8,6 +8,7 @@ if (!function_exists('fluidity_register_sidebars')) {
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading'";
     $before_title .= (tcc_layout('widget')=='closed') ? " data-collapse='1'>" : ">";
+    $before_title .= "<i class='fa fa-plus pull-right panel-sign'></i>";
     $before_title .= "<h3 class='panel-title text-center scroll-this pointer'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
     $after_widget  = "</div></div>";
