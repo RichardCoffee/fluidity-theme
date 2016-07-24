@@ -13,7 +13,13 @@ who_am_i(); ?>
 <article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
 
   <h1 class="text-center"><?php
-    fluid_title();
+    if (is_single()) {
+      $format  = __('Permanent Link to %s','tcc-fluid');
+      $tooltip = sprintf($format,get_the_title()); ?>
+      <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(); ?></a><?php
+    } else {
+      fluid_title();
+    }
     fluid_edit_post_link(); ?>
   </h1>
 
