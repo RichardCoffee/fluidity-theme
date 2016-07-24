@@ -14,11 +14,11 @@ who_am_i(); ?>
 
   <h1 class="text-center"><?php
     if (is_single()) {
+      fluid_title();
+    } else {
       $format  = __('Permanent Link to %s','tcc-fluid');
       $tooltip = sprintf($format,get_the_title()); ?>
       <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(); ?></a><?php
-    } else {
-      fluid_title();
     }
     fluid_edit_post_link(); ?>
   </h1>
