@@ -61,6 +61,12 @@ class Theme_Layout_Options {
                               'render'  => 'radio',
                               'source'  =>array('open'   => __('Open','tcc-fluid'),
                                                 'closed' => __('Closed','tcc-fluid')));
+    $layout['content'] = array('default' => 'content',
+                               'label'   => __('Content','tcc-fluid'),
+                               'text'    => __('Show post content or excerpt on archive/category pages','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  =>array('content' => __('Content','tcc-fluid'),
+                                                 'excerpt' => __('Excerpt','tcc-fluid')));
 /*  $layout['logo']   = array('default' => '',
                               'label'   => __('Theme Logo','tcc-fluid'),
                               'render'  => 'image',
