@@ -11,12 +11,10 @@ who_am_i(); ?>
 
 <div id="fluid-content" class="fluid-category <?php echo container_type('category'); ?>">
   <div class="row"><?php
-    fluidity_get_sidebar(); ?>
+    sidebar_layout('category'); ?>
     <div id="content" <?php $micro->Blog(); ?> role="main" tabindex="-1">
-      <h1 class="text-center"><?php single_cat_title(); ?></h1><?php
+      <h1 class="text-center"><?php single_cat_title(__('Category: ')); ?></h1><?php
       if (have_posts()) {
-global $wp_query;
-log_entry($wp_query);
         fluid_navigation('above');
         $cnt = 0;
         while (have_posts()) {
