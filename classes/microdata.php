@@ -263,8 +263,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
 
   public function single_term_title($title) {
     if (!strpos($title,'itemprop')===false) return $title;
-    if ($this->called_by('wp_title')) return $title;
-log_entry(debug_backtrace());
+    if ($this->called_by(array('wp_title','wp_get_document_title'))) return $title;
     return "<span itemprop='headline'>$title</span>";
   }
 
