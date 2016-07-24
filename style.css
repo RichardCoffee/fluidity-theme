@@ -40,7 +40,7 @@ body {
   transition: height 22s ease-in-out;
 }
 
-.no-padding {
+.nopad {
   padding: 0;
 }
 
