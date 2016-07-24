@@ -20,9 +20,10 @@ who_am_i(); ?>
         while (have_posts()) {
           the_post(); ?>
           <div <?php $micro->BlogPosting(); ?>><?php
+            $main = tcc_layout('content');
             $slug = apply_filters('tcc-content-slug',get_post_type());
             $slug = apply_filters('tcc-category-content-slug',$slug);
-            get_template_part('template-parts/content',$slug); ?>
+            get_template_part("template-parts/$main",$slug); ?>
           </div><?php
           tcc_apply_clearfix('lg=4&md=4&sm=6&xs=12&cnt='.(++$cnt));
         }
