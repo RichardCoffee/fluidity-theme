@@ -7,10 +7,8 @@ if (!function_exists('fluidity_register_sidebars')) {
     $color = (is_admin()) ? 'primary' : tcc_color_scheme('sidebars');
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading'";
-log_entry('tcc_layout widget: '.tcc_layout('widget'));
     $before_title .= (tcc_layout('widget')=='closed') ? " data-collapse='1'>" : ">";
     $fa_sign       = (tcc_layout('widget')=='open') ? "fa-minus" : "fa-plus";
-#$fa_sign = "fa-minus";
     $before_title .= "<i class='fa $fa_sign pull-right panel-sign'></i>";
     $before_title .= "<h3 class='panel-title text-center scroll-this pointer'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
