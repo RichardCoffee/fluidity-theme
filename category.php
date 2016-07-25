@@ -25,7 +25,7 @@ who_am_i(); ?>
             $slug = apply_filters('tcc-category-content-slug',$slug);
             get_template_part("template-parts/$main",$slug); ?>
           </div><?php
-          tcc_apply_clearfix('lg=4&md=4&sm=6&xs=12&cnt='.(++$cnt));
+          #tcc_apply_clearfix('lg=4&md=4&sm=6&xs=12&cnt='.(++$cnt));
         }
         fluid_navigation('below');
       } else { ?>
