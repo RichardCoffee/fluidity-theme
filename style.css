@@ -48,6 +48,10 @@ body {
   padding-bottom: 1em;
 }
 
+article li {
+  padding-left: 3em;
+}
+
 table.posting-table {
   border-collapse: collapse;
   border: 1px solid #333;
