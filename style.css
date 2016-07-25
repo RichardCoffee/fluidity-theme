@@ -48,9 +48,8 @@ body {
   padding-bottom: 1em;
 }
 
-article {
-  padding-left: 3em;
-  padding-right: 3em;
+aside {
+  display: block;
 }
 
 table.posting-table {
