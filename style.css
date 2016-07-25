@@ -48,7 +48,7 @@ body {
   padding-bottom: 1em;
 }
 
-article li {
+article li:before {
   padding-left: 3em;
 }
 
