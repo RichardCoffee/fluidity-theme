@@ -68,6 +68,7 @@ if (!function_exists('fluidity_load_sidebar')) {
     $sidebars[] = 'standard';
     $sidebars[] = 'home';
     foreach($sidebars as $sidebar) {
+      echo "<p>checking $sidebar</p>";
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
           echo "<p>loaded $sidebar</p>";
