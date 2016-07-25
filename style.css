@@ -48,8 +48,9 @@ body {
   padding-bottom: 1em;
 }
 
-article li:before {
+article {
   padding-left: 3em;
+  padding-right: 3em;
 }
 
 table.posting-table {
