@@ -9,13 +9,13 @@ who_am_i();
 $loaded = false;
 $called = fluidity_sidebar_parameter();
 if ($called=='footer') {
-  echo "<p>called '$called', loaded 'footer'</p>";
+  #echo "<p>called '$called', loaded 'footer'</p>";
   $loaded = fluidity_load_sidebar('footer');
 } elseif (is_front_page()) { # ($wp_query->get('page_id')===get_option('page_on_front'))
-  echo "<p>called '$called', loaded 'home'</p>";
+  #echo "<p>called '$called', loaded 'home'</p>";
   $loaded = fluidity_load_sidebar('home');
 } else {
-  echo "<p>called '$called', loaded '$called'</p>";
+  #echo "<p>called '$called', loaded '$called'</p>";
   $loaded = fluidity_load_sidebar($called);
 }
 if (!$loaded) {
