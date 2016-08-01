@@ -37,6 +37,7 @@ class Theme_Social_Icons {
       $layout[$key] = array('default' => '',
                             'label'   => $icon,
                             'help'    => __('Your link information goes here','tcc-fluid'),
+                            'place'   => sprintf("%s %s",$icon,__('site url','tcc-fluid')),
                             'render'  => 'text',
                             'divcss'  => 'social-option-icon');
     }

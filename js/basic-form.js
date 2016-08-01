@@ -66,7 +66,7 @@ function showhideSocialIcons() {
 }
 
 // Browser compatibility function taken from http://stackoverflow.com/questions/6548748/portability-of-nextelementsibling-nextsibling
-// the jquery .next() function is not reliable under certain circumstances
+// the jquery .next() function is not reliable under certain circumstances - ie: when the DOM element has been dynamically added
 function nextElementSibling(el) {
   if (el.nextElementSibling) return el.nextElementSibling;
   do { el = el.nextSibling } while (el && el.nodeType !== 1);

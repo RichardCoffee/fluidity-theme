@@ -512,10 +512,12 @@ tcc_log_entry($controls);
   private function render_text($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     $html = "<input type='text' id='$ID' class='";
-    $html.= (isset($layout['class'])) ? $layout['class'] : 'regular-text';
-    $html.= "' name='$name' value='".esc_attr(sanitize_text_field($value))."'";
+    $html.= (isset($layout['class']))  ? $layout['class']."'" : "regular-text'";
+    $html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
+    $html.= (isset($layout['help']))   ? " title='{$layout['help']}'" : "";
+    $html.= (isset($layout['place']))  ? " placeholder='{$layout['placeholder']}'" : "";
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}' />" : "/>";
-    $html.= (!empty($layout['text']))  ? "<span class=''> ".esc_attr($layout['text'])."</span>" : '';
+    $html.= (!empty($layout['text']))  ? "<span class=''> ".esc_attr($layout['text'])."</span>" : "";
     echo $html;
   }
 
