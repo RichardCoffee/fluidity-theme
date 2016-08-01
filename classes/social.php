@@ -41,6 +41,7 @@ class Theme_Social_Icons {
                             'render'  => 'text',
                             'divcss'  => 'social-option-icon');
     }
+tcc_log_entry($layout);
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
