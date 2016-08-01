@@ -19,6 +19,9 @@ if (!$loaded) {
   global $wp_query;
   $post_type = $wp_query->get('post_type');
   if ($post_type) {
+    if (!(string)$post_type===$post_type) {
+      log_entry("FIXME: convert array to usable string",$post_type);
+    }
     tellme("<p>looking for sidebar '$post_type'</p>");
     $loaded = fluidity_load_sidebar(array($post_type,$post_type.'_sidebar'));
   }
