@@ -27,6 +27,7 @@ who_am_i(); ?>
     echo sprintf(_x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?>
   </h3><?php
 
+log_entry('post date: '.get_the_date('U'),'modified date: '.get_the_modified_date('U'));
   if (get_the_modified_date('U')>get_the_date('U')) { ?>
     <h3 class="text-center"><?php
       echo sprintf(__('Last modified on %s','tcc_fluid'),get_the_modified_date()); ?>
