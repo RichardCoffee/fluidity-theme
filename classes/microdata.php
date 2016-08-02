@@ -242,7 +242,7 @@ if ($attr) tcc_log_entry('micro: comments_popup_link_attributes',$attr);
   }
 
   public function get_the_date($the_date,$format,$postID) {
-    if (strpos($the_date,'itemprop')===false) {
+    if (strpos($the_date,'itemprop')===false  && $format!=='U') {
       $datetime = mysql2date('Y-m-d',get_post($postID)->post_date);
       $the_date = "<time itemprop='datePublished' datetime='$datetime'>$the_date</time>";
     }
