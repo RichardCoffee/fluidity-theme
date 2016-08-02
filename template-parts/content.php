@@ -24,8 +24,14 @@ who_am_i(); ?>
   </h1>
 
   <h3 class="text-center"><?php
-    echo sprintf(__('Posted on %1$s by %2$s','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?>
-  </h3>
+    echo sprintf(_x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?>
+  </h3><?php
+
+  if (get_the_modified_date('U')>get_the_date('U')) { ?>
+    <h3 class="text-center"><?php
+      echo sprintf(__('Last modified on %s','tcc_fluid'),get_the_modified_date()); ?>
+    </h3><?php
+  } ?>
 
   <div class="article" itemprop="articleBody"><?php
     if ( has_post_thumbnail() ) {
