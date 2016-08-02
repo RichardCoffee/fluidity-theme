@@ -130,7 +130,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                                          'label'   => __('Theme Version','tcc-fluid'),
                                          'render'  => 'display'),
                     'theme'     => array('label'   => __('Theme Settings','tcc-fluid'),
-                                         'text'    => __("These following options control the theme's behavior",'tcc-fluid'),
+                                         'text'    => __('These following options control the menu location of the theme options screen.','tcc-fluid'),
                                          'render'  => 'title'),
                     'loca'      => array('default' => 'appearance',
                                          'label'   => __('Page Location','tcc-fluid'),
