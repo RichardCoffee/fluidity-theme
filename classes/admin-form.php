@@ -263,7 +263,7 @@ tcc_log_entry($controls);
       } else {
         if (!empty($this->err_func)) {
           $func = $this->err_func;
-          $func(sprintf($this->form_text['error']['subscript'],$option));
+          $func(sprintf($this->form_text['error']['subscript'],$option),debug_backtrace());
         }
       }
     }
