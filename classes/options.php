@@ -126,7 +126,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
  *
  */
   private function about_options_layout() {
-    $layout = array('version'   => array('default' => '1.0',
+    $layout = array('version'   => array('default' => '1.1',
                                          'label'   => __('Theme Version','tcc-fluid'),
                                          'render'  => 'display'),
                     'theme'     => array('label'   => __('Theme Settings','tcc-fluid'),
