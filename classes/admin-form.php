@@ -254,7 +254,7 @@ tcc_log_entry($controls);
           $defaults[$key][$ID] = $item['default'];
         }
       }
-    } else { // tabbed
+    } else {  #  tabbed page
       if (isset($this->form[$option])) {
         foreach($this->form[$option]['layout'] as $key=>$item) {
           if (empty($item['default'])) continue;
@@ -273,7 +273,8 @@ tcc_log_entry($controls);
   private function get_form_options() {
     $this->form_opts = get_option($this->current);
     if (empty($this->form_opts)) {
-      $this->form_opts = $this->get_defaults($this->current);
+      $option = explode('_',$this->current); // FIXME: explode for tabbed, what about single?
+      $this->form_opts = $this->get_defaults($option[2]);
       add_option($this->current,$this->form_opts);
     }
   }
