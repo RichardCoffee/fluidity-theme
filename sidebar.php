@@ -19,15 +19,16 @@ if (!$loaded) {
   global $wp_query;
 #  $slug = ($format=get_post_format()) ? $format : get_post_type(); // inside loop only, which this is not
   $post_type = $wp_query->get('post_type');
+log_entry($wp_query); // check post type
   if ($post_type) {
     if (!is_string($post_type)) {
-      $use_this = 'post';
+      $use_this = 'standard';
       foreach($post_type as $type) {
         if (in_array($type,array('post'))) { continue; }
         $use_this = $type;
       }
       $post_type = $use_this;
-      log_entry("FIXME: convert array to usable string",$post_type);
+      #log_entry("FIXME: convert array to usable string",$post_type);
     }
     tellme("<p>looking for sidebar '$post_type'</p>");
     $loaded = fluidity_load_sidebar(array($post_type,$post_type.'_sidebar'));
