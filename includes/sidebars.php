@@ -94,10 +94,10 @@ if (!function_exists('sidebar_layout')) {
     $side = ($side) ? $side : tcc_layout('sidebar');
     if ($side!=='none') {
       $micro = microdata();
-      $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12'.(($side=='right') ? ' pull-right' : ''); ?>
-      <aside class="<? echo $sidebar_class; ?>" <?php $micro->WPSideBar(); ?> role="complementary"><?php
+      $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e'.(($side=='right') ? ' pull-right' : ''); ?>
+      <aside class="<? echo $sidebar_class; ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
         fluidity_get_sidebar($sidebar); ?>
       </aside><?php
     }
   }
-}
+} //*/

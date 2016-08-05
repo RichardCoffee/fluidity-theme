@@ -40,11 +40,17 @@ body {
   transition: height 22s ease-in-out;
 }
 
+.margintop,
+.margint1e {
+  margin-top: 1em;
+}
+
 .nopad {
   padding: 0;
 }
 
-.padbott {
+.padbott,
+.padb1e {
   padding-bottom: 1em;
 }
 

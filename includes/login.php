@@ -20,7 +20,7 @@ if (!function_exists('tcc_admin_login_redirect')) {
 if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
   // http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
   function tcc_dashboard_logo() {
-    $logo = tcc_option('logo');
+    $logo = tcc_design('logo');
     if ($logo) {
       $dash = "<style type='text/css'>";
       $dash.= "  #header-logo { background-image: url($logo) !important; }";
