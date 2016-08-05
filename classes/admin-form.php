@@ -526,7 +526,7 @@ tcc_log_entry($data);
   private function render_title($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (!empty($layout['text'])) {
-      $layout['text'] = "<b>{$layout['text']}</b>"; }
+      $data['layout']['text'] = "<b>{$layout['text']}</b>"; }
     $this->render_display($data);
   }
 
