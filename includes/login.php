@@ -132,7 +132,7 @@ if (!function_exists('tcc_logout_url')) {
   function tcc_logout_url($logout_url, $redirect) {
     #log_entry("logout filter 1 - url: $logout_url  redirect: $redirect");
     $redirect = get_option('siteurl');
-    $pos = strpos($logout_url,'?')
+    $pos = strpos($logout_url,'?');
     $logout_url.= ($pos===false) ? '?' : '&';
     $logout_url.= 'redirect_to='. urlencode($redirect);
     log_entry("logout filter 2 - url: $logout_url");
