@@ -40,7 +40,7 @@ if (!function_exists('fluidity_enqueue')) {
     wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", false, FLUIDITY_VERSION);
     wp_register_style('fluid',     "$base_url/style.css",               false, FLUIDITY_VERSION);
     wp_enqueue_style('tcc-fawe');  #  font-awesome needs to be loaded before bootstrap, due to possible css conflict (sr-only)
-    if (tcc_option('active','social')=='yes') { wp_enqueue_style('fa-social');
+    if (tcc_option('active','social')=='yes') { wp_enqueue_style('fa-social'); }
     wp_enqueue_style('bootstrap');
     wp_enqueue_style('library');
     wp_enqueue_style('fluid');

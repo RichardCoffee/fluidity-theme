@@ -55,12 +55,12 @@ abstract class Basic_Admin_Form {
   }
 
   public function enqueue_scripts() {
-    wp_register_style('basic-form.css', get_template_directory_uri()."/css/basic-form.css", false);
-    wp_register_script('basic-form.js', get_template_directory_uri()."/js/basic-form.js", array('jquery','wp-color-picker'), false, true);
+    wp_register_style('admin-form.css', get_template_directory_uri()."/css/admin-form.css", false);
+    wp_register_script('admin-form.js', get_template_directory_uri()."/js/admin-form.js", array('jquery','wp-color-picker'), false, true);
     wp_enqueue_media();
-    wp_enqueue_style('basic-form.css');
+    wp_enqueue_style('admin-form.css');
     wp_enqueue_style('wp-color-picker');
-    wp_enqueue_script('basic-form.js');
+    wp_enqueue_script('admin-form.js');
   }
 
   /**  Form text functions  **/
