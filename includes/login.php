@@ -130,13 +130,13 @@ if (!function_exists('tcc_login_form')) {
 
 if (!function_exists('tcc_logout_url')) {
   function tcc_logout_url($logout_url, $redirect) {
-log_entry("logout filter 1 - url: $logout_url  redirect: $redirect");
+    #log_entry("logout filter 1 - url: $logout_url  redirect: $redirect");
     $redirect = get_option('siteurl');
-    if ($pos=strpos($logout_url,'?')) {
-      $logout_url = substr($logout_url,0,$pos);
-    }
-log_entry("logout filter 2 - url: $logout_url  redirect: $redirect");
-    return $logout_url.'?redirect_to='. urlencode($redirect);
+    $pos = strpos($logout_url,'?')
+    $logout_url.= ($pos===false) ? '?' : '&';
+    $logout_url.= 'redirect_to='. urlencode($redirect);
+    log_entry("logout filter 2 - url: $logout_url");
+    return $logout_url;
   }
   add_filter('logout_url', 'tcc_logout_url', 10, 2);
 }
