@@ -440,6 +440,7 @@ tcc_log_entry($controls);
   }
 
   private function render_display($data) {
+tcc_log_entry($data);
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (!empty($value)) echo $value;
     if (!empty($layout['text'])) echo " <span>{$layout['text']}</span>";
@@ -524,8 +525,8 @@ tcc_log_entry($controls);
 
   private function render_title($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    if (!empty($layout['text']))
-      $layout['text'] = "<b>{$layout['text']}</b>";
+    if (!empty($layout['text'])) {
+      $layout['text'] = "<b>{$layout['text']}</b>"; }
     $this->render_display($data);
   }
 
