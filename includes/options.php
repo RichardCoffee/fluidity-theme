@@ -80,6 +80,34 @@ if (!function_exists('tcc_layout')) {
   }
 }
 
+if (!function_exists('tcc_option')) {
+  function tcc_option($option='',$section='') {
+    if ($option) {
+      if ($section) {
+        $tcc_func = "tcc_$section";
+        if (function_exists($tcc_func)) {
+          $retval = $tcc_func($option);
+        } else {
+          $data = get_option("tcc_options_$section");
+          if (isset($data[$option])) return $data[$option];
+        }
+      } else {
+        $opts = TCC_Theme_Options_Values::options_menu_array();
+        foreach($opts as $key=>$options) {
+          foreach($options as $opt=>$layout) {
+            if ($opt==$option) {
+              $data = get_option("tcc_options_$key");
+              return (isset($data[$option])) ? $data[$option] : $layout['default'];
+            }
+          }
+        }
+
+      }
+    }
+    return 'incompatible data';
+  }
+}
+
 if (!function_exists('tcc_settings')) {
   function tcc_settings($option) {
     static $data;
