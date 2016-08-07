@@ -17,7 +17,8 @@ who_am_i(); ?>
         if (have_posts()) {
           while (have_posts()) {
             the_post();
-            $slug = apply_filters('tcc-content-slug',get_post_type());
+            $slug = ($format=get_post_format()) ? $format : get_post_type();
+            $slug = apply_filters('tcc-content-slug',$slug);
             $slug = apply_filters('tcc-single-content-slug',$slug);
             get_template_part('template-parts/content',$slug);
           }

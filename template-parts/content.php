@@ -21,18 +21,16 @@ who_am_i(); ?>
       <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(); ?></a><?php
     }
     fluid_edit_post_link(); ?>
-  </h1>
+  </h1><?php
+
+  $posted = _x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
+  $modded = _x('Last modified on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
+  $string = (get_the_modified_date('U')>get_the_date('U')) ? $modded : $posted;
+  $date   = (get_the_modified_date('U')>get_the_date('U')) ? get_the_modified_date() : get_the_date(); ?>
 
   <h3 class="text-center"><?php
-    echo sprintf(_x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid'),get_the_date(),$micro->get_the_author(true)); ?>
-  </h3><?php
-
-  #log_entry('post date: '.get_the_date('U'),'modified date: '.get_the_modified_date('U'));
-  if (get_the_modified_date('U')>get_the_date('U')) { ?>
-    <h3 class="text-center"><?php
-      echo sprintf(__('Last modified on %s','tcc_fluid'),get_the_modified_date()); ?>
-    </h3><?php
-  } ?>
+    echo sprintf($string,$date,$micro->get_the_author(true)); ?>
+  </h3>
 
   <div class="article" itemprop="articleBody"><?php
     if ( has_post_thumbnail() ) {
