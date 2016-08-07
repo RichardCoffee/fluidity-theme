@@ -296,7 +296,7 @@ if (!function_exists('log_entry')) {
 
       if (is_int($args[0])) {
         if ($depth=intval($args[0])) {
-          $args[0] = debug_calling_function($depth)
+          $args[0] = debug_calling_function($depth);
         } else {
           unset($args[0]);
         }
