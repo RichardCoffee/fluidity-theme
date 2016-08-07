@@ -9,7 +9,6 @@
   <title itemprop="name"> <?php wp_title('>',true,'right'); ?> </title>
  */ ?>
   <link rel="icon"          href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
   <link rel="stylesheet"    href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' type='text/css'>  
   <link rel="profile"       href="http://gmpg.org/xfn/11" />
   <link rel="pingback"      href="<?php bloginfo('pingback_url'); ?>" />
