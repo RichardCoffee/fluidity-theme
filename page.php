@@ -21,7 +21,7 @@ who_am_i(); ?>
             $slug = apply_filters('tcc-content-slug',get_post_type());
             $slug = apply_filters('tcc-page-content-slug',$slug);
             get_template_part('template-parts/content',$slug);
-            if (next_post_exists()) echo "<hr class='padbott'>";
+            if (fluid_next_post_exists()) echo "<hr class='padbott'>";
           }
         } ?>
       </div>

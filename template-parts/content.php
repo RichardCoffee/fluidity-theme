@@ -23,14 +23,7 @@ who_am_i(); ?>
     fluid_edit_post_link(); ?>
   </h1><?php
 
-  $posted = _x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
-  $modded = _x('Last modified on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
-  $string = (get_the_modified_date('U')>get_the_date('U')) ? $modded : $posted;
-  $date   = (get_the_modified_date('U')>get_the_date('U')) ? get_the_modified_date() : get_the_date(); ?>
-
-  <h3 class="text-center"><?php
-    echo sprintf($string,$date,$micro->get_the_author(true)); ?>
-  </h3>
+  fluid_post_date(); ?>
 
   <div class="article" itemprop="articleBody"><?php
     if ( has_post_thumbnail() ) {

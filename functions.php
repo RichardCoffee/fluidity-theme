@@ -19,6 +19,7 @@ if (is_admin()) {
   require_once('classes/typography.php');
   require_once('classes/options.php');
 } else {
+  require_once('includes/in_the_loop.php');
   require_once('includes/footer.php');
   require_once('includes/header.php');
   require_once('includes/login.php');
