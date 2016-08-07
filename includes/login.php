@@ -129,17 +129,21 @@ if (!function_exists('tcc_login_form')) {
 }
 
 if (!function_exists('tcc_logout_url')) {
-  function tcc_logout_url($logout_url, $redirect) {
-log_entry("logout filter 1 - url: $logout_url");
-    $redirect = get_option('siteurl');
-#    if ($pos=strpos($logout_url,'?')) {
-#      $logout_url = substr($logout_url,0,$pos);
-#    }
-    $pos = strpos($logout_url,'?');
-    $logout_url.= ($pos===false) ? '?' : htmlspecialchars('&');
-    $logout_url.= "redirect_to=".urlencode($redirect);
-log_entry("logout filter 2 - url: $logout_url");
-    return $logout_url;
+  function tcc_logout_url($url, $redirect) {
+log_entry("logout filter 1 - url: $url");
+    $site = get_option('siteurl');
+    $pos  = strpos($url,'?');
+    if ($pos===false) {
+      $url  .= "?redirect_to=".urlencode($site);
+    } else {
+      $base  = substr($url,0,$pos);
+      $parms = parse_str(substr($url));
+      $parms['redirect_to'] = $site;
+      $opts  = http_build_query($parms,'fluid_');
+      $url   = "{$base}?$opts";
+    }
+log_entry("logout filter 2 - url: $url");
+    return $url;
   }
   add_filter('logout_url', 'tcc_logout_url', 10, 2);
 }
