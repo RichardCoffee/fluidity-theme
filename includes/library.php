@@ -207,6 +207,20 @@ if (!function_exists('array_insert_after')) {
 
 /*  Debugging functions  */
 
+if (!function_exists('debug_calling_function')) {
+  // http://php.net/debug_backtrace
+  function debug_calling_function($depth=1) {
+    $file = $func = $line = 'n/a';
+    $debugTrace = debug_backtrace();
+    if (isset($debugTrace[$depth])) {
+      $file = ($debugTrace[$depth]['file']) ? $debugTrace[$depth]['file'] : 'n/a';
+      $line = ($debugTrace[$depth]['line']) ? $debugTrace[$depth]['line'] : 'n/a';
+    }
+    $func = (isset($debugTrace[($depth+1)]['function'])) ? $debugTrace[($depth+1)]['function'] : 'n/a';
+    return "$file, $func, $line";
+  }
+}
+
 #  https://docs.dev4press.com/tutorial/wordpress/debug-wordpress-rewrite-rules-matching/
 if (!function_exists('debug_rewrite_rules')) {
   function debug_rewrite_rules() {
@@ -272,6 +286,7 @@ if (!function_exists('list_filter_hooks')) {
 if (!function_exists('log_entry')) {
   function log_entry() {
     if (WP_DEBUG) {
+      error_log(debug_calling_function($depth));
       foreach (func_get_args() as $message) {
         if (is_array($message) || is_object($message)) {
           error_log(print_r($message, true));

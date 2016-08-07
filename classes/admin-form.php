@@ -639,16 +639,3 @@ tcc_log_entry($controls);
 
 
 }
-
-if (!function_exists('log_entry')) {
-  function log_entry($message,$mess2='') {
-    if (WP_DEBUG) {
-      if (is_array($message) || is_object($message)) {
-        error_log(print_r($message, true));
-      } else {
-        error_log($message);
-      }
-      if ($mess2) log_entry($mess2);
-    }
-  }
-}
