@@ -19,7 +19,7 @@ if (!$loaded) {
   global $wp_query;
 #  $slug = ($format=get_post_format()) ? $format : get_post_type(); // inside loop only, which this is not
   $post_type = $wp_query->get('post_type');
-log_entry($wp_query); // check post type
+#log_entry($wp_query); // check post type
   if ($post_type) {
     if (!is_string($post_type)) {
       $use_this = 'standard';
