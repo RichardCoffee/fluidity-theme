@@ -286,7 +286,13 @@ if (!function_exists('list_filter_hooks')) {
 if (!function_exists('log_entry')) {
   function log_entry() {
     if (WP_DEBUG) {
-      error_log(debug_calling_function(1));
+      args  = func_get_args();
+      $depth = 1;
+      if (is_int($args[0])) {
+        $depth = $args[0];
+        unset($args[0]);
+      }
+      if ($depth) error_log(debug_calling_function($depth));
       foreach (func_get_args() as $message) {
         if (is_array($message) || is_object($message)) {
           error_log(print_r($message, true));

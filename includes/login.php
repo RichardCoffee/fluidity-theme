@@ -130,7 +130,7 @@ if (!function_exists('tcc_login_form')) {
 
 if (!function_exists('tcc_logout_url')) {
   function tcc_logout_url($url, $redirect) {
-log_entry("logout filter 1 - url: $url");
+log_entry(0,"logout filter 1 - url: $url");
     $site = get_option('siteurl');
     $pos  = strpos($url,'?');
     if ($pos===false) {
@@ -138,12 +138,12 @@ log_entry("logout filter 1 - url: $url");
     } else {
       $base  = substr($url,0,$pos);
       $parms = parse_str(htmlspecialchars_decode(substr($url,$pos+1)));
-log_entry($parms);
+log_entry(0,$parms);
       $parms['redirect_to'] = $site;
       $opts  = http_build_query($parms,'fluid_');
       $url   = "{$base}?$opts";
     }
-log_entry("logout filter 2 - url: $url");
+log_entry(0,"logout filter 2 - url: $url");
     return $url;
   }
   add_filter('logout_url', 'tcc_logout_url', 10, 2);
