@@ -286,7 +286,7 @@ if (!function_exists('list_filter_hooks')) {
 if (!function_exists('log_entry')) {
   function log_entry() {
     if (WP_DEBUG) {
-      error_log(debug_calling_function($depth));
+      error_log(debug_calling_function(1));
       foreach (func_get_args() as $message) {
         if (is_array($message) || is_object($message)) {
           error_log(print_r($message, true));
