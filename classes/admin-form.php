@@ -30,7 +30,7 @@ abstract class Basic_Admin_Form {
     $this->screen_type();
     add_action('admin_init',         array($this,'load_form_page'));
     add_action('customize_register', array($this,'customize_register'));
-    if (defined('THEME_OPTION_DEFAULT')) { $this->tab = THEME_OPTION_DEFAULT; }
+    if (defined('TCC_TAB')) { $this->tab = TCC_TAB; }
   }
 
   public function load_form_page() {

@@ -138,8 +138,9 @@ log_entry(0,"logout filter 1 - url: $url");
     } else {
       $base  = substr($url,0,$pos);
       $end   = substr($url,$pos+1);
+      $decod = htmlspecialchars_decode($end);
       $parms = parse_str(htmlspecialchars_decode(substr($url,$pos+1)));
-log_entry(0,$end,$parms);
+log_entry(0,$end,$decod,$parms);
       $parms['redirect_to'] = $site;
       $opts  = http_build_query($parms,'fluid_');
       $url   = "{$base}?$opts";
