@@ -7,7 +7,7 @@
 define('FLUIDITY_VERSION','1.1.0');
 
 require_once('includes/theme-support.php');
-require_once('includes/color.php');
+require_once('includes/colors.php');
 require_once('includes/library.php');
 #require_once('includes/layout.php');
 require_once('includes/menus.php');
@@ -98,7 +98,7 @@ if (!function_exists('fluidity_register_color_scheme')) {
   function fluidity_register_color_scheme() {
     if ($color_file=fluid_color_scheme()) {
       $file = get_template_directory()."/css/colors/$color_file.css";
-      if (file_exists($file)) {
+      if (is_readable($file)) {
         wp_register_style('fluid-color',  get_template_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
       } else {
         $file = get_stylesheet_directory()."/css/colors/$color_file.css";

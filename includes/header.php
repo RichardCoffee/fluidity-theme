@@ -47,9 +47,9 @@ if (!function_exists('fluid_browser_title')) {
 
 if (!function_exists('fluid_custom_css')) {
   function fluid_custom_css() { ?>
-    <style id='fluidity-custom-css' type='text/css'><?php
+    <style id='fluid-custom-css' type='text/css'><?php
       tcc_custom_colors();
-      do_action('tcc_custom_css'); ?>
+      do_action('fluid_custom_css'); ?>
     </style><?php
   }
 }
