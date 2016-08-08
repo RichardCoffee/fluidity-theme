@@ -137,14 +137,10 @@ log_entry(0,"logout filter 1 - url: $url");
       $url  .= "?redirect_to=".urlencode($site);
     } else {
       $base  = substr($url,0,$pos);
-      $end   = substr($url,$pos+1);
-      $decod = htmlspecialchars_decode($end);
-      parse_str($decod,$prep);
       parse_str(htmlspecialchars_decode(substr($url,$pos+1)),$parms);
-log_entry(0,$end,$decod,$prep,$parms);
       $parms['redirect_to'] = $site;
       $opts  = http_build_query($parms,'fluid_');
-      $url   = "{$base}?$opts";
+      $url   = $base.'?'.htmlspecialchars($opts);
     }
 log_entry(0,"logout filter 2 - url: $url");
     return $url;
