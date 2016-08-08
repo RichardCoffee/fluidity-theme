@@ -69,7 +69,7 @@ if (!function_exists('tcc_remember_me')) {
   }
   add_action('init','tcc_remember_me');
 }
-
+/*
 // Source? FIXME:  what is this for, and why do we need it?  Is there a better way?
 if (!function_exists('remove_lostpassword_text')) {
   function remove_lostpassword_text($text) {
@@ -78,7 +78,7 @@ if (!function_exists('remove_lostpassword_text')) {
     return $text;
   }
   add_filter('gettext','remove_lostpassword_text');
-}
+} //*/
 
 if (!function_exists('tcc_login_form')) {
   function tcc_login_form($navbar=false,$right=false) {
@@ -130,7 +130,7 @@ if (!function_exists('tcc_login_form')) {
 
 if (!function_exists('tcc_logout_url')) {
   function tcc_logout_url($url, $redirect) {
-log_entry(0,"logout filter 1 - url: $url");
+    #log_entry(0,"logout filter 1 - url: $url");
     $site = get_option('siteurl');
     $pos  = strpos($url,'?');
     if ($pos===false) {
@@ -139,10 +139,10 @@ log_entry(0,"logout filter 1 - url: $url");
       $base  = substr($url,0,$pos);
       parse_str(htmlspecialchars_decode(substr($url,$pos+1)),$parms);
       $parms['redirect_to'] = $site;
-      $opts  = http_build_query($parms,'fluid_');
+      $opts  = http_build_query($parms,'tcc_');
       $url   = $base.'?'.htmlspecialchars($opts);
     }
-log_entry(0,"logout filter 2 - url: $url");
+    #log_entry(0,"logout filter 2 - url: $url");
     return $url;
   }
   add_filter('logout_url', 'tcc_logout_url', 10, 2);
