@@ -22,7 +22,7 @@
 
   wp_head();
 
-  fluidity_custom_css(); ?>
+  fluid_custom_css(); ?>
 
   <style media="print">
     #fluid-header { display: none; }

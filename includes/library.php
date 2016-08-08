@@ -32,15 +32,6 @@ if (!function_exists('tcc_browser_body_class')) {
   add_filter('body_class','tcc_browser_body_class');
 }
 
-if (!function_exists('fluid_color_scheme')) {
-  function fluid_color_scheme() {
-    $color = tcc_color_scheme();
-    if (file_exists(get_template_directory() . "/css/colors/$color.css")) { return $color; }
-    if (file_exists(get_stylesheet_directory()."/css/colors/$color.css")) { return $color; }
-    return '';
-  }
-}
-
 if (!function_exists('container_type')) {
   function container_type($location='post') {
     if ($location=='fluid-header') return "container-fluid nopad";

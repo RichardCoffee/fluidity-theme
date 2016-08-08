@@ -7,10 +7,12 @@
 define('FLUIDITY_VERSION','1.1.0');
 
 require_once('includes/theme-support.php');
+require_once('includes/color.php');
 require_once('includes/library.php');
 #require_once('includes/layout.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
+log_entry('plugin dir path: '.plugin_dir_path(__FILE__));
 require_once(plugin_dir_path(__FILE__).'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/sidebars.php');
 require_once('classes/form-fields.php');
@@ -58,11 +60,11 @@ if (!function_exists('fluidity_enqueue')) {
     $hdr_state = tcc_layout('header');
     if ($hdr_state==='fixed') {
       wp_enqueue_style('autohide');
-      add_action('wp_footer','autohide_inline_script',99);
+      add_action('wp_footer','fluid_footer_autohide',99);
     } else if ($hdr_state==='hide') {
       wp_enqueue_style('autohide');
       wp_enqueue_script('autohide.js');
-      add_action('wp_footer','autohide_inline_script',99);
+      add_action('wp_footer','fluid_footer_autohide',99);
     }
     do_action('fluidity_enqueue');
   }

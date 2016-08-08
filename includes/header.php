@@ -7,18 +7,9 @@
  *
  */
 
-if (!function_exists('fluidity_custom_css')) {
-  function fluidity_custom_css() { ?>
-    <style id='fluidity-custom-css' type='text/css'><?php
-      tcc_custom_colors();
-      do_action('tcc_custom_css'); ?>
-    </style><?php
-  }
-}
-
-if (!function_exists('fluidity_browser_body_class')) {
+if (!function_exists('fluid_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
-  function fluidity_browser_body_class($classes) {
+  function fluid_browser_body_class($classes) {
     global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
     if     ($is_lynx)   $classes[] = 'lynx';
     elseif ($is_gecko)  $classes[] = 'gecko';
@@ -31,12 +22,12 @@ if (!function_exists('fluidity_browser_body_class')) {
     if     ($is_iphone) $classes[] = 'iphone';
     return $classes;
   }
-  add_filter('body_class','fluidity_browser_body_class');
+  add_filter('body_class','fluid_browser_body_class');
 }
 
 // Limit length of title string
-if (!function_exists('fluidity_browser_title')) {
-  function fluidity_browser_title($title,$sep) {
+if (!function_exists('fluid_browser_title')) {
+  function fluid_browser_title($title,$sep) {
     if (!is_feed()) {
       $test = get_bloginfo('name');
       if (empty($title)) {
@@ -51,7 +42,16 @@ if (!function_exists('fluidity_browser_title')) {
     }
     return $title;
   }
-  add_filter('wp_title','fluidity_browser_title',10,2);
+  add_filter('wp_title','fluid_browser_title',10,2);
+}
+
+if (!function_exists('fluid_custom_css')) {
+  function fluid_custom_css() { ?>
+    <style id='fluidity-custom-css' type='text/css'><?php
+      tcc_custom_colors();
+      do_action('tcc_custom_css'); ?>
+    </style><?php
+  }
 }
 
 if (!function_exists('fluidity_top_menubar')) {

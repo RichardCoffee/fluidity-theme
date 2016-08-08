@@ -6,8 +6,8 @@
  */
 
 //  Uses earliest published post to generate copyright date
-if (!function_exists('site_copyright_dates')) {
-  function site_copyright_dates() {
+if (!function_exists('fluid_copyright_dates')) {
+  function fluid_copyright_dates() {
     global $wpdb;
     $output = '';
     $select = "SELECT YEAR(min(post_date_gmt)) AS firstdate, YEAR(max(post_date_gmt)) AS lastdate FROM $wpdb->posts WHERE post_status = 'publish'";
@@ -22,8 +22,8 @@ if (!function_exists('site_copyright_dates')) {
   }
 }
 
-if (!function_exists('autohide_inline_script')) {
-  function autohide_inline_script() {
+if (!function_exists('fluid_footer_autohide')) {
+  function fluid_footer_autohide() {
     if (wp_script_is('jquery','done')) { ?>
 <script type="text/javascript">
   jQuery(document).ready(function() {
@@ -39,5 +39,5 @@ console.log('header: '+hdrHeight);
 </script><?php
     }
   }
-  #add_action( 'wp_footer', 'autohide_inline_script' );
+  #add_action( 'wp_footer', 'fluid_footer_autohide', 99 );
 }

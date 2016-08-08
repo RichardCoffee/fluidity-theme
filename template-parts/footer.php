@@ -17,7 +17,7 @@ global $micro; ?>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
     <p class="text-center"><?php
       $format = _x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
-      echo sprintf($format,site_copyright_dates(),$micro->get_bloginfo('name')); ?>
+      echo sprintf($format,fluid_copyright_dates(),$micro->get_bloginfo('name')); ?>
       <br><?php
       $foot_menu = array();
       if (page_exists('terms'))      $foot_menu[] = array('terms',      __('Terms & Conditions','tcc-fluid'));

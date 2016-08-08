@@ -6,17 +6,6 @@ function contextual_static_front_page_section($wp_customize) {
 }
 add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 
-#  function assumes calling function is wrapping with script tags
-function tcc_custom_colors() {
-  $colors = get_option('tcc_options_colors');
-  if ($colors) {
-    foreach($colors as $key=>$color) {
-      if ((empty($color)) || ($color=='none')) continue;
-      echo "$key { color: $color; }";
-    }
-  }
-}
-
 // derived from:  http://codex.wordpress.org/Excerpt
 function fluid_read_more_link($output) {
  global $post;
