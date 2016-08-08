@@ -10,7 +10,11 @@ $micro = microdata();
 $href  = get_the_permalink();
 who_am_i(); ?>
 
-<article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php $micro->BlogPosting(); ?>>
+<article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php $micro->BlogPosting(); ?>><?php
+
+  if ( has_post_thumbnail() ) { // FIXME:  need option for image/title placement
+    fluid_thumbnail();
+  } ?>
 
   <h1 class="text-center"><?php
     if (is_single()) {
@@ -26,9 +30,9 @@ who_am_i(); ?>
   fluid_post_date(); ?>
 
   <div class="article" itemprop="articleBody"><?php
-    if ( has_post_thumbnail() ) {
-      fluid_thumbnail();
-    }
+#    if ( has_post_thumbnail() ) {
+#      fluid_thumbnail();
+#    }
     the_content(); ?>
   </div><?php
 
