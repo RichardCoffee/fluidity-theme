@@ -296,7 +296,7 @@ if (!function_exists('log_entry')) {
         error_log(debug_calling_function(1));
       } //*/
 
-      foreach (func_get_args() as $message) {
+      foreach ($args as $message) {
         if (is_array($message) || is_object($message)) {
           error_log(print_r($message, true));
         } else {
