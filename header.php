@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> <?php $micro=microdata(); $micro->WebPage(); ?>>
+<html <?php language_attributes(); ?> <?php microdata()->WebPage(); ?>>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

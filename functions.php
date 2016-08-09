@@ -141,7 +141,7 @@ if (!is_child_theme()) {
   } else {
     add_action('tcc_main_header_body','show_construction_title');
   }
-
+  add_action('tcc_top_left_menubar','fluidity_social_icons');
 /*  function control_construction_header($args) {
     $args['split'] = false;
     return $args;
