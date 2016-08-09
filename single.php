@@ -11,8 +11,7 @@ who_am_i(); ?>
 
 <div id="fluid-content" class="fluid-single <?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
   <div class="row pad05perc">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12"><?php
-      sidebar_layout('single'); ?>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
       <div id="content" role="main" tabindex="-1"><?php
         if (have_posts()) {
           while (have_posts()) {
@@ -23,7 +22,8 @@ who_am_i(); ?>
             get_template_part('template-parts/content',$slug);
           }
         } ?>
-      </div><!-- #content -->
+      </div><!-- #content --><?php
+      sidebar_layout('single'); ?>
     </div><!-- col-*-12 -->
   </div><!-- .row -->
 </div><!-- .container --><?php

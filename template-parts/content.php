@@ -6,11 +6,9 @@
  *  Notes:  can only be used within The Loop
  */
 
-$micro = microdata();
-$href  = get_the_permalink();
 who_am_i(); ?>
 
-<article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php $micro->BlogPosting(); ?>><?php
+<article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
 
   if ( has_post_thumbnail() ) { // FIXME:  need option for image/title placement
     fluid_thumbnail();
