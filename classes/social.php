@@ -34,7 +34,7 @@ class Theme_Social_Icons {
     $icons = array('Bitbucket','Facebook','GitHub','Google Plus','LinkedIN','Pinterest','RSS','Tumblr','Twitter','Xing','YouTube');
     foreach($icons as $icon) {
       $key = sanitize_title($icon);
-      $layout[$key] = array('default' => ($icon==='RSS') ? site_url('/feed/') : '';
+      $layout[$key] = array('default' => ($icon==='RSS') ? site_url('/feed/') : '',
                             'label'   => $icon,
                             'help'    => __('Your link information goes here','tcc-fluid'),
                             'place'   => sprintf("%s %s",$icon,__('site url','tcc-fluid')),
