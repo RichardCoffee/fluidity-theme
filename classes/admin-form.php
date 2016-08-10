@@ -50,7 +50,7 @@ abstract class Basic_Admin_Form {
 
   public function customize_register($wp_customize) {
     $this->form_text = $this->form_text();
-    $this->form = $this->form_layout();
+    $this->form      = $this->form_layout();
     do_action('fluid-customizer',$wp_customize,$this);
   }
 
@@ -524,8 +524,10 @@ tcc_log_entry($controls);
 
   private function render_text_color($data) {
     $this->render_text($data);
-    $data['ID']   .= '_color';
-    $data['value'] = (isset($this->form_opts[$data['ID']])) ? $this->form_opts[$data['ID']] : $data['layout']['color'];
+    $basic = explode('[',$data['name']);
+    $index = substr($basic[1],0,-1).'_color';
+    $data['name']  = "{$basic[0]}[{$index}]";
+    $data['value'] = (isset($this->form_opts[$index])) ? $this->form_opts[$index] : $data['layout']['color'];
     $data['layout']['default'] = $data['layout']['color'];
     $data['layout']['text']    = '';
     $this->render_colorpicker($data);
@@ -592,12 +594,13 @@ tcc_log_entry($controls);
       return $output;
     }
     foreach($input as $key=>$data) {
+      $item = (isset($this->form[$option]['layout'][$key])) ? $this->form[$option]['layout'][$key] : array();
       if ((array)$data==$data) {
         foreach($data as $ID=>$subdata) {
-          $output[$key][$ID] = $this->do_validate_function($subdata,$this->form[$option]['layout'][$key]);
+          $output[$key][$ID] = $this->do_validate_function($subdata,$item);
         }
       } else {
-        $output[$key] = $this->do_validate_function($data,$this->form[$option]['layout'][$key]);
+        $output[$key] = $this->do_validate_function($data,$item);
       }
     }
     #log_entry('output',$output);
@@ -605,7 +608,7 @@ tcc_log_entry($controls);
   }
 
   private function do_validate_function($input,$item) {
-    if (empty($item['render'])) $item['render'] = 'non_existing_render_type';
+    if (empty($item['render'])) { $item['render'] = 'non_existing_render_type'; }
     $func = 'validate_';
     $func.= (isset($item['validate'])) ? $item['validate'] : $item['render'];
     if (method_exists($this,$func)) {
@@ -640,6 +643,10 @@ tcc_log_entry($controls);
 
   protected function validate_text($input) {
     return strip_tags(stripslashes($input));
+  }
+
+  private function validate_text_color($input) {
+    return validate_text($input);
   }
 
   private function validate_url($input) {
