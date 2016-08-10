@@ -21,7 +21,7 @@ class Theme_Social_Icons {
     _e('Fluidity Social Icons (powered by Font Awesome)','tcc-fluid');
   }
 
-  protected function social_layout() {
+  public function social_layout() {
     $layout = array('default'=>true);
     $layout['active'] = array('default' => 'no',
                               'label'   => __('Use Theme Icons','tcc-fluid'),
