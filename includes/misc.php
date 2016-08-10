@@ -33,6 +33,7 @@ function fluidity_social_icons() {
           $social[$field]['link'] = $value;
         }
       }
+      require_once('classes/social.php');
       $insta  = new Theme_Social_Icons();
       $layout = $insta->social_layout(); ?>
       <span class='fluidity-social-icons'><?php
