@@ -22,11 +22,21 @@ function fluidity_social_icons() {
     if (has_action('fluidity_social_icons')) {
       do_action('fluidity_social_icons');
     } else {
-      unset($icons['active']); ?>
+      unset($icons['active']);
+      $social = array(); // FIXME: find another way to do this
+      foreach($icons as $field=>$value) {
+        $pos = strpos($field,'_color');
+        if ($pos) {
+          $split = explode('_',$field);
+          $social[$split[0]]['color'] = $value;
+        } else {
+          $social[$field]['link'] = $value;
+        }
+      } ?>
       <span class='fluidity-social-icons'><?php
-        foreach($icons as $key=>$icon) {
-          if (empty($icon)) continue;
-          echo " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='$icon'> </a>";
+        foreach($social as $key=>$set) {
+          if (empty($set['link'])) continue;
+          echo " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='{$set['link']}' style='color:{$set['color']};'> </a>";
         } ?>
       </span><?php
     }
