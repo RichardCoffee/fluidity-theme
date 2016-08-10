@@ -32,11 +32,17 @@ function fluidity_social_icons() {
         } else {
           $social[$field]['link'] = $value;
         }
-      } ?>
+      }
+      $insta  = new Theme_Social_Icons();
+      $layout = $insta->social_layout(); ?>
       <span class='fluidity-social-icons'><?php
         foreach($social as $key=>$set) {
           if (empty($set['link'])) continue;
-          echo " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='{$set['link']}' style='color:{$set['color']};'> </a>";
+          $html = " <a class='fa fa-fw fa-$key-square' ";
+          $html.= " target='fluidity_$key' href='{$set['link']}'";
+          $html.= " title='{$layout[$key]['label']}'";
+          $html.= " style='color:{$set['color']};'> </a>";
+          #echo " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='{$set['link']}' style='color:{$set['color']};'> </a>";
         } ?>
       </span><?php
     }
