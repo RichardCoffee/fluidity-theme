@@ -522,6 +522,15 @@ tcc_log_entry($controls);
     echo $html;
   }
 
+  private function render_text_color($data) {
+    $this->render_text($data);
+    $data['ID']   .= '_color';
+    $data['value'] = (isset($this->form_opts[$data['ID']])) ? $this->form_opts[$data['ID']] : $data['layout']['color'];
+    $data['layout']['default'] = $data['layout']['color'];
+    $data['layout']['text']    = '';
+    $this->render_colorpicker($data);
+  }
+
   private function render_title($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (!empty($layout['text'])) {
@@ -571,7 +580,7 @@ tcc_log_entry($controls);
 
   public function validate_tabbed_form($input) {
     #log_entry('_GET',$_GET);
-    #log_entry('_POST',$_POST);
+    log_entry('_POST',$_POST);
     #log_entry('form',$this->form);
     #log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);

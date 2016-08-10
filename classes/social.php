@@ -31,14 +31,18 @@ class Theme_Social_Icons {
                                                  'no'  => __("No -- you are using a plugin, or do not want social icons",'tcc-fluid')),
                               'change'  => 'showhideSocialIcons();',
                               'divcss'  => 'social-option-active');
-    $icons = array('Bitbucket','Facebook','GitHub','Google Plus','LinkedIN','Pinterest','RSS','Tumblr','Twitter','Xing','YouTube');
-    foreach($icons as $icon) {
+    $icons = array('Bitbucket'   => 'black',  'Facebook' => '#4C66A4', 'GitHub'    => 'black',
+                   'Google Plus' => 'red',    'LinkedIN' => '#287BBC', 'Pinterest' => 'black',
+                   'RSS'         => 'orange', 'Tumblr'   => 'black',   'Twitter'   => '#0084B4',
+                   'Xing'        => 'black',  'YouTube'  => 'red');
+    foreach($icons as $icon=>$color) {
       $key = sanitize_title($icon);
       $layout[$key] = array('default' => ($icon==='RSS') ? site_url('/feed/') : '',
                             'label'   => $icon,
+                            'color'   => $color,
                             'help'    => __('Your link information goes here','tcc-fluid'),
                             'place'   => sprintf("%s %s",$icon,__('site url','tcc-fluid')),
-                            'render'  => 'text',
+                            'render'  => 'text_color',
                             'divcss'  => 'social-option-icon');
     }
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
