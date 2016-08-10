@@ -24,8 +24,8 @@
   margin: 0 0 0 1em;
 }
 
-.social-option-icon .wp-picker-container {
-  padding-top: 2px;
+.social-option-icon .regular-text {
+  margin-bottom: 2px;
 }
 
 .tcc_text_3em  input[type="text"]  { width: 3em;  }
