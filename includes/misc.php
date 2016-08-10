@@ -36,8 +36,7 @@ function fluidity_social_icons() {
       require_once(plugin_dir_path(__FILE__).'../classes/social.php');
       $insta  = new Theme_Social_Icons();
       $layout = $insta->social_layout();
-log_entry($icons,$social,$layout);
- ?>
+      #log_entry($icons,$social,$layout); ?>
       <span class='fluidity-social-icons'><?php
         foreach($social as $key=>$set) {
           if (empty($set['link'])) continue;
@@ -45,7 +44,7 @@ log_entry($icons,$social,$layout);
           $html.= " target='fluidity_$key' href='{$set['link']}'";
           $html.= " title='{$layout[$key]['label']}'";
           $html.= " style='color:{$set['color']};'> </a>";
-          #echo " <a class='fa fa-fw fa-$key-square' target='fluidity_$key' href='{$set['link']}' style='color:{$set['color']};'> </a>";
+          echo $html;
         } ?>
       </span><?php
     }

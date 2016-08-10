@@ -582,7 +582,7 @@ tcc_log_entry($controls);
 
   public function validate_tabbed_form($input) {
     #log_entry('_GET',$_GET);
-    log_entry('_POST',$_POST);
+    #log_entry('_POST',$_POST);
     #log_entry('form',$this->form);
     #log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
