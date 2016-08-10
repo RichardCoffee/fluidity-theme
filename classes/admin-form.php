@@ -646,7 +646,7 @@ tcc_log_entry($controls);
   }
 
   private function validate_text_color($input) {
-    return validate_text($input);
+    return $this->validate_text($input);
   }
 
   private function validate_url($input) {
