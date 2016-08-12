@@ -29,7 +29,7 @@ class Theme_Social_Icons {
                               'render'  => 'radio',
                               'source'  => array('yes' => __("Yes - you want to use the theme's internal social icons",'tcc-fluid'),
                                                  'no'  => __("No -- you are using a plugin, or do not want social icons",'tcc-fluid')),
-                              'change'  => 'showhideSocialIcons();',
+                              'change'  => 'showhidePosi(this,".social-option-icon","yes");',
                               'divcss'  => 'social-option-active');
     $icons = array('Bitbucket'   => 'black',  'Facebook' => '#4C66A4', 'GitHub'    => 'black',
                    'Google Plus' => 'red',    'LinkedIN' => '#287BBC', 'Pinterest' => 'black',
