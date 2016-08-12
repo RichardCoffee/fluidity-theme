@@ -45,10 +45,10 @@ console.log(attachment);
   custom_uploader.open();
 }
 
-function showhidePosi(el,target,hide) {
-  var div = el.parentNode.parentNode.parentNode;
-  if (jQuery('.tcc-wp_posi')) {
-    if (jQuery(div).find('input:radio:checked').val()==hide) {
+function showhidePosi(el,target,show) {
+  var eldiv = el.parentNode.parentNode.parentNode;
+  if (eldiv) {
+    if (jQuery(eldiv).find('input:radio:checked').val()==show) {
       jQuery(target).parent().parent().removeClass('hidden');
     } else {
       jQuery(target).parent().parent().addClass('hidden');
