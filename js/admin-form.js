@@ -45,12 +45,13 @@ console.log(attachment);
   custom_uploader.open();
 }
 
-function showhidePosi() {
+function showhidePosi(el,target,hide) {
+  var div = el.parentNode.parentNode.parentNode;
   if (jQuery('.tcc-wp_posi')) {
-    if (jQuery('.tcc-loca input:radio:checked').val()=='dashboard') {
-      jQuery('.tcc-wp_posi').parent().parent().removeClass('hidden');
+    if (jQuery(div).find('input:radio:checked').val()==hide) {
+      jQuery(target).parent().parent().removeClass('hidden');
     } else {
-      jQuery('.tcc-wp_posi').parent().parent().addClass('hidden');
+      jQuery(target).parent().parent().addClass('hidden');
     }
   }
 }

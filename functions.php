@@ -129,8 +129,9 @@ if (!function_exists('fluidity_show_query')) {
 
 if (!is_child_theme()) {
   function show_construction_title() {
-    $site  = "<a href='".home_url()."'>This site</a>";
-    $refer = "<a href='http://the-creative-collective.com' target='TCC'>The Creative Collective</a>"; ?>
+    $site  = "<a href='".home_url()."' title='Fluidity'>This site</a>";
+    $title = __('The Creative Collective');
+    $refer = "<a href='http://the-creative-collective.com' target='TCC' title='$title'>$title</a>"; ?>
     <h1 class='text-center'><?php
       echo "$site currently under construction by $refer"; ?>
     </h1><?php

@@ -140,7 +140,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                                          'source'  => array('dashboard'  => __('Dashboard menu','tcc-fluid'),
                                                             'appearance' => __('Appearance menu','tcc-fluid'),
                                                             'settings'   => __('Settings menu','tcc-fluid')),
-                                         'change'  => 'showhidePosi();',
+                                         'change'  => "showhidePosi(this,'.tcc-wp_posi','dashboard');",
                                          'divcss'  => 'tcc-loca'),
                     'wp_posi'   => array('default' => 'bottom',
                                          'label'   => __('Dashboard location','tcc-fluid'),
