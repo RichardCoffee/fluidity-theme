@@ -46,12 +46,14 @@ console.log(attachment);
 }
 
 function showhidePosi(el,target,show) {
-  var eldiv = el.parentNode.parentNode.parentNode;
-  if (eldiv) {
-    if (jQuery(eldiv).find('input:radio:checked').val()==show) {
-      jQuery(target).parent().parent().removeClass('hidden');
-    } else {
-      jQuery(target).parent().parent().addClass('hidden');
+  if (el) {
+    var eldiv = el.parentNode.parentNode.parentNode;
+    if (eldiv) {
+      if (jQuery(eldiv).find('input:radio:checked').val()==show) {
+        jQuery(target).parent().parent().removeClass('hidden');
+      } else {
+        jQuery(target).parent().parent().addClass('hidden');
+      }
     }
   }
 }
