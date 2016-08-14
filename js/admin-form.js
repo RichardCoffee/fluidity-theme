@@ -51,7 +51,7 @@ function showhidePosi(el,target,show) {
     var eldiv = el.parentNode.parentNode.parentNode;
     //var eldiv = document.querySelector(selector);
     if (eldiv) {
-      showhideAdminElement(eldiv,target,show);
+      showhideAdminElements(eldiv,target,show);
     }
   }
 }
