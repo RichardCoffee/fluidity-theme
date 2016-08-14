@@ -1,8 +1,9 @@
 // js/basic-form.js
 
 jQuery(document).ready(function() {
-  showhidePosi();
-  showhideSocialIcons();
+  showhideAdminElements(document.querySelector('.tcc-loca'),".tcc-wp_posi","dashboard");
+  showhideAdminElements(document.querySelector('.social-option-active'),".social-option-icon","yes");
+  showhideAdminElements(document.querySelector('.agent-role-active'),".agent-role-setting","agents");
   jQuery('.form-colorpicker' ).wpColorPicker();
   jQuery('.form-image'       ).click(function(e) { imageUploader(this,e); });
   jQuery('.form-image-delete').click(function(e) { imageDelete(this); });
@@ -16,7 +17,7 @@ function imageDelete(el) {
     var iuImage = document.getElementById(iuField+'_img');
     iuInput.value = '';
     iuImage.src   = '';
-    jQuery(el).addClass('hidden');
+    jQuery(iuImage).addClass('hidden');
   }
 }
 
@@ -48,23 +49,18 @@ console.log(attachment);
 function showhidePosi(el,target,show) {
   if (el) {
     var eldiv = el.parentNode.parentNode.parentNode;
+    //var eldiv = document.querySelector(selector);
     if (eldiv) {
-      if (jQuery(eldiv).find('input:radio:checked').val()==show) {
-        jQuery(target).parent().parent().removeClass('hidden');
-      } else {
-        jQuery(target).parent().parent().addClass('hidden');
-      }
+      showhideAdminElement(eldiv,target,show);
     }
   }
 }
 
-function showhideSocialIcons() {
-  if (jQuery('.social-option-icon')) {
-    if (jQuery('.social-option-active input:radio:checked').val()=='yes') {
-      jQuery('.social-option-icon').parent().parent().removeClass('hidden');
-    } else {
-      jQuery('.social-option-icon').parent().parent().addClass('hidden');
-    }
+function showhideAdminElements(el,target,show) {
+  if (jQuery(el).find('input:radio:checked').val()==show) {
+    jQuery(target).parent().parent().removeClass('hidden');
+  } else {
+    jQuery(target).parent().parent().addClass('hidden');
   }
 }
 

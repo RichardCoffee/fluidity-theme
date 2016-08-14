@@ -43,14 +43,15 @@ $defaults = array(
 #   'header-text' => array( 'site-title', 'site-description' ),
 );
 add_theme_support('custom-logo',$defaults); //*/
-/*
+
 // Jetpack site logo
 #$args = array( 'header-text' => array( 'site-title',
 #                                       'site-description' ),
 #               'size' => 'medium');
-add_theme_support('site-logo'); #,$args); //*/
+add_theme_support('site-logo'); #,$args);
 
 add_editor_style();
+
 if (!function_exists('tcc_editor_styles')) {
   if (file_exists(get_stylesheet_directory().'tcc-editor-style.css')) {
     function tcc_editor_styles() {
