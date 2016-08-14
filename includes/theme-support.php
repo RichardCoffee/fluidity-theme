@@ -4,14 +4,14 @@ add_theme_support('automatic-feed-links');
 add_theme_support('html5',array('comment-list','comment-form','search-form','gallery','caption'));
 add_theme_support('post-thumbnails');  # thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
 add_theme_support('title-tag');
-/*
+
 // Enable custom background support
 $defaults = array(
-  'default-color'          => 'ffffff',
-  'default-image'          => '',
-  'default-repeat'         => '',
-  'default-position-x'     => '',
-#  'wp-head-callback'       => '',
+#  'default-color'          => 'ffffff',
+  'default-image'          => 'screenshot.jpg',
+#  'default-repeat'         => '',
+#  'default-position-x'     => '',
+#  'wp-head-callback'       => '_custom_background_cb',
 #  'admin-head-callback'    => '',
 #  'admin-preview-callback' => '',
 );
