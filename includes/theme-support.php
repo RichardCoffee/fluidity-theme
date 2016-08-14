@@ -9,7 +9,7 @@ add_theme_support('title-tag');
 $defaults = array(
 #  'default-color'          => 'ffffff',
   'default-image'          => get_template_directory_uri().'/screenshot.jpg',
-#  'default-repeat'         => '',
+  'default-repeat'         => 'no-repeat',
 #  'default-position-x'     => '',
 #  'wp-head-callback'       => '_custom_background_cb',
 #  'admin-head-callback'    => '',
@@ -33,7 +33,7 @@ $defaults = array(
   'admin-preview-callback' => '',
 );
 add_theme_support('custom-header',$defaults); //*/
-/*
+
 $defaults = array(
 #   'height'      => 100,
 #   'width'       => 400,
@@ -42,7 +42,7 @@ $defaults = array(
 #   'header-text' => array( 'site-title', 'site-description' ),
 );
 add_theme_support('custom-logo',$defaults); //*/
-
+/*
 // Jetpack site logo
 #$args = array( 'header-text' => array( 'site-title',
 #                                       'site-description' ),

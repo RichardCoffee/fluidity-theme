@@ -105,7 +105,7 @@ if (!function_exists('fluidity_header_logo')) {
         jetpack_the_site_logo();
       } else { ?>
         <a class='logo' href='<?php echo home_url(); ?>/' itemprop='relatedLink'><?php
-          $logo_id = get_theme_mod('header_logo');
+          $logo_id = get_theme_mod('custom-logo');
           if ($logo_id) {
             $size = 'medium';
             $attr = array( 'class'     => "img-responsive attachment-$size",
