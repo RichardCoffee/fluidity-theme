@@ -479,7 +479,7 @@ tcc_log_entry($controls);
     if (isset($layout['text'])) echo "<div id='$uniq'>".esc_attr($layout['text'])."</div>";
     foreach($layout['source'] as $key=>$text) {
       $html = "<div";
-      $html.= (isset($layout['title')) ? " title='{$layout['title']}'" ? "";
+      $html.= (isset($layout['title'])) ? " title='{$layout['title']}'" ? "";
       $html.= "><label>";
       $html.= "<input type='radio' name='$name' value='$key'";
       $html.= ($value==$key) ? " checked='yes'" : "";
