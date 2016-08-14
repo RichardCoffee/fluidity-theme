@@ -77,3 +77,16 @@ if (!function_exists('fluid_thumbnail')) {
     </div><?php
   }
 }
+
+if (!function_exists('get_the_author_posts_link')) {
+  function get_the_author_posts_link($authorID=0) {
+    $authorID = ($authorID) ? $authorID : get_the_author_meta('ID');
+    $return = '';
+    if ($authorID) {
+      $link   = get_author_posts_url($agent->ID);
+      $link   = str_replace('/author/','/agent/',$link);
+      $return = "<a href='$link'>".get_the_author_meta('display_name')."</a>";
+    }
+    return $return;
+  }
+}
