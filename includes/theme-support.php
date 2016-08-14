@@ -8,7 +8,7 @@ add_theme_support('title-tag');
 // Enable custom background support
 $defaults = array(
 #  'default-color'          => 'ffffff',
-  'default-image'          => get_template_directory_url().'/screenshot.jpg',
+  'default-image'          => get_template_directory_uri().'/screenshot.jpg',
 #  'default-repeat'         => '',
 #  'default-position-x'     => '',
 #  'wp-head-callback'       => '_custom_background_cb',
