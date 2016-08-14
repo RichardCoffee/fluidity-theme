@@ -11,6 +11,7 @@ $defaults = array(
   'default-image'          => get_template_directory_uri().'/screenshot.jpg',
   'default-repeat'         => 'no-repeat',
 #  'default-position-x'     => '',
+  'default-attachment'     => 'fixed',
 #  'wp-head-callback'       => '_custom_background_cb',
 #  'admin-head-callback'    => '',
 #  'admin-preview-callback' => '',
