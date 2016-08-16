@@ -42,10 +42,12 @@ if (!function_exists('container_type')) {
 // convert user data to flat object
 if (!function_exists('convert_user_meta')) {
   function convert_user_meta($ID) {
+    $wp_d = get_userdata($ID);
+    $out  = $_wp_d->data;
     $data = get_user_meta($ID);
-    $out  = new stdClass;
+tcc_log_entry($wp_d,$data);
     foreach($data as $key=>$meta) {
-      $out->$key = $meta[0];
+      if (!isset($out->$key)) { $out->$key = $meta[0]; }
     }
     return $out;
   }
