@@ -45,7 +45,6 @@ if (!function_exists('convert_user_meta')) {
     $wp_d = get_userdata($ID);
     $out  = $_wp_d->data;
     $data = get_user_meta($ID);
-tcc_log_entry($wp_d,$data);
     foreach($data as $key=>$meta) {
       if (!isset($out->$key)) { $out->$key = $meta[0]; }
     }
