@@ -123,15 +123,6 @@ function get_valid_gravatar($email,$size=96) {
   return $avatar;
 }
 
-if (!function_exists('get_term_name')) {
-  #  get term name string
-  function get_term_name($tax,$slug) {
-    $term = get_term_by('slug',$slug,$tax);
-    if ($term) return $term->name;
-    return '';
-  }
-}
-
 if (!function_exists('get_valid_gravatar')) {
   #  https://codex.wordpress.org/Using_Gravatars
   function get_valid_gravatar($email,$size=96) {
