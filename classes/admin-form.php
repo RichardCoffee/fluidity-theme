@@ -518,10 +518,11 @@ tcc_log_entry($controls);
     $html.= "<input type='text' id='$ID' class='";
     $html.= (isset($layout['class']))  ? $layout['class']."'" : "regular-text'";
     $html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
-    $html.= (isset($layout['help']))   ? " title='{$layout['help']}'"         : "";
-    $html.= (isset($layout['place']))  ? " placeholder='{$layout['place']}'"  : "";
-    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}' />" : "/>";
+    $html.= (isset($layout['help']))   ? " title='{$layout['help']}'"             : "";
+    $html.= (isset($layout['place']))  ? " placeholder='{$layout['place']}'"      : "";
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}' />"     : "/>";
     $html.= (!empty($layout['stext'])) ? ' '.esc_attr($layout['stext'])           : "";
+    $html.= (!empty($layout['etext'])) ? "<p> ".esc_attr($layout['etext'])."</p>" : "";
     echo $html;
   }
 
