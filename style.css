@@ -57,6 +57,9 @@ body {
 #fluid-header {
   opacity: 0.7;
 }
+#fluid-header #header-menubar {
+  opacity: 0.85;
+}
 
 #fluid-content {
   background-color: white;
