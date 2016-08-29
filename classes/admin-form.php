@@ -521,7 +521,7 @@ tcc_log_entry($controls);
     $html.= (isset($layout['help']))   ? " title='{$layout['help']}'"         : "";
     $html.= (isset($layout['place']))  ? " placeholder='{$layout['place']}'"  : "";
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}' />" : "/>";
-    $html.= (!empty($layout['stext'])) ? esc_attr($layout['stext'])           : "";
+    $html.= (!empty($layout['stext'])) ? ' '.esc_attr($layout['stext'])           : "";
     echo $html;
   }
 
