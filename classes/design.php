@@ -53,7 +53,7 @@ class Theme_Design_Options {
                               'source'  => TCC_Typography::mixed_fonts());
     $layout['size']   = array('default' => 18,
                               'label'   => __('Font Size','tcc-fluid'),
-                              'text'    => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
+                              'stext'   => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
                               'render'  => 'text',
                               'divcss'  => 'tcc_text_3em');
 /*    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
