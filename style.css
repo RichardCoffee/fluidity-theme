@@ -56,12 +56,12 @@ body {
 
 #fluid-content {
   background-color: white;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 #fluid-footer {
   background-color: white;
-  opacity: 0.85;
+  opacity: 0.7;
 }
 
 .fluidity-social-icons {
