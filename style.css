@@ -54,6 +54,10 @@ body {
   padding-bottom: 1em;
 }
 
+#header-body {
+  opacity: 0.85;
+}
+
 #fluid-content {
   background-color: white;
   opacity: 0.85;
