@@ -40,7 +40,7 @@ class Theme_Social_Icons {
       $layout[$key] = array('default' => ($icon==='RSS') ? site_url('/feed/') : '',
                             'label'   => $icon,
                             'color'   => $color,
-                            'help'    => __('Your link information goes here','tcc-fluid'),
+                            'help'    => sprintf(__('Default color is %s','tcc-fluid'),$color),
                             'place'   => sprintf("%s %s",$icon,__('site url','tcc-fluid')),
                             'render'  => 'text_color',
                             'divcss'  => 'social-option-icon');
