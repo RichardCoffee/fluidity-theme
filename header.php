@@ -25,10 +25,10 @@
   fluid_custom_css(); ?>
 
   <style media="print">
+    .noprint       { display: none; }
     #fluid-header  { display: none; }
     .fluid-sidebar { display: none; }
     #fluid-footer  { display: none; }
-    a              { display: none; }
     .postmetadata  { display: none; }
     .post-links    { display: none; }
     #comments      { display: none; }

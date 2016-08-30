@@ -6,10 +6,12 @@
  */
 
 get_header();
-$micro = microdata();
-who_am_i(); ?>
+who_am_i(); 
 
-<div id="fluid-content" class="fluid-single <?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
+require_once('includes/index.php');
+fluid_index_page('single');
+/*
+<div id="fluid-content" class="fluid-single <?php echo container_type('single'); ?>" <?php microdata()->Blog(); ?>>
   <div class="row pad05perc">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
       <div class="fluid-sidebar hidden-sm hidden-xs"><?php
@@ -28,6 +30,6 @@ who_am_i(); ?>
       </div>
     </div><!-- col-*-12 -->
   </div><!-- .row -->
-</div><!-- .container --><?php
+</div><!-- .container --><?php //*/
 
 get_footer();
