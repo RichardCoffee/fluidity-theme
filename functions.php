@@ -97,13 +97,14 @@ if (!function_exists('fluidity_register_fontawesome')) {
 if (!function_exists('fluidity_register_color_scheme')) {
   function fluidity_register_color_scheme() {
     if ($color_file=fluid_color_scheme()) {
-      $file = get_template_directory()."/css/colors/$color_file.css";
+      $base = "/css/colors/$color_file.css";
+      $file = get_stylesheet_directory().$base;
       if (is_readable($file)) {
-        wp_register_style('fluid-color',  get_template_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
+        wp_register_style('fluid-color',  get_stylesheet_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
       } else {
-        $file = get_stylesheet_directory()."/css/colors/$color_file.css";
-        if (file_exists($file)) {
-          wp_register_style('fluid-color',  get_stylesheet_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
+        $file = get_template_directory().$base;
+        if (is_readable($file)) {
+          wp_register_style('fluid-color',  get_template_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
         }
       }
     }
@@ -136,7 +137,8 @@ if (!is_child_theme()) {
       echo "$site currently under construction by $refer"; ?>
     </h1><?php
   }
-  if (function_exists('jetpack_the_site_logo') || get_theme_mod('header_logo') || tcc_design('logo')) {
+  #if (function_exists('jetpack_the_site_logo') || get_theme_mod('header_logo') || tcc_design('logo')) {
+  if (get_theme_mod('header_logo') || tcc_design('logo')) {
     add_action('tcc_left_header_body','fluidity_header_logo');
     add_action('tcc_right_header_body','show_construction_title');
   } else {

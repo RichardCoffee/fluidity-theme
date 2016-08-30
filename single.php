@@ -8,9 +8,10 @@
 get_header();
 who_am_i(); 
 
-require_once('includes/index.php');
-fluid_index_page('single');
-/*
+#require_once('includes/index.php');
+#fluid_index_page('single');
+ ?>
+
 <div id="fluid-content" class="fluid-single <?php echo container_type('single'); ?>" <?php microdata()->Blog(); ?>>
   <div class="row pad05perc">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
