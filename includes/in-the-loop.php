@@ -1,11 +1,22 @@
 <?php
 
 /*
- *  File:  includes/in_the_loop.php
+ *  File:  includes/in-the-loop.php
  *
  *  All functions in this file expect to be run inside the WordPress loop
  *
  */
+
+if (!function_exists('fluid_content_slug')) {
+  function fluid_content_slug($type='single') {
+    $slug = ($format=get_post_format()) ? $format : get_post_type();
+    $slug = apply_filters("tcc-content",$slug);
+    $slug = apply_filters("tcc-content-{$slug}",$slug);
+    $slug = apply_filters("tcc-{$type}-content",$slug);
+    $slug = apply_filters("tcc-{$type}-content-{$slug}",$slug);
+    return $slug;
+  }
+}
 
 if (!function_exists('fluid_edit_post_link')) {
   function fluid_edit_post_link($separator=' ') {

@@ -25,8 +25,9 @@
   fluid_custom_css(); ?>
 
   <style media="print">
-    #fluid-header { display: none; }
-    #fluid-footer { display: none; }
+    #fluid-header  { display: none; }
+    .fluid-sidebar { display: none; }
+    #fluid-footer  { display: none; }
   </style>
 
 </head>

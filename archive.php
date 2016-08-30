@@ -31,9 +31,7 @@ who_am_i(); ?>
         while(have_posts()) {
           the_post();
           $main = tcc_layout('content');
-          $slug = apply_filters('tcc-content-slug',get_post_type());
-          $slug = apply_filters('tcc-archive-content-slug',get_post_type());
-          get_template_part("template-parts/$main",$slug);
+          get_template_part("template-parts/$main",fluid_content_slug('archive'));
           #tcc_apply_clearfix('cnt='.(++$cnt));
         }
         fluid_navigation('below');

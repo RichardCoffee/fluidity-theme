@@ -18,9 +18,7 @@ who_am_i(); ?>
         if (have_posts()) {
           while(have_posts()) {
             the_post();
-            $slug = apply_filters('tcc-content-slug',get_post_type());
-            $slug = apply_filters('tcc-page-content-slug',$slug);
-            get_template_part('template-parts/content',$slug);
+            get_template_part('template-parts/content',fluid_content_slug('page'));
             if (fluid_next_post_exists()) echo "<hr class='padbott'>";
           }
         } ?>

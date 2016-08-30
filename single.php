@@ -12,21 +12,18 @@ who_am_i(); ?>
 <div id="fluid-content" class="fluid-single <?php echo container_type('single'); ?>" <?php $micro->Blog(); ?>>
   <div class="row pad05perc">
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-      <div class="hidden-sm hidden-xs"><?php
+      <div class="fluid-sidebar hidden-sm hidden-xs"><?php
         sidebar_layout('single'); ?>
       </div>
       <div id="content" role="main" tabindex="-1"><?php
         if (have_posts()) {
           while (have_posts()) {
             the_post();
-            $slug = ($format=get_post_format()) ? $format : get_post_type();
-            $slug = apply_filters('tcc-content-slug',$slug);
-            $slug = apply_filters('tcc-single-content-slug',$slug);
-            get_template_part('template-parts/content',$slug);
+            get_template_part('template-parts/content',fluid_content_slug('single'));
           }
         } ?>
       </div><!-- #content -->
-      <div class="visible-sm visible-xs"><?php
+      <div class="fluid-sidebar visible-sm visible-xs"><?php
         sidebar_layout('single'); ?>
       </div>
     </div><!-- col-*-12 -->
