@@ -78,7 +78,8 @@ body {
 }
 
 .fluid-print-button {
-  margin-top: 10px;
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
 .article {
