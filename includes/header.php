@@ -145,5 +145,5 @@ if (!function_exists('fluidity_menubar_print')) {
       </button>
     </span><?php
   }
-  add_action('tcc_header_menubar','fluidity_menubar_print');
+  add_action('fluidity_menubar','fluidity_menubar_print');
 }

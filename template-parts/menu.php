@@ -20,6 +20,7 @@ if (has_nav_menu('primary')) {
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse"><?php /* Primary navigation */
       wp_nav_menu( array('menu'=>'header','depth'=>2,'container'=>false,'menu_class'=>'nav navbar-nav','walker'=> new wp_bootstrap_navwalker())); ?>
-    </div>
+    </div><?php
+    do_action('fluidity_menubar'); ?>
   </nav><?php
 }
