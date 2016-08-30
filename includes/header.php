@@ -135,15 +135,17 @@ if (!function_exists('fluidity_main_menubar')) {
 }
 
 if (!function_exists('fluidity_menubar_print')) {
-  function fluidity_menubar_print() { ?>
-    <span class="pull-right">
-      <button class="btn btn-default" onclick="print();">
-        <i class="fa fa-print"></i>
-        <span class="hidden-xs"> <?php
-          _e('Print','tcc-fluidity'); ?>
-        </span>
-      </button>
-    </span><?php
+  function fluidity_menubar_print() {
+    if (is_single() || is_page()) { ?>
+      <span class="pull-right hidden fluid-print-button">
+        <button class="btn btn-default" onclick="print();">
+          <i class="fa fa-print"></i>
+          <span class="hidden-xs"> <?php
+            _e('Print','tcc-fluidity'); ?>
+          </span>
+        </button>
+      </span><?php
+    }
   }
   add_action('fluidity_menubar','fluidity_menubar_print');
 }

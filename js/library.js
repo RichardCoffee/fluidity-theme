@@ -2,6 +2,7 @@
 
 jQuery(document).ready(function() {
   wp.heartbeat = '';
+  jQuery('.fluid-print-button').removeClass('hidden');
 });
 
 function appendElement(elParent,elType,elId,elName,elClass,elIType) {
