@@ -138,7 +138,7 @@ if (!function_exists('fluidity_menubar_print')) {
   function fluidity_menubar_print() {
     if (is_single() || is_page()) { ?>
       <span class="pull-right hidden fluid-print-button">
-        <button class="btn btn-info" onclick="print();">
+        <button class="btn btn-<?php echo tcc_color_scheme(); ?>" onclick="print();">
           <i class="fa fa-print"></i>
           <span class="hidden-xs"> <?php
             _e('Print','tcc-fluidity'); ?>
