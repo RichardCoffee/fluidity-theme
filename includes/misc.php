@@ -16,40 +16,43 @@ function fluid_read_more_link($output) {
 }
 add_filter('excerpt_more', 'fluid_read_more_link');
 
-function fluidity_social_icons() {
-  $icons = get_option('tcc_options_social');
-  if ($icons['active']==='yes') {
-    if (has_action('fluidity_social_icons')) {
-      do_action('fluidity_social_icons');
-    } else {
-      unset($icons['active']);
-      $social = array(); // FIXME: find another way to do this
-      foreach($icons as $field=>$value) {
-        $pos = strpos($field,'_color');
-        if ($pos) {
-          $split = explode('_',$field);
-          $social[$split[0]]['color'] = $value;
-        } else {
-          $social[$field]['link'] = $value;
+if (!function_exists('fluidity_social_icons')) {
+  function fluidity_social_icons() {
+    $icons = get_option('tcc_options_social');
+    if ($icons['active']==='yes') {
+      if (has_action('fluidity_social_icons')) {
+        do_action('fluidity_social_icons');
+      } else {
+        unset($icons['active']);
+        $social = array(); // FIXME: find another way to do this
+        foreach($icons as $field=>$value) {
+          $pos = strpos($field,'_color');
+          if ($pos) {
+            $split = explode('_',$field);
+            $social[$split[0]]['color'] = $value;
+          } else {
+            $social[$field]['link'] = $value;
+          }
         }
+        require_once(plugin_dir_path(__FILE__).'../classes/social.php');
+        $insta  = new Theme_Social_Icons();
+        $layout = $insta->social_layout();
+        #log_entry($icons,$social,$layout); ?>
+        <span class='fluidity-social-icons'><?php
+          foreach($social as $key=>$set) {
+            if (empty($set['link'])) continue;
+            $html = " <a class='fa fa-fw fa-$key-square' ";
+            $html.= " target='fluidity_$key' href='{$set['link']}'";
+            #  translators: 1 - a website name
+            $html.= " title='".sprintf(_('See us on %s'),$layout[$key]['label'])."'";
+            $html.= " style='color:{$set['color']};'> </a>";
+            echo $html;
+          } ?>
+        </span><?php
       }
-      require_once(plugin_dir_path(__FILE__).'../classes/social.php');
-      $insta  = new Theme_Social_Icons();
-      $layout = $insta->social_layout();
-      #log_entry($icons,$social,$layout); ?>
-      <span class='fluidity-social-icons'><?php
-        foreach($social as $key=>$set) {
-          if (empty($set['link'])) continue;
-          $html = " <a class='fa fa-fw fa-$key-square' ";
-          $html.= " target='fluidity_$key' href='{$set['link']}'";
-          $html.= " title='{$layout[$key]['label']}'";
-          $html.= " style='color:{$set['color']};'> </a>";
-          echo $html;
-        } ?>
-      </span><?php
     }
-  }
-} //*/
+  } //*/
+}
 
 if (!function_exists('fluid_user_profile_link')) {
   function fluid_user_profile_link() {

@@ -133,3 +133,17 @@ if (!function_exists('fluidity_main_menubar')) {
   }
   add_action('tcc_header_menubar','fluidity_main_menubar');
 }
+
+if (!function_exists('fluidity_menubar_print')) {
+  function fluidity_menubar_print() { ?>
+    <span class="pull-right">
+      <button class="btn btn-default" onclick="print();">
+        <i class="fa fa-print"></i>
+        <span class="hidden-xs"> <?php
+          _e('Print','tcc-fluidity'); ?>
+        </span>
+      </button>
+    </span><?php
+  }
+  add_action('tcc_header_menubar','fluidity_menubar_print');
+}
