@@ -77,6 +77,10 @@ body {
   margin-bottom: auto;
 }
 
+.fluid-print-button {
+  margin-top: 10px;
+}
+
 .article {
   margin-left: 2em;
   margin-right: 2em;
