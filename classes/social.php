@@ -31,7 +31,8 @@ class Theme_Social_Icons {
                                                  'no'  => __("No -- you are using a plugin, or do not want social icons",'tcc-fluid')),
                               'change'  => 'showhidePosi(this,".social-option-icon","yes");',
                               'divcss'  => 'social-option-active');
-    $icons = array('Bitbucket'   => '#205081','Facebook' => '#4C66A4', 'GitHub'    => 'black',
+    $icons = array('Behance'     => 'blue',
+                   'Bitbucket'   => '#205081','Facebook' => '#4C66A4', 'GitHub'    => 'black',
                    'Google Plus' => 'red',    'LinkedIN' => '#287BBC', 'Pinterest' => 'red',
                    'RSS'         => 'orange', 'Tumblr'   => 'black',   'Twitter'   => '#0084B4',
                    'Xing'        => 'black',  'YouTube'  => 'red');
