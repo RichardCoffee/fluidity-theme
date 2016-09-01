@@ -29,8 +29,6 @@
     #fluid-header  { display: none; }
     .fluid-sidebar { display: none; }
     #fluid-footer  { display: none; }
-    .postmetadata  { display: none; }
-    .post-links    { display: none; }
     #comments      { display: none; }
   </style>
 

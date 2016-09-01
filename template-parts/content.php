@@ -36,7 +36,7 @@ who_am_i(); ?>
 
   if (is_single()) { ?>
 
-    <p class="postmetadata"><?php
+    <p class="postmetadata noprint"><?php
       the_tags(__('Tags','tcc-fluid').': ', ', ', '<br>');
       esc_html_e(_x('Posted in ','string will be followed by a category or list of categories','tcc-fluid'));
       the_category(', ');
@@ -48,7 +48,7 @@ who_am_i(); ?>
       comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
     </p>
 
-    <div class='post-links'>
+    <div class='post-links noprint'>
       <span class='pull-left'><?php
         previous_post_link(); ?>
       </span>

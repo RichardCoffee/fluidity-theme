@@ -33,7 +33,6 @@ if (is_admin()) {
 
 if (!function_exists('fluidity_enqueue')) {
   function fluidity_enqueue() {
-    log_entry('fluidity_enqueue');
     $base_url = get_template_directory_uri();
     fluidity_register_bootstrap();
     fluidity_register_fontawesome();
