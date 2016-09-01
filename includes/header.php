@@ -135,7 +135,7 @@ if (!function_exists('fluidity_main_menubar')) {
 }
 
 if (!function_exists('fluidity_menubar_print')) {
-  function fluidity_menubar_print() {
+  function fluidity_menubar_print_button() {
     if (is_single() || is_page()) { ?>
       <span class="pull-right hidden fluid-print-button">
         <button class="btn btn-<?php echo tcc_color_scheme(); ?>" onclick="print();">
@@ -147,5 +147,5 @@ if (!function_exists('fluidity_menubar_print')) {
       </span><?php
     }
   }
-  add_action('fluidity_menubar','fluidity_menubar_print');
+  add_action('fluidity_menubar','fluidity_menubar_print_button');
 }
