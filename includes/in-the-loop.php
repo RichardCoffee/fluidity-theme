@@ -36,12 +36,12 @@ if (!function_exists('fluid_edit_post_link')) {
 }
 
 if (!function_exists('fluid_navigation')) {
-  function fluid_navigation($suffix='above') {
+  function fluid_navigation() {
     global $wp_query;
     if ($wp_query->max_num_pages>1) {
       $older = esc_html__('Older posts','tcc-fluid');
       $newer = esc_html__('Newer posts','tcc-fluid'); ?>
-      <div id="nav-<?php echo $suffix; ?>" class="navigation">
+      <div id="nav-posts" class="navigation noprint">
         <h2 class="screen-reader-text"><?php
           esc_html_e( 'Post Navigation', 'tcc-fluid' ); ?>
         </h2>
@@ -65,10 +65,10 @@ if (!function_exists('fluid_next_post_exists')) {
 
 if (!function_exists('fluid_post_date')) {
   function fluid_post_date() {
-    $string = _x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
+    $string = esc_html_x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
     $date   = get_the_date();
     if ((get_the_modified_date('U')-(60*60*24))>get_the_date('U')) {
-      $string = _x('Last modified on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
+      $string = esc_html_x('Last modified on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
       $date   = get_the_modified_date();
     } ?>
     <h3 class="text-center"><?php
