@@ -16,7 +16,7 @@ if (!function_exists('fluid_archive_page_noposts')) {
     <div id="post-0" class="post error404 not-found">
       <h1 class="text-center"><?php _e('Not Found','tcc-fluid' ); ?></h1>
       <p><?php
-        = _e( 'Apologies, but no results were found for the requested Archive. Perhaps searching will help find a related post.','tcc-fluid' ); ?>
+        _e( 'Apologies, but no results were found for the requested Archive. Perhaps searching will help find a related post.','tcc-fluid' ); ?>
       </p><?php
       get_search_form(); ?>
     </div><!-- #post-0 --><?php
