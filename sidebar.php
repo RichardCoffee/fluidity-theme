@@ -10,7 +10,7 @@ $loaded = false;
 $called = fluidity_sidebar_parameter();
 if ($called=='footer') {
   $loaded = fluidity_load_sidebar('footer',true);
-} elseif (is_front_page()) { # ($wp_query->get('page_id')===get_option('page_on_front'))
+} elseif (is_front_page()) {  #  Alternate:  ($wp_query->get('page_id')===get_option('page_on_front'))
   $loaded = fluidity_load_sidebar('home');
 } else {
   $loaded = fluidity_load_sidebar($called);
@@ -19,7 +19,6 @@ if (!$loaded) {
   global $wp_query;
 #  $slug = ($format=get_post_format()) ? $format : get_post_type(); // inside loop only, which this is not
   $post_type = $wp_query->get('post_type');
-#log_entry($wp_query); // check post type
   if ($post_type) {
     if (!is_string($post_type)) {
       $use_this = 'standard';

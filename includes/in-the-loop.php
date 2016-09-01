@@ -59,10 +59,7 @@ if (!function_exists('fluid_navigation')) {
 if (!function_exists('fluid_next_post_exists')) {
   function fluid_next_post_exists() {
     global $wp_query;
-    if ( $wp_query->current_post + 1 < $wp_query->post_count ) {
-      return true;
-    }
-    return false;
+    return (bool)( $wp_query->current_post + 1 < $wp_query->post_count );
   }
 }
 

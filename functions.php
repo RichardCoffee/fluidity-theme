@@ -21,10 +21,12 @@ if (is_admin()) {
   require_once('classes/typography.php');
   require_once('classes/options.php');
 } else {
-  require_once('includes/in-the-loop.php');
   require_once('includes/footer.php');
   require_once('includes/header.php');
+  require_once('includes/in-the-loop.php');
+  require_once('includes/index.php');
   require_once('includes/login.php');
+  require_once('includes/pages.php');
   require_once('includes/wp_bootstrap_navwalker.php');
   require_once('includes/third-party.php');
   require_once('classes/layout.php'); // Experiment - see archive.php

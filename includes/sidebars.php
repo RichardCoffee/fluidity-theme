@@ -57,6 +57,7 @@ function fluidity_the_widget($widget,$instance,$args) {
 add_action('the_widget','fluidity_the_widget',999,3);
 
 if (!function_exists('fluidity_get_sidebar')) {
+  #  This function works in tandem with fluidity_sidebar_parameter()
   function fluidity_get_sidebar($sidebar='standard') {
     get_template_part('sidebar',$sidebar);
   }
@@ -89,11 +90,10 @@ if (!function_exists('fluidity_sidebar_parameter')) {
   }
 }
 
-if (!function_exists('sidebar_layout')) {
-  function sidebar_layout($sidebar='standard',$side='') {
+if (!function_exists('fluidity_sidebar_layout')) {
+  function fluidity_sidebar_layout($sidebar='standard',$side='') {
     $side = ($side) ? $side : tcc_layout('sidebar');
     if ($side!=='none') {
-      $micro = microdata();
       $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e'.(($side=='right') ? ' pull-right' : ''); ?>
       <aside class="<? echo $sidebar_class; ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
         fluidity_get_sidebar($sidebar); ?>
