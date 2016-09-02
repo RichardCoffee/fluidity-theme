@@ -46,8 +46,10 @@ who_am_i(); ?>
       $comm_1 = esc_html__('1 Comment','tcc-fluid');
       $comm_2 = esc_html_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid');
       comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
-    </p>
+    </p><?php
 
+    fluid_navigation();
+/*
     <div class='post-links noprint'>
       <span class='pull-left'><?php
         previous_post_link(); ?>
@@ -57,6 +59,7 @@ who_am_i(); ?>
       </span>
       <br>
     </div><?php
+*/
     if ( comments_open() || get_comments_number() ) {
       comments_template();
     }
