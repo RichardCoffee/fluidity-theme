@@ -36,29 +36,18 @@ if (!function_exists('fluid_edit_post_link')) {
 }
 
 if (!function_exists('fluid_navigation')) {
-  function fluid_navigation() {
-    global $wp_query;
-who_am_i();
-tcc_log_entry($wp_query);
-    #if ($wp_query->max_num_pages>1) {
-      $older = esc_html__('Older posts','tcc-fluid');
-      $newer = esc_html__('Newer posts','tcc-fluid'); ?>
-      <div id="nav-posts" class="navigation noprint">
-        <h2 class="screen-reader-text"><?php
-          esc_html_e( 'Post Navigation', 'tcc-fluid' ); ?>
-        </h2>
-        <div class="nav-previous pull-left"><?php
-          #next_posts_link('<span class="meta-nav">&larr;</span> '.$older);
-          next_post_link();
- ?>
-        </div>
-        <div class="nav-next pull-right"><?php
-          #previous_posts_link($newer.' <span class="meta-nav">&rarr;</span>');
-          previous_post_link();
- ?>
-        </div>
-      </div><?php
-    #}
+  function fluid_navigation() { ?>
+    <div id="nav-posts" class="navigation noprint">
+      <h2 class="screen-reader-text"><?php
+        esc_html_e( 'Post Navigation', 'tcc-fluid' ); ?>
+      </h2>
+      <div class="nav-previous pull-left"><?php
+        previous_post_link(null,null,true); ?>
+      </div>
+      <div class="nav-next pull-right"><?php
+        next_post_link(null,null,true); ?>
+      </div>
+    </div><?php
   }
 }
 
