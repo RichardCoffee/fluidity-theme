@@ -40,13 +40,14 @@ if (!function_exists('fluid_navigation')) {
     $left  = '&laquo; %link';
     $right = '%link &raquo;';
     $text  = '%title';
-    $restrict = (empty($taxonomy)) ? false : true;
+    $restrict = ($taxonomy) ? true : false;
     $exclude  = ''; ?>
     <div id="nav-posts" class="row noprint">
       <h2 class="screen-reader-text"><?php
         esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
       </h2>
       <div class="nav-previous pull-left"><?php
+previous_post_link();
         previous_post_link($left,$text,$restrict,$exclude,$taxonomy); ?>
       </div>
       <div class="nav-next pull-right"><?php
