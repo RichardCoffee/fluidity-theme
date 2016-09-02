@@ -1,7 +1,7 @@
 
 This file describes how to implement a new tab on the Theme Options screen.
 
-The admin options screen is controlled by the form layout array.  The array
+The admin options screen is controlled by the form-layout array.  The array
 is initialized in the Fluidity_Options_Form class, which is defined in
 classes/options.php.  That file contains an explanation of the item arrays,
 and is the definitive guide.  In cases where this document conflicts with
@@ -18,17 +18,17 @@ these files:
 
 When adding a tab to the screen, classes/design.php can be used as a guide.
 
-The form layout array should have this structure:
+The form-layout array should have this structure:
 
-  Array ( 'design' => Design form array,
-          'layout' => Layout form array,
-          'colors' => Colors form array,
-          'social' => Social Icons form array,
-          'admin'  => Admin form array
-          'about'  => About form array );
+  Array ( 'design' => Design tab array,
+          'layout' => Layout tab array,
+          'colors' => Colors tab array,
+          'social' => Social Icons tab array,
+          'admin'  => Admin tab array
+          'about'  => About tab array );
 
 
-The form tab array has this structure:
+The form-tab array has this structure:
 
   Array (  'title'     =>  text that will appear on the tab itself.  WordPress
                            will also display this as the section title.
@@ -38,7 +38,7 @@ The form tab array has this structure:
            'option'    =>  option name, used to save and retrieve the data
                            array.  If not specified, the default will be set
                            as "fluidity_options_{key}".
-           'layout'    =>  main array, used to display and format all the options
+           'layout'    =>  layout array, used to display and format all the options
 
 
 The layout array contains the keys of every item appearing on the form screen
@@ -53,10 +53,20 @@ The item option array has these fields:
   'default' =>  required - must be present, even if blank.
   'label'   =>  required - text that appears on the left side of the screen.
                 Identifies the option.
-  'text'    =>  optional - text displayed with the option.
+  'text'    =>  text/textarea only - text displayed above the option.
+  'stext'   =>  optional - text placed to left of a text field
   'help'    =>  optional - text displayed as a title attribute.  set for both
                 the label and the input item.
   'render'  =>  required - suffix of method used to display the item,
                 ie: 'radio' will cause the 'render_radio' method to be called.
                 Possible values are checkbox, colorpicker, display, font,
-                image, radio, select, text, textarea, wp_dropdown, skip
+                image, radio, select, skip, text, text_color, textarea, title,
+                wp_dropdown.  Also used for validation, ie: 'radio' will cause
+                the 'validate_radio' method to be called.
+  'divcss'  =>  optional - css class assigned to the enclosing div
+  'media'   =>  image only - an array used in conjunction with the media library
+  'source'  =>  may be required - generally an array used to populate a
+                pulldown, dependent on how a 'render' is implemented.
+  'change'  =>  optional - used for onclick/onchange events
+  'color'   =>  text_color only - default color, use hex only, the colorpicker
+                does not like color names

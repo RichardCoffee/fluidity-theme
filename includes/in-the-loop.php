@@ -20,7 +20,7 @@ if (!function_exists('fluid_content_slug')) {
 
 if (!function_exists('fluid_edit_post_link')) {
   function fluid_edit_post_link($separator=' ') {
-    $title  = the_title( '<span class="screen-reader-text">"', '"</span>', false );
+    $title  = the_title( '<span class="sr-only">"', '"</span>', false );
     $string = sprintf( esc_attr_x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), $title );
     #edit_post_link( '{'.$string.'}', $separator.'<span class="edit-link">', '</span>' );
     ##  This code replaces the edit_post_link call so that I could add the target attribute
@@ -36,16 +36,21 @@ if (!function_exists('fluid_edit_post_link')) {
 }
 
 if (!function_exists('fluid_navigation')) {
-  function fluid_navigation() { ?>
-    <div id="nav-posts" class="navigation noprint">
+  function fluid_navigation($taxonomy='') {
+    $left  = '&laquo; %link';
+    $right = '%link &raquo;';
+    $text  = '%title';
+    $restrict = (empty($taxonomy)) ? false : true;
+    $exclude  = ''; ?>
+    <div id="nav-posts" class="row noprint">
       <h2 class="screen-reader-text"><?php
-        esc_html_e( 'Post Navigation', 'tcc-fluid' ); ?>
+        esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
       </h2>
       <div class="nav-previous pull-left"><?php
-        previous_post_link('&laquo; %link','%title',true); ?>
+        previous_post_link($left,$text,$restrict,$exclude,$taxonomy); ?>
       </div>
       <div class="nav-next pull-right"><?php
-        next_post_link('%link &raquo;','%title',true); ?>
+        next_post_link($right,$text,$restrict,$exclude,$taxonomy); ?>
       </div>
     </div><?php
   }
