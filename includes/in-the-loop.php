@@ -39,6 +39,7 @@ if (!function_exists('fluid_navigation')) {
   function fluid_navigation() {
     global $wp_query;
 who_am_i();
+tcc_log_entry($wp_query);
     if ($wp_query->max_num_pages>1) {
       $older = esc_html__('Older posts','tcc-fluid');
       $newer = esc_html__('Newer posts','tcc-fluid'); ?>
