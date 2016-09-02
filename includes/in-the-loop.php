@@ -49,12 +49,12 @@ tcc_log_entry($wp_query);
         </h2>
         <div class="nav-previous pull-left"><?php
           #next_posts_link('<span class="meta-nav">&larr;</span> '.$older);
-          next_posts_link();
+          next_post_link();
  ?>
         </div>
         <div class="nav-next pull-right"><?php
           #previous_posts_link($newer.' <span class="meta-nav">&rarr;</span>');
-          previous_posts_link();
+          previous_post_link();
  ?>
         </div>
       </div><?php
