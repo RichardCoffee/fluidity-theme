@@ -39,5 +39,5 @@ who_am_i(); ?>
       </p><?php
     }
   }
-  comment_form(array('title_reply'=>esc_attr(__('Leave a Comment','tcc-fluid')))); ?>
+  comment_form(array('title_reply'=>esc_attr__('Leave a Comment','tcc-fluid'))); ?>
 </div><!-- #comments -->

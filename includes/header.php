@@ -141,7 +141,7 @@ if (!function_exists('fluidity_menubar_print')) {
         <button class="btn btn-<?php echo tcc_color_scheme(); ?>" onclick="print();">
           <i class="fa fa-print"></i>
           <span class="hidden-xs"> <?php
-            _e('Print','tcc-fluidity'); ?>
+            esc_html_e('Print','tcc-fluidity'); ?>
           </span>
         </button>
       </span><?php

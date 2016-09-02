@@ -16,14 +16,14 @@
   </div>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
     <p class="text-center"><?php
-      $format = _x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
+      $format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
       echo sprintf($format,fluid_copyright_dates(),microdata()->get_bloginfo('name')); ?>
       <br><?php
       $foot_menu = array();
-      if (page_exists('terms'))      $foot_menu[] = array('terms',      __('Terms & Conditions','tcc-fluid'));
-      if (page_exists('conditions')) $foot_menu[] = array('conditions', __('Terms & Conditions','tcc-fluid'));
-      if (page_exists('privacy'))    $foot_menu[] = array('privacy',    __('Privacy Policy',    'tcc-fluid'));
-      if (page_exists('security'))   $foot_menu[] = array('security',   __('Security Policy',   'tcc-fluid'));
+      if (page_exists('terms'))      $foot_menu[] = array('terms',      esc_html__('Terms & Conditions','tcc-fluid'));
+      if (page_exists('conditions')) $foot_menu[] = array('conditions', esc_html__('Terms & Conditions','tcc-fluid'));
+      if (page_exists('privacy'))    $foot_menu[] = array('privacy',    esc_html__('Privacy Policy',    'tcc-fluid'));
+      if (page_exists('security'))   $foot_menu[] = array('security',   esc_html__('Security Policy',   'tcc-fluid'));
       $foot_menu = apply_filters('tcc_bottom_menu',$foot_menu);
       if ($foot_menu) {
         $string = '<span '.microdata()->SiteNavigationElement().'>';

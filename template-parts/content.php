@@ -18,7 +18,7 @@ who_am_i(); ?>
     if (is_single()) {
       fluid_title();
     } else {
-      $format  = __('Permanent Link to %s','tcc-fluid');
+      $format  = esc_html__('Permanent Link to %s','tcc-fluid');
       $tooltip = sprintf($format,get_the_title()); ?>
       <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(); ?></a><?php
     }
@@ -37,8 +37,8 @@ who_am_i(); ?>
   if (is_single()) { ?>
 
     <p class="postmetadata noprint"><?php
-      the_tags(__('Tags','tcc-fluid').': ', ', ', '<br>');
-      esc_html_e(_x('Posted in ','string will be followed by a category or list of categories','tcc-fluid'));
+      the_tags(esc_html__('Tags','tcc-fluid').': ', ', ', '<br>');
+      esc_html_x('Posted in ','string will be followed by a category or list of categories','tcc-fluid');
       the_category(', ');
       echo ' | ';
       fluid_edit_post_link(' | ');

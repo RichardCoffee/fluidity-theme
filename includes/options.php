@@ -26,7 +26,7 @@ if (!function_exists('stop_heartbeat')) {
 
 if (!function_exists('tcc_currency_symbol')) {
   function tcc_currency_symbol() {
-    $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>__('Currency Symbol','tcc-fluid'),'css'=>'small-text');
+    $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>esc_html__('Currency Symbol','tcc-fluid'),'css'=>'small-text');
     $ins = new Admin_Field($set);
   }
   add_action('admin_init','tcc_currency_symbol',5);

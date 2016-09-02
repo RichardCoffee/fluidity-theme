@@ -38,6 +38,7 @@ if (!function_exists('fluid_edit_post_link')) {
 if (!function_exists('fluid_navigation')) {
   function fluid_navigation() {
     global $wp_query;
+who_am_i();
     if ($wp_query->max_num_pages>1) {
       $older = esc_html__('Older posts','tcc-fluid');
       $newer = esc_html__('Newer posts','tcc-fluid'); ?>
@@ -46,10 +47,14 @@ if (!function_exists('fluid_navigation')) {
           esc_html_e( 'Post Navigation', 'tcc-fluid' ); ?>
         </h2>
         <div class="nav-previous pull-left"><?php
-          next_posts_link('<span class="meta-nav">&larr;</span> '.$older); ?>
+          #next_posts_link('<span class="meta-nav">&larr;</span> '.$older);
+          next_posts_link();
+ ?>
         </div>
         <div class="nav-next pull-right"><?php
-          previous_posts_link($newer.' <span class="meta-nav">&rarr;</span>'); ?>
+          #previous_posts_link($newer.' <span class="meta-nav">&rarr;</span>');
+          previous_posts_link();
+ ?>
         </div>
       </div><?php
     }

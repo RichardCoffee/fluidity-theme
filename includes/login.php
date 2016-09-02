@@ -82,11 +82,11 @@ if (!function_exists('remove_lostpassword_text')) {
 
 if (!function_exists('tcc_login_form')) {
   function tcc_login_form($navbar=false,$right=false) {
-    $uname   = apply_filters('tcc_login_username',__('Username','tcc-fluid'));
-    $upass   = apply_filters('tcc_login_userpass',__('Password','tcc-fluid'));
-    $signin  = __('Sign In',       'tcc-fluid');
-    $signout = __('Sign Out',      'tcc-fluid');
-    $lost    = __('Lost Password', 'tcc-fluid');
+    $uname   = apply_filters('tcc_login_username',esc_html__('Username','tcc-fluid'));
+    $upass   = apply_filters('tcc_login_userpass',esc_html__('Password','tcc-fluid'));
+    $signin  = esc_html__('Sign In',       'tcc-fluid');
+    $signout = esc_html__('Sign Out',      'tcc-fluid');
+    $lost    = esc_html__('Lost Password', 'tcc-fluid');
     $color   = tcc_color_scheme();
     if ($navbar) {
       $formclass = 'navbar-form'.(($right) ? ' navbar-right' : '');

@@ -15,28 +15,28 @@ if (!function_exists('fluidity_register_sidebars')) {
     $after_widget  = "</div></div>";
     $sidebars   = array();
     #  Standard Page
-    $sidebars[] = array('name'          => __('Standard Page Sidebar','tcc-fluid'),
+    $sidebars[] = array('name'          => esc_html__('Standard Page Sidebar','tcc-fluid'),
                         'id'            => 'standard',
                         'before_widget' => $before_widget,
                         'before_title'  => $before_title,
                         'after_title'   => $after_title,
                         'after_widget'  => $after_widget);
     #  Home Page
-    $sidebars[] = array('name'          => __('Home Page Sidebar','tcc-fluid'),
+    $sidebars[] = array('name'          => esc_html__('Home Page Sidebar','tcc-fluid'),
                         'id'            => 'home',
                         'before_widget' => $before_widget,
                         'before_title'  => $before_title,
                         'after_title'   => $after_title,
                         'after_widget'  => $after_widget);
     #  Header sidebar
-    $sidebars[] = array('name'          => __('Horizontal Sidebar (3 col)','tcc-fluid'),
+    $sidebars[] = array('name'          => esc_html__('Horizontal Sidebar (3 col)','tcc-fluid'),
                         'id'            => 'three_column',
                         'before_widget' => "<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>$before_widget",
                         'before_title'  => $before_title,
                         'after_title'   => $after_title,
                         'after_widget'  => "$after_widget</div>"); //*/
     #  Footer sidebar
-    $sidebars[] = array('name'          => __('Footer Widget Area (4 col)','tcc-fluid'),
+    $sidebars[] = array('name'          => esc_html__('Footer Widget Area (4 col)','tcc-fluid'),
                         'id'            => 'footer',
                         'before_widget' => "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'><div class='panel panel-$color'><div class='panel-body'>",
                         'before_title'  => '',

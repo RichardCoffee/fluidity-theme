@@ -9,7 +9,7 @@ class Theme_Admin_Options {
   }
 
   private function form_title() {
-    return __('Settings','tcc-fluid');
+    return esc_html__('Settings','tcc-fluid');
   }
 
   public function form_layout($form) {
@@ -21,18 +21,18 @@ class Theme_Admin_Options {
   }
 
   public function describe_options() {
-    _e('Theme Behavior Options','tcc-fluid');
+    esc_html_e('Theme Behavior Options','tcc-fluid');
   }
 
   protected function options_layout() {
     $layout = array('default'=>true);
     $layout['heart'] = array('default' => 'on',
-                             'label'   => __('WP Heartbeat','tcc-fluid'),
-                             'text'    => __('Control the status of the WordPress Heartbeat API','tcc-fluid'),
-                             'help'    => __('If turned Off, the Heartbeat API will remain active on these pages: post.php, post-new.php, and admin.php','tcc-fluid'),
+                             'label'   => esc_html__('WP Heartbeat','tcc-fluid'),
+                             'text'    => esc_html__('Control the status of the WordPress Heartbeat API','tcc-fluid'),
+                             'help'    => esc_html__('The Heartbeat API will always remain active on these pages: post.php, post-new.php, and admin.php','tcc-fluid'),
                              'render'  => 'radio',
-                             'source'  => array('on'  => __('On','tcc-fluid'),
-                                                'off' => __('Off','tcc-fluid')));
+                             'source'  => array('on'  => esc_html__('On','tcc-fluid'),
+                                                'off' => esc_html__('Off','tcc-fluid')));
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }

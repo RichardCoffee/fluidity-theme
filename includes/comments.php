@@ -13,10 +13,10 @@ if (!function_exists('fluid_comment_navigation')) {
           _e('Comment navigation','tcc-fluid'); ?>
         </h2>
         <div class="nav-previous"><?php // FIXME:  poor translation string
-          previous_comments_link('&larr; '.__('Older Comments','tcc-fluid')); ?>
+          previous_comments_link('&larr; '.esc_html__('Older Comments','tcc-fluid')); ?>
         </div>
         <div class="nav-next"><?php
-          next_comments_link(__('Newer Comments','tcc-fluid').' &rarr;'); ?>
+          next_comments_link( esc_html__('Newer Comments','tcc-fluid').' &rarr;'); ?>
         </div>
       </nav><!-- #comment-nav-above --><?php
     }
@@ -30,7 +30,7 @@ if (!function_exists('fluid_list_comments')) {
     static $striping = 'odd';
     $GLOBALS['comment'] = $comment;
     $string    = _x('%1s: %2$s on %3$s','first placeholder is the comment type, second placeholder is an author link, third placeholder is a date','tcc-fluid');
-    $type_arr  = array('comment'=>__('Comment'),'trackback'=>__('Trackback'),'pingback'=>__('Pingback'));
+    $type_arr  = array('comment'=>__('Comment'),'trackback'=>esc_html__('Trackback','tcc-fluid'),'pingback'=>esc_html__('Pingback','tcc-fluid'));
     $comm_type = $comment->comment_type;
     switch ( $comm_type ) {
       case 'pingback' :

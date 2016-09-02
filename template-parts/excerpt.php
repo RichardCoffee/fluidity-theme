@@ -9,7 +9,7 @@ who_am_i(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
 
-  $format  = __('Permanent Link to %s','tcc-fluid');
+  $format  = esc_html__('Permanent Link to %s','tcc-fluid');
   $tooltip = sprintf($format,get_the_title()); ?>
 
   <h1 class="text-center" itemprop="headline">

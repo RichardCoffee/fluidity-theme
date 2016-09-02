@@ -16,7 +16,7 @@ require_once('classes/printer.php');
 $pdf = new Fluidity_Printer(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
-$pdf->SetCreator(__('Fluidity Printer','tcc-fluid'));
+$pdf->SetCreator(esc_html__('Fluidity Printer','tcc-fluid'));
 $pdf->SetAuthor(get_the_author_meta('user_nicename',$post->post_author));  #  post author
 $pdf->SetTitle(get_the_title($post->ID));  #  post title
 $pdf->SetSubject(wp_title(null,false,'right'));  #  page title

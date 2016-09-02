@@ -47,7 +47,7 @@ class TCC_Basic_Widget extends WP_Widget {
   protected function form_title($instance) {
     $instance['title'] = (isset($instance['title'])) ? $instance['title'] : $this->title;
     $form = "<p><label for='".$this->get_field_id('title')."'>";
-    $form.= __('Title:','tcc-fluid')."</label>";
+    $form.= esc_html__('Title:','tcc-fluid')."</label>";
     $form.= "<input type='text' class='widefat'";
     $form.= " id='"   .$this->get_field_id('title')  ."'";
     $form.= " name='" .$this->get_field_name('title')."'";
@@ -67,8 +67,8 @@ class TCC_Basic_Widget extends WP_Widget {
 class TCC_Address_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Address','tcc-fluid');
-    $this->desc  = __('Fluidity address widget','tcc-fluid');
+    $this->title = esc_html__('Address','tcc-fluid');
+    $this->desc  = esc_html__('Fluidity address widget','tcc-fluid');
     $this->slug  = 'tcc_address';
     parent::__construct();
   }
@@ -91,8 +91,8 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
 class TCC_Login_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Login','tcc-fluid');
-    $this->desc  = __('Fluidity Login form','');
+    $this->title = esc_html__('Login','tcc-fluid');
+    $this->desc  = esc_html__('Fluidity Login form','');
     $this->slug  = 'tcc_login';
     parent::__construct();
   }
@@ -106,8 +106,8 @@ class TCC_Login_Widget extends TCC_Basic_Widget {
 class TCC_Logo_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Logo','tcc-fluid');
-    $this->desc  = __('Fluidity - Displays your site logo','tcc-fluid');
+    $this->title = esc_html__('Logo','tcc-fluid');
+    $this->desc  = esc_html__('Fluidity - Displays your site logo','tcc-fluid');
     $this->slug  = 'tcc_logo';
     parent::__construct();
   }
@@ -124,8 +124,8 @@ class TCC_Logo_Widget extends TCC_Basic_Widget {
 class TCC_Search_Widget extends TCC_Basic_Widget {
 
   function __construct() {
-    $this->title = __('Search','tcc-fluid');
-    $this->desc  = __('Fluidity Search Form','tcc-fluid');
+    $this->title = esc_html__('Search','tcc-fluid');
+    $this->desc  = esc_html__('Fluidity Search Form','tcc-fluid');
     $this->slug  = 'tcc_search';
     parent::__construct();
     unregister_widget('WP_Widget_Search');
