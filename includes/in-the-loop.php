@@ -42,10 +42,10 @@ if (!function_exists('fluid_navigation')) {
         esc_html_e( 'Post Navigation', 'tcc-fluid' ); ?>
       </h2>
       <div class="nav-previous pull-left"><?php
-        previous_post_link(null,null,true); ?>
+        previous_post_link('&laquo; %link','%title',true); ?>
       </div>
       <div class="nav-next pull-right"><?php
-        next_post_link(null,null,true); ?>
+        next_post_link('%link &raquo;','%title',true); ?>
       </div>
     </div><?php
   }
