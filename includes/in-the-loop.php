@@ -47,7 +47,7 @@ if (!function_exists('fluid_navigation')) {
         esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
       </h2>
       <div class="nav-previous pull-left"><?php
-previous_post_link();
+previous_post_link($left);
         previous_post_link($left,$text,$restrict,$exclude,$taxonomy); ?>
       </div>
       <div class="nav-next pull-right"><?php
