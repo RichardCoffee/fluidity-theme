@@ -40,13 +40,14 @@ if (!function_exists('fluid_navigation')) {
     $left  = '&laquo; %link';
     $right = '%link &raquo;';
     $text  = '%title';
-    $restrict = ($taxonomy) ? true : false;
+    $restrict = true;
     $exclude  = ''; ?>
     <div id="nav-posts" class="row noprint">
       <h2 class="screen-reader-text"><?php
         esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
       </h2>
       <div class="nav-previous pull-left"><?php
+      
 previous_post_link($left,$text,$restrict,$exclude,$taxonomy);
         previous_post_link($left,$text,$restrict,$exclude,$taxonomy); ?>
       </div>
@@ -66,10 +67,10 @@ if (!function_exists('fluid_next_post_exists')) {
 
 if (!function_exists('fluid_post_date')) {
   function fluid_post_date() {
-    $string = esc_html_x('Posted on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
+    $string = esc_html_x('Posted on %1$s by %2$s','formatted date string, user name','tcc-fluid');
     $date   = get_the_date();
     if ((get_the_modified_date('U')-(60*60*24))>get_the_date('U')) {
-      $string = esc_html_x('Last modified on %1$s by %2$s','first: formatted date string, second: user name','tcc-fluid');
+      $string = esc_html_x('Last modified on %1$s by %2$s','formatted date string, user name','tcc-fluid');
       $date   = get_the_modified_date();
     } ?>
     <h3 class="text-center"><?php
@@ -90,12 +91,11 @@ if (!function_exists('fluid_thumbnail')) {
 if (!function_exists('get_the_author_posts_link')) {
   function get_the_author_posts_link($authorID=0) {
     $authorID = ($authorID) ? $authorID : get_the_author_meta('ID');
-    $return = '';
     if ($authorID) {
       $link   = get_author_posts_url($agent->ID);
-      $link   = str_replace('/author/','/agent/',$link);
-      $return = "<a href='$link'>".get_the_author_meta('display_name')."</a>";
+      #$link   = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem
+      return "<a href='$link'>".get_the_author_meta('display_name')."</a>";
     }
-    return $return;
+    return '';
   }
 }
