@@ -91,7 +91,7 @@ if (!function_exists('tcc_option')) {
 if (!function_exists('tcc_settings')) {
   function tcc_settings($option) {
     static $data;
-    if (empty($data)) { $data = get_option('tcc_options_settings'); }
+    if (empty($data)) { $data = get_option('tcc_options_admin'); }
     if (isset($data[$option])) { return $data[$option]; }
     return '';
   }
