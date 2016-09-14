@@ -9,13 +9,11 @@
 
   body {
     background: #fff;
+    background-image: none;
     color: #000;
     font-size: 8pt;
     line-height: 150%;
-    margin: 0px;
-    &.custom-background {
-      background: none;
-    }
+    margin: 0;
   }
 
   #comments {

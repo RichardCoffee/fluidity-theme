@@ -129,13 +129,11 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
 
   body {
     background: #fff;
+    background-image: none;
     color: #000;
     font-size: 8pt;
     line-height: 150%;
-    margin: 0px;
-  }
-  body.custom-background {
-    background: none;
+    margin: 0;
   }
 
   #comments {
