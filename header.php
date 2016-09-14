@@ -25,9 +25,10 @@
   fluid_custom_css(); ?>
 
   <style media="print">
+    body.custom-background { background: none; }
     .noprint       { display: none; }
     #fluid-header  { display: none; }
-    .fluid-sidebar { display: none; }
+    .fluid-sidebar aside { display: none; }
     #fluid-footer  { display: none; }
     #comments      { display: none; }
   </style>
