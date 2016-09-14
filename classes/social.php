@@ -37,8 +37,8 @@ class Theme_Social_Icons {
                               'source'  => array('target'  => __('Open in new tab (default)','tcc-fluid'),
                                                  'replace' => __('Load in same tab','tcc-fluid')),
                               'divcss'  => 'social-option-icon');
-    $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#4C66A4',
-                   'GitHub'    => 'black',   'Google Plus' => 'red',     'LinkedIN' => '#287BBC',
+    $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#3B5998',
+                   'GitHub'    => 'black',   'Google Plus' => '#D74D2F', 'LinkedIN' => '#287BBC',
                    'Pinterest' => 'red',     'RSS'         => '#F67F00', 'Tumblr'   => 'black',
                    'Twitter'   => '#0084B4', 'Xing'        => 'black',   'YouTube'  => 'red');
     foreach($icons as $icon=>$color) {
