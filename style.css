@@ -122,9 +122,7 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
 @media print {
   article {
     text-decoration: none;
-  }
-  article a:after {
-    content: "";
+    width: 600px;
   }
 
   body {
