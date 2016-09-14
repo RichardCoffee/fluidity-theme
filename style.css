@@ -119,6 +119,35 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   color: #fff;
 }
 
+@media print {
+  body.custom-background {
+    background: none;
+  }
+
+  #comments {
+    display: none;
+  }
+
+  .edit-link {
+    display: none;
+  }
+
+  #fluid-header {
+    display: none;
+  }
+
+  .fluid-sidebar aside {
+    display: none;
+  }
+
+  #fluid-footer {
+    display: none;
+  }
+
+  .noprint {
+    display: none;
+  }
+}
 body {
   margin: 0;
   background: white;

@@ -1,0 +1,31 @@
+@media print {
+
+  body.custom-background {
+    background: none;
+  }
+
+  #comments {
+    display: none;
+  }
+
+  .edit-link {
+    display: none;
+  }
+
+  #fluid-header {
+    display: none;
+  }
+
+  .fluid-sidebar aside {
+    display: none;
+  }
+
+  #fluid-footer {
+    display: none;
+  }
+
+  .noprint {
+    display: none;
+  }
+
+}
