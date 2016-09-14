@@ -23,7 +23,7 @@ if (!function_exists('fluidity_social_icons')) {
       if (has_action('fluidity_social_icons')) {
         do_action('fluidity_social_icons');
       } else {
-        unset($icons['active']);
+        unset($icons['active'],$icons['target']);
         $social = array(); // FIXME: find another way to do this
         foreach($icons as $field=>$value) {
           $pos = strpos($field,'_color');
@@ -40,7 +40,6 @@ if (!function_exists('fluidity_social_icons')) {
         #log_entry($icons,$social,$layout); ?>
         <span class='fluidity-social-icons'><?php
           foreach($social as $key=>$set) {
-tcc_log_entry($set);
             if (empty($set['link'])) continue;
             $html = " <a class='fa fa-fw fa-$key-square' ";
             $html.= ($icons['target']==='target') ? " target='fluidity_$key'" : "";
