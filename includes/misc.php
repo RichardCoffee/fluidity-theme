@@ -40,6 +40,7 @@ if (!function_exists('fluidity_social_icons')) {
         #log_entry($icons,$social,$layout); ?>
         <span class='fluidity-social-icons'><?php
           foreach($social as $key=>$set) {
+tcc_log_entry($set);
             if (empty($set['link'])) continue;
             $html = " <a class='fa fa-fw fa-$key-square' ";
             $html.= ($icons['target']==='target') ? " target='fluidity_$key'" : "";
