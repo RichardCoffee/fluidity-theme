@@ -70,7 +70,7 @@ if (!function_exists('fluid_post_date')) {
     $string = esc_html_x('Posted on %1$s by %2$s','formatted date string, user name','tcc-fluid');
     $date   = get_the_date();
     $layout = tcc_settings('postdate');
-    if (($layout==='modified') && (get_the_modified_date('U')-(60*60*24))>get_the_date('U'))) {
+    if (($layout==='modified') && ((get_the_modified_date('U')-(60*60*24))>get_the_date('U'))) {
       $string = esc_html_x('Last modified on %1$s by %2$s','formatted date string, user name','tcc-fluid');
       $date   = get_the_modified_date();
     } ?>
