@@ -31,11 +31,16 @@ class Theme_Social_Icons {
                                                  'no'  => __("No -- you are using a plugin, or do not want social icons",'tcc-fluid')),
                               'change'  => 'showhidePosi(this,".social-option-icon","yes");',
                               'divcss'  => 'social-option-active');
-    $icons = array('Behance'     => 'blue',
-                   'Bitbucket'   => '#205081','Facebook' => '#4C66A4', 'GitHub'    => 'black',
-                   'Google Plus' => 'red',    'LinkedIN' => '#287BBC', 'Pinterest' => 'red',
-                   'RSS'         => 'orange', 'Tumblr'   => 'black',   'Twitter'   => '#0084B4',
-                   'Xing'        => 'black',  'YouTube'  => 'red');
+    $layout['target'] = array('default' => 'target',
+                              'label'   => __('Target','tcc-fluid'),
+                              'render'  => 'radio',
+                              'source'  => array('target'  => __('Open in new tab (default)','tcc-fluid'),
+                                                 'replace' => __('Load in same tab','tcc-fluid')),
+                              'divcss'  => 'social-option-icon');
+    $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#4C66A4',
+                   'GitHub'    => 'black',   'Google Plus' => 'red',     'LinkedIN' => '#287BBC',
+                   'Pinterest' => 'red',     'RSS'         => 'orange',  'Tumblr'   => 'black',
+                   'Twitter'   => '#0084B4', 'Xing'        => 'black',   'YouTube'  => 'red');
     foreach($icons as $icon=>$color) {
       $key = sanitize_title($icon);
       $layout[$key] = array('default' => ($icon==='RSS') ? site_url('/feed/') : '',

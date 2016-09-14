@@ -42,7 +42,8 @@ if (!function_exists('fluidity_social_icons')) {
           foreach($social as $key=>$set) {
             if (empty($set['link'])) continue;
             $html = " <a class='fa fa-fw fa-$key-square' ";
-            $html.= " target='fluidity_$key' href='{$set['link']}'";
+            $html.= ($icon['target']==='target') ? " target='fluidity_$key'" : "";
+            $html.= " href='{$set['link']}'";
             #  translators: 1 - a website name
             $html.= " title='".sprintf(_('See us on %s'),$layout[$key]['label'])."'";
             $html.= " style='color:{$set['color']};'> </a>";
