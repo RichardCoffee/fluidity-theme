@@ -19,11 +19,11 @@ add_filter('excerpt_more', 'fluid_read_more_link');
 if (!function_exists('fluidity_social_icons')) {
   function fluidity_social_icons() {
     $icons = get_option('tcc_options_social');
-tcc_log_entry($icons);
     if ($icons['active']==='yes') {
       if (has_action('fluidity_social_icons')) {
         do_action('fluidity_social_icons');
       } else {
+        $target = $icons['target'];
         unset($icons['active'],$icons['target']);
         $social = array(); // FIXME: find another way to do this
         foreach($icons as $field=>$value) {
@@ -43,7 +43,7 @@ tcc_log_entry($icons);
           foreach($social as $key=>$set) {
             if (empty($set['link'])) continue;
             $html = " <a class='fa fa-fw fa-$key-square' ";
-            $html.= ($icons['target']==='target') ? " target='fluidity_$key'" : "";
+            $html.= ($target==='target') ? " target='fluidity_$key'" : "";
             $html.= " href='{$set['link']}'";
             #  translators: 1 - a website name
             $html.= " title='".sprintf(_('See us on %s'),$layout[$key]['label'])."'";
