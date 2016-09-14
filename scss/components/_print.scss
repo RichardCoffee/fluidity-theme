@@ -1,11 +1,21 @@
 @media print {
 
-  a:after {
-    content: ""; /* disable URL display */
+  article {
+    text-decoration: none;
+    & a:after {
+      content: "";
+    }
   }
 
-  body.custom-background {
-    background: none;
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 8pt;
+    line-height: 150%;
+    margin: 0px;
+    &.custom-background {
+      background: none;
+    }
   }
 
   #comments {

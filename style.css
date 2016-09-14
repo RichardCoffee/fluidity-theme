@@ -120,11 +120,20 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
 }
 
 @media print {
-  a:after {
+  article {
+    text-decoration: none;
+  }
+  article a:after {
     content: "";
-    /* disable URL display */
   }
 
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 8pt;
+    line-height: 150%;
+    margin: 0px;
+  }
   body.custom-background {
     background: none;
   }
