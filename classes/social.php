@@ -39,7 +39,7 @@ class Theme_Social_Icons {
                               'divcss'  => 'social-option-icon');
     $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#4C66A4',
                    'GitHub'    => 'black',   'Google Plus' => 'red',     'LinkedIN' => '#287BBC',
-                   'Pinterest' => 'red',     'RSS'         => 'orange',  'Tumblr'   => 'black',
+                   'Pinterest' => 'red',     'RSS'         => '#F67F00', 'Tumblr'   => 'black',
                    'Twitter'   => '#0084B4', 'Xing'        => 'black',   'YouTube'  => 'red');
     foreach($icons as $icon=>$color) {
       $key = sanitize_title($icon);
