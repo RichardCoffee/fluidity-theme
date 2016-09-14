@@ -1,5 +1,9 @@
 @media print {
 
+  a:after {
+    content: ""; /* disable URL display */
+  }
+
   body.custom-background {
     background: none;
   }
