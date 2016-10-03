@@ -74,7 +74,7 @@ if (!function_exists('fluidity_load_sidebar')) {
         } else { /*echo "<p>$sidebar non-dynamic</p>";*/ }
       } else {   /*echo "<p>$sidebar not active</p>";*/ }
     }
-    return false;
+    return $force;
   }
 }
 
