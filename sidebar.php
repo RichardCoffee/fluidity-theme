@@ -29,7 +29,6 @@ if (!$loaded) {
       $post_type = $use_this;
       #log_entry("FIXME: convert array to usable string",$post_type);
     }
-    tellme("<p>looking for sidebar '$post_type'</p>");
     $loaded = fluidity_load_sidebar(array($post_type,$post_type.'_sidebar'));
   }
 }
