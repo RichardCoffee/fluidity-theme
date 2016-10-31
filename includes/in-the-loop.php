@@ -47,8 +47,6 @@ if (!function_exists('fluid_navigation')) {
         esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
       </h2>
       <div class="nav-previous pull-left"><?php
-      
-previous_post_link($left,$text,$restrict,$exclude,$taxonomy);
         previous_post_link($left,$text,$restrict,$exclude,$taxonomy); ?>
       </div>
       <div class="nav-next pull-right"><?php
@@ -82,7 +80,7 @@ if (!function_exists('fluid_post_date')) {
 
 if (!function_exists('fluid_thumbnail')) {
   function fluid_thumbnail() {
-    $css = (tcc_layout('sidebar')=='none') ? 'col-lg-12 col-md-12 col-sm-12 col-xs-12' : 'col-lg-8 col-md-8 col-sm-12 col-xs-12'; ?>
+    $css = (tcc_layout('sidebar')==='none') ? 'col-lg-12 col-md-12 col-sm-12 col-xs-12' : 'col-lg-8 col-md-8 col-sm-12 col-xs-12'; ?>
     <div class='<?php echo $css; ?> logo'><?php
        the_post_thumbnail(); ?>
     </div><?php

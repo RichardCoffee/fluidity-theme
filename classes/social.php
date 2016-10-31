@@ -39,8 +39,10 @@ class Theme_Social_Icons {
                               'divcss'  => 'social-option-icon');
     $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#3B5998',
                    'GitHub'    => 'black',   'Google Plus' => '#D74D2F', 'LinkedIN' => '#287BBC',
-                   'Pinterest' => 'red',     'RSS'         => '#F67F00', 'Tumblr'   => 'black',
-                   'Twitter'   => '#0084B4', 'Xing'        => 'black',   'YouTube'  => 'red');
+                   'Pinterest' => 'red',     'RSS'         => '#F67F00',
+# 'Steam'    => 'black',
+                   'Tumblr'    => 'black',   'Twitter'     => '#0084B4', 'Xing'     => 'black',
+                   'YouTube'  => 'red');
     foreach($icons as $icon=>$color) {
       $key = sanitize_title($icon);
       $layout[$key] = array('default' => ($icon==='RSS') ? site_url('/feed/') : '',

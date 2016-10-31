@@ -56,7 +56,7 @@ if (!function_exists('tcc_layout')) {
     static $data;
     if (empty($data)) { $data = get_option('tcc_options_layout'); }
     if (isset($data[$option])) { return $data[$option]; }
-    return '';
+    return 'excerpt';
   }
 }
 
