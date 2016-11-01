@@ -30,12 +30,15 @@ add_filter( 'mc4wp_debug_log_file', function( $file ) { return FLUID_MC4WP_LOG_F
 
 /**  WooCommerce  **/
 
-if ( ! function_exists( 'has_woocommerce' ) ) {
+if (!function_exists('has_woocommerce')) {
   function has_woocommerce() {
-    if ( class_exists( 'woocommerce' ) ) { return true; } else { return false; }
+    return class_exists('woocommerce');
   }
 }
 
+if (has_woocommerce()) {
+  add_theme_support('woocommerce');
+}
 
 /**  WP Font Awesome Share Icons  **/
 
