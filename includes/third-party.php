@@ -28,6 +28,15 @@ if (!defined('FLUID_MC4WP_LOG_FILE')) { define('FLUID_MC4WP_LOG_FILE', WP_CONTEN
 add_filter( 'mc4wp_debug_log_file', function( $file ) { return FLUID_MC4WP_LOG_FILE; } );  # default is the download directory (huh?)
 
 
+/**  WooCommerce  **/
+
+if ( ! function_exists( 'has_woocommerce' ) ) {
+  function has_woocommerce() {
+    if ( class_exists( 'woocommerce' ) ) { return true; } else { return false; }
+  }
+}
+
+
 /**  WP Font Awesome Share Icons  **/
 
 if (function_exists('wpfai_social') && !function_exists('fluidity_wpfai_social')) {
@@ -40,4 +49,3 @@ if (function_exists('wpfai_social') && !function_exists('fluidity_wpfai_social')
   }
   add_action('fluidity_social_icons','fluid_wpfai_social');
 }
-
