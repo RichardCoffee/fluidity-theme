@@ -60,7 +60,8 @@ class Theme_Layout_Options {
                               'text'    => __('Should the sidebar widgets start open or closed, where applicable','tcc-fluid'),
                               'render'  => 'radio',
                               'source'  =>array('open'   => __('Open','tcc-fluid'),
-                                                'closed' => __('Closed','tcc-fluid')));
+                                                'closed' => __('Closed','tcc-fluid'),
+                                                'perm'   => __('Permanantly Open','tcc-fluid')));
     $layout['content'] = array('default' => 'content',
                                'label'   => __('Content','tcc-fluid'),
                                'text'    => __('Show full post content or just an excerpt on archive/category/search pages','tcc-fluid'),

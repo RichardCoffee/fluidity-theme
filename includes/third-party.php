@@ -37,7 +37,17 @@ if (!function_exists('has_woocommerce')) {
 }
 
 if (has_woocommerce()) {
+
   add_theme_support('woocommerce');
+
+  #  function sharing_display is part of Jetpack's sharedaddy
+  if (function_exists('sharing_display') && !function_exists('woocommerce_and_jetpack_sharedaddy')) {
+    function woocommerce_and_jetpack_sharedaddy() { ?>
+      <div class="social"><?php echo sharing_display(); ?></div><?php
+    }
+    add_action('woocommerce_share','woocommerce_and_jetpack_sharedaddy');
+  }
+
 }
 
 /**  WP Font Awesome Share Icons  **/
@@ -45,9 +55,9 @@ if (has_woocommerce()) {
 if (function_exists('wpfai_social') && !function_exists('fluidity_wpfai_social')) {
   function fluidity_wpfai_social() {
     $attributes = array('icons' => 'twitter,facebook,google-plus,pinterest,linkedin', // FIXME: can we assign list from options data?
-      'shape' => 'square', 'inverse' => 'yes', 'size' => 'lg', 'loadfa' => 'no'); ?>
+                        'shape' => 'square', 'inverse' => 'yes', 'size' => 'lg', 'loadfa' => 'no'); ?>
     <div class="fluidity-social-icons"><?php
-        echo wpfai_social($attributes); ?>
+      echo wpfai_social($attributes); ?>
     </div><?php
   }
   add_action('fluidity_social_icons','fluid_wpfai_social');

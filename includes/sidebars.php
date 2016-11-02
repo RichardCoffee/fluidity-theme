@@ -4,12 +4,13 @@
 
 if (!function_exists('fluidity_register_sidebars')) {
   function fluidity_register_sidebars() {
-    $color = (is_admin()) ? 'primary' : tcc_color_scheme('sidebars');
+    $color  = (is_admin()) ? 'primary' : tcc_color_scheme('sidebars');
+    $widget = tcc_layout('widget');
     $before_widget = "<div class='panel panel-$color'>";
     $before_title  = "<div class='panel-heading'";
-    $before_title .= (tcc_layout('widget')=='closed') ? " data-collapse='1'>" : ">";
-    $fa_sign       = (tcc_layout('widget')=='open') ? "fa-minus" : "fa-plus";
-    $before_title .= "<i class='fa $fa_sign pull-right panel-sign'></i>";
+    $before_title .= ($widget==='closed') ? " data-collapse='1'>" : ">";
+    $fa_sign       = ($widget==='open')   ? "fa-minus" : "fa-plus";
+    $before_title .= ($widget==='perm')   ? "" : "<i class='fa $fa_sign pull-right panel-sign'></i>";
     $before_title .= "<h3 class='panel-title text-center scroll-this pointer'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
     $after_widget  = "</div></div>";
