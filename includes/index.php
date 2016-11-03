@@ -5,7 +5,11 @@
  *
  */
 
-function fluid_index_page($page='index') { ?>
+function fluid_index_page($page='index') {
+
+  echo "<p>Page:  $page</p>";
+
+ ?>
 
   <div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
     <div class="row pad05perc">
