@@ -6,6 +6,12 @@
  */
 
 
+/**  bbPress  **/
+
+#  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
+add_filter('bbp_show_lead_topic', '__return_true');
+
+
 /**  Jetpack  **/
 
 /*  jetpack_the_site_logo() called in includes/header.php, function fluidity_header_logo() */
