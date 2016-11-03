@@ -96,7 +96,7 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 
 if (!function_exists('fluidity_sidebar_layout')) {
   function fluidity_sidebar_layout($sidebar='standard',$side='') {
-    if ($sidebar==='blank') { return; }
+    if ($sidebar==='plain') { return; }
     $side = ($side) ? $side : tcc_layout('sidebar');
     if ($side!=='none') {
       $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e'.(($side=='right') ? ' pull-right' : ''); ?>
