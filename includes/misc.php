@@ -23,7 +23,7 @@ if (!function_exists('fluidity_social_icons')) {
       if (has_action('fluidity_social_icons')) {
         do_action('fluidity_social_icons');
       } else {
-tcc_log_entry($icons);
+log_entry($icons);
         $target = $icons['target'];
         unset($icons['active'],$icons['target']);
         $social = array(); // FIXME: find another way to do this
