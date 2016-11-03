@@ -8,6 +8,9 @@
 get_header();
 
 who_am_i();
+
+echo "<p>blank.php</p>"
+
 fluid_index_page('blank');
 
 get_footer(); ?>
