@@ -14,6 +14,10 @@ if (!function_exists('fluidity_register_sidebars')) {
     $before_title .= "<h3 class='panel-title text-center scroll-this pointer'><b>";
     $after_title   = "</b></h3></div><div class='panel-body'>";
     $after_widget  = "</div></div>";
+    $before_widget = apply_filters('tcc_before_widget',$before_widget);
+    $before_title  = apply_filters('tcc_before_title', $before_title);
+    $after_title   = apply_filters('tcc_after_title',  $after_title);
+    $after_widget  = apply_filters('tcc_after_widget', $after_widget);
     $sidebars   = array();
     #  Standard Page
     $sidebars[] = array('name'          => esc_html__('Standard Page Sidebar','tcc-fluid'),
@@ -92,6 +96,7 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 
 if (!function_exists('fluidity_sidebar_layout')) {
   function fluidity_sidebar_layout($sidebar='standard',$side='') {
+    if ($sidebar==='blank') { return; }
     $side = ($side) ? $side : tcc_layout('sidebar');
     if ($side!=='none') {
       $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e'.(($side=='right') ? ' pull-right' : ''); ?>
