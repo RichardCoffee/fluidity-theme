@@ -23,8 +23,7 @@ if (!function_exists('fluidity_social_icons')) {
       if (has_action('fluidity_social_icons')) {
         do_action('fluidity_social_icons');
       } else {
-log_entry($icons);
-        $target = $icons['target'];
+        $target = (isset($icons['target'])) ? $icons['target'] : 'target';
         unset($icons['active'],$icons['target']);
         $social = array(); // FIXME: find another way to do this
         foreach($icons as $field=>$value) {

@@ -11,9 +11,9 @@ class Theme_Social_Icons {
 
   public function form_layout($form) {
     $form[$this->base] = array('describe' => array($this,'describe_social'),
-                            'title'    => __('Social Icons','tcc-fluid'),
-                            'option'   => 'tcc_options_social',
-                            'layout'   => $this->social_layout());
+                               'title'    => __('Social Icons','tcc-fluid'),
+                               'option'   => 'tcc_options_social',
+                               'layout'   => $this->social_layout());
     return $form;
   }
 
