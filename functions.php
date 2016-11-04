@@ -56,8 +56,11 @@ if (!function_exists('fluidity_enqueue')) {
     wp_register_script('collapse',    "$base_url/js/collapse.js", array('jquery','library'),false,true);
     wp_register_script('autohide.js', "$base_url/js/autohide.js", array('jquery'),          false,true);
     wp_enqueue_script('bootstrap');
+log_entry('widget: '.tcc_layout('widget'));
     if (!tcc_layout('widget')==='perm') {
+log_entry('loading collapse');
       wp_enqueue_script('collapse'); }
+else { log_entry('not loading collapse'); }
     if (is_singular() && comments_open() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); }  #  enable threaded comments
     $hdr_state = tcc_layout('header');
