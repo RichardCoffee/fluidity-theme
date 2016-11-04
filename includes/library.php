@@ -340,6 +340,7 @@ if (!function_exists('who_am_i')) {
         if (empty($file)) {
           $trace = debug_backtrace();
           $file  = $trace[0]['file'];
+log_entry($trace);
         }
         $display = $file;
         if ($pos=strpos($file,'wp-content')) {
