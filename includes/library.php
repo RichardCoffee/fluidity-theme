@@ -338,7 +338,10 @@ if (!function_exists('who_am_i')) {
       if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
       if ($flag=='yes') {
         $trace = debug_backtrace();
-        $disp  = $trace[$pos]['file'];
+        $show  = $trace[$pos]['file'];
+        if ($pos=strpos($show,'wp-content')) {
+          $show = substr($show,$pos+10);
+        }
         echo "<p>$disp</p>";
       }
     }
