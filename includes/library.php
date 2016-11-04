@@ -342,7 +342,7 @@ if (!function_exists('who_am_i')) {
         if ($pos=strpos($show,'wp-content')) {
           $show = substr($show,$pos+10);
         }
-        echo "<p>$disp</p>";
+        echo "<p>$show</p>";
       }
     }
   }
