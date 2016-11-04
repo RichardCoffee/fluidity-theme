@@ -332,21 +332,14 @@ if (!function_exists('tellme')) {
 
 if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
-  function who_am_i($file='') {
+  function who_am_i($pos=0) {
     if (WP_DEBUG)  {
       static $flag = ''; // give capability to turn this off via a flag file
       if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
       if ($flag=='yes') {
-        if (empty($file)) {
-          $trace = debug_backtrace();
-          $file  = $trace[0]['file'];
-log_entry($trace);
-        }
-        $display = $file;
-        if ($pos=strpos($file,'wp-content')) {
-          $display = substr($file,$pos+10);
-        }
-        echo "<p>$display</p>";
+        $trace = debug_backtrace();
+        $disp  = $trace[$pos]['file'];
+        echo "<p>$disp</p>";
       }
     }
   }

@@ -8,7 +8,7 @@
 function fluid_index_page($page='index') { ?>
 
   <div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
-    <?php who_am_i(); ?>
+    <?php who_am_i(1); ?>
     <div class="row pad05perc">
       <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
 
