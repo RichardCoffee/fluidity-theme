@@ -61,7 +61,7 @@ class Theme_Layout_Options {
                               'render'  => 'radio',
                               'source'  =>array('open'   => __('Open','tcc-fluid'),
                                                 'closed' => __('Closed','tcc-fluid'),
-                                                'perm'   => __('Permanantly Open','tcc-fluid')));
+                                                'perm'   => __('Do not provide option to users','tcc-fluid')));
     $layout['content'] = array('default' => 'content',
                                'label'   => __('Content','tcc-fluid'),
                                'text'    => __('Show full post content or just an excerpt on archive/category/search pages','tcc-fluid'),
