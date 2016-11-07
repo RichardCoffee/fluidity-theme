@@ -19,6 +19,7 @@
   border-color: #FAEBCC;
 }
 .navbar-warning-inverse .navbar-brand {
+  background-color: #FCF8E3;
   color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-brand:hover, .navbar-warning-inverse .navbar-brand:focus {
@@ -26,9 +27,11 @@
   background-color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-text {
+  background-color: #FCF8E3;
   color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-nav > li > a, .navbar-warning-inverse .dropdown-menu > li > a {
+  background-color: #FCF8E3;
   color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-nav > li > a:hover, .navbar-warning-inverse .navbar-nav > li > a:focus, .navbar-warning-inverse .dropdown-menu > li > a:hover, .navbar-warning-inverse .dropdown-menu > li > a:focus {
@@ -57,6 +60,7 @@
   border-color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-link {
+  background-color: #FCF8E3;
   color: #8A6D3B;
 }
 .navbar-warning-inverse .navbar-link:hover {
@@ -65,6 +69,7 @@
 
 @media (max-width: 767px) {
   .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a {
+    background-color: #FCF8E3;
     color: #8A6D3B;
   }
   .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a:focus {

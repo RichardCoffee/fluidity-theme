@@ -20,6 +20,7 @@
   background-color: color(background);
   border-color: color(bgHighlight);
   .navbar-brand {
+    background-color: color(background);
     color: color(textcolor);
     &:hover, &:focus {
       color: color(bgHighlight);
@@ -27,11 +28,13 @@
     }
   }
   .navbar-text {
+    background-color: color(background);
     color: color(textcolor);
   }
   .navbar-nav, .dropdown-menu {
     > li {
       > a {
+        background-color: color(background);
         color: color(textcolor);
         &:hover,  &:focus {
           color: color(bgHighlight);
@@ -64,6 +67,7 @@
   .navbar-form {
     border-color: color(textcolor); }
   .navbar-link {
+    background-color: color(background);
     color: color(textcolor);
     &:hover {
       color: color(textHighlight);
@@ -78,6 +82,7 @@
 @media (max-width: 767px) {
   .navbar-#{$colorName} .navbar-nav .open .dropdown-menu {
     > li > a {
+      background-color: color(background);
       color: color(textcolor);
       &:hover, &:focus {
         color: color(textHighlight);

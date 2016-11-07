@@ -1,7 +1,7 @@
 <?php
 /*
- * File Name: plain.php
  * Template Name: Plain (no sidebar)
+ * File Name: plain.php
  *
  */
 
