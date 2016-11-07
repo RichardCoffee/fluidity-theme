@@ -32,6 +32,7 @@
 }
 .navbar-danger-inverse .navbar-nav, .navbar-danger-inverse .dropdown-menu {
   background-color: #f2dede;
+  opacity: 1;
 }
 .navbar-danger-inverse .navbar-nav > li > a, .navbar-danger-inverse .dropdown-menu > li > a {
   background-color: #f2dede;

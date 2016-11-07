@@ -32,6 +32,7 @@
 }
 .navbar-success .navbar-nav, .navbar-success .dropdown-menu {
   background-color: #5cb85c;
+  opacity: 1;
 }
 .navbar-success .navbar-nav > li > a, .navbar-success .dropdown-menu > li > a {
   background-color: #5cb85c;

@@ -32,6 +32,7 @@
 }
 .navbar-warning .navbar-nav, .navbar-warning .dropdown-menu {
   background-color: #F0AD4E;
+  opacity: 1;
 }
 .navbar-warning .navbar-nav > li > a, .navbar-warning .dropdown-menu > li > a {
   background-color: #F0AD4E;

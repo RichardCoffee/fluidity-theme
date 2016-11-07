@@ -32,6 +32,7 @@
 }
 .navbar-danger .navbar-nav, .navbar-danger .dropdown-menu {
   background-color: #d9534f;
+  opacity: 1;
 }
 .navbar-danger .navbar-nav > li > a, .navbar-danger .dropdown-menu > li > a {
   background-color: #d9534f;

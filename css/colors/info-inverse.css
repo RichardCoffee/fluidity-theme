@@ -32,6 +32,7 @@
 }
 .navbar-info-inverse .navbar-nav, .navbar-info-inverse .dropdown-menu {
   background-color: #D9EDF7;
+  opacity: 1;
 }
 .navbar-info-inverse .navbar-nav > li > a, .navbar-info-inverse .dropdown-menu > li > a {
   background-color: #D9EDF7;

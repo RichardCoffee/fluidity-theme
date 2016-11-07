@@ -30,6 +30,7 @@
 }
 .navbar-green .navbar-nav, .navbar-green .dropdown-menu {
   background-color: #39b54a;
+  opacity: 1;
 }
 .navbar-green .navbar-nav > li > a, .navbar-green .dropdown-menu > li > a {
   background-color: #39b54a;

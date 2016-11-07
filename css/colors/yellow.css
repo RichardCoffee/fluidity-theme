@@ -30,6 +30,7 @@
 }
 .navbar-yellow .navbar-nav, .navbar-yellow .dropdown-menu {
   background-color: #fff200;
+  opacity: 1;
 }
 .navbar-yellow .navbar-nav > li > a, .navbar-yellow .dropdown-menu > li > a {
   background-color: #fff200;

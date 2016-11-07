@@ -30,6 +30,7 @@
 }
 .navbar-orange .navbar-nav, .navbar-orange .dropdown-menu {
   background-color: #f7941d;
+  opacity: 1;
 }
 .navbar-orange .navbar-nav > li > a, .navbar-orange .dropdown-menu > li > a {
   background-color: #f7941d;

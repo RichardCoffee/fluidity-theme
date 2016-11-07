@@ -33,6 +33,7 @@
   }
   .navbar-nav, .dropdown-menu {
     background-color: color(background);
+    opacity: 1;
     > li {
       > a {
         background-color: color(background);
