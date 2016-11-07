@@ -28,18 +28,18 @@
 .navbar-danger .navbar-text {
   color: #FFFFFF;
 }
-.navbar-danger .navbar-nav > li > a {
+.navbar-danger .navbar-nav > li > a, .navbar-danger .dropdown-menu > li > a {
   color: #FFFFFF;
 }
-.navbar-danger .navbar-nav > li > a:hover, .navbar-danger .navbar-nav > li > a:focus {
+.navbar-danger .navbar-nav > li > a:hover, .navbar-danger .navbar-nav > li > a:focus, .navbar-danger .dropdown-menu > li > a:hover, .navbar-danger .dropdown-menu > li > a:focus {
   color: #d43f3a;
   background-color: #FFFFFF;
 }
-.navbar-danger .navbar-nav > .active > a, .navbar-danger .navbar-nav > .active > a:hover, .navbar-danger .navbar-nav > .active > a:focus {
+.navbar-danger .navbar-nav > .active > a, .navbar-danger .navbar-nav > .active > a:hover, .navbar-danger .navbar-nav > .active > a:focus, .navbar-danger .dropdown-menu > .active > a, .navbar-danger .dropdown-menu > .active > a:hover, .navbar-danger .dropdown-menu > .active > a:focus {
   color: #FFFFFF;
   background-color: #d43f3a;
 }
-.navbar-danger .navbar-nav > .open > a, .navbar-danger .navbar-nav > .open > a:hover, .navbar-danger .navbar-nav > .open > a:focus {
+.navbar-danger .navbar-nav > .open > a, .navbar-danger .navbar-nav > .open > a:hover, .navbar-danger .navbar-nav > .open > a:focus, .navbar-danger .dropdown-menu > .open > a, .navbar-danger .dropdown-menu > .open > a:hover, .navbar-danger .dropdown-menu > .open > a:focus {
   color: #FFFFFF;
   background-color: #d43f3a;
 }

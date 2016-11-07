@@ -29,7 +29,7 @@
   .navbar-text {
     color: color(textcolor);
   }
-  .navbar-nav {
+  .navbar-nav, .dropdown-menu {
     > li {
       > a {
         color: color(textcolor);

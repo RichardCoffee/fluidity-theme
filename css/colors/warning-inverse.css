@@ -28,18 +28,18 @@
 .navbar-warning-inverse .navbar-text {
   color: #8A6D3B;
 }
-.navbar-warning-inverse .navbar-nav > li > a {
+.navbar-warning-inverse .navbar-nav > li > a, .navbar-warning-inverse .dropdown-menu > li > a {
   color: #8A6D3B;
 }
-.navbar-warning-inverse .navbar-nav > li > a:hover, .navbar-warning-inverse .navbar-nav > li > a:focus {
+.navbar-warning-inverse .navbar-nav > li > a:hover, .navbar-warning-inverse .navbar-nav > li > a:focus, .navbar-warning-inverse .dropdown-menu > li > a:hover, .navbar-warning-inverse .dropdown-menu > li > a:focus {
   color: #FAEBCC;
   background-color: #8A6D3B;
 }
-.navbar-warning-inverse .navbar-nav > .active > a, .navbar-warning-inverse .navbar-nav > .active > a:hover, .navbar-warning-inverse .navbar-nav > .active > a:focus {
+.navbar-warning-inverse .navbar-nav > .active > a, .navbar-warning-inverse .navbar-nav > .active > a:hover, .navbar-warning-inverse .navbar-nav > .active > a:focus, .navbar-warning-inverse .dropdown-menu > .active > a, .navbar-warning-inverse .dropdown-menu > .active > a:hover, .navbar-warning-inverse .dropdown-menu > .active > a:focus {
   color: #8A6D3B;
   background-color: #FAEBCC;
 }
-.navbar-warning-inverse .navbar-nav > .open > a, .navbar-warning-inverse .navbar-nav > .open > a:hover, .navbar-warning-inverse .navbar-nav > .open > a:focus {
+.navbar-warning-inverse .navbar-nav > .open > a, .navbar-warning-inverse .navbar-nav > .open > a:hover, .navbar-warning-inverse .navbar-nav > .open > a:focus, .navbar-warning-inverse .dropdown-menu > .open > a, .navbar-warning-inverse .dropdown-menu > .open > a:hover, .navbar-warning-inverse .dropdown-menu > .open > a:focus {
   color: #8A6D3B;
   background-color: #FAEBCC;
 }

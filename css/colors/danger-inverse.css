@@ -28,18 +28,18 @@
 .navbar-danger-inverse .navbar-text {
   color: #a94442;
 }
-.navbar-danger-inverse .navbar-nav > li > a {
+.navbar-danger-inverse .navbar-nav > li > a, .navbar-danger-inverse .dropdown-menu > li > a {
   color: #a94442;
 }
-.navbar-danger-inverse .navbar-nav > li > a:hover, .navbar-danger-inverse .navbar-nav > li > a:focus {
+.navbar-danger-inverse .navbar-nav > li > a:hover, .navbar-danger-inverse .navbar-nav > li > a:focus, .navbar-danger-inverse .dropdown-menu > li > a:hover, .navbar-danger-inverse .dropdown-menu > li > a:focus {
   color: #f2dede;
   background-color: #a94442;
 }
-.navbar-danger-inverse .navbar-nav > .active > a, .navbar-danger-inverse .navbar-nav > .active > a:hover, .navbar-danger-inverse .navbar-nav > .active > a:focus {
+.navbar-danger-inverse .navbar-nav > .active > a, .navbar-danger-inverse .navbar-nav > .active > a:hover, .navbar-danger-inverse .navbar-nav > .active > a:focus, .navbar-danger-inverse .dropdown-menu > .active > a, .navbar-danger-inverse .dropdown-menu > .active > a:hover, .navbar-danger-inverse .dropdown-menu > .active > a:focus {
   color: #a94442;
   background-color: #f2dede;
 }
-.navbar-danger-inverse .navbar-nav > .open > a, .navbar-danger-inverse .navbar-nav > .open > a:hover, .navbar-danger-inverse .navbar-nav > .open > a:focus {
+.navbar-danger-inverse .navbar-nav > .open > a, .navbar-danger-inverse .navbar-nav > .open > a:hover, .navbar-danger-inverse .navbar-nav > .open > a:focus, .navbar-danger-inverse .dropdown-menu > .open > a, .navbar-danger-inverse .dropdown-menu > .open > a:hover, .navbar-danger-inverse .dropdown-menu > .open > a:focus {
   color: #a94442;
   background-color: #f2dede;
 }

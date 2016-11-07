@@ -28,18 +28,18 @@
 .navbar-info-inverse .navbar-text {
   color: #31708F;
 }
-.navbar-info-inverse .navbar-nav > li > a {
+.navbar-info-inverse .navbar-nav > li > a, .navbar-info-inverse .dropdown-menu > li > a {
   color: #31708F;
 }
-.navbar-info-inverse .navbar-nav > li > a:hover, .navbar-info-inverse .navbar-nav > li > a:focus {
+.navbar-info-inverse .navbar-nav > li > a:hover, .navbar-info-inverse .navbar-nav > li > a:focus, .navbar-info-inverse .dropdown-menu > li > a:hover, .navbar-info-inverse .dropdown-menu > li > a:focus {
   color: #BCE8F1;
   background-color: #31708F;
 }
-.navbar-info-inverse .navbar-nav > .active > a, .navbar-info-inverse .navbar-nav > .active > a:hover, .navbar-info-inverse .navbar-nav > .active > a:focus {
+.navbar-info-inverse .navbar-nav > .active > a, .navbar-info-inverse .navbar-nav > .active > a:hover, .navbar-info-inverse .navbar-nav > .active > a:focus, .navbar-info-inverse .dropdown-menu > .active > a, .navbar-info-inverse .dropdown-menu > .active > a:hover, .navbar-info-inverse .dropdown-menu > .active > a:focus {
   color: #31708F;
   background-color: #BCE8F1;
 }
-.navbar-info-inverse .navbar-nav > .open > a, .navbar-info-inverse .navbar-nav > .open > a:hover, .navbar-info-inverse .navbar-nav > .open > a:focus {
+.navbar-info-inverse .navbar-nav > .open > a, .navbar-info-inverse .navbar-nav > .open > a:hover, .navbar-info-inverse .navbar-nav > .open > a:focus, .navbar-info-inverse .dropdown-menu > .open > a, .navbar-info-inverse .dropdown-menu > .open > a:hover, .navbar-info-inverse .dropdown-menu > .open > a:focus {
   color: #31708F;
   background-color: #BCE8F1;
 }
