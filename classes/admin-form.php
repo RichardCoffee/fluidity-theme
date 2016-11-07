@@ -195,7 +195,7 @@ log_entry('customizer',"base: $base",$layout,$wp_customize);
           case "image": // FIXME: does not work as advertised
             //$controls['type'] = 'image';
             if (isset($option['context'])) $controls['context'] = $option['context'];
-tcc_log_entry($controls);
+log_entry($controls);
             $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,$name,$controls));
             break;
           case "radio":
@@ -208,7 +208,7 @@ tcc_log_entry($controls);
             $controls['choices'] = $option['source'];
             break;
           default:
-            tcc_log_entry("WARNING:  switch case needed in customizer_settings for {$option['render']}");
+            log_entry("WARNING:  switch case needed in customizer_settings for {$option['render']}");
             $name = false;
         }
         if ($name) $wp_customize->add_control($name,$controls);
