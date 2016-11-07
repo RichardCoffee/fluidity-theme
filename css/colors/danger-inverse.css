@@ -30,6 +30,9 @@
   background-color: #f2dede;
   color: #a94442;
 }
+.navbar-danger-inverse .navbar-nav > li, .navbar-danger-inverse .dropdown-menu > li {
+  background-color: #f2dede;
+}
 .navbar-danger-inverse .navbar-nav > li > a, .navbar-danger-inverse .dropdown-menu > li > a {
   background-color: #f2dede;
   color: #a94442;

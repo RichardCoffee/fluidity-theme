@@ -30,6 +30,9 @@
   background-color: #FCF8E3;
   color: #8A6D3B;
 }
+.navbar-warning-inverse .navbar-nav > li, .navbar-warning-inverse .dropdown-menu > li {
+  background-color: #FCF8E3;
+}
 .navbar-warning-inverse .navbar-nav > li > a, .navbar-warning-inverse .dropdown-menu > li > a {
   background-color: #FCF8E3;
   color: #8A6D3B;

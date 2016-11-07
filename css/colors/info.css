@@ -30,6 +30,9 @@
   background-color: #5BC0DE;
   color: #FFFFFF;
 }
+.navbar-info .navbar-nav > li, .navbar-info .dropdown-menu > li {
+  background-color: #5BC0DE;
+}
 .navbar-info .navbar-nav > li > a, .navbar-info .dropdown-menu > li > a {
   background-color: #5BC0DE;
   color: #FFFFFF;

@@ -30,6 +30,9 @@
   background-color: #dff0d8;
   color: #3c763d;
 }
+.navbar-success-inverse .navbar-nav > li, .navbar-success-inverse .dropdown-menu > li {
+  background-color: #dff0d8;
+}
 .navbar-success-inverse .navbar-nav > li > a, .navbar-success-inverse .dropdown-menu > li > a {
   background-color: #dff0d8;
   color: #3c763d;

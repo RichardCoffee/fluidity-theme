@@ -28,6 +28,9 @@
   background-color: #ff0000;
   color: #FFFFFF;
 }
+.navbar-red .navbar-nav > li, .navbar-red .dropdown-menu > li {
+  background-color: #ff0000;
+}
 .navbar-red .navbar-nav > li > a, .navbar-red .dropdown-menu > li > a {
   background-color: #ff0000;
   color: #FFFFFF;
