@@ -30,7 +30,7 @@
   background-color: #D9EDF7;
   color: #31708F;
 }
-.navbar-info-inverse .navbar-nav > li, .navbar-info-inverse .dropdown-menu > li {
+.navbar-info-inverse .navbar-nav, .navbar-info-inverse .dropdown-menu {
   background-color: #D9EDF7;
 }
 .navbar-info-inverse .navbar-nav > li > a, .navbar-info-inverse .dropdown-menu > li > a {

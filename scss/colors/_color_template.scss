@@ -32,8 +32,8 @@
     color: color(textcolor);
   }
   .navbar-nav, .dropdown-menu {
+    background-color: color(background);
     > li {
-      background-color: color(background);
       > a {
         background-color: color(background);
         color: color(textcolor);

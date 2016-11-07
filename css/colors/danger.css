@@ -30,7 +30,7 @@
   background-color: #d9534f;
   color: #FFFFFF;
 }
-.navbar-danger .navbar-nav > li, .navbar-danger .dropdown-menu > li {
+.navbar-danger .navbar-nav, .navbar-danger .dropdown-menu {
   background-color: #d9534f;
 }
 .navbar-danger .navbar-nav > li > a, .navbar-danger .dropdown-menu > li > a {

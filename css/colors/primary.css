@@ -30,7 +30,7 @@
   background-color: #337AB7;
   color: #ffffff;
 }
-.navbar-primary .navbar-nav > li, .navbar-primary .dropdown-menu > li {
+.navbar-primary .navbar-nav, .navbar-primary .dropdown-menu {
   background-color: #337AB7;
 }
 .navbar-primary .navbar-nav > li > a, .navbar-primary .dropdown-menu > li > a {

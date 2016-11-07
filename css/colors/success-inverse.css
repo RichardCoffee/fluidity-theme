@@ -30,7 +30,7 @@
   background-color: #dff0d8;
   color: #3c763d;
 }
-.navbar-success-inverse .navbar-nav > li, .navbar-success-inverse .dropdown-menu > li {
+.navbar-success-inverse .navbar-nav, .navbar-success-inverse .dropdown-menu {
   background-color: #dff0d8;
 }
 .navbar-success-inverse .navbar-nav > li > a, .navbar-success-inverse .dropdown-menu > li > a {

@@ -28,7 +28,7 @@
   background-color: #f7941d;
   color: #FFFFFF;
 }
-.navbar-orange .navbar-nav > li, .navbar-orange .dropdown-menu > li {
+.navbar-orange .navbar-nav, .navbar-orange .dropdown-menu {
   background-color: #f7941d;
 }
 .navbar-orange .navbar-nav > li > a, .navbar-orange .dropdown-menu > li > a {
