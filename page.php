@@ -7,7 +7,7 @@
 
 get_header();
 
-log_entry(wp_get_theme()->get_page_templates());
+#log_entry(wp_get_theme()->get_page_templates());
 
 fluid_index_page('page');
 
