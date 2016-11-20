@@ -265,6 +265,47 @@ if (!function_exists('list_filter_hooks')) {
   #add_action('wp_footer','list_filter_hooks');
 }
 
+if (!function_exists('list_template_conditions')) {
+  function list_template_conditions() {
+    $conds = array('is_embed'   => is_embed(),
+      'embed'      => get_embed_template(),
+      'is_404'     => is_404(),
+      '404'        => get_404_template(),
+      'is_search'  => is_search(),
+      'search'     => get_search_template(),
+      'is_front'   => is_front_page(),
+      'front'      => get_front_page_template(),
+      'is_home'    => is_home(),
+      'home'       => get_home_template(),
+      'is_postype' => is_post_type_archive(),
+      'postype'    => get_post_type_archive_template(),
+      'is_tax'     => is_tax(),
+      'tax'        => get_taxonomy_template(),
+      'is_attach'  => is_attachment(),
+      'attach'     => get_attachment_template(),
+      'is_sing'    => is_single(),
+      'single'     => get_single_template(),
+      'is_page'    => is_page(),
+      'page_templ' => get_page_template(),
+      'is_singu'   => is_singular(),
+      'singular'   => get_singular_template(),
+      'is_cat'     => is_category(),
+      'category'   => get_category_template(),
+      'is_tag'     => is_tag(),
+      'tag_templ'  => get_tag_template(),
+      'is_author'  => is_author(),
+      'author'     => get_author_template(),
+      'is_date'    => is_date(),
+      'date_templ' => get_date_template(),
+      'is_archive' => is_archive(),
+      'archive'    => get_archive_template(),
+      'is_paged'   => is_paged(),
+      'paged_templ'=> get_paged_template(),
+      'index_templ'=> get_index_template());
+    return $conds;
+  }
+}
+
 #  generate log entry, with comment
 if (!function_exists('log_entry')) {
   function log_entry() {
