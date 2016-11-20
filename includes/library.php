@@ -84,7 +84,7 @@ if (!function_exists('wp_menu_id_by_name')) {
 if (!function_exists('author_role_template')) {
   function author_role_template( $templates = '' ) {
     $author = get_queried_object();
-    if ($author) {
+    if ($author && isset($author->roles)) {
       $role = $author->roles[0];
       if ( ! is_array( $templates ) && ! empty( $templates ) ) {
         $templates = locate_template( array( "author-$role.php", $templates ), false );
