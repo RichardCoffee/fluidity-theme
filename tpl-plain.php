@@ -1,7 +1,7 @@
 <?php
 /*
  * Template Name: Plain (no sidebar)
- * File Name: plain.php
+ * File Name: tpl-plain.php
  *
  */
 
