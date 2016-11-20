@@ -171,7 +171,7 @@ abstract class Basic_Admin_Form {
 #log_entry('customizer',"base: $base",$layout,$wp_customize); // too many recursion errors for this to be useful
       foreach($layout as $key=>$option) {
         if (!isset($option['default'])) { continue; }
-        if (!isset($option['render'])) { log_entry('missing render data',$option); continue; }
+        if (!isset($option['render']))  { continue; }
         if ($option['render']==='skip') { continue; }
         $name = "tcc_options_{$base}[$key]";
         $settings = array('default'    => $option['default'],
