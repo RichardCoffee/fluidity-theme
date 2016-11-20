@@ -5,8 +5,8 @@
  *
  */
 
-global $wp_query;
-log_entry(debug_backtrace(),$wp_query);
+#global $wp_query;
+#log_entry(debug_backtrace(),$wp_query);
 
 get_header();
 
