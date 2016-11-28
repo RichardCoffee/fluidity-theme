@@ -34,11 +34,12 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
           <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' itemprop='blogPost' itemscope itemtype='http://schema.org/Blog'><?php
             $cnt = 0;
             while (have_posts()) {
-              the_post(); ?>
-              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"><?php
+              the_post();
+              $fix = 'lg=4&md=4&sm=6&xs=12&cnt='; ?>
+              <div class="<?php echo tcc_bootstrap_css($fix); ?>"><?php
                 get_template_part('template-parts/content',get_post_type()); ?>
               </div><?php
-              tcc_apply_clearfix('lg=4&md=4&sm=6&xs=12&cnt='.++$cnt);
+              tcc_apply_clearfix($fix.++$cnt);
             } ?>
           </div><?php
           #fluid_navigation('below');

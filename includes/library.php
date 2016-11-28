@@ -14,6 +14,19 @@ if (!function_exists('tcc_apply_clearfix')) {
   }
 }
 
+if (!function_exists('tcc_clearfix_css')) {
+  function tcc_bootstrap_css($args) {
+    $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
+    $args = wp_parse_args($args,$defs);
+    extract($args);
+    $css = ($lg) ?  "col-lg-$lg" : '';
+    $css.= ($md) ? " col-md-$md" : '';
+    $css.= ($sm) ? " col-sm-$sm" : '';
+    $css.= ($sx) ? " col-xs-$sx" : '';
+    return $css;
+  }
+}
+
 if (!function_exists('tcc_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
   function tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead

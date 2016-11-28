@@ -1,10 +1,8 @@
 <?php
 
-require_once('typography.php');
+class TCC_Options_Images {
 
-class Theme_Design_Options {
-
-  private $base     = 'design';
+  private $base     = 'images';
   private $priority = 34; # customizer priority
 
   public function __construct() { #Fluidity_Options_Form $form) {
@@ -37,6 +35,31 @@ class Theme_Design_Options {
                               'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
                                                  'button' => __('Assign Logo', 'tcc-fluid'),
                                                  'delete' => __('Remove Logo', 'tcc-fluid')));
+    $layout['lrepeat'] = array('default' => 'none',
+                               'label'   => __('Background Repeat','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  => array('none' => __('No Repeat','tcc-fluid'),
+                                                  'tile' => __('Tile','tcc-fluid'),
+                                                  'hori' => __('Tile Horizontally','tcc-fluid'),
+                                                  'vert' => __('Tile Vertically','tcc-fluid')));
+    $layout['lposi']   = array('default' => 'center',
+                               'label'   => __('Background Position','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  => array('left'   => __('Left','tcc-fluid'),
+                                                  'center' => __('Center','tcc-fluid'),
+                                                  'right'  => __('Right','tcc-fluid')));
+    $layout['lrepeat'] = array('default' => 'fixed',
+                               'label'   => __('Background Movement','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  => array('scroll' => __('Scroll with page','tcc-fluid'),
+                                                  'fixed'  => __('Fixed position in viewport','tcc-fluid')));
+/*    $layout['header'] = array('default' => '',
+                              'label'   => __('Header Background','tcc-fluid'),
+                              'render'  => 'image',
+                              'divcss'  => 'upload-img',
+                              'media'   => array('title'  => __('Assign/Upload Header Background Image','tcc-fluid'),
+                                                 'button' => __('Assign Background', 'tcc-fluid'),
+                                                 'delete' => __('Remove Background', 'tcc-fluid')));//*/
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
                               'text'    => __('Site typography options','tcc-fluid'),
                               'render'  => 'title');
@@ -49,13 +72,6 @@ class Theme_Design_Options {
                               'stext'   => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
                               'render'  => 'text',
                               'divcss'  => 'tcc_text_3em');
-/*    $layout['header'] = array('default' => '',
-                              'label'   => __('Header Background','tcc-fluid'),
-                              'render'  => 'image',
-                              'divcss'  => 'upload-img',
-                              'media'   => array('title'  => __('Assign/Upload Header Background Image','tcc-fluid'),
-                                                 'button' => __('Assign Background', 'tcc-fluid'),
-                                                 'delete' => __('Remove Background', 'tcc-fluid')));//*/
 /*    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
                               'text'    => __('Use these options to add/change the background images','tcc-fluid'),
                               'render'  => 'title');
