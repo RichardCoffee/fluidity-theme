@@ -149,7 +149,14 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                                          'render'  => 'select',
                                          'source'  => array('top'    => __('Top','tcc-fluid'),
                                                             'bottom' => __('Bottom','tcc-fluid')),
-                                         'divcss'  => 'tcc-wp_posi'));
+                                         'divcss'  => 'tcc-wp_posi'),
+                    'deledata'  => array('default' => 'uninstall',
+                                         'label'   => __('Data Deletion'),
+                                         'render'  => 'radio',
+                                         'source'  => array('deactive'  => __('Delete theme data upon theme deactivation','tcc-theme-options'),
+                                                            'uninstall' => __('Delete theme data upon theme deletion','tcc-theme-options'),
+                                                            'nodelete'  => __('Do not delete data','tcc-theme-options'))),
+);
     $layout = apply_filters('tcc_about_options_layout',$layout);
     return $layout;
   }

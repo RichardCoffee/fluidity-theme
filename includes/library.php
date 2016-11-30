@@ -16,9 +16,8 @@ if (!function_exists('tcc_apply_clearfix')) {
 
 if (!function_exists('tcc_clearfix_css')) {
   function tcc_bootstrap_css($args) {
-    $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
-    $args = wp_parse_args($args,$defs);
-    extract($args);
+    $lg = $md = $sm = $xs = 0;
+    extract($args,EXTR_IF_EXISTS);
     $css = ($lg) ?  "col-lg-$lg" : '';
     $css.= ($md) ? " col-md-$md" : '';
     $css.= ($sm) ? " col-sm-$sm" : '';
