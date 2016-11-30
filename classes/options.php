@@ -37,7 +37,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   }
 
   public function add_menu_option() {
-    $cap  = 'edit_theme_options';
+    $cap = 'edit_theme_options';
     if (current_user_can($cap)) {
       $about = get_option('tcc_options_about');
       if (!$about) $about = $this->get_defaults('about');
@@ -130,7 +130,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                                          'label'   => __('Theme Version','tcc-fluid'),
                                          'render'  => 'display'),
                     'theme'     => array('label'   => __('Theme Settings','tcc-fluid'),
-                                         'text'    => __('These following options control the menu location of the theme options screen.','tcc-fluid'),
+                                         'text'    => __('control the menu location of the theme options screen.','tcc-fluid'),
                                          'render'  => 'title'),
                     'loca'      => array('default' => 'appearance',
                                          'label'   => __('Page Location','tcc-fluid'),
@@ -145,7 +145,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                     'wp_posi'   => array('default' => 'bottom',
                                          'label'   => __('Dashboard location','tcc-fluid'),
                                          'text'    => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-fluid'),
-                                         'help'    => __('Bottom is best for this option.  Having it at the top can be annoying','tcc-fluid'),
+                                         'help'    => __('Bottom is best for this option.  Having it at the top can be annoying.  YMMV','tcc-fluid'),
                                          'render'  => 'select',
                                          'source'  => array('top'    => __('Top','tcc-fluid'),
                                                             'bottom' => __('Bottom','tcc-fluid')),
