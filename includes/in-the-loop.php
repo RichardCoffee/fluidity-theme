@@ -69,13 +69,15 @@ if (!function_exists('fluid_post_date')) {
     $date   = get_the_date();
     $author = microdata()->get_the_author();
     $posted = sprintf($string,$date,$author);
+    $show   = false;
     $layout = tcc_settings('postdate');
 #log_entry("Layout:  $layout");
 #log_entry(0,"Modified Date:  ".get_the_modified_date('U'));
 #log_entry(0,"Modified Calc:  ".(get_the_modified_date('U')-(60*60*24)));
 #log_entry(0,"Post Date:      ".get_the_date('U'));
     if (($layout==='modified') && ((get_the_modified_date('U')-(60*60*24))>(get_the_date('U')))) {
-      if ($complete) { echo "<h4 class='text-center'>$posted</h4>"; }
+      #if ($complete) { echo "<h4 class='text-center'>$posted</h4>"; }
+      $show = ($complete) ? $complete : $show;
       $string = esc_html_x('Last modified on %1$s by %2$s','formatted date string, user name','tcc-fluid');
       $date   = get_the_modified_date();
 #log_entry(0,'modified');
@@ -85,6 +87,7 @@ if (!function_exists('fluid_post_date')) {
     <h3 class="text-center"><?php
       echo sprintf($string,$date,$author); ?>
     </h3><?php
+    if ($show) { echo "<h4 class='text-center'>$posted</h4>"; }
   }
 }
 
