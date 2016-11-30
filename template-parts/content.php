@@ -25,7 +25,7 @@ who_am_i(); ?>
     fluid_edit_post_link(); ?>
   </h1><?php
 
-  fluid_post_date(); ?>
+  fluid_post_date(true); ?>
 
   <div class="article" itemprop="articleBody"><?php
 #    if ( has_post_thumbnail() ) {
