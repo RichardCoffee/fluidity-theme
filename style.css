@@ -1,91 +1,236 @@
 /*
-Error: Invalid CSS after "...5,255,255,0.85)": expected "{", was "}"
-        on line 13 of scss/components/_misc.scss
-        from line 8 of scss/components/_components.scss
-        from line 25 of scss/style.scss
+ *
+ * Theme Name: Creative Fluidity
+ * Theme URI: http:/the-creative-collective/fluidity
+ * Author: richard.coffee
+ * Author URI: http://the-creative-collective
+ * Description: Wordpress Theme based on using a fluid design, using bootstrap
+ * Version: 1.0
+ * Tags: green, fluid-layout, responsive-layout, two-columns, right-sidebar
+ * Text Domain: tcc-fluid
+ * Copyright 2015-2016, The Creative Collective
+ */
+/* tags list: https://wordpress.org/themes/ */
+body {
+  font-size: 18px;
+}
 
-8: 
-9: #fluid-content {
-10:   background-color: white;
-11: //  opacity: 0.85;
-12:   rgba(255,255,255,0.85)
-13: }
-14: 
-15: #fluid-footer {
-16:   background-color: white;
-17: //  opacity: 0.7;
-18:   rgba(255,255,255,0.7)
+#content {
+  font-size: 20px;
+  line-height: 30px;
+}
 
-Backtrace:
-scss/components/_misc.scss:13
-scss/components/_components.scss:8
-scss/style.scss:25
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:1167:in `expected'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:1101:in `expected'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:1096:in `tok!'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:641:in `block'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:712:in `declaration_or_ruleset'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:661:in `block_child'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:653:in `block_contents'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:642:in `block'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:636:in `ruleset'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:660:in `block_child'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:653:in `block_contents'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:117:in `stylesheet'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/scss/parser.rb:42:in `parse'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/engine.rb:393:in `_to_tree'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/engine.rb:299:in `to_tree'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:323:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:88:in `with_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:88:in `with_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:325:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:325:in `map'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:325:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:88:in `with_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:88:in `with_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:52:in `map'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:167:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:157:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:8:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:8:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/root_node.rb:36:in `css_tree'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/root_node.rb:20:in `render'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/engine.rb:268:in `render'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/sass_scss.rb:415:in `run'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/sass_scss.rb:63:in `process_result'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/base.rb:52:in `parse'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/base.rb:19:in `parse!'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/sass:13
-/usr/bin/sass:19:in `load'
-/usr/bin/sass:19
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"...5,255,255,0.85)\": expected \"{\", was \"}\"\A         on line 13 of scss/components/_misc.scss\A         from line 8 of scss/components/_components.scss\A         from line 25 of scss/style.scss\A \A 8: \A 9: #fluid-content {\A 10:   background-color: white;\A 11: //  opacity: 0.85;\A 12:   rgba(255,255,255,0.85)\A 13: }\A 14: \A 15: #fluid-footer {\A 16:   background-color: white;\A 17: //  opacity: 0.7;\A 18:   rgba(255,255,255,0.7)"; }
+.updraft {
+  background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+  border-top: 3px solid #fff;
+  bottom: 0;
+  padding: 10px;
+  position: absolute;
+  height: 25%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.updraft:hover {
+  height: 100%;
+  -webkit-transition: height 22s ease-in-out;
+  -moz-transition: height 22s ease-in-out;
+  -ms-transition: height 22s ease-in-out;
+  -o-transition: height 22s ease-in-out;
+  transition: height 22s ease-in-out;
+}
+
+.margintop,
+.margint1e {
+  margin-top: 1em;
+}
+
+.nopad {
+  padding: 0;
+}
+
+.padbott,
+.padb1e {
+  padding-bottom: 1em;
+}
+
+#fluid-header {
+  opacity: 0.7;
+}
+#fluid-header #header-menubar {
+  opacity: 1.2;
+}
+
+#fluid-content {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+#fluid-footer {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.fluidity-social-icons {
+  font-size: x-large;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.fluid-print-button {
+  margin-top: 7px;
+}
+
+.article {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+table.posting-table {
+  border-collapse: collapse;
+  border: 1px solid #333;
+}
+table.posting-table caption {
+  padding: 0.5em;
+}
+table.posting-table th, table.posting-table td {
+  padding: 0.5em;
+  border: 1px dotted #666;
+  color: #632a39;
+  text-align: center;
+}
+table.posting-table th[scope=col] {
+  border-bottom: 2px solid #333;
+  border-right: 2px solid #333;
+  color: #000;
+  background-color: #8fadcc;
+}
+table.posting-table th + th[scope=col] {
+  border-right: 1px dotted #666;
+  color: #fff;
+  background-color: #7d98b3;
+}
+table.posting-table th[scope=row] {
+  border-right: 2px solid #333;
+  background-color: #b8cfe5;
+}
+table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
+  background-color: #632a2a;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  background: white;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  color: black;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+.width-fluid {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.width-narrow {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .width-narrow {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .width-narrow {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .width-narrow {
+    width: 1170px;
+  }
+}
+@media print {
+  article {
+    text-decoration: none;
+    width: 600px;
+  }
+
+  body {
+    background: #fff;
+    background-image: none;
+    color: #000;
+    font-size: 10px;
+    line-height: 150%;
+    margin: 0;
+  }
+
+  #comments {
+    display: none;
+  }
+
+  .edit-link {
+    display: none;
+  }
+
+  #fluid-header {
+    display: none;
+  }
+
+  .fluid-sidebar aside {
+    display: none;
+  }
+
+  #fluid-footer {
+    display: none;
+  }
+
+  .noprint {
+    display: none;
+  }
+}
+.content {
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+img {
+  max-width: 100%;
+  overflow: hidden;
+  opacity: 1.0 !important;
+}
+
+logo {
+  align: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pad05perc {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.post div {
+  max-width: 100%;
+}
+
+pre {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.sticky {
+  color: red;
+}
+
+.navbar {
+  border: none;
+  margin-bottom: 0;
+}
