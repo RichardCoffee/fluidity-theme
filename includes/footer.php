@@ -32,9 +32,9 @@ console.log('wpadminbar: '+wpHeight);
     var hdrHeight = jQuery('#fluid-header').outerHeight();
 console.log('header: '+hdrHeight);
     if (jQuery('#wpadminbar')) {
-      jQuery('#fluid-header').css({top:wpHeight});
+      jQuery('.header-hide').css({top:wpHeight});
     }
-    jQuery('#fluid-header').next().css({"padding-top":(hdrHeight+wpHeight)+'px'});
+    jQuery('.header-hide').next().css({"padding-top":(hdrHeight+wpHeight)+'px'});
   });
 </script><?php
     }

@@ -5,7 +5,7 @@
 //  http://ideasandpixels.com/wp_enqueue_script-inline-script-to-load-after-jquery
 //  http://stackoverflow.com/questions/18604022/slide-header-up-if-you-scroll-down-and-vice-versa
 
-var autohide = { bar:   jQuery('#fluid-header').outerHeight() // height of header
+var autohide = { bar:   jQuery('.header-hide').outerHeight() // height of header
                  delta: 5,     // action threshold
                  did:   false, // did a scroll occur?
                  doc:   jQuery(document).height(),
@@ -38,14 +38,14 @@ console.log('st: '+curr);
 console.log('last: '+autohide.last+'   bar: '+autohide.bar);
   if (curr > autohide.last && curr > autohide.bar){
 console.log('scroll down');
-    jQuery('#fluid-header').css({top:(-autohide.bar)+'px'}); // .hide('slow') // .addClass('nav-hide')
+    jQuery('.header-hide').css({top:(-autohide.bar)+'px'}); // .hide('slow') // .addClass('nav-hide')
       .hover(function() {
-        jQuery("#fluid-header").css({top:autohide.top+'px'}); // .show('slow'); // .removeClass('nav-hide');
+        jQuery(".header-hide").css({top:autohide.top+'px'}); // .show('slow'); // .removeClass('nav-hide');
       });
   } else {
 console.log('scroll up');
     if((curr + autohide.win) < autohide.doc) {
-      jQuery('#fluid-header').css({top:autohide.top+'px'}); // .show('slow'); // .removeClass('nav-hide');
+      jQuery('.header-hide').css({top:autohide.top+'px'}); // .show('slow'); // .removeClass('nav-hide');
     }
   }
   autohide.last = st;

@@ -46,8 +46,15 @@ if (!function_exists('tcc_browser_body_class')) {
 
 if (!function_exists('container_type')) {
   function container_type($location='post') {
-    if ($location=='fluid-header') return "container-fluid nopad";
-    return (tcc_layout('width')=='narrow') ? 'container' : 'container-fluid';
+    $css = 'container-fluid';
+    if ($location=='fluid-header') {
+      $css.= " nopad";
+      $pos = tcc_layout('header');
+      $css.= " header-$pos";
+    } else if (tcc_layout('width')=='narrow') {
+      $css = 'container';
+    }
+    return $css;
   }
 }
 

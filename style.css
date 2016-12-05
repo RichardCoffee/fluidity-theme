@@ -54,11 +54,21 @@ body {
   padding-bottom: 1em;
 }
 
-#fluid-header {
+.header-static {
   opacity: 0.7;
 }
-#fluid-header #header-menubar {
+.header-static #header-menubar {
   opacity: 1.2;
+}
+
+.header-fixed {
+  border-bottom: 1em solid transparent;
+  position: fixed;
+  top: 0;
+  transition: top 0.4s ease-in-out;
+  width: 100%;
+  z-index: 9999;
+  opacity: 1.0;
 }
 
 #fluid-content {
