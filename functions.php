@@ -4,7 +4,7 @@
  *
  */
 
-define('FLUIDITY_VERSION','1.1.0');
+define('FLUIDITY_VERSION','1.1.1');
 
 require_once('includes/theme-support.php');
 require_once('includes/colors.php');
@@ -44,17 +44,17 @@ if (!function_exists('fluidity_enqueue')) {
     wp_register_style('library',   "$base_url/css/library.css",         false, FLUIDITY_VERSION);
     wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", false, FLUIDITY_VERSION);
     wp_register_style('fluid',     "$base_url/style.css",               false, FLUIDITY_VERSION);
-    wp_enqueue_style('tcc-fawe');  #  font-awesome needs to be loaded before bootstrap, due to possible css conflict (sr-only)
+    wp_enqueue_style('tcc-fawe');  #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
     if (tcc_option('active','social')=='yes') { wp_enqueue_style('fa-social'); }
     wp_enqueue_style('bootstrap');
     wp_enqueue_style('library');
     wp_enqueue_style('fluid');
     wp_enqueue_style('fluid-color');
     #  Javascript
-    wp_register_script('sprintf',     "$base_url/js/sprintf.js",  null,                     false,true);
-    wp_register_script('library',     "$base_url/js/library.js",  array('jquery','sprintf'),false,true);
-    wp_register_script('collapse',    "$base_url/js/collapse.js", array('jquery','library'),false,true);
-    wp_register_script('autohide.js', "$base_url/js/autohide.js", array('jquery'),          false,true);
+    wp_register_script('sprintf',     "$base_url/js/sprintf.js",  null,                     FLUIDITY_VERSION,true);
+    wp_register_script('library',     "$base_url/js/library.js",  array('jquery','sprintf'),FLUIDITY_VERSION,true);
+    wp_register_script('collapse',    "$base_url/js/collapse.js", array('jquery','library'),FLUIDITY_VERSION,true);
+    wp_register_script('autohide.js', "$base_url/js/autohide.js", array('jquery'),          FLUIDITY_VERSION,true);
     wp_enqueue_script('bootstrap');
     if (tcc_layout('widget')!=='perm') {
       wp_enqueue_script('collapse'); }
