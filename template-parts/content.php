@@ -10,8 +10,10 @@ who_am_i(); ?>
 
 <article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
 
-  if ( has_post_thumbnail() ) { // FIXME:  need option for image/title placement
-    fluid_thumbnail();
+  if ( has_post_thumbnail() ) { // FIXME:  need option for image/title placement ?>
+    <div class="row"><?php
+      fluid_thumbnail(); ?>
+    </div><?php
   } ?>
 
   <h1 class="text-center"><?php
