@@ -7,11 +7,12 @@
 
 function fluid_index_page($page='index') { ?>
 
-  <div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
-    <?php who_am_i(1); ?>
+  <div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>><?php
+    who_am_i(1);
+    do_action("fluid_{$page}_page_top"); ?><?php/*
     <div class="row pad05perc">
       <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-
+*/?>
         <div class="fluid-sidebar hidden-sm hidden-xs"><?php
           fluidity_sidebar_layout($page); ?>
         </div>
@@ -38,9 +39,9 @@ function fluid_index_page($page='index') { ?>
         <div class="fluid-sidebar visible-sm visible-xs"><?php
           fluidity_sidebar_layout($page); ?>
         </div>
-
+<?php/*
       </div><!-- col-*-12 -->
-    </div><!-- .row -->
+    </div><!-- .row -->*/?>
   </div><!-- .container --><?php
 
 }
