@@ -24,7 +24,7 @@ function fluid_index_page($page='index') { ?>
             while (have_posts ()) {
               the_post(); ?>
               <div <?php microdata()->BlogPosting(); ?>><?php
-                $main = (is_single()) ? 'content' : tcc_layout('content');
+                $main = (is_single() || is_page()) ? 'content' : tcc_layout('content');
                 get_template_part("template-parts/$main",fluid_content_slug($page)); ?>
               </div><?php
               if (fluid_next_post_exists()) echo "<hr class='padbott'>";
