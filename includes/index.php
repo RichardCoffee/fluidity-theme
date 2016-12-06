@@ -42,5 +42,3 @@ function fluid_index_page($page='index') { ?>
   </div><!-- .container --><?php
 
 }
-
-if (!function_exists('fluid_between_posts
