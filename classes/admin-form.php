@@ -344,8 +344,8 @@ log_entry($controls);
     extract($args);  #  array( 'key'=>$key, 'item'=>$item, 'num'=>$i);
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
-    $class  = (!empty($layout[$item]['divcss'])) ? "class='{$layout[$item]['divcss']}'" : '';
-    echo "<div $class>";
+    $attr   = $this->render_attributes($layout[$item]);
+    echo "<div $attr>";
     if (empty($layout[$item]['render'])) {
       echo $data[$key][$item];
     } else {
@@ -376,10 +376,8 @@ log_entry($controls);
     extract($args);  #  $args = array( 'key' => {group-slug}, 'item' => {item-slug})
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
-    $html   = "<div";
-    $html  .= (!empty($layout[$item]['divcss'])) ? " class='{$layout[$item]['divcss']}'" : "";
-    $html  .= (isset($layout[$item]['help'])) ? " title='{$layout[$item]['help']}'>" : ">";
-    echo $html;
+    $attr   = $this->render_attributes($layout[$item]);
+    echo "<div $attr>";
     if (empty($layout[$item]['render'])) {
       echo $data[$item];
     } else {
@@ -401,6 +399,17 @@ log_entry($controls);
   }
 
   public function render_multi_options($args) {
+  }
+
+  private function render_attributes($layout) {
+    $attr   = (!empty($layout['divcss']))  ? " class='{$layout['divcss']}'"   : "";
+    $attr  .= (isset($layout['help']))     ? " title='{$layout['help']}'"     : "";
+    if (!empty($layout['showhide'])) {
+      $item = $layout['showhide']['item'];
+      $show = $layout['showhide']['show'];
+      $attr.= " data-item='$item'";
+      $attr.= " data-show='$show'";
+    }
   }
 
 
@@ -511,6 +520,14 @@ log_entry($controls);
       $source_func($value);
     }
     echo '</select>';
+  }
+
+  private function render_showhide($layout) {
+    $item = $layout['showhide']['item'];
+    $show = $layout['showhide']['show'];
+    $html = " data-item='$item'";
+    $html.= " data-show='$show'";
+    return $html;
   }
 
   private function render_text($data) {

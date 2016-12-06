@@ -1,13 +1,27 @@
 // js/basic-form.js
 
 jQuery(document).ready(function() {
-  showhideAdminElements(document.querySelector('.tcc-loca'),".tcc-wp_posi","dashboard");
+//  showhideAdminElements(document.querySelector('.tcc-loca'),".tcc-wp_posi","dashboard");
   showhideAdminElements(document.querySelector('.social-option-active'),".social-option-icon","yes");
   showhideAdminElements(document.querySelector('.agent-role-active'),".agent-role-setting","agents");
+  showhideElements(jQuery('.showhide'));
   jQuery('.form-colorpicker' ).wpColorPicker();
   jQuery('.form-image'       ).click(function(e) { imageUploader(this,e); });
   jQuery('.form-image-delete').click(function(e) { imageDelete(this); });
 });
+
+function showhideElements(els) {
+  jQuery(els).each(function(el) {
+    var target = jQuery(el).attr('data-item');
+    var show   = jQuery(el).attr('data-show');
+    if (target && show){
+      if (jQuery(el).find('input:radio:checked').val()==show) {
+        jQuery(target).parent().parent().removeClass('hidden'); }
+      else {
+        jQuery(target).parent().parent().addClass('hidden'); }
+    }
+  }
+}
 
 function imageDelete(el) {
   var ans = confirm('Remove this image?');
