@@ -92,13 +92,15 @@ if (!function_exists('fluid_post_date')) {
 }
 
 if (!function_exists('fluid_post_separator')) {
-  if (fluid_next_post_exists($slug)) {
-    if (has_action('fluid_post_separator_'.$slug)) {
-      do_action('fluid_post_separator_'.$slug); }
-    else if (has_action('fluid_post_separator')) {
-      do_action('fluid_post_separator'); }
-    else {
-      echo "<hr class='padbott'>"; }
+  function fluid_post_separator($slug) {
+    if (fluid_next_post_exists()) {
+      if (has_action('fluid_post_separator_'.$slug)) {
+        do_action('fluid_post_separator_'.$slug); }
+      else if (has_action('fluid_post_separator')) {
+        do_action('fluid_post_separator'); }
+      else {
+        echo "<hr class='padbott'>"; }
+    }
   }
 }
 
