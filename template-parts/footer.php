@@ -15,6 +15,11 @@
     fluidity_get_sidebar('footer'); ?>
   </div>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+    <span class="pull-right">
+      <a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
+        <img alt="XFN Friendly" href="/icons/xfn-btn.gif">
+      </a>
+    </span>
     <p class="text-center"><?php
       $format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
       echo sprintf($format,fluid_copyright_dates(),microdata()->get_bloginfo('name')); ?>

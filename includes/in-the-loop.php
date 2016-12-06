@@ -91,6 +91,17 @@ if (!function_exists('fluid_post_date')) {
   }
 }
 
+if (!function_exists('fluid_post_separator')) {
+  if (fluid_next_post_exists($slug)) {
+    if (has_action('fluid_post_separator_'.$slug)) {
+      do_action('fluid_post_separator_'.$slug); }
+    else if (has_action('fluid_post_separator')) {
+      do_action('fluid_post_separator'); }
+    else {
+      echo "<hr class='padbott'>"; }
+  }
+}
+
 if (!function_exists('fluid_thumbnail')) {
   function fluid_thumbnail() {
     $css = (tcc_layout('sidebar')==='none') ? 'col-lg-12 col-md-12 col-sm-12 col-xs-12' : 'col-lg-8 col-md-8 col-sm-12 col-xs-12'; ?>
@@ -102,12 +113,13 @@ if (!function_exists('fluid_thumbnail')) {
 
 if (!function_exists('get_the_author_posts_link')) {
   function get_the_author_posts_link($authorID=0) {
+    $html = '';
     $authorID = ($authorID) ? $authorID : get_the_author_meta('ID');
     if ($authorID) {
-      $link   = get_author_posts_url($agent->ID);
-      #$link   = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem
-      return "<a href='$link'>".get_the_author_meta('display_name')."</a>";
+      $link = get_author_posts_url($agent->ID);
+      #$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem
+      $html = "<a href='$link'>".get_the_author_meta('display_name')."</a>";
     }
-    return '';
+    return $html;
   }
 }

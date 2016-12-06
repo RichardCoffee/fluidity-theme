@@ -4,8 +4,9 @@
  *
  */
 
-define('FLUIDITY_VERSION','1.1.1');
+define('FLUIDITY_VERSION','1.1.2');
 
+require_once('includes/james.php');
 require_once('includes/theme-support.php');
 require_once('includes/colors.php');
 #require_once('includes/debugging.php');
@@ -40,9 +41,9 @@ if (!function_exists('fluidity_enqueue')) {
     fluidity_register_fontawesome();
     fluidity_register_color_scheme();
     #  Stylesheets
-    wp_register_style('library',   "$base_url/css/library.css",         false, FLUIDITY_VERSION);
-    wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", false, FLUIDITY_VERSION);
-    wp_register_style('fluid',     "$base_url/style.css",               false, FLUIDITY_VERSION);
+    wp_register_style('library',   "$base_url/css/library.css",         null,             FLUIDITY_VERSION);
+    wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", array('tcc-awe'), FLUIDITY_VERSION);
+    wp_register_style('fluid',     "$base_url/style.css",               null,             FLUIDITY_VERSION);
     wp_enqueue_style('tcc-fawe');  #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
     if (tcc_option('active','social')=='yes') { wp_enqueue_style('fa-social'); }
     wp_enqueue_style('bootstrap');
@@ -59,6 +60,8 @@ if (!function_exists('fluidity_enqueue')) {
       wp_enqueue_script('collapse'); }
     if (is_singular() && comments_open() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); }  #  enable threaded comments
+
+    // experimental
     $hdr_state = tcc_layout('header');
     if ($hdr_state==='fixed') {
       add_action('wp_footer','fluid_footer_autohide',99);
@@ -66,6 +69,7 @@ if (!function_exists('fluidity_enqueue')) {
       wp_enqueue_script('autohide');
       add_action('wp_footer','fluid_footer_autohide',99);
     }
+
     do_action('fluidity_enqueue');
   }
   add_action('wp_enqueue_scripts','fluidity_enqueue');
@@ -134,7 +138,8 @@ if (!is_child_theme()) {
     $title = __('The Creative Collective');
     $refer = "<a href='http://the-creative-collective.com' target='TCC' title='$title'>$title</a>"; ?>
     <h1 class='text-center'><?php
-      echo "$site currently under construction by $refer"; ?>
+      #echo "$site currently under construction by $refer";
+      echo $title; ?>
     </h1><?php
   }
   #if (function_exists('jetpack_the_site_logo') || get_theme_mod('header_logo') || tcc_design('logo')) {
@@ -145,9 +150,4 @@ if (!is_child_theme()) {
     add_action('tcc_main_header_body','show_construction_title');
   }
   add_action('tcc_top_left_menubar','fluidity_social_icons');
-/*  function control_construction_header($args) {
-    $args['split'] = false;
-    return $args;
-  }
-  add_filter('tcc_header_body','control_construction_header'); //*/
 }

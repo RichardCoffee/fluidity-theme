@@ -5,34 +5,43 @@
  *
  */
 
-$color_scheme = tcc_color_scheme(); ?>
+$page  = fluidity_page_slug();
+$color = tcc_color_scheme(); ?>
 
 <div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>" <?php microdata()->WPHeader(); ?> role="banner"><?php
 
   do_action('tcc_pre_header');
+  do_action("tcc_pre_header_$page");
 
-  if (has_action('tcc_header_top_menubar')) { ?>
-    <div id="header-topmenu" class="navbar navbar-<?php echo $color_scheme; ?>"><?php
-      do_action('tcc_header_top_menubar'); ?>
+  if (has_action('tcc_header_top_menubar') || has_action('tcc_header_top_menubar_'.$page)) { ?>
+    <div id="header-topmenu" class="navbar navbar-<?php echo $color; ?>"><?php
+      do_action('tcc_header_top_menubar');
+      do_action('tcc_header_top_menubar_'.$page); ?>
     </div><?php
-  } ?>
+  }
 
-  <div id="header-body" class="row">
-    <div class="width-<?php echo tcc_layout('width'); ?>"><?php
-      do_action('tcc_header_body_content'); ?>
-    </div>
-  </div><?php
-
-  if (has_action('tcc_header_menubar')) { ?>
-    <div id="header-menubar" class="navbar navbar-<?php echo $color_scheme; ?>">
+  if (has_action('tcc_header_body_content') || has_action('tcc_header_body_content_'.$page)) { ?>
+    <div id="header-body" class="row">
       <div class="width-<?php echo tcc_layout('width'); ?>"><?php
-        do_action('tcc_header_menubar'); ?>
+        do_action('tcc_header_body_content');
+        do_action('tcc_header_body_content_'.$page); ?>
       </div>
     </div><?php
   }
 
-  do_action('tcc_post_header'); ?>
+  if (has_action('tcc_header_menubar') || has_action('tcc_header_menubar_'.$page)) { ?>
+    <div id="header-menubar" class="navbar navbar-<?php echo $color; ?>">
+      <div class="width-<?php echo tcc_layout('width'); ?>"><?php
+        do_action('tcc_header_menubar');
+        do_action('tcc_header_menubar_'.$page); ?>
+      </div>
+    </div><?php
+  }
+
+  do_action('tcc_post_header');
+  do_action("tcc_post_header_$page"); ?>
 
 </div><?php
 
 do_action('tcc_after_header');
+do_action('tcc_after_header_'.$page);

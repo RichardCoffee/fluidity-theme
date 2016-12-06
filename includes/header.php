@@ -27,7 +27,7 @@ if (!function_exists('fluid_browser_body_class')) {
 
 // Limit length of title string
 if (!function_exists('fluid_browser_title')) {
-  function fluid_browser_title($title,$sep) {
+  function fluid_browser_title($title) {
     if (!is_feed()) {
       $test = get_bloginfo('name');
       if (empty($title)) {
@@ -42,7 +42,7 @@ if (!function_exists('fluid_browser_title')) {
     }
     return $title;
   }
-  add_filter('wp_title','fluid_browser_title',10,2);
+  add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title is going to be deprecated
 }
 
 if (!function_exists('fluid_custom_css')) {
