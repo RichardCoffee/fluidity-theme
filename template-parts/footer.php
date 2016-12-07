@@ -17,7 +17,7 @@
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
     <span class="pull-right">
       <a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
-        <img alt="XFN Friendly" src="<?php echo site_url(); ?>/wp-content/themes/fluidity/icons/xfn-btn.gif">
+        <img alt="XFN Friendly" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
       </a>
     </span>
     <p class="text-center"><?php
