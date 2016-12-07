@@ -16,7 +16,7 @@ who_am_i(); ?>
     <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(40); ?></a>
   </h1><?php
 
-  fluid_post_date(); ?>
+  if (tcc_layout('exdate')==='show') { fluid_post_date(); } ?>
 
   <div class="article" itemprop="description"><?php
     the_excerpt(); ?>

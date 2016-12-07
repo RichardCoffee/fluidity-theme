@@ -67,37 +67,12 @@ class Theme_Layout_Options {
                                'render'  => 'radio',
                                'source'  =>array('content' => __('Content','tcc-fluid'),
                                                  'excerpt' => __('Excerpt','tcc-fluid')));
-/*  $layout['logo']   = array('default' => '',
-                              'label'   => __('Theme Logo','tcc-fluid'),
-                              'render'  => 'image',
-                              'divcss'  => 'upload-img',
-                              'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
-                                                 'button' => __('Assign Logo',             'tcc-fluid'),
-                                                 'delete' => __('Remove Logo',             'tcc-fluid')));
-    $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
-                              'text'    => __('Site typography options','tcc-fluid'),
-                              'render'  => 'title');
-    $layout['font']   = array('default' => 'Helvitica Neue',
-                              'label'   => __('Font Type','tcc-fluid'),
-                              'render'  => 'font',
-                              'source'  => TCC_Typography::mixed_fonts());
-    $layout['size']   = array('default' => 18,
-                              'label'   => __('Font Size','tcc-fluid'),
-                              'text'    => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
-                              'render'  => 'text',
-                              'divcss'  => 'tcc_text_3em');
-/*    $layout['back']   = array('label'   => __('Background','tcc-fluid'),
-                              'text'    => __('Use these options to add/change the background images','tcc-fluid'),
-                              'render'  => 'title');
-    $layout['header'] = array('label'   => __('Header',      'tcc-fluid'),
-                              'text'    => __('Coming Soon!','tcc-fluid'),
-                              'render'  => 'display');
-    $layout['footer'] = array('label'   => __('Footer',      'tcc-fluid'),
-                              'text'    => __('Coming Soon!','tcc-fluid'),
-                              'render'  => 'display');
-    $layout['site']   = array('label'   => __('Site',        'tcc-fluid'),
-                              'text'    => __('Coming Soon!','tcc-fluid'),
-                              'render'  => 'display'); //*/
+    $layout['exdate']  = array('default' => 'show',
+                               'label'   => __('Excerpt Date','tcc-fluid'),
+                               'text'    => __('Should the date be displayed with excerpt?','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  =>array('none' => __('No Date','tcc-fluid'),
+                                                 'show' => __('Show Date','tcc-fluid')));
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
