@@ -50,7 +50,9 @@ if (!function_exists('fluidity_page_slug')) {
       $slug = get_queried_object()->post_name; }
     else {
       $page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
+if ($page) {
       $slug = $page->post_name;
+} else { log_entry('dump'); }
     }
     return apply_filters('fluidity_page_slug',$slug);
   }

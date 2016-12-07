@@ -78,7 +78,9 @@ if (!function_exists('fluid_post_date')) {
     if (($layout==='modified') && ((get_the_modified_date('U')-(60*60*24))>(get_the_date('U')))) {
       #if ($complete) { echo "<h4 class='text-center'>$posted</h4>"; }
       $show = ($complete) ? $complete : $show;
-      $string = esc_html_x('Last modified on %1$s by %2$s','formatted date string, user name','tcc-fluid');
+      $single = esc_html_x('Last modified on %1$s','formatted date string','tcc-fluid');
+      $double = esc_html_x('Last modified on %1$s by %2$s','formatted date string, user name','tcc-fluid');
+      $string = ($show) ? $single : $double;
       $date   = get_the_modified_date();
 #log_entry(0,'modified');
     }
