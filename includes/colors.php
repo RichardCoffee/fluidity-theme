@@ -19,7 +19,7 @@ if (!function_exists('tcc_color_scheme')) {
  *     red: danger
  *   white: default
  */
-    static $color = 'danger-inverse';
+    static $color; // = 'danger-inverse';
     if (!$color) {
       $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
       $index  = rand(0,count($colors)-1);
