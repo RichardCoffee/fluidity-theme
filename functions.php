@@ -135,9 +135,10 @@ if (!function_exists('fluidity_show_query')) {
 if (!is_child_theme()) {
 
   add_action('tcc_header_top_menubar', 'fluidity_top_menubar');
-  add_action('tcc_top_right_menubar',  'fluidity_header_bar_login');
+  add_action('tcc_top_right_menubar',  'construction_bar_login');
   add_action('tcc_top_left_menubar',   'fluidity_social_icons');
-  add_action('tcc_header_body_content','fluidity_header_body');
+#  add_action('tcc_header_body_content','fluidity_header_body');
+  add_action('tcc_header_body_content','construction_logo_limiter');
 #  add_action('tcc_header_menubar',     'fluidity_main_menubar');
   add_action('fluidity_menubar',       'fluidity_menubar_print_button');
 
@@ -145,6 +146,26 @@ if (!is_child_theme()) {
     add_action('tcc_top_left_menubar','fluidity_header_logo');
   }
   add_action('tcc_top_right_menubar','fluidity_main_menubar');
+
+  function construction_bar_login() { ?>
+    <div class="row">
+      <?php fluidity_header_bar_login(); ?>
+    </div><?php
+  }
+
+  function construction_logo_limiter() { ?>
+    <div class="constr_logo_limiter">
+      <?php fluidity_header_logo(); ?>
+    </div><?php
+  }
+
+  function constr_logo_limiter() { ?>
+    .constr_logo_limiter {
+      margin-right: 10%;
+      margin-left: 10%;
+    }<?php
+  }
+  add_action('fluid_custom_css','constr_log_limiter');
 
  /*
   function show_construction_title() {
