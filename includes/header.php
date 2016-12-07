@@ -86,7 +86,7 @@ if (!function_exists('fluidity_header_body')) {
       <div class="<?php echo $left; ?>"><?php
         do_action('tcc_left_header_body'); ?>
       </div>
-      <div class="<?php echo $right; ?>"><?php
+      <div class="<?php echo $right; ?> fullheight"><?php
         do_action('tcc_right_header_body'); ?>
       </div><?php
     } else { ?>
