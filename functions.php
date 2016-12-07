@@ -133,14 +133,16 @@ if (!function_exists('fluidity_show_query')) {
 /** Temporary Construction functions **/
 
 if (!is_child_theme()) {
-  function show_construction_title() {
+  function show_construction_title() { /*
     $site  = "<a href='".home_url()."' title='Fluidity'>This site</a>";
     $title = __('The Creative Collective');
     $refer = "<a href='http://the-creative-collective.com' target='TCC' title='$title'>$title</a>"; ?>
     <h1 class='text-center'><?php
       #echo "$site currently under construction by $refer";
       echo $title; ?>
-    </h1><?php
+    </h1><?php //*/
+    remove_all_actions('tcc_header_menubar');
+    get_template_part('template-parts/menu');
   }
   #if (function_exists('jetpack_the_site_logo') || get_theme_mod('header_logo') || tcc_design('logo')) {
   if (get_theme_mod('header_logo') || tcc_design('logo')) {
