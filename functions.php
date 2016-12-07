@@ -159,13 +159,14 @@ if (!is_child_theme()) {
     </div><?php
   }
 
-  function constr_logo_limiter() { ?>
+  function constr_logo_limiter() {
+    echo "
     .constr_logo_limiter {
       margin-right: 10%;
       margin-left: 10%;
-    }<?php
+    }\n";
   }
-  add_action('fluid_custom_css','constr_log_limiter');
+  add_action('fluid_custom_css','constr_logo_limiter');
 
  /*
   function show_construction_title() {
