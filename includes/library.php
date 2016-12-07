@@ -338,21 +338,13 @@ if (!function_exists('log_entry')) {
         $depth = $args[0];
         unset($args[0]);
       }
-      if ($depth) error_log(debug_calling_function($depth)); /*
-
-      if (is_int($args[0])) {
-        if ($depth=intval($args[0])) {
-          $args[0] = debug_calling_function($depth);
-        } else {
-          unset($args[0]);
-        }
-      } else {
-        error_log(debug_calling_function(1));
-      } //*/
+      if ($depth) error_log(debug_calling_function($depth));
 
       foreach ($args as $message) {
         if (is_array($message) || is_object($message)) {
           error_log(print_r($message, true));
+        } else if ($message==='dump') {
+            error_log(print_r(debug_backtrace(),true));
         } else {
           error_log($message);
         }
