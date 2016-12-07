@@ -11,7 +11,6 @@ require_once('includes/theme-support.php');
 require_once('includes/colors.php');
 #require_once('includes/debugging.php');
 require_once('includes/library.php');
-#require_once('includes/layout.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
 require_once(plugin_dir_path(__FILE__).'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
@@ -130,61 +129,12 @@ if (!function_exists('fluidity_show_query')) {
 }
 
 
-/** Temporary Construction functions **/
-
 if (!is_child_theme()) {
-
-  add_action('tcc_header_top_menubar', 'fluidity_top_menubar');
-  add_action('tcc_top_right_menubar',  'construction_bar_login');
-  add_action('tcc_top_right_menubar',  'fluidity_main_menubar');
-  add_action('tcc_top_left_menubar',   'fluidity_social_icons');
-#  add_action('tcc_header_body_content','fluidity_header_body');
-#  add_action('tcc_header_body_content','construction_logo_limiter');
-#  add_action('tcc_header_menubar',     'fluidity_main_menubar');
-#  add_action('fluidity_menubar',       'fluidity_menubar_print_button');
-
-  if (get_theme_mod('header_logo') || tcc_design('logo')) {
-    #add_action('tcc_top_left_menubar','fluidity_header_logo');
-    add_action('tcc_top_left_menubar','construction_logo_limiter'); }
-  add_action('tcc_top_left_menubar',  'fluidity_menubar_print_button');
-
-  function construction_bar_login() { ?>
-    <div class="row">
-      <?php fluidity_header_bar_login(); ?>
-    </div><?php
-  }
-
-  function construction_logo_limiter() { ?>
-    <div class="constr_logo_limiter">
-      <?php fluidity_header_logo(); ?>
-    </div><?php
-  }
-
-  function constr_logo_limiter() {
-    echo "
-    .constr_logo_limiter {
-      margin-right: 10%;
-      margin-left: 10%;
-    }\n";
-  }
-  add_action('fluid_custom_css','constr_logo_limiter');
-
- /*
-  function show_construction_title() {
-    $site  = "<a href='".home_url()."' title='Fluidity'>This site</a>";
-    $title = __('The Creative Collective');
-    $refer = "<a href='http://the-creative-collective.com' target='TCC' title='$title'>$title</a>"; ?>
-    <h1 class='text-center'><?php
-      #echo "$site currently under construction by $refer";
-      echo $title; ?>
-    </h1><?php
-  } //*
-
-  #if (function_exists('jetpack_the_site_logo') || get_theme_mod('header_logo') || tcc_design('logo')) {
-  if (get_theme_mod('header_logo') || tcc_design('logo')) {
-    add_action('tcc_left_header_body','fluidity_header_logo');
-    add_action('tcc_right_header_body','fluidity_main_menubar');
+  $site = site_url();
+  if (!strpos($site,'the-creative-collective')===false) {
+    require_once('includes/hdr-tcc.php');
+  #} else if (!strpos($site,'rtcenterprises')===false) {
   } else {
-    add_action('tcc_main_header_body','fluidity_main_menubar');
-  } //*/
+    require_once('includes/hdr-rtc.php');
+  }
 }
