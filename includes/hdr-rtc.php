@@ -24,7 +24,9 @@ add_action('tcc_header_menubar',     'fluidity_main_menubar');
 add_action('fluidity_menubar',       'fluidity_menubar_print_button');
 
 function show_fluid_title() {
-  $site  = "<a href='".home_url()."' title='Fluidity'>This site</a>";
+  $site  = "<a href='".home_url()."' title='Fluidity'>";
+  $site .= get_bloginfo('name');
+  $site .= "</a>";
   $title = __('The Creative Collective');
   $refer = "<a href='http://the-creative-collective.com' target='TCC' title='$title'>$title</a>"; ?>
   <h1 class='text-center'><?php
