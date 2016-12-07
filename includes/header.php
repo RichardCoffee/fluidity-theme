@@ -63,7 +63,7 @@ if (!function_exists('fluidity_top_menubar')) {
       do_action('tcc_top_right_menubar'); ?>
     </div><?php
   }
-  add_action('tcc_header_top_menubar','fluidity_top_menubar');
+  #add_action('tcc_header_top_menubar','fluidity_top_menubar');
 }
 
 if (!function_exists('fluidity_header_bar_login')) {
@@ -72,7 +72,7 @@ if (!function_exists('fluidity_header_bar_login')) {
       tcc_login_form(true,true); ?>
     </div><?php
   }
-  add_action('tcc_top_right_menubar','fluidity_header_bar_login');
+  #add_action('tcc_top_right_menubar','fluidity_header_bar_login');
 }
 
 if (!function_exists('fluidity_header_body')) {
@@ -95,7 +95,7 @@ if (!function_exists('fluidity_header_body')) {
       </div><?php
     }
   }
-  add_action('tcc_header_body_content','fluidity_header_body');
+  #add_action('tcc_header_body_content','fluidity_header_body');
 }
 
 if (!function_exists('fluidity_header_logo')) {
@@ -131,7 +131,7 @@ if (!function_exists('fluidity_main_menubar')) {
       get_template_part('template-parts/menu');
 //    }
   }
-  add_action('tcc_header_menubar','fluidity_main_menubar');
+  #add_action('tcc_header_menubar','fluidity_main_menubar');
 }
 
 if (!function_exists('fluidity_menubar_print')) {
@@ -147,5 +147,5 @@ if (!function_exists('fluidity_menubar_print')) {
       </span><?php
     }
   }
-  add_action('fluidity_menubar','fluidity_menubar_print_button');
+  #add_action('fluidity_menubar','fluidity_menubar_print_button');
 }
