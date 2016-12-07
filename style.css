@@ -40,6 +40,10 @@ body {
   transition: height 22s ease-in-out;
 }
 
+.fullheight {
+  height: 100%;
+}
+
 .margintop,
 .margint1e {
   margin-top: 1em;
