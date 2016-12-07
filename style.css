@@ -97,6 +97,11 @@ body {
   margin-left: 2em;
   margin-right: 2em;
 }
+.article img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
 
 table.posting-table {
   border-collapse: collapse;

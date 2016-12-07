@@ -2,4 +2,9 @@
 .article {
   margin-left: 2em;
   margin-right: 2em;
+  & img {  // duplicate bootstrap img-responsive
+    display: block;
+    height: auto;
+    max-width: 100%
+  }
 }
