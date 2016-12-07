@@ -22,7 +22,10 @@
     </span>
     <p class="text-center"><?php
       $format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
-      echo sprintf($format,fluid_copyright_dates(),microdata()->get_bloginfo('name')); ?>
+      $title  = apply_filters('tcc_copyright_name',microdata()->get_bloginfo('name'));
+      echo sprintf($format,fluid_copyright_dates(),$title);
+/*
+ ?>
       <br><?php
       $foot_menu = array();
       if (page_exists('terms'))      $foot_menu[] = array('terms',      esc_html__('Terms & Conditions','tcc-fluid'));
@@ -35,7 +38,7 @@
         foreach($foot_menu as $option) {
           $string.= "<a href='/{$option[0]}/'> {$option[1]} </a> | "; }
         echo substr($string,0,-3).'</span>';
-      }  ?>
+      } //*/ ?>
     </p>
   </div>
 </div><!-- .footer -->
