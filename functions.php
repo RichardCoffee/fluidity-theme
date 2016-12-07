@@ -136,16 +136,17 @@ if (!is_child_theme()) {
 
   add_action('tcc_header_top_menubar', 'fluidity_top_menubar');
   add_action('tcc_top_right_menubar',  'construction_bar_login');
+  add_action('tcc_top_right_menubar',  'fluidity_main_menubar');
   add_action('tcc_top_left_menubar',   'fluidity_social_icons');
 #  add_action('tcc_header_body_content','fluidity_header_body');
-  add_action('tcc_header_body_content','construction_logo_limiter');
+#  add_action('tcc_header_body_content','construction_logo_limiter');
 #  add_action('tcc_header_menubar',     'fluidity_main_menubar');
-  add_action('fluidity_menubar',       'fluidity_menubar_print_button');
+#  add_action('fluidity_menubar',       'fluidity_menubar_print_button');
 
   if (get_theme_mod('header_logo') || tcc_design('logo')) {
-    add_action('tcc_top_left_menubar','fluidity_header_logo');
-  }
-  add_action('tcc_top_right_menubar','fluidity_main_menubar');
+    #add_action('tcc_top_left_menubar','fluidity_header_logo');
+    add_action('tcc_top_left_menubar','construction_logo_limiter'); }
+  add_action('tcc_top_left_menubar',  'fluidity_menubar_print_button');
 
   function construction_bar_login() { ?>
     <div class="row">
