@@ -4,14 +4,19 @@
  *  based on bootstrap warning color scheme
  *
  */
-.btn-warning-inverse-inverse, .navbar-warning-inverse .btn-warning-inverse {
+.color-warning-inverse-inverse, .btn-warning-inverse-inverse, .navbar-warning-inverse .btn-warning-inverse {
   background-color: #8A6D3B;
   border-color: #FAEBCC;
   color: #FCF8E3;
 }
-.btn-warning-inverse-inverse:hover, .navbar-warning-inverse .btn-warning-inverse:hover, .btn-warning-inverse-inverse:focus, .navbar-warning-inverse .btn-warning-inverse:focus {
+.color-warning-inverse-inverse:hover, .btn-warning-inverse-inverse:hover, .navbar-warning-inverse .btn-warning-inverse:hover, .color-warning-inverse-inverse:focus, .btn-warning-inverse-inverse:focus, .navbar-warning-inverse .btn-warning-inverse:focus {
   background-color: #8A6D3B;
   color: #FAEBCC;
+}
+
+.color-warning-inverse {
+  background-color: #FCF8E3;
+  color: #8A6D3B;
 }
 
 .navbar-warning-inverse {

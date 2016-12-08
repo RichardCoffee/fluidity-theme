@@ -4,14 +4,19 @@
  *  based on bootstrap info color scheme
  *
  */
-.btn-info-inverse-inverse, .navbar-info-inverse .btn-info-inverse {
+.color-info-inverse-inverse, .btn-info-inverse-inverse, .navbar-info-inverse .btn-info-inverse {
   background-color: #31708F;
   border-color: #BCE8F1;
   color: #D9EDF7;
 }
-.btn-info-inverse-inverse:hover, .navbar-info-inverse .btn-info-inverse:hover, .btn-info-inverse-inverse:focus, .navbar-info-inverse .btn-info-inverse:focus {
+.color-info-inverse-inverse:hover, .btn-info-inverse-inverse:hover, .navbar-info-inverse .btn-info-inverse:hover, .color-info-inverse-inverse:focus, .btn-info-inverse-inverse:focus, .navbar-info-inverse .btn-info-inverse:focus {
   background-color: #31708F;
   color: #BCE8F1;
+}
+
+.color-info-inverse {
+  background-color: #D9EDF7;
+  color: #31708F;
 }
 
 .navbar-info-inverse {

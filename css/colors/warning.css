@@ -4,14 +4,19 @@
  *  bootstrap warning color scheme
  *
  */
-.btn-warning-inverse, .navbar-warning .btn-warning {
+.color-warning-inverse, .btn-warning-inverse, .navbar-warning .btn-warning {
   background-color: #FFFFFF;
   border-color: #EEA236;
   color: #F0AD4E;
 }
-.btn-warning-inverse:hover, .navbar-warning .btn-warning:hover, .btn-warning-inverse:focus, .navbar-warning .btn-warning:focus {
+.color-warning-inverse:hover, .btn-warning-inverse:hover, .navbar-warning .btn-warning:hover, .color-warning-inverse:focus, .btn-warning-inverse:focus, .navbar-warning .btn-warning:focus {
   background-color: #FFFFFF;
   color: #EEA236;
+}
+
+.color-warning {
+  background-color: #F0AD4E;
+  color: #FFFFFF;
 }
 
 .navbar-warning {

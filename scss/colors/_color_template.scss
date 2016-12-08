@@ -6,6 +6,13 @@
 @import "functions";
 @import "placeholders";
 
+.color-#{$colorName} {
+  background-color: color(background);
+  color: color(textcolor);
+}
+.color-#{$colorName}-inverse {
+  @extend %inverse;
+}
 
 // buttons
 

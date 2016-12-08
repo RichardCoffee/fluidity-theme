@@ -4,14 +4,19 @@
  *  bootstrap primary color scheme
  *
  */
-.btn-primary-inverse, .navbar-primary .btn-primary {
+.color-primary-inverse, .btn-primary-inverse, .navbar-primary .btn-primary {
   background-color: #ffffff;
   border-color: #2E6DA4;
   color: #337AB7;
 }
-.btn-primary-inverse:hover, .navbar-primary .btn-primary:hover, .btn-primary-inverse:focus, .navbar-primary .btn-primary:focus {
+.color-primary-inverse:hover, .btn-primary-inverse:hover, .navbar-primary .btn-primary:hover, .color-primary-inverse:focus, .btn-primary-inverse:focus, .navbar-primary .btn-primary:focus {
   background-color: #ffffff;
   color: #2E6DA4;
+}
+
+.color-primary {
+  background-color: #337AB7;
+  color: #ffffff;
 }
 
 .navbar-primary {

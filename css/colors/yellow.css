@@ -2,14 +2,19 @@
  *  css/colors/yellow.css
  *
  */
-.btn-yellow-inverse, .navbar-yellow .btn-yellow {
+.color-yellow-inverse, .btn-yellow-inverse, .navbar-yellow .btn-yellow {
   background-color: #FFFFFF;
   border-color: #ccc200;
   color: #fff200;
 }
-.btn-yellow-inverse:hover, .navbar-yellow .btn-yellow:hover, .btn-yellow-inverse:focus, .navbar-yellow .btn-yellow:focus {
+.color-yellow-inverse:hover, .btn-yellow-inverse:hover, .navbar-yellow .btn-yellow:hover, .color-yellow-inverse:focus, .btn-yellow-inverse:focus, .navbar-yellow .btn-yellow:focus {
   background-color: #FFFFFF;
   color: #ccc200;
+}
+
+.color-yellow {
+  background-color: #fff200;
+  color: #FFFFFF;
 }
 
 .navbar-yellow {

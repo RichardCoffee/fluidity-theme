@@ -4,14 +4,19 @@
  *  bootstrap danger color scheme
  * #f2dede #f2dede #a94442
  */
-.btn-danger-inverse, .navbar-danger .btn-danger {
+.color-danger-inverse, .btn-danger-inverse, .navbar-danger .btn-danger {
   background-color: #FFFFFF;
   border-color: #d43f3a;
   color: #d9534f;
 }
-.btn-danger-inverse:hover, .navbar-danger .btn-danger:hover, .btn-danger-inverse:focus, .navbar-danger .btn-danger:focus {
+.color-danger-inverse:hover, .btn-danger-inverse:hover, .navbar-danger .btn-danger:hover, .color-danger-inverse:focus, .btn-danger-inverse:focus, .navbar-danger .btn-danger:focus {
   background-color: #FFFFFF;
   color: #d43f3a;
+}
+
+.color-danger {
+  background-color: #d9534f;
+  color: #FFFFFF;
 }
 
 .navbar-danger {

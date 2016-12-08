@@ -4,14 +4,19 @@
  *  based on bootstrap success color scheme
  *
  */
-.btn-success-inverse-inverse, .navbar-success-inverse .btn-success-inverse {
+.color-success-inverse-inverse, .btn-success-inverse-inverse, .navbar-success-inverse .btn-success-inverse {
   background-color: #3c763d;
   border-color: #d6e9c6;
   color: #dff0d8;
 }
-.btn-success-inverse-inverse:hover, .navbar-success-inverse .btn-success-inverse:hover, .btn-success-inverse-inverse:focus, .navbar-success-inverse .btn-success-inverse:focus {
+.color-success-inverse-inverse:hover, .btn-success-inverse-inverse:hover, .navbar-success-inverse .btn-success-inverse:hover, .color-success-inverse-inverse:focus, .btn-success-inverse-inverse:focus, .navbar-success-inverse .btn-success-inverse:focus {
   background-color: #3c763d;
   color: #d6e9c6;
+}
+
+.color-success-inverse {
+  background-color: #dff0d8;
+  color: #3c763d;
 }
 
 .navbar-success-inverse {

@@ -2,14 +2,19 @@
  *  css/colors/red.css
  *
  */
-.btn-red-inverse, .navbar-red .btn-red {
+.color-red-inverse, .btn-red-inverse, .navbar-red .btn-red {
   background-color: #FFFFFF;
   border-color: #cc0000;
   color: #ff0000;
 }
-.btn-red-inverse:hover, .navbar-red .btn-red:hover, .btn-red-inverse:focus, .navbar-red .btn-red:focus {
+.color-red-inverse:hover, .btn-red-inverse:hover, .navbar-red .btn-red:hover, .color-red-inverse:focus, .btn-red-inverse:focus, .navbar-red .btn-red:focus {
   background-color: #FFFFFF;
   color: #cc0000;
+}
+
+.color-red {
+  background-color: #ff0000;
+  color: #FFFFFF;
 }
 
 .navbar-red {

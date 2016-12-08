@@ -2,14 +2,19 @@
  *  css/colors/orange.css
  *
  */
-.btn-orange-inverse, .navbar-orange .btn-orange {
+.color-orange-inverse, .btn-orange-inverse, .navbar-orange .btn-orange {
   background-color: #FFFFFF;
   border-color: #d57808;
   color: #f7941d;
 }
-.btn-orange-inverse:hover, .navbar-orange .btn-orange:hover, .btn-orange-inverse:focus, .navbar-orange .btn-orange:focus {
+.color-orange-inverse:hover, .btn-orange-inverse:hover, .navbar-orange .btn-orange:hover, .color-orange-inverse:focus, .btn-orange-inverse:focus, .navbar-orange .btn-orange:focus {
   background-color: #FFFFFF;
   color: #d57808;
+}
+
+.color-orange {
+  background-color: #f7941d;
+  color: #FFFFFF;
 }
 
 .navbar-orange {

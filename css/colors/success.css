@@ -4,14 +4,19 @@
  *  bootstrap success color scheme
  *
  */
-.btn-success-inverse, .navbar-success .btn-success {
+.color-success-inverse, .btn-success-inverse, .navbar-success .btn-success {
   background-color: #ffffff;
   border-color: #4cae4c;
   color: #5cb85c;
 }
-.btn-success-inverse:hover, .navbar-success .btn-success:hover, .btn-success-inverse:focus, .navbar-success .btn-success:focus {
+.color-success-inverse:hover, .btn-success-inverse:hover, .navbar-success .btn-success:hover, .color-success-inverse:focus, .btn-success-inverse:focus, .navbar-success .btn-success:focus {
   background-color: #ffffff;
   color: #4cae4c;
+}
+
+.color-success {
+  background-color: #5cb85c;
+  color: #ffffff;
 }
 
 .navbar-success {
