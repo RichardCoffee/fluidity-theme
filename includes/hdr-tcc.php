@@ -14,16 +14,18 @@ if (get_theme_mod('header_logo') || tcc_design('logo')) {
 add_action('tcc_top_left_menubar',   'fluidity_menubar_print_button');
 
 function collective_top_menubar() { ?>
-  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
-    do_action('tcc_top_left_menubar'); ?>
-  </div>
-  <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><?php
-    do_action('tcc_top_right_menubar'); ?>
+  <div class="row nomargin">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"><?php
+      do_action('tcc_top_left_menubar'); ?>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><?php
+      do_action('tcc_top_right_menubar'); ?>
+    </div>
   </div><?php
 }
 
 function collective_bar_login() { ?>
-  <div class="row">
+  <div class="row nomargin">
     <?php fluidity_header_bar_login(); ?>
   </div><?php
 }
