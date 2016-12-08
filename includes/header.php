@@ -108,12 +108,12 @@ if (!function_exists('fluidity_header_logo')) {
           $logo_id = get_theme_mod('custom-logo');
           if ($logo_id) {
             $size = 'medium';
-            $attr = array( 'class'     => "img-responsive attachment-$size",
+            $attr = array( 'class'     => "img-responsive attachment-$size hidden-xs",
                            'data-size' => $size,
                            'itemprop'  => "image" );
             echo wp_get_attachment_image( $logo_id, $size, false, $attr );
           } else if ($logo=tcc_design('logo')) { ?>
-            <img class='img-responsive' src='<?php echo $logo; ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'><?php
+            <img class='img-responsive hidden-xs' src='<?php echo $logo; ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'><?php
           } ?>
         </a><?php
       } ?>

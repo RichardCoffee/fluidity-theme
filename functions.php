@@ -55,7 +55,7 @@ if (!function_exists('fluidity_enqueue')) {
     wp_register_script('collapse', "$base_url/js/collapse.js", array('jquery','library'),FLUIDITY_VERSION,true);
     wp_register_script('autohide', "$base_url/js/autohide.js", array('jquery'),          FLUIDITY_VERSION,true);
     wp_enqueue_script('bootstrap');
-    if (tcc_layout('widget')!=='perm') {
+    if (tcc_layout('widget')!=='perm' || is_404()) {
       wp_enqueue_script('collapse'); }
     if (is_singular() && comments_open() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); }  #  enable threaded comments
