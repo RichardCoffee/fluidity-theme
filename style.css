@@ -258,6 +258,10 @@ pre {
   color: red;
 }
 
+.container-fluid {
+  padding: 0;
+}
+
 .navbar {
   border: none;
   margin-bottom: 0;
