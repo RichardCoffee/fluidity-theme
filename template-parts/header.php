@@ -7,14 +7,14 @@
 
 $page  = fluidity_page_slug();
 $color = tcc_color_scheme(); ?>
-<div id="" class="navbar navbar-<?php echo $color; ?>"> <!-- Moved it to here -->
+<div id="" class="class="navbar navbar-<?php echo $color; ?>"">
 <div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>" <?php microdata()->WPHeader(); ?> role="banner"><?php
 
   do_action('tcc_pre_header');
   do_action("tcc_pre_header_$page");
 
   if (has_action('tcc_header_top_menubar') || has_action('tcc_header_top_menubar_'.$page)) { ?>
-    <div id="header-topmenu"  ><?php
+    <div id="header-topmenu" #took out nav><?php
       do_action('tcc_header_top_menubar');
       do_action('tcc_header_top_menubar_'.$page); ?>
     </div><?php
