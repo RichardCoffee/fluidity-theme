@@ -8,9 +8,8 @@
 $page  = fluidity_page_slug();
 $color = tcc_color_scheme(); ?>
 
-<div id="header-topmenu">
 <div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>" <?php microdata()->WPHeader(); ?> role="banner"><?php
-/*
+
   do_action('tcc_pre_header');
   do_action("tcc_pre_header_$page");
 
@@ -41,9 +40,7 @@ $color = tcc_color_scheme(); ?>
 
   do_action('tcc_post_header');
   do_action("tcc_post_header_$page"); ?>
-*/
-?>
-</div>
+
 </div><?php
 
 do_action('tcc_after_header');
