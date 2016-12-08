@@ -7,7 +7,7 @@
 
 $page  = fluidity_page_slug();
 $color = tcc_color_scheme(); ?>
-<div id="" class="class="navbar navbar-<?php echo $color; ?>""> <!-- Moved it to here -->
+<div id="" class="navbar navbar-<?php echo $color; ?>"> <!-- Moved it to here -->
 <div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>" <?php microdata()->WPHeader(); ?> role="banner"><?php
 
   do_action('tcc_pre_header');
