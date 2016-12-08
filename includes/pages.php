@@ -48,12 +48,15 @@ if (!function_exists('fluidity_page_slug')) {
     $slug = 'stock';
     if ( is_page() ) {
       $slug = get_queried_object()->post_name; }
+    else if (is_404()) {
+      $slug = '404';
     else {
       $page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
 if ($page) {
       $slug = $page->post_name;
 } else { log_entry('dump',get_queried_object()); }
     }
+
     return apply_filters('fluidity_page_slug',$slug);
   }
 }
