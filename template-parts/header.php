@@ -14,7 +14,7 @@ $color = tcc_color_scheme(); ?>
   do_action("tcc_pre_header_$page");
 
   if (has_action('tcc_header_top_menubar') || has_action('tcc_header_top_menubar_'.$page)) { ?>
-    <div id="header-topmenu" <!-- #took out navbar nav color here -->><?php
+    <div id="header-topmenu"  ><?php
       do_action('tcc_header_top_menubar');
       do_action('tcc_header_top_menubar_'.$page); ?>
     </div><?php
