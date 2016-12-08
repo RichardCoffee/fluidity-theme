@@ -3,6 +3,7 @@
 /*  
  *  File:   classes/form-fields.php
  *
+ *  note:  register_setting calls need to be updated to WP4.7
  */
 
 abstract class Form_Field {

@@ -148,7 +148,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
                                          'label'   => __('Dashboard location','tcc-fluid'),
                                          'text'    => __('This controls where on the WordPress Dashboard menu that Theme Options will appear','tcc-fluid'),
                                          'help'    => __('Bottom is best for this option.  Having it at the top can be annoying.  YMMV','tcc-fluid'),
-                                         'render'  => 'select',
+                                         'render'  => 'radio',
                                          'source'  => array('top'    => __('Top','tcc-fluid'),
                                                             'bottom' => __('Bottom','tcc-fluid')),
                                          'divcss'  => 'tcc-wp_posi'),

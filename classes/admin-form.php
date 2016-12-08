@@ -476,7 +476,7 @@ log_entry($controls);
     $html = "<div data-title='{$media['title']}' data-button='{$media['button']}' data-field='$ID'>";
     $html.= "  <button type='button' class='form-image'>{$media['button']}</button>";
     $html.= "  <input id='{$ID}_input' type='text' class='hidden' name='$name' value='$value' />";
-    $html.= "  <div class='form-image-container".((empty($value)) ? " hidden'" : "'")."><img id='{$ID}_img' src='$value'></div>";
+    $html.= "  <div class='form-image-container".((empty($value)) ? " hidden'" : "'")."><img id='{$ID}_img' src='$value' alt='$value'></div>";
     $html.= "  <button type='button' class='form-image-delete".((empty($value)) ? " hidden'" : "'").">{$media['delete']}</button>";
     $html.= "</div>";
     echo $html;
