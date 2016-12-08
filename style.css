@@ -49,6 +49,10 @@ body {
   margin-top: 1em;
 }
 
+.nomargin {
+  margin: 0;
+}
+
 .nopad {
   padding: 0;
 }
