@@ -49,7 +49,7 @@ if (!function_exists('fluidity_page_slug')) {
     if ( is_page() ) {
       $slug = get_queried_object()->post_name; }
     else if (is_404()) {
-      $slug = '404';
+      $slug = '404'; }
     else {
       $page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
 if ($page) {
