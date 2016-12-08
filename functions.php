@@ -35,14 +35,13 @@ if (is_admin()) {
 
 if (!function_exists('fluidity_enqueue')) {
   function fluidity_enqueue() {
-    $base_url = get_template_directory_uri();
     fluidity_register_bootstrap();
     fluidity_register_fontawesome();
     fluidity_register_color_scheme();
     #  Stylesheets
-    wp_register_style('library',   "$base_url/css/library.css",         null,             FLUIDITY_VERSION);
-    wp_register_style('fa-social', "$base_url/css/fa-social-hover.css", array('tcc-awe'), FLUIDITY_VERSION);
-    wp_register_style('fluid',     "$base_url/style.css",               null,             FLUIDITY_VERSION);
+    wp_register_style('library',   get_theme_file_uri("css/library.css",         null,             FLUIDITY_VERSION);
+    wp_register_style('fa-social', get_theme_file_uri("css/fa-social-hover.css", array('tcc-awe'), FLUIDITY_VERSION);
+    wp_register_style('fluid',     get_theme_file_uri("style.css",               null,             FLUIDITY_VERSION);
     wp_enqueue_style('tcc-fawe');  #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
     if (tcc_option('active','social')=='yes') { wp_enqueue_style('fa-social'); }
     wp_enqueue_style('bootstrap');
@@ -50,10 +49,10 @@ if (!function_exists('fluidity_enqueue')) {
     wp_enqueue_style('fluid');
     wp_enqueue_style('fluid-color');
     #  Javascript
-    wp_register_script('sprintf',  "$base_url/js/sprintf.js",  null,                     FLUIDITY_VERSION,true);
-    wp_register_script('library',  "$base_url/js/library.js",  array('jquery','sprintf'),FLUIDITY_VERSION,true);
-    wp_register_script('collapse', "$base_url/js/collapse.js", array('jquery','library'),FLUIDITY_VERSION,true);
-    wp_register_script('autohide', "$base_url/js/autohide.js", array('jquery'),          FLUIDITY_VERSION,true);
+    wp_register_script('sprintf',  get_theme_file_uri("js/sprintf.js",  null,                     FLUIDITY_VERSION,true);
+    wp_register_script('library',  get_theme_file_uri("js/library.js",  array('jquery','sprintf'),FLUIDITY_VERSION,true);
+    wp_register_script('collapse', get_theme_file_uri("js/collapse.js", array('jquery','library'),FLUIDITY_VERSION,true);
+    wp_register_script('autohide', get_theme_file_uri("js/autohide.js", array('jquery'),          FLUIDITY_VERSION,true);
     wp_enqueue_script('bootstrap');
     if (tcc_layout('widget')!=='perm' || is_404()) {
       wp_enqueue_script('collapse'); }
@@ -100,16 +99,7 @@ if (!function_exists('fluidity_register_fontawesome')) {
 if (!function_exists('fluidity_register_color_scheme')) {
   function fluidity_register_color_scheme() {
     if ($color_file=fluid_color_scheme()) {
-      $base = "/css/colors/$color_file.css";
-      $file = get_stylesheet_directory().$base;
-      if (is_readable($file)) {
-        wp_register_style('fluid-color',  get_stylesheet_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
-      } else {
-        $file = get_template_directory().$base;
-        if (is_readable($file)) {
-          wp_register_style('fluid-color',  get_template_directory_uri()."/css/colors/$color_file.css",false,FLUIDITY_VERSION);
-        }
-      }
+      wp_register_style('fluid-color',  get_theme_file_uri("css/colors/$color_file.css",false,FLUIDITY_VERSION);
     }
   }
 }
