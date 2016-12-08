@@ -28,8 +28,8 @@ function fluid_index_page($page='index') { ?>
             </div><?php
             fluid_post_separator($page);
           }
+          fluid_navigation();
 
-          #fluid_navigation('below');
           do_action("fluid_{$page}_page_afterposts");
 
         } else {

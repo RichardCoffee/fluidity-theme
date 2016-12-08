@@ -48,7 +48,7 @@ who_am_i(); ?>
       comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
     </p><?php
 
-    fluid_navigation();
+#    fluid_navigation();
 /*
     <div class='post-links noprint'>
       <span class='pull-left'><?php

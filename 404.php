@@ -31,6 +31,7 @@ if (WP_DEBUG) { ?>
       <div class="page-content">
         <h2><?php esc_attr_e(__('It seems as if the page you are looking for is not here','tcc-fluid')); ?></h2>
         <h3><?php esc_attr_e(__('It looks like nothing was found at this location','tcc-fluid')); ?></h3>
+        <?php get_search_form(); ?>
         <a href="<?php echo home_url() ; ?>"><?php esc_attr_e(__('Home Page','tcc-fluid')); ?></a>
       </div><!-- .page-content -->
     </article>

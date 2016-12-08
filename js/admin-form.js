@@ -14,13 +14,15 @@ function showhideElements(els) {
   jQuery(els).each(function(el) {
     var target = jQuery(el).attr('data-item');
     var show   = jQuery(el).attr('data-show');
-    if (target && show){
+    if (target && show) {
       if (jQuery(el).find('input:radio:checked').val()==show) {
-        jQuery(target).parent().parent().removeClass('hidden'); }
+        jQuery(target).parent().parent().removeClass('hidden');
+      }
       else {
-        jQuery(target).parent().parent().addClass('hidden'); }
+        jQuery(target).parent().parent().addClass('hidden');
+      }
     }
-  }
+  });
 }
 
 function imageDelete(el) {
