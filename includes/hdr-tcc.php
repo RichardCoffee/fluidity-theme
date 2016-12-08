@@ -5,7 +5,7 @@
  *
  */
 
-add_action('tcc_header_top_menubar', 'collective_top_menubar');
+add_action('tcc_header_body_content', 'collective_top_menubar');
 add_action('tcc_top_right_menubar',  'collective_bar_login');
 add_action('tcc_top_right_menubar',  'fluidity_main_menubar');
 add_action('tcc_top_left_menubar',   'fluidity_social_icons');
