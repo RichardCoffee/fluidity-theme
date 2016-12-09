@@ -7,7 +7,7 @@
 
 add_action('tcc_header_body_content', 'collective_top_menubar');
 add_action('tcc_top_right_menubar',  'collective_bar_login');
-add_action('tcc_top_right_menubar',  'fluidity_main_menubar');
+add_action('tcc_top_right_menubar',  'fluidity_navbar_menu');
 add_action('tcc_top_left_menubar',   'fluidity_social_icons');
 if (get_theme_mod('header_logo') || tcc_design('logo')) {
   add_action('tcc_top_left_menubar', 'collective_logo_limiter'); }

@@ -6,8 +6,7 @@
  */
 
 #  Top menubar
-add_action('tcc_header_top_menubar', 'fluidity_top_menubar');
-add_action('tcc_top_right_menubar',  'fluidity_header_bar_login');
+#add_action('tcc_top_right_menubar',  'fluidity_header_bar_login');
 add_action('tcc_header_body_content','fluidity_header_body');
 
 #  Body
@@ -20,8 +19,8 @@ if (get_theme_mod('header_logo') || tcc_design('logo')) {
 } //*/
 
 #  Bottom menubar
-add_action('tcc_header_menubar',     'fluidity_main_menubar');
-add_action('fluidity_menubar',       'fluidity_menubar_print_button');
+add_action('tcc_header_menubar',     'fluidity_navbar_menu');
+#add_action('fluidity_menubar',       'fluidity_menubar_print_button');
 
 function show_fluid_title() {
   $site  = "<a href='".home_url()."' title='Fluidity'>";
