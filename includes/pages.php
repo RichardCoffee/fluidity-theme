@@ -55,7 +55,7 @@ if (!function_exists('fluidity_page_slug')) {
     	else {
       	$page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
 				if ($page) {
-					if (isset($page->name)) {
+					if (isset($page->post_name)) {
 						$slug = $page->post_name; }
       		else {
 						log_entry('missing post_name',$page); }
