@@ -36,6 +36,13 @@
   color: #8A6D3B;
 }
 
+.btn-fluidity,
+.btn-warning-inverse {
+  background-color: #FCF8E3;
+  border-color: #FAEBCC;
+  color: #8A6D3B;
+}
+
 .navbar-fluidity,
 .navbar-warning-inverse {
   background-color: #FCF8E3;

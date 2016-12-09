@@ -36,6 +36,13 @@
   color: #FFFFFF;
 }
 
+.btn-fluidity,
+.btn-info {
+  background-color: #5BC0DE;
+  border-color: #46B8DA;
+  color: #FFFFFF;
+}
+
 .navbar-fluidity,
 .navbar-info {
   background-color: #5BC0DE;

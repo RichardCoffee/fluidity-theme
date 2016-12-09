@@ -19,6 +19,13 @@
 
 // buttons
 
+.btn-fluidity,
+.btn-#{$colorName} {
+	background-color: color(background);
+	border-color: color(bgHighlight);
+	color: color(textcolor);
+}
+
 .btn-fluidity-inverse,
 .btn-#{$colorName}-inverse {
   @extend %inverse;
@@ -117,7 +124,7 @@
 // input groups
 
 .input-group {
-  .btn-fluidity,
+	.btn-fluidity,
   .btn-#{$colorName} {
     background-color: color(background);
     border-color: color(bgHighlight);

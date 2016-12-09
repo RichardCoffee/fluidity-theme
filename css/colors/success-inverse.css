@@ -36,6 +36,13 @@
   color: #3c763d;
 }
 
+.btn-fluidity,
+.btn-success-inverse {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
 .navbar-fluidity,
 .navbar-success-inverse {
   background-color: #dff0d8;
