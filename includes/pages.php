@@ -47,7 +47,9 @@ if (!function_exists('fluidity_page_slug')) {
   function fluidity_page_slug() {
     static $slug;
     if (!$slug) {
-      $slug = basename( get_page_template() ); /*
+      $slug = basename( get_page_template() );
+			log_entry("Page slug: $slug");
+ /*
       $slug = 'stock';
 	    if ( is_page() ) {
   	    $slug = get_queried_object()->post_name; }
