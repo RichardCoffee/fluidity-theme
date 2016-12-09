@@ -9,7 +9,7 @@ $menu = 'primary';
 $page = fluidity_page_slug();
 if (has_nav_menu($menu)) {
   $color = tcc_color_scheme(); ?>
-  <nav class="navbar navbar-<?php echo $color; ?> navbar-<?php echo $page; ?>" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
+  <nav class="navbar navbar-<?php echo $color; ?> navbar-<?php echo $page; ?> visible-xs" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-<?php echo $menu; ?>-collapse">
         <span class="sr-only">Toggle navigation</span>

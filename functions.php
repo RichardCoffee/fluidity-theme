@@ -4,7 +4,7 @@
  *
  */
 
-define('FLUIDITY_VERSION','1.1.2');
+define('FLUIDITY_VERSION','2.0.0');
 
 require_once('includes/james.php');
 require_once('includes/theme-support.php');

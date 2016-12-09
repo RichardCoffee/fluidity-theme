@@ -8,7 +8,7 @@
 function fluid_index_page($page='index') { ?>
 
   <div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
-    <div class="row nomargin"><?php
+    <div class="row"><?php
       who_am_i(1);
       do_action("fluid_{$page}_page_top"); ?>
       <div class="fluid-sidebar hidden-sm hidden-xs"><?php

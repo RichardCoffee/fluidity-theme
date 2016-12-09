@@ -8,7 +8,7 @@
  ?>
 
 <div id="fluid-footer" class="<? echo container_type('footer'); ?>" <?php microdata()->WPFooter(); ?>>
-  <div class="row nomargin"><?php
+  <div class="row"><?php
     $slug = fluidity_page_slug();
     get_template_part('template-parts/footer',$slug);
     wp_footer(); ?>
