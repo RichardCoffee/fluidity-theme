@@ -5,6 +5,7 @@
  */
 
 define('FLUIDITY_VERSION','2.0.0');
+define('FLUIDITY_HOME',plugin_dir_path(__FILE__));
 
 require_once('includes/james.php');
 require_once('includes/theme-support.php');
@@ -13,7 +14,7 @@ require_once('includes/colors.php');
 require_once('includes/library.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
-require_once(plugin_dir_path(__FILE__).'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
+require_once(FLUIDITY_HOME.'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/sidebars.php');
 require_once('includes/widgets.php');
 require_once('classes/form-fields.php');
