@@ -29,8 +29,8 @@ function show_fluid_title() {
   $title = __('The Creative Collective');
   $refer = "<a href='http://the-creative-collective.com' target='TCC' title='$title'>$title</a>"; ?>
   <h1 class='text-center'><?php
-    echo "$site currently under construction by $refer";
-#    echo $title;
+#    echo "$site currently under construction by $refer";
+    echo $title;
  ?>
   </h1><?php
 } //*/

@@ -5,7 +5,7 @@
  *
  */
 
- ?>
+require_once('includes/footer.php'); ?>
 
 <div id="fluid-footer" class="<? echo container_type('footer'); ?>" <?php microdata()->WPFooter(); ?>>
   <div class="row"><?php

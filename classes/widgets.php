@@ -138,7 +138,7 @@ class TCC_Search_Widget extends TCC_Basic_Widget {
 }
 
 do_action('tcc_widget_class_loaded');
-
+/*
 function tcc_register_widgets() {
   register_widget('TCC_Address_Widget');
   register_widget('TCC_Login_Widget');
@@ -146,4 +146,4 @@ function tcc_register_widgets() {
   register_widget('TCC_Search_Widget');
   do_action('tcc_register_widgets');
 }
-add_action('widgets_init','tcc_register_widgets'); ?>
+add_action('widgets_init','tcc_register_widgets'); //*/
