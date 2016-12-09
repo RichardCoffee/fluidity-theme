@@ -30,7 +30,8 @@ abstract class Basic_Admin_Form {
     $this->screen_type();
     add_action('admin_init',         array($this,'load_form_page'));
     add_action('customize_register', array($this,'customize_register'));
-    if (defined('TCC_TAB')) { $this->tab = TCC_TAB; }
+    if (defined('TCC_TAB'))          $this->tab = TCC_TAB;
+    if (isset($_SESSION['TCC_TAB'])) $this->tab = sanitize_key($_SESSION['TCC_TAB']);
   }
 
   public function load_form_page() {
@@ -38,6 +39,7 @@ abstract class Basic_Admin_Form {
     if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
       if (isset($_GET['tab']))  $this->tab = sanitize_key($_GET['tab']);
       if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
+      $_SESSION['TCC_TAB'] = $this->tab;
       $this->form_text = $this->form_text();
       $this->form = $this->form_layout();
       $this->determine_option();

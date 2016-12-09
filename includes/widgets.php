@@ -16,12 +16,12 @@ function fluid_sidebar_admin_setup() {
 add_action('sidebar_admin_setup','fluid_sidebar_admin_setup');
 
 function fluid_widgets_admin_page() {
-  echo '<p>widgets_admin_page</p>';
+  echo '<p class="fluid-testing">widgets_admin_page</p>';
 }
 add_action('widgets_admin_page','fluid_widgets_admin_page');
 
 function fluid_sidebar_admin_page() {
-  echo '<p>sidebar_admin_page</p>';
+  echo '<p class="fluid-testing">sidebar_admin_page</p>';
 }
 add_action('sidebar_admin_page','fluid_sidebar_admin_page');
 
