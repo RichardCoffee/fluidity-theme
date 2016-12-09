@@ -4,91 +4,145 @@
  *  bootstrap info color scheme
  *
  */
-.color-info-inverse, .btn-info-inverse, .navbar-info .btn-info {
+.fluid-color-inverse,
+.color-info-inverse, .btn-fluidity,
+.btn-info-inverse, .navbar-fluidity .btn-fluidity,
+.navbar-fluidity .btn-info,
+.navbar-info .btn-fluidity,
+.navbar-info .btn-info {
   background-color: #FFFFFF;
   border-color: #46B8DA;
   color: #5BC0DE;
 }
-.color-info-inverse:hover, .btn-info-inverse:hover, .navbar-info .btn-info:hover, .color-info-inverse:focus, .btn-info-inverse:focus, .navbar-info .btn-info:focus {
+.fluid-color-inverse:hover,
+.color-info-inverse:hover, .btn-fluidity:hover,
+.btn-info-inverse:hover,
+.navbar-fluidity .btn-info:hover,
+.navbar-info .btn-info:hover, .fluid-color-inverse:focus,
+.color-info-inverse:focus, .btn-fluidity:focus,
+.btn-info-inverse:focus,
+.navbar-fluidity .btn-info:focus,
+.navbar-info .btn-info:focus {
   background-color: #FFFFFF;
   color: #46B8DA;
 }
 
+.fluid-color,
 .color-info {
   background-color: #5BC0DE;
   color: #FFFFFF;
 }
 
+.navbar-fluidity,
 .navbar-info {
   background-color: #5BC0DE;
   border-color: #46B8DA;
 }
+.navbar-fluidity .navbar-brand,
 .navbar-info .navbar-brand {
   background-color: #5BC0DE;
   color: #FFFFFF;
 }
-.navbar-info .navbar-brand:hover, .navbar-info .navbar-brand:focus {
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus,
+.navbar-info .navbar-brand:hover,
+.navbar-info .navbar-brand:focus {
   color: #46B8DA;
   background-color: #FFFFFF;
 }
+.navbar-fluidity .navbar-text,
 .navbar-info .navbar-text {
   background-color: #5BC0DE;
   color: #FFFFFF;
 }
-.navbar-info .navbar-nav, .navbar-info .dropdown-menu {
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu,
+.navbar-info .navbar-nav,
+.navbar-info .dropdown-menu {
   background-color: #5BC0DE;
   opacity: 1;
 }
-.navbar-info .navbar-nav > li > a, .navbar-info .dropdown-menu > li > a {
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a,
+.navbar-info .navbar-nav > li > a,
+.navbar-info .dropdown-menu > li > a {
   background-color: #5BC0DE;
   color: #FFFFFF;
 }
-.navbar-info .navbar-nav > li > a:hover, .navbar-info .navbar-nav > li > a:focus, .navbar-info .dropdown-menu > li > a:hover, .navbar-info .dropdown-menu > li > a:focus {
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus,
+.navbar-info .navbar-nav > li > a:hover,
+.navbar-info .navbar-nav > li > a:focus,
+.navbar-info .dropdown-menu > li > a:hover,
+.navbar-info .dropdown-menu > li > a:focus {
   color: #46B8DA;
   background-color: #FFFFFF;
 }
-.navbar-info .navbar-nav > .active > a, .navbar-info .navbar-nav > .active > a:hover, .navbar-info .navbar-nav > .active > a:focus, .navbar-info .dropdown-menu > .active > a, .navbar-info .dropdown-menu > .active > a:hover, .navbar-info .dropdown-menu > .active > a:focus {
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus,
+.navbar-info .navbar-nav > .active > a,
+.navbar-info .navbar-nav > .active > a:hover,
+.navbar-info .navbar-nav > .active > a:focus,
+.navbar-info .dropdown-menu > .active > a,
+.navbar-info .dropdown-menu > .active > a:hover,
+.navbar-info .dropdown-menu > .active > a:focus {
   color: #FFFFFF;
   background-color: #46B8DA;
 }
-.navbar-info .navbar-nav > .open > a, .navbar-info .navbar-nav > .open > a:hover, .navbar-info .navbar-nav > .open > a:focus, .navbar-info .dropdown-menu > .open > a, .navbar-info .dropdown-menu > .open > a:hover, .navbar-info .dropdown-menu > .open > a:focus {
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus,
+.navbar-info .navbar-nav > .open > a,
+.navbar-info .navbar-nav > .open > a:hover,
+.navbar-info .navbar-nav > .open > a:focus,
+.navbar-info .dropdown-menu > .open > a,
+.navbar-info .dropdown-menu > .open > a:hover,
+.navbar-info .dropdown-menu > .open > a:focus {
   color: #FFFFFF;
   background-color: #46B8DA;
 }
+.navbar-fluidity .navbar-toggle,
 .navbar-info .navbar-toggle {
   border-color: #46B8DA;
 }
-.navbar-info .navbar-toggle:hover, .navbar-info .navbar-toggle:focus {
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus,
+.navbar-info .navbar-toggle:hover,
+.navbar-info .navbar-toggle:focus {
   background-color: #46B8DA;
 }
+.navbar-fluidity .navbar-toggle .icon-bar,
 .navbar-info .navbar-toggle .icon-bar {
   background-color: #FFFFFF;
 }
+.navbar-fluidity .navbar-collapse,
+.navbar-fluidity .navbar-form,
 .navbar-info .navbar-collapse,
 .navbar-info .navbar-form {
   border-color: #FFFFFF;
 }
+.navbar-fluidity .navbar-link,
 .navbar-info .navbar-link {
   background-color: #5BC0DE;
   color: #FFFFFF;
 }
+.navbar-fluidity .navbar-link:hover,
 .navbar-info .navbar-link:hover {
   color: #FFFFFF;
 }
 
 @media (max-width: 767px) {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a,
   .navbar-info .navbar-nav .open .dropdown-menu > li > a {
     background-color: #5BC0DE;
     color: #FFFFFF;
   }
-  .navbar-info .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-info .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus,
+  .navbar-info .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-info .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #FFFFFF;
   }
-  .navbar-info .navbar-nav .open .dropdown-menu > .active > a, .navbar-info .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-info .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus,
+  .navbar-info .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-info .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-info .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #FFFFFF;
     background-color: #46B8DA;
   }
 }
+.input-group .btn-fluidity,
 .input-group .btn-info {
   background-color: #5BC0DE;
   border-color: #46B8DA;
@@ -98,15 +152,18 @@
   border-color: #46B8DA;
 }
 
+.panel-fluidity,
 .panel-info {
   border-color: #46B8DA;
 }
+.panel-fluidity > .panel-heading,
 .panel-info > .panel-heading {
   background-color: #5BC0DE;
   border-color: #46B8DA;
   color: #FFFFFF;
 }
 
+.content-fluidity,
 .content-info {
   border-color: #46B8DA;
 }

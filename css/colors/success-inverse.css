@@ -4,91 +4,145 @@
  *  based on bootstrap success color scheme
  *
  */
-.color-success-inverse-inverse, .btn-success-inverse-inverse, .navbar-success-inverse .btn-success-inverse {
+.fluid-color-inverse,
+.color-success-inverse-inverse, .btn-fluidity,
+.btn-success-inverse-inverse, .navbar-fluidity .btn-fluidity,
+.navbar-fluidity .btn-success-inverse,
+.navbar-success-inverse .btn-fluidity,
+.navbar-success-inverse .btn-success-inverse {
   background-color: #3c763d;
   border-color: #d6e9c6;
   color: #dff0d8;
 }
-.color-success-inverse-inverse:hover, .btn-success-inverse-inverse:hover, .navbar-success-inverse .btn-success-inverse:hover, .color-success-inverse-inverse:focus, .btn-success-inverse-inverse:focus, .navbar-success-inverse .btn-success-inverse:focus {
+.fluid-color-inverse:hover,
+.color-success-inverse-inverse:hover, .btn-fluidity:hover,
+.btn-success-inverse-inverse:hover,
+.navbar-fluidity .btn-success-inverse:hover,
+.navbar-success-inverse .btn-success-inverse:hover, .fluid-color-inverse:focus,
+.color-success-inverse-inverse:focus, .btn-fluidity:focus,
+.btn-success-inverse-inverse:focus,
+.navbar-fluidity .btn-success-inverse:focus,
+.navbar-success-inverse .btn-success-inverse:focus {
   background-color: #3c763d;
   color: #d6e9c6;
 }
 
+.fluid-color,
 .color-success-inverse {
   background-color: #dff0d8;
   color: #3c763d;
 }
 
+.navbar-fluidity,
 .navbar-success-inverse {
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
+.navbar-fluidity .navbar-brand,
 .navbar-success-inverse .navbar-brand {
   background-color: #dff0d8;
   color: #3c763d;
 }
-.navbar-success-inverse .navbar-brand:hover, .navbar-success-inverse .navbar-brand:focus {
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus,
+.navbar-success-inverse .navbar-brand:hover,
+.navbar-success-inverse .navbar-brand:focus {
   color: #d6e9c6;
   background-color: #3c763d;
 }
+.navbar-fluidity .navbar-text,
 .navbar-success-inverse .navbar-text {
   background-color: #dff0d8;
   color: #3c763d;
 }
-.navbar-success-inverse .navbar-nav, .navbar-success-inverse .dropdown-menu {
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu,
+.navbar-success-inverse .navbar-nav,
+.navbar-success-inverse .dropdown-menu {
   background-color: #dff0d8;
   opacity: 1;
 }
-.navbar-success-inverse .navbar-nav > li > a, .navbar-success-inverse .dropdown-menu > li > a {
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a,
+.navbar-success-inverse .navbar-nav > li > a,
+.navbar-success-inverse .dropdown-menu > li > a {
   background-color: #dff0d8;
   color: #3c763d;
 }
-.navbar-success-inverse .navbar-nav > li > a:hover, .navbar-success-inverse .navbar-nav > li > a:focus, .navbar-success-inverse .dropdown-menu > li > a:hover, .navbar-success-inverse .dropdown-menu > li > a:focus {
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus,
+.navbar-success-inverse .navbar-nav > li > a:hover,
+.navbar-success-inverse .navbar-nav > li > a:focus,
+.navbar-success-inverse .dropdown-menu > li > a:hover,
+.navbar-success-inverse .dropdown-menu > li > a:focus {
   color: #d6e9c6;
   background-color: #3c763d;
 }
-.navbar-success-inverse .navbar-nav > .active > a, .navbar-success-inverse .navbar-nav > .active > a:hover, .navbar-success-inverse .navbar-nav > .active > a:focus, .navbar-success-inverse .dropdown-menu > .active > a, .navbar-success-inverse .dropdown-menu > .active > a:hover, .navbar-success-inverse .dropdown-menu > .active > a:focus {
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus,
+.navbar-success-inverse .navbar-nav > .active > a,
+.navbar-success-inverse .navbar-nav > .active > a:hover,
+.navbar-success-inverse .navbar-nav > .active > a:focus,
+.navbar-success-inverse .dropdown-menu > .active > a,
+.navbar-success-inverse .dropdown-menu > .active > a:hover,
+.navbar-success-inverse .dropdown-menu > .active > a:focus {
   color: #3c763d;
   background-color: #d6e9c6;
 }
-.navbar-success-inverse .navbar-nav > .open > a, .navbar-success-inverse .navbar-nav > .open > a:hover, .navbar-success-inverse .navbar-nav > .open > a:focus, .navbar-success-inverse .dropdown-menu > .open > a, .navbar-success-inverse .dropdown-menu > .open > a:hover, .navbar-success-inverse .dropdown-menu > .open > a:focus {
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus,
+.navbar-success-inverse .navbar-nav > .open > a,
+.navbar-success-inverse .navbar-nav > .open > a:hover,
+.navbar-success-inverse .navbar-nav > .open > a:focus,
+.navbar-success-inverse .dropdown-menu > .open > a,
+.navbar-success-inverse .dropdown-menu > .open > a:hover,
+.navbar-success-inverse .dropdown-menu > .open > a:focus {
   color: #3c763d;
   background-color: #d6e9c6;
 }
+.navbar-fluidity .navbar-toggle,
 .navbar-success-inverse .navbar-toggle {
   border-color: #d6e9c6;
 }
-.navbar-success-inverse .navbar-toggle:hover, .navbar-success-inverse .navbar-toggle:focus {
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus,
+.navbar-success-inverse .navbar-toggle:hover,
+.navbar-success-inverse .navbar-toggle:focus {
   background-color: #d6e9c6;
 }
+.navbar-fluidity .navbar-toggle .icon-bar,
 .navbar-success-inverse .navbar-toggle .icon-bar {
   background-color: #3c763d;
 }
+.navbar-fluidity .navbar-collapse,
+.navbar-fluidity .navbar-form,
 .navbar-success-inverse .navbar-collapse,
 .navbar-success-inverse .navbar-form {
   border-color: #3c763d;
 }
+.navbar-fluidity .navbar-link,
 .navbar-success-inverse .navbar-link {
   background-color: #dff0d8;
   color: #3c763d;
 }
+.navbar-fluidity .navbar-link:hover,
 .navbar-success-inverse .navbar-link:hover {
   color: #3c763d;
 }
 
 @media (max-width: 767px) {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a,
   .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a {
     background-color: #dff0d8;
     color: #3c763d;
   }
-  .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus,
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #3c763d;
   }
-  .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus,
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-success-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #3c763d;
     background-color: #d6e9c6;
   }
 }
+.input-group .btn-fluidity,
 .input-group .btn-success-inverse {
   background-color: #dff0d8;
   border-color: #d6e9c6;
@@ -98,15 +152,18 @@
   border-color: #d6e9c6;
 }
 
+.panel-fluidity,
 .panel-success-inverse {
   border-color: #d6e9c6;
 }
+.panel-fluidity > .panel-heading,
 .panel-success-inverse > .panel-heading {
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #3c763d;
 }
 
+.content-fluidity,
 .content-success-inverse {
   border-color: #d6e9c6;
 }

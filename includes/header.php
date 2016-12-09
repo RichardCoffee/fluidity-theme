@@ -68,7 +68,7 @@ if (!function_exists('fluidity_top_menubar')) {
 
 if (!function_exists('fluidity_header_bar_login')) {
   function fluidity_header_bar_login() { ?>
-    <div class="header-login"><?php
+    <div id="fluidity-header-bar-login" class="header-login"><?php
       tcc_login_form(true,true); ?>
     </div><?php
   }

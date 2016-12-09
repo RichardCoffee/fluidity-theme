@@ -2,91 +2,145 @@
  *  css/colors/yellow.css
  *
  */
-.color-yellow-inverse, .btn-yellow-inverse, .navbar-yellow .btn-yellow {
+.fluid-color-inverse,
+.color-yellow-inverse, .btn-fluidity,
+.btn-yellow-inverse, .navbar-fluidity .btn-fluidity,
+.navbar-fluidity .btn-yellow,
+.navbar-yellow .btn-fluidity,
+.navbar-yellow .btn-yellow {
   background-color: #FFFFFF;
   border-color: #ccc200;
   color: #fff200;
 }
-.color-yellow-inverse:hover, .btn-yellow-inverse:hover, .navbar-yellow .btn-yellow:hover, .color-yellow-inverse:focus, .btn-yellow-inverse:focus, .navbar-yellow .btn-yellow:focus {
+.fluid-color-inverse:hover,
+.color-yellow-inverse:hover, .btn-fluidity:hover,
+.btn-yellow-inverse:hover,
+.navbar-fluidity .btn-yellow:hover,
+.navbar-yellow .btn-yellow:hover, .fluid-color-inverse:focus,
+.color-yellow-inverse:focus, .btn-fluidity:focus,
+.btn-yellow-inverse:focus,
+.navbar-fluidity .btn-yellow:focus,
+.navbar-yellow .btn-yellow:focus {
   background-color: #FFFFFF;
   color: #ccc200;
 }
 
+.fluid-color,
 .color-yellow {
   background-color: #fff200;
   color: #FFFFFF;
 }
 
+.navbar-fluidity,
 .navbar-yellow {
   background-color: #fff200;
   border-color: #ccc200;
 }
+.navbar-fluidity .navbar-brand,
 .navbar-yellow .navbar-brand {
   background-color: #fff200;
   color: #FFFFFF;
 }
-.navbar-yellow .navbar-brand:hover, .navbar-yellow .navbar-brand:focus {
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus,
+.navbar-yellow .navbar-brand:hover,
+.navbar-yellow .navbar-brand:focus {
   color: #ccc200;
   background-color: #FFFFFF;
 }
+.navbar-fluidity .navbar-text,
 .navbar-yellow .navbar-text {
   background-color: #fff200;
   color: #FFFFFF;
 }
-.navbar-yellow .navbar-nav, .navbar-yellow .dropdown-menu {
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu,
+.navbar-yellow .navbar-nav,
+.navbar-yellow .dropdown-menu {
   background-color: #fff200;
   opacity: 1;
 }
-.navbar-yellow .navbar-nav > li > a, .navbar-yellow .dropdown-menu > li > a {
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a,
+.navbar-yellow .navbar-nav > li > a,
+.navbar-yellow .dropdown-menu > li > a {
   background-color: #fff200;
   color: #FFFFFF;
 }
-.navbar-yellow .navbar-nav > li > a:hover, .navbar-yellow .navbar-nav > li > a:focus, .navbar-yellow .dropdown-menu > li > a:hover, .navbar-yellow .dropdown-menu > li > a:focus {
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus,
+.navbar-yellow .navbar-nav > li > a:hover,
+.navbar-yellow .navbar-nav > li > a:focus,
+.navbar-yellow .dropdown-menu > li > a:hover,
+.navbar-yellow .dropdown-menu > li > a:focus {
   color: #ccc200;
   background-color: #FFFFFF;
 }
-.navbar-yellow .navbar-nav > .active > a, .navbar-yellow .navbar-nav > .active > a:hover, .navbar-yellow .navbar-nav > .active > a:focus, .navbar-yellow .dropdown-menu > .active > a, .navbar-yellow .dropdown-menu > .active > a:hover, .navbar-yellow .dropdown-menu > .active > a:focus {
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus,
+.navbar-yellow .navbar-nav > .active > a,
+.navbar-yellow .navbar-nav > .active > a:hover,
+.navbar-yellow .navbar-nav > .active > a:focus,
+.navbar-yellow .dropdown-menu > .active > a,
+.navbar-yellow .dropdown-menu > .active > a:hover,
+.navbar-yellow .dropdown-menu > .active > a:focus {
   color: #FFFFFF;
   background-color: #ccc200;
 }
-.navbar-yellow .navbar-nav > .open > a, .navbar-yellow .navbar-nav > .open > a:hover, .navbar-yellow .navbar-nav > .open > a:focus, .navbar-yellow .dropdown-menu > .open > a, .navbar-yellow .dropdown-menu > .open > a:hover, .navbar-yellow .dropdown-menu > .open > a:focus {
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus,
+.navbar-yellow .navbar-nav > .open > a,
+.navbar-yellow .navbar-nav > .open > a:hover,
+.navbar-yellow .navbar-nav > .open > a:focus,
+.navbar-yellow .dropdown-menu > .open > a,
+.navbar-yellow .dropdown-menu > .open > a:hover,
+.navbar-yellow .dropdown-menu > .open > a:focus {
   color: #FFFFFF;
   background-color: #ccc200;
 }
+.navbar-fluidity .navbar-toggle,
 .navbar-yellow .navbar-toggle {
   border-color: #ccc200;
 }
-.navbar-yellow .navbar-toggle:hover, .navbar-yellow .navbar-toggle:focus {
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus,
+.navbar-yellow .navbar-toggle:hover,
+.navbar-yellow .navbar-toggle:focus {
   background-color: #ccc200;
 }
+.navbar-fluidity .navbar-toggle .icon-bar,
 .navbar-yellow .navbar-toggle .icon-bar {
   background-color: #FFFFFF;
 }
+.navbar-fluidity .navbar-collapse,
+.navbar-fluidity .navbar-form,
 .navbar-yellow .navbar-collapse,
 .navbar-yellow .navbar-form {
   border-color: #FFFFFF;
 }
+.navbar-fluidity .navbar-link,
 .navbar-yellow .navbar-link {
   background-color: #fff200;
   color: #FFFFFF;
 }
+.navbar-fluidity .navbar-link:hover,
 .navbar-yellow .navbar-link:hover {
   color: #FFFFFF;
 }
 
 @media (max-width: 767px) {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a,
   .navbar-yellow .navbar-nav .open .dropdown-menu > li > a {
     background-color: #fff200;
     color: #FFFFFF;
   }
-  .navbar-yellow .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-yellow .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus,
+  .navbar-yellow .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-yellow .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #FFFFFF;
   }
-  .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a, .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus,
+  .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-yellow .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #FFFFFF;
     background-color: #ccc200;
   }
 }
+.input-group .btn-fluidity,
 .input-group .btn-yellow {
   background-color: #fff200;
   border-color: #ccc200;
@@ -96,15 +150,18 @@
   border-color: #ccc200;
 }
 
+.panel-fluidity,
 .panel-yellow {
   border-color: #ccc200;
 }
+.panel-fluidity > .panel-heading,
 .panel-yellow > .panel-heading {
   background-color: #fff200;
   border-color: #ccc200;
   color: #FFFFFF;
 }
 
+.content-fluidity,
 .content-yellow {
   border-color: #ccc200;
 }

@@ -6,16 +6,20 @@
 @import "functions";
 @import "placeholders";
 
+.fluid-color,
 .color-#{$colorName} {
   background-color: color(background);
   color: color(textcolor);
 }
+
+.fluid-color-inverse,
 .color-#{$colorName}-inverse {
   @extend %inverse;
 }
 
 // buttons
 
+.btn-fluidity,
 .btn-#{$colorName}-inverse {
   @extend %inverse;
 }
@@ -23,6 +27,7 @@
 
 // navbars
 
+.navbar-fluidity,
 .navbar-#{$colorName} {
   background-color: color(background);
   border-color: color(bgHighlight);
@@ -82,6 +87,7 @@
       color: color(textHighlight);
     }
   }
+  .btn-fluidity,
   .btn-#{$colorName} {
     @extend %inverse;
   }
@@ -89,6 +95,7 @@
 
 
 @media (max-width: 767px) {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu,
   .navbar-#{$colorName} .navbar-nav .open .dropdown-menu {
     > li > a {
       background-color: color(background);
@@ -110,12 +117,13 @@
 // input groups
 
 .input-group {
-  & .btn-#{$colorName} {
+  .btn-fluidity,
+  .btn-#{$colorName} {
     background-color: color(background);
     border-color: color(bgHighlight);
     color: color(textcolor);
   }
-  & .form-control {
+  .form-control {
     border-color: color(bgHighlight);
   }
 }
@@ -123,6 +131,7 @@
 
 // panels
 
+.panel-fluidity,
 .panel-#{$colorName} {
   border-color: color(bgHighlight);
   > .panel-heading {
@@ -134,6 +143,7 @@
 
 // miscellaneous
 
+.content-fluidity,
 .content-#{$colorName} {
   border-color: color(bgHighlight);
 }

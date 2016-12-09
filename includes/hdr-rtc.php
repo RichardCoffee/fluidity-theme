@@ -23,12 +23,12 @@ if (get_theme_mod('header_logo') || tcc_design('logo')) {
 #add_action('fluidity_menubar',       'fluidity_menubar_print_button');
 
 function rtc_header_content() { ?>
-  <div class="col-lg-4 col-md-3 col-sm-12 hidden-xs">
-    <?php fluidity_header_logo(); ?>
-  </div>
-  <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+	<div class="col-lg-4 col-md-3 col-sm-12 hidden-xs">
+		<?php fluidity_header_logo(); ?>
+	</div>
+	<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <?php fluidity_header_bar_login(); ?>
+      <?php fluidity_header_bar_login(true); ?>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <?php get_template_part('template-parts/menu'); ?>
