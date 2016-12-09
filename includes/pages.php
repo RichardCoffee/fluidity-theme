@@ -47,7 +47,8 @@ if (!function_exists('fluidity_page_slug')) {
   function fluidity_page_slug() {
     static $slug;
     if (!$slug) {
-      $slug = basename( get_page_template() );
+			$slug = $GLOBALS['current_theme_template'];
+//      $slug = basename( get_page_template(), ".php" );
 			log_entry("Page slug: $slug");
  /*
       $slug = 'stock';
@@ -69,6 +70,12 @@ if (!function_exists('fluidity_page_slug')) {
     return $slug;
   }
 }
+
+function fluid_get_page_template( $template ) {
+    $GLOBALS['current_theme_template'] = basename($template,".php");
+    return $template;
+}
+add_action('template_include', 'fluid_get_page_template', 1000);
 
 if (!function_exists('fluid_search_page_title')) {
   function fluid_search_page_title() {
