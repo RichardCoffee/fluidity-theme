@@ -1,5 +1,5 @@
 <?php
-
+/*
 function tcc_register_widgets() {
   require_once(FLUIDITY_HOME.'classes/widgets.php');
   register_widget('TCC_Address_Widget');
@@ -8,6 +8,21 @@ function tcc_register_widgets() {
   register_widget('TCC_Search_Widget');
   do_action('tcc_register_widgets');
 }
-add_action('widgets_init','tcc_register_widgets');
+add_action('widgets_init','tcc_register_widgets'); //*/
 
-#add_action('sidebar_admin_setup','fluid_
+function fluid_sidebar_admin_setup() {
+  log_entry('in action');
+}
+add_action('sidebar_admin_setup','fluid_sidebar_admin_setup');
+
+function fluid_widgets_admin_page() {
+  echo '<p>widgets_admin_page</p>';
+}
+add_action('widgets_admin_page','fluid_widgets_admin_page');
+
+function fluid_sidebar_admin_page() {
+  echo '<p>sidebar_admin_page</p>';
+}
+add_action('sidebar_admin_page','fluid_sidebar_admin_page');
+
+
