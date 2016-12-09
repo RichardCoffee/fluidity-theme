@@ -21,11 +21,11 @@ $color = tcc_color_scheme(); ?>
   }
 
   if (has_action('tcc_header_body_content') || has_action('tcc_header_body_content_'.$page)) { ?>
-    <div id="header-body" class="row hidden-xs">
-      <div class="width-<?php echo tcc_layout('width'); ?>"><?php
+    <div id="header-body" class="row hidden-xs"><?php /*
+      <div class="width-<?php echo tcc_layout('width'); ?>"><?php */
         do_action('tcc_header_body_content');
-        do_action('tcc_header_body_content_'.$page); ?>
-      </div>
+        do_action('tcc_header_body_content_'.$page); ?> <?php /*
+      </div> */ ?>
     </div><?php
   }
 
