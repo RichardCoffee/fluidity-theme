@@ -47,35 +47,20 @@ if (!function_exists('fluidity_page_slug')) {
   function fluidity_page_slug() {
     static $slug;
     if (!$slug) {
-			$slug = $GLOBALS['current_theme_template'];
-//      $slug = basename( get_page_template(), ".php" );
-			log_entry("Page slug: $slug");
- /*
-      $slug = 'stock';
-	    if ( is_page() ) {
-  	    $slug = get_queried_object()->post_name; }
-    	else if (is_404()) {
-      	$slug = '404'; }
-    	else {
-      	$page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
-				if ($page) {
-					if (isset($page->post_name)) {
-						$slug = $page->post_name; }
-      		else {
-						log_entry('missing post_name',$page); }
-				} else { log_entry('dump',get_queried_object()); }
-			} //*/
-      $slug = apply_filters('fluidity_page_slug',$slug);
+			global $fluidity_theme_template;
+			$slug = $fluidity_theme_template;
+log_entry("Page slug: $slug");
     }
     return $slug;
   }
 }
 
-function fluid_get_page_template( $template ) {
-    $GLOBALS['current_theme_template'] = basename($template,".php");
-    return $template;
+function fluid_save_page_template( $template ) {
+	global $fluidity_theme_template;
+	$fluidity_theme_template = basename($template,".php");
+	return $template;
 }
-add_action('template_include', 'fluid_get_page_template', 1000);
+add_action('template_include', 'fluid_save_page_template', 1000);
 
 if (!function_exists('fluid_search_page_title')) {
   function fluid_search_page_title() {
