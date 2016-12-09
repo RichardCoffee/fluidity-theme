@@ -82,30 +82,24 @@ if (!function_exists('remove_lostpassword_text')) {
 
 if (!function_exists('tcc_login_form')) {
   function tcc_login_form($navbar=false,$right=false) {
-    $uname   = apply_filters('tcc_login_username',esc_html__('Username','tcc-fluid'));
-    $upass   = apply_filters('tcc_login_userpass',esc_html__('Password','tcc-fluid'));
-    $signin  = esc_html__('Sign In',       'tcc-fluid');
-    $signout = esc_html__('Sign Out',      'tcc-fluid');
-    $lost    = esc_html__('Lost Password', 'tcc-fluid');
-    $color   = tcc_color_scheme();
-    if ($navbar) {
-      $formclass = 'navbar-form'.(($right) ? ' navbar-right' : '').' navbar-fluidity';
-    } else {
-      $formclass = "login-form";
-    }
-    if (is_user_logged_in()) { ?>
-      <form class="<?php echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
+    if (is_user_logged_in()) {
+      $signout = apply_filters('tcc_signout_text', esc_html__('Sign Out', 'tcc-fluid')); ?>
+      <form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
         <div class="text-center;"><?php
           $action = ($navbar) ? 'tcc_navbar_signout' : 'tcc_widget_signout';
           do_action($action);
           $out  = wp_logout_url(home_url());
-          #if (!$navbar) $color .= '-inverse';
-          $html = "<a class='btn btn-$color' href='$out'";
+          $html = "<a class='btn btn-fluidity' href='$out'";
           $html.= " title='$signout'> $signout <i class='fa fa-sign-out'></i></a>";
           echo $html; ?>
         </div>
       </form><?php
-    } else { ?>
+    } else {
+    	$uname  = apply_filters('tcc_login_username',esc_html__('Username',      'tcc-fluid'));
+      $upass  = apply_filters('tcc_login_userpass',esc_html__('Password',      'tcc-fluid'));
+      $signin = apply_filters('tcc_signin_text',   esc_html__('Sign In',       'tcc-fluid'));
+      $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
+      $formclass = ($navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : '').' navbar-fluidity'; ?>
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
         <div class='form-group'>
           <label class="sr-only" for="log"><?php echo $uname; ?></label>
@@ -122,7 +116,7 @@ if (!function_exists('tcc_login_form')) {
         </div><?php
         if (get_page_by_title('Lost Password'))
           echo "<a href='".wp_lostpassword_url(home_url() )." title='$lost'>$lost</a>"; ?>
-        <button type="submit" id="wp-submit" class="btn btn-<?php echo $color; ?>" name="wp=submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button>
+        <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp=submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button>
       </form><?php
     }
   }
