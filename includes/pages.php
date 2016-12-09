@@ -47,6 +47,7 @@ if (!function_exists('fluidity_page_slug')) {
   function fluidity_page_slug() {
     static $slug;
     if (!$slug) {
+      $slug = basename( get_page_template() ); /*
       $slug = 'stock';
 	    if ( is_page() ) {
   	    $slug = get_queried_object()->post_name; }
@@ -60,7 +61,7 @@ if (!function_exists('fluidity_page_slug')) {
       		else {
 						log_entry('missing post_name',$page); }
 				} else { log_entry('dump',get_queried_object()); }
-			}
+			} //*/
       $slug = apply_filters('fluidity_page_slug',$slug);
     }
     return $slug;

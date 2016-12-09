@@ -5,8 +5,9 @@
  */
 
 define('FLUIDITY_VERSION','2.0.0');
-define('FLUIDITY_HOME',plugin_dir_path(__FILE__));
+define('FLUIDITY_HOME',plugin_dir_path(__FILE__));  #  get current directory
 
+require_once('includes/loader.php');
 require_once('includes/james.php');
 require_once('includes/theme-support.php');
 require_once('includes/colors.php');
