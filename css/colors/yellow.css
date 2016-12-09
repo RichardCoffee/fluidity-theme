@@ -2,8 +2,8 @@
  *  css/colors/yellow.css
  *
  */
-.fluid-color-inverse,
-.color-yellow-inverse, .btn-fluidity,
+.color-fluidity-inverse,
+.color-yellow-inverse, .btn-fluidity-inverse,
 .btn-yellow-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-yellow,
 .navbar-yellow .btn-fluidity,
@@ -12,20 +12,23 @@
   border-color: #ccc200;
   color: #fff200;
 }
-.fluid-color-inverse:hover,
-.color-yellow-inverse:hover, .btn-fluidity:hover,
-.btn-yellow-inverse:hover,
+.color-fluidity-inverse:hover,
+.color-yellow-inverse:hover, .btn-fluidity-inverse:hover,
+.btn-yellow-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-yellow:hover,
-.navbar-yellow .btn-yellow:hover, .fluid-color-inverse:focus,
-.color-yellow-inverse:focus, .btn-fluidity:focus,
-.btn-yellow-inverse:focus,
+.navbar-yellow .btn-fluidity:hover,
+.navbar-yellow .btn-yellow:hover, .color-fluidity-inverse:focus,
+.color-yellow-inverse:focus, .btn-fluidity-inverse:focus,
+.btn-yellow-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-yellow:focus,
+.navbar-yellow .btn-fluidity:focus,
 .navbar-yellow .btn-yellow:focus {
   background-color: #FFFFFF;
+  border-color: #FFFFFF;
   color: #ccc200;
 }
 
-.fluid-color,
+.color-fluidity,
 .color-yellow {
   background-color: #fff200;
   color: #FFFFFF;

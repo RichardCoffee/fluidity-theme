@@ -4,8 +4,8 @@
  *  bootstrap success color scheme
  *
  */
-.fluid-color-inverse,
-.color-success-inverse, .btn-fluidity,
+.color-fluidity-inverse,
+.color-success-inverse, .btn-fluidity-inverse,
 .btn-success-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-success,
 .navbar-success .btn-fluidity,
@@ -14,20 +14,23 @@
   border-color: #4cae4c;
   color: #5cb85c;
 }
-.fluid-color-inverse:hover,
-.color-success-inverse:hover, .btn-fluidity:hover,
-.btn-success-inverse:hover,
+.color-fluidity-inverse:hover,
+.color-success-inverse:hover, .btn-fluidity-inverse:hover,
+.btn-success-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-success:hover,
-.navbar-success .btn-success:hover, .fluid-color-inverse:focus,
-.color-success-inverse:focus, .btn-fluidity:focus,
-.btn-success-inverse:focus,
+.navbar-success .btn-fluidity:hover,
+.navbar-success .btn-success:hover, .color-fluidity-inverse:focus,
+.color-success-inverse:focus, .btn-fluidity-inverse:focus,
+.btn-success-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-success:focus,
+.navbar-success .btn-fluidity:focus,
 .navbar-success .btn-success:focus {
   background-color: #ffffff;
+  border-color: #ffffff;
   color: #4cae4c;
 }
 
-.fluid-color,
+.color-fluidity,
 .color-success {
   background-color: #5cb85c;
   color: #ffffff;

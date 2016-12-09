@@ -5,6 +5,7 @@
   color: color(background);
   &:hover, &:focus {
     background-color: color(textHighlight);
+    border-color: color(textHighlight);
     color: color(bgHighlight);
   }
 }

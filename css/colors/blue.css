@@ -2,8 +2,8 @@
  *  css/colors/blue.css
  *
  */
-.fluid-color-inverse,
-.color-blue-inverse, .btn-fluidity,
+.color-fluidity-inverse,
+.color-blue-inverse, .btn-fluidity-inverse,
 .btn-blue-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-blue,
 .navbar-blue .btn-fluidity,
@@ -12,20 +12,23 @@
   border-color: #252775;
   color: #2e3192;
 }
-.fluid-color-inverse:hover,
-.color-blue-inverse:hover, .btn-fluidity:hover,
-.btn-blue-inverse:hover,
+.color-fluidity-inverse:hover,
+.color-blue-inverse:hover, .btn-fluidity-inverse:hover,
+.btn-blue-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-blue:hover,
-.navbar-blue .btn-blue:hover, .fluid-color-inverse:focus,
-.color-blue-inverse:focus, .btn-fluidity:focus,
-.btn-blue-inverse:focus,
+.navbar-blue .btn-fluidity:hover,
+.navbar-blue .btn-blue:hover, .color-fluidity-inverse:focus,
+.color-blue-inverse:focus, .btn-fluidity-inverse:focus,
+.btn-blue-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-blue:focus,
+.navbar-blue .btn-fluidity:focus,
 .navbar-blue .btn-blue:focus {
   background-color: #FFFFFF;
+  border-color: #FFFFFF;
   color: #252775;
 }
 
-.fluid-color,
+.color-fluidity,
 .color-blue {
   background-color: #2e3192;
   color: #FFFFFF;

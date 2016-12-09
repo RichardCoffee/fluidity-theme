@@ -4,8 +4,8 @@
  *  based on bootstrap info color scheme
  *
  */
-.fluid-color-inverse,
-.color-info-inverse-inverse, .btn-fluidity,
+.color-fluidity-inverse,
+.color-info-inverse-inverse, .btn-fluidity-inverse,
 .btn-info-inverse-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-info-inverse,
 .navbar-info-inverse .btn-fluidity,
@@ -14,20 +14,23 @@
   border-color: #BCE8F1;
   color: #D9EDF7;
 }
-.fluid-color-inverse:hover,
-.color-info-inverse-inverse:hover, .btn-fluidity:hover,
-.btn-info-inverse-inverse:hover,
+.color-fluidity-inverse:hover,
+.color-info-inverse-inverse:hover, .btn-fluidity-inverse:hover,
+.btn-info-inverse-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-info-inverse:hover,
-.navbar-info-inverse .btn-info-inverse:hover, .fluid-color-inverse:focus,
-.color-info-inverse-inverse:focus, .btn-fluidity:focus,
-.btn-info-inverse-inverse:focus,
+.navbar-info-inverse .btn-fluidity:hover,
+.navbar-info-inverse .btn-info-inverse:hover, .color-fluidity-inverse:focus,
+.color-info-inverse-inverse:focus, .btn-fluidity-inverse:focus,
+.btn-info-inverse-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-info-inverse:focus,
+.navbar-info-inverse .btn-fluidity:focus,
 .navbar-info-inverse .btn-info-inverse:focus {
   background-color: #31708F;
+  border-color: #31708F;
   color: #BCE8F1;
 }
 
-.fluid-color,
+.color-fluidity,
 .color-info-inverse {
   background-color: #D9EDF7;
   color: #31708F;

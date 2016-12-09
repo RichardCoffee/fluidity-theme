@@ -4,8 +4,8 @@
  *  bootstrap warning color scheme
  *
  */
-.fluid-color-inverse,
-.color-warning-inverse, .btn-fluidity,
+.color-fluidity-inverse,
+.color-warning-inverse, .btn-fluidity-inverse,
 .btn-warning-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-warning,
 .navbar-warning .btn-fluidity,
@@ -14,20 +14,23 @@
   border-color: #EEA236;
   color: #F0AD4E;
 }
-.fluid-color-inverse:hover,
-.color-warning-inverse:hover, .btn-fluidity:hover,
-.btn-warning-inverse:hover,
+.color-fluidity-inverse:hover,
+.color-warning-inverse:hover, .btn-fluidity-inverse:hover,
+.btn-warning-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-warning:hover,
-.navbar-warning .btn-warning:hover, .fluid-color-inverse:focus,
-.color-warning-inverse:focus, .btn-fluidity:focus,
-.btn-warning-inverse:focus,
+.navbar-warning .btn-fluidity:hover,
+.navbar-warning .btn-warning:hover, .color-fluidity-inverse:focus,
+.color-warning-inverse:focus, .btn-fluidity-inverse:focus,
+.btn-warning-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-warning:focus,
+.navbar-warning .btn-fluidity:focus,
 .navbar-warning .btn-warning:focus {
   background-color: #FFFFFF;
+  border-color: #FFFFFF;
   color: #EEA236;
 }
 
-.fluid-color,
+.color-fluidity,
 .color-warning {
   background-color: #F0AD4E;
   color: #FFFFFF;

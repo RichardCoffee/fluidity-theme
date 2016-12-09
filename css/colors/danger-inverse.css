@@ -4,8 +4,8 @@
  *  based on bootstrap danger color scheme
  *
  */
-.fluid-color-inverse,
-.color-danger-inverse-inverse, .btn-fluidity,
+.color-fluidity-inverse,
+.color-danger-inverse-inverse, .btn-fluidity-inverse,
 .btn-danger-inverse-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-danger-inverse,
 .navbar-danger-inverse .btn-fluidity,
@@ -14,20 +14,23 @@
   border-color: #f2dede;
   color: #f2dede;
 }
-.fluid-color-inverse:hover,
-.color-danger-inverse-inverse:hover, .btn-fluidity:hover,
-.btn-danger-inverse-inverse:hover,
+.color-fluidity-inverse:hover,
+.color-danger-inverse-inverse:hover, .btn-fluidity-inverse:hover,
+.btn-danger-inverse-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-danger-inverse:hover,
-.navbar-danger-inverse .btn-danger-inverse:hover, .fluid-color-inverse:focus,
-.color-danger-inverse-inverse:focus, .btn-fluidity:focus,
-.btn-danger-inverse-inverse:focus,
+.navbar-danger-inverse .btn-fluidity:hover,
+.navbar-danger-inverse .btn-danger-inverse:hover, .color-fluidity-inverse:focus,
+.color-danger-inverse-inverse:focus, .btn-fluidity-inverse:focus,
+.btn-danger-inverse-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-danger-inverse:focus,
+.navbar-danger-inverse .btn-fluidity:focus,
 .navbar-danger-inverse .btn-danger-inverse:focus {
   background-color: #a94442;
+  border-color: #a94442;
   color: #f2dede;
 }
 
-.fluid-color,
+.color-fluidity,
 .color-danger-inverse {
   background-color: #f2dede;
   color: #a94442;

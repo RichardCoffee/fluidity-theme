@@ -89,7 +89,7 @@ if (!function_exists('tcc_login_form')) {
     $lost    = esc_html__('Lost Password', 'tcc-fluid');
     $color   = tcc_color_scheme();
     if ($navbar) {
-      $formclass = 'navbar-form'.(($right) ? ' navbar-right' : '');
+      $formclass = 'navbar-form'.(($right) ? ' navbar-right' : '').' navbar-fluidity';
     } else {
       $formclass = "login-form";
     }

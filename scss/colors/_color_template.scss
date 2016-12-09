@@ -6,20 +6,20 @@
 @import "functions";
 @import "placeholders";
 
-.fluid-color,
+.color-fluidity,
 .color-#{$colorName} {
   background-color: color(background);
   color: color(textcolor);
 }
 
-.fluid-color-inverse,
+.color-fluidity-inverse,
 .color-#{$colorName}-inverse {
   @extend %inverse;
 }
 
 // buttons
 
-.btn-fluidity,
+.btn-fluidity-inverse,
 .btn-#{$colorName}-inverse {
   @extend %inverse;
 }
