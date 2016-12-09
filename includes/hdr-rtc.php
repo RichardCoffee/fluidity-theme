@@ -30,7 +30,7 @@ function rtc_header_content() { ?>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <?php fluidity_header_bar_login(true); ?>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margint1e">
       <?php get_template_part('template-parts/menu'); ?>
     </div>
   </div><?php
