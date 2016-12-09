@@ -16,8 +16,9 @@ require_once('includes/menus.php');
 require_once('includes/misc.php');
 require_once(FLUIDITY_HOME.'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/sidebars.php');
-require_once('includes/widgets.php');
+#require_once('includes/widgets.php');
 require_once('classes/form-fields.php');
+require_once('classes/widgets.php');
 if (is_admin()) {
   require_once('classes/typography.php');
   require_once('classes/options.php');
