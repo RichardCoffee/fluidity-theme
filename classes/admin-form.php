@@ -32,6 +32,7 @@ abstract class Basic_Admin_Form {
     add_action('customize_register', array($this,'customize_register'));
     if (defined('TCC_TAB'))          $this->tab = TCC_TAB;
     if (isset($_SESSION['TCC_TAB'])) $this->tab = sanitize_key($_SESSION['TCC_TAB']);
+log_entry('current tab: '.$this->tab,$_SESSION);
   }
 
   public function load_form_page() {
