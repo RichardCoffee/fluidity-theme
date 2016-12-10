@@ -1,6 +1,6 @@
 
 jQuery(document).ready(function ($){
-	$("#secondary #searchform #s").autocomplete({
+	$("#tcc-searchform").autocomplete({
 		delay: 0,
 		minLength: 0,
 		source: function(req, response){
