@@ -5,7 +5,7 @@
  *
  */
 
-add_action('tcc_header_body_content','rtc_header_content');
+add_action('tcc_header_body_content','tcc_index_header');
 
 function rtc_header_content() { ?>
 	<div class="col-lg-3 col-md-2 col-sm-12 hidden-xs">
@@ -13,7 +13,7 @@ function rtc_header_content() { ?>
 	</div>
 	<div class="col-lg-9 col-md-10 col-sm-12 col-xs-12">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="pull-right">
+			<div class="pull-right margint1e">
 				<?php fluidity_header_bar_login(true); ?>
 			</div>
 		</div>

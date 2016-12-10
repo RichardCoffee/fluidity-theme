@@ -15,19 +15,24 @@
 
 add_action('tcc_header_menubar', 'collective_header');
 function collective_header() { ?>
-	<div class="inline">
-	<div class="pull-right">
-		<?php fluidity_menubar_print_button(); ?>
+	<div class="row">
+
+	<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+		<?php get_template_part('template-parts/menu'); ?>
 	</div>
-	<div class="pull-right">
-		<?php fluidity_social_icons(); ?>
-	</div>
-	<div class="pull-right">
+
+	<div class="col-lg-1 col-md-1 col-sm-6 hidden-xs">
 		<?php fluidity_header_bar_login(true); ?>
 	</div>
-	<div class="pull-left">
-	<?php get_template_part('template-parts/menu'); ?>
+
+	<div class="col-lg-1 col-md-1 col-sm-6 hidden-xs">
+		<?php fluidity_social_icons(); ?>
 	</div>
+
+	<div class="col-lg-1 col-md-1 col-sm-6 hidden-xs">
+		<?php fluidity_menubar_print_button(); ?>
+	</div>
+
 	</div><?php
 }
 /*

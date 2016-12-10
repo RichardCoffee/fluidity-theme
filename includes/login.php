@@ -87,7 +87,7 @@ if (!function_exists('tcc_login_form')) {
     if (is_user_logged_in()) {
       $signout = apply_filters('tcc_signout_text', esc_html__('Sign Out', 'tcc-fluid')); ?>
       <form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
-        <div class="text-center margint1e"><?php
+        <div class="text-center"><?php
           $action = ($navbar) ? 'tcc_navbar_signout' : 'tcc_widget_signout';
           do_action($action);
           $out  = wp_logout_url(home_url());
