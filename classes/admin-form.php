@@ -54,6 +54,7 @@ abstract class Basic_Admin_Form {
   public function customize_register($wp_customize) {
     $this->form_text = $this->form_text();
     $this->form      = $this->form_layout();
+		$this->check_tab();
     do_action('fluid-customizer',$wp_customize,$this);
   }
 
@@ -236,9 +237,8 @@ log_entry($controls);
   /**  Data functions  **/
 
 	private function check_tab() {
-log_entry(get_class($this),$this); //->tab,$this->form,'dump');
-#		if (!isset($this->form[$this->tab])) {
-#			$this->tab = 'about'; }
+		if (!isset($this->form[$this->tab])) {
+			$this->tab = 'about'; }
 	}
 
   private function determine_option() {
