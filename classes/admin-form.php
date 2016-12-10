@@ -40,8 +40,9 @@ abstract class Basic_Admin_Form {
       if (isset($_GET['tab']))  $this->tab = sanitize_key($_GET['tab']);
       if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
 			set_transient('TCC_TAB',$this->tab,DAY_IN_SECONDS);
-      $this->form_text = $this->form_text();
-      $this->form = $this->form_layout();
+      $this->form_text();
+      $this->form_layout();
+		$this->check_tab();
       $this->determine_option();
       $this->get_form_options();
       $func = $this->register;
@@ -78,7 +79,7 @@ abstract class Basic_Admin_Form {
                   'media'  => array('title'     => __('Assign/Upload Image','tcc-fluid'),
                                     'button'    => __('Assign Image','tcc-fluid'),
                                     'delete'    => __('Unassign Image','tcc-fluid')));
-    return apply_filters('form_text_'.$this->slug,$text,$text);
+    $this->form_text = apply_filters('form_text_'.$this->slug,$text,$text);
   }
 
 
@@ -233,6 +234,11 @@ log_entry($controls);
 
 
   /**  Data functions  **/
+
+	private function check_tab() {
+		if (!isset($this->form[$this->tab])) {
+			$this->tab = 'about'; }
+	}
 
   private function determine_option() {
     if ($this->type=='single') {
