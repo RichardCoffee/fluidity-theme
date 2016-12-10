@@ -9,22 +9,19 @@
 
 <div class="ribbon"></div>
 
-<div class="footer"><?php
-  who_am_i(); ?>
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" <?php microdata()->WPSideBar(); ?>><?php
-    fluidity_get_sidebar('footer'); ?>
+<div class="footer">
+
+	<?php who_am_i(); ?>
+
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" <?php microdata()->WPSideBar(); ?>>
+		<?php fluidity_get_sidebar('footer'); ?>
   </div>
+
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-    <span class="pull-right">
-      <a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
-        <img alt="XFN Friendly" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
-      </a>
-    </span>
-    <p class="text-center"><?php
-      $format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
-      $title  = apply_filters('tcc_copyright_name',microdata()->get_bloginfo('name'));
-      echo sprintf($format,fluid_copyright_dates(),$title);
-/*
+		<?php tcc_copyright(); ?>
+  </div>
+
+<?php /*
  ?>
       <br><?php
       $foot_menu = array();
@@ -39,6 +36,6 @@
           $string.= "<a href='/{$option[0]}/'> {$option[1]} </a> | "; }
         echo substr($string,0,-3).'</span>';
       } //*/ ?>
-    </p>
-  </div>
+
+
 </div><!-- .footer -->

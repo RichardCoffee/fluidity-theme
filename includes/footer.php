@@ -5,7 +5,7 @@
  *
  */
 
-//  Uses earliest published post to generate copyright date
+#  Uses earliest published post to generate copyright date
 if (!function_exists('fluid_copyright_dates')) {
   function fluid_copyright_dates() {
     global $wpdb;
@@ -21,8 +21,8 @@ if (!function_exists('fluid_copyright_dates')) {
     return $output;
   }
 }
-
-if (!function_exists('fluid_footer_autohide')) {
+/*
+if (!function_exists('fluid_footer_autohide')) { // FIXME
   function fluid_footer_autohide() {
     if (wp_script_is('jquery','done')) { ?>
 <script type="text/javascript">
@@ -40,4 +40,20 @@ console.log('header: '+hdrHeight);
     }
   }
   #add_action( 'wp_footer', 'fluid_footer_autohide', 99 );
-}
+} //*/
+
+if (!function_exists('tcc_copyright')) {
+	function tcc_copyright($banner=true) { ?>
+
+		<span class="pull-right">
+			<a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
+				<img alt="XFN Friendly" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
+			</a>
+		</span>
+		<p class="text-center"><?php
+			$format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
+			$title  = apply_filters('tcc_copyright_name',microdata()->get_bloginfo('name'));
+			echo sprintf($format,fluid_copyright_dates(),$title); ?>
+		</p>
+
+<?php } }
