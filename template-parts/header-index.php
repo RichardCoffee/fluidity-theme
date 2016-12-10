@@ -22,3 +22,5 @@ function rtc_header_content() { ?>
 		</div>
 	</div><?php
 }
+
+include('header.php');

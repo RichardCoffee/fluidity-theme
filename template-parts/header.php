@@ -5,8 +5,7 @@
  *
  */
 
-$page  = fluidity_page_slug();
-$color = tcc_color_scheme(); ?>
+$page  = fluidity_page_slug(); ?>
 
 <div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>" <?php microdata()->WPHeader(); ?> role="banner"><?php
 
@@ -14,7 +13,7 @@ $color = tcc_color_scheme(); ?>
   do_action("tcc_pre_header_$page");
 
   if (has_action('tcc_header_top_menubar') || has_action('tcc_header_top_menubar_'.$page)) { ?>
-    <div id="header-topmenu" class="navbar navbar-<?php echo $color; ?>"><?php
+    <div id="header-topmenu" class="navbar navbar-fluidity"><?php
       do_action('tcc_header_top_menubar');
       do_action('tcc_header_top_menubar_'.$page); ?>
     </div><?php
@@ -30,7 +29,7 @@ $color = tcc_color_scheme(); ?>
   }
 
   if (has_action('tcc_header_menubar') || has_action('tcc_header_menubar_'.$page)) { ?>
-    <div id="header-menubar" class="navbar navbar-<?php echo $color; ?>">
+    <div id="header-menubar" class="navbar navbar-fluidity">
       <div class="width-<?php echo tcc_layout('width'); ?>"><?php
         do_action('tcc_header_menubar');
         do_action('tcc_header_menubar_'.$page); ?>
