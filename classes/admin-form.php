@@ -236,7 +236,7 @@ log_entry($controls);
   /**  Data functions  **/
 
 	private function check_tab() {
-log_entry($this->tab,$this->form);
+log_entry(get_class(),$this->tab,$this->form);
 #		if (!isset($this->form[$this->tab])) {
 #			$this->tab = 'about'; }
 	}
