@@ -7,7 +7,7 @@
 @import "placeholders";
 
 .color-fluidity,
-.color-#{$colorName}
+.color-#{$colorName},
 .ui-autocomplete {
 	background-color: color(background);
 	border-color: color(bgHighlight);
