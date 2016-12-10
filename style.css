@@ -17,6 +17,14 @@ body {
   width: 100%;
 }
 
+#fluid-content {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+#fluid-footer {
+  background: rgba(255, 255, 255, 0.7);
+}
+
 .updraft {
   background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
   border-top: 3px solid #fff;
@@ -80,14 +88,6 @@ body {
   opacity: 1.0;
 }
 
-#fluid-content {
-  background: rgba(255, 255, 255, 0.85);
-}
-
-#fluid-footer {
-  background: rgba(255, 255, 255, 0.7);
-}
-
 .fluidity-social-icons {
   font-size: x-large;
   margin-top: auto;
@@ -96,6 +96,11 @@ body {
 
 .fluid-print-button {
   margin-top: 7px;
+}
+
+.tcc-icon {
+  height: auto;
+  width: 16px;
 }
 
 .article {
