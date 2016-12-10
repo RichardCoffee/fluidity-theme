@@ -236,8 +236,9 @@ log_entry($controls);
   /**  Data functions  **/
 
 	private function check_tab() {
-		if (!isset($this->form[$this->tab])) {
-			$this->tab = 'about'; }
+log_entry($this->tab,$this->form);
+#		if (!isset($this->form[$this->tab])) {
+#			$this->tab = 'about'; }
 	}
 
   private function determine_option() {
