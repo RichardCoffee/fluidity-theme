@@ -24,8 +24,10 @@ class Theme_Design_Options {
     return $form;
   }
 
-  public function describe_options() {
-    _e('Design Options - these options also show up in the WordPress Customizer.','tcc-fluid');
+  public function describe_options() { ?>
+		<span title="No they don't.  This doesn't work.  yet">
+			<?php esc_html_e('Design Options - these options also show up in the WordPress Customizer.','tcc-fluid'); ?>
+		</span><?php
   }
 
   protected function options_layout() {
