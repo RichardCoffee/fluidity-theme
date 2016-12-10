@@ -5,7 +5,7 @@
  *
  */
 
-add_action('tcc_header_body_content','tcc_index_header');
+add_action('tcc_header_body_content','rtc_header_content');
 
 function rtc_header_content() { ?>
 	<div class="col-lg-3 col-md-2 col-sm-12 hidden-xs">
