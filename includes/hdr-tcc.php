@@ -25,7 +25,9 @@ function collective_header() { ?>
 	<div class="pull-right">
 		<?php fluidity_header_bar_login(true); ?>
 	</div>
+	<div class="pull-left">
 	<?php get_template_part('template-parts/menu'); ?>
+	</div>
 	</div><?php
 }
 /*
