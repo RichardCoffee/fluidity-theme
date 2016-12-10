@@ -1,0 +1,14 @@
+/*
+ *  css/colors/fire-engine.css
+ *
+ *  Name:  Fire Engine Red
+ */
+
+$colorName : "fire-engine";
+$primary   : #CE2029;
+$colors    : ( "background"    : $primary,
+               "bgHighlight"   : scale-color($primary,$lightness:-20%),
+               "textcolor"     : #FFFFFF,
+               "textHighlight" : #FFFFFF);
+
+@import "color_template";

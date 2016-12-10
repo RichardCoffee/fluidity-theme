@@ -20,8 +20,9 @@ if (!function_exists('tcc_color_scheme')) {
  *   white: default
  */
     static $color; // = 'danger-inverse';
+$color = 'fire-engine';
     if (!$color) {
-      $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse');
+      $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse','fire-engine');
       $index  = rand(0,count($colors)-1);
       $color  = $colors[$index];
     }
@@ -29,7 +30,7 @@ if (!function_exists('tcc_color_scheme')) {
   }
 }
 
-#  function assumes calling function is wrapping with script tags
+#  function assumes calling function is wrapping with css script tags
 function tcc_custom_colors() {
   $colors = get_option('tcc_options_colors');
   if ($colors) {
