@@ -41,7 +41,7 @@ abstract class Basic_Admin_Form {
       if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
 			set_transient('TCC_TAB',$this->tab,DAY_IN_SECONDS);
       $this->form_text();
-      $thi->form = $this->form_layout();
+      $this->form = $this->form_layout();
 		$this->check_tab();
       $this->determine_option();
       $this->get_form_options();
