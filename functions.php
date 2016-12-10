@@ -129,7 +129,7 @@ if (!function_exists('fluidity_show_query')) { // FIXME: move this
 
 
 if (!is_child_theme()) {
-#  $site = site_url();
+  $site = site_url();
   if (!strpos($site,'rtcenterprises')===false) {
 # #   require_once('includes/hdr-rtc.php');
 #  } else if (!strpos($site,'the-creative-collective')===false) {
