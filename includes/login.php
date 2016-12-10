@@ -101,7 +101,7 @@ if (!function_exists('tcc_login_form')) {
       $upass  = apply_filters('tcc_login_userpass',esc_html__('Password',      'tcc-fluid'));
       $signin = apply_filters('tcc_signin_text',   esc_html__('Sign In',       'tcc-fluid'));
       $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
-      $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : '').' navbar-fluidity'; ?>
+      $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : ''); ?>
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
         <div class='form-group'>
           <label class="sr-only" for="log"><?php echo $uname; ?></label>
