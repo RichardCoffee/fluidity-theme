@@ -1,0 +1,186 @@
+/*
+ *  css/colors/fire-engine.css
+ *
+ *  Name:  Fire Engine Red
+ */
+.color-fluidity-inverse,
+.color-fire-engine-inverse, .btn-fluidity-inverse,
+.btn-fire-engine-inverse, .navbar-fluidity .btn-fluidity,
+.navbar-fluidity .btn-fire-engine,
+.navbar-fire-engine .btn-fluidity,
+.navbar-fire-engine .btn-fire-engine {
+  background-color: #FFFFFF;
+  border-color: #a51a21;
+  color: #CE2029;
+}
+.color-fluidity-inverse:hover,
+.color-fire-engine-inverse:hover, .btn-fluidity-inverse:hover,
+.btn-fire-engine-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
+.navbar-fluidity .btn-fire-engine:hover,
+.navbar-fire-engine .btn-fluidity:hover,
+.navbar-fire-engine .btn-fire-engine:hover, .color-fluidity-inverse:focus,
+.color-fire-engine-inverse:focus, .btn-fluidity-inverse:focus,
+.btn-fire-engine-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
+.navbar-fluidity .btn-fire-engine:focus,
+.navbar-fire-engine .btn-fluidity:focus,
+.navbar-fire-engine .btn-fire-engine:focus {
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #a51a21;
+}
+
+.color-fluidity,
+.color-fire-engine {
+  background-color: #CE2029;
+  color: #FFFFFF;
+}
+
+.btn-fluidity,
+.btn-fire-engine {
+  background-color: #CE2029;
+  border-color: #a51a21;
+  color: #FFFFFF;
+}
+
+.navbar-fluidity,
+.navbar-fire-engine {
+  background-color: #CE2029;
+  border-color: #a51a21;
+}
+.navbar-fluidity .navbar-brand,
+.navbar-fire-engine .navbar-brand {
+  background-color: #CE2029;
+  color: #FFFFFF;
+}
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus,
+.navbar-fire-engine .navbar-brand:hover,
+.navbar-fire-engine .navbar-brand:focus {
+  color: #a51a21;
+  background-color: #FFFFFF;
+}
+.navbar-fluidity .navbar-text,
+.navbar-fire-engine .navbar-text {
+  background-color: #CE2029;
+  color: #FFFFFF;
+}
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu,
+.navbar-fire-engine .navbar-nav,
+.navbar-fire-engine .dropdown-menu {
+  background-color: #CE2029;
+  opacity: 1;
+}
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a,
+.navbar-fire-engine .navbar-nav > li > a,
+.navbar-fire-engine .dropdown-menu > li > a {
+  background-color: #CE2029;
+  color: #FFFFFF;
+}
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus,
+.navbar-fire-engine .navbar-nav > li > a:hover,
+.navbar-fire-engine .navbar-nav > li > a:focus,
+.navbar-fire-engine .dropdown-menu > li > a:hover,
+.navbar-fire-engine .dropdown-menu > li > a:focus {
+  color: #a51a21;
+  background-color: #FFFFFF;
+}
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus,
+.navbar-fire-engine .navbar-nav > .active > a,
+.navbar-fire-engine .navbar-nav > .active > a:hover,
+.navbar-fire-engine .navbar-nav > .active > a:focus,
+.navbar-fire-engine .dropdown-menu > .active > a,
+.navbar-fire-engine .dropdown-menu > .active > a:hover,
+.navbar-fire-engine .dropdown-menu > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #a51a21;
+}
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus,
+.navbar-fire-engine .navbar-nav > .open > a,
+.navbar-fire-engine .navbar-nav > .open > a:hover,
+.navbar-fire-engine .navbar-nav > .open > a:focus,
+.navbar-fire-engine .dropdown-menu > .open > a,
+.navbar-fire-engine .dropdown-menu > .open > a:hover,
+.navbar-fire-engine .dropdown-menu > .open > a:focus {
+  color: #FFFFFF;
+  background-color: #a51a21;
+}
+.navbar-fluidity .navbar-toggle,
+.navbar-fire-engine .navbar-toggle {
+  border-color: #a51a21;
+}
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus,
+.navbar-fire-engine .navbar-toggle:hover,
+.navbar-fire-engine .navbar-toggle:focus {
+  background-color: #a51a21;
+}
+.navbar-fluidity .navbar-toggle .icon-bar,
+.navbar-fire-engine .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-fluidity .navbar-collapse,
+.navbar-fluidity .navbar-form,
+.navbar-fire-engine .navbar-collapse,
+.navbar-fire-engine .navbar-form {
+  border-color: #FFFFFF;
+}
+.navbar-fluidity .navbar-link,
+.navbar-fire-engine .navbar-link {
+  background-color: #CE2029;
+  color: #FFFFFF;
+}
+.navbar-fluidity .navbar-link:hover,
+.navbar-fire-engine .navbar-link:hover {
+  color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-fire-engine .navbar-nav .open .dropdown-menu > li > a {
+    background-color: #CE2029;
+    color: #FFFFFF;
+  }
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus,
+  .navbar-fire-engine .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-fire-engine .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #FFFFFF;
+  }
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus,
+  .navbar-fire-engine .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-fire-engine .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-fire-engine .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #a51a21;
+  }
+}
+.input-group .btn-fluidity,
+.input-group .btn-fire-engine {
+  background-color: #CE2029;
+  border-color: #a51a21;
+  color: #FFFFFF;
+}
+.input-group .form-control {
+  border-color: #a51a21;
+}
+
+.panel-fluidity,
+.panel-fire-engine {
+  border-color: #a51a21;
+}
+.panel-fluidity > .panel-heading,
+.panel-fire-engine > .panel-heading {
+  background-color: #CE2029;
+  border-color: #a51a21;
+  color: #FFFFFF;
+}
+
+.content-fluidity,
+.content-fire-engine {
+  border-color: #a51a21;
+}
+
+#header-body {
+  background-color: #f6c4c7;
+}
+
+#header-menubar {
+  background-color: #CE2029;
+}
