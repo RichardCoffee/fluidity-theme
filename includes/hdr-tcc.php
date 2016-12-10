@@ -15,7 +15,7 @@
 
 add_action('tcc_header_menubar', 'collective_header');
 function collective_header() { ?>
-	<div class="row">
+	<div class="inline">
 	<div class="pull-right">
 		<?php fluidity_menubar_print_button(); ?>
 	</div>

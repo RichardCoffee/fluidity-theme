@@ -41,6 +41,10 @@ body {
   height: 100%;
 }
 
+.inline {
+  display: inline;
+}
+
 .margintop,
 .margint1e {
   margin-top: 1em;
