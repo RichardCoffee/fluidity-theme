@@ -31,8 +31,10 @@
 }
 
 .color-fluidity,
-.color-primary {
+.color-primary
+.ui-autocomplete {
   background-color: #337AB7;
+  border-color: #2E6DA4;
   color: #ffffff;
 }
 

@@ -31,8 +31,10 @@
 }
 
 .color-fluidity,
-.color-danger-inverse {
+.color-danger-inverse
+.ui-autocomplete {
   background-color: #f2dede;
+  border-color: #f2dede;
   color: #a94442;
 }
 

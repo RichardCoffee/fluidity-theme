@@ -29,8 +29,10 @@
 }
 
 .color-fluidity,
-.color-orange {
+.color-orange
+.ui-autocomplete {
   background-color: #f7941d;
+  border-color: #d57808;
   color: #FFFFFF;
 }
 

@@ -31,8 +31,10 @@
 }
 
 .color-fluidity,
-.color-info {
+.color-info
+.ui-autocomplete {
   background-color: #5BC0DE;
+  border-color: #46B8DA;
   color: #FFFFFF;
 }
 
