@@ -41,7 +41,7 @@ who_am_i(); ?>
       esc_html_x('Posted in ','string will be followed by a category or list of categories','tcc-fluid');
       the_category(', ');
       echo ' | ';
-      fluid_edit_post_link(' | ');
+      #fluid_edit_post_link(' | ');
       $comm_0 = esc_html__('No Comments','tcc-fluid');
       $comm_1 = esc_html__('1 Comment','tcc-fluid');
       $comm_2 = esc_html_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid');
