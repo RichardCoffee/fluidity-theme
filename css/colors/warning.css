@@ -4,8 +4,7 @@
  *  bootstrap warning color scheme
  *
  */
-.form-control,
-.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-fluidity,
 .input-group .btn-warning {
   background-color: #F0AD4E;
   border-color: #EEA236;
@@ -17,7 +16,8 @@
 .btn-warning-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-warning,
 .navbar-warning .btn-fluidity,
-.navbar-warning .btn-warning {
+.navbar-warning .btn-warning, .form-control,
+.ui-autocomplete {
   background-color: #FFFFFF;
   border-color: #EEA236;
   color: #F0AD4E;
@@ -27,12 +27,14 @@
 .btn-warning-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-warning:hover,
 .navbar-warning .btn-fluidity:hover,
-.navbar-warning .btn-warning:hover, .color-fluidity-inverse:focus,
+.navbar-warning .btn-warning:hover, .form-control:hover,
+.ui-autocomplete:hover, .color-fluidity-inverse:focus,
 .color-warning-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-warning-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-warning:focus,
 .navbar-warning .btn-fluidity:focus,
-.navbar-warning .btn-warning:focus {
+.navbar-warning .btn-warning:focus, .form-control:focus,
+.ui-autocomplete:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #EEA236;

@@ -4,8 +4,7 @@
  *  bootstrap primary color scheme
  *
  */
-.form-control,
-.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-fluidity,
 .input-group .btn-primary {
   background-color: #337AB7;
   border-color: #2E6DA4;
@@ -17,7 +16,8 @@
 .btn-primary-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-primary,
 .navbar-primary .btn-fluidity,
-.navbar-primary .btn-primary {
+.navbar-primary .btn-primary, .form-control,
+.ui-autocomplete {
   background-color: #ffffff;
   border-color: #2E6DA4;
   color: #337AB7;
@@ -27,12 +27,14 @@
 .btn-primary-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-primary:hover,
 .navbar-primary .btn-fluidity:hover,
-.navbar-primary .btn-primary:hover, .color-fluidity-inverse:focus,
+.navbar-primary .btn-primary:hover, .form-control:hover,
+.ui-autocomplete:hover, .color-fluidity-inverse:focus,
 .color-primary-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-primary-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-primary:focus,
 .navbar-primary .btn-fluidity:focus,
-.navbar-primary .btn-primary:focus {
+.navbar-primary .btn-primary:focus, .form-control:focus,
+.ui-autocomplete:focus {
   background-color: #ffffff;
   border-color: #ffffff;
   color: #2E6DA4;

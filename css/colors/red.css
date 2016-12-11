@@ -2,8 +2,7 @@
  *  css/colors/red.css
  *
  */
-.form-control,
-.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-fluidity,
 .input-group .btn-red {
   background-color: #ff0000;
   border-color: #cc0000;
@@ -15,7 +14,8 @@
 .btn-red-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-red,
 .navbar-red .btn-fluidity,
-.navbar-red .btn-red {
+.navbar-red .btn-red, .form-control,
+.ui-autocomplete {
   background-color: #FFFFFF;
   border-color: #cc0000;
   color: #ff0000;
@@ -25,12 +25,14 @@
 .btn-red-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-red:hover,
 .navbar-red .btn-fluidity:hover,
-.navbar-red .btn-red:hover, .color-fluidity-inverse:focus,
+.navbar-red .btn-red:hover, .form-control:hover,
+.ui-autocomplete:hover, .color-fluidity-inverse:focus,
 .color-red-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-red-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-red:focus,
 .navbar-red .btn-fluidity:focus,
-.navbar-red .btn-red:focus {
+.navbar-red .btn-red:focus, .form-control:focus,
+.ui-autocomplete:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #cc0000;

@@ -4,8 +4,7 @@
  *  based on bootstrap success color scheme
  *
  */
-.form-control,
-.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-fluidity,
 .input-group .btn-success-inverse {
   background-color: #dff0d8;
   border-color: #d6e9c6;
@@ -17,7 +16,8 @@
 .btn-success-inverse-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-success-inverse,
 .navbar-success-inverse .btn-fluidity,
-.navbar-success-inverse .btn-success-inverse {
+.navbar-success-inverse .btn-success-inverse, .form-control,
+.ui-autocomplete {
   background-color: #3c763d;
   border-color: #d6e9c6;
   color: #dff0d8;
@@ -27,12 +27,14 @@
 .btn-success-inverse-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-success-inverse:hover,
 .navbar-success-inverse .btn-fluidity:hover,
-.navbar-success-inverse .btn-success-inverse:hover, .color-fluidity-inverse:focus,
+.navbar-success-inverse .btn-success-inverse:hover, .form-control:hover,
+.ui-autocomplete:hover, .color-fluidity-inverse:focus,
 .color-success-inverse-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-success-inverse-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-success-inverse:focus,
 .navbar-success-inverse .btn-fluidity:focus,
-.navbar-success-inverse .btn-success-inverse:focus {
+.navbar-success-inverse .btn-success-inverse:focus, .form-control:focus,
+.ui-autocomplete:focus {
   background-color: #3c763d;
   border-color: #3c763d;
   color: #d6e9c6;

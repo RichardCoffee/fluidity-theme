@@ -126,7 +126,7 @@
 
 .form-control,
 .ui-autocomplete {
-	@extend %regular;
+	@extend %inverse;
 }
 
 .input-group {

@@ -2,8 +2,7 @@
  *  css/colors/orange.css
  *
  */
-.form-control,
-.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-fluidity,
 .input-group .btn-orange {
   background-color: #f7941d;
   border-color: #d57808;
@@ -15,7 +14,8 @@
 .btn-orange-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-orange,
 .navbar-orange .btn-fluidity,
-.navbar-orange .btn-orange {
+.navbar-orange .btn-orange, .form-control,
+.ui-autocomplete {
   background-color: #FFFFFF;
   border-color: #d57808;
   color: #f7941d;
@@ -25,12 +25,14 @@
 .btn-orange-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-orange:hover,
 .navbar-orange .btn-fluidity:hover,
-.navbar-orange .btn-orange:hover, .color-fluidity-inverse:focus,
+.navbar-orange .btn-orange:hover, .form-control:hover,
+.ui-autocomplete:hover, .color-fluidity-inverse:focus,
 .color-orange-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-orange-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-orange:focus,
 .navbar-orange .btn-fluidity:focus,
-.navbar-orange .btn-orange:focus {
+.navbar-orange .btn-orange:focus, .form-control:focus,
+.ui-autocomplete:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #d57808;
