@@ -16,8 +16,7 @@
 .btn-info-inverse-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-info-inverse,
 .navbar-info-inverse .btn-fluidity,
-.navbar-info-inverse .btn-info-inverse, .form-control,
-.ui-autocomplete {
+.navbar-info-inverse .btn-info-inverse, .form-control, .ui-autocomplete {
   background-color: #31708F;
   border-color: #BCE8F1;
   color: #D9EDF7;
@@ -27,14 +26,12 @@
 .btn-info-inverse-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-info-inverse:hover,
 .navbar-info-inverse .btn-fluidity:hover,
-.navbar-info-inverse .btn-info-inverse:hover, .form-control:hover,
-.ui-autocomplete:hover, .color-fluidity-inverse:focus,
+.navbar-info-inverse .btn-info-inverse:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
 .color-info-inverse-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-info-inverse-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-info-inverse:focus,
 .navbar-info-inverse .btn-fluidity:focus,
-.navbar-info-inverse .btn-info-inverse:focus, .form-control:focus,
-.ui-autocomplete:focus {
+.navbar-info-inverse .btn-info-inverse:focus, .form-control:focus, .ui-autocomplete:focus {
   background-color: #31708F;
   border-color: #31708F;
   color: #BCE8F1;
@@ -163,6 +160,10 @@
     background-color: #BCE8F1;
   }
 }
+.ui-autocomplete li:hover, .ui-autocomplete li:focus {
+  color: #31708F;
+}
+
 .input-group .form-control {
   border-color: #BCE8F1;
 }

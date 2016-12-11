@@ -16,8 +16,7 @@
 .btn-warning-inverse-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-warning-inverse,
 .navbar-warning-inverse .btn-fluidity,
-.navbar-warning-inverse .btn-warning-inverse, .form-control,
-.ui-autocomplete {
+.navbar-warning-inverse .btn-warning-inverse, .form-control, .ui-autocomplete {
   background-color: #8A6D3B;
   border-color: #FAEBCC;
   color: #FCF8E3;
@@ -27,14 +26,12 @@
 .btn-warning-inverse-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-warning-inverse:hover,
 .navbar-warning-inverse .btn-fluidity:hover,
-.navbar-warning-inverse .btn-warning-inverse:hover, .form-control:hover,
-.ui-autocomplete:hover, .color-fluidity-inverse:focus,
+.navbar-warning-inverse .btn-warning-inverse:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
 .color-warning-inverse-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-warning-inverse-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-warning-inverse:focus,
 .navbar-warning-inverse .btn-fluidity:focus,
-.navbar-warning-inverse .btn-warning-inverse:focus, .form-control:focus,
-.ui-autocomplete:focus {
+.navbar-warning-inverse .btn-warning-inverse:focus, .form-control:focus, .ui-autocomplete:focus {
   background-color: #8A6D3B;
   border-color: #8A6D3B;
   color: #FAEBCC;
@@ -163,6 +160,10 @@
     background-color: #FAEBCC;
   }
 }
+.ui-autocomplete li:hover, .ui-autocomplete li:focus {
+  color: #8A6D3B;
+}
+
 .input-group .form-control {
   border-color: #FAEBCC;
 }

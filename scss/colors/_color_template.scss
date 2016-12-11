@@ -124,9 +124,18 @@
 
 // input fields
 
-.form-control,
+.form-control {
+   @extend %inverse;
+}
+
+
 .ui-autocomplete {
 	@extend %inverse;
+	li {
+		&:hover, &:focus {
+			color: color(textHighlight);
+		}
+	}
 }
 
 .input-group {
