@@ -1,4 +1,11 @@
 
+%regular {
+	background-color: color(background);
+	border-color: color(bgHighlight);
+	color: color(textcolor);
+}
+
+
 %inverse {
   background-color: color(textcolor);
   border-color: color(bgHighlight);

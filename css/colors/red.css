@@ -2,6 +2,14 @@
  *  css/colors/red.css
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-red {
+  background-color: #ff0000;
+  border-color: #cc0000;
+  color: #FFFFFF;
+}
+
 .color-fluidity-inverse,
 .color-red-inverse, .btn-fluidity-inverse,
 .btn-red-inverse, .navbar-fluidity .btn-fluidity,
@@ -29,8 +37,7 @@
 }
 
 .color-fluidity,
-.color-red,
-.ui-autocomplete {
+.color-red {
   background-color: #ff0000;
   border-color: #cc0000;
   color: #FFFFFF;
@@ -151,12 +158,6 @@
     color: #FFFFFF;
     background-color: #cc0000;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-red {
-  background-color: #ff0000;
-  border-color: #cc0000;
-  color: #FFFFFF;
 }
 .input-group .form-control {
   border-color: #cc0000;

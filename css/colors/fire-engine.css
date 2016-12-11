@@ -3,6 +3,14 @@
  *
  *  Name:  Fire Engine Red
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-fire-engine {
+  background-color: #CE2029;
+  border-color: #a51a21;
+  color: #FFFFFF;
+}
+
 .color-fluidity-inverse,
 .color-fire-engine-inverse, .btn-fluidity-inverse,
 .btn-fire-engine-inverse, .navbar-fluidity .btn-fluidity,
@@ -30,8 +38,7 @@
 }
 
 .color-fluidity,
-.color-fire-engine,
-.ui-autocomplete {
+.color-fire-engine {
   background-color: #CE2029;
   border-color: #a51a21;
   color: #FFFFFF;
@@ -152,12 +159,6 @@
     color: #FFFFFF;
     background-color: #a51a21;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-fire-engine {
-  background-color: #CE2029;
-  border-color: #a51a21;
-  color: #FFFFFF;
 }
 .input-group .form-control {
   border-color: #a51a21;

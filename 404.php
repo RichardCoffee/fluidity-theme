@@ -6,10 +6,9 @@
 
 get_header();
 $micro = microdata();
-$color = tcc_color_scheme('404');
 /*
 if (WP_DEBUG) { ?>
- <div class="panel panel-<?php echo $color; ?> collapse-auto">
+ <div class="panel panel-fluidity collapse-auto">
    <div class="panel-heading">
       <h3 class="panel-title">Word Press Information</h3>
     </div>

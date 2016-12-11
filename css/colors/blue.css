@@ -2,6 +2,14 @@
  *  css/colors/blue.css
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-blue {
+  background-color: #2e3192;
+  border-color: #252775;
+  color: #FFFFFF;
+}
+
 .color-fluidity-inverse,
 .color-blue-inverse, .btn-fluidity-inverse,
 .btn-blue-inverse, .navbar-fluidity .btn-fluidity,
@@ -29,8 +37,7 @@
 }
 
 .color-fluidity,
-.color-blue,
-.ui-autocomplete {
+.color-blue {
   background-color: #2e3192;
   border-color: #252775;
   color: #FFFFFF;
@@ -151,12 +158,6 @@
     color: #FFFFFF;
     background-color: #252775;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-blue {
-  background-color: #2e3192;
-  border-color: #252775;
-  color: #FFFFFF;
 }
 .input-group .form-control {
   border-color: #252775;

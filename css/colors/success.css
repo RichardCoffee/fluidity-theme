@@ -4,6 +4,14 @@
  *  bootstrap success color scheme
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-success {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  color: #ffffff;
+}
+
 .color-fluidity-inverse,
 .color-success-inverse, .btn-fluidity-inverse,
 .btn-success-inverse, .navbar-fluidity .btn-fluidity,
@@ -31,8 +39,7 @@
 }
 
 .color-fluidity,
-.color-success,
-.ui-autocomplete {
+.color-success {
   background-color: #5cb85c;
   border-color: #4cae4c;
   color: #ffffff;
@@ -153,12 +160,6 @@
     color: #ffffff;
     background-color: #4cae4c;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-success {
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  color: #ffffff;
 }
 .input-group .form-control {
   border-color: #4cae4c;

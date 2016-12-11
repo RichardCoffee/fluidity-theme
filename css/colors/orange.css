@@ -2,6 +2,14 @@
  *  css/colors/orange.css
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-orange {
+  background-color: #f7941d;
+  border-color: #d57808;
+  color: #FFFFFF;
+}
+
 .color-fluidity-inverse,
 .color-orange-inverse, .btn-fluidity-inverse,
 .btn-orange-inverse, .navbar-fluidity .btn-fluidity,
@@ -29,8 +37,7 @@
 }
 
 .color-fluidity,
-.color-orange,
-.ui-autocomplete {
+.color-orange {
   background-color: #f7941d;
   border-color: #d57808;
   color: #FFFFFF;
@@ -151,12 +158,6 @@
     color: #FFFFFF;
     background-color: #d57808;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-orange {
-  background-color: #f7941d;
-  border-color: #d57808;
-  color: #FFFFFF;
 }
 .input-group .form-control {
   border-color: #d57808;

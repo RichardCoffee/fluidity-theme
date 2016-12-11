@@ -4,6 +4,14 @@
  *  based on bootstrap danger color scheme
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-danger-inverse {
+  background-color: #f2dede;
+  border-color: #f2dede;
+  color: #a94442;
+}
+
 .color-fluidity-inverse,
 .color-danger-inverse-inverse, .btn-fluidity-inverse,
 .btn-danger-inverse-inverse, .navbar-fluidity .btn-fluidity,
@@ -31,8 +39,7 @@
 }
 
 .color-fluidity,
-.color-danger-inverse,
-.ui-autocomplete {
+.color-danger-inverse {
   background-color: #f2dede;
   border-color: #f2dede;
   color: #a94442;
@@ -153,12 +160,6 @@
     color: #a94442;
     background-color: #f2dede;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-danger-inverse {
-  background-color: #f2dede;
-  border-color: #f2dede;
-  color: #a94442;
 }
 .input-group .form-control {
   border-color: #f2dede;

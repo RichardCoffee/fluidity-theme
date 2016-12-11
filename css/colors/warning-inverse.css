@@ -4,6 +4,14 @@
  *  based on bootstrap warning color scheme
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-warning-inverse {
+  background-color: #FCF8E3;
+  border-color: #FAEBCC;
+  color: #8A6D3B;
+}
+
 .color-fluidity-inverse,
 .color-warning-inverse-inverse, .btn-fluidity-inverse,
 .btn-warning-inverse-inverse, .navbar-fluidity .btn-fluidity,
@@ -31,8 +39,7 @@
 }
 
 .color-fluidity,
-.color-warning-inverse,
-.ui-autocomplete {
+.color-warning-inverse {
   background-color: #FCF8E3;
   border-color: #FAEBCC;
   color: #8A6D3B;
@@ -153,12 +160,6 @@
     color: #8A6D3B;
     background-color: #FAEBCC;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-warning-inverse {
-  background-color: #FCF8E3;
-  border-color: #FAEBCC;
-  color: #8A6D3B;
 }
 .input-group .form-control {
   border-color: #FAEBCC;

@@ -4,6 +4,14 @@
  *  bootstrap primary color scheme
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-primary {
+  background-color: #337AB7;
+  border-color: #2E6DA4;
+  color: #ffffff;
+}
+
 .color-fluidity-inverse,
 .color-primary-inverse, .btn-fluidity-inverse,
 .btn-primary-inverse, .navbar-fluidity .btn-fluidity,
@@ -31,8 +39,7 @@
 }
 
 .color-fluidity,
-.color-primary,
-.ui-autocomplete {
+.color-primary {
   background-color: #337AB7;
   border-color: #2E6DA4;
   color: #ffffff;
@@ -153,12 +160,6 @@
     color: #ffffff;
     background-color: #2E6DA4;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-primary {
-  background-color: #337AB7;
-  border-color: #2E6DA4;
-  color: #ffffff;
 }
 .input-group .form-control {
   border-color: #2E6DA4;

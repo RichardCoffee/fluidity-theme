@@ -2,6 +2,14 @@
  *  css/colors/green.css
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-green {
+  background-color: #39b54a;
+  border-color: #2e913b;
+  color: #FFFFFF;
+}
+
 .color-fluidity-inverse,
 .color-green-inverse, .btn-fluidity-inverse,
 .btn-green-inverse, .navbar-fluidity .btn-fluidity,
@@ -29,8 +37,7 @@
 }
 
 .color-fluidity,
-.color-green,
-.ui-autocomplete {
+.color-green {
   background-color: #39b54a;
   border-color: #2e913b;
   color: #FFFFFF;
@@ -151,12 +158,6 @@
     color: #FFFFFF;
     background-color: #2e913b;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-green {
-  background-color: #39b54a;
-  border-color: #2e913b;
-  color: #FFFFFF;
 }
 .input-group .form-control {
   border-color: #2e913b;

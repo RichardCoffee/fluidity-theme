@@ -7,8 +7,7 @@
 @import "placeholders";
 
 .color-fluidity,
-.color-#{$colorName},
-.ui-autocomplete {
+.color-#{$colorName} {
 	background-color: color(background);
 	border-color: color(bgHighlight);
 	color: color(textcolor);
@@ -123,18 +122,21 @@
 }
 
 
-// input groups
+// input fields
+
+.form-control,
+.ui-autocomplete {
+	@extend %regular;
+}
 
 .input-group {
 	.btn-fluidity,
-  .btn-#{$colorName} {
-    background-color: color(background);
-    border-color: color(bgHighlight);
-    color: color(textcolor);
-  }
-  .form-control {
-    border-color: color(bgHighlight);
-  }
+	.btn-#{$colorName} {
+		@extend %regular;
+	}
+	.form-control {
+		border-color: color(bgHighlight);
+	}
 }
 
 

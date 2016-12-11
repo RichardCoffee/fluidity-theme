@@ -2,6 +2,14 @@
  *  css/colors/yellow.css
  *
  */
+.form-control,
+.ui-autocomplete, .input-group .btn-fluidity,
+.input-group .btn-yellow {
+  background-color: #fff200;
+  border-color: #ccc200;
+  color: #FFFFFF;
+}
+
 .color-fluidity-inverse,
 .color-yellow-inverse, .btn-fluidity-inverse,
 .btn-yellow-inverse, .navbar-fluidity .btn-fluidity,
@@ -29,8 +37,7 @@
 }
 
 .color-fluidity,
-.color-yellow,
-.ui-autocomplete {
+.color-yellow {
   background-color: #fff200;
   border-color: #ccc200;
   color: #FFFFFF;
@@ -151,12 +158,6 @@
     color: #FFFFFF;
     background-color: #ccc200;
   }
-}
-.input-group .btn-fluidity,
-.input-group .btn-yellow {
-  background-color: #fff200;
-  border-color: #ccc200;
-  color: #FFFFFF;
 }
 .input-group .form-control {
   border-color: #ccc200;
