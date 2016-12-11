@@ -133,7 +133,7 @@
 	@extend %inverse;
 	li {
 		&:hover, &:focus {
-			color: color(textHighlight);
+			color: color(bgHighlight);
 		}
 	}
 }
