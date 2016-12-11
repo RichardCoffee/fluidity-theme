@@ -14,7 +14,7 @@
 .btn-yellow-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-yellow,
 .navbar-yellow .btn-fluidity,
-.navbar-yellow .btn-yellow, .form-control, .ui-autocomplete {
+.navbar-yellow .btn-yellow, .form-control {
   background-color: #FFFFFF;
   border-color: #ccc200;
   color: #fff200;
@@ -24,12 +24,12 @@
 .btn-yellow-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-yellow:hover,
 .navbar-yellow .btn-fluidity:hover,
-.navbar-yellow .btn-yellow:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
+.navbar-yellow .btn-yellow:hover, .form-control:hover, .color-fluidity-inverse:focus,
 .color-yellow-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-yellow-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-yellow:focus,
 .navbar-yellow .btn-fluidity:focus,
-.navbar-yellow .btn-yellow:focus, .form-control:focus, .ui-autocomplete:focus {
+.navbar-yellow .btn-yellow:focus, .form-control:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #ccc200;
@@ -158,10 +158,6 @@
     background-color: #ccc200;
   }
 }
-.ui-autocomplete li:hover, .ui-autocomplete li:focus {
-  color: #FFFFFF;
-}
-
 .input-group .form-control {
   border-color: #ccc200;
 }

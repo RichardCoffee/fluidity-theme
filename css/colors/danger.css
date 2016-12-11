@@ -16,7 +16,7 @@
 .btn-danger-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-danger,
 .navbar-danger .btn-fluidity,
-.navbar-danger .btn-danger, .form-control, .ui-autocomplete {
+.navbar-danger .btn-danger, .form-control {
   background-color: #FFFFFF;
   border-color: #d43f3a;
   color: #d9534f;
@@ -26,12 +26,12 @@
 .btn-danger-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-danger:hover,
 .navbar-danger .btn-fluidity:hover,
-.navbar-danger .btn-danger:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
+.navbar-danger .btn-danger:hover, .form-control:hover, .color-fluidity-inverse:focus,
 .color-danger-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-danger-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-danger:focus,
 .navbar-danger .btn-fluidity:focus,
-.navbar-danger .btn-danger:focus, .form-control:focus, .ui-autocomplete:focus {
+.navbar-danger .btn-danger:focus, .form-control:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #d43f3a;
@@ -160,10 +160,6 @@
     background-color: #d43f3a;
   }
 }
-.ui-autocomplete li:hover, .ui-autocomplete li:focus {
-  color: #FFFFFF;
-}
-
 .input-group .form-control {
   border-color: #d43f3a;
 }

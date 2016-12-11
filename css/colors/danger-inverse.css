@@ -16,7 +16,7 @@
 .btn-danger-inverse-inverse, .navbar-fluidity .btn-fluidity,
 .navbar-fluidity .btn-danger-inverse,
 .navbar-danger-inverse .btn-fluidity,
-.navbar-danger-inverse .btn-danger-inverse, .form-control, .ui-autocomplete {
+.navbar-danger-inverse .btn-danger-inverse, .form-control {
   background-color: #a94442;
   border-color: #f2dede;
   color: #f2dede;
@@ -26,12 +26,12 @@
 .btn-danger-inverse-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
 .navbar-fluidity .btn-danger-inverse:hover,
 .navbar-danger-inverse .btn-fluidity:hover,
-.navbar-danger-inverse .btn-danger-inverse:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
+.navbar-danger-inverse .btn-danger-inverse:hover, .form-control:hover, .color-fluidity-inverse:focus,
 .color-danger-inverse-inverse:focus, .btn-fluidity-inverse:focus,
 .btn-danger-inverse-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
 .navbar-fluidity .btn-danger-inverse:focus,
 .navbar-danger-inverse .btn-fluidity:focus,
-.navbar-danger-inverse .btn-danger-inverse:focus, .form-control:focus, .ui-autocomplete:focus {
+.navbar-danger-inverse .btn-danger-inverse:focus, .form-control:focus {
   background-color: #a94442;
   border-color: #a94442;
   color: #f2dede;
@@ -160,10 +160,6 @@
     background-color: #f2dede;
   }
 }
-.ui-autocomplete li:hover, .ui-autocomplete li:focus {
-  color: #a94442;
-}
-
 .input-group .form-control {
   border-color: #f2dede;
 }
