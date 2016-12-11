@@ -128,15 +128,14 @@
    @extend %inverse;
 }
 
-//
-//.ui-autocomplete {
-//	@extend %inverse;
-//	li {
-//		&:hover, &:focus {
-//			color: color(textHighlight);
-//		}
-//	}
-//}
+.ui-autocomplete {
+	@extend %inverse;
+	li {
+		&:hover, &:focus {
+			color: color(textHighlight);
+		}
+	}
+}
 
 .input-group {
 	.btn-fluidity,

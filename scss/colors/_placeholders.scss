@@ -8,11 +8,11 @@
 
 %inverse {
   background-color: color(textcolor);
-  border-color: color(bgHighlight);
+  border-color: color(textHighlight);
   color: color(background);
   &:hover, &:focus {
-    background-color: color(textHighlight);
-    border-color: color(textHighlight);
+    background-color: color(background);
+    border-color: color(bgHighlight);
     color: color(bgHighlight);
   }
 }
