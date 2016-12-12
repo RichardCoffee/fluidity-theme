@@ -1,6 +1,6 @@
 
 jQuery(document).ready(function ($){
-	$("#searchform-input").autocomplete({
+	$(".searchform-input").autocomplete({
 		delay: 0,
 		minLength: 0,
 		source: function(req, response){
