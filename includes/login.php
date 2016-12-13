@@ -6,9 +6,9 @@ if (!WP_DEBUG) { // Source?
 
 if (!function_exists('tcc_admin_login_redirect')) {
   function tcc_admin_login_redirect($redirect_to,$request,$user) {
-		if (!$user)                       { log_entry('missing user var',func_get_args(),'dump'); return $redirect_to; }
+		if (!$user)                       { return home_url(); }
 		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
-    if (get_class($user)=='WP_Error') { return $redirect_to; }
+		if (get_class($user)=='WP_Error') { return $redirect_to; }
     $from = wp_get_referer();
 #log_entry("referrer: $from");
 #    if (!(strpos($from,'wp-admin')===false)) return $from;
