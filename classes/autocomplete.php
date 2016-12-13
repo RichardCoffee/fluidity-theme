@@ -4,28 +4,24 @@
  *  source:  unknown, somewhere on the web
  */
 
-class Fluid_AutoComplete {
+class TCC_AutoComplete {
 
-	static $action = 'fluid_autocomplete';
+	static $action = 'tcc_autocomplete';
 
 	static function load() {
 		add_action( 'init', array( __CLASS__, 'init'));
 	}
 
 	static function init() {
-		#global $wp_scripts;
-		#$jquery_ver = $wp_scripts->registered['jquery-ui-core']->ver;
-		#wp_register_style("tcc-jquery-ui-css", "http://ajax.googleapis.com/ajax/libs/jqueryui/$jquery_ver/themes/ui-lightness/jquery-ui.min.css");
-		##wp_register_style('my-jquery-ui','http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css');
-		wp_register_style('tcc-autocomplete-css', get_theme_file_uri("css/ui-autocomplete.css"),	null,	FLUIDITY_VERSION);
-		wp_register_script('tcc-autocomplete-js', get_theme_file_uri('js/autocomplete.js'),			array('jquery-ui-autocomplete'),	FLUIDITY_VERSION, true);
+		wp_register_style('tcc-autocomplete-css', get_theme_file_uri("css/ui-autocomplete.css"),	null,	TCC_THEME_VERSION);
+		wp_enqueue_style('tcc-autocomplete-css');
+		wp_register_script('tcc-autocomplete-js', get_theme_file_uri('js/autocomplete.js'),			array('jquery-ui-autocomplete'),	TCC_THEME_VERSION, true);
 		add_action( 'get_search_form',					array( __CLASS__, 'get_search_form' ) );
 		add_action( 'wp_ajax_'.self::$action,			array( __CLASS__, 'autocomplete_suggestions' ) );
 		add_action( 'wp_ajax_nopriv_'.self::$action, array( __CLASS__, 'autocomplete_suggestions' ) );
 	}
 
 	static function get_search_form( $form ) {
-		wp_enqueue_style('tcc-autocomplete-css');
 		$args = array(	'url'		=> admin_url('admin-ajax.php'),
 							'action'	=> self::$action);
 		wp_localize_script('tcc-autocomplete-js', 'TccAutocomplete', $args );
@@ -52,4 +48,4 @@ class Fluid_AutoComplete {
     }
 }
 
-Fluid_AutoComplete::load();
+TCC_AutoComplete::load();
