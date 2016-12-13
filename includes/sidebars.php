@@ -70,6 +70,7 @@ if (!function_exists('fluidity_get_sidebar')) {
 if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($args,$force=false) {
     $sidebars = ($force) ? (array)$args : array_merge((array)$args,array('standard','home'));
+log_entry($sidebars);
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
@@ -100,7 +101,7 @@ if (!function_exists('fluidity_sidebar_layout')) {
     if ($side!=='none') {
       $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e'.(($side=='right') ? ' pull-right' : ''); ?>
       <aside class="<? echo $sidebar_class; ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
-        fluidity_get_sidebar($sidebar); ?>
+        get_template_part('sidebar',$sidebar); ?>
       </aside><?php
     }
   }
