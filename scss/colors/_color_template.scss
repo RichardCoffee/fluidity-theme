@@ -111,6 +111,7 @@
 	border: 1px solid color(bgHighlight);
 	color: color(background);
 	li {
+		border: 1px solid transparent;
 		&:hover, &:focus {
 			background-color: color(textcolor);
 			border: 1px solid color(bgHighlight);

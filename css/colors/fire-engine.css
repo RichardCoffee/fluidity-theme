@@ -109,6 +109,9 @@
   border: 1px solid #a51a21;
   color: #CE2029;
 }
+.ui-autocomplete li {
+  border: 1px solid transparent;
+}
 .ui-autocomplete li:hover, .ui-autocomplete li:focus {
   background-color: #FFFFFF;
   border: 1px solid #a51a21;
