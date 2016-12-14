@@ -4,30 +4,30 @@
  */
 .btn-fluidity,
 .color-fluidity,
-.form-control {
+.form-control, .ui-autocomplete {
   background-color: #ff0000;
   border-color: #cc0000;
   color: #FFFFFF;
 }
 .btn-fluidity:hover,
 .color-fluidity:hover,
-.form-control:hover, .btn-fluidity:focus,
+.form-control:hover, .ui-autocomplete:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
-.form-control:focus {
+.form-control:focus, .ui-autocomplete:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #ff0000;
 }
 
 .btn-fluidity-inverse,
-.color-fluidity-inverse, .navbar-fluidity .btn-fluidity, .ui-autocomplete {
+.color-fluidity-inverse, .navbar-fluidity .btn-fluidity {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #ff0000;
 }
 .btn-fluidity-inverse:hover,
-.color-fluidity-inverse:hover, .navbar-fluidity .btn-fluidity:hover, .ui-autocomplete:hover, .btn-fluidity-inverse:focus,
-.color-fluidity-inverse:focus, .navbar-fluidity .btn-fluidity:focus, .ui-autocomplete:focus {
+.color-fluidity-inverse:hover, .navbar-fluidity .btn-fluidity:hover, .btn-fluidity-inverse:focus,
+.color-fluidity-inverse:focus, .navbar-fluidity .btn-fluidity:focus {
   background-color: #ff0000;
   border-color: #cc0000;
   color: #cc0000;
