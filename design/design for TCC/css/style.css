@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+
+body{
+	margin:0;
+	width:100%;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:400;
+	font-size:16px;
+	color:#787676;
+}
+/* Taxonomy styles */ 
+
+h1,.h1{
+	font-size:28;
+	font-weight:700;
+}
+h2,.h2{
+	font-size:24;
+	font-weight:700;
+}
+h3,.h3{
+	font-size:20;
+	font-weight:700;
+}
+h4,.h4{
+	font-size:18;
+	font-weight:700;
+}
+h5,.h5{
+	font-size:16;
+	font-weight:700;
+}
+h6,.h6{
+	font-size:14;
+	font-weight:700;	
+}
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{    
+	font-family: 'Lato', sans-serif;
+	color:#333;	
+}
+strong{
+	color:#000;
+}
+blockquote {
+  font: 14px/22px normal helvetica, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+} 
+/* End Taxonomy Styles */ 
+.divi{
+	border-bottom: 1px solid #212121;
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+}
+.center-it {
+  margin: 50px 0 0 50px;
+  left: 50%;
+  top: 50%;
+}
+
+.tagline {
+    height: 75px !important;
+	margin-bottom:20px;
+}
+.style-block-dark {
+    background: rgba(0, 0, 0, 0) url("../img/black-back.jpg") repeat scroll 0 0 / contain ;
+    border-bottom: 1px solid #c9c9c9;
+    height: 100%;
+}
+.style-block-red {
+    background: rgba(0, 0, 0, 0) url("../img/red-back.jpg") repeat scroll 0 0;
+    border-bottom: 1px solid #c9c9c9;
+    height: 100%;
+}
+.style-block-darkblue {
+    background: rgba(0, 0, 0, 0) url("../img/dark-blue-back.jpg") repeat scroll 0 0;
+    border-bottom: 1px solid #c9c9c9;
+    height: 100%;
+}
+.blackout-1{
+	background:rgba(0, 0, 0, 0.41);
+	height:100%;
+}
+.blackout-none{
+
+	height:100%;
+}
+.color-block{
+	position:relative;	
+}
+.rotatezhp1{
+	 -webkit-transform: rotateZ(-10deg); /* Safari */
+    transform: rotateZ(-10deg); /* Standard syntax */
+}
+
+/* Nav do not use only temporary */ 
+nav ul{
+	width:100%;
+	padding-top:40px;
+}
+nav li{
+	display:inline;
+	padding:20px;
+	
+}
+nav{
+	max-height:50px;
+	display:block;
+}
+/* End nav styles */ 
+
+/* Team Mates */ 
+.team-title{
+	font-family: 'Lato', sans-serif;
+	font-weight:400;
+	font-style:italic;
+	color:#4F4F4F;
+}
+.team-rows{
+	margin:40px 0;
+	border-bottom:1px solid #F2F2F2;
+	padding:40px 0;
+}
+.team-member{
+	display:block;
+	width:100%;
+	height:auto;	
+}
+
+/* team page */ 
+.hero-team{	
+	border-bottom: 10px solid rgba(0, 0, 0, 0.58);
+    border-top: 10px solid rgba(0, 0, 0, 0.58);
+    margin-top: 20px;
+}
+
+
+/* footer  */ 
+
+.footer-back{
+	background-color:#171717;
+	min-height:300px;
+	margin-top:20px;
+	padding:20px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
