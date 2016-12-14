@@ -107,10 +107,13 @@
 // input fields
 
 .ui-autocomplete {
-	@extend %regular;
+	background-color: color(background);
+	border-color: color(bgHighlight);
+	color: color(textcolor);
 	li {
 		&:hover, &:focus {
-			color: color(textHighlight);
+			background-color: color(textcolor);
+			color: color(background);
 		}
 	}
 }

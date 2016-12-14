@@ -6,16 +6,16 @@
  */
 .btn-fluidity,
 .color-fluidity,
-.form-control, .ui-autocomplete {
+.form-control {
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #3c763d;
 }
 .btn-fluidity:hover,
 .color-fluidity:hover,
-.form-control:hover, .ui-autocomplete:hover, .btn-fluidity:focus,
+.form-control:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
-.form-control:focus, .ui-autocomplete:focus {
+.form-control:focus {
   background-color: #3c763d;
   border-color: #3c763d;
   color: #dff0d8;
@@ -105,8 +105,14 @@
     background-color: #d6e9c6;
   }
 }
-.ui-autocomplete li:hover, .ui-autocomplete li:focus {
+.ui-autocomplete {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
   color: #3c763d;
+}
+.ui-autocomplete li:hover, .ui-autocomplete li:focus {
+  background-color: #3c763d;
+  color: #dff0d8;
 }
 
 .panel-fluidity {
