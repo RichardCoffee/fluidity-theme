@@ -88,8 +88,10 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 log_entry($trace);
     foreach($trace as $item) {
       if ($item['function']=='fluidity_get_sidebar') {
-        return $item['args'][0];
-      }
+			return $item['args'][0]; }
+      if (($item['function']=='get_template_part') && ($item['args'][0]=='sidebar')) {
+			if (!empty($item['args'][1])) { return $item['args'][1]; }
+		}
     }
     return '';
   }
