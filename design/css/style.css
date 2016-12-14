@@ -105,6 +105,7 @@ nav ul{
 nav li{
 	display:inline;
 	padding:20px;
+	border-right:1px solid #ddd;
 	
 }
 nav{
