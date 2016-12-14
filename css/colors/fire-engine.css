@@ -106,9 +106,7 @@
 }
 .ui-autocomplete {
   background-color: #FFFFFF;
-  border-color: #a51a21;
-  border-style: inherit;
-  border-width: inherit;
+  border: 1px solid #a51a21;
   color: #CE2029;
 }
 .ui-autocomplete li:hover, .ui-autocomplete li:focus {
