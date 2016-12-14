@@ -106,9 +106,9 @@
   }
 }
 .ui-autocomplete {
-  background-color: #f2dede;
+  background-color: #a94442;
   border-color: #f2dede;
-  color: #a94442;
+  color: #f2dede;
 }
 .ui-autocomplete li:hover, .ui-autocomplete li:focus {
   background-color: #a94442;

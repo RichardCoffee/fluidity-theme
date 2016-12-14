@@ -105,13 +105,13 @@
   }
 }
 .ui-autocomplete {
-  background-color: #CE2029;
+  background-color: #FFFFFF;
   border-color: #a51a21;
-  color: #FFFFFF;
+  color: #CE2029;
 }
 .ui-autocomplete li:hover, .ui-autocomplete li:focus {
   background-color: #FFFFFF;
-  color: #CE2029;
+  color: #a51a21;
 }
 
 .panel-fluidity {

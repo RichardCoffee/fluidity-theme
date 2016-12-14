@@ -2,5 +2,5 @@
 
 for color in $(cat scss/list.txt); do
   echo $color
-  [ -f scss/colors/$color.scss ] && sass --style=expanded --sourcemap=none scss/colors/$color.scss css/colors/$color.css
+  [ -f scss/colors/$color.scss ] && sass --style=expanded --sourcemap=none scss/colors/$color.scss css/colors/$color.css &&
 done
