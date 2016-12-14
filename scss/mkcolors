@@ -1,7 +1,9 @@
 #!/bin/bash
 
 for color in $(cat scss/list.txt); do
-  echo $color
-  [ -f scss/colors/$color.scss ] && sass --style=expanded --sourcemap=none scss/colors/$color.scss css/colors/$color.css &&
-	:
+	if [ -f scss/colors/$color.scss ]; then
+		echo $color
+		sass --style=expanded --sourcemap=none scss/colors/$color.scss css/colors/$color.css &&
+		:
+	fi
 done
