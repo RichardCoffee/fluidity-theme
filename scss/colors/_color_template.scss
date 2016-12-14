@@ -109,6 +109,8 @@
 .ui-autocomplete {
 	background-color: color(textcolor);
 	border-color: color(bgHighlight);
+	border-style: inherit;
+	border-width: inherit;
 	color: color(background);
 	li {
 		&:hover, &:focus {
