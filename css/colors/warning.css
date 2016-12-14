@@ -4,158 +4,103 @@
  *  bootstrap warning color scheme
  *
  */
-.input-group .btn-fluidity,
-.input-group .btn-warning {
+.btn-fluidity,
+.color-fluidity,
+.form-control {
   background-color: #F0AD4E;
   border-color: #EEA236;
   color: #FFFFFF;
 }
-
-.color-fluidity-inverse,
-.color-warning-inverse, .btn-fluidity-inverse,
-.btn-warning-inverse, .navbar-fluidity .btn-fluidity,
-.navbar-fluidity .btn-warning,
-.navbar-warning .btn-fluidity,
-.navbar-warning .btn-warning, .form-control, .ui-autocomplete {
+.btn-fluidity:hover,
+.color-fluidity:hover,
+.form-control:hover, .btn-fluidity:focus,
+.color-fluidity:focus,
+.form-control:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #F0AD4E;
 }
-.color-fluidity-inverse:hover,
-.color-warning-inverse:hover, .btn-fluidity-inverse:hover,
-.btn-warning-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
-.navbar-fluidity .btn-warning:hover,
-.navbar-warning .btn-fluidity:hover,
-.navbar-warning .btn-warning:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
-.color-warning-inverse:focus, .btn-fluidity-inverse:focus,
-.btn-warning-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
-.navbar-fluidity .btn-warning:focus,
-.navbar-warning .btn-fluidity:focus,
-.navbar-warning .btn-warning:focus, .form-control:focus, .ui-autocomplete:focus {
+
+.btn-fluidity-inverse,
+.color-fluidity-inverse, .navbar-fluidity .btn-fluidity, .ui-autocomplete {
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #F0AD4E;
+}
+.btn-fluidity-inverse:hover,
+.color-fluidity-inverse:hover, .navbar-fluidity .btn-fluidity:hover, .ui-autocomplete:hover, .btn-fluidity-inverse:focus,
+.color-fluidity-inverse:focus, .navbar-fluidity .btn-fluidity:focus, .ui-autocomplete:focus {
   background-color: #F0AD4E;
   border-color: #EEA236;
   color: #EEA236;
 }
 
-.color-fluidity,
-.color-warning {
-  background-color: #F0AD4E;
-  border-color: #EEA236;
-  color: #FFFFFF;
-}
-
-.btn-fluidity,
-.btn-warning {
-  background-color: #F0AD4E;
-  border-color: #EEA236;
-  color: #FFFFFF;
-}
-
-.navbar-fluidity,
-.navbar-warning {
+.navbar-fluidity {
   background-color: #F0AD4E;
   border-color: #EEA236;
 }
-.navbar-fluidity .navbar-brand,
-.navbar-warning .navbar-brand {
+.navbar-fluidity .navbar-brand {
   background-color: #F0AD4E;
   color: #FFFFFF;
 }
-.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus,
-.navbar-warning .navbar-brand:hover,
-.navbar-warning .navbar-brand:focus {
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus {
   color: #EEA236;
   background-color: #FFFFFF;
 }
-.navbar-fluidity .navbar-text,
-.navbar-warning .navbar-text {
+.navbar-fluidity .navbar-text {
   background-color: #F0AD4E;
   color: #FFFFFF;
 }
-.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu,
-.navbar-warning .navbar-nav,
-.navbar-warning .dropdown-menu {
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu {
   background-color: #F0AD4E;
   opacity: 1;
 }
-.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a,
-.navbar-warning .navbar-nav > li > a,
-.navbar-warning .dropdown-menu > li > a {
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a {
   background-color: #F0AD4E;
   color: #FFFFFF;
 }
-.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus,
-.navbar-warning .navbar-nav > li > a:hover,
-.navbar-warning .navbar-nav > li > a:focus,
-.navbar-warning .dropdown-menu > li > a:hover,
-.navbar-warning .dropdown-menu > li > a:focus {
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus {
   color: #EEA236;
   background-color: #FFFFFF;
 }
-.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus,
-.navbar-warning .navbar-nav > .active > a,
-.navbar-warning .navbar-nav > .active > a:hover,
-.navbar-warning .navbar-nav > .active > a:focus,
-.navbar-warning .dropdown-menu > .active > a,
-.navbar-warning .dropdown-menu > .active > a:hover,
-.navbar-warning .dropdown-menu > .active > a:focus {
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus {
   color: #FFFFFF;
   background-color: #EEA236;
 }
-.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus,
-.navbar-warning .navbar-nav > .open > a,
-.navbar-warning .navbar-nav > .open > a:hover,
-.navbar-warning .navbar-nav > .open > a:focus,
-.navbar-warning .dropdown-menu > .open > a,
-.navbar-warning .dropdown-menu > .open > a:hover,
-.navbar-warning .dropdown-menu > .open > a:focus {
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus {
   color: #FFFFFF;
   background-color: #EEA236;
 }
-.navbar-fluidity .navbar-toggle,
-.navbar-warning .navbar-toggle {
+.navbar-fluidity .navbar-toggle {
   border-color: #EEA236;
 }
-.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus,
-.navbar-warning .navbar-toggle:hover,
-.navbar-warning .navbar-toggle:focus {
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus {
   background-color: #EEA236;
 }
-.navbar-fluidity .navbar-toggle .icon-bar,
-.navbar-warning .navbar-toggle .icon-bar {
+.navbar-fluidity .navbar-toggle .icon-bar {
   background-color: #FFFFFF;
 }
 .navbar-fluidity .navbar-collapse,
-.navbar-fluidity .navbar-form,
-.navbar-warning .navbar-collapse,
-.navbar-warning .navbar-form {
+.navbar-fluidity .navbar-form {
   border-color: #FFFFFF;
 }
-.navbar-fluidity .navbar-link,
-.navbar-warning .navbar-link {
+.navbar-fluidity .navbar-link {
   background-color: #F0AD4E;
   color: #FFFFFF;
 }
-.navbar-fluidity .navbar-link:hover,
-.navbar-warning .navbar-link:hover {
+.navbar-fluidity .navbar-link:hover {
   color: #FFFFFF;
 }
 
 @media (max-width: 767px) {
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a,
-  .navbar-warning .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a {
     background-color: #F0AD4E;
     color: #FFFFFF;
   }
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus,
-  .navbar-warning .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar-warning .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #FFFFFF;
   }
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus,
-  .navbar-warning .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar-warning .navbar-nav .open .dropdown-menu > .active > a:hover,
-  .navbar-warning .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #FFFFFF;
     background-color: #EEA236;
   }
@@ -164,23 +109,16 @@
   color: #FFFFFF;
 }
 
-.input-group .form-control {
+.panel-fluidity {
   border-color: #EEA236;
 }
-
-.panel-fluidity,
-.panel-warning {
-  border-color: #EEA236;
-}
-.panel-fluidity > .panel-heading,
-.panel-warning > .panel-heading {
+.panel-fluidity > .panel-heading {
   background-color: #F0AD4E;
   border-color: #EEA236;
   color: #FFFFFF;
 }
 
-.content-fluidity,
-.content-warning {
+.content-fluidity {
   border-color: #EEA236;
 }
 

@@ -6,7 +6,6 @@
  */
 
 $page  = fluidity_page_slug();
-$color = tcc_color_scheme(); 
 
 ?>
 
@@ -15,14 +14,14 @@ $color = tcc_color_scheme();
 
   <div class="row">
     <div class="col-md-4">
-	
+
 	  <img class="img-responsive hidden-xs" src="http://the-creative-collective.com/wp-content/uploads/2016/11/tcclogo.png" alt="The Creative Collective" itemprop="image">
-	
+
 	</div>
 	<div class="col-md-8">
 
 	<?php get_template_part('template-parts/menu'); ?>
-	
+
 	</div>
   </div>
 

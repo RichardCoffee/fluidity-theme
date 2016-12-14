@@ -4,158 +4,103 @@
  *  based on bootstrap warning color scheme
  *
  */
-.input-group .btn-fluidity,
-.input-group .btn-warning-inverse {
+.btn-fluidity,
+.color-fluidity,
+.form-control {
   background-color: #FCF8E3;
   border-color: #FAEBCC;
   color: #8A6D3B;
 }
-
-.color-fluidity-inverse,
-.color-warning-inverse-inverse, .btn-fluidity-inverse,
-.btn-warning-inverse-inverse, .navbar-fluidity .btn-fluidity,
-.navbar-fluidity .btn-warning-inverse,
-.navbar-warning-inverse .btn-fluidity,
-.navbar-warning-inverse .btn-warning-inverse, .form-control, .ui-autocomplete {
+.btn-fluidity:hover,
+.color-fluidity:hover,
+.form-control:hover, .btn-fluidity:focus,
+.color-fluidity:focus,
+.form-control:focus {
   background-color: #8A6D3B;
   border-color: #8A6D3B;
   color: #FCF8E3;
 }
-.color-fluidity-inverse:hover,
-.color-warning-inverse-inverse:hover, .btn-fluidity-inverse:hover,
-.btn-warning-inverse-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
-.navbar-fluidity .btn-warning-inverse:hover,
-.navbar-warning-inverse .btn-fluidity:hover,
-.navbar-warning-inverse .btn-warning-inverse:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
-.color-warning-inverse-inverse:focus, .btn-fluidity-inverse:focus,
-.btn-warning-inverse-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
-.navbar-fluidity .btn-warning-inverse:focus,
-.navbar-warning-inverse .btn-fluidity:focus,
-.navbar-warning-inverse .btn-warning-inverse:focus, .form-control:focus, .ui-autocomplete:focus {
+
+.btn-fluidity-inverse,
+.color-fluidity-inverse, .navbar-fluidity .btn-fluidity, .ui-autocomplete {
+  background-color: #8A6D3B;
+  border-color: #8A6D3B;
+  color: #FCF8E3;
+}
+.btn-fluidity-inverse:hover,
+.color-fluidity-inverse:hover, .navbar-fluidity .btn-fluidity:hover, .ui-autocomplete:hover, .btn-fluidity-inverse:focus,
+.color-fluidity-inverse:focus, .navbar-fluidity .btn-fluidity:focus, .ui-autocomplete:focus {
   background-color: #FCF8E3;
   border-color: #FAEBCC;
   color: #FAEBCC;
 }
 
-.color-fluidity,
-.color-warning-inverse {
-  background-color: #FCF8E3;
-  border-color: #FAEBCC;
-  color: #8A6D3B;
-}
-
-.btn-fluidity,
-.btn-warning-inverse {
-  background-color: #FCF8E3;
-  border-color: #FAEBCC;
-  color: #8A6D3B;
-}
-
-.navbar-fluidity,
-.navbar-warning-inverse {
+.navbar-fluidity {
   background-color: #FCF8E3;
   border-color: #FAEBCC;
 }
-.navbar-fluidity .navbar-brand,
-.navbar-warning-inverse .navbar-brand {
+.navbar-fluidity .navbar-brand {
   background-color: #FCF8E3;
   color: #8A6D3B;
 }
-.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus,
-.navbar-warning-inverse .navbar-brand:hover,
-.navbar-warning-inverse .navbar-brand:focus {
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus {
   color: #FAEBCC;
   background-color: #8A6D3B;
 }
-.navbar-fluidity .navbar-text,
-.navbar-warning-inverse .navbar-text {
+.navbar-fluidity .navbar-text {
   background-color: #FCF8E3;
   color: #8A6D3B;
 }
-.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu,
-.navbar-warning-inverse .navbar-nav,
-.navbar-warning-inverse .dropdown-menu {
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu {
   background-color: #FCF8E3;
   opacity: 1;
 }
-.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a,
-.navbar-warning-inverse .navbar-nav > li > a,
-.navbar-warning-inverse .dropdown-menu > li > a {
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a {
   background-color: #FCF8E3;
   color: #8A6D3B;
 }
-.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus,
-.navbar-warning-inverse .navbar-nav > li > a:hover,
-.navbar-warning-inverse .navbar-nav > li > a:focus,
-.navbar-warning-inverse .dropdown-menu > li > a:hover,
-.navbar-warning-inverse .dropdown-menu > li > a:focus {
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus {
   color: #FAEBCC;
   background-color: #8A6D3B;
 }
-.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus,
-.navbar-warning-inverse .navbar-nav > .active > a,
-.navbar-warning-inverse .navbar-nav > .active > a:hover,
-.navbar-warning-inverse .navbar-nav > .active > a:focus,
-.navbar-warning-inverse .dropdown-menu > .active > a,
-.navbar-warning-inverse .dropdown-menu > .active > a:hover,
-.navbar-warning-inverse .dropdown-menu > .active > a:focus {
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus {
   color: #8A6D3B;
   background-color: #FAEBCC;
 }
-.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus,
-.navbar-warning-inverse .navbar-nav > .open > a,
-.navbar-warning-inverse .navbar-nav > .open > a:hover,
-.navbar-warning-inverse .navbar-nav > .open > a:focus,
-.navbar-warning-inverse .dropdown-menu > .open > a,
-.navbar-warning-inverse .dropdown-menu > .open > a:hover,
-.navbar-warning-inverse .dropdown-menu > .open > a:focus {
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus {
   color: #8A6D3B;
   background-color: #FAEBCC;
 }
-.navbar-fluidity .navbar-toggle,
-.navbar-warning-inverse .navbar-toggle {
+.navbar-fluidity .navbar-toggle {
   border-color: #FAEBCC;
 }
-.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus,
-.navbar-warning-inverse .navbar-toggle:hover,
-.navbar-warning-inverse .navbar-toggle:focus {
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus {
   background-color: #FAEBCC;
 }
-.navbar-fluidity .navbar-toggle .icon-bar,
-.navbar-warning-inverse .navbar-toggle .icon-bar {
+.navbar-fluidity .navbar-toggle .icon-bar {
   background-color: #8A6D3B;
 }
 .navbar-fluidity .navbar-collapse,
-.navbar-fluidity .navbar-form,
-.navbar-warning-inverse .navbar-collapse,
-.navbar-warning-inverse .navbar-form {
+.navbar-fluidity .navbar-form {
   border-color: #8A6D3B;
 }
-.navbar-fluidity .navbar-link,
-.navbar-warning-inverse .navbar-link {
+.navbar-fluidity .navbar-link {
   background-color: #FCF8E3;
   color: #8A6D3B;
 }
-.navbar-fluidity .navbar-link:hover,
-.navbar-warning-inverse .navbar-link:hover {
+.navbar-fluidity .navbar-link:hover {
   color: #8A6D3B;
 }
 
 @media (max-width: 767px) {
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a,
-  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a {
     background-color: #FCF8E3;
     color: #8A6D3B;
   }
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus,
-  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #8A6D3B;
   }
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus,
-  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
-  .navbar-warning-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #8A6D3B;
     background-color: #FAEBCC;
   }
@@ -164,23 +109,16 @@
   color: #8A6D3B;
 }
 
-.input-group .form-control {
+.panel-fluidity {
   border-color: #FAEBCC;
 }
-
-.panel-fluidity,
-.panel-warning-inverse {
-  border-color: #FAEBCC;
-}
-.panel-fluidity > .panel-heading,
-.panel-warning-inverse > .panel-heading {
+.panel-fluidity > .panel-heading {
   background-color: #FCF8E3;
   border-color: #FAEBCC;
   color: #8A6D3B;
 }
 
-.content-fluidity,
-.content-warning-inverse {
+.content-fluidity {
   border-color: #FAEBCC;
 }
 

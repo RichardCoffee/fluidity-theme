@@ -4,158 +4,103 @@
  *  bootstrap success color scheme
  *
  */
-.input-group .btn-fluidity,
-.input-group .btn-success {
+.btn-fluidity,
+.color-fluidity,
+.form-control {
   background-color: #5cb85c;
   border-color: #4cae4c;
   color: #ffffff;
 }
-
-.color-fluidity-inverse,
-.color-success-inverse, .btn-fluidity-inverse,
-.btn-success-inverse, .navbar-fluidity .btn-fluidity,
-.navbar-fluidity .btn-success,
-.navbar-success .btn-fluidity,
-.navbar-success .btn-success, .form-control, .ui-autocomplete {
+.btn-fluidity:hover,
+.color-fluidity:hover,
+.form-control:hover, .btn-fluidity:focus,
+.color-fluidity:focus,
+.form-control:focus {
   background-color: #ffffff;
   border-color: #ffffff;
   color: #5cb85c;
 }
-.color-fluidity-inverse:hover,
-.color-success-inverse:hover, .btn-fluidity-inverse:hover,
-.btn-success-inverse:hover, .navbar-fluidity .btn-fluidity:hover,
-.navbar-fluidity .btn-success:hover,
-.navbar-success .btn-fluidity:hover,
-.navbar-success .btn-success:hover, .form-control:hover, .ui-autocomplete:hover, .color-fluidity-inverse:focus,
-.color-success-inverse:focus, .btn-fluidity-inverse:focus,
-.btn-success-inverse:focus, .navbar-fluidity .btn-fluidity:focus,
-.navbar-fluidity .btn-success:focus,
-.navbar-success .btn-fluidity:focus,
-.navbar-success .btn-success:focus, .form-control:focus, .ui-autocomplete:focus {
+
+.btn-fluidity-inverse,
+.color-fluidity-inverse, .navbar-fluidity .btn-fluidity, .ui-autocomplete {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #5cb85c;
+}
+.btn-fluidity-inverse:hover,
+.color-fluidity-inverse:hover, .navbar-fluidity .btn-fluidity:hover, .ui-autocomplete:hover, .btn-fluidity-inverse:focus,
+.color-fluidity-inverse:focus, .navbar-fluidity .btn-fluidity:focus, .ui-autocomplete:focus {
   background-color: #5cb85c;
   border-color: #4cae4c;
   color: #4cae4c;
 }
 
-.color-fluidity,
-.color-success {
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  color: #ffffff;
-}
-
-.btn-fluidity,
-.btn-success {
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  color: #ffffff;
-}
-
-.navbar-fluidity,
-.navbar-success {
+.navbar-fluidity {
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
-.navbar-fluidity .navbar-brand,
-.navbar-success .navbar-brand {
+.navbar-fluidity .navbar-brand {
   background-color: #5cb85c;
   color: #ffffff;
 }
-.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus,
-.navbar-success .navbar-brand:hover,
-.navbar-success .navbar-brand:focus {
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus {
   color: #4cae4c;
   background-color: #ffffff;
 }
-.navbar-fluidity .navbar-text,
-.navbar-success .navbar-text {
+.navbar-fluidity .navbar-text {
   background-color: #5cb85c;
   color: #ffffff;
 }
-.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu,
-.navbar-success .navbar-nav,
-.navbar-success .dropdown-menu {
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu {
   background-color: #5cb85c;
   opacity: 1;
 }
-.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a,
-.navbar-success .navbar-nav > li > a,
-.navbar-success .dropdown-menu > li > a {
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a {
   background-color: #5cb85c;
   color: #ffffff;
 }
-.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus,
-.navbar-success .navbar-nav > li > a:hover,
-.navbar-success .navbar-nav > li > a:focus,
-.navbar-success .dropdown-menu > li > a:hover,
-.navbar-success .dropdown-menu > li > a:focus {
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus {
   color: #4cae4c;
   background-color: #ffffff;
 }
-.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus,
-.navbar-success .navbar-nav > .active > a,
-.navbar-success .navbar-nav > .active > a:hover,
-.navbar-success .navbar-nav > .active > a:focus,
-.navbar-success .dropdown-menu > .active > a,
-.navbar-success .dropdown-menu > .active > a:hover,
-.navbar-success .dropdown-menu > .active > a:focus {
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus {
   color: #ffffff;
   background-color: #4cae4c;
 }
-.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus,
-.navbar-success .navbar-nav > .open > a,
-.navbar-success .navbar-nav > .open > a:hover,
-.navbar-success .navbar-nav > .open > a:focus,
-.navbar-success .dropdown-menu > .open > a,
-.navbar-success .dropdown-menu > .open > a:hover,
-.navbar-success .dropdown-menu > .open > a:focus {
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus {
   color: #ffffff;
   background-color: #4cae4c;
 }
-.navbar-fluidity .navbar-toggle,
-.navbar-success .navbar-toggle {
+.navbar-fluidity .navbar-toggle {
   border-color: #4cae4c;
 }
-.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus,
-.navbar-success .navbar-toggle:hover,
-.navbar-success .navbar-toggle:focus {
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus {
   background-color: #4cae4c;
 }
-.navbar-fluidity .navbar-toggle .icon-bar,
-.navbar-success .navbar-toggle .icon-bar {
+.navbar-fluidity .navbar-toggle .icon-bar {
   background-color: #ffffff;
 }
 .navbar-fluidity .navbar-collapse,
-.navbar-fluidity .navbar-form,
-.navbar-success .navbar-collapse,
-.navbar-success .navbar-form {
+.navbar-fluidity .navbar-form {
   border-color: #ffffff;
 }
-.navbar-fluidity .navbar-link,
-.navbar-success .navbar-link {
+.navbar-fluidity .navbar-link {
   background-color: #5cb85c;
   color: #ffffff;
 }
-.navbar-fluidity .navbar-link:hover,
-.navbar-success .navbar-link:hover {
+.navbar-fluidity .navbar-link:hover {
   color: #ffffff;
 }
 
 @media (max-width: 767px) {
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a,
-  .navbar-success .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a {
     background-color: #5cb85c;
     color: #ffffff;
   }
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus,
-  .navbar-success .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar-success .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #ffffff;
   }
-  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus,
-  .navbar-success .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar-success .navbar-nav .open .dropdown-menu > .active > a:hover,
-  .navbar-success .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #ffffff;
     background-color: #4cae4c;
   }
@@ -164,23 +109,16 @@
   color: #ffffff;
 }
 
-.input-group .form-control {
+.panel-fluidity {
   border-color: #4cae4c;
 }
-
-.panel-fluidity,
-.panel-success {
-  border-color: #4cae4c;
-}
-.panel-fluidity > .panel-heading,
-.panel-success > .panel-heading {
+.panel-fluidity > .panel-heading {
   background-color: #5cb85c;
   border-color: #4cae4c;
   color: #ffffff;
 }
 
-.content-fluidity,
-.content-success {
+.content-fluidity {
   border-color: #4cae4c;
 }
 
