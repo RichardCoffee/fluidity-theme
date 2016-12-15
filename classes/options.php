@@ -2,7 +2,6 @@
 
 require_once('admin-form.php');
 require_once('layout.php');
-require_once('design.php');
 require_once('social.php');
 require_once('settings.php');
 
@@ -18,7 +17,6 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   } //*/
 
   protected function __construct() {
-    self::$instance = $this;
     $this->prefix   = 'tcc_options_';
     $this->slug     = 'fluidity_options';
     $this->type     = 'tabbed';
@@ -26,7 +24,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     add_filter('form_text_'.$this->slug,array($this,'form_trans_text'),10,2);
     parent::__construct();
     $fluid_layout = new Theme_Layout_Options();
-    $fluid_design = new Theme_Design_Options();
+    new TCC_Options_Design;
     $fluid_social = new Theme_Social_Icons();
     $fluid_admin  = new Theme_Admin_Options();
   }

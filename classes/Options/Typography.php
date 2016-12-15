@@ -6,7 +6,7 @@
  */
 
 
-class TCC_Typography {
+class TCC_Options_Typography {
 
   private static $option = 'tcc_options_design';
 

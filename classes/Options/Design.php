@@ -1,8 +1,6 @@
 <?php
 
-require_once('typography.php');
-
-class Theme_Design_Options {
+class TCC_Options_Design_ {
 
   private $base     = 'design';
   private $priority = 34; # customizer priority
@@ -45,7 +43,7 @@ class Theme_Design_Options {
     $layout['font']   = array('default' => 'Helvitica Neue',
                               'label'   => __('Font Type','tcc-fluid'),
                               'render'  => 'font',
-                              'source'  => TCC_Typography::mixed_fonts());
+                              'source'  => TCC_Options_Typography::mixed_fonts());
     $layout['size']   = array('default' => 18,
                               'label'   => __('Font Size','tcc-fluid'),
                               'stext'   => _x('px',"abbreviation for 'pixel'",'tcc-fluid'),
