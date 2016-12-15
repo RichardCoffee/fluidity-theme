@@ -10,7 +10,6 @@ if (!function_exists('tcc_admin_login_redirect')) {
 		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 		if (get_class($user)=='WP_Error') { return $redirect_to; }
     $from = wp_get_referer();
-#log_entry("referrer: $from");
 #    if (!(strpos($from,'wp-admin')===false)) return $from;
 #    if (!in_array("administrator",$user->roles)) return home_url();
     return home_url();
@@ -126,7 +125,6 @@ if (!function_exists('tcc_login_form')) {
 
 if (!function_exists('tcc_logout_url')) {
   function tcc_logout_url($url, $redirect) {
-    #log_entry(0,"logout filter 1 - url: $url");
     $site = get_option('siteurl');
     $pos  = strpos($url,'?');
     if ($pos===false) {
@@ -138,7 +136,6 @@ if (!function_exists('tcc_logout_url')) {
       $opts  = http_build_query($parms,'tcc_');
       $url   = $base.'?'.htmlspecialchars($opts);
     }
-    #log_entry(0,"logout filter 2 - url: $url");
     return $url;
   }
   add_filter('logout_url', 'tcc_logout_url', 10, 2);
