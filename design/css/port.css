@@ -1,0 +1,132 @@
+.block1 { 
+float: left; 
+margin-left: 10px; 
+}
+
+.subtitle { 
+padding-left: 20px;
+font-size: 14px; 
+font-family: Tahoma, sans-serif; 
+color: #333;
+}
+
+/* Pfolio #1 */
+ 
+.folio1 {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    float: left;
+	border-radius:50%;
+    border: 5px solid #ddd;
+    overflow: hidden;
+    position: relative;
+    text-align: center; 
+}
+  
+.folio1 .face {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+ 
+/* styling effects when hover takes effect */
+ 
+.folio1 img {
+    display: block;
+	height: 100%;
+    position: relative;
+}
+.folio1 h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    padding: 10px;
+}
+ 
+.folio1 p {
+    font-style: italic;
+    font-size: 12px;
+    position: relative;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.folio1 a.icon {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #fff;
+    border-radius: 25px; 
+    color: #000;
+    text-transform: uppercase;
+}
+ 
+ */ if you want link hover over effects */ 
+.folio1 a.icon:hover {
+ 
+}
+ 
+.folio1 img {
+    transition: 0.5s; 
+}
+ 
+.folio1 .face{
+    background-color: rgba(0,0,0,0.8);
+    opacity:0;
+    transition: 500ms; 
+}
+.folio1 h2{
+    opacity:0;
+    background: transparent;
+    transform: rotate(180deg) skew(100deg, 100deg);
+    transition: 500ms;
+    font-size: 32px;
+}
+.folio1 p {
+    font-size: 22px;
+    opacity:0;
+    transform: rotate(180deg) skew(100deg, 100deg);
+    transition: 500ms;
+}
+.folio1 a.icon {
+    opacity:0;
+    transform: translateY(100px);
+    transition: 500ms;
+}
+ 
+ 
+/* Hover overs */
+ .folio1:hover{
+	 border: 5px solid #0F243F;
+	 transition: 1200ms;
+ }
+.folio1:hover .face { 
+    opacity:1;
+    transition-delay: 0s;
+    cursor: pointer; 
+}                                                                          
+.folio1:hover img {
+    transition-delay: 0s;
+}
+.folio1:hover h2 {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.1s;
+}
+ 
+.folio1:hover p {
+    opacity:1;
+    transform: scale(1);
+    transition-delay: 0.2s;
+}
+.folio1:hover a.icon {
+    opacity:1;
+    transform: translateY(0px);
+    transition-delay: 0.3s;
+}
