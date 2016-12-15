@@ -23,17 +23,17 @@
 .navbar-fluidity {
   background-color: color(background);
   border-color: color(bgHighlight);
+  color: color(textcolor);
   .navbar-brand {
     background-color: color(background);
-    color: color(textcolor);
     &:hover, &:focus {
-      color: color(bgHighlight);
+//      color: color(bgHighlight);
       background-color: color(textHighlight);
     }
   }
   .navbar-text {
     background-color: color(background);
-    color: color(textcolor);
+//    color: color(textcolor);
   }
   .navbar-nav, .dropdown-menu {
     background-color: color(background);
@@ -41,22 +41,22 @@
     > li {
       > a {
         background-color: color(background);
-        color: color(textcolor);
+//        color: color(textcolor);
         &:hover,  &:focus {
-          color: color(bgHighlight);
+//          color: color(bgHighlight);
           background-color: color(textHighlight);
         }
       }
     }
     > .active {
       > a, > a:hover, > a:focus {
-        color: color(textHighlight);
+//        color: color(textHighlight);
         background-color: color(bgHighlight);
       }
     }
     > .open {
       > a, > a:hover, > a:focus {
-        color: color(textHighlight);
+//        color: color(textHighlight);
         background-color: color(bgHighlight);
       }
     }
@@ -74,9 +74,9 @@
     border-color: color(textcolor); }
   .navbar-link {
     background-color: color(background);
-    color: color(textcolor);
+//    color: color(textcolor);
     &:hover {
-      color: color(textHighlight);
+//      color: color(textHighlight);
     }
   }
   .btn-fluidity {
