@@ -26,7 +26,7 @@ require_once('classes/form-fields.php');
 require_once('classes/widgets.php');
 
 if (is_admin()) {
-	require_once('includes/admin-form.php');
+	require_once('classes/admin-form.php');
 	TCC_Options_Fluidity::get_instance();
 } else {
   #require_once('includes/footer.php');
