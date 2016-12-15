@@ -2,7 +2,7 @@
 
 
 
-class Theme_Layout_Options {
+class TCC_Options_Layout {
 
   private $base     = 'layout';
   private $priority = 35; # customizer priority
