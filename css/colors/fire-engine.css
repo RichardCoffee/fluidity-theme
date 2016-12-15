@@ -41,6 +41,7 @@
 }
 .navbar-fluidity .navbar-brand {
   background-color: #CE2029;
+  color: #FFFFFF;
 }
 .navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus {
   background-color: #671015;
@@ -51,7 +52,7 @@
 }
 .navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu {
   background-color: #CE2029;
-  opacity: 1;
+  opacity: 1.3;
 }
 .navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a {
   background-color: #CE2029;

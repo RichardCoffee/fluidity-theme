@@ -26,7 +26,7 @@
   color: color(textcolor);
   .navbar-brand {
     background-color: color(background);
-//    color: color(textcolor);
+    color: color(textcolor);
     &:hover, &:focus {
 //      color: color(bgHighlight);
       background-color: color(textHighlight);
@@ -38,7 +38,7 @@
   }
   .navbar-nav, .dropdown-menu {
     background-color: color(background);
-    opacity: 1;
+    opacity: 1.3;
     > li {
       > a {
         background-color: color(background);
