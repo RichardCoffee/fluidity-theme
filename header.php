@@ -25,6 +25,7 @@
 
 <body <?php body_class('background'); ?>>
   <a class="skip-link sr-only" href="#content"><?php esc_html_e('Skip to content','tcc-fluid'); ?></a><?php
+require('includes/library.php');
 log_entry('in header.php');
   $slug = fluidity_page_slug();
   #$slug = "james";
