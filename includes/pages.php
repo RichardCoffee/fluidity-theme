@@ -49,7 +49,7 @@ if (!function_exists('fluidity_page_slug')) {
     if (!$slug) {
 			global $fluidity_theme_template;
 			$slug = $fluidity_theme_template;
-require_once('library.php');
+require(FLUIDITY_HOME.'includes/library.php');
 log_entry("Page slug: $slug");
     }
     return $slug;
