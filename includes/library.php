@@ -14,7 +14,7 @@ if (!function_exists('tcc_apply_clearfix')) {
   }
 }
 
-if (!function_exists('tcc_clearfix_css')) {
+if (!function_exists('tcc_bootstrap_css')) {
   function tcc_bootstrap_css($args) {
     $lg = $md = $sm = $xs = 0;
     extract($args,EXTR_IF_EXISTS);
