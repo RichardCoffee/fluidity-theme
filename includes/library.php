@@ -148,7 +148,9 @@ if (!function_exists('get_valid_gravatar')) {
 
 #	http://stackoverflow.com/questions/14348470/is-ajax-in-wordpress
 if (!function_exists('is_ajax')) {
-	return (defined('DOING_AJAX') && DOING_AJAX) ? true : false;
+	function is_ajax() {
+		return (defined('DOING_AJAX') && DOING_AJAX) ? true : false;
+	}
 }
 
 #  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
