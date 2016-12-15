@@ -26,7 +26,6 @@ require_once('classes/form-fields.php');
 require_once('classes/widgets.php');
 
 if (is_admin()) {
-  require_once('classes/typography.php');
   require_once('classes/options.php');
 } else {
   #require_once('includes/footer.php');
