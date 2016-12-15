@@ -356,7 +356,8 @@ if (!function_exists('log_entry')) {
       }
     }
   }
-}
+  log_entry('log_entry now defined');
+} else { log_entry('log_entry already defined'); }
 
 #  show data inline
 if (!function_exists('showme')) {
