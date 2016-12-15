@@ -8,7 +8,9 @@ log_entry("file: $load");
 log_entry(0,"path: $file");
 		if ( is_readable( $file ) ) {
 			include $file;
+log_entry(0,'file included');
 		}
+else { log_entry('file not readable'); }
 	}
 }
 spl_autoload_register( 'fluidity_class_loader' );
