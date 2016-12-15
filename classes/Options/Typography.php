@@ -128,9 +128,9 @@ class TCC_Options_Typography {
 
 }
 
-add_action('tcc_custom_css',    array('TCC_Typography','typography_styles'),1);
-add_action('wp_enqueue_scripts',array('TCC_Typography','load_google_font'));
-add_action('tcc_os_fonts',      array('TCC_Typography','os_fonts_filter'));
-add_action('tcc_google_fonts',  array('TCC_Typography','google_fonts_filter'));
+add_action('tcc_custom_css',    array('TCC_Options_Typography','typography_styles'),1);
+add_action('wp_enqueue_scripts',array('TCC_Options_Typography','load_google_font'));
+add_action('tcc_os_fonts',      array('TCC_Options_Typography','os_fonts_filter'));
+add_action('tcc_google_fonts',  array('TCC_Options_Typography','google_fonts_filter'));
 
 ?>
