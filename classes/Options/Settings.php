@@ -1,6 +1,6 @@
 <?php
 
-class Theme_Admin_Options {
+class TCC_Options_Settings {
 
   private $base     = 'admin';
 
