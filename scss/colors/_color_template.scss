@@ -26,6 +26,7 @@
   color: color(textcolor);
   .navbar-brand {
     background-color: color(background);
+//    color: color(textcolor);
     &:hover, &:focus {
 //      color: color(bgHighlight);
       background-color: color(textHighlight);
@@ -41,7 +42,7 @@
     > li {
       > a {
         background-color: color(background);
-//        color: color(textcolor);
+        color: color(textcolor);
         &:hover,  &:focus {
 //          color: color(bgHighlight);
           background-color: color(textHighlight);
