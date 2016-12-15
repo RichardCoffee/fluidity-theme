@@ -130,20 +130,6 @@ if (!function_exists('get_term_name')) {
   }
 }
 
-#  https://codex.wordpress.org/Using_Gravatars
-function get_valid_gravatar($email,$size=96) {
-  // Craft a potential url and test its headers
-  $hash = md5(strtolower(trim($email)));
-  $uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
-  $headers = @get_headers($uri);
-  if (!preg_match("|200|", $headers[0])) {
-    $avatar = FALSE;
-  } else {
-    $avatar = get_avatar($email,$size);
-  }
-  return $avatar;
-}
-
 if (!function_exists('get_valid_gravatar')) {
   #  https://codex.wordpress.org/Using_Gravatars
   function get_valid_gravatar($email,$size=96) {
