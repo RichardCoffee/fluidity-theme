@@ -1,7 +1,7 @@
 <?php
 
 
-class Theme_Social_Icons {
+class TCC_Options_Social {
 
   private $base = 'social';
 

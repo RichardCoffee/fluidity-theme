@@ -36,7 +36,7 @@ if (!function_exists('fluidity_social_icons')) {
           }
         }
         require_once(plugin_dir_path(__FILE__).'../classes/social.php');
-        $insta  = new Theme_Social_Icons();
+        $insta  = new TCC_Options_Social;
         $layout = $insta->social_layout();
         #log_entry($icons,$social,$layout); ?>
         <span class='fluidity-social-icons'><?php

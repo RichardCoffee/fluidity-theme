@@ -1,7 +1,6 @@
 <?php /* arrays.php */
 
 require_once('admin-form.php');
-require_once('social.php');
 require_once('settings.php');
 
 class Fluidity_Options_Form extends Basic_Admin_Form {
@@ -24,7 +23,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
     parent::__construct();
     new TCC_Options_Layout;
     new TCC_Options_Design;
-    $fluid_social = new Theme_Social_Icons();
+    new TCC_Options_Social;
     $fluid_admin  = new Theme_Admin_Options();
   }
 
