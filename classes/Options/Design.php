@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Options_Design_ {
+class TCC_Options_Design {
 
   private $base     = 'design';
   private $priority = 34; # customizer priority
