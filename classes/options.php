@@ -1,7 +1,6 @@
 <?php /* arrays.php */
 
 require_once('admin-form.php');
-require_once('layout.php');
 require_once('social.php');
 require_once('settings.php');
 
