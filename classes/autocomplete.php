@@ -1,7 +1,9 @@
 <?php
 
 /*
- *  source:  unknown, somewhere on the web
+ *  source:  original source is unknown, somewhere on the web
+ *           https://code.tutsplus.com/tutorials/add-jquery-autocomplete-to-your-sites-search--wp-25155
+ *           http://wordpress.stackexchange.com/questions/37202/ajax-and-autocomplete
  */
 
 class TCC_AutoComplete {
