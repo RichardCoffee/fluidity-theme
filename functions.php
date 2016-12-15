@@ -95,8 +95,8 @@ if (!function_exists('fluidity_admin_enqueue')) {
 if (!function_exists('fluidity_register_bootstrap')) {
   function fluidity_register_bootstrap() {
     $base_url = get_template_directory_uri();
-    wp_register_style('bootstrap', "$base_url/css/bootstrap.min.css",false,'3.3.4');
-    wp_register_script('bootstrap',"$base_url/js/bootstrap.min.js",array('jquery'),'3.3.4',true);
+    wp_register_style('bootstrap', "$base_url/css/bootstrap.min.css",false,'3.3.7');
+    wp_register_script('bootstrap',"$base_url/js/bootstrap.min.js",array('jquery'),'3.3.7',true);
   }
 }
 
