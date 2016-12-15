@@ -5,7 +5,7 @@ class TCC_Options_Design {
   private $base     = 'design';
   private $priority = 34; # customizer priority
 
-  public function __construct() { #Fluidity_Options_Form $form) {
+  public function __construct() {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),10);
     add_action('fluid-customizer', array($this,'options_customize_register'),$this->priority,2);
   }
@@ -72,7 +72,7 @@ class TCC_Options_Design {
     return $layout;
   }
 
-  public function options_customize_register($wp_customize, Fluidity_Options_Form $form) {
+  public function options_customize_register($wp_customize, TCC_Options_Fluidity $form) {
     $wp_customize->add_section( 'fluid_'.$this->base, array('title' => $this->form_title(), 'priority' => $this->priority));
     $form->customizer_settings($wp_customize,$this->base);
   }

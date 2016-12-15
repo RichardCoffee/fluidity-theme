@@ -1,8 +1,6 @@
 <?php /* arrays.php */
 
-require_once('admin-form.php');
-
-class Fluidity_Options_Form extends Basic_Admin_Form {
+class TCC_Options_Fluidity extends Basic_Admin_Form {
 
   private static $instance = null;
   private static $text     = null;
@@ -27,7 +25,7 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   }
 
   public static function get_instance() {
-    if (!self::$instance)   self::$instance = new Fluidity_Options_Form;
+    if (!self::$instance)   self::$instance = new TCC_Options_Fluidity;
     return self::$instance;
   }
 
@@ -236,7 +234,3 @@ class Fluidity_Options_Form extends Basic_Admin_Form {
   }
 
 }
-
-$fluidity_theme_options = Fluidity_Options_Form::get_instance();
-
-?>

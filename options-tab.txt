@@ -9,12 +9,12 @@ the options.php file, the options.php should be considered the more
 reliable source.  The various tabs on the options screen are defined in
 these files:
 
-  Design: classes/design.php, filter priority 10
-  Layout: classes/layout.php, filter priority 20
-  Colors: classes/colors.php, filter priority 30
-  Social: classes/social.php, filter priority 100
-  Admin:  classes/settings.php, filter priority 500
-  About:  classes/options.php, no priority, will always be last
+  classes/Options/Design.php, filter priority 10
+  classes/Options/Layout.php, filter priority 20
+  classes/Options/Colors.php, filter priority 30
+  classes/Options/Social.php, filter priority 100
+  classes/Options/Settings.php, filter priority 500
+  classes/Options/Fluidity.php, no priority, will always be last
 
 When adding a tab to the screen, classes/design.php can be used as a guide.
 

@@ -4,7 +4,7 @@ class TCC_Options_Settings {
 
   private $base     = 'admin';
 
-  public function __construct() { #Fluidity_Options_Form $form) {
+  public function __construct() {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),500);
   }
 
