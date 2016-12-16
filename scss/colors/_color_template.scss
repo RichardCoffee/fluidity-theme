@@ -49,7 +49,7 @@
         color: color(textcolor);
         &:hover,  &:focus {
 //          color: color(bgHighlight);
-          background-color: color(textHighlight);
+          background-color: color(bgHighlight);
         }
       }
     }
