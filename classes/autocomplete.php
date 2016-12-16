@@ -31,22 +31,25 @@ class TCC_AutoComplete {
 		return $form;
 	}
 
-    static function autocomplete_suggestions() {
-        $posts = get_posts( array(
-            's' => trim( esc_attr( strip_tags( $_REQUEST['term'] ) ) ),
-        ) );
-        $suggestions=array();
+	static function autocomplete_suggestions() {
 
-        foreach ($posts as $post) {
-            $suggestion = array();
-            $suggestion['label'] = esc_html($post->post_title);
-            $suggestion['link']  = get_permalink($post);
-            $suggestions[]= $suggestion;
-        }
+		$args   = array( 's' => trim( esc_attr( strip_tags( $_REQUEST['term'] ) ) ) );
+		$args   = apply_filters('autocomplete_args', $args);
+		$posts  = new WP_Query($args);
 
-        $response = $_GET["callback"] . "(" . json_encode($suggestions) . ")";
-        echo $response;
-        exit;
+#		$option = tcc_estate('search');
+		$suggestions = array();
+		if ($posts->have_posts()) {
+			while ($posts->have_posts()) {
+				$posts->the_post();
+				$suggestions[] = array('label' => get_the_title(), 'link' => get_permalink());
+			}
+		}
+
+		$suggestions = apply_filters('autocomplete_array', $suggestions);
+		echo $_GET["callback"] . "(" . json_encode($suggestions) . ")";
+		exit;
+
     }
 }
 

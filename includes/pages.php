@@ -49,18 +49,20 @@ if (!function_exists('fluidity_page_slug')) {
     if (!$slug) {
 			global $fluidity_theme_template;
 			$slug = $fluidity_theme_template;
-log_entry("Page slug: $slug");
+log_entry(0,"Page slug: $slug");
     }
     return $slug;
   }
 }
 
-function fluid_save_page_template( $template ) {
-	global $fluidity_theme_template;
-	$fluidity_theme_template = basename($template,".php");
-	return $template;
+if (!function_exists('fluid_save_page_template')) {
+	function fluid_save_page_template( $template ) {
+		global $fluidity_theme_template;
+		$fluidity_theme_template = basename($template,".php");
+		return $template;
+	}
+	add_action('template_include', 'fluid_save_page_template', 1000);
 }
-add_action('template_include', 'fluid_save_page_template', 1000);
 
 if (!function_exists('fluid_search_page_title')) {
   function fluid_search_page_title() {

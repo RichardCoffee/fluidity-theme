@@ -11,19 +11,9 @@ class TCC_Basic_Widget extends WP_Widget {
     parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
     if (!self::$micro && class_exists('TCC_Microdata')) self::$micro = TCC_Microdata::get_instance();
   }
-/*
-  protected function pre_widget($args) {
-    echo $args['before_widget'];
-    if (!empty($args['tcc-title'])) {
-      echo $args['before_title'].$title.$args['after_title'];
-    } else {
-      echo "<div class='panel-body'>";
-    }
-  } //*/
 
   public function widget($args,$instance) {
     #$args['tcc-title'] = apply_filters('widget_title',$instance['title'],$this->id_base);
-    #$this->pre_widget($args);
     $title = apply_filters('widget_title',$instance['title'],$this->id_base);
     echo $args['before_widget'];
     if (!empty($title)) {
@@ -32,29 +22,29 @@ class TCC_Basic_Widget extends WP_Widget {
       if (!empty($args['before_title'])) echo "<div>";
     }
     $this->inner_widget($args,$instance);
-    #$this->post_widget($args);
     echo $args['after_widget'];
   }
-/*
-  protected function post_widget($args) {
-    echo $args['after_widget'];
-  } //*/
 
   public function form($instance) {
     $this->form_title($instance);
   }
 
-  protected function form_title($instance) {
-    $instance['title'] = (isset($instance['title'])) ? $instance['title'] : $this->title;
-    $form = "<p><label for='".$this->get_field_id('title')."'>";
-    $form.= esc_html__('Title:','tcc-fluid')."</label>";
-    $form.= "<input type='text' class='widefat'";
-    $form.= " id='"   .$this->get_field_id('title')  ."'";
-    $form.= " name='" .$this->get_field_name('title')."'";
-    $form.= " value='".esc_attr($instance['title'])  ."'";
-    $form.= " /></p>";
-    echo $form;
-  }
+	protected function form_title($instance) {
+		$instance['title'] = (isset($instance['title'])) ? $instance['title'] : $this->title;
+		$text = esc_html__('Title:','tcc-fluid');
+		$this->form_field($instance, 'title', $text);
+	}
+
+	protected function form_field($instance,$slug,$text) {
+		$form = "<p><label for='".$this->get_field_id($slug)."'>";
+		$form.= esc_html($text)."</label>";
+		$form.= "<input type='text' class='widefat'";
+		$form.= " id='"   .$this->get_field_id($slug)  ."'";
+		$form.= " name='" .$this->get_field_name($slug)."'";
+		$form.= " value='".esc_attr($instance[$slug])  ."'";
+		$form.= " /></p>";
+		echo $form;
+	}
 
   public function update($new,$old) {
     $instance = $old;
@@ -66,25 +56,62 @@ class TCC_Basic_Widget extends WP_Widget {
 
 class TCC_Address_Widget extends TCC_Basic_Widget {
 
-  function __construct() {
-    $this->title = esc_html__('Address','tcc-fluid');
-    $this->desc  = esc_html__('Fluidity address widget','tcc-fluid');
-    $this->slug  = 'tcc_address';
-    parent::__construct();
-  }
+	private $address;
 
-  public function inner_widget($args,$instance) { ?>
-    <div <?php self::$micro->Organization(); ?>>
-      <h4 class="text-center" itemprop="name"><?php bloginfo('name'); ?></h4>
-      <!-- FIXME: address needs to be editable option in theme options -->
-      <address class="text-center" <?php self::$micro->PostalAddress(); ?>>
-        <span itemprop="streetAddress">123 Main Street</span><br>
-        <span itemprop="addressLocality">Van</span> <span itemprop="addressRegion">TX</span>, <span itemprop="postalCode">75790</span><br>
-        Office: <span itemprop="telephone">888 555 1212</span><br>
-        Email: <a href="mailto:<?php echo get_option('admin_email'); ?>"><?php bloginfo ('title');?> </a>
-      </address>
-    </div><?php
-  }
+	function __construct() {
+		$this->title = esc_html__('Address','tcc-fluid');
+		$this->desc  = esc_html__('Fluidity address widget','tcc-fluid');
+		$this->slug  = 'tcc_address';
+		$this->address = array('tcc-street' => __('Street Address','tcc-fluid'),
+							'tcc-local'  => __('City','tcc-fluid'),
+							'tcc-region' => __('State','tcc-fluid'),
+							'tcc-code'   => __('Zipcode','tcc-fluid'),
+							'tcc-phone'  => __('Contact NumberStreet Address','tcc-fluid'),
+						);
+		parent::__construct();
+	}
+
+	public function inner_widget($args,$instance) { ?>
+		<div <?php self::$micro->Organization(); ?>>
+			<h4 class="text-center" itemprop="name"><?php bloginfo('name'); ?></h4>
+			<address class="text-center" <?php self::$micro->PostalAddress(); ?>>
+				<span itemprop="streetAddress">
+					<?php echo esc_html($instance['tcc-street']); ?>
+				</span><br>
+				<span itemprop="addressLocality">
+					<?php echo esc_html($instance['tcc-local']); ?>
+				</span> <span itemprop="addressRegion">
+					<?php echo esc_html($instance['tcc-region']); ?>
+				</span>, <span itemprop="postalCode">
+					<?php echo esc_html($instance['tcc-code']); ?>
+				</span><br><?php
+				if (!empty($instance['tcc-phone'])) {
+					esc_html_e('Office: ','tcc-fluid'); ?> <span itemprop="telephone">
+					<?php echo esc_html($instance['tcc-phone']); ?>
+					</span><br><?php
+				}
+				esc_html_e('Email: ','tcc-fluid'); ?>
+				<a href="mailto:<?php echo get_option('admin_email'); ?>">
+					<?php bloginfo ('title');?>
+				</a>
+			</address>
+		</div><?php
+	}
+
+	public function form($instance) {
+		parent::form($instance);
+		foreach($this->address as $slug=>$text) {
+			$this->form_field($instance, $slug, $text);
+		}
+	}
+
+	public function update($new,$old) {
+		$instance = parent::update($new,$old);
+		foreach($this->address as $slug=>$text) {
+			$instance[$slug] = (!empty($new[$slug])) ? strip_tags($new[$slug]) : '';
+		}
+		return $instance;
+	}
 
 }
 
