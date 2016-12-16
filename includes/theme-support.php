@@ -67,5 +67,5 @@ if (!function_exists('tcc_post_revisions')) {
 	function tcc_post_revisions() {
 		add_post_type_support( 'post', 'revisions' );
 	}
-	add_action( 'init', 'tcc_post_revisions' );
+	add_action( 'admin_init', 'tcc_post_revisions' );
 }
