@@ -47,7 +47,7 @@ if (!function_exists('tcc_copyright')) {
 
 		<span class="pull-left">
 			<a href="http://the-creative-collective.com" target="the_creative_collective">
-				<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/favicon.ico" class="tcc-icon">
+				<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/icons/tcc-btn.png" class="tcc-icon">
 			</a>
 		</span>
 
