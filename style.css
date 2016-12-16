@@ -45,6 +45,10 @@ body {
   transition: height 22s ease-in-out;
 }
 
+#fluid-footer {
+  padding-top: 1em;
+}
+
 .fullheight {
   height: 100%;
 }
