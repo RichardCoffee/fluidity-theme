@@ -1,5 +1,16 @@
 <?php
 
+if (!function_exists('fluid_color_body_class')) {
+	function fluid_color_body_class($classes) {
+		$color = fluid_color_scheme();
+		if ($color) {
+		$classes[] = "fluid-color-$color";
+		}
+		return $classes;
+	}
+	add_filter('body_class','fluid_color_body_class');
+}
+
 if (!function_exists('fluid_color_scheme')) {
   function fluid_color_scheme() {
     $color = tcc_color_scheme();
@@ -20,7 +31,6 @@ if (!function_exists('tcc_color_scheme')) {
  *   white: default
  */
     static $color; // = 'danger-inverse';
-$color = 'fire-engine';
     if (!$color) {
       $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse','fire-engine');
       $index  = rand(0,count($colors)-1);
