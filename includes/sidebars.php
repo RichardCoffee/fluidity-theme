@@ -47,9 +47,10 @@ if (!function_exists('fluidity_register_sidebars')) {
                         'after_title'   => '',
                         'after_widget'  => "</div></div></div>");
 	 #  Footer sidebar
+    $f2_before = "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12 centered'><div class='panel panel-fluidity'><div class='panel-body back-fluidity'>";
     $sidebars[] = array('name'          => esc_html__('Front page Footer (2 col)','tcc-fluid'),
                         'id'            => 'footer2',
-                        'before_widget' => "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='panel panel-fluidity'><div class='panel-body back-fluidity'>",
+                        'before_widget' => $f2_before,
                         'before_title'  => '',
                         'after_title'   => '',
                         'after_widget'  => "</div></div></div>");
