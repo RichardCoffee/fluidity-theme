@@ -36,7 +36,7 @@ class TCC_Basic_Widget extends WP_Widget {
 	}
 
 	protected function form_field($instance,$slug,$text) {
-		$valu = (empty($instance[$slug]) ? '' : esc_attr($instance[$slug]);
+		$valu = (empty($instance[$slug])) ? '' : esc_attr($instance[$slug]);
 		$form = "<p><label for='".$this->get_field_id($slug)."'>";
 		$form.= esc_html($text)."</label>";
 		$form.= "<input type='text' class='widefat'";
