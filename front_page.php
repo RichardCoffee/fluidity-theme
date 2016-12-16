@@ -13,6 +13,6 @@ get_header(); ?>
 			<!-- <img src="img/tcclogosm.png" alt="The Creative Collective Wordpress Development"> -->
 		</div>
 	</div>
-</main>
+</main><?php
 
 get_footer();
