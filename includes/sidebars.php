@@ -41,14 +41,14 @@ if (!function_exists('fluidity_register_sidebars')) {
                         'after_widget'  => "$after_widget</div>"); //*/
     #  Footer sidebar
     $sidebars[] = array('name'          => esc_html__('Footer Widget Area (4 col)','tcc-fluid'),
-                        'id'            => 'footer',
+                        'id'            => 'footer4',
                         'before_widget' => "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'><div class='panel panel-fluidity'><div class='panel-body'>",
                         'before_title'  => '',
                         'after_title'   => '',
                         'after_widget'  => "</div></div></div>");
 	 #  Footer sidebar
     $sidebars[] = array('name'          => esc_html__('Front Page Footer (2 col)','tcc-fluid'),
-                        'id'            => 'footer',
+                        'id'            => 'footer2',
                         'before_widget' => "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='panel panel-fluidity'><div class='panel-body'>",
                         'before_title'  => '',
                         'after_title'   => '',

@@ -67,7 +67,7 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
 							'tcc-local'  => __('City','tcc-fluid'),
 							'tcc-region' => __('State','tcc-fluid'),
 							'tcc-code'   => __('Zipcode','tcc-fluid'),
-							'tcc-phone'  => __('Contact NumberStreet Address','tcc-fluid'),
+							'tcc-phone'  => __('Contact Number','tcc-fluid'),
 						);
 		parent::__construct();
 	}
