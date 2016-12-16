@@ -17,6 +17,10 @@
   @extend %inverse;
 }
 
+.back-fluidity { background-color: color(background); }
+.bord-fluidity { border-color: color(bgHighlight); }
+.fore-fluidity { color: color(textcolor); }
+
 
 // navbars
 

@@ -35,16 +35,28 @@
   color: #FAEBCC;
 }
 
+.back-fluidity {
+  background-color: #FCF8E3;
+}
+
+.bord-fluidity {
+  border-color: #FAEBCC;
+}
+
+.fore-fluidity {
+  color: #8A6D3B;
+}
+
 .navbar-fluidity {
   background-color: #FCF8E3;
   border-color: #FAEBCC;
+  color: #8A6D3B;
 }
 .navbar-fluidity .navbar-brand {
   background-color: #FCF8E3;
   color: #8A6D3B;
 }
 .navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus {
-  color: #FAEBCC;
   background-color: #8A6D3B;
 }
 .navbar-fluidity .navbar-text {
@@ -53,22 +65,19 @@
 }
 .navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu {
   background-color: #FCF8E3;
-  opacity: 1;
+  opacity: 1.3;
 }
 .navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a {
   background-color: #FCF8E3;
   color: #8A6D3B;
 }
 .navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus {
-  color: #FAEBCC;
   background-color: #8A6D3B;
 }
 .navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus {
-  color: #8A6D3B;
   background-color: #FAEBCC;
 }
 .navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus {
-  color: #8A6D3B;
   background-color: #FAEBCC;
 }
 .navbar-fluidity .navbar-toggle {
@@ -86,10 +95,6 @@
 }
 .navbar-fluidity .navbar-link {
   background-color: #FCF8E3;
-  color: #8A6D3B;
-}
-.navbar-fluidity .navbar-link:hover {
-  color: #8A6D3B;
 }
 
 @media (max-width: 767px) {
@@ -107,14 +112,14 @@
 }
 .ui-autocomplete {
   background-color: #8A6D3B;
-  border-color: #FAEBCC;
-  border-style: inherit;
-  border-width: inherit;
+  border: 1px solid #FAEBCC;
   color: #FCF8E3;
 }
+.ui-autocomplete li {
+  border: 1px solid transparent;
+}
 .ui-autocomplete li:hover, .ui-autocomplete li:focus {
-  background-color: #8A6D3B;
-  color: #FAEBCC;
+  border: 1px solid #FAEBCC;
 }
 
 .panel-fluidity {

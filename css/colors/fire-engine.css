@@ -34,6 +34,18 @@
   color: #a51a21;
 }
 
+.back-fluidity {
+  background-color: #CE2029;
+}
+
+.bord-fluidity {
+  border-color: #a51a21;
+}
+
+.fore-fluidity {
+  color: #FFFFFF;
+}
+
 .navbar-fluidity {
   background-color: #CE2029;
   border-color: #a51a21;

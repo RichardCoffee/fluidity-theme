@@ -18,9 +18,10 @@ class TCC_Options_Fluidity extends Basic_Admin_Form {
     add_action('admin_menu',     array($this,'add_menu_option'));
     add_filter('form_text_'.$this->slug,array($this,'form_trans_text'),10,2);
     parent::__construct();
-    new TCC_Options_Layout;
-    new TCC_Options_Design;
+    new TCC_Options_Layout;	# 35
+    new TCC_Options_Design;	# 34
     new TCC_Options_Social;
+    new TCC_Options_Parallax;
     new TCC_Options_Settings;
   }
 
