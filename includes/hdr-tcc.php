@@ -10,7 +10,7 @@ function collective_header() { ?>
 	<div class="row">
 
 		<div class="col-lg-2 col-md-2 col-sm-12 hidden-xs">
-			fluidity_header_logo();
+			<?php fluidity_header_logo(); ?>
 		</div>
 
 		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
