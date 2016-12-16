@@ -1,5 +1,6 @@
 <?php
 /*
+ *  Template Name:  Front Page
  *  File Name: front_page.php
  *
  */
