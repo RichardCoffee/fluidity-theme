@@ -92,7 +92,7 @@ log_entry($sidebars);
 if (!function_exists('fluidity_sidebar_parameter')) {
   function fluidity_sidebar_parameter() {
     $trace = debug_backtrace();
-log_entry($trace);
+#log_entry($trace);
     foreach($trace as $item) {
       if ($item['function']=='fluidity_get_sidebar') {
 			return $item['args'][0]; }
