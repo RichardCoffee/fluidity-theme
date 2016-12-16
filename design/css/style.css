@@ -49,6 +49,11 @@ blockquote {
   padding-left: 15px;
   border-left: 3px solid #ccc;
 } 
+header {
+    border-top: 10px solid rgba(0, 0, 0, 0.58);
+    max-height: 95px;
+    padding: 10px 0;
+}
 /* End Taxonomy Styles */ 
 .divi{
 	border-bottom: 1px solid #212121;
@@ -100,17 +105,19 @@ blockquote {
 /* Nav do not use only temporary */ 
 nav ul{
 	width:100%;
-	padding-top:40px;
+	padding-top:30px;
 }
 nav li{
 	display:inline;
-	padding:20px;
-	border-right:1px solid #ddd;
-	
+	padding:0 20px;
+	border-right:1px solid #ddd;	
+}
+nav li:last-child{
+	border-right:none;
 }
 nav{
-	max-height:50px;
 	display:block;
+	float:right;
 }
 /* End nav styles */ 
 

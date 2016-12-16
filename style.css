@@ -103,6 +103,46 @@ body {
   width: 16px;
 }
 
+.parallax-top, .parallax,
+.parallax-center, .parallax-bottom, .parallax-contain-top, .parallax-contain,
+.parallax-contain-center, .parallax-contain-bottom {
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.parallax-top {
+  background-position: center top;
+  background-size: cover;
+}
+
+.parallax,
+.parallax-center {
+  background-position: center center;
+  background-size: cover;
+}
+
+.parallax-bottom {
+  background-position: center bottom;
+  background-size: cover;
+}
+
+.parallax-contain-top {
+  background-position: center top;
+  background-size: contain;
+}
+
+.parallax-contain,
+.parallax-contain-center {
+  background-position: center center;
+  background-size: contain;
+}
+
+.parallax-contain-bottom {
+  background-position: center bottom;
+  background-size: contain;
+}
+
 .article {
   margin-left: 2em;
   margin-right: 2em;
