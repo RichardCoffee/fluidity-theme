@@ -37,14 +37,25 @@ class TCC_Basic_Widget extends WP_Widget {
 
 	protected function form_field($instance,$slug,$text) {
 		$valu = (empty($instance[$slug])) ? '' : esc_attr($instance[$slug]);
-		$form = "<p><label for='".$this->get_field_id($slug)."'>";
-		$form.= esc_html($text)."</label>";
-		$form.= "<input type='text' class='widefat'";
-		$form.= " id='"   .$this->get_field_id($slug)  ."'";
-		$form.= " name='" .$this->get_field_name($slug)."'";
-		$form.= " value='$valu'";
-		$form.= " /></p>";
-		echo $form;
+		$html = "<p><label for='".$this->get_field_id($slug)."'>";
+		$html.= esc_html($text)."</label>";
+		$html.= "<input type='text' class='widefat'";
+		$html.= " id='"   .$this->get_field_id($slug)  ."'";
+		$html.= " name='" .$this->get_field_name($slug)."'";
+		$html.= " value='$valu'";
+		$html.= " /></p>";
+		echo $html;
+	}
+
+	protected function form_checkbox($instance,$slug,$text) {
+		$valu = (empty($instance[$slug])) ? false : esc_attr($instance[$slug]);
+		$html = "<label>";
+		$html.= "<input type='checkbox'";
+		$html.= " id='".$this->get_field_id($slug)  ."'";
+		$html.= " name='" .$this->get_field_name($slug)."'";
+		$html.= ($valu) ? ' checked' : '';
+		$html.= "/> <span> $text</span></label>";
+		$html.= "</label>";
 	}
 
   public function update($new,$old) {
@@ -95,7 +106,12 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
 				<a href="mailto:<?php echo get_option('admin_email'); ?>">
 					<?php bloginfo ('title');?>
 				</a>
-			</address>
+			</address><?php
+log_entry($instance);
+			if ($instance['tcc-map']) {
+				$add = urlencode($instance['tcc-street'].', '.$instance['tcc-local'].', '.$instance['tcc-region'].' '.$instance['tcc-code']); ?>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s<?php echo $add; ?>!5e0!3m2!1sen!2sus!4v1481581752243" width="400" height="200" frameborder="0" style="border:0" allowfullscreen></iframe><?php
+			} ?>
 		</div><?php
 	}
 
@@ -104,6 +120,7 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
 		foreach($this->address as $slug=>$text) {
 			$this->form_field($instance, $slug, $text);
 		}
+		$this->form_checkbox($instance,'tcc-map',__('Display Google map','tcc-fluid'));
 	}
 
 	public function update($new,$old) {
