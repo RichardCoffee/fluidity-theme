@@ -78,7 +78,6 @@ if (!function_exists('fluidity_get_sidebar')) {
 if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($args,$force=false) {
     $sidebars = ($force) ? (array)$args : array_merge((array)$args,array('standard','home'));
-log_entry($sidebars);
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
@@ -93,7 +92,6 @@ log_entry($sidebars);
 if (!function_exists('fluidity_sidebar_parameter')) {
   function fluidity_sidebar_parameter() {
     $trace = debug_backtrace();
-#log_entry($trace);
     foreach($trace as $item) {
       if ($item['function']=='fluidity_get_sidebar') {
 			return $item['args'][0]; }
