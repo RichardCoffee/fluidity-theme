@@ -49,12 +49,11 @@ class TCC_Basic_Widget extends WP_Widget {
 
 	protected function form_checkbox($instance,$slug,$text) {
 log_entry($instance);
-		$chck = isset( $instance[$slug]) ? $instance[$slug] : 'off';
 		$html = "<p><label>";
 		$html.= "<input type='checkbox'";
 		$html.= " id='".$this->get_field_id($slug)  ."'";
 		$html.= " name='" .$this->get_field_name($slug)."'";
-		$html.= ($chck==='on') ? ' checked' : '';
+		$html.= checked($instance[$slug], 'on');
 		$html.= "/> <span> $text</span></label>";
 		$html.= "</label></p>";
 		echo $html;
@@ -131,6 +130,7 @@ log_entry($instance);
 			$instance[$slug] = (!empty($new[$slug])) ? strip_tags($new[$slug]) : '';
 		}
 		$instance['tcc-map'] = (!empty($new[$slug])) ? $new['tcc-map'] : 'off';
+log_entry('old',$old,'new',$new,'returned',$instance);
 		return $instance;
 	}
 
