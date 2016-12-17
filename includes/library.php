@@ -54,7 +54,7 @@ if (!function_exists('container_type')) {
     } else if (tcc_layout('width')=='narrow') {
       $css = 'container';
     }
-    return $css;
+    return apply_filters('fluid_container_type',$css);
   }
 }
 

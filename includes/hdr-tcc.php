@@ -26,3 +26,8 @@ function collective_enqueue() {
 	wp_enqueue_style('collective', get_theme_file_uri("css/collective.css"), null, FLUIDITY_VERSION);
 }
 add_action('fluidity_enqueue','collective_enqueue');
+
+function tcc_container_type($css) {
+	return 'container';
+}
+add_filter('fluid_container_type','tcc_container_type');
