@@ -26,22 +26,13 @@ function collective_enqueue() {
 	wp_enqueue_style('collective', get_theme_file_uri("css/collective.css"), null, FLUIDITY_VERSION);
 }
 add_action('fluidity_enqueue','collective_enqueue');
-
+/*
 function tcc_container_type($css) {
-
-	log_entry($css, strpos($css,'container-fluid') );
 	$pos = strpos($css,'container-fluid');
-
 #	if (!strpos($css,'container-fluid')===false) {
 	if ($pos===false) { } else {
-
 		$css = str_replace('container-fluid','container',$css);
-
-log_entry('string found');
-
 	}
-
 	return $css;
-
 }
-add_filter('fluid_container_type','tcc_container_type');
+add_filter('fluid_container_type','tcc_container_type'); //*/
