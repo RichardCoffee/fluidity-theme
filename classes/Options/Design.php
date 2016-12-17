@@ -37,6 +37,13 @@ class TCC_Options_Design {
                               'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
                                                  'button' => __('Assign Logo', 'tcc-fluid'),
                                                  'delete' => __('Remove Logo', 'tcc-fluid')));
+    $layout['paral']  = array('default' => 'no',
+                              'label'   => __('Parallax','tcc-fluid'),
+                              'text'    => __('Do you want to use different background images on displayed pages','tcc-fluid'),
+                              'help'    => "No idea why this is called 'parallax', but it sounds very scientific.",
+                              'render'  => 'radio',
+                              'source'  => array('no'  => __('Do not use image backgrounds','tcc-fluid'),
+                                                 'yes' => __('Use parallax backgrounds','tcc-fluid')));
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
                               'text'    => __('Site typography options','tcc-fluid'),
                               'render'  => 'title');
