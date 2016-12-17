@@ -495,19 +495,20 @@ log_entry($controls);
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (empty($layout['source'])) return;
     $uniq = uniqid();
-    if (isset($layout['text'])) echo "<div id='$uniq'>".esc_attr($layout['text'])."</div>";
+    $html = "<div";
+    $html.= (isset($layout['help'])) ? " title='{$layout['help']}'>" : ">";
+    $html.= (isset($layout['text'])) ? "<div id='$uniq'>".esc_attr($layout['text'])."</div>" : "";
     foreach($layout['source'] as $key=>$text) {
-      $html = "<div";
-      $html.= (isset($layout['help'])) ? " title='{$layout['help']}'" : "";
-      $html.= "><label>";
+      $html.= "<div><label>";
       $html.= "<input type='radio' name='$name' value='$key'";
       $html.= ($value==$key) ? " checked='yes'" : "";
       $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
       $html.= (isset($layout['text']))   ? " aria-describedby='$uniq'"       : "";
       $html.= "> $text</label></div>";
-      echo $html;
     }
-    if (isset($layout['postext'])) echo "<div>{$layout['postext']}</div>";
+    $html.= (isset($layout['postext'])) ? "<div>{$layout['postext']}</div>" : "";
+    $html.= "</div>";
+    echo $html;
   }
 
   private function render_select($data) {

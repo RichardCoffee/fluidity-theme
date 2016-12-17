@@ -39,7 +39,7 @@ class TCC_Options_Design {
                                                  'delete' => __('Remove Logo', 'tcc-fluid')));
     $layout['paral']  = array('default' => 'no',
                               'label'   => __('Parallax','tcc-fluid'),
-                              'text'    => __('Do you want to use different background images on displayed pages','tcc-fluid'),
+                              'text'    => __('Do you want to use different background images on displayed pages?','tcc-fluid'),
                               'help'    => "No idea why this is called 'parallax', but it sounds very scientific.",
                               'render'  => 'radio',
                               'source'  => array('no'  => __('Do not use image backgrounds','tcc-fluid'),
