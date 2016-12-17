@@ -8,9 +8,7 @@ who_am_i();
 
 $loaded = false;
 $called = fluidity_sidebar_parameter();
-log_entry("sidebar parameter:  $called");
 if (substr($called,0,6)==='footer') {
-#if (($called=='footer2') || ($called=='footer4')) {
   $loaded = fluidity_load_sidebar($called,true);
 } elseif (is_front_page()) {  #  Alternate:  ($wp_query->get('page_id')===get_option('page_on_front'))
   $loaded = fluidity_load_sidebar('home');
