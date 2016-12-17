@@ -56,6 +56,7 @@ class TCC_Basic_Widget extends WP_Widget {
 		$html.= ($valu) ? ' checked' : '';
 		$html.= "/> <span> $text</span></label>";
 		$html.= "</label>";
+		echo $html;
 	}
 
   public function update($new,$old) {
