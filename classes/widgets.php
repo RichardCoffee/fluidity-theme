@@ -130,7 +130,7 @@ log_entry($instance);
 		foreach($this->address as $slug=>$text) {
 			$instance[$slug] = (!empty($new[$slug])) ? strip_tags($new[$slug]) : '';
 		}
-		$instance['tcc-map'] = $new_instance['tcc-map'];
+		$instance['tcc-map'] = (!empty($new[$slug])) ? $new['tcc-map'] : 'off';
 		return $instance;
 	}
 
