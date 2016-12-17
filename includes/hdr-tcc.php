@@ -30,6 +30,7 @@ add_action('fluidity_enqueue','collective_enqueue');
 function tcc_container_type($css) {
 	if (!strpos($css,'container-fluid')===false) {
 		$css = str_replace('container-fluid','container',$css);
+log_entry('string found');
 	}
 	return $css;
 }
