@@ -101,7 +101,7 @@ function fluid_title($length=0,$echo=true,$after='...',$before='') {
   if ($echo) { echo $title; } else { return $title; }
 }
 
-if (!function_exists('tcc_register_widgets') {
+if (!function_exists('tcc_register_widgets')) {
 	function tcc_register_widgets() {
 		register_widget('TCC_Widgets_Address');
 		register_widget('TCC_Widgets_Login');
