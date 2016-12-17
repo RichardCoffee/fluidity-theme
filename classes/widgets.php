@@ -49,13 +49,13 @@ class TCC_Basic_Widget extends WP_Widget {
 
 	protected function form_checkbox($instance,$slug,$text) {
 		$valu = (empty($instance[$slug])) ? false : esc_attr($instance[$slug]);
-		$html = "<label>";
+		$html = "<p><label>";
 		$html.= "<input type='checkbox'";
 		$html.= " id='".$this->get_field_id($slug)  ."'";
 		$html.= " name='" .$this->get_field_name($slug)."'";
 		$html.= ($valu) ? ' checked' : '';
 		$html.= "/> <span> $text</span></label>";
-		$html.= "</label>";
+		$html.= "</label></p>";
 		echo $html;
 	}
 
