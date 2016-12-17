@@ -28,6 +28,9 @@ function collective_enqueue() {
 add_action('fluidity_enqueue','collective_enqueue');
 
 function tcc_container_type($css) {
-	return 'container';
+	if (!strpos($css,'container-fluid')===false) {
+		$css = str_replace('container-fluid','container',$css);
+	}
+	return $css;
 }
 add_filter('fluid_container_type','tcc_container_type');
