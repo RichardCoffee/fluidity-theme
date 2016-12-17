@@ -4,6 +4,12 @@
  *  header for the creative collective
  *
  */
+/*
+#  force use of collective color scheme
+function collective_color_scheme($color) {
+    return 'collective';
+}
+add_filter('tcc_color_scheme','collective_color_scheme'); //*/
 
 function collective_header() { ?>
 
@@ -26,10 +32,10 @@ function collective_enqueue() {
 	wp_enqueue_style('collective', get_theme_file_uri("css/collective.css"), null, FLUIDITY_VERSION);
 }
 add_action('fluidity_enqueue','collective_enqueue');
-/*
+
 function tcc_container_type($css) {
+#	if (!(strpos($css,'container-fluid')===false)) { // FIXME:  why does this not work?
 	$pos = strpos($css,'container-fluid');
-#	if (!strpos($css,'container-fluid')===false) {
 	if ($pos===false) { } else {
 		$css = str_replace('container-fluid','container',$css);
 	}
