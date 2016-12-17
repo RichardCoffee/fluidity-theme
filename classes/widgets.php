@@ -52,7 +52,7 @@ class TCC_Basic_Widget extends WP_Widget {
 		$html.= "<input type='checkbox'";
 		$html.= " id='".$this->get_field_id($slug)  ."'";
 		$html.= " name='" .$this->get_field_name($slug)."'";
-		$html.= checked($instance[$slug], 'on');
+		$html.= checked($instance[$slug], 'on', false);
 		$html.= "/> <span> $text</span></label>";
 		$html.= "</label></p>";
 		echo $html;
@@ -107,7 +107,6 @@ class TCC_Address_Widget extends TCC_Basic_Widget {
 					<?php bloginfo ('title');?>
 				</a>
 			</address><?php
-log_entry($instance);
 			if (!empty($instance['tcc-map']) && ($instance['tcc-map']==='on')) {
 				$add = urlencode($instance['tcc-street'].', '.$instance['tcc-local'].', '.$instance['tcc-region'].' '.$instance['tcc-code']); ?>
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s<?php echo $add; ?>!5e0!3m2!1sen!2sus!4v1481581752243" width="400" height="200" frameborder="0" style="border:0" allowfullscreen></iframe><?php
