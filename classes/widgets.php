@@ -48,6 +48,7 @@ class TCC_Basic_Widget extends WP_Widget {
 	}
 
 	protected function form_checkbox($instance,$slug,$text) {
+log_entry($instance);
 		$chck = isset( $instance[$slug]) ? $instance[$slug] : 'off';
 		$html = "<p><label>";
 		$html.= "<input type='checkbox'";
