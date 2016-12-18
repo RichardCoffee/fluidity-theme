@@ -29,9 +29,9 @@ class TCC_Options_Parallax {
   }
 
   protected function options_layout() {
-    $media  = array('title'  => __('Assign/Upload Parallax','tcc-fluid'),
-                    'button' => __('Assign Parallax', 'tcc-fluid'),
-                    'delete' => __('Remove Parallax', 'tcc-fluid'));
+    $media  = array('title'  => __('Assign/Upload Image','tcc-fluid'),
+                    'button' => __('Assign Image', 'tcc-fluid'),
+                    'delete' => __('Remove Image', 'tcc-fluid'));
     $layout = array('default'=>true);
     $layout['front']  = array('default' => '',
                               'label'   => __('Front Page','tcc-fluid'),
