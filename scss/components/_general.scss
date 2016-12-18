@@ -1,3 +1,4 @@
+
 .centered {
 	margin-right: auto;
 	margin-left: auto;
@@ -20,3 +21,13 @@
 
 .padbott,
 .padb1e { padding-bottom: 1em; }
+
+.translucent {
+  filter: alpha(opacity=50);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+  -moz-opacity: .50;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+  background-color: #000000;
+}
+
