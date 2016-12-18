@@ -17,8 +17,8 @@ if (has_nav_menu($menu)) { ?>
       <a class="navbar-brand " href="<?php echo esc_url( home_url() )?>"><?php bloginfo('name')?></a>
     </div>
     <div class="collapse navbar-collapse navbar-<?php echo $menu; ?>-collapse"><?php /* Primary navigation */
-      wp_nav_menu( array('menu'=>$menu,'depth'=>2,'container'=>false,'menu_class'=>'nav navbar-nav','walker'=> new wp_bootstrap_navwalker()));
-      do_action('fluidity_menubar'); ?>
+		// FIXME: add filter for wp_nav_menu($args)
+      wp_nav_menu( array('menu'=>$menu,'depth'=>2,'container'=>false,'menu_class'=>'nav navbar-nav')); //,'walker'=> new wp_bootstrap_navwalker())); ?>
     </div>
   </nav><?php
 }

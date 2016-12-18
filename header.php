@@ -27,7 +27,6 @@
 	<a class="skip-link sr-only" href="#content"><?php esc_html_e('Skip to content','tcc-fluid'); ?></a>
 	<header><?php
 		$slug = fluidity_page_slug();
-		#$slug = "james";
 		get_template_part('template-parts/header',$slug); ?>
 	</header>
 

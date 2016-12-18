@@ -4,7 +4,7 @@
  *
  */
 
-define('FLUIDITY_HOME',plugin_dir_path(__FILE__));  #  get current directory
+define('FLUIDITY_HOME',trailingslashit(dirname(__FILE__)));  #  get current directory
 $data = get_file_data( FLUIDITY_HOME.'style.css', array( 'ver' => 'Version' ) );
 define('FLUIDITY_VERSION',$data['ver']);
 define('TCC_THEME_VERSION',FLUIDITY_VERSION);
@@ -131,6 +131,6 @@ if (!is_child_theme()) {
   $site = site_url();
   if (strpos($site,'the-creative-collective')) {
     require_once('includes/collective.php');
-log_entry(FLUIDITY_HOME,dirname(__FILE__),trailingslashit(dirname(__FILE__)));
+#log_entry(FLUIDITY_HOME,dirname(__FILE__),trailingslashit(dirname(__FILE__)));
   }
 }
