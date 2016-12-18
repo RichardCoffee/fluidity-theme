@@ -1,2 +1,2 @@
 sass --sourcemap=none --style=expanded scss/style.scss style.css
-sass --sourcemap=none --style=expanded scss/collective.scss css/collective.css
+sass --sourcemap=none --style=expanded scss/tcc.scss css/collective.css
