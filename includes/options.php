@@ -48,7 +48,7 @@ if (!function_exists('tcc_font_size')) {
       echo "\nbody { font-size: {$size}px }\n";
     }
   }
-  add_action('fluid_custom_css','tcc_font_size');
+  add_action('tcc_custom_css','tcc_font_size');
 }
 
 if (!function_exists('tcc_layout')) {

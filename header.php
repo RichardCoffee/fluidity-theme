@@ -19,7 +19,7 @@
 
   wp_head();
 
-  fluid_custom_css(); ?>
+  tcc_custom_css(); ?>
 
 </head>
 

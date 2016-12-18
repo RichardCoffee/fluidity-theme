@@ -1,7 +1,7 @@
 
     Actions                      Purpose / Occurrance                             Function                      File
 ==========================   ==============================================    ========================   ============================
- tcc_custom_css               insert css via inline stylesheet                  fluid_custom_css           includes/header.php
+ tcc_custom_css               insert css via inline stylesheet                  tcc_custom_css             includes/header.php
  tcc_custom_post_{post_type}  immediately after the post_type has been          create_post_type           classes/custom_post.php
                                 registered
  tcc_enqueue                  enqueue front-end styles/scripts                  fluid_enqueue              functions.php

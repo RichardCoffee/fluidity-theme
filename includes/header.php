@@ -45,11 +45,11 @@ if (!function_exists('fluid_browser_title')) {
   add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title is going to be deprecated
 }
 
-if (!function_exists('fluid_custom_css')) {
-  function fluid_custom_css() { ?>
-    <style id='fluid-custom-css' type='text/css'><?php
+if (!function_exists('tcc_custom_css')) {
+  function tcc_custom_css() { ?>
+    <style id='tcc-custom-css' type='text/css'><?php
       tcc_custom_colors();
-      do_action('fluid_custom_css'); ?>
+      do_action('tcc_custom_css'); ?>
     </style><?php
   }
 }
