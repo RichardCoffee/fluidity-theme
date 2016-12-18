@@ -18,7 +18,7 @@ if (has_nav_menu($menu)) { ?>
     </div>
     <div class="collapse navbar-collapse navbar-<?php echo $menu; ?>-collapse"><?php /* Primary navigation */
 		// FIXME: add filter for wp_nav_menu($args)
-      wp_nav_menu( array('menu'=>$menu,'depth'=>2,'container'=>false,'menu_class'=>'nav navbar-nav')); //,'walker'=> new wp_bootstrap_navwalker())); ?>
+      wp_nav_menu( array('menu'=>$menu,'depth'=>2,'container'=>false,'menu_class'=>'nav navbar-nav','walker'=> new wp_bootstrap_navwalker())); ?>
     </div>
   </nav><?php
 }
