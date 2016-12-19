@@ -3,7 +3,7 @@
 class TCC_Widgets_Logo extends TCC_Widgets_Basic {
 
   function __construct() {
-    $this->title = '';  #  esc_html__('Logo','tcc-fluid');
+    $this->title = esc_html__('Logo','tcc-fluid');
     $this->desc  = esc_html__('Fluidity - Displays your site logo','tcc-fluid');
     $this->slug  = 'tcc_logo';
     parent::__construct();
@@ -15,5 +15,10 @@ class TCC_Widgets_Logo extends TCC_Widgets_Basic {
       <img itemprop="logo" class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
     </a><?php
   }
+
+	public function form($instance) {
+		if ($instance['title']===$this->title) { $instance['title'] = ''; }
+		parent::form($instance);
+	}
 
 }
