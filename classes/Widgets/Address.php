@@ -52,8 +52,8 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 	}
 
 	public function form($instance) {
-		echo "<p>Caution:  We advise that you think very carefully about putting your address out on the internet.</p>";
 		parent::form($instance);
+		echo "<p>Caution:  We advise that you think very carefully about putting your address out on the internet.</p>";
 		foreach($this->address as $slug=>$text) {
 			$this->form_field($instance, $slug, $text);
 		}
