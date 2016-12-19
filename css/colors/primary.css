@@ -59,6 +59,10 @@
   border: 1px solid #2E6DA4;
 }
 
+ul.sub-menu {
+  background-color: #337AB7;
+}
+
 .panel-fluidity {
   border-color: #2E6DA4;
 }
