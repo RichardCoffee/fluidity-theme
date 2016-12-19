@@ -49,7 +49,8 @@ if (!function_exists('fluidity_page_slug')) {
     if (!$slug) {
 			global $fluidity_theme_template;
 			$slug = $fluidity_theme_template;
-log_entry(0,"Page slug: $slug");
+			$page = get_queried_object();
+log_entry(0,"Page slug: $slug",$page);
     }
     return $slug;
   }
