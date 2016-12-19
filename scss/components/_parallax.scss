@@ -1,18 +1,19 @@
 
-%parallax {
+/* Create the parallax scrolling effect */
 
-	/* Create the parallax scrolling effect */
+%parallax {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	height: 400px;
 }
 
+.parallax,
 .parallax-top {
    @extend %parallax;
    background-position: center top;
 	background-size: cover;
 }
 
-.parallax,
 .parallax-center {
 	@extend %parallax;
 	background-position: center center;

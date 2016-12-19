@@ -7,27 +7,11 @@
 
 function fluid_index_page($page='index') { ?>
 
-	<main><?php
-#log_entry('dump',"page slug: $page");
-#log_entry(0,'paral:  '.tcc_design('paral'));
-		if (tcc_design('paral')==='yes') {
-			$pageID = tcc_get_page_id_by_slug($page);
-#log_entry("page ID: $pageID");
-			if ($pageID) {
-				if (has_post_thumbnail($pageID)) {
-					$imgID  = get_post_thumbnail_id($pageID);
-					$imgURL = wp_get_attachment_url( $imgID ); ?>
-					<style>
-						.parallax-image { background-image: url("<?php echo $imgURL; ?>"); height:400px; }
-					</style>
-					<div class="parallax-top parallax-image">
-					</div><?php
-				}
-			}
-		} ?>
+<main>
 
+	<?php tcc_parallax_effect($page); ?>
 
-
+	<?php tcc_page_title($page); ?>
 
 	<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
 		<div class="row"><?php

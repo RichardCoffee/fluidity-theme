@@ -101,11 +101,14 @@ if (!function_exists('fluid_search_page_noposts')) {
 
 if (!function_exists('tcc_get_page_id_by_slug')) {
 	function tcc_get_page_id_by_slug($slug) {
+		static $pageID, $curr;
+		if ($curr && ($curr===$slug) && $pageID) { return $pageID; }
 		$pageID = 0;
-		$args   = array('post_type'=>'page');
+		#$args   = array('post_type' => 'page');
+		$args   = array('name' => $slug);
 		$pages  = new WP_Query($args);
 		if ($pages) {
-#log_entry($pages);
+log_entry($pages);
 			foreach($pages->posts as $page) {
 				if ($page->post_name===$slug) {
 					$pageID = $page->ID;
@@ -113,6 +116,28 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 				}
 			}
 		}
+		$curr = $slug;
 		return $pageID;
+	}
+}
+
+if (!function_exists('tcc_page_title')) {
+	function tcc_page_title($page) {
+	}
+}
+
+if (!function_exists('tcc_parallax_effect')) {
+	function tcc_parallax_effect($page) {
+		if (tcc_design('paral')==='yes') {
+			$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page);
+			if ($pageID && has_post_thumbnail($pageID)) {
+				$imgID  = get_post_thumbnail_id($pageID);
+				$imgURL = wp_get_attachment_url($imgID); ?>
+				<style>
+					.parallax-image { background-image: url("<?php echo $imgURL; ?>"); }
+				</style>
+				<div class="parallax parallax-image"></div><?php
+			}
+		}
 	}
 }
