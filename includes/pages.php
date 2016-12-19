@@ -104,8 +104,7 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 		static $pageID, $curr;
 		if ($curr && ($curr===$slug) && $pageID) { return $pageID; }
 		$pageID = 0;
-		#$args   = array('post_type' => 'page');
-		$args   = array('name' => $slug);
+		$args   = array('post_type' => 'page', 'name' => $slug);
 		$pages  = new WP_Query($args);
 		if ($pages) {
 log_entry($pages);
