@@ -12,14 +12,14 @@ define('TCC_THEME_VERSION',FLUIDITY_VERSION);
 require_once('includes/loader.php');
 require_once('includes/james.php');
 require_once('includes/theme-support.php');
-require_once('includes/colors.php');
+require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-admin/includes/options.php gets loaded instead
+require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
 //require_once('includes/debugging.php');
 require_once('includes/library.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
 require_once('includes/sidebars.php');
-require_once(FLUIDITY_HOME.'includes/options.php'); #  Needs full path, or wp-admin/includes/options.php gets loaded instead
-require_once(FLUIDITY_HOME.'includes/widgets.php'); #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
+require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
 
 require_once('classes/autocomplete.php');
 require_once('classes/form-fields.php');
