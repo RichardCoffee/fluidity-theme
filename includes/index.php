@@ -7,6 +7,25 @@
 
 function fluid_index_page($page='index') { ?>
 
+	<main><?php
+		if (tcc_design('paral')==='yes') {
+			$pageID = tcc_get_page_id_by_slug($page);
+			if ($pageID) {
+				if (has_post_thumbnail($pageID)) {
+					$imgID  = get_post_thumbnail_id($pageID);
+					$imgURL = wp_get_attachment_url( $imgID ); ?>
+					<style>
+						.parallax-image { background-image: url("<?php echo $imgURL; ?>"); height:400px; }
+					</style>
+					<div class="parallax-top parallax-image">
+					</div><?php
+				}
+			}
+		}
+
+
+
+
 	<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
 		<div class="row"><?php
 			who_am_i(1);
@@ -45,5 +64,6 @@ function fluid_index_page($page='index') { ?>
 
 		</div><!-- .row -->
 	</div><!-- .container --><?php
+</main>
 
 }

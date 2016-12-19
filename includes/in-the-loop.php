@@ -107,12 +107,16 @@ if (!function_exists('fluid_post_separator')) {
 }
 
 if (!function_exists('fluid_thumbnail')) {
-  function fluid_thumbnail() {
-    $css = (tcc_layout('sidebar')==='none') ? 'col-lg-12 col-md-12 col-sm-12 col-xs-12' : 'col-lg-8 col-md-8 col-sm-12 col-xs-12'; ?>
-    <div class='<?php echo $css; ?> logo'><?php
-       the_post_thumbnail(null,array('class'=>'img-responsive')); ?>
-    </div><?php
-  }
+	function fluid_thumbnail() {
+		if (tcc_design('paral')=='no') {
+			if ( has_post_thumbnail() ) {
+				$css = (tcc_layout('sidebar')==='none') ? 'col-lg-12 col-md-12 col-sm-12 col-xs-12' : 'col-lg-8 col-md-8 col-sm-12 col-xs-12'; ?>
+				<div class='<?php echo $css; ?> logo'><?php
+					the_post_thumbnail(null,array('class'=>'img-responsive')); ?>
+				</div><?php
+			}
+		}
+	}
 }
 
 if (!function_exists('get_the_author_posts_link')) {

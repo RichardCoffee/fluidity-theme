@@ -47,10 +47,14 @@ if (!function_exists('fluidity_page_slug')) {
   function fluidity_page_slug() {
     static $slug;
     if (!$slug) {
-			global $fluidity_theme_template;
-			$slug = $fluidity_theme_template;
 			$page = get_queried_object();
-log_entry(0,"Page slug: $slug",$page);
+			if ($page->post_type==='page') {
+				$slug = $page->post_name;
+			} else {
+				global $fluidity_theme_template;
+				$slug = $fluidity_theme_template;
+			}
+#log_entry(0,"Page slug: $slug",$page);
     }
     return $slug;
   }
@@ -93,4 +97,21 @@ if (!function_exists('fluid_search_page_noposts')) {
     $text = esc_html__( 'Apologies, but no results were found for the requested search. Perhaps searching with alternate keyword(s) will help.','tcc-fluid' );
     fluid_noposts_page($text);
   }
+}
+
+if (!function_exists('tcc_get_page_id_by_slug')) {
+	function tcc_get_page_id_by_slug($slug) {
+		$pageID = 0;
+		$args   = array('post_type'=>'page');
+		$pages  = new WP_Query($args);
+		if ($pages) {
+			foreach($pages as $page) {
+				if ($page->post_name===$slug) {
+					$pageID = $page->ID;
+					break;
+				}
+			}
+		}
+		return $pageID;
+	}
 }
