@@ -5,7 +5,7 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 	private $address;
 
 	function __construct() {
-		$this->title = esc_html__('Address','tcc-fluid');
+		$this->title = get_bloginfo('name');
 		$this->desc  = esc_html__('Fluidity address widget','tcc-fluid');
 		$this->slug  = 'tcc_address';
 		$this->address = array('tcc-street' => __('Street Address','tcc-fluid'),
