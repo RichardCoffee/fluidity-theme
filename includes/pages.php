@@ -105,6 +105,7 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 		$args   = array('post_type'=>'page');
 		$pages  = new WP_Query($args);
 		if ($pages) {
+log_entry($pages);
 			foreach($pages as $page) {
 				if ($page->post_name===$slug) {
 					$pageID = $page->ID;
