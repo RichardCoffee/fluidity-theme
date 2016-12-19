@@ -61,6 +61,7 @@ if (!function_exists('tcc_parallax')) {
 			}
 		}
 	}
+log_entry('paral: '.tcc_design('paral'));
 	if (tcc_design('paral')==='yes') {
 		add_action('tcc_custom_css','tcc_parallax');
 	}
