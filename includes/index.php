@@ -8,8 +8,11 @@
 function fluid_index_page($page='index') { ?>
 
 	<main><?php
+log_entry("page slug: $page");
+log_entry(0,'paral:  '.tcc_design('paral'));
 		if (tcc_design('paral')==='yes') {
 			$pageID = tcc_get_page_id_by_slug($page);
+log_entry("page ID: $pageID");
 			if ($pageID) {
 				if (has_post_thumbnail($pageID)) {
 					$imgID  = get_post_thumbnail_id($pageID);
