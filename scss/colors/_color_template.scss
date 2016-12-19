@@ -57,7 +57,7 @@
 
 $headerBody: color(background) !default;
 
-#header-body {
+header {
   background-color: lighten($headerBody,40%);
 }
 
@@ -65,7 +65,7 @@ $headerBody: color(background) !default;
   background-color: color(background);
 }
 
-#fluid-footer {
+footer {
 	background-color: color(background);
 	color: color(textcolor);
 }

@@ -72,7 +72,7 @@
   border-color: #f2dede;
 }
 
-#header-body {
+header {
   background-color: white;
 }
 
@@ -80,6 +80,7 @@
   background-color: #f2dede;
 }
 
-#fluid-footer {
+footer {
   background-color: #f2dede;
+  color: #a94442;
 }

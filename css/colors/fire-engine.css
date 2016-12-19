@@ -71,7 +71,7 @@
   border-color: #a51a21;
 }
 
-#header-body {
+header {
   background-color: #f6c4c7;
 }
 
@@ -79,6 +79,7 @@
   background-color: #CE2029;
 }
 
-#fluid-footer {
+footer {
   background-color: #CE2029;
+  color: #FFFFFF;
 }
