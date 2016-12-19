@@ -1,10 +1,10 @@
-
+/*
 .header-static {
   @include opacity(.7);
   & #header-menubar {
     @include opacity(1.2);
   }
-}
+} //*/
 
 .header-fixed {
   border-bottom: 1em solid transparent;
@@ -13,7 +13,7 @@
   transition: top 0.4s ease-in-out;
   width: 100%;
   z-index: 5000;
-  @include opacity(1);
+//  @include opacity(1);
 }
 
 .header-reduce {
