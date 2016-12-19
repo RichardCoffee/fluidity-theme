@@ -39,8 +39,8 @@ if (is_admin()) {
   require_once('classes/microdata.php');
 }
 
-if (!function_exists('fluidity_enqueue')) {
-  function fluidity_enqueue() {
+if (!function_exists('tcc_enqueue')) {
+  function tcc_enqueue() {
     fluidity_register_bootstrap();
     fluidity_register_fontawesome();
     fluidity_register_color_scheme();
@@ -78,9 +78,9 @@ if (!function_exists('fluidity_enqueue')) {
       add_action('wp_footer','fluid_footer_autohide',99);
     }
 
-    do_action('fluidity_enqueue');
+    do_action('tcc_enqueue');
   }
-  add_action('wp_enqueue_scripts','fluidity_enqueue');
+  add_action('wp_enqueue_scripts','tcc_enqueue');
 }
 
 if (!function_exists('fluidity_admin_enqueue')) {

@@ -26,7 +26,7 @@ add_action('tcc_header_body_content', 'collective_header');
 function collective_enqueue() {
 	wp_enqueue_style('collective', get_theme_file_uri("css/collective.css"), null, FLUIDITY_VERSION);
 }
-add_action('fluidity_enqueue','collective_enqueue');
+add_action('tcc_enqueue','collective_enqueue');
 
 function collective_container_type($css) {
 #	if (!(strpos($css,'container-fluid')===false)) { // FIXME:  why does this not work?
