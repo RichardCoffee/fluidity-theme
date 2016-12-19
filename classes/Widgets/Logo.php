@@ -3,7 +3,7 @@
 class TCC_Widgets_Logo extends TCC_Widgets_Basic {
 
   function __construct() {
-    $this->title = esc_html__('Logo','tcc-fluid');
+    $this->title = '';  #  esc_html__('Logo','tcc-fluid');
     $this->desc  = esc_html__('Fluidity - Displays your site logo','tcc-fluid');
     $this->slug  = 'tcc_logo';
     parent::__construct();

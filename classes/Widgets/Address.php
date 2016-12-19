@@ -66,7 +66,7 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 			$instance[$slug] = (!empty($new[$slug])) ? strip_tags($new[$slug]) : '';
 		}
 		$instance['tcc-map'] = (!empty($new['tcc-map'])) ? $new['tcc-map'] : 'off';
-log_entry('old',$old,'new',$new,'returned',$instance);
+#log_entry('old',$old,'new',$new,'returned',$instance);
 		return $instance;
 	}
 
