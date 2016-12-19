@@ -39,10 +39,10 @@ class TCC_Options_Design {
                                                  'delete' => __('Remove Logo', 'tcc-fluid')));
     $layout['paral']  = array('default' => 'no',
                               'label'   => __('Parallax','tcc-fluid'),
-                              'text'    => __('Do you want to use the parallax effect for featured images?','tcc-fluid'),
+                              'text'    => __("Do you want to use the parallax effect for a page's featured image?",'tcc-fluid'),
                               'help'    => "No idea why this is called 'parallax', but it sounds very scientific.",
                               'render'  => 'radio',
-                              'source'  => array('no'  => __('Show featured images normally','tcc-fluid'),
+                              'source'  => array('no'  => __('Show featured images normally - although currently this is not at all','tcc-fluid'),
                                                  'yes' => __('Use featured image as background','tcc-fluid')));
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
                               'text'    => __('Site typography options','tcc-fluid'),
