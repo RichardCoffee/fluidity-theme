@@ -21,7 +21,7 @@ function fluid_index_page($page='index') { ?>
 					</div><?php
 				}
 			}
-		}
+		} ?>
 
 
 
