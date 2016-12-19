@@ -53,7 +53,7 @@ function tcc_custom_colors() {
 
 if (!function_exists('tcc_parallax')) {
 	function tcc_parallax() {
-		$paras = get_option('tcc_option_parallax');
+		$paras = get_option('tcc_options_parallax');
 log_entry(0,$paras);
 		if ($paras) {
 			$string = '.para-img-%1$s { background-image: url("%2$s"); height:400px; }';
