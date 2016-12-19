@@ -39,8 +39,8 @@ class TCC_Options_Parallax {
                               'divcss'  => 'upload-img',
                               'media'   => $media);
 /*
-    $layout['home']   = array('default' => '',
-                              'label'   => __('Home/Blog','tcc-fluid'),
+    $layout['blog']   = array('default' => '',
+                              'label'   => __('Blog Page','tcc-fluid'),
                               'render'  => 'image',
                               'divcss'  => 'upload-img',
                               'media'   => $media);//*/

@@ -8,7 +8,7 @@
 get_header(); ?>
 
 <main>
-	<div id="" class="parallax-top parabackhp6">
+	<div id="" class="parallax-top para-img-front">
 		<div id="" class="hero-team blackout-none text-center">
 			<!-- <img src="img/tcclogosm.png" alt="The Creative Collective Wordpress Development"> -->
 		</div>
