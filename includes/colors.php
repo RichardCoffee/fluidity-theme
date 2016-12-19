@@ -58,7 +58,7 @@ log_entry(0,$paras);
 		if ($paras) {
 			$string = '.para-img-%1$s { background-image: url("%2$s"); height:400px; }';
 			foreach($paras as $page=>$para) {
-				echo sprintf($string,$key,$para);
+				echo sprintf($string,$page,$para);
 			}
 		}
 	}
