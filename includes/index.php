@@ -8,7 +8,7 @@
 function fluid_index_page($page='index') { ?>
 
 	<main><?php
-log_entry("page slug: $page");
+log_entry('dump',"page slug: $page");
 log_entry(0,'paral:  '.tcc_design('paral'));
 		if (tcc_design('paral')==='yes') {
 			$pageID = tcc_get_page_id_by_slug($page);
