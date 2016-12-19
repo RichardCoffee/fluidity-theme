@@ -2,9 +2,10 @@
 
 // template for bootstrap color scheme
 
-
 @import "functions";
 @import "placeholders";
+
+$headerBody: color(background) !default;
 
 .btn-fluidity,
 .color-fluidity,
@@ -40,7 +41,7 @@
 // navigation
 
 ul.sub-menu {
-	background-color: color(background);
+	background-color: lighten($headerBody,40%);
 }
 
 
