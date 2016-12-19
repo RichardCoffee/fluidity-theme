@@ -63,7 +63,7 @@ function fluid_index_page($page='index') { ?>
 			</div>
 
 		</div><!-- .row -->
-	</div><!-- .container --><?php
-</main>
+	</div><!-- .container -->
+</main><?php
 
 }
