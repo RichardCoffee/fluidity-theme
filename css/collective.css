@@ -267,6 +267,10 @@ header {
   margin-bottom: 20px;
 }
 
+.page-title-home {
+  margin-bottom: 0;
+}
+
 .page-title-about {
   background: transparent url("/wp-content/themes/fluidity/icons/red-back.jpg") repeat scroll 0 0;
 }
