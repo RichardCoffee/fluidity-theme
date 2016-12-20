@@ -10,6 +10,7 @@ require_once('includes/footer.php'); ?>
 <footer>
 	<div id="fluid-footer" class="<? echo container_type('footer'); ?>" <?php microdata()->WPFooter(); ?>>
 		<div class="row"><?php
+log_entry('Page slug:'.get_page_slug());
 			get_template_part('template-parts/footer',get_page_slug());
 			wp_footer(); ?>
 		</div>
