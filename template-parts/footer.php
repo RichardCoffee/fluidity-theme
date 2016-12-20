@@ -14,7 +14,7 @@
 	<?php who_am_i(); ?>
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" <?php microdata()->WPSideBar(); ?>>
-		<?php get_template_part('sidebar','footer'); ?>
+		<?php get_template_part('sidebar','footer2'); ?>
   </div>
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
