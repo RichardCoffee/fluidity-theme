@@ -87,7 +87,8 @@ if (!function_exists('get_page_slug')) {
     static $slug;
     if (!$slug) {
          $page = get_queried_object();
-         if ($page->post_type==='page') {
+if (!is_object($page)) { log_entry('bad page value',$page); }
+         if (is_object($page) && ($page->post_type==='page')) {
             $slug = $page->post_name;
          } else {
             global $fluidity_theme_template; // FIXME: this is not a reliable source
