@@ -261,22 +261,22 @@ header {
 }
 
 .page-title {
-  background: transparent url("icons/red-back.jpg") repeat scroll 0 0;
+  background: transparent url("wp-content/themes/fluidity/icons/red-back.jpg") repeat scroll 0 0;
   border-bottom: 1px solid #c9c9c9;
   height: 75px;
   margin-bottom: 20px;
 }
 
 .page-title-about {
-  background: transparent url("icons/red-back.jpg") repeat scroll 0 0;
+  background: transparent url("wp-content/themes/fluidity/icons/red-back.jpg") repeat scroll 0 0;
 }
 
 .page-title-dark {
-  background: transparent url("icons/black-back.jpg") repeat scroll 0 0/contain;
+  background: transparent url("wp-content/themes/fluidity/icons/black-back.jpg") repeat scroll 0 0/contain;
 }
 
 .page-title-darkblue {
-  background: transparent url("icons/dark-blue-back.jpg") repeat scroll 0 0;
+  background: transparent url("wp-content/themes/fluidity/icons/dark-blue-back.jpg") repeat scroll 0 0;
 }
 
 .divi {

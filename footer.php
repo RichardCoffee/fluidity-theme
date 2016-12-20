@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  *  fluidity/footer.php

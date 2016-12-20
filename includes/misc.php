@@ -83,8 +83,10 @@ if (!function_exists('single_search_result')) {
 }
 
 // Can only be used inside the Loop
-function fluid_title($length=0,$echo=true,$after='...',$before='') {
-  $title = get_the_title(get_post()->ID);
+function fluid_title($length=0) {
+  $echo=true; $after='...'; $before=''; // FIXME
+  $postID = get_post()->ID;
+  $title  = get_the_title($postID);
   if (strlen($title)==0) {
     $title = "{No Title}";
   } else if (strlen($title)>0) {
@@ -96,7 +98,7 @@ function fluid_title($length=0,$echo=true,$after='...',$before='') {
         $title = $before.$title.$after;
       }
     }
-    $title = esc_html(apply_filters('the_title',$title,get_post()->ID));
+    $title = esc_html(apply_filters('the_title',$title,$postID));
   }
   if ($echo) { echo $title; } else { return $title; }
 }

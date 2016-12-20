@@ -10,20 +10,23 @@ who_am_i(); ?>
 
 <article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
 
-  <?php fluid_thumbnail(); ?>
+  <?php fluid_thumbnail();
 
-  <h1 class="text-center"><?php
-    if (is_single()) {
-      fluid_title();
-    } else {
-      $format  = esc_html__('Permanent Link to %s','tcc-fluid');
-      $tooltip = sprintf($format,get_the_title()); ?>
-      <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(); ?></a><?php
-    }
-    fluid_edit_post_link(); ?>
-  </h1><?php
+  if (!is_page()) { ?>
 
-  if (!is_page()) { fluid_post_date(true); } ?>
+    <h1 class="text-center"><?php
+      if (is_single()) {
+        fluid_title();
+      } else {
+        $format  = esc_html__('Permanent Link to %s','tcc-fluid');
+        $tooltip = sprintf($format,get_the_title()); ?>
+        <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(); ?></a><?php
+      }
+      fluid_edit_post_link(); ?>
+    </h1><?php
+
+    fluid_post_date(true);
+  } ?>
 
   <div class="article" itemprop="articleBody"><?php
 #    if ( has_post_thumbnail() ) {
