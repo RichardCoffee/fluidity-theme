@@ -35,7 +35,7 @@ nav ul ul {
   padding: 1em 0;
 }
 nav ul ul a {
-  display: inline-block;
+  white-space: nowrap;
 }
 nav li {
   display: inline;
