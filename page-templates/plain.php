@@ -7,8 +7,8 @@
 
 get_header();
 
-define('TCC_NO_SIDEBAR');
-log_entry(get_defined_vars());
+define('TCC_NO_SIDEBAR',true);
+
 fluid_index_page(get_page_slug());
 
 get_footer(); ?>
