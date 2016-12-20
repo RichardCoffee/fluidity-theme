@@ -7,11 +7,15 @@
 
 function fluid_index_page($page='index') { ?>
 
-<main>
+<main><?php
 
-	<?php tcc_parallax_effect($page); ?>
-
-	<?php tcc_page_title($page); ?>
+	if (is_page()) {
+		if (tcc_design('paral')==='yes') {
+			tcc_parallax_effect($page);
+		}
+		// FIXME:  make title bar an option
+		tcc_page_title($page);
+	} ?>
 
 	<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
 		<div class="row"><?php

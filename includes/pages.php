@@ -141,16 +141,13 @@ if (!function_exists('tcc_page_title')) {
 
 if (!function_exists('tcc_parallax_effect')) {
 	function tcc_parallax_effect($page) {
-		if (tcc_design('paral')==='yes') {
-			$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page);
-			if ($pageID && has_post_thumbnail($pageID)) {
-				$imgID  = get_post_thumbnail_id($pageID);
-				$imgURL = wp_get_attachment_url($imgID); ?>
-				<style>
-					.parallax-image { background-image: url("<?php echo $imgURL; ?>"); }
-				</style>
-				<div class="parallax parallax-image"></div><?php
-			}
+		$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page,'ID');
+		$imgURL = get_featured_url($pageID);
+		if ($imgURL) { ?>
+			<style>
+				.parallax-image { background-image: url("<?php echo $imgURL; ?>"); }
+			</style>
+			<div class="parallax parallax-image"></div><?php
 		}
 	}
 }
