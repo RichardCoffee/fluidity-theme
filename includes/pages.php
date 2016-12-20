@@ -65,6 +65,7 @@ if (!is_object($page)) { log_entry('bad page value',$page,$fluidity_theme_templa
             $slug = $fluidity_theme_template;
          }
     }
+log_entry(0,debug_calling_function().':  '.$slug);
     return $slug;
   }
 }
