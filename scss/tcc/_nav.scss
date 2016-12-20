@@ -3,11 +3,14 @@ nav {
 	display:block;
 	float:right;
 	ul {
-		width:100%;
+//		width:100%;
 		padding-top:30px;
 	}
 	ul ul {
 		padding: 1em 0;
+		a {
+			display: inline-block;
+		}
 	}
 	li {
 		display:inline;
