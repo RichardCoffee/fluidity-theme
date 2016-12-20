@@ -98,8 +98,14 @@ if (!function_exists('get_page_slug')) {
   }
 }
 
+if (!function_exists('get_page_title')) {
+	function get_page_title($slug) {
+		return tcc_get_page_id_by_slug($slug,'post_title');
+	}
+}
+
 if (!function_exists('tcc_get_page_id_by_slug')) {
-	function tcc_get_page_id_by_slug($slug) {
+	function tcc_get_page_id_by_slug($slug,$prop='ID') {
 		static $curr;
 		if (!$curr || (!$slug===$curr->post_name)) {
 			$args   = array('post_type' => 'page', 'name' => $slug);
@@ -113,12 +119,23 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 				}
 			}
 		}
-		return $curr->ID;
+		return $curr->$prop; // FIXME: check for existing property
 	}
 }
 
 if (!function_exists('tcc_page_title')) {
-	function tcc_page_title($page) {
+	function tcc_page_title($slug) { ?>
+		<div id="tcc-page-title-banner" class="page-title page-title-<?php echo $slug; ?>">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="text-center">
+							<?php echo get_page_title($slug); ?>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div><?php
 	}
 }
 
