@@ -15,7 +15,7 @@ class TCC_AutoComplete {
 	}
 
 	static function init() {
-		if (!is_admin()) }
+		if (!is_admin()) {
 			wp_enqueue_style('tcc-autocomplete-css', get_theme_file_uri('css/ui-autocomplete.css'),	null,	TCC_THEME_VERSION);
 		}
 		wp_register_script('tcc-autocomplete-js', get_theme_file_uri('js/autocomplete.js'),			array('jquery-ui-autocomplete'),	TCC_THEME_VERSION, true);
