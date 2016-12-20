@@ -127,7 +127,7 @@ if (!function_exists('get_featured_url')) {
 	function get_featured_url($postID=null) {
 		$imgURL = null; # 'invalid post ID passed to get_featured_url';
 		// FIXME: postID should be able to be the post object
-		$postID = (intval($postID,10)>0) ? intval($page,10) : null;
+		$postID = (intval($postID,10)>0) ? intval($postID,10) : null;
       if ($postID && has_post_thumbnail($postID)) {
          $imgID  = get_post_thumbnail_id($postID);
          $imgURL = wp_get_attachment_url($imgID);
