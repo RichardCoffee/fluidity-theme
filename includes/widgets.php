@@ -9,9 +9,9 @@ log_entry('tcc_register_widgets');
       register_widget('TCC_Widgets_Search');
    }
    add_action('widgets_init','tcc_register_widgets');
-log_entry('register tcc_register_widgets');
+#log_entry('register tcc_register_widgets');
 }
-log_entry('including includes/widgets');
+#log_entry('including includes/widgets');
 /*
 function fluid_sidebar_admin_setup() {
   log_entry('in action');
