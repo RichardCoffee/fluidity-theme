@@ -28,14 +28,11 @@ who_am_i(); ?>
     fluid_post_date(true);
   } ?>
 
-  <div class="article" itemprop="articleBody"><?php
-#    if ( has_post_thumbnail() ) {
-#      fluid_thumbnail();
-#    }
-    the_content(); ?>
-  </div><?php
+  <div class="article" itemprop="articleBody">
+    <?php the_content(); ?>
+  </div>
 
-  if (is_single()) { ?>
+  <?php if (is_single()) { ?>
 
     <p class="postmetadata noprint"><?php
       the_tags(esc_html__('Tags','tcc-fluid').': ', ', ', '<br>');
