@@ -260,6 +260,25 @@ header {
   margin-top: 20px;
 }
 
+.page-title {
+  background: transparent url("../img/red-back.jpg") repeat scroll 0 0;
+  border-bottom: 1px solid #c9c9c9;
+  height: 75px;
+  margin-bottom: 20px;
+}
+
+.page-title-about {
+  background: transparent url("../img/red-back.jpg") repeat scroll 0 0;
+}
+
+.page-title-dark {
+  background: transparent url("../img/black-back.jpg") repeat scroll 0 0/contain;
+}
+
+.page-title-darkblue {
+  background: transparent url("../img/dark-blue-back.jpg") repeat scroll 0 0;
+}
+
 .divi {
   border-bottom: 1px solid #212121;
   display: block;
@@ -271,29 +290,6 @@ header {
   margin: 50px 0 0 50px;
   left: 50%;
   top: 50%;
-}
-
-.tagline {
-  height: 75px !important;
-  margin-bottom: 20px;
-}
-
-.style-block-dark {
-  background: transparent url("../img/black-back.jpg") repeat scroll 0 0/contain;
-  border-bottom: 1px solid #c9c9c9;
-  height: 100%;
-}
-
-.style-block-red {
-  background: transparent url("../img/red-back.jpg") repeat scroll 0 0;
-  border-bottom: 1px solid #c9c9c9;
-  height: 100%;
-}
-
-.style-block-darkblue {
-  background: transparent url("../img/dark-blue-back.jpg") repeat scroll 0 0;
-  border-bottom: 1px solid #c9c9c9;
-  height: 100%;
 }
 
 .blackout-1 {
