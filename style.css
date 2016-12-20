@@ -231,20 +231,21 @@ a:hover, a:active {
   width: 30px;
 }
 
-.parallax-top, .parallax,
-.parallax-center, .parallax-bottom, .parallax-contain-top, .parallax-contain,
+/* Create the parallax scrolling effect */
+.parallax,
+.parallax-top, .parallax-center, .parallax-bottom, .parallax-contain-top, .parallax-contain,
 .parallax-contain-center, .parallax-contain-bottom {
-  /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-repeat: no-repeat;
+  height: 400px;
 }
 
+.parallax,
 .parallax-top {
   background-position: center top;
   background-size: cover;
 }
 
-.parallax,
 .parallax-center {
   background-position: center center;
   background-size: cover;
