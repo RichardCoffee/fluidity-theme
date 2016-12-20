@@ -5,7 +5,7 @@
  *
  */
 
-$page  = fluidity_page_slug();
+$page  = get_page_slug();
 
 do_action('tcc_before_header');
 do_action('tcc_before_header_'.$page); ?>

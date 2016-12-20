@@ -12,6 +12,6 @@ get_header();
 
 #log_entry(wp_get_theme()->get_page_templates());
 
-fluid_index_page(fluidity_page_slug());
+fluid_index_page(get_page_slug());
 
 get_footer(); ?>

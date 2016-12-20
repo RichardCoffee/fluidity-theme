@@ -7,7 +7,7 @@
 
 get_header();
 
-$page = fluidity_page_slug(); ?>
+$page = get_page_slug(); ?>
 
 <div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>><?php
 

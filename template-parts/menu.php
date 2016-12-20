@@ -6,7 +6,7 @@
  */
 
 $menu = 'primary';	#	primary, header or footer
-$page = fluidity_page_slug();
+$page = get_page_slug();
 if (has_nav_menu($menu)) { /* ?>
   <nav id="navbar-<?php echo $page.'-'.$menu; ?>" class="navbar navbar-fluidity" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
     <div class="navbar-header">

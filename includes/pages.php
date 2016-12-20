@@ -43,23 +43,6 @@ if (!function_exists('fluid_noposts_page')) {
   }
 }
 
-if (!function_exists('fluidity_page_slug')) {
-  function fluidity_page_slug() {
-    static $slug;
-    if (!$slug) {
-			$page = get_queried_object();
-			if ($page->post_type==='page') {
-				$slug = $page->post_name;
-			} else {
-				global $fluidity_theme_template;
-				$slug = $fluidity_theme_template;
-			}
-log_entry(0,"Page slug: $slug",$page);
-    }
-    return $slug;
-  }
-}
-
 if (!function_exists('fluid_save_page_template')) {
 	function fluid_save_page_template( $template ) {
 		global $fluidity_theme_template;
@@ -99,24 +82,38 @@ if (!function_exists('fluid_search_page_noposts')) {
   }
 }
 
+if (!function_exists('get_page_slug')) {
+  function get_page_slug() {
+    static $slug;
+    if (!$slug) {
+         $page = get_queried_object();
+         if ($page->post_type==='page') {
+            $slug = $page->post_name;
+         } else {
+            global $fluidity_theme_template; // FIXME: this is not a reliable source
+            $slug = $fluidity_theme_template;
+         }
+    }
+    return $slug;
+  }
+}
+
 if (!function_exists('tcc_get_page_id_by_slug')) {
 	function tcc_get_page_id_by_slug($slug) {
-		static $pageID, $curr;
-		if ($curr && ($curr===$slug) && $pageID) { return $pageID; }
-		$pageID = 0;
-		$args   = array('post_type' => 'page', 'name' => $slug);
-		$pages  = new WP_Query($args);
-		if ($pages) {
-log_entry($pages);
-			foreach($pages->posts as $page) {
-				if ($page->post_name===$slug) {
-					$pageID = $page->ID;
-					break;
+		static $curr;
+		if (!$curr || (!$slug===$curr->post_name)) {
+			$args   = array('post_type' => 'page', 'name' => $slug);
+			$pages  = new WP_Query($args);
+			if ($pages) {
+				foreach($pages->posts as $page) {
+					if ($page->post_name===$slug) {
+						$curr = $page;
+						break;
+					}
 				}
 			}
 		}
-		$curr = $slug;
-		return $pageID;
+		return $curr->ID;
 	}
 }
 
