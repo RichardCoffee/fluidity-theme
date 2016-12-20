@@ -24,7 +24,7 @@ if (has_nav_menu($menu)) { /* ?>
 	/*	underscore navigation */ ?>
 	<nav id="site-navigation" class="main-navigation" role="navigation">
 		<div class="pull-right">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+			<button class="menu-toggle pull-left" aria-controls="primary-menu" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
 				<i class="fa fa-bars"> </i>
 				<?php #esc_html_e( 'Primary Menu', '_s' ); ?>
