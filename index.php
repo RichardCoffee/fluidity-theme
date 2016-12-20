@@ -6,6 +6,6 @@
 
 get_header();
 
-fluid_index_page('index');
+fluid_index_page(get_page_slug());
 
 get_footer();

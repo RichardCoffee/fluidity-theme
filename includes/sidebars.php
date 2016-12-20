@@ -105,10 +105,13 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 
 if (!function_exists('fluidity_sidebar_layout')) {
   function fluidity_sidebar_layout($sidebar='standard',$side='') {
-    if ($sidebar==='plain') { return; }
+    if (defined('TCC_NO_SIDEBAR')) { return; }  #  defined in page template file
     $side = ($side) ? $side : tcc_layout('sidebar');
     if ($side!=='none') {
-      $sidebar_class = 'col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e'.(($side=='right') ? ' pull-right' : ''); ?>
+      $posi = ($side=='right') ? 'pull-right' : '';
+      $posi = (defined('TCC_LEFT_SIDEBAR')) ? '' : $side;
+      $posi = (defined('TCC_RIGHT_SIDEBAR')) ? 'pull-right' : $side;
+      $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e $side"; ?>
       <aside class="<? echo $sidebar_class; ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
         get_template_part('sidebar',$sidebar); ?>
       </aside><?php

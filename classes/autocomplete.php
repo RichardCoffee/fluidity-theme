@@ -15,8 +15,9 @@ class TCC_AutoComplete {
 	}
 
 	static function init() {
-		wp_register_style('tcc-autocomplete-css', get_theme_file_uri('css/ui-autocomplete.css'),	null,	TCC_THEME_VERSION);
-		wp_enqueue_style('tcc-autocomplete-css');
+		if (!is_admin()) }
+			wp_enqueue_style('tcc-autocomplete-css', get_theme_file_uri('css/ui-autocomplete.css'),	null,	TCC_THEME_VERSION);
+		}
 		wp_register_script('tcc-autocomplete-js', get_theme_file_uri('js/autocomplete.js'),			array('jquery-ui-autocomplete'),	TCC_THEME_VERSION, true);
 		add_action( 'get_search_form',					array( __CLASS__, 'get_search_form' ) );
 		add_action( 'wp_ajax_'.self::$action,			array( __CLASS__, 'autocomplete_suggestions' ) );
