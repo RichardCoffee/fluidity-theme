@@ -69,11 +69,17 @@ header.sticky {
 	padding-left: 20px;
 	text-align: left;
 	top: 0;
+	border-bottom:1px solid #333;
 }
-.logo.sticky{
+#logo.sticky img{	
+	height:68px;
+	width:auto;
+}
+header.sticky  nav li a{		
+	font-size: 18px;
+    color:#ddd;	
 	
 }
-
 
 /* End Taxonomy Styles */ 
 .divi{
