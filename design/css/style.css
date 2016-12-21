@@ -49,10 +49,31 @@ blockquote {
   padding-left: 15px;
   border-left: 3px solid #ccc;
 } 
+
 header {
-    border-top: 10px solid rgba(0, 0, 0, 0.58);
-    padding: 10px 0;
+  transition: all 0.4s ease;
+  position: fixed;
+  width: 100%;
+  text-align: center; 
+  height: 108px;
+  background: #fff;
+  color: #fff;
+  font-family: 'PT Sans', sans-serif;
+  z-index:9999;
 }
+header.sticky {	
+  font-size: 24px;
+  line-height: 48px;
+  height: 48px;
+  background: #fff;
+  text-align: left;
+  padding-left: 20px;
+}
+.logo.sticky{
+	
+}
+
+
 /* End Taxonomy Styles */ 
 .divi{
 	border-bottom: 1px solid #212121;
