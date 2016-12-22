@@ -51,7 +51,7 @@ blockquote {
 } 
 main{	 
     position: relative;
-    top: 120px;
+    top: 100px;
 }
 header {
   border-bottom:3px solid #333;
@@ -62,8 +62,7 @@ header {
   text-align: center; 
   background: #fff;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
-  z-index:9999;  
+  font-family: 'Open Sans', sans-serif; 
 }
 header.sticky {	
 		
@@ -101,7 +100,6 @@ a:hover {
 }
 .tagline {
     height: 75px !important;
-	margin-bottom:20px;
 }
 .style-block-dark {
     background: rgba(0, 0, 0, 0) url("../img/black-back.jpg") repeat scroll 0 0 / contain ;
