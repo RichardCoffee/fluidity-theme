@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon"          href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" type="image/x-icon" sizes="16x16" />
-  <link rel="stylesheet"    href='https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i' type='text/css'>
+  <link rel="icon"          href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" type="image/x-icon" sizes="16x16" /><?php /*
+  <link rel="stylesheet"    href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' type='text/css'> */ ?>
   <link rel="profile"       href="http://gmpg.org/xfn/11" />
   <link rel="pingback"      href="<?php bloginfo('pingback_url'); ?>" />
 

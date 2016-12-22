@@ -40,10 +40,8 @@ $headerBody: color(background) !default;
 
 // navigation
 
-ul.sub-menu {
-	background-color: lighten($headerBody,40%);
-}
-
+@import "navbar";
+@import "underscore";
 
 // panels
 

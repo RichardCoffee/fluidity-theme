@@ -42,7 +42,7 @@ if (!function_exists('fluid_browser_title')) {
     }
     return $title;
   }
-  add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title is going to be deprecated
+  add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title to be deprecated
 }
 
 if (!function_exists('tcc_custom_css')) {
@@ -52,50 +52,6 @@ if (!function_exists('tcc_custom_css')) {
       do_action('tcc_custom_css'); ?>
     </style><?php
   }
-}
-
-if (!function_exists('fluidity_top_menubar')) {
-  function fluidity_top_menubar() { ?>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><?php
-      do_action('tcc_top_left_menubar'); ?>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><?php
-      do_action('tcc_top_right_menubar'); ?>
-    </div><?php
-  }
-  #add_action('tcc_header_top_menubar','fluidity_top_menubar');
-}
-
-if (!function_exists('fluidity_header_bar_login')) {
-  function fluidity_header_bar_login() { ?>
-    <div id="fluidity-header-bar-login" class="header-login"><?php
-      tcc_login_form(true,true); ?>
-    </div><?php
-  }
-  #add_action('tcc_top_right_menubar','fluidity_header_bar_login');
-}
-
-if (!function_exists('fluidity_header_body')) {
-  function fluidity_header_body() {
-    $defaults = array('left'  => 'col-lg-4  col-md-4  col-sm-12 col-xs-12',
-                      'body'  => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
-                      'right' => 'col-lg-8  col-md-8  col-sm-12 col-xs-12');
-    $classes = apply_filters('tcc_header_body_class',$defaults);
-    extract($classes);  #  $defaults array
-    if (has_action('tcc_left_header_body') || has_action('tcc_right_header_body')) { ?>
-      <div class="<?php echo $left; ?>"><?php
-        do_action('tcc_left_header_body'); ?>
-      </div>
-      <div class="<?php echo $right; ?> fullheight"><?php
-        do_action('tcc_right_header_body'); ?>
-      </div><?php
-    } else { ?>
-      <div class="<?php echo $body; ?>"><?php
-        do_action('tcc_main_header_body'); ?>
-      </div><?php
-    }
-  }
-  #add_action('tcc_header_body_content','fluidity_header_body');
 }
 
 if (!function_exists('fluidity_header_logo')) {
@@ -120,12 +76,6 @@ if (!function_exists('fluidity_header_logo')) {
         </a><?php
       } ?>
     </div><?php
-  }
-}
-
-if (!function_exists('fluidity_navbar_menu')) {
-  function fluidity_navbar_menu($slug='') {
-    get_template_part('template-parts/menu',$slug);
   }
 }
 
