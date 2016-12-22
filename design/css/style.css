@@ -42,30 +42,31 @@ strong{
 	color:#000;
 }
 blockquote {
-  font: 14px/22px normal 'Open Sans', sans-serif;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 50px;
-  padding-left: 15px;
-  border-left: 3px solid #ccc;
+	font: 14px/22px normal 'Open Sans', sans-serif;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	padding-left: 15px;
+	border-left: 3px solid #ccc;
 } 
 main{	 
     position: relative;
     top: 100px;
 }
 header {
-  border-bottom:3px solid #333;
-  border-top:3px solid #333;
-  transition: all 1.2s ease;
-  position: fixed;
-  width: 100%;
-  text-align: center; 
-  background: #fff;
-  color: #fff;
-  font-family: 'Open Sans', sans-serif; 
+	background-color:#fff;	
+	border-bottom:3px solid #333;
+	border-top:3px solid #333;
+	transition: all 1.2s ease;
+	position: fixed;
+	width: 100%;
+	text-align: center; 
+	background: #fff;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif; 
 }
 header.sticky {	
-		
+	background-color:#eee;	
 	height: 78px;	
 	top: 0;
 	border-top:1px solid #333;
