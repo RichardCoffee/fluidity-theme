@@ -42,7 +42,7 @@ strong{
 	color:#000;
 }
 blockquote {
-  font: 14px/22px normal helvetica, sans-serif;
+  font: 14px/22px normal 'Open Sans', sans-serif;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 50px;
@@ -51,22 +51,23 @@ blockquote {
 } 
 
 header {
-  transition: all 0.4s ease;
+  border-bottom:1px solid #333;
+  transition: all 1.2s ease;
   position: fixed;
   width: 100%;
   text-align: center; 
   height: 108px;
   background: #fff;
   color: #fff;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   z-index:9999;
+  
 }
 header.sticky {	
 	background: #fff none repeat scroll 0 0;
 	font-size: 24px;
 	height: 78px;
 	padding-left: 20px;
-	text-align: left;
 	top: 0;
 	border-bottom:1px solid #333;
 }
