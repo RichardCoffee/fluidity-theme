@@ -51,24 +51,22 @@ blockquote {
 } 
 main{	 
     position: relative;
-    top: 100px;
+    
+}
+header{
+	border-bottom: 1px solid #333;
+    border-top: 1px solid #333;
+	position: fixed;
+    text-align: center;
 }
 header {
 	background-color: #fff;
-    border-bottom: 3px solid #333;
-    border-top: 3px solid #333;
-    color: #fff;
-    font-family: "Open Sans",sans-serif;
     height: 105px;
-    position: fixed;
-    text-align: center;
     transition: all 1.2s ease 0s;
     width: 100%; 
 }
 header.sticky {	
-	background-color: #eee;
-    border-bottom: 1px solid #333;
-    border-top: 1px solid #333;
+	background-color: #eee;  
     height: 78px;
     top: 0;
     z-index: 2;
