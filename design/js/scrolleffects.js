@@ -38,7 +38,7 @@ $(function(){
 });
 
 // Y axis scroll speed
-var velocity = 0.5;
+var velocity = 0.2;
 function update(){ 
 
 
