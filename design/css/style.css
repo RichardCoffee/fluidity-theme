@@ -65,9 +65,9 @@ header {
 }
 header.sticky {	
 	background: #fff none repeat scroll 0 0;
-	font-size: 24px;
+	
 	height: 78px;
-	padding-left: 20px;
+	
 	top: 0;
 	border-bottom:1px solid #333;
 }
@@ -75,11 +75,12 @@ header.sticky {
 	height:68px;
 	width:auto;
 }
-header.sticky nav li a {
+a {
     color: #545454;
-    font-size: 18px;
 }
-
+a:hover {
+    color: #000;
+}
 /* End Taxonomy Styles */ 
 .divi{
 	border-bottom: 1px solid #212121;
