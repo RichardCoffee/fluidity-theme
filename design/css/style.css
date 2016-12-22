@@ -51,28 +51,25 @@ blockquote {
 } 
 main{	 
     position: relative;
-    
+    top:110px;
 }
 header {
 	background-color: #fff;
-    border-bottom: 3px solid #333;
-    border-top: 3px solid #333;
-    color: #fff;
-    font-family: "Open Sans",sans-serif;
+	border-bottom: 3px solid #333;
+    border-top: 3px solid #333;	
+	position: fixed;
+	width: 100%; 
+}
+header {	
     height: 105px;
-    position: fixed;
     text-align: center;
-    transition: all 1.2s ease 0s;
-    width: 100%; 
+    transition: all 1.2s ease 0s;    
 }
 header.sticky {	
-	background-color: #eee;
-    border-bottom: 1px solid #333;
-    border-top: 1px solid #333;
     height: 78px;
-    top: 0;
     z-index: 2;
 }
+
 #logo>img{	
 transition: all 1s ease;	
 height:100px;
