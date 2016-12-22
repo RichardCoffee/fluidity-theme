@@ -26,13 +26,13 @@
 	background-size: cover;
 }
 
+.parallax-contain,
 .parallax-contain-top {
 	@extend %parallax;
 	background-position: center top;
 	background-size: contain;
 }
 
-.parallax-contain,
 .parallax-contain-center {
    @extend %parallax;
    background-position: center center;

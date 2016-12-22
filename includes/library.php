@@ -48,9 +48,8 @@ if (!function_exists('container_type')) {
   function container_type($location='post') {
     $css = 'container-fluid';
     if ($location=='fluid-header') {
-      $css.= " nopad";
       $pos = tcc_layout('header');
-      $css.= " header-$pos";
+      $css.= " nopad header-$pos";
     } else if (tcc_layout('width')=='narrow') {
       $css = 'container';
     }

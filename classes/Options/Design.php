@@ -40,9 +40,9 @@ class TCC_Options_Design {
     $layout['paral']  = array('default' => 'no',
                               'label'   => __('Parallax','tcc-fluid'),
                               'text'    => __("Do you want to use the parallax effect for a page's featured image?",'tcc-fluid'),
-                              'help'    => "No idea why this is called 'parallax', but it sounds very scientific.",
+                              'help'    => "No idea why this is called parallax, but it sounds very scientific.",
                               'render'  => 'radio',
-                              'source'  => array('no'  => __('Show featured images normally - although currently this is not at all','tcc-fluid'),
+                              'source'  => array('no'  => __('Show featured images normally - although currently this is not at all on pages','tcc-fluid'),
                                                  'yes' => __('Use featured image as background','tcc-fluid')));
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
                               'text'    => __('Site typography options','tcc-fluid'),

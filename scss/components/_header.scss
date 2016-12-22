@@ -1,17 +1,22 @@
-/*
-.header-static {
+
+header {
+  border-bottom: 1em solid transparent;
+}
+
+.header-opaque {
   @include opacity(.7);
   & #header-menubar {
     @include opacity(1.2);
   }
 } //*/
 
+.header-static {
+}
+
 .header-fixed {
-  border-bottom: 1em solid transparent;
   position: fixed;
   top: 0;
   transition: top 0.4s ease-in-out;
-  width: 100%;
   z-index: 5000;
 //  @include opacity(1);
 }
