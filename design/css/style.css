@@ -60,6 +60,7 @@ header {
     border-top: 3px solid #333;	
 	position: fixed;
 	width: 100%; 
+	padding:10px 0;
 }
 header {	
     height: 105px;
