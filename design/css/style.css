@@ -56,14 +56,14 @@ main{
 }
 header {
 	background-color: #fff;
-	border-bottom: 3px solid #333;
-    border-top: 3px solid #333;	
-	position: fixed;
-	width: 100%; 
-	padding:10px 0;
+    border-bottom: 3px solid #333;
+    border-top: 3px solid #333;
+    margin-bottom: 10px;
+    position: fixed;
+    width: 100%;
 }
 header {	
-    height: 105px;
+  
     text-align: center;
     transition: all 1.2s ease 0s;    
 }
