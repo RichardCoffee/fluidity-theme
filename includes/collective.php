@@ -37,3 +37,11 @@ function collective_container_type($css) {
 	return $css;
 }
 add_filter('fluid_container_type','collective_container_type'); //*/
+
+function collective_sidebars($sidebars) {
+	unset($sidebars['three'],$sidebars['four']);
+	$sidebars['two']['before_widget'] = "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
+	$sidebars['two']['after_widget']  = "</div>";
+	return $sidebars;
+}
+add_filter('tcc_register_sidebars','collective_sidebars');

@@ -128,9 +128,5 @@ if (!function_exists('fluidity_show_query')) { // FIXME: move this
 
 
 if (!is_child_theme()) {
-  $site = site_url();
-  if (strpos($site,'the-creative-collective')) {
-    require_once('includes/collective.php');
-#log_entry(FLUIDITY_HOME,dirname(__FILE__),trailingslashit(dirname(__FILE__)));
-  }
+  require_once('includes/collective.php');
 }

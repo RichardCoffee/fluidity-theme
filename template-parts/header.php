@@ -10,8 +10,8 @@ $page  = get_page_slug();
 #do_action('tcc_before_header');
 #do_action('tcc_before_header_'.$page); ?>
 
-<header>
-	<div id="fluid-header" class="<?php echo container_type('fluid-header'); ?>" <?php microdata()->WPHeader(); ?> role="banner"><?php
+<header id="fluid-header" <?php microdata()->WPHeader(); ?> role="banner">
+	<div class="<?php echo container_type('fluid-header'); ?>"><?php
 
 		#do_action('tcc_pre_header');
 		#do_action("tcc_pre_header_$page");
