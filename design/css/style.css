@@ -66,11 +66,12 @@ header {
 	font-family: 'Open Sans', sans-serif; 
 }
 header.sticky {	
-	background-color:#eee;	
-	height: 78px;	
-	top: 0;
-	border-top:1px solid #333;
-	border-bottom:1px solid #333;
+	background-color: #eee;
+    border-bottom: 1px solid #333;
+    border-top: 1px solid #333;
+    height: 78px;
+    top: 0;
+    z-index: 2;
 }
 #logo>img{	
 transition: all 1s ease;	
