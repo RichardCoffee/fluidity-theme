@@ -1,5 +1,5 @@
 $(window).scroll(function() {
-if ($(this).scrollTop() > 0.9){  
+if ($(this).scrollTop() > 1.9){  
     $('header').addClass("sticky");
 	$('#logo').addClass("sticky");
   }
