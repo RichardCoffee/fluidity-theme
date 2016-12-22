@@ -234,8 +234,8 @@ header {
 
 /* Create the parallax scrolling effect */
 .parallax,
-.parallax-top, .parallax-center, .parallax-bottom, .parallax-contain-top, .parallax-contain,
-.parallax-contain-center, .parallax-contain-bottom {
+.parallax-top, .parallax-center, .parallax-bottom, .parallax-contain,
+.parallax-contain-top, .parallax-contain-center, .parallax-contain-bottom {
   background-attachment: fixed;
   background-repeat: no-repeat;
   height: 400px;
@@ -257,12 +257,12 @@ header {
   background-size: cover;
 }
 
+.parallax-contain,
 .parallax-contain-top {
   background-position: center top;
   background-size: contain;
 }
 
-.parallax-contain,
 .parallax-contain-center {
   background-position: center center;
   background-size: contain;
