@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Team Page</title>
+    <title>Home Page</title>
 
     <!-- Bootstrap -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -27,7 +27,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2">
-				<div id="" class="logo">
+				<div id="logo" class="">
 					<img class="img-responsive" src="img/tcclogosm.png" alt="">
 				</div>
 
@@ -39,7 +39,9 @@
 						<li><a href="about.html">About</a></li>
 						<li><a href="page-fw.html">Page</a></li>
 						<li><a href="team.html">Team</a></li>
+						<li><a href="team-single.html">Team single</a></li>
 						<li><a href="portfolio.html">Portfolio</a></li>
+						<li><a href="portfolio-single.html">Portfolio Single</a></li>
 						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</nav>
@@ -48,10 +50,10 @@
 		</div>
 	</div>
 </header>
-
-<div id="team-page" class="parallax-top  parabackhp1">
-	<div id="" class="hero-team blackout-none text-center">
-		<!-- <img src="img/tcclogosm.png" alt="The Creative Collective Wordpress Development"> -->
+ <main> 
+ <div id="team-page" class="parallax  parabackhp1 w-scroll">
+	<div id="" class="hero-team blackout-1 text-center">
+		<img  src="img/tcclogowhite.png" alt="The Creative Collective Wordpress Development">
 	</div>	
 </div>
 <div id="team-page" class="style-block-red tagline">
@@ -63,9 +65,6 @@
 		</div>
 	</div>
 </div>
-
-
- <main> 
   <div class="container">
    <div class="row">
     <div class="col-md-12">
@@ -90,31 +89,32 @@ Quisque facilisis tortor dui, eget semper lorem imperdiet at. Donec placerat con
     </div>
    </div>
   </div>
- </main>
+</main>
+		
  <footer class="footer-back">  
-<div class="container">
-<div class="row">
-<div class="col-md-6">
-<img class="img-responsive" src="img/tcclogowhite.png" alt="">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive" src="img/tcclogowhite.png" alt="">
+			</div>
+			<div class="col-md-6 text-center">
 
-</div>
-<div class="col-md-6 text-center">
+				<div id="" class="">
+					<p>1004 Burns Dr
+					Sanford, NC. 27330</p>
+					<p>(919) 545-1962</p>
+					<a href="#"><p>Contact By Email</p></a>
+				</div>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s1004+Burns+Dr%2C+Sanford%2C+NC+27330!5e0!3m2!1sen!2sus!4v1481581752243" width="400" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
 
-<div id="" class=""><p>1004 Burns Dr
-Sanford, NC. 27330</p>
-<p>(919) 545-1962</p>
-<a href="#"><p>Contact By Email</p></a>
-</div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s1004+Burns+Dr%2C+Sanford%2C+NC+27330!5e0!3m2!1sen!2sus!4v1481581752243" width="400" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-</div>
-</div>
-<div class="row text-center">
-<span class="divi"></span>
-<p>Copyright 2016 The Creative Collective</p>
-<p>All Rights and All Content Reserved</p>
-</div>
-</div>
+			</div>
+		</div>
+		<div class="row text-center">
+			<span class="divi"></span>
+			<p>Copyright 2016 The Creative Collective</p>
+			<p>All Rights and All Content Reserved</p>
+		</div>
+	</div>
  </footer>
  
  
@@ -122,6 +122,10 @@ Sanford, NC. 27330</p>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+<script src="js/scrolleffects.js"></script>
 
 </body>
 </html>

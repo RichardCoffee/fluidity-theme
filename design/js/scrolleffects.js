@@ -1,10 +1,21 @@
+$(window).scroll(function() {
+if ($(this).scrollTop() > 0.9){  
+    $('header').addClass("sticky");
+	$('#logo').addClass("sticky");
+  }
+  else{
+    $('header').removeClass("sticky");
+	$('#logo').removeClass("sticky");
+  }
+});
+
 /* http://blog.bassta.bg/2013/05/smooth-page-scrolling-with-tweenmax/ */
 
 $(function(){
 	
 	var $window = $(window);		//Window object
 	
-	var scrollTime = 1.2;			//Scroll time
+	var scrollTime = 0.5;			//Scroll time
 	var scrollDistance = 170;		//Distance. Use smaller value for shorter scroll and greater value for longer scroll
 		
 	$window.on("mousewheel DOMMouseScroll", function(event){
@@ -25,3 +36,22 @@ $(function(){
 	});
 	
 });
+
+// Y axis scroll speed
+var velocity = 0.5;
+function update(){ 
+
+
+    var pos = $(window).scrollTop(); 
+	
+    $('.w-scroll').each(function() { 
+        var $element = $(this);
+        // subtract some from the height b/c of the padding
+        var height = $element.height()-18;
+        $(this).css('backgroundPosition', '50% ' + Math.round((height - pos) * velocity) + 'px'); 
+    }); 
+
+	
+	
+};
+$(window).bind('scroll', update);

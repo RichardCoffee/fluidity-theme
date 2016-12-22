@@ -37,7 +37,7 @@ h6,.h6{
 h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{    
 	font-family: 'Lato', sans-serif;
 	color:#333;	
-}
+}f
 strong{
 	color:#000;
 }
@@ -49,27 +49,31 @@ blockquote {
   padding-left: 15px;
   border-left: 3px solid #ccc;
 } 
-
+main{	 
+    position: relative;
+    top: 120px;
+}
 header {
-  border-bottom:1px solid #333;
+  border-bottom:10px solid #333;
+  border-top:10px solid #333;
   transition: all 1.2s ease;
   position: fixed;
   width: 100%;
   text-align: center; 
-  height: 108px;
   background: #fff;
   color: #fff;
   font-family: 'Open Sans', sans-serif;
   z-index:9999;  
 }
 header.sticky {	
-	background: #fff none repeat scroll 0 0;	
+		
 	height: 78px;	
 	top: 0;
+	border-top:1px solid #333;
 	border-bottom:1px solid #333;
 }
 #logo>img{	
-transition: all 1.2s ease;	
+transition: all 1s ease;	
 height:100px;
 }
 #logo.sticky img{		
@@ -95,7 +99,6 @@ a:hover {
   left: 50%;
   top: 50%;
 }
-
 .tagline {
     height: 75px !important;
 	margin-bottom:20px;
@@ -120,14 +123,13 @@ a:hover {
 	height:100%;
 }
 .blackout-none{
-
 	height:100%;
 }
 .color-block{
 	position:relative;	
 }
 .rotatezhp1{
-	 -webkit-transform: rotateZ(-10deg); /* Safari */
+	-webkit-transform: rotateZ(-10deg); /* Safari */
     transform: rotateZ(-10deg); /* Standard syntax */
 }
 
@@ -149,7 +151,6 @@ nav{
 	float:right;
 }
 /* End nav styles */ 
-
 /* Team Mates */ 
 .team-title{
 	font-family: 'Lato', sans-serif;
@@ -167,17 +168,11 @@ nav{
 	width:100%;
 	height:auto;	
 }
-
 /* team page */ 
 .hero-team{	
-	border-bottom: 10px solid rgba(0, 0, 0, 0.58);
-    border-top: 10px solid rgba(0, 0, 0, 0.58);
-    margin-top: 20px;
+	
 }
-
-
 /* footer  */ 
-
 .footer-back{
 	background-color:#171717;
 	min-height:300px;

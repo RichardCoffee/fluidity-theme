@@ -1,84 +1,48 @@
+.w-scroll{
+		
+}
+
 .parallax {
    opacity: ;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 } 
-.parallax-top {
-   opacity: ;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-} 
-.parallax-bottom {
-   opacity: ;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.parallax-contain {
-   opacity: ;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-} 
-.parallax-contain-top {
-   opacity: ;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: contain;
-} 
-.parallax-contain-bottom {
-   opacity: ;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: contain;
-} 
+
 .parabackhp1{
-	 /* The image used */
-    background-image: url("../img/weare.jpg");
-	 /* Full height */
-    height:400px;
+	background-image: url("../img/weare.jpg");
+    height: 450px;
+   
 }
 .parabackhp2{
 	 /* The image used */
     background-image: url("../img/portfolio.png");
-	 /* Full height */
-    height:400px;
+	 height: 450px;
+    
 }
 .parabackhp3{
 	 /* The image used */
     background-image: url("../img/contact.jpg");
-	 /* Full height */
-    height:400px;
+	 height: 450px;
+    
 }
 .parabackhp4{
 	 /* The image used */
     background-image: url("../img/team.jpg");
-	 /* Full height */
-    height:400px;
+	 height: 450px;
+   
 }
 .parabackhp5{
 	 /* The image used */
     background-image: url("../img/pages.jpg");
-	 /* Full height */
-    height:400px;
+	 height: 450px;
+   
 }
 .parabackhp6{
 	 /* The image used */
     background-image: url("../img/black-panel.jpg");
-	 /* Full height */
-    height:450px;
+	 height: 450px;
+    
 }
