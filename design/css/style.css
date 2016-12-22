@@ -54,8 +54,8 @@ main{
     top: 120px;
 }
 header {
-  border-bottom:10px solid #333;
-  border-top:10px solid #333;
+  border-bottom:3px solid #333;
+  border-top:3px solid #333;
   transition: all 1.2s ease;
   position: fixed;
   width: 100%;
