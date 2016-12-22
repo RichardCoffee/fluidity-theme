@@ -60,21 +60,23 @@ header {
   background: #fff;
   color: #fff;
   font-family: 'Open Sans', sans-serif;
-  z-index:9999;
-  
+  z-index:9999;  
 }
 header.sticky {	
-	background: #fff none repeat scroll 0 0;
-	
-	height: 78px;
-	
+	background: #fff none repeat scroll 0 0;	
+	height: 78px;	
 	top: 0;
 	border-bottom:1px solid #333;
 }
-#logo.sticky img{	
+#logo>img{	
+transition: all 1.2s ease;	
+height:100px;
+}
+#logo.sticky img{		
 	height:68px;
 	width:auto;
 }
+
 a {
     color: #545454;
 }
