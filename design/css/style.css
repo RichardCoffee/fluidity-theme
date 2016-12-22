@@ -54,26 +54,26 @@ main{
     top:105px;
 	margin-bottom:120px;
 }
-header {
-	background-color: #fff;
+
+header {	
+    height:110px;
+    background-color: #fff;
     border-bottom: 3px solid #333;
     border-top: 3px solid #333;
     margin-bottom: 10px;
     position: fixed;
     width: 100%;
-}
-header {	
-  
     text-align: center;
-    transition: all 1.2s ease 0s;    
+    transition: all 1.2s ease 0s;  
+    z-index: 2;	
 }
 header.sticky {	
     height: 78px;
-    z-index: 2;
+
 }
 
 #logo>img{	
-transition: all 1s ease;	
+transition: all 1.2s ease;	
 height:100px;
 }
 #logo.sticky img{		
