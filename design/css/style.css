@@ -56,17 +56,17 @@ main{
 header{
 	border-bottom: 1px solid #333;
     border-top: 1px solid #333;
-	position: fixed;
-    text-align: center;
 }
 header {
 	background-color: #fff;
     height: 105px;
+    position: fixed;
+    text-align: center;
     transition: all 1.2s ease 0s;
     width: 100%; 
 }
 header.sticky {	
-	background-color: #fff;  
+	background-color: #eee;  
     height: 78px;
     top: 0;
     z-index: 2;
