@@ -29,10 +29,10 @@ function collective_enqueue() {
 add_action('tcc_enqueue','collective_enqueue');
 
 function collective_container_type($css) {
-#	if (!(strpos($css,'container-fluid')===false)) { // FIXME:  why does this not work?
-	$pos = strpos($css,'container-fluid');
+#	if (!(strpos($css,'container-fluid nopad')===false)) { // FIXME:  why does this not work?
+	$pos = strpos($css,'container-fluid nopad');
 	if ($pos===false) { } else {
-		$css = str_replace('container-fluid','container',$css);
+		$css = str_replace('container-fluid nopad','container',$css);
 	}
 	return $css;
 }

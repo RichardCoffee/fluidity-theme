@@ -1,6 +1,8 @@
 
 header {
-  border-bottom: 1em solid transparent;
+	font-family: 'Open Sans', sans-serif;
+	transition: all 1.2s ease;
+	z-index: 5000;
 }
 
 .header-opaque {
@@ -14,14 +16,13 @@ header {
 }
 
 .header-fixed {
-  position: fixed;
-  top: 0;
-  transition: top 0.4s ease-in-out;
-  z-index: 5000;
-//  @include opacity(1);
+	position: fixed;
+	top: 0;
 }
 
 .header-reduce {
+	position: fixed;
+	top: 0;
 }
 
 .header-hide {

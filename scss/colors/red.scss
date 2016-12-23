@@ -8,6 +8,6 @@ $primary   : #ff0000;
 $colors    : ( "background"    : $primary,
                "bgHighlight"   : scale-color($primary,$lightness:-20%),
                "textcolor"     : #FFFFFF,
-               "textHighlight" : #FFFFFF);
+               "textHighlight" : inverse($primary));
 
 @import "color_template";

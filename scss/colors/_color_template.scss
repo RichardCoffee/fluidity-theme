@@ -61,10 +61,12 @@ $headerBody: color(background) !default;
 }
 
 
-$headerBody: color(background) !default;
-
 header {
-  background-color: lighten($headerBody,40%);
+	background-color: lighten($headerBody,40%);
+}
+
+.header-opaque {
+	rgba( $header-body, .7 );
 }
 
 #header-menubar {
