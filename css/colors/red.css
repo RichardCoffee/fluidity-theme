@@ -137,10 +137,6 @@ ul.sub-menu {
   border-color: #cc0000;
 }
 
-header {
-  background-color: #ffcccc;
-}
-
 .header-opaque {
   background-color: rgba(255, 0, 0, 0.7);
 }

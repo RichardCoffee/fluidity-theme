@@ -60,11 +60,6 @@ $headerBody: color(background) !default;
   border-color: color(bgHighlight);
 }
 
-
-header {
-	background-color: lighten($headerBody,40%);
-}
-
 .header-opaque {
 	background-color: rgba( $headerBody, .7 );
 }
