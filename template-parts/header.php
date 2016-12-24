@@ -21,7 +21,7 @@ $page  = get_page_slug();
 		#do_action("tcc_post_header_$page"); ?>
 
 	</div>
-<header><?php
+</header><?php
 
 #do_action('tcc_after_header');
 #do_action('tcc_after_header_'.$page);

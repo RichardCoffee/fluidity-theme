@@ -19,13 +19,52 @@
 </head>
 
 <body>
+
    <a class="skip-link sr-only" href="#content">Skip to content</a>
 
-	<header>
+	<header id="fluid-header" role="banner">
+
+		<div class="header-static">
+
+			<div class="hidden-xs">
+				<a class="logo">
+					<img class="img-responsive" />
+				</a>
+			</div>
+
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+				<div class="pull-right">
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<i class="fa fa-bars"> </i>
+						Primary Menu
+					</button>
+					<!-- wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); -->
+				</div>
+			</nav><!-- #site-navigation -->
+
+		</div>
 
 	</header>
 
 	<main>
+
+		<article id="post-ID" class="">
+
+			<!-- featured image -->
+			<div class="logo">
+				<img class="img-responsive" />
+			</div>
+
+			<h1 class="text-center">Post Title</h1>
+
+			<h3 class="text-center">Post Date</h3>
+
+			<div class="article">
+				Post Content
+			</div>
+
+		</article>
 
 	</main>
 
