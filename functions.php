@@ -16,6 +16,7 @@ require_once('includes/theme-support.php');
 require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
 //require_once('includes/debugging.php');
+require_once('includes/footer.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
 require_once('includes/sidebars.php');
@@ -130,7 +131,7 @@ if (!function_exists('fluidity_show_query')) { // FIXME: move this
   }
 }
 
-
+/*
 if (!is_child_theme()) {
   require_once('includes/collective.php');
-}
+}*/
