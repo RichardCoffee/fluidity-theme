@@ -7,6 +7,42 @@ body{
 	font-weight:400;
 	font-size:16px;
 	color:#787676;
+	 background: linear-gradient(270deg, #ffffff, #8c8c8c, #5a5959, #fffefe);
+	background-size: 800% 800%;
+
+	-webkit-animation: darkredtoblack 28s ease infinite;
+	-moz-animation: darkredtoblack 28s ease infinite;
+	-o-animation: darkredtoblack 28s ease infinite;
+	animation: darkredtoblack 28s ease infinite;
+}
+p{
+color: linear-gradient(270deg, #565656, #ffffff, #5a5a5a);
+-webkit-animation: darkredtoblack 28s ease infinite;
+-moz-animation: darkredtoblack 28s ease infinite;
+-o-animation: darkredtoblack 28s ease infinite;
+animation: darkredtoblack 28s ease infinite;	
+	
+	
+}
+ @-webkit-keyframes darkredtoblack {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes darkredtoblack {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-o-keyframes darkredtoblack {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes darkredtoblack {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 /* Taxonomy styles */ 
 
@@ -55,20 +91,21 @@ main{
 	margin-bottom:120px;
 }
 
-header {	
-    height:110px;
+header {
     background-color: #fff;
     border-bottom: 3px solid #333;
     border-top: 3px solid #333;
+    height: 120px;
     margin-bottom: 10px;
+    padding: 10px 0;
     position: fixed;
-    width: 100%;
     text-align: center;
-    transition: all 1.2s ease 0s;  
-    z-index: 2;	
+    transition: all 1.2s ease 0s;
+    width: 100%;
+    z-index: 2;
 }
 header.sticky {	
-    height: 78px;
+    height: 90px;
 
 }
 
@@ -102,27 +139,86 @@ a:hover {
 .tagline {
     height: 75px !important;
 }
+
 .style-block-dark {
-    background: rgba(0, 0, 0, 0) url("../img/black-back.jpg") repeat scroll 0 0 / contain ;
+    background-color: #000;
     border-bottom: 1px solid #c9c9c9;
     height: 100%;
 }
-.style-block-red {
-    background: rgba(0, 0, 0, 0) url("../img/red-back.jpg") repeat scroll 0 0;
+
+.style-block-darkRed {
+    background: linear-gradient(270deg, #650000, #000000, #1c2a78);
+	background-size: 600% 600%;
+
+	-webkit-animation: darkredtoblack 30s ease infinite;
+	-moz-animation: darkredtoblack 30s ease infinite;
+	animation: darkredtoblack 30s ease infinite;
     border-bottom: 1px solid #c9c9c9;
     height: 100%;
 }
-.style-block-darkblue {
-    background: rgba(0, 0, 0, 0) url("../img/dark-blue-back.jpg") repeat scroll 0 0;
-    border-bottom: 1px solid #c9c9c9;
-    height: 100%;
+ @-webkit-keyframes darkredtoblack {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
-.blackout-1{
-	background:rgba(0, 0, 0, 0.41);
-	height:100%;
+@-moz-keyframes darkredtoblack {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes darkredtoblack {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.style-block-darkBlue {
+    background:rgba(0, 0, 0, 0.37) linear-gradient(269deg, rgba(49, 20, 91, 0.49), rgba(7, 1, 18, 0.73), rgba(7, 1, 18, 0.66), rgba(15, 42, 111, 0.74)) repeat scroll 0 0 / 800% 300%;
+	background-size: 800% 300%;
+
+	-webkit-animation: bluepurp 23s ease infinite;
+	-moz-animation: bluepurp 23s ease infinite;
+	-o-animation: bluepurp 23s ease infinite;
+	animation: bluepurp 23s ease infinite;
+	border-bottom: 1px solid #c9c9c9;
+    height: 100%;	
+}
+@-webkit-keyframes bluepurp {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+	@-moz-keyframes bluepurp {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+	@-o-keyframes bluepurp {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+	@keyframes bluepurp {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+.blackout-1 {
+  background:rgba(0, 0, 0, 0.37) linear-gradient(269deg, rgba(49, 20, 91, 0.49), rgba(7, 1, 18, 0.73), rgba(7, 1, 18, 0.66), rgba(15, 42, 111, 0.74)) repeat scroll 0 0 / 800% 300%;
+	background-size: 800% 300%;
+
+	-webkit-animation: bluepurp 23s ease infinite;
+	-moz-animation: bluepurp 23s ease infinite;
+	-o-animation: bluepurp 23s ease infinite;
+	animation: bluepurp 23s ease infinite;
+  height: 100%;
 }
 .blackout-none{
 	height:100%;
+}
+.backshadow {
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 18px #adadad;
 }
 .color-block{
 	position:relative;	
@@ -135,7 +231,7 @@ a:hover {
 /* Nav do not use only temporary */ 
 nav ul{
 	width:100%;
-	padding-top:30px;
+	padding-top: 50%;
 }
 nav li{
 	display:inline;
@@ -145,9 +241,11 @@ nav li{
 nav li:last-child{
 	border-right:none;
 }
-nav{
-	display:block;
-	float:right;
+nav {
+    display: flex;
+    float: right;
+    height: 70px;
+    position: relative;
 }
 /* End nav styles */ 
 /* Team Mates */ 
@@ -168,8 +266,8 @@ nav{
 	height:auto;	
 }
 /* team page */ 
-.hero-team{	
-	
+.hero-team {
+    padding: 10px 0;
 }
 /* footer  */ 
 .footer-back{
