@@ -1,5 +1,5 @@
 $(window).scroll(function() {
-if ($(this).scrollTop() > 1.9){  
+if ($(this).scrollTop() >310){  
     $('header').addClass("sticky");
 	$('#logo').addClass("sticky");
   }
@@ -41,7 +41,6 @@ $(function(){
 var velocity = 0.2;
 function update(){ 
 
-
     var pos = $(window).scrollTop(); 
 	
     $('.w-scroll').each(function() { 
@@ -50,8 +49,6 @@ function update(){
         var height = $element.height()-0;
         $(this).css('backgroundPosition', '50% ' + Math.round((height - pos) * velocity) + 'px'); 
     }); 
-
-	
 	
 };
 $(window).bind('scroll', update);
