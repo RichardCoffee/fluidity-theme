@@ -55,9 +55,9 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_style('fluid-color');
 	
 	#I added these for the scrolling effects
-	wp_register_script('tweenmax',  get_theme_file_uri("js/TweenMax.min.js"), null, FLUIDITY_VERSION,true);
-	wp_register_script('scrolltoplugin',  get_theme_file_uri("js/ScrollToPlugin.min.js"), null,FLUIDITY_VERSION,true);
-	wp_register_script('scrolleffects',  get_theme_file_uri("js/scrolleffects.js"), null,FLUIDITY_VERSION,true);
+	wp_register_script('tweenmax',  get_theme_file_uri("js/TweenMax.min.js"));
+	wp_register_script('scrolltoplugin',  get_theme_file_uri("js/ScrollToPlugin.min.js"));
+	wp_register_script('scrolleffects',  get_theme_file_uri("js/scrolleffects.js"));
     #  Javascript
     wp_register_script('sprintf',  get_theme_file_uri("js/sprintf.js"),  null,                     FLUIDITY_VERSION,true);
     wp_register_script('library',  get_theme_file_uri("js/library.js"),  array('jquery','sprintf'),FLUIDITY_VERSION,true);
