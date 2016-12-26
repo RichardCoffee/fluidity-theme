@@ -49,8 +49,8 @@ class TCC_Options_Layout {
                                'label'   => __('Menu','tcc-fluid'),
                                'text'    => __('Which menuing system do you want to use?','tcc-fluid'),
                                'render'  => 'radio',
-                               'source'  => array('underscore' => _x('Underscores','WordPress starter theme','tcc-fluid'),
-                                                  'bootstrap'  => _x('Bootstrap','Web site front-end framework','tcc-fluid')));
+                               'source'  => array('underscore' => __('Underscores - WordPress starter theme','tcc-fluid'),
+                                                  'bootstrap'  => __('Bootstrap - web site front-end framework','tcc-fluid')));
     $layout['sidebar'] = array('default' => 'left',
                                'label'   => __('Sidebar','tcc-fluid'),
                                'text'    => __('Which side of the screen should the sidebar show up on?','tcc-fluid'),
@@ -58,13 +58,13 @@ class TCC_Options_Layout {
                                'source'  => array('none'  => __('No Sidebar','tcc-fluid'),
                                                   'left'  => __('Left side','tcc-fluid'),
                                                   'right' => __('Right side','tcc-fluid')));
-    $layout['widget'] = array('default' => 'perm',
-                              'label'   => __('Widgets','tcc-fluid'),
-                              'text'    => __('Should the sidebar widgets start open or closed, where applicable','tcc-fluid'),
-                              'render'  => 'radio',
-                              'source'  =>array('perm'   => __('Do not provide option to users','tcc-fluid'),
-                                                'open'   => __('Open','tcc-fluid'),
-                                                'closed' => __('Closed','tcc-fluid')));
+    $layout['widget']  = array('default' => 'perm',
+                               'label'   => __('Widgets','tcc-fluid'),
+                               'text'    => __('Should the sidebar widgets start open or closed, where applicable','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  =>array('perm'   => __('Do not provide option to users','tcc-fluid'),
+                                                 'open'   => __('Open','tcc-fluid'),
+                                                 'closed' => __('Closed','tcc-fluid')));
     $layout['content'] = array('default' => 'excerpt',
                                'label'   => __('Content','tcc-fluid'),
                                'text'    => __('Show full post content or just an excerpt on archive/category/search pages','tcc-fluid'),
