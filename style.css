@@ -154,6 +154,10 @@ a:hover, a:active {
   padding-top: 1em;
 }
 
+p#fluidity-copyright {
+  margin-top: 0;
+}
+
 .centered {
   margin-right: auto;
   margin-left: auto;
