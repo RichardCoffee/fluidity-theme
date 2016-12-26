@@ -38,10 +38,9 @@ $page = get_page_slug(); ?>
             $main = (is_single() || is_page()) ? 'content' : tcc_layout('content');
             while (have_posts ()) {
                 the_post(); ?>
-                <div <?php microdata()->BlogPosting(); ?>><?php
+                <div <?php microdata()->BlogPosting(); ?>>
 
-                    $slug = fluid_content_slug($page)
-                    get_template_part("template-parts/$main",$slug); ?>
+						<?php get_template_part("template-parts/$main",fluid_content_slug($page)); ?>
 
                 </div><?php
                 fluid_post_separator($page);
@@ -57,6 +56,6 @@ $page = get_page_slug(); ?>
         fluidity_sidebar_layout($page); ?>
     </div>
   </div><!-- .container -->
-</main>
+</main><?php
 
 get_footer();

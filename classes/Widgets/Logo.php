@@ -17,7 +17,7 @@ class TCC_Widgets_Logo extends TCC_Widgets_Basic {
   }
 
 	public function form($instance) {
-		if ($instance['title']===$this->title) { $instance['title'] = ''; }
+		if (isset($instance['title']) && ($instance['title']===$this->title)) { $instance['title'] = ''; }
 		parent::form($instance);
 	}
 
