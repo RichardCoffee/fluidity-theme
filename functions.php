@@ -50,7 +50,7 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_style('tcc-fawe');	#  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
     if (tcc_option('active','social')=='yes') {
 		 wp_enqueue_style('fa-social'); }
-    wp_enqueue_style('bootstrap');
+    wp_enqueue_style('bootstrap.css');
     wp_enqueue_style('fluidity');
     wp_enqueue_style('fluid-color');
 	
@@ -66,7 +66,7 @@ if (!function_exists('tcc_enqueue')) {
     wp_register_script('reduce',   get_theme_file_uri("js/reduce.js"),   array('jquery'),          FLUIDITY_VERSION,true);
     #wp_register_script('reduce',   get_theme_file_uri("js/autohide.js"), array('jquery'),          FLUIDITY_VERSION,true);
     wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-    wp_enqueue_script('bootstrap');
+    wp_enqueue_script('bootstrap.js');
 
     if (tcc_layout('widget')!=='perm' || is_404()) {
       wp_enqueue_script('collapse'); }
@@ -102,8 +102,8 @@ if (!function_exists('fluidity_admin_enqueue')) {
 if (!function_exists('fluidity_register_bootstrap')) {
   function fluidity_register_bootstrap() {
     $base_url = get_template_directory_uri();
-    wp_register_style('bootstrap', "$base_url/css/bootstrap.min.css",false,'3.3.7');
-    wp_register_script('bootstrap',"$base_url/js/bootstrap.min.js",array('jquery'),'3.3.7',true);
+    wp_register_style('bootstrap.css', "$base_url/css/bootstrap.min.css",false,'3.3.7');
+    wp_register_script('bootstrap.js',"$base_url/js/bootstrap.min.js",array('jquery'),'3.3.7',true);
   }
 }
 
