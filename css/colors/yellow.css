@@ -158,11 +158,11 @@ ul.sub-menu {
   border-color: #ccc200;
 }
 
-footer {
+#fluid-footer {
   background-color: #fff200;
   color: #FFFFFF;
 }
-footer h4 {
+#fluid-footer h4 {
   color: #FFFFFF;
 }
 
