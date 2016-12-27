@@ -40,7 +40,7 @@ $headerBody: color(background) !default;
 .searchform-input {
 	@include placeholder(color(textcolor));
 	&::hover, &::focus {
-		@include placeholder;
+		@include placeholder(color(background));
 	}
 }
 

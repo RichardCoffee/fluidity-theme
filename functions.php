@@ -76,7 +76,7 @@ if (!function_exists('tcc_enqueue')) {
     // experimental
     $hdr_state = tcc_layout('header');
     if ($hdr_state==='fixed') {
-      #add_action('wp_footer','fluid_footer_autohide',99);
+      wp_enqueue_script('header-fixed', get_theme_file_uri("js/header-fixed.js"), array('jquery'),FLUIDITY_VERSION,true);
     } else if ($hdr_state==='reduce') {
       #wp_enqueue_script('reduce');
     } else if ($hdr_state==='hide') {
