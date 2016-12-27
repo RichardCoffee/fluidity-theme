@@ -119,7 +119,7 @@ if (!function_exists('tcc_parallax_effect')) {
 			<style>
 				.parallax-image { background-image: url("<?php echo $imgURL; ?>"); }
 			</style>
-			<div class="parallax parallax-image hidden-xs"></div><?php
+			<div class="parallax parallax-image hidden-xs parallax-scroll"></div><?php
 		}
 	}
 }
