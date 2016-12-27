@@ -74,10 +74,10 @@ footer {
    }
 }
 
-.header-opaque {
-	background-color: rgba( $headerBody, .7 );
-}
-
 #header-menubar {
   background-color: color(background);
+}
+
+.port-opaque {
+	background-color: rgba( $headerBody, .7 );
 }

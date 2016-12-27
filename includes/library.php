@@ -47,13 +47,13 @@ if (!function_exists('tcc_browser_body_class')) {
 if (!function_exists('container_type')) {
   function container_type($location='post') {
     $css = 'container-fluid'; // FIXME: change default
-    if ($location=='fluid-header') {
+    if ($location=='header') {
       $pos = tcc_layout('header');
       $css.= " nopad header-$pos";
-		$css = apply_filters('fluid_header_container_type',$css);
     } else if (tcc_layout('width')=='narrow') {
       $css = 'container';
     }
+    $css = apply_filters("fluid_{$location}_container_type",$css);
     return apply_filters('fluid_container_type',$css);
   }
 }
