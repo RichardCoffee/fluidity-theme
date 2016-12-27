@@ -19,9 +19,9 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 	}
 
 	public function inner_widget($args,$instance) { ?>
-		<div <?php self::$micro->Organization(); ?>>
-			<h4 class="text-center" itemprop="name"><?php bloginfo('name'); ?></h4>
-			<address class="text-center" <?php self::$micro->PostalAddress(); ?>>
+		<div class="widget-address" <?php self::$micro->Organization(); ?>>
+			<h4 itemprop="name"><?php bloginfo('name'); ?></h4>
+			<address <?php self::$micro->PostalAddress(); ?>>
 				<span itemprop="streetAddress">
 					<?php echo esc_html($instance['tcc-street']); ?>
 				</span><br>
@@ -46,7 +46,7 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 			</address><?php
 			if (!empty($instance['tcc-map']) && ($instance['tcc-map']==='on')) {
 				$add = urlencode($instance['tcc-street'].', '.$instance['tcc-local'].', '.$instance['tcc-region'].' '.$instance['tcc-code']); ?>
-				<div class="centered">
+				<div>
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s<?php echo $add; ?>!5e0!3m2!1sen!2sus!4v1481581752243" width="400" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
 				</div><?php
 			} ?>
