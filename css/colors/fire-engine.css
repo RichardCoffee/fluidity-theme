@@ -167,10 +167,10 @@ footer h4 {
   color: #FFFFFF;
 }
 
-.header-opaque {
-  background-color: rgba(206, 32, 41, 0.7);
-}
-
 #header-menubar {
   background-color: #CE2029;
+}
+
+.port-opaque {
+  background-color: rgba(206, 32, 41, 0.7);
 }
