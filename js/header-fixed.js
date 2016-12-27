@@ -1,5 +1,5 @@
 
-jQuery(document).ready(function ($){
-	var divHeight = $('header').height();
-	$('main').css('margin-top', divHeight+'px');
+jQuery(document).ready(function (){
+	var divHeight = jQuery('header').height();
+	jQuery('main').css('margin-top', divHeight+'px');
 });
