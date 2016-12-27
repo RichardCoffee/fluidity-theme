@@ -26,7 +26,7 @@ function clickCollapse(el) {
     jQuery(el).siblings().show('slow');
     if (collapse.scroll || jQuery(el).find('.scroll-this')[0]) {
       var vert = 0;
-      if (collapse.fixed) { vert = jQuery('.header-fixed').height(); }
+       if (collapse.fixed) { vert -= jQuery('.header-fixed').height(); } // fixed header
       scrollToElement(el,null,vert); }
   } else {
     if (icon) { jQuery(icon).removeClass('fa-minus').addClass('fa-plus'); }
