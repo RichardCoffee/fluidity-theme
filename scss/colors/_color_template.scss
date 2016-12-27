@@ -37,6 +37,12 @@ $headerBody: color(background) !default;
 	}
 }
 
+.searchform-input {
+	@include placeholder(color(background));
+	&::hover, &::focus {
+		@include placeholder;
+	}
+}
 
 // navigation
 
@@ -60,18 +66,18 @@ $headerBody: color(background) !default;
   border-color: color(bgHighlight);
 }
 
+footer {
+   background-color: color(background);
+   color: color(textcolor);
+   h4 {
+      color: color(textcolor);
+   }
+}
+
 .header-opaque {
 	background-color: rgba( $headerBody, .7 );
 }
 
 #header-menubar {
   background-color: color(background);
-}
-
-footer {
-	background-color: color(background);
-	color: color(textcolor);
-	h4 {
-		color: color(textcolor);
-	}
 }
