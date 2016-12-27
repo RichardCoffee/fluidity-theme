@@ -57,7 +57,7 @@ if (!function_exists('tcc_copyright')) {
 			</a>
 		</span>
 
-		<p class="text-center"><?php
+		<p id="fluidity-copyright" class="text-center"><?php
 			$format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
 			$title  = apply_filters('tcc_copyright_name',microdata()->get_bloginfo('name'));
 			echo sprintf($format,fluid_copyright_dates(),$title); ?>

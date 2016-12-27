@@ -50,6 +50,7 @@ if (!function_exists('container_type')) {
     if ($location=='fluid-header') {
       $pos = tcc_layout('header');
       $css.= " nopad header-$pos";
+		$css = apply_filters('fluid_header_container_type',$css);
     } else if (tcc_layout('width')=='narrow') {
       $css = 'container';
     }

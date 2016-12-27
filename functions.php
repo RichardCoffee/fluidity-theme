@@ -42,6 +42,7 @@ if (is_admin()) {
 
 if (!function_exists('tcc_enqueue')) {
   function tcc_enqueue() {
+    do_action('tcc_pre_enqueue');
     fluidity_register_bootstrap();
     fluidity_register_fontawesome();
     fluidity_register_color_scheme();
@@ -54,19 +55,16 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_style('bootstrap.css');
     wp_enqueue_style('fluidity');
     wp_enqueue_style('fluid-color');
-	
-	#I added these for the scrolling effects
-	wp_register_script('tweenmax',  get_theme_file_uri("js/TweenMax.min.js"));
-	wp_register_script('scrolltoplugin',  get_theme_file_uri("js/ScrollToPlugin.min.js"));
-	wp_register_script('scrolleffects',  get_theme_file_uri("js/scrolleffects.js"));
     #  Javascript
     wp_register_script('sprintf',  get_theme_file_uri("js/sprintf.js"),  null,                     FLUIDITY_VERSION,true);
     wp_register_script('library',  get_theme_file_uri("js/library.js"),  array('jquery','sprintf'),FLUIDITY_VERSION,true);
     wp_register_script('collapse', get_theme_file_uri("js/collapse.js"), array('jquery','library'),FLUIDITY_VERSION,true);
     #wp_register_script('autohide', get_theme_file_uri("js/autohide.js"), array('jquery'),          FLUIDITY_VERSION,true);
-    wp_register_script('reduce',   get_theme_file_uri("js/reduce.js"),   array('jquery'),          FLUIDITY_VERSION,true);
+    #wp_register_script('reduce',   get_theme_file_uri("js/reduce.js"),   array('jquery'),          FLUIDITY_VERSION,true);
     #wp_register_script('reduce',   get_theme_file_uri("js/autohide.js"), array('jquery'),          FLUIDITY_VERSION,true);
-    wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+    if (!(tcc_layout('menu')==='bootstrap')) {
+      wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+    }
     wp_enqueue_script('bootstrap.js');
 
     if (tcc_layout('widget')!=='perm' || is_404()) {
@@ -80,7 +78,7 @@ if (!function_exists('tcc_enqueue')) {
     if ($hdr_state==='fixed') {
       #add_action('wp_footer','fluid_footer_autohide',99);
     } else if ($hdr_state==='reduce') {
-      wp_enqueue_script('reduce');
+      #wp_enqueue_script('reduce');
     } else if ($hdr_state==='hide') {
       #wp_enqueue_script('autohide');
       #add_action('wp_footer','fluid_footer_autohide',99);
@@ -103,9 +101,14 @@ if (!function_exists('fluidity_admin_enqueue')) {
 if (!function_exists('fluidity_register_bootstrap')) {
   function fluidity_register_bootstrap() {
     $base_url = get_template_directory_uri();
-    wp_register_style('bootstrap.css', "$base_url/css/bootstrap.min.css",false,'3.3.7');
-    wp_register_script('bootstrap.js',"$base_url/js/bootstrap.min.js",array('jquery'),'3.3.7',true);
+    wp_register_style('bootstrap.css', "$base_url/css/bootstrap.min.css", null,           '3.3.7');
+    wp_register_script('bootstrap.js', "$base_url/js/bootstrap.min.js",   array('jquery'),'3.3.7',true);
   }
+} else {
+  function fluidity_bootstrap_backup() {
+    wp_enqueue_style('bootstrap-backup', get_theme_file_uri('css/bootstrap-backup.css'),null,FLUIDITY_VERSION);
+  }
+  add_action('tcc_pre_enqueue','fluidity_bootstrap_backup');
 }
 
 if (!function_exists('fluidity_register_fontawesome')) {

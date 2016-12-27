@@ -39,32 +39,26 @@ header .logo img {
   width: auto;
 }
 
-nav {
-  display: block;
-  float: right;
-}
 nav ul {
-  padding-top: 30px;
+  width: 100%;
+  padding-top: 50%;
 }
-nav ul ul {
-  padding: 1em 0;
-}
-nav ul ul a {
-  white-space: nowrap;
-}
+
 nav li {
   display: inline;
   padding: 0 20px;
   border-right: 1px solid #ddd;
 }
+
 nav li:last-child {
   border-right: none;
 }
-nav a {
-  color: #545454;
-}
-nav a:hover, nav a:focus {
-  color: #000;
+
+nav {
+  display: flex;
+  float: right;
+  height: 70px;
+  position: relative;
 }
 
 .block1 {

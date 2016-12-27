@@ -45,23 +45,27 @@ class TCC_Options_Layout {
                                                   'fixed'  => __('Fixed - Stays at top of screen when scrolling','tcc-fluid'),
                                                   'reduce' => __('Reducing - Gets smaller when scrolling down','tcc-fluid'),
                                                   'hide'   => __('Hiding - Hidden when scrolling, show on hover','tcc-fluid')));
-#    if (!file_exists(get_stylesheet_directory().'/template-parts/header-reduce.php') && !file_exists(get_template_directory().'/template-parts/header-reduce.php')) {
-#        unset($layout['header']['source']['reduce']); }
+    $layout['menu']    = array('default' => 'underscore',
+                               'label'   => __('Menu','tcc-fluid'),
+                               'text'    => __('Which menuing system do you want to use?','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  => array('underscore' => __('Underscores - WordPress starter theme','tcc-fluid'),
+                                                  'bootstrap'  => __('Bootstrap - web site front-end framework','tcc-fluid')));
     $layout['sidebar'] = array('default' => 'left',
                                'label'   => __('Sidebar','tcc-fluid'),
-                               'text'    => __('Which side of the screen should the sidebar show up on?'),
+                               'text'    => __('Which side of the screen should the sidebar show up on?','tcc-fluid'),
                                'render'  => 'radio',
                                'source'  => array('none'  => __('No Sidebar','tcc-fluid'),
                                                   'left'  => __('Left side','tcc-fluid'),
                                                   'right' => __('Right side','tcc-fluid')));
-    $layout['widget'] = array('default' => 'open',
-                              'label'   => __('Widgets','tcc-fluid'),
-                              'text'    => __('Should the sidebar widgets start open or closed, where applicable','tcc-fluid'),
-                              'render'  => 'radio',
-                              'source'  =>array('open'   => __('Open','tcc-fluid'),
-                                                'closed' => __('Closed','tcc-fluid'),
-                                                'perm'   => __('Do not provide option to users','tcc-fluid')));
-    $layout['content'] = array('default' => 'content',
+    $layout['widget']  = array('default' => 'perm',
+                               'label'   => __('Widgets','tcc-fluid'),
+                               'text'    => __('Should the sidebar widgets start open or closed, where applicable','tcc-fluid'),
+                               'render'  => 'radio',
+                               'source'  =>array('perm'   => __('Do not provide option to users','tcc-fluid'),
+                                                 'open'   => __('Open','tcc-fluid'),
+                                                 'closed' => __('Closed','tcc-fluid')));
+    $layout['content'] = array('default' => 'excerpt',
                                'label'   => __('Content','tcc-fluid'),
                                'text'    => __('Show full post content or just an excerpt on archive/category/search pages','tcc-fluid'),
                                'render'  => 'radio',
