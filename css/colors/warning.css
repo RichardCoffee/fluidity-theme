@@ -60,14 +60,14 @@
 }
 
 .searchform-input::-moz-placeholder {
-  color: #F0AD4E;
+  color: #FFFFFF;
   opacity: 1;
 }
 .searchform-input:-ms-input-placeholder {
-  color: #F0AD4E;
+  color: #FFFFFF;
 }
 .searchform-input::-webkit-input-placeholder {
-  color: #F0AD4E;
+  color: #FFFFFF;
 }
 .searchform-input::hover::-moz-placeholder, .searchform-input::focus::-moz-placeholder {
   color: #999;
