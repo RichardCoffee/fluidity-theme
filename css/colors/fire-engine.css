@@ -172,5 +172,5 @@ ul.sub-menu {
 }
 
 .port-opaque {
-  background-color: rgba(206, 32, 41, 0.7);
+  background-color: rgba(206, 32, 41, 0.7) !important;
 }

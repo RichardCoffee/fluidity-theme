@@ -79,5 +79,5 @@ $headerBody: color(background) !default;
 }
 
 .port-opaque {
-	background-color: rgba( $headerBody, .7 );
+	background-color: rgba( $headerBody, .7 ) !important;
 }
