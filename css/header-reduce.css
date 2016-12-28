@@ -1,14 +1,16 @@
 
 header {
 	transition: all 1.2s ease;
-	&.reduce {
-		height: 90px;
-	}
+}
+
+header.reduce {
+	height: 90px;
 }
 
 .logo > img {
 	transition: all 1.2s ease;
-	&.reduce {
-		height: 70px;
-	}
+}
+
+.logo > img.reduce {
+	height: 70px;
 }
