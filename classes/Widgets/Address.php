@@ -20,12 +20,12 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 
 	public function inner_widget($args,$instance) { ?>
 		<div class="widget-address" <?php self::$micro->Organization(); ?>>
-			<h4 itemprop="name"><?php bloginfo('name'); ?></h4>
+			<h2 itemprop="name"><?php bloginfo('name'); ?></h2>
 			<address <?php self::$micro->PostalAddress(); ?>><?php
 				if (!empty($instance['tcc-street'])) { ?>
 					<span itemprop="streetAddress">
 						<?php echo esc_html($instance['tcc-street']); ?>
-					</span><br><?php
+					</span><?php
 				} ?>
 				<span itemprop="addressLocality">
 					<?php echo esc_html($instance['tcc-local']); ?>
@@ -45,7 +45,9 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 				<a href="mailto:<?php echo get_option('admin_email'); ?>">
 					<?php bloginfo ('title');?>
 				</a>
-			</address><?php
+			</address>
+			<br><br>
+			<?php
 			if (!empty($instance['tcc-map']) && ($instance['tcc-map']==='on')) {
 				$add = urlencode($instance['tcc-street'].', '.$instance['tcc-local'].', '.$instance['tcc-region'].' '.$instance['tcc-code']); ?>
 				<div>
