@@ -21,10 +21,12 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 	public function inner_widget($args,$instance) { ?>
 		<div class="widget-address" <?php self::$micro->Organization(); ?>>
 			<h4 itemprop="name"><?php bloginfo('name'); ?></h4>
-			<address <?php self::$micro->PostalAddress(); ?>>
-				<span itemprop="streetAddress">
-					<?php echo esc_html($instance['tcc-street']); ?>
-				</span><br>
+			<address <?php self::$micro->PostalAddress(); ?>><?php
+				if (!empty($instance['tcc-street'])) { ?>
+					<span itemprop="streetAddress">
+						<?php echo esc_html($instance['tcc-street']); ?>
+					</span><br><?php
+				} ?>
 				<span itemprop="addressLocality">
 					<?php echo esc_html($instance['tcc-local']); ?>
 				</span> <span itemprop="addressRegion">
