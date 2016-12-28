@@ -37,6 +37,12 @@ $headerBody: color(background) !default;
 	}
 }
 
+.searchform-input {
+	@include placeholder(color(textcolor));
+	&::hover, &::focus {
+		@include placeholder(color(background));
+	}
+}
 
 // navigation
 
@@ -60,18 +66,18 @@ $headerBody: color(background) !default;
   border-color: color(bgHighlight);
 }
 
-.header-opaque {
-	background-color: rgba( $headerBody, .7 );
+#fluid-footer {
+   background-color: color(background);
+   color: color(textcolor);
+   h4 {
+      color: color(textcolor);
+   }
 }
 
 #header-menubar {
   background-color: color(background);
 }
 
-footer {
-	background-color: color(background);
-	color: color(textcolor);
-	h4 {
-		color: color(textcolor);
-	}
+.port-opaque {
+	background-color: rgba( $headerBody, .7 ) !important;
 }

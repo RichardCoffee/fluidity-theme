@@ -1,0 +1,16 @@
+
+header {
+	transition: all 1.2s ease;
+}
+
+header.reduce {
+	height: 90px;
+}
+
+.logo > img {
+	transition: all 1.2s ease;
+}
+
+.logo > img.reduce {
+	height: 70px;
+}

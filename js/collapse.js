@@ -1,6 +1,8 @@
 // js/collapse.js
 
-var collapse = { scroll: false }
+var collapse = { scroll: false,
+                 fixed:  false
+               };
 
 jQuery(document).ready(function() {
   assignCollapse();
@@ -23,7 +25,9 @@ function clickCollapse(el) {
     if (icon) { jQuery(icon).removeClass('fa-plus').addClass('fa-minus'); }
     jQuery(el).siblings().show('slow');
     if (collapse.scroll || jQuery(el).find('.scroll-this')[0]) {
-      scrollToElement(el); }
+      var vert = 0;
+       if (collapse.fixed) { vert -= jQuery('.header-fixed').height(); } // fixed header
+      scrollToElement(el,null,vert); }
   } else {
     if (icon) { jQuery(icon).removeClass('fa-minus').addClass('fa-plus'); }
     jQuery(el).siblings().hide('slow');
