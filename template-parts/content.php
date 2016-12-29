@@ -30,13 +30,13 @@ who_am_i(); ?>
 
     <p class="postmetadata noprint"><?php
       the_tags(esc_html__('Tags','tcc-fluid').': ', ', ', '<br>');
-      esc_html_x('Posted in ','string will be followed by a category or list of categories','tcc-fluid');
+      esc_html_ex('Posted in ','string will be followed by a category or list of categories','tcc-fluid');
       the_category(', ');
       echo ' | ';
       #fluid_edit_post_link(' | ');
       $comm_0 = esc_html__('No Comments','tcc-fluid');
       $comm_1 = esc_html__('1 Comment','tcc-fluid');
-      $comm_2 = esc_html_x('% Comments',"This string for multiple comments,'%' will be replaced with a number",'tcc-fluid');
+      $comm_2 = esc_html_x('% Comments','number of comments','tcc-fluid');
       comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
     </p><?php
 
