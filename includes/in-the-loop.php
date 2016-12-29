@@ -155,8 +155,8 @@ if (!function_exists('get_the_author_posts_link')) {
   }
 }
 
-if (!function_exists('tcc_parallax')) {
-	function tcc_parallax() {
+if (!function_exists('tcc_post_parallax')) {
+	function tcc_post_parallax($css='single-parallax') {
 		if ( has_post_thumbnail() ) { ?>
 			<style>
 				.single-parallax {
@@ -168,7 +168,7 @@ if (!function_exists('tcc_parallax')) {
 					min-height: 450px;
 				}
 			</style>
-			<div id="" class="single-parallax parallax-scroll"></div><?php
+			<div id="" class="<?php echo $css; ?> parallax-scroll"></div><?php
 		}
 	}
 }
