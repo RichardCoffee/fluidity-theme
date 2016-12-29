@@ -155,6 +155,21 @@ if (!function_exists('get_the_author_posts_link')) {
   }
 }
 
+if (!function_exists('tcc_excerpt_parallax')) {
+	function tcc_excerpt_parallax() { ?>
+		<style>
+			.post-<?php the_ID(); ?> {
+				background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
+				background-attachment: fixed;
+				background-position: center top;
+				background-repeat: no-repeat;
+				background-size: cover;
+				min-height: 250px;
+			}
+		</style><?php
+	}
+}
+
 if (!function_exists('tcc_post_parallax')) {
 	function tcc_post_parallax($css='single-parallax') {
 		if ( has_post_thumbnail() ) { ?>
