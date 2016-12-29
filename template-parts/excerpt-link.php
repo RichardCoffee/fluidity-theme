@@ -19,14 +19,13 @@ who_am_i(); ?>
 			$link_css = "col-lg-9 col-md-9 col-sm-12 col-xs-12";
 		} ?>
 
-		<div class="<?php echo $link_css; ?>"><?php
+		<div class="<?php echo $link_css; ?>">
 
-			$tooltip = sprintf( esc_html__('Permanent Link to %s','tcc-fluid'), get_the_title()); ?>
 			<h1 class="text-center" itemprop="headline">
-				<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(40); ?></a>
-			</h1><?php
+				<?php tcc_post_title(40); ?>
+			</h1>
 
-			if (tcc_layout('exdate')==='show') { fluid_post_date(); } ?>
+			<?php	if (tcc_layout('exdate')==='show') { fluid_post_date(); } ?>
 
 			<div class="article" itemprop="description"><?php
 				the_content(); ?>

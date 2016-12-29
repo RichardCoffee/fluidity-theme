@@ -14,15 +14,9 @@ who_am_i(); ?>
 
   if (!is_page()) { ?>
 
-    <h1 class="text-center"><?php
-      if (is_single()) {
-        fluid_title();
-      } else {
-        $format  = esc_html__('Permanent Link to %s','tcc-fluid');
-        $tooltip = sprintf($format,get_the_title()); ?>
-        <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(); ?></a><?php
-      }
-      fluid_edit_post_link(); ?>
+    <h1 class="text-center">
+		<?php tcc_post_title(); ?>
+      <?php fluid_edit_post_link(); ?>
     </h1><?php
 
     fluid_post_date(true);

@@ -81,24 +81,3 @@ if (!function_exists('single_search_result')) {
   }
   add_action('template_redirect','single_search_result');
 }
-
-// Can only be used inside the Loop
-function fluid_title($length=0) {
-  $echo=true; $after='...'; $before=''; // FIXME
-  $postID = get_post()->ID;
-  $title  = get_the_title($postID);
-  if (strlen($title)==0) {
-    $title = "{No Title}";
-  } else if (strlen($title)>0) {
-    if ($length && is_numeric($length)) {
-      $title = strip_tags($title);
-      if (strlen($title)>$length) {
-        $title = substr($title,0,$length);
-        $title = substr($title,0,strripos($title,' '));
-        $title = $before.$title.$after;
-      }
-    }
-    $title = esc_html(apply_filters('the_title',$title,$postID));
-  }
-  if ($echo) { echo $title; } else { return $title; }
-}
