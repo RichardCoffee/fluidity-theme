@@ -14,6 +14,7 @@ if (!function_exists('fluid_content_slug')) {
     $slug = apply_filters("tcc-content-{$slug}",$slug);
     $slug = apply_filters("tcc-{$type}-content",$slug);
     $slug = apply_filters("tcc-{$type}-content-{$slug}",$slug);
+	log_entry("content slug: $slug");
     return $slug;
   }
 }
