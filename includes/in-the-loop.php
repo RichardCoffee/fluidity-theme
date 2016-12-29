@@ -160,7 +160,7 @@ if (!function_exists('tcc_post_title')) {
 		$anchor = (is_single()) ? false : $anchor;
 		$title  = fluid_title($max);
 		if ($anchor) {
-			$tooltip = sprintf( esc_html__('Permanent Link to %s','tcc-fluid'), fluid_title() );
+			$tooltip = sprintf( esc_html_x('Read All About %s','a post title','tcc-fluid'), fluid_title() );
 			$string  = '<a href="%s" rel="bookmark" title="%s">%s</a>';
 			$title   = sprintf( $string, get_the_permalink(), esc_attr($tooltip), $title );
 		}
