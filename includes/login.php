@@ -114,10 +114,10 @@ if (!function_exists('tcc_login_form')) {
           <label>
             <input type="checkbox" id="rememberme" name="rememberme" value="forever"> Remember me
           </label>
-        </div><?php
+        </div>
+        <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button><?php
         if (get_page_by_title('Lost Password'))
           echo "<a href='".wp_lostpassword_url(home_url() )." title='$lost'>$lost</a>"; ?>
-        <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp=submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button>
       </form><?php
     }
   }

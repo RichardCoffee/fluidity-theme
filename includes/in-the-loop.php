@@ -120,6 +120,28 @@ if (!function_exists('fluid_thumbnail')) {
 	}
 }
 
+if (!function_exists('fluid_title')) {
+	function fluid_title($length=0) {
+		$echo=false; $after='...'; $before=''; // FIXME
+		#$postID = get_post()->ID;
+		$title  = get_the_title( get_the_ID() );
+		if (strlen($title)===0) {
+			$title = "{No Title}";
+		} else {
+			if ($length && is_numeric($length)) {
+				$title = strip_tags($title);
+				if (strlen($title)>$length) {
+					$title = substr($title,0,$length);
+					$title = substr($title,0,strripos($title,' '));
+					$title = $before.$title.$after;
+				}
+			}
+			$title = esc_html(apply_filters('the_title',$title,get_the_ID()));
+		}
+		if ($echo) { echo $title; } else { return $title; }
+	}
+}
+
 if (!function_exists('get_the_author_posts_link')) {
   function get_the_author_posts_link($authorID=0) {
     $html = '';
@@ -131,4 +153,50 @@ if (!function_exists('get_the_author_posts_link')) {
     }
     return $html;
   }
+}
+
+if (!function_exists('tcc_excerpt_parallax')) {
+	function tcc_excerpt_parallax() { ?>
+		<style>
+			.post-<?php the_ID(); ?> {
+				background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
+				background-attachment: fixed;
+				background-position: center top;
+				background-repeat: no-repeat;
+				background-size: cover;
+				min-height: 250px;
+			}
+		</style><?php
+	}
+}
+
+if (!function_exists('tcc_post_parallax')) {
+	function tcc_post_parallax($css='single-parallax') {
+		if ( has_post_thumbnail() ) { ?>
+			<style>
+				.single-parallax {
+					background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
+					background-attachment: fixed;
+					background-position: 50% 135px;
+					background-repeat: no-repeat;
+					background-size: cover;
+					min-height: 450px;
+				}
+			</style>
+			<div id="" class="<?php echo $css; ?> parallax-scroll"></div><?php
+		}
+	}
+}
+
+if (!function_exists('tcc_post_title')) {
+	function tcc_post_title($max=0,$anchor=true) {
+		$anchor = (is_single()) ? false : $anchor;
+		$title  = fluid_title($max);
+		if ($anchor) {
+			$tooltip = sprintf( esc_html_x('Read All About %s','a post title','tcc-fluid'), fluid_title() );
+			$string  = '<a href="%s" rel="bookmark" title="%s">%s</a>';
+			$title   = sprintf( $string, get_the_permalink(), esc_attr($tooltip), $title );
+		}
+		echo $title;
+	}
 }

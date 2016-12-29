@@ -12,11 +12,10 @@ who_am_i(); ?>
 	$format  = esc_html__('Permanent Link to %s','tcc-fluid');
 	$tooltip = sprintf($format,get_the_title()); ?>
 	<h1 class="text-center" itemprop="headline">
-		<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php esc_attr_e($tooltip); ?>"><?php fluid_title(40); ?></a>
-		<?php fluid_edit_post_link(); ?>
-	</h1><?php
+		<?php tcc_post_title(40); ?>
+	</h1>
 
-	if (tcc_layout('exdate')==='show') { fluid_post_date(); } ?>
+	<?php if (tcc_layout('exdate')==='show') { fluid_post_date(); } ?>
 
 	<div class="article" itemprop="description"><?php
 		the_excerpt(); ?>
