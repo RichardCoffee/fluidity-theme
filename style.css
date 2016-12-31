@@ -425,6 +425,11 @@ logo {
   padding-right: 5%;
 }
 
+.pager::before,
+.pager::after {
+  display: inherit;
+}
+
 .post div {
   max-width: 100%;
 }
