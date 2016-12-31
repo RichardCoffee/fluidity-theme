@@ -106,7 +106,7 @@ if (!function_exists('fluidity_register_bootstrap')) {
   }
 } else {
   function fluidity_bootstrap_backup() {
-    wp_enqueue_style('bootstrap-backup', get_theme_file_uri('css/bootstrap-backup.css'),null,FLUIDITY_VERSION);
+    wp_enqueue_style('bootstrap-backup', get_theme_file_uri('css/bootstrap-backup.min.css'),null,FLUIDITY_VERSION);
   }
   add_action('tcc_pre_enqueue','fluidity_bootstrap_backup');
 }
