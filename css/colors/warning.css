@@ -6,16 +6,19 @@
  */
 .btn-fluidity,
 .color-fluidity,
-.form-control {
+.form-control,
+li.btn-fluidity > a {
   background-color: #F0AD4E;
   border-color: #EEA236;
   color: #FFFFFF;
 }
 .btn-fluidity:hover,
 .color-fluidity:hover,
-.form-control:hover, .btn-fluidity:focus,
+.form-control:hover,
+li.btn-fluidity > a:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
-.form-control:focus {
+.form-control:focus,
+li.btn-fluidity > a:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #F0AD4E;
@@ -70,14 +73,14 @@
   color: #FFFFFF;
 }
 .searchform-input::hover::-moz-placeholder, .searchform-input::focus::-moz-placeholder {
-  color: #999;
+  color: #F0AD4E;
   opacity: 1;
 }
 .searchform-input::hover:-ms-input-placeholder, .searchform-input::focus:-ms-input-placeholder {
-  color: #999;
+  color: #F0AD4E;
 }
 .searchform-input::hover::-webkit-input-placeholder, .searchform-input::focus::-webkit-input-placeholder {
-  color: #999;
+  color: #F0AD4E;
 }
 
 .navbar-fluidity {

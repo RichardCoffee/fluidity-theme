@@ -9,7 +9,8 @@ $headerBody: color(background) !default;
 
 .btn-fluidity,
 .color-fluidity,
-.form-control {
+.form-control,
+li.btn-fluidity > a {
 	@extend %regular;
 }
 
