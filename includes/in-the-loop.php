@@ -26,6 +26,7 @@ if (!function_exists('fluid_edit_post_link')) {
     #edit_post_link( '{'.$string.'}', $separator.'<span class="edit-link">', '</span>' );
     ##  This code replaces the edit_post_link call so that I could add the target attribute
     $link = get_edit_post_link(get_the_ID());
+log_entry("edit post link:  $link");
     if ($link) { ?>
       <span class="edit-link small">
         <a class="post-edit-link" href="<?php echo $link; ?>" target="_blank"> { <?php
