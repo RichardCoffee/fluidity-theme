@@ -8,13 +8,13 @@
  */
 
 if (!function_exists('fluid_content_slug')) {
-  function fluid_content_slug($type='single') {
+  function fluid_content_slug($page='single') {
     $slug = ($format=get_post_format()) ? $format : get_post_type();
     $slug = apply_filters("tcc-content",$slug);
     $slug = apply_filters("tcc-content-{$slug}",$slug);
-    $slug = apply_filters("tcc-{$type}-content",$slug);
-    $slug = apply_filters("tcc-{$type}-content-{$slug}",$slug);
-	log_entry("content slug: $slug");
+    $slug = apply_filters("tcc-{$page}-content",$slug);
+    $slug = apply_filters("tcc-{$page}-content-{$slug}",$slug);
+log_entry(0,"fluid_content_slug: $slug");
     return $slug;
   }
 }
