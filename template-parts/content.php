@@ -28,11 +28,7 @@ who_am_i(); ?>
 	</div><?php
 
 	if (is_single()) {
-		$mycat = '';
-		$cats  = get_the_category();
-		if ($cats) { $mycat = $cats[0]->slug; }
-log_entry($cats,"current cat: $mycat");
-		fluid_navigation($mycat,true);
+		fluid_navigation('category',true);
 		fluid_postmetadata();
 	} ?>
 
