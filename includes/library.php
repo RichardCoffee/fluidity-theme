@@ -353,7 +353,7 @@ if (!function_exists('log_entry')) {
     if (WP_DEBUG) {
       $args  = func_get_args();
       $depth = 1;
-      if (is_int($args[0])) {
+      if ($args && is_int($args[0])) {
         $depth = $args[0];
         unset($args[0]);
       }
