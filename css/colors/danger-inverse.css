@@ -177,7 +177,7 @@ blockquote,
 }
 
 hr {
-  color: #f2dede;
+  border-color: #f2dede;
 }
 
 .port-opaque {

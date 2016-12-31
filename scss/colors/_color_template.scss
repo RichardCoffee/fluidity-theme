@@ -65,7 +65,7 @@ li.btn-fluidity > a {
 
 blockquote,
 .content-fluidity {
-  border-color: color(bgHighlight);
+	border-color: color(bgHighlight);
 }
 
 #fluid-footer {
@@ -77,11 +77,11 @@ blockquote,
 }
 
 #header-menubar {
-  background-color: color(background);
+	background-color: color(background);
 }
 
 hr {
-	color: color(bgHighlight);
+	border-color: color(bgHighlight);
 }
 
 .port-opaque {
