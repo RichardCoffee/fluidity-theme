@@ -43,10 +43,11 @@ if (is_admin()) {
 if (!function_exists('tcc_enqueue')) {
   function tcc_enqueue() {
     do_action('tcc_pre_enqueue');
+
+    #  Stylesheets
     fluidity_register_bootstrap();
     fluidity_register_fontawesome();
     fluidity_register_color_scheme();
-    #  Stylesheets
     wp_register_style('fa-social',      get_theme_file_uri("css/fa-social-hover.css"), array('tcc-awe'), FLUIDITY_VERSION);
     wp_register_style('fluidity',       get_theme_file_uri("style.css"),               null,             FLUIDITY_VERSION);
     wp_register_style('tcc-reduce-css', get_theme_file_uri("css/header-reduce.css"),               null,             FLUIDITY_VERSION);
@@ -56,21 +57,19 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_style('bootstrap.css');
     wp_enqueue_style('fluidity');
     wp_enqueue_style('fluid-color');
+
     #  Javascript
-    wp_register_script('tcc-sprintf',   get_theme_file_uri("js/sprintf.js"),       null,                     FLUIDITY_VERSION,true);
-    wp_register_script('tcc-library',   get_theme_file_uri("js/library.js"),       array('jquery','sprintf'),FLUIDITY_VERSION,true);
-    wp_register_script('tcc-collapse',  get_theme_file_uri("js/collapse.js"),      array('jquery','library'),FLUIDITY_VERSION,true);
-    wp_register_script('tcc-fixed',     get_theme_file_uri("js/header-fixed.js"),  array('jquery'),          FLUIDITY_VERSION,true);
-    wp_register_script('tcc-reduce-js', get_theme_file_uri("js/header-reduce.js"), array('jquery'),          FLUIDITY_VERSION,true);
+    wp_register_script('tcc-sprintf',   get_theme_file_uri("js/sprintf.js"),       null,                         FLUIDITY_VERSION,true);
+    wp_register_script('tcc-library',   get_theme_file_uri("js/library.js"),       array('jquery','tcc-sprintf'),FLUIDITY_VERSION,true);
+    wp_register_script('tcc-collapse',  get_theme_file_uri("js/collapse.js"),      array('jquery','tcc-library'),FLUIDITY_VERSION,true);
+    wp_register_script('tcc-fixed',     get_theme_file_uri("js/header-fixed.js"),  array('jquery'),              FLUIDITY_VERSION,true);
+    wp_register_script('tcc-reduce-js', get_theme_file_uri("js/header-reduce.js"), array('jquery'),              FLUIDITY_VERSION,true);
     if (!(tcc_layout('menu')==='bootstrap')) {
       wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
     }
     wp_enqueue_script('bootstrap.js');
-log_entry('widget: '.tcc_layout('widget'));
     if ((tcc_layout('widget')!=='perm') || is_404()) {
-log_entry(0,'collapse enqueued');
       wp_enqueue_script('tcc-collapse'); }
-
     if (is_singular() && comments_open() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply'); }  #  enable threaded comments
 
