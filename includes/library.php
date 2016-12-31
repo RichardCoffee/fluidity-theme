@@ -100,14 +100,14 @@ if (!function_exists('wp_menu_id_by_name')) {
 }
 
 if (!function_exists('esc_attr_ex')) {
-	function esc_attr_ex( $text, $context, $domain = 'default' ) { 
-		echo esc_attr_x( $text, $context, $domain ); 
+	function esc_attr_ex( $text, $context, $domain = 'default' ) {
+		echo esc_attr_x( $text, $context, $domain );
 	}
 }
 
 if (!function_exists('esc_html_ex')) {
-	function esc_html_ex( $text, $context, $domain = 'default' ) { 
-		echo esc_html_x( $text, $context, $domain ); 
+	function esc_html_ex( $text, $context, $domain = 'default' ) {
+		echo esc_html_x( $text, $context, $domain );
 	}
 }
 
