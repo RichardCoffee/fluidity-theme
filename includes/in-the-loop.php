@@ -41,7 +41,7 @@ if (!function_exists('fluid_navigation')) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude  = ''; ?>
-		<div class="noprint" aria-label="...">
+		<nav class="noprint" aria-label="...">
 			<h2 class="screen-reader-text">
 				<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
 			</h2><?php
@@ -65,7 +65,7 @@ if (!function_exists('fluid_navigation')) {
 					</li>
 				</ul><?php
 			} ?>
-		</div><?php
+		</nav><?php
 	}
 }
 
