@@ -42,12 +42,12 @@ if (!function_exists('fluid_navigation')) {
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 //log_entry(get_the_category());
 		$exclude  = ''; ?>
-		<br>
-		<nav class="noprint" aria-label="...">
-			<h2 class="screen-reader-text">
-				<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
-			</h2><?php
-			if ($taxonomy) { ?>
+		<br><?php
+		if ($taxonomy) { ?>
+			<nav class="noprint" aria-label="...">
+				<h2 class="screen-reader-text">
+					<?php esc_attr_e( 'Category Navigation', 'tcc-fluid' ); ?>
+				</h2>
 				<ul class="pager">
 					<li class="previous btn-fluidity">
 						<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
@@ -55,9 +55,14 @@ if (!function_exists('fluid_navigation')) {
 					<li class="next btn-fluidity">
 						<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 					</li>
-				</ul><?php
-			}
-			if (!$taxonomy || $all_links) { ?>
+				</ul>
+			</nav><?php
+		}
+		if (!$taxonomy || $all_links) { ?>
+			<nav class="noprint" aria-label="...">
+				<h2 class="screen-reader-text">
+					<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
+				</h2>
 				<ul class="pager">
 					<li class="previous btn-fluidity">
 						<?php previous_post_link('%link',$left); ?>
@@ -65,9 +70,9 @@ if (!function_exists('fluid_navigation')) {
 					<li class="next btn-fluidity">
 						<?php next_post_link('%link',$right); ?>
 					</li>
-				</ul><?php
-			} ?>
-		</nav>
+				</ul>
+			</nav><?php
+		} ?>
 		<br><br><br><?php
 	}
 }
