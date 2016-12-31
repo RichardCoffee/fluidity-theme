@@ -41,7 +41,7 @@ if (!function_exists('fluid_navigation')) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude  = ''; ?>
-		<div class="col-xs-12 noprint" aria-label="...">
+		<div class="row noprint" aria-label="...">
 			<h2 class="screen-reader-text">
 				<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
 			</h2><?php
@@ -108,7 +108,7 @@ if (!function_exists('fluid_post_date')) {
 
 if (!function_exists('fluid_postmetadata')) {
 	function fluid_postmetadata() { ?>
-		<p class="postmetadata noprint"><?php
+		<div class="postmetadata noprint"><?php
 			if (has_tag()) {
 				the_tags(esc_html__('Tags','tcc-fluid').': ', ', ', '<br>');
 			}
@@ -124,7 +124,7 @@ if (!function_exists('fluid_postmetadata')) {
 			$comm_1 = esc_html__('1 Comment','tcc-fluid');
 			$comm_2 = esc_html_x('% Comments','number of comments','tcc-fluid');
 			comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
-		</p><?php
+		</div><?php
 		if ( comments_open() || get_comments_number() ) {
 			comments_template();
 		}
