@@ -68,6 +68,7 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_script('bootstrap.js');
 log_entry('widget: '.tcc_layout('widget'));
     if ((tcc_layout('widget')!=='perm') || is_404()) {
+log_entry(0,'collapse enqueued');
       wp_enqueue_script('tcc-collapse'); }
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
