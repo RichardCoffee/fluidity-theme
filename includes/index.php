@@ -41,7 +41,12 @@ function fluid_index_page($page='index') { ?>
 
 						fluid_post_separator($page);
 					}
-					fluid_navigation();
+
+					if (is_single()) {
+						fluid_navigation();
+						fluid_postmetadata();
+					}
+
 					do_action("fluid_{$page}_page_afterposts");
 
 				} else {
