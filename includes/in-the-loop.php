@@ -38,9 +38,8 @@ if (!function_exists('fluid_edit_post_link')) {
 
 if (!function_exists('fluid_navigation')) {
 	function fluid_navigation($taxonomy='',$all_links=false) {
-		$left  = '<span aria-hidden="true">&laquo;</span> %link';
-		$right = '%link <span aria-hidden="true">&raquo;</span>';
-		$text  = '%title';
+		$left  = '<span aria-hidden="true">&laquo;</span> %title';
+		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude  = ''; ?>
 		<nav class="noprint" aria-label="...">
 			<h2 class="screen-reader-text">
@@ -49,10 +48,10 @@ if (!function_exists('fluid_navigation')) {
 			if ($taxonomy) { ?>
 				<ul class="pager">
 					<li class="previous">
-						<?php previous_post_link($left,$text,true,$exclude,$taxonomy); ?>
+						<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
 					</li>
 					<li class="next">
-						<?php next_post_link($right,$text,true,$exclude,$taxonomy); ?>
+						<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 					</li>
 				</ul><?php
 			}
