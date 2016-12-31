@@ -66,8 +66,8 @@ if (!function_exists('tcc_enqueue')) {
       wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
     }
     wp_enqueue_script('bootstrap.js');
-
-    if (tcc_layout('widget')!=='perm' || is_404()) {
+log_entry('widget: '.tcc_layout('widget'));
+    if ((tcc_layout('widget')!=='perm') || is_404()) {
       wp_enqueue_script('tcc-collapse'); }
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
