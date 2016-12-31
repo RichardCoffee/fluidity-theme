@@ -25,6 +25,11 @@ who_am_i(); ?>
 
   <div class="article" itemprop="articleBody">
     <?php the_content(); ?>
-  </div>
+  </div><?php
+
+  if (is_single()) {
+    fluid_navigation();
+    fluid_postmetadata();
+  } ?>
 
 </article>
