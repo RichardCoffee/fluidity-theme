@@ -117,7 +117,7 @@ if (!function_exists('tcc_login_form')) {
         </div>
         <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button><?php
         if (get_page_by_title('Lost Password'))
-          echo "<a href='".wp_lostpassword_url(home_url() )." title='$lost'>$lost</a>"; ?>
+          echo "<a class='pull-right' href='".wp_lostpassword_url(home_url() )." title='$lost'>$lost</a>"; ?>
       </form><?php
     }
   }
