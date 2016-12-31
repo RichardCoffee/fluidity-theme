@@ -65,7 +65,8 @@ if (!function_exists('fluid_navigation')) {
 					</li>
 				</ul><?php
 			} ?>
-		</nav><?php
+		</nav>
+		<br><?php
 	}
 }
 
