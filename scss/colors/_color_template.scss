@@ -80,6 +80,10 @@ blockquote,
   background-color: color(background);
 }
 
+hr {
+	color: color(bgHighlight);
+}
+
 .port-opaque {
 	background-color: rgba( $headerBody, .7 ) !important;
 }

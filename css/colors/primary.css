@@ -176,6 +176,10 @@ blockquote,
   background-color: #337AB7;
 }
 
+hr {
+  color: #2E6DA4;
+}
+
 .port-opaque {
   background-color: rgba(51, 122, 183, 0.7) !important;
 }

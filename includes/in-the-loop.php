@@ -56,7 +56,7 @@ if (!function_exists('fluid_navigation')) {
 						<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 					</li>
 				</ul>
-			</nav><br><?php
+			</nav><hr><?php
 		}
 		if (!$taxonomy || $all_links) { ?>
 			<nav class="noprint" aria-label="...">
