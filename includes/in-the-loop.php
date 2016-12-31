@@ -38,22 +38,24 @@ if (!function_exists('fluid_edit_post_link')) {
 
 if (!function_exists('fluid_navigation')) {
   function fluid_navigation($taxonomy='') {
-    $left  = '&laquo; %link';
-    $right = '%link &raquo;';
+    $left  = '<span aria-hidden="true">&laquo;</span> %link';
+    $right = '%link <span aria-hidden="true">&raquo;</span>';
     $text  = '%title';
     $restrict = true;
     $exclude  = ''; ?>
-    <div id="nav-posts" class="row noprint">
+    <nav class="noprint" aria-label="...">
       <h2 class="screen-reader-text"><?php
         esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
       </h2>
-      <div class="nav-previous pull-left"><?php
-        previous_post_link($left,$text,$restrict,$exclude,$taxonomy); ?>
-      </div>
-      <div class="nav-next pull-right"><?php
-        next_post_link($right,$text,$restrict,$exclude,$taxonomy); ?>
-      </div>
-    </div><?php
+      <ul class="pager">
+        <li class="previous">
+          <?php previous_post_link($left,$text,$restrict,$exclude,$taxonomy); ?>
+        </li>
+        <li class="next">
+          <?php next_post_link($right,$text,$restrict,$exclude,$taxonomy); ?>
+        </li>
+      <ul>
+    </nav><?php
   }
 }
 
