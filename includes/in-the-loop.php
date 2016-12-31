@@ -47,20 +47,20 @@ if (!function_exists('fluid_navigation')) {
 			</h2><?php
 			if ($taxonomy) { ?>
 				<ul class="pager">
-					<li class="previous">
+					<li class="previous btn-fluidity">
 						<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
 					</li>
-					<li class="next">
+					<li class="next btn-fluidity">
 						<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 					</li>
 				</ul><?php
 			}
 			if (!$taxonomy || $all_links) { ?>
 				<ul class="pager">
-					<li class="previous">
+					<li class="previous btn-fluidity">
 						<?php previous_post_link('%link',$left); ?>
 					</li>
-					<li class="next">
+					<li class="next btn-fluidity">
 						<?php next_post_link('%link',$right); ?>
 					</li>
 				</ul><?php
