@@ -42,7 +42,7 @@ if (!function_exists('fluid_navigation')) {
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 //log_entry(get_the_category());
 		$exclude  = ''; ?>
-		<br><?php
+		<br><hr><?php
 		if ($taxonomy) { ?>
 			<nav class="noprint" aria-label="...">
 				<h2 class="screen-reader-text">
@@ -73,7 +73,7 @@ if (!function_exists('fluid_navigation')) {
 				</ul>
 			</nav><?php
 		} ?>
-		<br><br><br><?php
+		<br><hr><?php
 	}
 }
 
