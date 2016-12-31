@@ -57,11 +57,11 @@ if (!function_exists('fluid_navigation')) {
 				</ul><?php
 			}
 			if (!$taxonomy || $all_links) { ?>
-				<ul>
-					<li>
+				<ul class="pager">
+					<li class="previous">
 						<?php previous_post_link($left,$text); ?>
 					</li>
-					<li>
+					<li class="next">
 						<?php next_post_link($right,$text); ?>
 					</li>
 				</ul><?php
