@@ -42,7 +42,7 @@ if (!function_exists('fluid_navigation')) {
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 //log_entry(get_the_category());
 		$exclude  = ''; ?>
-		<br><hr><?php
+		<br><div class="post_link_separator post_link_separator_top"></div><?php
 		if ($taxonomy) { ?>
 			<nav class="noprint" aria-label="...">
 				<h2 class="screen-reader-text">
@@ -56,7 +56,7 @@ if (!function_exists('fluid_navigation')) {
 						<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 					</li>
 				</ul>
-			</nav><br><hr><?php
+			</nav><br><div class="post_link_separator post_link_separator_middle"></div><?php
 		}
 		if (!$taxonomy || $all_links) { ?>
 			<nav class="noprint" aria-label="...">
@@ -73,7 +73,7 @@ if (!function_exists('fluid_navigation')) {
 				</ul>
 			</nav><?php
 		} ?>
-		<br><hr><?php
+		<br><div class="post_link_separator post_link_separator_bottom"></div><?php
 	}
 }
 
@@ -221,14 +221,11 @@ if (!function_exists('tcc_post_parallax')) {
 			<style>
 				.single-parallax {
 					background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
-					background-attachment: fixed;
 					background-position: 50% 135px;
-					background-repeat: no-repeat;
-					background-size: cover;
 					min-height: 450px;
 				}
 			</style>
-			<div id="" class="<?php echo $css; ?> parallax-scroll"></div><?php
+			<div id="" class="parallax <?php echo $css; ?> parallax-scroll"></div><?php
 		}
 	}
 }

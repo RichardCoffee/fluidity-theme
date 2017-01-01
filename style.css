@@ -250,7 +250,6 @@ header {
 .parallax-contain-top, .parallax-contain-center, .parallax-contain-bottom {
   background-attachment: fixed;
   background-repeat: no-repeat;
-  height: 400px;
 }
 
 .parallax,
