@@ -8,7 +8,6 @@
 
 who_am_i(); ?>
 
-
 <article id="post-<?php the_ID(); ?> " <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
 
 	<?php fluid_thumbnail();

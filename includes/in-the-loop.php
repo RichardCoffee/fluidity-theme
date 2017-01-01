@@ -48,10 +48,10 @@ if (!function_exists('fluid_navigation')) {
 					<?php esc_attr_e( 'Category Navigation', 'tcc-fluid' ); ?>
 				</h2>
 				<ul class="pager">
-					<li class="previous btn-fluidity">
+					<li class="previous btn-fluidity" title="<?php esc_html_e('Older Posts','tcc-fluid'); ?>">
 						<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
 					</li>
-					<li class="next btn-fluidity">
+					<li class="next btn-fluidity" title="<?php esc_html_e('Newer Posts','tcc-fluid'); ?>">
 						<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 					</li>
 				</ul>
@@ -63,10 +63,10 @@ if (!function_exists('fluid_navigation')) {
 					<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
 				</h2>
 				<ul class="pager">
-					<li class="previous btn-fluidity">
+					<li class="previous btn-fluidity" title="<?php esc_html_e('Older Posts','tcc-fluid'); ?>">
 						<?php previous_post_link('%link',$left); ?>
 					</li>
-					<li class="next btn-fluidity">
+					<li class="next btn-fluidity" title="<?php esc_html_e('Newer Posts','tcc-fluid'); ?>">
 						<?php next_post_link('%link',$right); ?>
 					</li>
 				</ul>
