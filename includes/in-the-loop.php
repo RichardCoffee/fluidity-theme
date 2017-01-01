@@ -40,7 +40,6 @@ if (!function_exists('fluid_navigation')) {
 	function fluid_navigation($taxonomy='',$all_links=false) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
-//log_entry(get_the_category());
 		$exclude  = ''; ?>
 		<br><div class="post_link_separator post_link_separator_top"></div><?php
 		if ($taxonomy) { ?>
@@ -73,7 +72,7 @@ if (!function_exists('fluid_navigation')) {
 				</ul>
 			</nav><?php
 		} ?>
-		<br><div class="post_link_separator post_link_separator_bottom"></div><?php
+		<br><br><div class="post_link_separator post_link_separator_bottom"></div><?php
 	}
 }
 
