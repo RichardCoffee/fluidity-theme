@@ -122,14 +122,6 @@ a:hover, a:active {
   width: 50%;
 }
 
-#fluid-content {
-  background: rgba(255, 255, 255, 0.85);
-}
-
-/*
-#fluid-footer {
-  background: rgba(255,255,255,0.7);
-} //*/
 .updraft {
   background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
   border-top: 3px solid #fff;
