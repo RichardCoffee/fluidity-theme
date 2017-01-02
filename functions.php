@@ -19,6 +19,7 @@ require_once('includes/colors.php');                 #  options.php must be load
 require_once('includes/footer.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
+require_once('includes/parallax.php');
 require_once('includes/sidebars.php');
 require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
 
