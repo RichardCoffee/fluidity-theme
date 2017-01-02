@@ -110,9 +110,9 @@ if (!function_exists('tcc_page_title')) {
 		</div><?php
 	}
 }
-
+/* in includes/parallax.php
 if (!function_exists('tcc_parallax_effect')) {
-	function tcc_parallax_effect($page) {
+	function tcc_page_parallax($page) {
 		$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page,'ID');
 		$imgURL = get_featured_url($pageID);
 		if ($imgURL) { ?>
@@ -122,4 +122,4 @@ if (!function_exists('tcc_parallax_effect')) {
 			<div class="parallax parallax-image hidden-xs parallax-scroll"></div><?php
 		}
 	}
-}
+} //*/

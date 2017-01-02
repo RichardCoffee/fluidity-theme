@@ -198,7 +198,7 @@ if (!function_exists('get_the_author_posts_link')) {
     return $html;
   }
 }
-
+/* moved to includes/parallax.php
 if (!function_exists('tcc_excerpt_parallax')) {
 	function tcc_excerpt_parallax() { ?>
 		<style>
@@ -212,8 +212,8 @@ if (!function_exists('tcc_excerpt_parallax')) {
 			}
 		</style><?php
 	}
-}
-
+} //*/
+/*
 if (!function_exists('tcc_post_parallax')) {
 	function tcc_post_parallax($css='single-parallax') {
 		if ( has_post_thumbnail() ) { ?>
@@ -227,7 +227,7 @@ if (!function_exists('tcc_post_parallax')) {
 			<div id="" class="parallax <?php echo $css; ?> parallax-scroll"></div><?php
 		}
 	}
-}
+} //*/
 
 if (!function_exists('tcc_post_title')) {
 	function tcc_post_title($max=0,$anchor=true) {
