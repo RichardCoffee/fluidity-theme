@@ -9,7 +9,7 @@
 
 <div class="ribbon"></div>
 
-<div class="footer">
+<div class="row footer">
 
 	<?php who_am_i(); ?>
 
