@@ -6,7 +6,7 @@
 
 get_header();
 $micro = microdata();
-/*
+
 if (WP_DEBUG) { ?>
  <div class="panel panel-fluidity collapse-auto">
    <div class="panel-heading">
