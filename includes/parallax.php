@@ -19,16 +19,18 @@ if (!function_exists('tcc_page_parallax')) {
 	function tcc_page_parallax($page) {
 		if (tcc_design('paral')==='yes') {
 			$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page,'ID');
-			$imgURL = get_featured_url($pageID);
-			if ($imgURL) { ?>
-				<style>
-					.parallax-image {
-						background-image: url("<?php echo $imgURL; ?>");
-						<?php do_action('tcc_page_parallax'); ?>
-						<?php do_action("tcc_page_parallax_$page"); ?>
-					}
-				</style>
-				<div class="parallax parallax-image parallax-scroll hidden-xs"></div><?php
+			if ($pageID) {
+				$imgURL = get_featured_url($pageID);
+				if ($imgURL) { ?>
+					<style>
+						.parallax-image {
+							background-image: url("<?php echo $imgURL; ?>");
+							<?php do_action('tcc_page_parallax'); ?>
+							<?php do_action("tcc_page_parallax_$page"); ?>
+						}
+					</style>
+					<div class="parallax parallax-image parallax-scroll hidden-xs"></div><?php
+				}
 			}
 		}
 	}

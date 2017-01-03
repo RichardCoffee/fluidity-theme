@@ -89,9 +89,9 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 						break;
 					}
 				}
+				if (!$curr) { return ''; }
 			}
 		}
-log_entry("slug:     $slug", "property: $prop", $curr);
 		return $curr->$prop; // FIXME: check for existing property
 	}
 }
