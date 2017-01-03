@@ -43,11 +43,11 @@ if (!function_exists('fluid_navigation')) {
 		$exclude  = ''; ?>
 		<br><div class="post_link_separator post_link_separator_top"></div><?php
 		if ($taxonomy) { ?>
-			<nav class="noprint" aria-label="...">
+			<nav class="noprint" aria-label="..."><?php // FIXME:  move this out to it own function? ?>
 				<h2 class="screen-reader-text">
 					<?php esc_attr_e( 'Category Navigation', 'tcc-fluid' ); ?>
 				</h2>
-				<ul class="pager">
+				<ul class="pager pager-category">
 					<li class="previous btn-fluidity" title="<?php esc_html_e('Older Posts','tcc-fluid'); ?>">
 						<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
 					</li>
