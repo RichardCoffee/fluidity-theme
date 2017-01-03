@@ -8,7 +8,7 @@ if (!function_exists('tcc_excerpt_parallax')) {
 				.post-<?php the_ID(); ?> {
 					background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
 					<?php do_action('tcc_excerpt_parallax'); ?>
-					<?php do_action('tcc_excerpt_parallax_'.get_the_ID()); ?>
+					<?php //do_action('tcc_excerpt_parallax_'.get_the_ID()); ?>
 				}
 			</style><?php
 		}
@@ -25,7 +25,7 @@ if (!function_exists('tcc_page_parallax')) {
 					.parallax-image {
 						background-image: url("<?php echo $imgURL; ?>");
 						<?php do_action('tcc_page_parallax'); ?>
-					<?php do_action("tcc_page_parallax_$page"); ?>
+						<?php do_action("tcc_page_parallax_$page"); ?>
 					}
 				</style>
 				<div class="parallax parallax-image parallax-scroll hidden-xs"></div><?php
