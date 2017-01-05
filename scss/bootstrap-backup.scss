@@ -2,7 +2,12 @@
 /*  Replacement css for when bootstrap is not loaded */
 
 .screen-reader-text {
-   display: none;
+	display: none;
+}
+
+.small {
+	font-weight: normal;
+	line-height: 1;
 }
 
 .text-center {
