@@ -33,7 +33,8 @@ $page = get_page_slug(); ?>
 				while (have_posts ()) {
 					the_post();
 					get_template_part("template-parts/$main",fluid_content_slug($page));
-					fluid_post_separator($page);
+					if (!is_singular()) {
+						fluid_post_separator($page); }
 				}
 
 				do_action("tcc_{$page}_page_afterposts");

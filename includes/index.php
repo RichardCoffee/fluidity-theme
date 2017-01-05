@@ -37,7 +37,8 @@ function fluid_index_page($page='index') { ?>
 						the_post();
 						$slug = fluid_content_slug($page);
 						get_template_part("template-parts/$main",$slug);
-						fluid_post_separator($page);
+						if (!is_singular()) {
+							fluid_post_separator($page); }
 					}
 
 					do_action("tcc_{$page}_page_afterposts");
