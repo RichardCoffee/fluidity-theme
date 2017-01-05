@@ -1,4 +1,9 @@
 
+.comma-after::after {
+	content: ', ';
+	margin-left: -0.25em;
+}
+
 .block { display: inline-block; }
 
 .centered {

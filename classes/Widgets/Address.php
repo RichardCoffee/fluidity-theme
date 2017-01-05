@@ -27,9 +27,9 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 						<?php echo esc_html($instance['tcc-street']); ?>
 					</span><?php
 				} ?>
-				<span itemprop="addressLocality">
+				<span class="comma-after" itemprop="addressLocality">
 					<?php echo esc_html($instance['tcc-local']); ?>
-				</span>, <span itemprop="addressRegion">
+				</span> <span itemprop="addressRegion">
 					<?php echo esc_html($instance['tcc-region']);
 					if (!empty($instance['tcc-code'])) { ?>
 						</span> <span itemprop="postalCode">
