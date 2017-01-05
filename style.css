@@ -150,6 +150,11 @@ p#fluidity-copyright {
   margin-top: 0;
 }
 
+.comma-after::after {
+  content: ', ';
+  margin-left: -0.25em;
+}
+
 .block {
   display: inline-block;
 }
