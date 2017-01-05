@@ -150,6 +150,10 @@ p#fluidity-copyright {
   margin-top: 0;
 }
 
+.block {
+  display: inline-block;
+}
+
 .centered {
   margin-right: auto;
   margin-left: auto;
