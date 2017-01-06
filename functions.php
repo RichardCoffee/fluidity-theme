@@ -31,6 +31,8 @@ if (is_admin()) {
 	TCC_Options_Fluidity::get_instance();
 } else {
   //require_once('includes/footer.php');
+  require_once('includes/defines.php');
+  require_once('includes/galleryview.php');
   require_once('includes/header.php');
   require_once('includes/in-the-loop.php');
   require_once('includes/index.php');
@@ -43,6 +45,7 @@ if (is_admin()) {
 
 if (!function_exists('tcc_enqueue')) {
   function tcc_enqueue() {
+
     do_action('tcc_pre_enqueue');
 
     #  Stylesheets
@@ -85,7 +88,9 @@ if (!function_exists('tcc_enqueue')) {
       #add_action('wp_footer','fluid_footer_autohide',99);
     }
 
-    do_action('tcc_enqueue');
+    do_action('tcc_after_enqueue');
+    do_action('tcc_enqueue');  #  load child theme enqueues here
+
   }
   add_action('wp_enqueue_scripts','tcc_enqueue');
 }
