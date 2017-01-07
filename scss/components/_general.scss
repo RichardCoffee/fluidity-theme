@@ -4,6 +4,10 @@
 	margin-left: -0.25em;
 }
 
+.comma-after:last-child::after {
+	content: '';
+}
+
 .block { display: inline-block; }
 
 .centered {

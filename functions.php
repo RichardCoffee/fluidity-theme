@@ -63,15 +63,17 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_style('fluid-color');
 
     #  Javascript
-    wp_register_script('tcc-sprintf',   get_theme_file_uri("js/sprintf.js"),       null,                         FLUIDITY_VERSION,true);
-    wp_register_script('tcc-library',   get_theme_file_uri("js/library.js"),       array('jquery','tcc-sprintf'),FLUIDITY_VERSION,true);
-    wp_register_script('tcc-collapse',  get_theme_file_uri("js/collapse.js"),      array('jquery','tcc-library'),FLUIDITY_VERSION,true);
-    wp_register_script('tcc-fixed',     get_theme_file_uri("js/header-fixed.js"),  array('jquery'),              FLUIDITY_VERSION,true);
-    wp_register_script('tcc-reduce-js', get_theme_file_uri("js/header-reduce.js"), array('jquery'),              FLUIDITY_VERSION,true);
+    wp_register_script('tcc-sprintf',   get_theme_file_uri("js/sprintf.js"),       null,                          FLUIDITY_VERSION, true);
+    wp_register_script('tcc-library',   get_theme_file_uri("js/library.js"),       array('jquery','tcc-sprintf'), FLUIDITY_VERSION, true);
+    wp_register_script('tcc-collapse',  get_theme_file_uri("js/collapse.js"),      array('jquery','tcc-library'), FLUIDITY_VERSION, true);
+    wp_register_script('tcc-skiplink',  get_theme_file_uri("js/skip-link-focus-fix.js"), array('jquery'),         FLUIDITY_VERSION, true);
+    wp_register_script('tcc-fixed',     get_theme_file_uri("js/header-fixed.js"),  array('jquery'),               FLUIDITY_VERSION, true);
+    wp_register_script('tcc-reduce-js', get_theme_file_uri("js/header-reduce.js"), array('jquery'),               FLUIDITY_VERSION, true);
     if (!(tcc_layout('menu')==='bootstrap')) {
       wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
     }
     wp_enqueue_script('bootstrap.js');
+    wp_enqueue_script('tcc-skiplink');
     if ((tcc_layout('widget')!=='perm') || is_404()) {
       wp_enqueue_script('tcc-collapse'); }
     if (is_singular() && comments_open() && get_option('thread_comments')) {

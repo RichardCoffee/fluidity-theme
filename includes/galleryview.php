@@ -25,7 +25,7 @@ $str3.= (is_single()) ? 'true' : 'false';
 $str4 = 'query->is_single: ';
 $str4.= ($query->is_single()) ? 'true' : 'false';
 log_entry($str1,$str2,$str3,$str4);
-			if (!is_admin() && $query->is_single) {
+			if (!is_admin() && $query->is_singular) {
 				wp_enqueue_style('tcc-galleryview-css');
 				wp_enqueue_style('tcc-gv-css');
 				wp_enqueue_script('tcc-gv-load');
