@@ -1,414 +1,131 @@
-galleryview/js/jquery.galleryview-3.0-dev.js:12:if (typeof Object.create !== 'function') {
-galleryview/js/jquery.galleryview-3.0-dev.js:13:    Object.create = function (o) {
-galleryview/js/jquery.galleryview-3.0-dev.js:14:        function F() {}
-galleryview/js/jquery.galleryview-3.0-dev.js:20:(function ($) {
-galleryview/js/jquery.galleryview-3.0-dev.js:22:	var gvImage = function (img) {
-galleryview/js/jquery.galleryview-3.0-dev.js:44:	// utility function wrapper
-galleryview/js/jquery.galleryview-3.0-dev.js:46:		getInt: function(i) {
-galleryview/js/jquery.galleryview-3.0-dev.js:50:		innerWidth: function(elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:53:		outerWidth: function(elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:57:		extraWidth: function(elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:63:		innerHeight: function(elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:66:		outerHeight: function(elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:70:		extraHeight: function(elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:94:		createElem: function(attrs,elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:102:		getPos: function (el) {
-galleryview/js/jquery.galleryview-3.0-dev.js:133:		mouseIsOverGallery: function (x, y) {
-galleryview/js/jquery.galleryview-3.0-dev.js:144:		mouseIsOverPanel: function (x, y) {
-galleryview/js/jquery.galleryview-3.0-dev.js:156:		storeImages: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:161:			this.sourceImgs.each(function(i,img) {
-galleryview/js/jquery.galleryview-3.0-dev.js:166:		setDimensions: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:234:			$.each(this.gvImages,function(i,img) {
-galleryview/js/jquery.galleryview-3.0-dev.js:303:		setPositions: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:370:		buildFilmstrip: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:382:				mouseover: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:387:				mouseout: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:395:			$.each(this.gvImages,function(i,img) {
-galleryview/js/jquery.galleryview-3.0-dev.js:431:			$.each(dom.gv_frames,function(i,frame) {
-galleryview/js/jquery.galleryview-3.0-dev.js:437:		buildGallery: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:449:		showInfoBar: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:456:			dom.gv_infobar.oneTime(2000 + this.opts.transition_speed,'hideInfoBar_' + self.id,function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:461:		initImages: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:464:			$.each(this.gvImages,function(i,gvImage) {
-galleryview/js/jquery.galleryview-3.0-dev.js:467:				img.bind('load.galleryview',function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:537:		showNext: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:542:		showPrev: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:547:		showItem: function(i) {
-galleryview/js/jquery.galleryview-3.0-dev.js:582:			dom.gv_gallery.oneTime(this.opts.transition_speed,'bindActions_' + self.id,function(){ if(playing) { self.startSlideshow(false); } self.bindActions(); });
-galleryview/js/jquery.galleryview-3.0-dev.js:586:					dom.gv_panels.eq(this.iterator).fadeOut(this.opts.transition_speed,function(){$(this).remove();});
-galleryview/js/jquery.galleryview-3.0-dev.js:609:						{ duration: this.opts.transition_speed, easing: this.opts.easing, complete: function(){ $(this).remove(); } }
-galleryview/js/jquery.galleryview-3.0-dev.js:627:		updateOverlay: function(i) {
-galleryview/js/jquery.galleryview-3.0-dev.js:632:				this.hideOverlay(null,function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:643:		hideOverlay: function(s,callback) {
-galleryview/js/jquery.galleryview-3.0-dev.js:650:			callback = callback || function(){};
-galleryview/js/jquery.galleryview-3.0-dev.js:668:		showOverlay: function(s) {
-galleryview/js/jquery.galleryview-3.0-dev.js:690:		updateFilmstrip: function(to) {
-galleryview/js/jquery.galleryview-3.0-dev.js:722:						complete: function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:744:						complete: function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:765:		startSlideshow: function(changeIcon) {
-galleryview/js/jquery.galleryview-3.0-dev.js:775:			dom.gv_galleryWrap.everyTime(this.opts.transition_interval,'slideshow_'+this.id,function(){ self.showNext(); });
-galleryview/js/jquery.galleryview-3.0-dev.js:778:		stopSlideshow: function(changeIcon) {
-galleryview/js/jquery.galleryview-3.0-dev.js:789:		enablePanning: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:797:				dom.gv_panelWrap.delegate('.gv_panel img','mousedown.galleryview',function(e) {
-galleryview/js/jquery.galleryview-3.0-dev.js:800:				}).delegate('.gv_panel img','mouseup.galleryview',function(e) {
-galleryview/js/jquery.galleryview-3.0-dev.js:803:				}).delegate('.gv_panel img','mousemove.galleryview',function(e) {
-galleryview/js/jquery.galleryview-3.0-dev.js:833:		bindActions: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:837:			dom.gv_showOverlay.bind('click.galleryview',function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:845:			dom.gv_navWrap.delegate('div','click.galleryview',function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:859:			dom.gv_panelNavNext.bind('click.galleryview',function(){ 
-galleryview/js/jquery.galleryview-3.0-dev.js:863:			dom.gv_panelNavPrev.bind('click.galleryview',function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:868:			dom.gv_filmstripWrap.delegate('.gv_frame','click.galleryview',function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:877:			dom.gv_panelWrap.bind('mouseover.galleryview',function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:879:			}).bind('mouseout.galleryview',function(){
-galleryview/js/jquery.galleryview-3.0-dev.js:884:		unbindActions: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:895:		showPanelNav: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:903:		hidePanelNav: function() {
-galleryview/js/jquery.galleryview-3.0-dev.js:911:		init: function(options,el) {
-galleryview/js/jquery.galleryview-3.0-dev.js:927:			$(document).bind('mousemove.galleryview',function(e) {
-galleryview/js/jquery.galleryview-3.0-dev.js:932:			$.each(this.elems,function(i,elem) {
-galleryview/js/jquery.galleryview-3.0-dev.js:944:			dom.gv_galleryWrap.delegate('img','mousedown.galleryview',function(e){ if(e.preventDefault) { e.preventDefault(); } });
-galleryview/js/jquery.galleryview-3.0-dev.js:1026:	$.fn.galleryView = function (options) {
-galleryview/js/jquery.galleryview-3.0-dev.js:1028:			return this.each(function () {
-galleryview/js/jquery.timers-1.2.js:13:	everyTime: function(interval, label, fn, times) {
-galleryview/js/jquery.timers-1.2.js:14:		return this.each(function() {
-galleryview/js/jquery.timers-1.2.js:18:	oneTime: function(interval, label, fn) {
-galleryview/js/jquery.timers-1.2.js:19:		return this.each(function() {
-galleryview/js/jquery.timers-1.2.js:23:	stopTime: function(label, fn) {
-galleryview/js/jquery.timers-1.2.js:24:		return this.each(function() {
-galleryview/js/jquery.timers-1.2.js:46:		timeParse: function(value) {
-galleryview/js/jquery.timers-1.2.js:58:		add: function(element, interval, label, fn, times) {
-galleryview/js/jquery.timers-1.2.js:85:			var handler = function() {
-galleryview/js/jquery.timers-1.2.js:98:		remove: function(element, label, fn) {
-galleryview/js/jquery.timers-1.2.js:134:jQuery(window).bind("unload", function() {
-galleryview/js/jquery.timers-1.2.js:135:	jQuery.each(jQuery.timer.global, function(index, item) {
-galleryview/js/jquery.easing.1.3.js:44:	swing: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:48:	easeInQuad: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:51:	easeOutQuad: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:54:	easeInOutQuad: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:58:	easeInCubic: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:61:	easeOutCubic: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:64:	easeInOutCubic: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:68:	easeInQuart: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:71:	easeOutQuart: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:74:	easeInOutQuart: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:78:	easeInQuint: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:81:	easeOutQuint: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:84:	easeInOutQuint: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:88:	easeInSine: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:91:	easeOutSine: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:94:	easeInOutSine: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:97:	easeInExpo: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:100:	easeOutExpo: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:103:	easeInOutExpo: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:109:	easeInCirc: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:112:	easeOutCirc: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:115:	easeInOutCirc: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:119:	easeInElastic: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:126:	easeOutElastic: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:133:	easeInOutElastic: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:141:	easeInBack: function (x, t, b, c, d, s) {
-galleryview/js/jquery.easing.1.3.js:145:	easeOutBack: function (x, t, b, c, d, s) {
-galleryview/js/jquery.easing.1.3.js:149:	easeInOutBack: function (x, t, b, c, d, s) {
-galleryview/js/jquery.easing.1.3.js:154:	easeInBounce: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:157:	easeOutBounce: function (x, t, b, c, d) {
-galleryview/js/jquery.easing.1.3.js:168:	easeInOutBounce: function (x, t, b, c, d) {
-includes/search.php:3:if (!function_exists('fluid_search_page_title')) {
 includes/search.php:4:  function fluid_search_page_title() {
-includes/search.php:18:if (!function_exists('fluid_search_page_afterposts')) {
 includes/search.php:19:  function fluid_search_page_afterposts() { ?>
-includes/search.php:26:if (!function_exists('fluid_search_page_noposts')) {
 includes/search.php:27:  function fluid_search_page_noposts() {
-includes/galleryview.php:5:	if (!function_exists('tcc_register_galleryview')) {
 includes/galleryview.php:6:		function tcc_register_galleryview() {
-includes/galleryview.php:17:	if (!function_exists('tcc_enqueue_galleryview')) {
 includes/galleryview.php:18:		function tcc_enqueue_galleryview($query) {
-includes/widgets.php:3:if (!function_exists('tcc_register_widgets')) {
 includes/widgets.php:4:   function tcc_register_widgets() {
 includes/widgets.php:16:function fluid_sidebar_admin_setup() {
 includes/widgets.php:21:function fluid_widgets_admin_page() {
 includes/widgets.php:26:function fluid_sidebar_admin_page() {
 includes/index.php:8:function fluid_index_page($page='index') { ?>
-includes/library.php:4:if (!function_exists('tcc_apply_clearfix')) {
 includes/library.php:5:  function tcc_apply_clearfix($args) {
-includes/library.php:17:if (!function_exists('tcc_bootstrap_css')) {
 includes/library.php:18:  function tcc_bootstrap_css($args) {
-includes/library.php:29:if (!function_exists('tcc_browser_body_class')) {
 includes/library.php:31:  function tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead
-includes/library.php:47:if (!function_exists('container_type')) {
 includes/library.php:48:  function container_type($location='post') {
-includes/library.php:61:if (!function_exists('convert_user_meta')) {
 includes/library.php:62:  function convert_user_meta($ID) {
-includes/library.php:73:/*if (!function_exists('fluid_get_post_terms')) {
 includes/library.php:74:  function fluid_get_post_terms($post_id,$taxonomy,$args) {
-includes/library.php:88:if (!function_exists('wp_menu_id_by_name')) {
 includes/library.php:90:  function wp_menu_id_by_name($name) {
-includes/library.php:101:if (!function_exists('esc_attr_ex')) {
 includes/library.php:102:	function esc_attr_ex( $text, $context, $domain = 'default' ) {
-includes/library.php:107:if (!function_exists('esc_html_ex')) {
 includes/library.php:108:	function esc_html_ex( $text, $context, $domain = 'default' ) {
-includes/library.php:114:if (!function_exists('author_role_template')) {
 includes/library.php:115:  function author_role_template( $templates = '' ) {
-includes/library.php:137:if (!function_exists('get_featured_url')) {
 includes/library.php:138:	function get_featured_url($postID=null) {
-includes/library.php:151:if (!function_exists('get_term_name')) {
 includes/library.php:152:  function get_term_name($tax,$slug) {
-includes/library.php:159:if (!function_exists('get_valid_gravatar')) {
 includes/library.php:161:  function get_valid_gravatar($email,$size=96) {
-includes/library.php:176:if (!function_exists('is_ajax')) {
 includes/library.php:177:	function is_ajax() {
-includes/library.php:183:if (!function_exists('page_exists')) {
 includes/library.php:184:  function page_exists($search='') {
-includes/library.php:194:if (!function_exists('sanitize_array')) {
 includes/library.php:195:  function sanitize_array($array,$method='title') {
-includes/library.php:198:    if ((array)$array==$array && function_exists($func)) {
-includes/library.php:214:if (!function_exists('array_insert_after')) {
 includes/library.php:216:  function array_insert_after($array, $key, $new_key, $new_value) {
-includes/library.php:231:/*  Debugging functions  */
-includes/library.php:233:if (!function_exists('debug_calling_function')) {
 includes/library.php:235:  function debug_calling_function($depth=1) {
-includes/library.php:242:    $func = (isset($debugTrace[($depth+1)]['function'])) ? $debugTrace[($depth+1)]['function'] : 'n/a';
-includes/library.php:248:if (!function_exists('debug_rewrite_rules')) {
 includes/library.php:249:  function debug_rewrite_rules() {
-includes/library.php:269:if (!function_exists('list_filter_hooks')) {
 includes/library.php:270:  function list_filter_hooks( $hook = '' ) {
-includes/library.php:276:        // function name as string or static class method eg. 'Foo::Bar'
-includes/library.php:277:        if ( is_string( $item['function'] ) ) {
-includes/library.php:278:          $ref = strpos( $item['function'], '::' ) ? new ReflectionClass( strstr( $item['function'], '::', true ) ) : new ReflectionFunction( $item['function'] );
-includes/library.php:281:                    : $ref->getMethod( substr( $item['function'], strpos( $item['function'], '::' ) + 2 ) )->getStartLine();
-includes/library.php:283:        } elseif ( is_array( $item['function'] ) ) {
-includes/library.php:284:          $ref = new ReflectionClass( $item['function'][0] );
-includes/library.php:285:          // $item['function'][0] is a reference to existing object
-includes/library.php:286:          $item['function'] = array(
-includes/library.php:287:                    is_object($item['function'][0]) ? get_class($item['function'][0]) : $item['function'][0],
-includes/library.php:288:                    $item['function'][1] );
-includes/library.php:290:          $item['line'] = strpos( $item['function'][1], '::' )
-includes/library.php:291:                    ? $ref->getParentClass()->getMethod( substr( $item['function'][1], strpos( $item['function'][1], '::' ) + 2 ) )->getStartLine()
-includes/library.php:292:                    : $ref->getMethod( $item['function'][1] )->getStartLine();
-includes/library.php:294:        } elseif (is_callable( $item['function'])) {
-includes/library.php:295:          $ref = new ReflectionFunction($item['function']);
-includes/library.php:296:          $item['function'] = get_class($item['function']);
-includes/library.php:308:if (!function_exists('list_template_conditions')) {
 includes/library.php:309:  function list_template_conditions() {
-includes/library.php:350:if (!function_exists('log_entry')) {
 includes/library.php:351:  function log_entry() {
-includes/library.php:359:      if ($depth) error_log(debug_calling_function($depth));
-includes/library.php:374:if (!function_exists('showme')) {
 includes/library.php:375:  function showme($title,$data) {
-includes/library.php:396:if (!function_exists('tellme')) {
 includes/library.php:397:  function tellme($string) {
-includes/library.php:404:if (!function_exists('who_am_i')) {
-includes/library.php:405:  //  This function is for debugging purposes only
 includes/library.php:406:  function who_am_i($pos=0) {
-includes/parallax.php:4:if (!function_exists('tcc_excerpt_parallax')) {
 includes/parallax.php:5:	function tcc_excerpt_parallax() {
-includes/parallax.php:18:if (!function_exists('tcc_page_parallax')) {
 includes/parallax.php:19:	function tcc_page_parallax($page) {
-includes/parallax.php:40:if (!function_exists('tcc_post_parallax')) {
 includes/parallax.php:41:	function tcc_post_parallax($css='single-parallax') {
-includes/layout.php:8:if (!function_exists('fluid_layout')) {
 includes/layout.php:9:  function fluid_layout() {
-includes/layout.php:22:if (!function_exists('sidebar_layout')) {
 includes/layout.php:23:  function sidebar_layout($sidebar='standard',$side=null) {
-includes/in-the-loop.php:6: *  All functions in this file expect to be run inside the WordPress loop
-includes/in-the-loop.php:10:if (!function_exists('fluid_content_slug')) {
 includes/in-the-loop.php:11:  function fluid_content_slug($page='single') {
-includes/in-the-loop.php:22:if (!function_exists('fluid_edit_post_link')) {
 includes/in-the-loop.php:23:  function fluid_edit_post_link($separator=' ') {
-includes/in-the-loop.php:39:if (!function_exists('fluid_navigation')) {
 includes/in-the-loop.php:40:	function fluid_navigation($taxonomy='',$all_links=false) {
-includes/in-the-loop.php:46:			<nav class="noprint" aria-label="..."><?php // FIXME:  move this out to it own function? ?>
-includes/in-the-loop.php:79:if (!function_exists('fluid_next_post_exists')) {
 includes/in-the-loop.php:80:  function fluid_next_post_exists() {
-includes/in-the-loop.php:86:if (!function_exists('fluid_post_date')) {
 includes/in-the-loop.php:87:  function fluid_post_date($complete=false) {
-includes/in-the-loop.php:116:if (!function_exists('fluid_postmetadata')) {
 includes/in-the-loop.php:117:	function fluid_postmetadata() { ?>
-includes/in-the-loop.php:141:if (!function_exists('fluid_post_separator')) {
 includes/in-the-loop.php:142:  function fluid_post_separator($slug) {
-includes/in-the-loop.php:154:if (!function_exists('fluid_thumbnail')) {
 includes/in-the-loop.php:155:	function fluid_thumbnail() {
-includes/in-the-loop.php:167:if (!function_exists('fluid_title')) {
 includes/in-the-loop.php:168:	function fluid_title($length=0) {
-includes/in-the-loop.php:189:if (!function_exists('get_the_author_posts_link')) {
 includes/in-the-loop.php:190:  function get_the_author_posts_link($authorID=0) {
-includes/in-the-loop.php:202:if (!function_exists('tcc_excerpt_parallax')) {
 includes/in-the-loop.php:203:	function tcc_excerpt_parallax() { ?>
-includes/in-the-loop.php:217:if (!function_exists('tcc_post_parallax')) {
 includes/in-the-loop.php:218:	function tcc_post_parallax($css='single-parallax') {
-includes/in-the-loop.php:232:if (!function_exists('tcc_post_title')) {
 includes/in-the-loop.php:233:	function tcc_post_title($max=0,$anchor=true) {
-includes/login.php:4:  add_filter('login_errors',create_function('$a',"return null;"));
-includes/login.php:7:if (!function_exists('tcc_admin_login_redirect')) {
 includes/login.php:8:  function tcc_admin_login_redirect($redirect_to,$request,$user) {
-includes/login.php:21:if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
 includes/login.php:23:  function tcc_dashboard_logo() {
-includes/login.php:35:if (!function_exists('tcc_login_css')) {
 includes/login.php:36:  function tcc_login_css() {
-includes/login.php:47:if (!function_exists('tcc_login_header_url')) {
 includes/login.php:48:  function tcc_login_header_url() {
-includes/login.php:54:if (!function_exists('tcc_login_header_title')) {
 includes/login.php:55:  function tcc_login_header_title() {
-includes/login.php:62:if (!function_exists('tcc_remember_me')) {
 includes/login.php:63:  function tcc_remember_me() {
-includes/login.php:64:    if (!function_exists('tcc_remember_me_checked')) {
 includes/login.php:65:      function tcc_remember_me_checked() {
-includes/login.php:75:if (!function_exists('remove_lostpassword_text')) {
 includes/login.php:76:  function remove_lostpassword_text($text) {
-includes/login.php:84:if (!function_exists('tcc_login_form')) {
 includes/login.php:85:  function tcc_login_form($navbar=false,$right=false) {
-includes/login.php:126:if (!function_exists('tcc_logout_url')) {
 includes/login.php:127:  function tcc_logout_url($url, $redirect) {
 includes/archive.php:3:function fluid_archive_page_title() {
-includes/pages.php:8:if (!function_exists('fluid_archive_page_title')) {
 includes/pages.php:9:  function fluid_archive_page_title() { ?>
-includes/pages.php:14:if (!function_exists('fluid_archive_page_noposts')) {
 includes/pages.php:15:  function fluid_archive_page_noposts() {
-includes/pages.php:21:if (!function_exists('fluid_category_page_title')) {
 includes/pages.php:22:  function fluid_category_page_title() { ?>
-includes/pages.php:27:if (!function_exists('fluid_category_page_noposts')) {
 includes/pages.php:28:  function fluid_category_page_noposts() {
-includes/pages.php:34:if (!function_exists('fluid_noposts_page')) {
 includes/pages.php:35:  function fluid_noposts_page($text) { ?>
-includes/pages.php:46:if (!function_exists('fluid_save_page_template')) {
 includes/pages.php:47:	function fluid_save_page_template( $template ) {
-includes/pages.php:55:if (!function_exists('get_page_slug')) {
 includes/pages.php:56:  function get_page_slug() {
-includes/pages.php:68://log_entry(0,$slug.':  '.debug_calling_function());
-includes/pages.php:73:if (!function_exists('get_page_title')) {
 includes/pages.php:74:	function get_page_title($slug) {
-includes/pages.php:79:if (!function_exists('tcc_get_page_id_by_slug')) {
 includes/pages.php:80:	function tcc_get_page_id_by_slug($slug,$prop='ID') {
-includes/pages.php:99:if (!function_exists('tcc_page_title')) {
 includes/pages.php:100:	function tcc_page_title($slug) { ?>
-includes/pages.php:115:if (!function_exists('tcc_parallax_effect')) {
 includes/pages.php:116:	function tcc_page_parallax($page) {
-includes/menus.php:11:if (!function_exists('tcc_register_nav_menu')) {
 includes/menus.php:12:  function tcc_register_nav_menu() {
 includes/loader.php:3:function fluidity_class_loader( $class ) {
-includes/comments.php:8:if (!function_exists('fluid_comment_navigation')) {
 includes/comments.php:9:  function fluid_comment_navigation() {
-includes/comments.php:26:if (!function_exists('fluid_list_comments')) {
 includes/comments.php:29:  function fluid_list_comments($comment,$args,$depth) {
-includes/wp_bootstrap_navwalker.php:19:    public function start_lvl( &$output, $depth = 0, $args = array() ) {
-includes/wp_bootstrap_navwalker.php:45:  public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
-includes/wp_bootstrap_navwalker.php:58:   * If this function is assigned to the wp_nav_menu's fallback_cb variable
-includes/wp_bootstrap_navwalker.php:60:   * menu manager the function with display nothing to a non-logged in user,
-includes/wp_bootstrap_navwalker.php:63:   * @param array $args passed from the wp_nav_menu function.
-includes/wp_bootstrap_navwalker.php:66:  public static function fallback( $args ) {
-includes/wp_bootstrap_navwalker.php:115:add_filter('nav_menu_css_class', function($classes, $item, $args) {
-includes/wp_bootstrap_navwalker.php:139:add_filter('nav_menu_link_attributes', function($atts, $item, $args) {
-includes/wp_bootstrap_navwalker.php:161:  function($item_output, $item, $depth, $args) {
-includes/sidebars.php:5:if (!function_exists('fluidity_register_sidebars')) {
 includes/sidebars.php:6:  function fluidity_register_sidebars() {
 includes/sidebars.php:66:function fluidity_the_widget($widget,$instance,$args) {
-includes/sidebars.php:71:if (!function_exists('fluidity_get_sidebar')) {
-includes/sidebars.php:72:  #  This function works in tandem with fluidity_sidebar_parameter()
 includes/sidebars.php:73:  function fluidity_get_sidebar($sidebar='standard') {
-includes/sidebars.php:78:if (!function_exists('fluidity_load_sidebar')) {
 includes/sidebars.php:79:  function fluidity_load_sidebar($args,$force=false) {
-includes/sidebars.php:92:if (!function_exists('fluidity_sidebar_parameter')) {
 includes/sidebars.php:93:  function fluidity_sidebar_parameter() {
-includes/sidebars.php:96:      if ($item['function']=='fluidity_get_sidebar') {
-includes/sidebars.php:98:      if (($item['function']=='get_template_part') && ($item['args'][0]=='sidebar')) {
-includes/sidebars.php:106:if (!function_exists('fluidity_sidebar_layout')) {
 includes/sidebars.php:107:  function fluidity_sidebar_layout($sidebar='standard',$side='') {
-includes/third-party.php:17:/*  jetpack_the_site_logo() called in includes/header.php, function fluidity_header_logo() */
-includes/third-party.php:18:if (!function_exists('fluidity_jetpack_site_logo_to_bootstrap')) {
 includes/third-party.php:19:  function fluidity_jetpack_site_logo_to_bootstrap($html) {
-includes/third-party.php:31:add_filter( 'mc4wp_debug_log_level', function() { return FLUID_MC4WP_LOG_LEVEL; } );  # possible values are: debug, info, warning, error(default)
-includes/third-party.php:34:add_filter( 'mc4wp_debug_log_file', function( $file ) { return FLUID_MC4WP_LOG_FILE; } );  # default is the download directory (huh?)
-includes/third-party.php:39:if (!function_exists('has_woocommerce')) {
 includes/third-party.php:40:  function has_woocommerce() {
-includes/third-party.php:49:  #  function sharing_display is part of Jetpack's sharedaddy
-includes/third-party.php:50:  if (function_exists('sharing_display') && !function_exists('woocommerce_and_jetpack_sharedaddy')) {
 includes/third-party.php:51:    function woocommerce_and_jetpack_sharedaddy() { ?>
-includes/third-party.php:61:if (function_exists('wpfai_social') && !function_exists('fluidity_wpfai_social')) {
 includes/third-party.php:62:  function fluidity_wpfai_social() {
-Binary file includes/.layout.php.swp matches
-includes/footer.php:9:if (!function_exists('fluid_copyright_dates')) {
 includes/footer.php:10:  function fluid_copyright_dates() {
-includes/footer.php:25:if (!function_exists('fluid_footer_autohide')) { // FIXME
 includes/footer.php:26:  function fluid_footer_autohide() {
-includes/footer.php:29:  jQuery(document).ready(function() {
-includes/footer.php:45:if (!function_exists('tcc_copyright')) {
 includes/footer.php:46:	function tcc_copyright($banner=true) { ?>
 includes/collective.php:9:function collective_color_scheme($color) {
 includes/collective.php:14:function collective_header() { ?>
 includes/collective.php:26:function collective_enqueue() {
 includes/collective.php:31:function collective_container_type($css) {
 includes/collective.php:41:function collective_sidebars($sidebars) {
-includes/options.php:8:if (!function_exists('stop_heartbeat')) {
 includes/options.php:9:  function stop_heartbeat() {
-includes/options.php:15:        add_action('admin_enqueue_scripts', function() { wp_deregister_script('heartbeat'); }, 999);
-includes/options.php:16:        add_action('wp_enqueue_scripts',    function() { wp_deregister_script('heartbeat'); }, 999);
-includes/options.php:17:        add_filter('heartbeat_settings', function ( $settings ) {
-includes/options.php:27:if (!function_exists('tcc_currency_symbol')) {
 includes/options.php:28:  function tcc_currency_symbol() {
-includes/options.php:35:if (!function_exists('tcc_design')) {
 includes/options.php:36:  function tcc_design($option) {
-includes/options.php:44:if (!function_exists('tcc_font_size')) {
 includes/options.php:45:  function tcc_font_size() {
-includes/options.php:54:if (!function_exists('tcc_layout')) {
 includes/options.php:55:  function tcc_layout($option) {
-includes/options.php:63:if (!function_exists('tcc_option')) {
 includes/options.php:64:  function tcc_option($option='',$section='') {
-includes/options.php:68:        if (function_exists($tcc_func)) {
-includes/options.php:91:if (!function_exists('tcc_settings')) {
 includes/options.php:92:  function tcc_settings($option) {
 includes/misc.php:4:function contextual_static_front_page_section($wp_customize) {
 includes/misc.php:10:function fluid_read_more_link($output) {
-includes/misc.php:19:if (!function_exists('fluidity_social_icons')) {
 includes/misc.php:20:  function fluidity_social_icons() {
-includes/misc.php:59:if (!function_exists('fluid_user_profile_link')) {
 includes/misc.php:60:  function fluid_user_profile_link() {
-includes/misc.php:72:if (!function_exists('single_search_result')) {
 includes/misc.php:74:  function single_search_result() {
-includes/header.php:10:if (!function_exists('fluid_browser_body_class')) {
 includes/header.php:12:  function fluid_browser_body_class($classes) {
-includes/header.php:29:if (!function_exists('fluid_browser_title')) {
 includes/header.php:30:  function fluid_browser_title($title) {
-includes/header.php:48:if (!function_exists('tcc_custom_css')) {
 includes/header.php:49:  function tcc_custom_css() { ?>
-includes/header.php:57:if (!function_exists('fluidity_header_logo')) {
 includes/header.php:58:  function fluidity_header_logo() {
-includes/header.php:62:      if (function_exists('jetpack_the_site_logo')) {
-includes/header.php:86:if (!function_exists('fluidity_menubar_print')) {
 includes/header.php:87:  function fluidity_menubar_print_button() {
-includes/colors.php:3:if (!function_exists('fluid_color_body_class')) {
 includes/colors.php:4:	function fluid_color_body_class($classes) {
-includes/colors.php:14:if (!function_exists('fluid_color_scheme')) {
 includes/colors.php:15:  function fluid_color_scheme() {
-includes/colors.php:23:if (!function_exists('tcc_color_scheme')) {
 includes/colors.php:24:  function tcc_color_scheme($location='') {
-includes/colors.php:43:#  function assumes calling function is wrapping with css script tags
 includes/colors.php:44:function tcc_custom_colors() {
-includes/colors.php:54:if (!function_exists('tcc_parallax')) {
 includes/colors.php:55:	function tcc_parallax() {
-includes/theme-support.php:57:if (!function_exists('tcc_editor_styles')) {
 includes/theme-support.php:59:    function tcc_editor_styles() {
-includes/theme-support.php:66:if (!function_exists('tcc_post_revisions')) {
 includes/theme-support.php:67:	function tcc_post_revisions() {
-functions.php:3: *  tcc-fluidity/functions.php
-functions.php:13:require_once('includes/library.php');                #  load logging function as soon as possible
-functions.php:46:if (!function_exists('tcc_enqueue')) {
 functions.php:47:  function tcc_enqueue() {
-functions.php:100:if (!function_exists('fluidity_admin_enqueue')) {
 functions.php:101:  function fluidity_admin_enqueue() {
-functions.php:109:if (!function_exists('fluidity_register_bootstrap')) {
 functions.php:110:  function fluidity_register_bootstrap() {
 functions.php:116:  function fluidity_bootstrap_backup() {
-functions.php:122:if (!function_exists('fluidity_register_fontawesome')) {
 functions.php:123:  function fluidity_register_fontawesome() {
-functions.php:128:if (!function_exists('fluidity_register_color_scheme')) {
 functions.php:129:  function fluidity_register_color_scheme() {
-functions.php:137:if (!function_exists('fluidity_show_query')) { // FIXME: move this
 functions.php:138:  function fluidity_show_query( $args, $template, $slug='' ) {
-design/js/scrolleffects.js:1:$(window).scroll(function() {
-design/js/scrolleffects.js:14:$(function(){
-design/js/scrolleffects.js:21:	$window.on("mousewheel DOMMouseScroll", function(event){
-design/js/scrolleffects.js:31:				ease: Power1.easeOut,	//For more easing functions see http://api.greensock.com/js/com/greensock/easing/package-detail.html
-design/js/scrolleffects.js:42:function update(){ 
-design/js/scrolleffects.js:46:    $('.w-scroll').each(function() { 
 scss/bootstrap/_component-animations.scss:36:  @include transition-timing-function(ease);
 scss/bootstrap/mixins/_vendor-prefixes.scss:32:@mixin animation-timing-function($timing-function) {
 scss/bootstrap/mixins/_vendor-prefixes.scss:33:  -webkit-animation-timing-function: $timing-function;

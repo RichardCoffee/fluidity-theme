@@ -411,6 +411,7 @@ log_entry($controls);
   }
 
   private function render_attributes($layout) {
+log_entry($layout);
     $attr   = (!empty($layout['divcss']))  ? " class='{$layout['divcss']}'"   : "";
     $attr  .= (isset($layout['help']))     ? " title='{$layout['help']}'"     : "";
     if (!empty($layout['showhide'])) {
