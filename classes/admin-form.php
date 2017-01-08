@@ -411,15 +411,15 @@ log_entry($controls);
   }
 
   private function render_attributes($layout) {
-log_entry($layout);
-    $attr   = (!empty($layout['divcss']))  ? " class='{$layout['divcss']}'"   : "";
-    $attr  .= (isset($layout['help']))     ? " title='{$layout['help']}'"     : "";
+    $attr = (!empty($layout['divcss']))  ? " class='{$layout['divcss']}'"   : "";
+    $attr.= (isset($layout['help']))     ? " title='{$layout['help']}'"     : "";
     if (!empty($layout['showhide'])) {
       $item = $layout['showhide']['item'];
       $show = $layout['showhide']['show'];
       $attr.= " data-item='$item'";
       $attr.= " data-show='$show'";
     }
+    return $attr;
   }
 
 
