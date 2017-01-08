@@ -54,9 +54,10 @@ if (!function_exists('tcc_enqueue')) {
     fluidity_register_color_scheme();
     wp_register_style('fa-social',      get_theme_file_uri("css/fa-social-hover.css"), array('tcc-awe'), FLUIDITY_VERSION);
     wp_register_style('fluidity',       get_theme_file_uri("style.css"),               null,             FLUIDITY_VERSION);
-    wp_register_style('tcc-reduce-css', get_theme_file_uri("css/header-reduce.css"),               null,             FLUIDITY_VERSION);
+    wp_register_style('tcc-reduce-css', get_theme_file_uri("css/header-reduce.css"),   null,             FLUIDITY_VERSION);
     wp_enqueue_style('tcc-fawe');	#  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
-    if (tcc_option('active','social')=='yes') {
+    if (tcc_option('active','social')==='yes') {
+log_entry("social state: ".tcc_option('active','social'));
 		 wp_enqueue_style('fa-social'); }
     wp_enqueue_style('bootstrap.css');
     wp_enqueue_style('fluidity');
