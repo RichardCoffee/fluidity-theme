@@ -37,6 +37,16 @@ class TCC_Options_Social {
                               'source'  => array('target'  => __('Open in new tab (default)','tcc-fluid'),
                                                  'replace' => __('Load in same tab','tcc-fluid')),
                               'divcss'  => 'social-option-icon');
+    $layout['size']   = array('default' => 'normal',
+                              'label'   => __('Icon Size','tcc-fluid'),
+                              'render'  => 'radio',
+                              'source'  => array('normal' => __('Site font size','tcc-fluid'),
+                                                 'fa-2x'  => __('2 * font size','tcc-fluid'),
+                                                 'fa-3x'  => __('3 * font size','tcc-fluid'),
+                                                 'fa-4x'  => __('4 * font size','tcc-fluid'),
+                                                 'fa-5x'  => __('5 * font size','tcc-fluid')),
+                              'divcss'  => 'social-option-icon'
+);
     $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#3B5998',
                    'GitHub'    => 'black',   'Google Plus' => '#D74D2F', 'LinkedIN' => '#287BBC',
                    'Pinterest' => 'red',     'RSS'         => '#F67F00',

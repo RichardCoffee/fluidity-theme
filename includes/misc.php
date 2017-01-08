@@ -41,11 +41,12 @@ if (!function_exists('fluidity_social_icons')) {
         <span class='fluidity-social-icons'><?php
           foreach($social as $key=>$set) {
             if (empty($set['link'])) continue;
-            $html = " <a class='fa fa-fw fa-$key-square' ";
+            $html = " <a class='fa fa-fw fa-$key-square'";
             $html.= ($target==='target') ? " target='fluidity_$key'" : "";
             $html.= " href='{$set['link']}'";
-            #  translators: 1 - a website name
-            $html.= " title='".sprintf(_('See us on %s'),$layout[$key]['label'])."'";
+            $tool = sprintf(esc_html_x('See us on %s','website name','tcc-fluid'),$layout[$key]['label']);
+            $tool = ($key==='RSS') ? esc_html__('Subscribe to our RSS feed') : $tool;
+            $html.= " title='$tool'";
             $html.= " style='color:{$set['color']};'> </a>";
             echo $html;
           } ?>
