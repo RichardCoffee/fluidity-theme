@@ -72,6 +72,10 @@ if (!function_exists('fluidity_header_logo')) {
             echo wp_get_attachment_image( $logo_id, $size, false, $attr );
           } else if ($logo=tcc_design('logo')) { ?>
             <img class='img-responsive hidden-xs' src='<?php echo $logo; ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'><?php
+          } else { ?>
+            <h1>
+              <?php bloginfo('name'); ?>
+            </h1><?php
           } ?>
         </a><?php
       } ?>
