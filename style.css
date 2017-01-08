@@ -179,8 +179,11 @@ p#fluidity-copyright {
   display: inline;
 }
 
-.margintop,
-.margint1e {
+.marginbot, .marginb1e {
+  margin-bottom: 1em;
+}
+
+.margintop, .margint1e {
   margin-top: 1em;
 }
 
