@@ -19,13 +19,11 @@ add_filter('excerpt_more', 'fluid_read_more_link');
 if (!function_exists('fluidity_social_icons')) {
   function fluidity_social_icons() {
     $icons = get_option('tcc_options_social');
-//log_entry($icons);
     if ($icons['active']==='yes') {
       if (has_action('fluidity_social_icons')) {
         do_action('fluidity_social_icons');
       } else {
         $size   = (isset($icons['size']))   ? $icons['size']   : '';
-log_entry("size: $size");
         $target = (isset($icons['target'])) ? $icons['target'] : 'target';
         unset($icons['active'],$icons['target'],$icons['size']);
         $social = array(); // FIXME: find another way to do this
@@ -44,7 +42,7 @@ log_entry("size: $size");
         <span class='fluidity-social-icons'><?php
           foreach($social as $key=>$set) {
             if (empty($set['link'])) continue;
-            $html = " <a class='fa fa-fw fa-$key-square' $size";
+            $html = " <a class='fa fa-fw fa-$key-square $size'";
             $html.= ($target==='target') ? " target='fluidity_$key'" : "";
             $html.= " href='{$set['link']}'";
             $tool = sprintf(esc_html_x('See us on %s','website name','tcc-fluid'),$layout[$key]['label']);
