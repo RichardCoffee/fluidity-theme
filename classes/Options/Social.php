@@ -41,6 +41,7 @@ class TCC_Options_Social {
                               'label'   => __('Icon Size','tcc-fluid'),
                               'render'  => 'radio',
                               'source'  => array('normal' => __('Site font size','tcc-fluid'),
+                                                 'fa-lg'  => __('33% larger than font size','tcc-fluid'),
                                                  'fa-2x'  => __('2 * font size','tcc-fluid'),
                                                  'fa-3x'  => __('3 * font size','tcc-fluid'),
                                                  'fa-4x'  => __('4 * font size','tcc-fluid'),
