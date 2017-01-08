@@ -31,11 +31,11 @@ if (WP_DEBUG && is_user_logged_in()) { ?>
         <h2><?php esc_attr_e(__('It seems as if the page you are looking for is not here','tcc-fluid')); ?></h2>
         <h3><?php esc_attr_e(__('It looks like nothing was found at this location','tcc-fluid')); ?></h3>
         <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-2 hidden-xs"></div>
-          <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+          <div class="col-lg-4 col-md-3 col-sm-2 hidden-xs"></div>
+          <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
             <?php get_search_form(); ?>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-2 hidden-xs"></div>
+          <div class="col-lg-4 col-md-3 col-sm-2 hidden-xs"></div>
         </div>
         <h1>
           <a href="<?php echo home_url() ; ?>"><?php esc_attr_e(__('Home Page','tcc-fluid')); ?></a>
