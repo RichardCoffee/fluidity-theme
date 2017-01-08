@@ -64,7 +64,7 @@ if (!function_exists('fluidity_header_logo')) {
       } else { ?>
         <a class='logo' href='<?php echo home_url(); ?>/' itemprop='relatedLink'><?php
           $logo_id = get_theme_mod('custom-logo');
-log_entry('logo id: '.$logo_id);
+//log_entry('logo id: '.$logo_id);
           if ($logo_id) {
             $size = 'medium';
             $attr = array( 'class'     => "img-responsive attachment-$size hidden-xs",
@@ -72,7 +72,7 @@ log_entry('logo id: '.$logo_id);
                            'itemprop'  => "image" );
             echo wp_get_attachment_image( $logo_id, $size, false, $attr );
           } else if ($logo=tcc_design('logo')) {
-log_entry('logo:  '.$logo);
+//log_entry('logo:  '.$logo);
  ?>
             <img class='img-responsive hidden-xs' src='<?php echo $logo; ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'><?php
           } else { ?>
