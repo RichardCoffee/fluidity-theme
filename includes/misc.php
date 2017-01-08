@@ -23,8 +23,9 @@ if (!function_exists('fluidity_social_icons')) {
       if (has_action('fluidity_social_icons')) {
         do_action('fluidity_social_icons');
       } else {
+        $size   = (isset($icons['size']))   ? $icons['size']   : '';
         $target = (isset($icons['target'])) ? $icons['target'] : 'target';
-        unset($icons['active'],$icons['target']);
+        unset($icons['active'],$icons['target'],$icons['size']);
         $social = array(); // FIXME: find another way to do this
         foreach($icons as $field=>$value) {
           $pos = strpos($field,'_color');
@@ -41,7 +42,7 @@ if (!function_exists('fluidity_social_icons')) {
         <span class='fluidity-social-icons'><?php
           foreach($social as $key=>$set) {
             if (empty($set['link'])) continue;
-            $html = " <a class='fa fa-fw fa-$key-square'";
+            $html = " <a class='fa fa-fw fa-$key-square' $size";
             $html.= ($target==='target') ? " target='fluidity_$key'" : "";
             $html.= " href='{$set['link']}'";
             $tool = sprintf(esc_html_x('See us on %s','website name','tcc-fluid'),$layout[$key]['label']);
