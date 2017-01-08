@@ -38,7 +38,7 @@ if (!function_exists('fluidity_social_icons')) {
         }
         $insta  = new TCC_Options_Social;
         $layout = $insta->social_layout();
-        log_entry($icons,$social,$layout); ?>
+        #log_entry($icons,$social,$layout); ?>
         <span class='fluidity-social-icons'><?php
           foreach($social as $key=>$set) {
             if (empty($set['link'])) continue;
@@ -46,7 +46,7 @@ if (!function_exists('fluidity_social_icons')) {
             $html.= ($target==='target') ? " target='fluidity_$key'" : "";
             $html.= " href='{$set['link']}'";
             $tool = sprintf(esc_html_x('See us on %s','website name','tcc-fluid'),$layout[$key]['label']);
-            $tool = ($key==='RSS') ? esc_html__('Subscribe to our RSS feed','tcc-fluid') : $tool;
+            $tool = ($key==='rss') ? esc_html__('Subscribe to our RSS feed','tcc-fluid') : $tool;
             $html.= " title='$tool'";
             $html.= " style='color:{$set['color']};'> </a>";
             echo $html;
