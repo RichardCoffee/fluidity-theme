@@ -19,12 +19,13 @@ add_filter('excerpt_more', 'fluid_read_more_link');
 if (!function_exists('fluidity_social_icons')) {
   function fluidity_social_icons() {
     $icons = get_option('tcc_options_social');
-log_entry($icons);
+//log_entry($icons);
     if ($icons['active']==='yes') {
       if (has_action('fluidity_social_icons')) {
         do_action('fluidity_social_icons');
       } else {
         $size   = (isset($icons['size']))   ? $icons['size']   : '';
+log_entry("size: $size");
         $target = (isset($icons['target'])) ? $icons['target'] : 'target';
         unset($icons['active'],$icons['target'],$icons['size']);
         $social = array(); // FIXME: find another way to do this
