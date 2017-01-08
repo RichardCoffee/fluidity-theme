@@ -5,7 +5,7 @@
 }
 
 .comma-after:last-child::after {
-	content: '';
+	content: '.';
 }
 
 .block { display: inline-block; }

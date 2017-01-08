@@ -156,7 +156,7 @@ p#fluidity-copyright {
 }
 
 .comma-after:last-child::after {
-  content: '';
+  content: '.';
 }
 
 .block {
