@@ -7,7 +7,7 @@
 get_header();
 $micro = microdata();
 
-if (WP_DEBUG) { ?>
+if (WP_DEBUG && is_user_logged_in()) { ?>
  <div class="panel panel-fluidity collapse-auto">
    <div class="panel-heading">
       <h3 class="panel-title">Word Press Information</h3>
