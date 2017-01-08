@@ -59,6 +59,7 @@ if (!function_exists('get_page_slug')) {
          global $fluidity_theme_template; // FIXME: this is not a reliable source
          $page = get_queried_object();
 //if (!is_object($page)) { log_entry('bad page value',$page,$fluidity_theme_template,$_SERVER); }
+// FIXME: test for post_type property?
          if (is_object($page) && ($page->post_type==='page')) {
             $slug = $page->post_name;
          } else {
