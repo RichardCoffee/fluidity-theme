@@ -13,19 +13,21 @@ class TCC_Widgets_Basic extends WP_Widget {
 #log_entry('initilized: '.get_called_class().' '.__CLASS__);
   }
 
-  public function widget($args,$instance) {
-    #$args['tcc-title'] = apply_filters('widget_title',$instance['title'],$this->id_base);
-    $title = apply_filters('widget_title',$instance['title'],$this->id_base);
-log_entry($args);
-    echo $args['before_widget'];
-#    if (!empty($title)) {
-      echo $args['before_title'].$title.$args['after_title'];
-#    } else {
-#      if (!empty($args['before_title'])) echo "<div>";
-#    }
-    $this->inner_widget($args,$instance);
-    echo $args['after_widget'];
-  }
+	public function widget($args,$instance) {
+		#$args['tcc-title'] = apply_filters('widget_title',$instance['title'],$this->id_base);
+		$title = apply_filters('widget_title',$instance['title'],$this->id_base);
+		log_entry($args);
+		echo $args['before_widget'];
+		if (!empty($title)) {
+			echo $args['before_title'].$title.$args['after_title'];
+		} else {
+			$this->tcc_widget_title($args);
+		}
+		$this->inner_widget($args,$instance);
+		echo $args['after_widget'];
+	}
+
+	protected function tcc_widget_title($args) { }
 
   public function form($instance) {
     $this->form_title($instance);

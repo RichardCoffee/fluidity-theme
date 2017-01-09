@@ -14,4 +14,8 @@ class TCC_Widgets_Search extends TCC_Widgets_Basic {
     get_search_form();
   }
 
+	protected function tcc_widget_title($args) {
+		if (!empty($args['before_title'])) echo "<div>";
+	}
+
 }
