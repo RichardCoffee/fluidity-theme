@@ -84,6 +84,10 @@ hr {
 	border-color: color(bgHighlight);
 }
 
+.page-title {
+	color: color(textcolor);
+}
+
 .port-opaque {
 	background-color: rgba( $headerBody, .7 ) !important;
 }

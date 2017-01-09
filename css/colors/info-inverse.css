@@ -180,6 +180,10 @@ hr {
   border-color: #BCE8F1;
 }
 
+.page-title {
+  color: #31708F;
+}
+
 .port-opaque {
   background-color: rgba(217, 237, 247, 0.7) !important;
 }
