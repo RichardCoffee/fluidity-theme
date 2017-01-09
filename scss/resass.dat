@@ -1,4 +1,3 @@
 #sass --sourcemap=none --style=compressed scss/bootstrap.scss css/bootstrap.min.css
 sass --sourcemap=none --style=compressed scss/bootstrap-backup.scss css/bootstrap-backup.min.css
 sass --sourcemap=none --style=expanded scss/style.scss style.css
-#sass --sourcemap=none --style=expanded scss/tcc.scss css/collective.css

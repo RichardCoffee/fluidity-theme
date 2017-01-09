@@ -69,6 +69,15 @@ if (!function_exists('fluid_user_profile_link')) {
     return apply_filters('tcc_user_profile_link',$html);
   }
 }
+/* FIXME
+if (!function_exists('remove_post_revisions')) {
+
+DELETE a,b,c FROM wp_posts a
+LEFT JOIN wp_term_relationships b ON (a.ID = b.object_id)
+LEFT JOIN wp_postmeta c ON (a.ID = c.post_id)
+WHERE a.post_type = 'revision'
+
+} //*/
 
 if (!function_exists('single_search_result')) {
   // http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/

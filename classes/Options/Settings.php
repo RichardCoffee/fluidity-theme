@@ -38,6 +38,13 @@ class TCC_Options_Settings {
                              'render'  => 'radio',
                              'source'  => array('on'  => esc_html__('On','tcc-fluid'),
                                                 'off' => esc_html__('Off','tcc-fluid')));
+    $layout['coming'] = array('default' => 'off',
+                              'label'   => esc_html__('Coming Soon','tcc-fluid'),
+                              'text'    => esc_html__('Show a Coming Soon page','tcc-fluid'),
+                              'help'    => esc_html__('Take your site down temporarily','tcc-fluid'),
+                              'render'  => 'radio',
+                              'source'  => array('off' => esc_html__('Show site','tcc-fluid'),
+                                                 'on'  => esc_html__('Show Coming Soon page','tcc-fluid')));
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
