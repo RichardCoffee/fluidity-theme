@@ -3,6 +3,7 @@
 /*
  *  File:  includes/pages.php
  *
+ *		Custom Fields on Pages:		<?php echo get_post_meta(get_page_id($page), 'key string here', true); ?>
  */
 
 if(!function_exists('get_page_id')) {
