@@ -180,6 +180,7 @@ hr {
 
 .page-title {
   color: #FFFFFF;
+  text-shadow: #cc0000 1px 1px 2px;
 }
 
 .port-opaque {
