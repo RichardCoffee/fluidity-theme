@@ -5,7 +5,9 @@
  *
  */
 
-function fluid_index_page($page='index') { ?>
+function fluid_index_page($page='index') {
+
+do_action("tcc_{$page}_page_top"); ?>
 
 <main><?php
 
@@ -13,11 +15,11 @@ function fluid_index_page($page='index') { ?>
 		if (tcc_design('paral')==='yes') {
 			tcc_page_parallax($page);
 		}
+	} else if (is_page() || is_home()) {
 		// FIXME:  make title bar an option
 		tcc_page_title($page);
-	}
+	} ?>
 
-	do_action("tcc_{$page}_page_top"); ?>
 
 	<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
 		<div class="row"><?php
