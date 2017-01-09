@@ -2,21 +2,18 @@
 
 class TCC_Widgets_Basic extends WP_Widget {
 
-  protected $title = '';
-  protected $desc  = '';
-  protected $slug  = '';
-  protected static $micro = null;
+	protected $title = '';
+	protected $desc  = '';
+	protected $slug  = '';
+	protected static $micro = null;
 
-  function __construct($slug='',$title='',$desc=array()) {
-    parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
-    if (!self::$micro && class_exists('TCC_Microdata')) self::$micro = TCC_Microdata::get_instance();
-#log_entry('initilized: '.get_called_class().' '.__CLASS__);
-  }
+	function __construct($slug='',$title='',$desc=array()) {
+		parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
+		if (!self::$micro && class_exists('TCC_Microdata')) self::$micro = TCC_Microdata::get_instance();
+	}
 
 	public function widget($args,$instance) {
-		#$args['tcc-title'] = apply_filters('widget_title',$instance['title'],$this->id_base);
 		$title = apply_filters('widget_title',$instance['title'],$this->id_base);
-		log_entry($args);
 		echo $args['before_widget'];
 		if (!empty($title)) {
 			echo $args['before_title'].$title.$args['after_title'];
@@ -29,9 +26,9 @@ class TCC_Widgets_Basic extends WP_Widget {
 
 	protected function tcc_widget_title($args) { }
 
-  public function form($instance) {
-    $this->form_title($instance);
-  }
+	public function form($instance) {
+		$this->form_title($instance);
+	}
 
 	protected function form_title($instance) {
 		$instance['title'] = (isset($instance['title'])) ? $instance['title'] : $this->title;
@@ -63,10 +60,10 @@ class TCC_Widgets_Basic extends WP_Widget {
 		echo $html;
 	}
 
-  public function update($new,$old) {
-    $instance = $old;
-    $instance['title'] = (!empty($new['title'])) ? strip_tags($new['title']) : '';
-    return $instance;
-  }
+	public function update($new,$old) {
+		$instance = $old;
+		$instance['title'] = (!empty($new['title'])) ? strip_tags($new['title']) : '';
+		return $instance;
+	}
 
 }
