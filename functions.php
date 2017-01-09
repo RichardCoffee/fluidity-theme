@@ -38,9 +38,10 @@ if (is_admin()) {
   require_once('includes/index.php');
   require_once('includes/login.php');
   require_once('includes/pages.php');
-  //require_once('includes/wp_bootstrap_navwalker.php');
   require_once('includes/third-party.php');
   require_once('classes/microdata.php');
+  if (tcc_layout('menu')==='bootstrap') {
+    require_once('classes/wp_bootstrap_navwalker.php'); }
 }
 
 if (!function_exists('tcc_enqueue')) {
