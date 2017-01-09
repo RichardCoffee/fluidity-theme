@@ -10,23 +10,13 @@ if(!function_exists('get_page_id')) {
 	# http://snipplr.com/view/39004/
 	# http://www.smipple.net/snippet/elieandraos/Get%20Page%20ID%20By%20Slug
 	function get_page_id($slug) {
-		global $wpdb;
-		$page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'");
+		static $page_id;
+		if (!$page_id) {
+			global $wpdb;
+			$page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'");
+		}
 		return $page_id;
 	}
-}
-
-if (!function_exists('fluid_archive_page_title')) {
-  function fluid_archive_page_title() { ?>
-    <h1 class="text-center"><?php the_archive_title(); ?></h1><?php
-  }
-}
-
-if (!function_exists('fluid_archive_page_noposts')) {
-  function fluid_archive_page_noposts() {
-    $text = esc_html__( 'Apologies, but no results were found for the requested Archive. Perhaps searching will help find a related post.','tcc-fluid' );
-    fluid_noposts_page($text);
-  }
 }
 
 if (!function_exists('fluid_category_page_title')) {
@@ -109,30 +99,21 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 }
 
 if (!function_exists('tcc_page_title')) {
-	function tcc_page_title($slug) { ?>
-		<div id="tcc-page-title-banner" class="page-title page-title-<?php echo $slug; ?>">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h2 class="text-center">
-							<?php echo get_page_title($slug); ?>
-						</h2>
+	function tcc_page_title($slug) {
+		if (has_action("tcc_page_title_$slug")) {
+			do_action("tcc_page_title_$slug");
+		} else { ?>
+			<div id="tcc-page-title-banner" class="page-title page-title-<?php echo $slug; ?>">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 class="text-center">
+								<?php echo get_page_title($slug); ?>
+							</h2>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div><?php
-	}
-}
-/* in includes/parallax.php
-if (!function_exists('tcc_parallax_effect')) {
-	function tcc_page_parallax($page) {
-		$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page,'ID');
-		$imgURL = get_featured_url($pageID);
-		if ($imgURL) { ?>
-			<style>
-				.parallax-image { background-image: url("<?php echo $imgURL; ?>"); }
-			</style>
-			<div class="parallax parallax-image hidden-xs parallax-scroll"></div><?php
+			</div><?php
 		}
 	}
-} //*/
+}

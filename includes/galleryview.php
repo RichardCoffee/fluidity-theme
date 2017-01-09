@@ -23,8 +23,12 @@ $str2.= ($query->is_main_query()) ? 'true' : 'false';
 $str3 = 'is_single: ';
 $str3.= (is_single()) ? 'true' : 'false';
 $str4 = 'query->is_single: ';
-$str4.= ($query->is_single()) ? 'true' : 'false';
-log_entry($str1,$str2,$str3,$str4);
+$str4.= ($query->is_single) ? 'true' : 'false';
+$str5 = 'is_singular: ';
+$str5.= (is_singular()) ? 'true' : 'false';
+$str6 = 'query->is_singular: ';
+$str6.= ($query->is_singular) ? 'true' : 'false';
+log_entry($str1,$str2,$str3,$str4,$str5,$str6);
 			if (!is_admin() && $query->is_singular) {
 				wp_enqueue_style('tcc-galleryview-css');
 				wp_enqueue_style('tcc-gv-css');
