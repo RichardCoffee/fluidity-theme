@@ -6,16 +6,15 @@
 
 get_header();
 
-$page = get_page_slug(); ?>
+$page = get_page_slug();
+do_action("tcc_{$page}_page_top"); ?>
 
 <main><?php
 
 	if (is_page()) {
 		tcc_page_parallax($page);
 		tcc_page_title($page); // FIXME:  make title bar an option
-	}
-
-	do_action("tcc_{$page}_page_top"); ?>
+	} ?>
 
 	<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>><?php
 		who_am_i(); ?>
@@ -50,8 +49,8 @@ $page = get_page_slug(); ?>
 
 	</div><!-- #fluid-content -->
 
-	<?php do_action("tcc_{$page}_page_bottom"); ?>
-
 </main><?php
+
+do_action("tcc_{$page}_page_bottom");
 
 get_footer();

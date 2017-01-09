@@ -16,13 +16,13 @@ class TCC_Widgets_Basic extends WP_Widget {
   public function widget($args,$instance) {
     #$args['tcc-title'] = apply_filters('widget_title',$instance['title'],$this->id_base);
     $title = apply_filters('widget_title',$instance['title'],$this->id_base);
-log_entry($args);
+#log_entry($args);
     echo $args['before_widget'];
-    if (!empty($title)) {
+#    if (!empty($title)) {
       echo $args['before_title'].$title.$args['after_title'];
-    } else {
-      if (!empty($args['before_title'])) echo "<div>";
-    }
+#    } else {
+#      if (!empty($args['before_title'])) echo "<div>";
+#    }
     $this->inner_widget($args,$instance);
     echo $args['after_widget'];
   }
