@@ -45,7 +45,7 @@ if (!function_exists('tcc_browser_body_class')) {
 }
 
 if (!function_exists('container_type')) {
-  function container_type($location='post') {
+  function container_type( $location='post', $ccs='container-fluid' ) {
     $css = 'container-fluid'; // FIXME: change default
     if ($location=='header') {
       $css.= " nopad";
