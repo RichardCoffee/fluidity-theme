@@ -22,10 +22,8 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 		<div class="widget-address" <?php self::$micro->Organization(); ?>>
 			<h2 itemprop="name"><?php bloginfo('name'); ?></h2>
 			<address <?php self::$micro->PostalAddress(); ?>><?php
-				if (!empty($instance['tcc-street'])) { ?>
-					<span itemprop="streetAddress">
-						<?php echo esc_html($instance['tcc-street']); ?>
-					</span><?php
+				if (!empty($instance['tcc-street'])) {
+					echo self::$micro->street(esc_html($instance['tcc-street']));
 				} ?>
 				<span class="comma-after" itemprop="addressLocality">
 					<?php echo esc_html($instance['tcc-local']); ?>

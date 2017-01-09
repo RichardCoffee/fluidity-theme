@@ -5,6 +5,16 @@
  *
  */
 
+if(!function_exists('get_page_id')) {
+	# http://snipplr.com/view/39004/
+	# http://www.smipple.net/snippet/elieandraos/Get%20Page%20ID%20By%20Slug
+	function get_page_id($slug) {
+		global $wpdb;
+		$page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'");
+		return $page_id;
+	}
+}
+
 if (!function_exists('fluid_archive_page_title')) {
   function fluid_archive_page_title() { ?>
     <h1 class="text-center"><?php the_archive_title(); ?></h1><?php
