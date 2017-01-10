@@ -40,7 +40,7 @@ li.btn-fluidity > a {
 
 .form-control {
 	@include placeholder(color(textcolor));
-	&::hover, &::focus {
+	&:hover, &:focus {
 		@include placeholder(color(background));
 	}
 }
