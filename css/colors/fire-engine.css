@@ -61,24 +61,24 @@ li.btn-fluidity > a:focus {
   border: 1px solid #a51a21;
 }
 
-.searchform-input::-moz-placeholder {
+.form-control::-moz-placeholder {
   color: #FFFFFF;
   opacity: 1;
 }
-.searchform-input:-ms-input-placeholder {
+.form-control:-ms-input-placeholder {
   color: #FFFFFF;
 }
-.searchform-input::-webkit-input-placeholder {
+.form-control::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-.searchform-input::hover::-moz-placeholder, .searchform-input::focus::-moz-placeholder {
+.form-control::hover::-moz-placeholder, .form-control::focus::-moz-placeholder {
   color: #CE2029;
   opacity: 1;
 }
-.searchform-input::hover:-ms-input-placeholder, .searchform-input::focus:-ms-input-placeholder {
+.form-control::hover:-ms-input-placeholder, .form-control::focus:-ms-input-placeholder {
   color: #CE2029;
 }
-.searchform-input::hover::-webkit-input-placeholder, .searchform-input::focus::-webkit-input-placeholder {
+.form-control::hover::-webkit-input-placeholder, .form-control::focus::-webkit-input-placeholder {
   color: #CE2029;
 }
 
