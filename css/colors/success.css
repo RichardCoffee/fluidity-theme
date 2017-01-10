@@ -192,3 +192,6 @@ hr {
 .tml {
   color: #5cb85c;
 }
+.tml input {
+  border-color: #4cae4c;
+}

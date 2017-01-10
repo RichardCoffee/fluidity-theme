@@ -192,3 +192,6 @@ hr {
 .tml {
   color: #f2dede;
 }
+.tml input {
+  border-color: #f2dede;
+}
