@@ -188,3 +188,7 @@ hr {
 .port-opaque {
   background-color: rgba(217, 237, 247, 0.7) !important;
 }
+
+.tml {
+  color: #D9EDF7;
+}
