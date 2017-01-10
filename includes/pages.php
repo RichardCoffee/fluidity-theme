@@ -59,9 +59,9 @@ if (!function_exists('get_page_slug')) {
     if (!$slug) {
          global $fluidity_theme_template; // FIXME: this is not a reliable source
          $page = get_queried_object();
-//if (!is_object($page)) { log_entry('bad page value',$page,$fluidity_theme_template,$_SERVER); }
+if (is_object($page) && !isset($page->post_type)) { log_entry('bad post type value',$fluidity_theme_template,$page); }
 // FIXME: test for post_type property?
-         if (is_object($page) && ($page->post_type==='page')) {
+         if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
             $slug = $page->post_name;
          } else {
             $slug = $fluidity_theme_template;
