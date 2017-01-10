@@ -161,7 +161,7 @@ ul.sub-menu {
 
 .article a {
   color: #dff0d8;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #dff0d8;
 }
 .article a:hover, .article a:focus {
   border-bottom: 2px solid #d6e9c6;

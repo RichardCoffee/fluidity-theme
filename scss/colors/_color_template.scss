@@ -66,7 +66,7 @@ li.btn-fluidity > a {
 .article {
 	& a {
 		color: color(background);
-		border-bottom: 1px solid #ddd;
+		border-bottom: 1px solid color(background);
 		&:hover, &:focus {
 			border-bottom: 2px solid color(bgHighlight);
 			text-decoration: none;
