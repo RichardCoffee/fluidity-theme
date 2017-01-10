@@ -163,7 +163,7 @@ ul.sub-menu {
   border-bottom: 1px solid #ddd;
 }
 .article a:hover, .article a:focus {
-  border-bottom: 1px solid #a51a21;
+  border-bottom: 2px solid #a51a21;
 }
 
 blockquote,

@@ -68,7 +68,7 @@ li.btn-fluidity > a {
 		color: color(background);
 		border-bottom: 1px solid #ddd;
 		&:hover, &:focus {
-			border-bottom: 1px solid color(bgHighlight);
+			border-bottom: 2px solid color(bgHighlight);
 		}
 	}
 }

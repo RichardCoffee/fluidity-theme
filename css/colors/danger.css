@@ -164,7 +164,7 @@ ul.sub-menu {
   border-bottom: 1px solid #ddd;
 }
 .article a:hover, .article a:focus {
-  border-bottom: 1px solid #d43f3a;
+  border-bottom: 2px solid #d43f3a;
 }
 
 blockquote,
