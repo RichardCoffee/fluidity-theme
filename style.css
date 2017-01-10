@@ -295,6 +295,7 @@ header {
 .article {
   margin-left: 2em;
   margin-right: 2em;
+  padding-top: 1em;
 }
 .article img {
   display: block;

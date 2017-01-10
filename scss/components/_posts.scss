@@ -2,9 +2,10 @@
 .article {
   margin-left: 2em;
   margin-right: 2em;
+  padding-top: 1em;
   & img {  // duplicate bootstrap img-responsive
     display: block;
     height: auto;
-    max-width: 100%
+    max-width: 100%;
   }
 }
