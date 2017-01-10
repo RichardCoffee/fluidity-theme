@@ -9,3 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   //font: "lucida grande","helvetica","arial",sans-serif;
 }
+
+a, button, input:focus, input[type="button"], input[type="reset"], input[type="submit"], textarea:focus, .button {
+    transition: all 0.1s ease-in-out 0s;
+}

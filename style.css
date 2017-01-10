@@ -346,6 +346,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+a, button, input:focus, input[type="button"], input[type="reset"], input[type="submit"], textarea:focus, .button {
+  transition: all 0.1s ease-in-out 0s;
+}
+
 .width-fluid {
   padding-left: 20px;
   padding-right: 20px;

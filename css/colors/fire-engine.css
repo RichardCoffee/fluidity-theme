@@ -158,6 +158,14 @@ ul.sub-menu {
   color: #FFFFFF;
 }
 
+.article a {
+  color: #CE2029;
+  border-bottom: 1px solid #ddd;
+}
+.article a:hover, .article a:focus {
+  border-bottom: 1px solid #a51a21;
+}
+
 blockquote,
 .content-fluidity {
   border-color: #a51a21;

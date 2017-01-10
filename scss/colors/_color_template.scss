@@ -63,6 +63,16 @@ li.btn-fluidity > a {
 
 // miscellaneous
 
+.article {
+	& a {
+		color: color(background);
+		border-bottom: 1px solid #ddd;
+		&:hover, &:focus {
+			border-bottom: 1px solid color(bgHighlight);
+		}
+	}
+}
+
 blockquote,
 .content-fluidity {
 	border-color: color(bgHighlight);
