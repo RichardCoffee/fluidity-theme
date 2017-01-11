@@ -162,8 +162,12 @@ ul.sub-menu {
   border-bottom: 1px solid #ff0000;
 }
 .article a:hover, .article a:focus {
+  color: #cc0000;
   border-bottom: 2px solid #cc0000;
   text-decoration: none;
+}
+.article a:visited {
+  color: #cc0000;
 }
 
 blockquote,
