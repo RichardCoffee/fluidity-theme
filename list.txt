@@ -126,12 +126,7 @@ functions.php:116:  function fluidity_bootstrap_backup() {
 functions.php:123:  function fluidity_register_fontawesome() {
 functions.php:129:  function fluidity_register_color_scheme() {
 functions.php:138:  function fluidity_show_query( $args, $template, $slug='' ) {
-classes/microdata.php:26:if (!function_exists('microdata')) {
 classes/microdata.php:27:  function microdata() {
-classes/microdata.php:38:  private function __construct() {
-classes/microdata.php:42:  public static function get_instance() {
-classes/microdata.php:50:  *  These functions should be inserted into elements like so:
-classes/microdata.php:72:  public function __call($name,$arguments) {
 classes/microdata.php:76:  public function microdata($type) {
 classes/microdata.php:81:  public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
 classes/microdata.php:82:  public function address()  { $this->PostalAddress(); }          // descendant of many types - see itemtype link
@@ -151,11 +146,9 @@ classes/microdata.php:95:  public function search()   { $this->SearchResultsPage
 classes/microdata.php:96:  public function sidebar()  { $this->WPSideBar(); }              // CreativeWork > WebPage > WebPageElement > WPSideBar
 classes/microdata.php:98:  public function BlogPosting() { // CreativeWork > Blog > BlogPosting
 classes/microdata.php:102:  public function PostalAddress() { // descendant of many types - see itemtype link
-classes/microdata.php:108:  *  These functions can be utilized like so:
 classes/microdata.php:115:  public function bloginfo($show,$filter='raw') {
 classes/microdata.php:122:  public function get_bloginfo($show,$filter='raw') {
 classes/microdata.php:129:  public function get_the_author($addlink=false) {
-classes/microdata.php:151:  private function filters() {
 classes/microdata.php:175:  public function comments_popup_link_attributes($attr) {
 classes/microdata.php:179:  public function comment_reply_link($link) {
 classes/microdata.php:185:  public function get_archives_link($link) {
@@ -172,14 +165,12 @@ classes/microdata.php:265:  public function single_term_title($title) {
 classes/microdata.php:271:  public function the_author_posts_link($link) {
 classes/microdata.php:278:  public function wp_get_attachment_image_attributes($attr,$attachment) {
 classes/microdata.php:283:  public function wp_get_attachment_link($link) {
-classes/microdata.php:289:  /**  Helper functions  **/
 classes/microdata.php:291:  public function description($text) {
 classes/microdata.php:296:  public function email_format($email) {
 classes/microdata.php:301:  public function image_html($image) {
 classes/microdata.php:305:  public function name($name) {
 classes/microdata.php:310:  public function telephone($phone) {
 classes/microdata.php:315:  public function url_format($url) {
-classes/microdata.php:321:  /**  Address functions  **/
 classes/microdata.php:323:  public function city($city) {
 classes/microdata.php:328:  public function pobox($pobox) {
 classes/microdata.php:333:  public function state($state) {
