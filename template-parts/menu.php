@@ -35,7 +35,7 @@ if (has_nav_menu($menu)) {
 				<i class="fa fa-bars"> </i>
 				<?php #esc_html_e( 'Primary Menu', 'tcc_fluid' ); ?>
 			</button>
-			<?php wp_nav_menu( array( 'theme_location' => $menu, 'menu_id' => 'primary-menu', 'walker'=> new TCC_NavWalker_Taxonomy() ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => $menu, 'menu_id' => 'primary-menu' ) ); ?>
 		</nav><!-- #site-navigation --><?php
 	}
 }
