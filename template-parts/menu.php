@@ -8,9 +8,12 @@
 $menu = 'primary';	#	primary, header or footer
 $page = get_page_slug();
 if (has_nav_menu($menu)) {
+#	$main_css = get_menu_class($menu,$page);
 	if (tcc_layout('menu')==='bootstrap') {
-		/* bootstrap navigation */ ?>
-		<nav id="navbar-<?php echo $page.'-'.$menu; ?>" class="navbar navbar-fluidity" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
+		/* bootstrap navigation */
+		$main_id  = "navbar-{$page}-$menu";
+		$main_css = "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu"; ?>
+		<nav id="<?php echo $main_id; ?>" class="<?php echo $main_css; ?>" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-<?php echo $menu; ?>-collapse">
 					<span class="sr-only">Toggle navigation</span>
@@ -24,14 +27,15 @@ if (has_nav_menu($menu)) {
 			</div>
 		</nav><?php
 	} else {
-		/*	underscore navigation */ ?>
-		<nav id="site-navigation" class="main-navigation" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
+		/*	underscore navigation */
+		$main_css = "main-navigation {$menu}-navigation {$page}-{$menu}-navigation"; ?>
+		<nav id="site-navigation" class="<?php echo $main_css; ?>" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
 				<i class="fa fa-bars"> </i>
-				<?php #esc_html_e( 'Primary Menu', '_s' ); ?>
+				<?php #esc_html_e( 'Primary Menu', 'tcc_fluid' ); ?>
 			</button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' 'walker'=> new TCC_NavWalker_Taxonomy() ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => $menu, 'menu_id' => 'primary-menu', 'walker'=> new TCC_NavWalker_Taxonomy() ) ); ?>
 		</nav><!-- #site-navigation --><?php
 	}
 }
