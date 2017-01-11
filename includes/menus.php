@@ -54,5 +54,5 @@ if (!function_exists('tcc_taxonomy_nav_menu')) {
 log_entry(func_get_args());
 		return $items;
 	}
-	add_filter( 'wp_get_nav_menu_items', $items, $menu, $args );
+	add_filter( 'wp_get_nav_menu_items', 'tcc_taxonomy_nav_menu',10,3 );
 }
