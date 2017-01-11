@@ -48,11 +48,11 @@ if (!function_exists('tcc_register_nav_menu')) {
   }
   add_action('init','tcc_register_nav_menu');
 }
-
+/*
 if (!function_exists('tcc_taxonomy_nav_menu')) {
 	function tcc_taxonomy_nav_menu($items,$menu,$args) {
 log_entry(func_get_args());
 		return $items;
 	}
 	add_filter( 'wp_get_nav_menu_items', 'tcc_taxonomy_nav_menu',10,3 );
-}
+} //*/
