@@ -158,16 +158,17 @@ ul.sub-menu {
 }
 
 .article a {
-  color: #2e3192;
   border-bottom: 1px solid #2e3192;
-}
-.article a:hover, .article a:focus {
-  color: #252775;
-  border-bottom: 2px solid #252775;
-  text-decoration: none;
+  color: #2e3192;
 }
 .article a:visited {
+  border-bottom: 1px wavy #2e3192;
   color: #252775;
+}
+.article a:hover, .article a:focus {
+  border-bottom: 2px solid #252775;
+  color: #252775;
+  text-decoration: none;
 }
 
 blockquote,

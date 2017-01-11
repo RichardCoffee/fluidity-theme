@@ -65,15 +65,16 @@ li.btn-fluidity > a {
 
 .article {
 	& a {
-		color: color(background);
 		border-bottom: 1px solid color(background);
-		&:hover, &:focus {
-			color: color(bgHighlight);
-			border-bottom: 2px solid color(bgHighlight);
-			text-decoration: none;
-		}
+		color: color(background);
 		&:visited {
+			border-bottom: 1px wavy color(background);
 			color: color(bgHighlight);
+		}
+		&:hover, &:focus {
+			border-bottom: 2px solid color(bgHighlight);
+			color: color(bgHighlight);
+			text-decoration: none;
 		}
 	}
 }
