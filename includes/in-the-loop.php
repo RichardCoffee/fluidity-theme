@@ -152,10 +152,10 @@ if (!function_exists('fluid_post_separator')) {
 }
 
 if (!function_exists('fluid_thumbnail')) {
-	function fluid_thumbnail($class='img-responsive') {
+	function fluid_thumbnail($size=null, $class='img-responsive') {
 		if (!is_page() || tcc_design('paral')=='no') {
 			if ( has_post_thumbnail() ) {
-				the_post_thumbnail(null,array('class'=>$class));
+				the_post_thumbnail($size,array('class'=>$class));
 			}
 		}
 	}
