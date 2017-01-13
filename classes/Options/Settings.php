@@ -38,6 +38,13 @@ class TCC_Options_Settings {
                              'render'  => 'radio',
                              'source'  => array('on'  => esc_html__('On','tcc-fluid'),
                                                 'off' => esc_html__('Off','tcc-fluid')));
+    $layout['where'] = array('default' => 'off',
+                             'label'   => esc_html__('Where Am I?','tcc-fluid'),
+                             'text'    => esc_html__('Display template file names on site front end - for development only','tcc-fluid'),
+                             'help'    => esc_html__('Hi!','tcc-fluid'),
+                             'render'  => 'radio',
+                             'source'  => array('on'  => esc_html__('On','tcc-fluid'),
+                                                'off' => esc_html__('Off','tcc-fluid')));
     $layout['coming'] = array('default' => 'off',
                               'label'   => esc_html__('Coming Soon','tcc-fluid'),
                               'text'    => esc_html__('Show a Coming Soon page','tcc-fluid'),

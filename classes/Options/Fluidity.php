@@ -2,8 +2,9 @@
 
 class TCC_Options_Fluidity extends Basic_Admin_Form {
 
-  private static $instance = null;
   private static $text     = null;
+
+  use TCC_Trait_Single;
 
   public function form_trans_text($text,$orig) {
     $text['submit']['object']  = __('Options','tcc-fluid');
@@ -23,11 +24,6 @@ class TCC_Options_Fluidity extends Basic_Admin_Form {
     new TCC_Options_Social;
     #if (tcc_design('paral')==='yes') { new TCC_Options_Parallax; }
     new TCC_Options_Settings;
-  }
-
-  public static function get_instance() {
-    if (!self::$instance)   self::$instance = new TCC_Options_Fluidity;
-    return self::$instance;
   }
 
   public function add_menu_option() {
