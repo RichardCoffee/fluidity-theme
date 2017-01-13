@@ -25,7 +25,10 @@ log_entry($args,$instance);
 		echo $args['after_widget'];
 	}
 
-	protected function tcc_widget_title($args) { }
+	protected function tcc_widget_title($args) {
+		if (strpos($args['after_title'],'panel-body')) {  #  FIXME
+			echo '<div>';
+	}
 
 	public function form($instance) {
 		$this->form_title($instance);
