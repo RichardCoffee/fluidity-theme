@@ -101,7 +101,6 @@ if (!function_exists('tcc_enqueue')) {
 
 if (!function_exists('fluidity_admin_enqueue')) {
   function fluidity_admin_enqueue() {
-    wp_register_style('tcc-columns', get_theme_file_uri("css/columns.css"), null, FLUIDITY_VERSION);
     fluidity_register_fontawesome();
     wp_enqueue_style('tcc-fawe');
     do_action('fluidity_admin_enqueue');
