@@ -42,9 +42,10 @@ if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
   function who_am_i($pos=0) {
     if (WP_DEBUG)  {
-      static $flag = ''; // give capability to turn this off via a flag file
-      if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
-      if ($flag=='yes') {  #  FIXME:  make this a theme option
+      #static $flag = ''; // give capability to turn this off via a flag file
+      #if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
+      #if ($flag=='yes') {  #  FIXME:  make this a theme option
+      if (tcc_setting('where')==='on') {
         $trace = debug_backtrace();
         $show  = $trace[$pos]['file'];
         if ($pos=strpos($show,'wp-content')) {
