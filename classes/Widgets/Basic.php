@@ -27,7 +27,7 @@ log_entry($args,$instance);
 
 	protected function tcc_widget_title($args) {
 		if (strpos($args['after_title'],'panel-body')) {  #  FIXME
-			echo '<div>';
+			echo '<div>'; }
 	}
 
 	public function form($instance) {
