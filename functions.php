@@ -7,7 +7,7 @@
 define('FLUIDITY_HOME',trailingslashit(dirname(__FILE__)));  #  get current directory
 $data = get_file_data( FLUIDITY_HOME.'style.css', array( 'ver' => 'Version' ) );
 define('FLUIDITY_VERSION',$data['ver']);
-define('TCC_THEME_VERSION',FLUIDITY_VERSION);
+defined('TCC_THEME_VERSION') or define('TCC_THEME_VERSION',FLUIDITY_VERSION);
 
 require_once('includes/loader.php');
 require_once('includes/library.php');                #  load logging function as soon as possible
@@ -31,8 +31,8 @@ if (is_admin()) {
 	TCC_Options_Fluidity::get_instance();
 } else {
   //require_once('includes/footer.php');
-  require_once('includes/defines.php');
-  require_once('includes/galleryview.php');
+  #require_once('includes/defines.php');
+  #require_once('includes/galleryview.php');
   require_once('includes/header.php');
   require_once('includes/in-the-loop.php');
   require_once('includes/index.php');
