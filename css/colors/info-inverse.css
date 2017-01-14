@@ -62,24 +62,24 @@ li.btn-fluidity > a:focus {
   border: 1px solid #BCE8F1;
 }
 
-.searchfoem-input::-moz-placeholder {
+.searchform-input::-moz-placeholder {
   color: #31708F;
   opacity: 1;
 }
-.searchfoem-input:-ms-input-placeholder {
+.searchform-input:-ms-input-placeholder {
   color: #31708F;
 }
-.searchfoem-input::-webkit-input-placeholder {
+.searchform-input::-webkit-input-placeholder {
   color: #31708F;
 }
-.searchfoem-input:hover::-moz-placeholder, .searchfoem-input:focus::-moz-placeholder {
+.searchform-input:hover::-moz-placeholder, .searchform-input:focus::-moz-placeholder {
   color: #D9EDF7;
   opacity: 1;
 }
-.searchfoem-input:hover:-ms-input-placeholder, .searchfoem-input:focus:-ms-input-placeholder {
+.searchform-input:hover:-ms-input-placeholder, .searchform-input:focus:-ms-input-placeholder {
   color: #D9EDF7;
 }
-.searchfoem-input:hover::-webkit-input-placeholder, .searchfoem-input:focus::-webkit-input-placeholder {
+.searchform-input:hover::-webkit-input-placeholder, .searchform-input:focus::-webkit-input-placeholder {
   color: #D9EDF7;
 }
 
