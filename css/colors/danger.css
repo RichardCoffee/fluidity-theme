@@ -170,7 +170,7 @@ ul.sub-menu {
 .article a:hover, .article a:focus {
   border-bottom: 2px solid #d43f3a;
   color: #d43f3a;
-  font-style: bold;
+  font-weight: bold;
   text-decoration: none;
 }
 
