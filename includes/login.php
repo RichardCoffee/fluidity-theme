@@ -99,7 +99,7 @@ if (!function_exists('tcc_login_form')) {
     	$uname  = apply_filters('tcc_login_username',esc_html__('Username',      'tcc-fluid'));
       $upass  = apply_filters('tcc_login_userpass',esc_html__('Password',      'tcc-fluid'));
       $signin = apply_filters('tcc_signin_text',   esc_html__('Sign In',       'tcc-fluid'));
-      $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Request new password', 'tcc-fluid'));
+      $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
       $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : ''); ?>
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
         <div class='form-group'>
@@ -117,7 +117,8 @@ if (!function_exists('tcc_login_form')) {
         </div>
         <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button><?php
         if (get_page_by_title('Lost Password'))
-          echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$lost'><small>$lost</small></a>"; ?>
+          $tooltip = __('Request new password','tcc-fluid');
+          echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$lost</small></a>"; ?>
       </form><?php
     }
   }
