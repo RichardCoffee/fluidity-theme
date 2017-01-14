@@ -363,5 +363,26 @@ if (!function_exists('tellme')) {
   }
 }
 
+if (!function_exists('who_am_i')) {
+  //  This function is for debugging purposes only
+  function who_am_i($pos=0) {
+    if (WP_DEBUG)  {
+      #static $flag = ''; // give capability to turn this off via a flag file
+      #if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
+      #if ($flag=='yes') {  #  FIXME:  make this a theme option
+      static $status;
+      if (empty($status) { $status = tcc_setting('where'); }
+      if ($status==='on') {
+        $trace = debug_backtrace();
+        $show  = $trace[$pos]['file'];
+        if ($pos=strpos($show,'wp-content')) {
+          $show = substr($show,$pos+10);
+        }
+        echo "<p>$show</p>";
+      }
+    }
+  }
+}
+
 #$perm_struct = get_option('permalink_structure');
 #log_entry("permalink structure: $perm_struct");
