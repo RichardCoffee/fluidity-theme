@@ -38,7 +38,7 @@ li.btn-fluidity > a {
 	}
 }
 
-.searchform {
+#searchform {
 	@include placeholder(color(textcolor));
 	&:hover, &:focus {
 		@include placeholder(color(background));
