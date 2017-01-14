@@ -62,24 +62,24 @@ li.btn-fluidity > a:focus {
   border: 1px solid #f2dede;
 }
 
-.searchform::-moz-placeholder {
+#searchform::-moz-placeholder {
   color: #a94442;
   opacity: 1;
 }
-.searchform:-ms-input-placeholder {
+#searchform:-ms-input-placeholder {
   color: #a94442;
 }
-.searchform::-webkit-input-placeholder {
+#searchform::-webkit-input-placeholder {
   color: #a94442;
 }
-.searchform:hover::-moz-placeholder, .searchform:focus::-moz-placeholder {
+#searchform:hover::-moz-placeholder, #searchform:focus::-moz-placeholder {
   color: #f2dede;
   opacity: 1;
 }
-.searchform:hover:-ms-input-placeholder, .searchform:focus:-ms-input-placeholder {
+#searchform:hover:-ms-input-placeholder, #searchform:focus:-ms-input-placeholder {
   color: #f2dede;
 }
-.searchform:hover::-webkit-input-placeholder, .searchform:focus::-webkit-input-placeholder {
+#searchform:hover::-webkit-input-placeholder, #searchform:focus::-webkit-input-placeholder {
   color: #f2dede;
 }
 

@@ -60,24 +60,24 @@ li.btn-fluidity > a:focus {
   border: 1px solid #2e913b;
 }
 
-.searchform::-moz-placeholder {
+#searchform::-moz-placeholder {
   color: #FFFFFF;
   opacity: 1;
 }
-.searchform:-ms-input-placeholder {
+#searchform:-ms-input-placeholder {
   color: #FFFFFF;
 }
-.searchform::-webkit-input-placeholder {
+#searchform::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-.searchform:hover::-moz-placeholder, .searchform:focus::-moz-placeholder {
+#searchform:hover::-moz-placeholder, #searchform:focus::-moz-placeholder {
   color: #39b54a;
   opacity: 1;
 }
-.searchform:hover:-ms-input-placeholder, .searchform:focus:-ms-input-placeholder {
+#searchform:hover:-ms-input-placeholder, #searchform:focus:-ms-input-placeholder {
   color: #39b54a;
 }
-.searchform:hover::-webkit-input-placeholder, .searchform:focus::-webkit-input-placeholder {
+#searchform:hover::-webkit-input-placeholder, #searchform:focus::-webkit-input-placeholder {
   color: #39b54a;
 }
 
