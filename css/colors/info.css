@@ -62,24 +62,24 @@ li.btn-fluidity > a:focus {
   border: 1px solid #46B8DA;
 }
 
-#searchform::-moz-placeholder {
+.searchfoem-input::-moz-placeholder {
   color: #FFFFFF;
   opacity: 1;
 }
-#searchform:-ms-input-placeholder {
+.searchfoem-input:-ms-input-placeholder {
   color: #FFFFFF;
 }
-#searchform::-webkit-input-placeholder {
+.searchfoem-input::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-#searchform:hover::-moz-placeholder, #searchform:focus::-moz-placeholder {
+.searchfoem-input:hover::-moz-placeholder, .searchfoem-input:focus::-moz-placeholder {
   color: #5BC0DE;
   opacity: 1;
 }
-#searchform:hover:-ms-input-placeholder, #searchform:focus:-ms-input-placeholder {
+.searchfoem-input:hover:-ms-input-placeholder, .searchfoem-input:focus:-ms-input-placeholder {
   color: #5BC0DE;
 }
-#searchform:hover::-webkit-input-placeholder, #searchform:focus::-webkit-input-placeholder {
+.searchfoem-input:hover::-webkit-input-placeholder, .searchfoem-input:focus::-webkit-input-placeholder {
   color: #5BC0DE;
 }
 
