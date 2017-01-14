@@ -371,7 +371,7 @@ if (!function_exists('who_am_i')) {
       #if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
       #if ($flag=='yes') {  #  FIXME:  make this a theme option
       static $status;
-      if (empty($status) { $status = tcc_setting('where'); }
+      if (empty($status)) { $status = tcc_setting('where'); }
       if ($status==='on') {
         $trace = debug_backtrace();
         $show  = $trace[$pos]['file'];
