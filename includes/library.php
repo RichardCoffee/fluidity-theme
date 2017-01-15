@@ -209,7 +209,7 @@ if (!function_exists('sanitize_array')) {
 }
 
 
-/*  Non-wordPress specific */
+/*  Non-WordPress specific */
 
 if (!function_exists('array_insert_after')) {
   #  http://eosrei.net/comment/287
@@ -227,6 +227,43 @@ if (!function_exists('array_insert_after')) {
     return $array;
   }
 }
+
+function js_decode($incoming) {
+  $return = $incoming;
+  if (is_string($return)) {
+    $object = json_decode($incoming);
+    if (json_last_error() === 0) {
+      $return = $object;
+    } else {
+      $return = json_last_error_msg();
+    }
+  }
+  return $return;
+}
+
+// http://php.net/manual/en/function.json-last-error-msg.php
+if (!function_exists('json_last_error_msg')) {
+  function json_last_error_msg() {
+    static $errors = array(
+      JSON_ERROR_NONE             => null,
+      JSON_ERROR_DEPTH            => 'Maximum stack depth exceeded',
+      JSON_ERROR_STATE_MISMATCH   => 'Underflow or the modes mismatch',
+      JSON_ERROR_CTRL_CHAR        => 'Unexpected control character found',
+      JSON_ERROR_SYNTAX           => 'Syntax error, malformed JSON',
+      JSON_ERROR_UTF8             => 'Malformed UTF-8 characters, possibly incorrectly encoded',
+      JSON_ERROR_RECURSION        => 'Contains recursion references that cannot be encoded',
+      JSON_ERROR_INF_OR_NAN       => 'Contains a value of NAN or INF, which cannot be encoded',
+      JSON_ERROR_UNSUPPORTED_TYPE => 'Contains a value of an unsupported type'
+    );
+    $error = json_last_error();
+    return array_key_exists($error, $errors) ? "JSON error: {$errors[$error]}" : "Unknown JSON error ({$error})";
+  }
+}
+
+function json_options() {
+  return JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE;
+}
+
 
 /*  Debugging functions  */
 
