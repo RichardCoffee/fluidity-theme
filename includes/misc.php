@@ -83,7 +83,7 @@ if (!function_exists('wp_get_attachment')) {
 	#	http://stackoverflow.com/questions/25974196/how-to-get-wp-gallery-image-captions
 	function wp_get_attachment( $attachment_id ) {
 		$attachment = get_post( $attachment_id );
-log_entry($attachment);
+log_entry($attachment, get_post_meta($attachment_id));
 		$data = array(
 			'alt'         => get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ),
 			'caption'     => $attachment->post_excerpt,
