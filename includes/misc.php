@@ -84,7 +84,7 @@ if (!function_exists('wp_get_attachment')) {
 	function wp_get_attachment( $attachment_id ) {
 		$attachment = get_post( $attachment_id );
 		$metadata   = get_post_meta($attachment_id);
-		$img_data   = js_decode($metadata->_wp_attachment_metadata[0]);
+		$img_data   = js_decode($metadata['_wp_attachment_metadata'][0]);
 log_entry($attachment,$metadata,$img_data);
 		$data = array(
 			'alt'         => get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ),
