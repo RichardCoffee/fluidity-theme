@@ -91,10 +91,21 @@ log_entry($attachment,$metadata,$img_data);
 			'caption'     => $attachment->post_excerpt,
 			'description' => $attachment->post_content,
 			'href'        => get_permalink( $attachment->ID ),
+			'sizes'       => attachment_sizes($img_data,dirname($attachment->guid));
 			'src'         => $attachment->guid,
 			'title'       => $attachment->post_title
 		);
 log_entry(0,$data);
 		return $data;
+	}
+}
+
+if (!function_exists('attachment_sizes')) {
+	function attachment_sizes($data,$stem) {
+		$sizes = array();
+		foreach($data['sizes'] as $size=>$data) {
+			$sizes[$size] = $data['file'];
+		}
+		return $sizes;
 	}
 }
