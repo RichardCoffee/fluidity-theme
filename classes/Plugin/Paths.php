@@ -25,7 +25,7 @@ class TCC_Plugin_Paths {
 	}
 
 	public static function version() {
-|  |  return self::$instance->version;
-|  }
+		return self::$instance->version;
+	}
 
 }
