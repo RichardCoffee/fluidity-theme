@@ -32,7 +32,6 @@ if (is_admin()) {
 } else {
   //require_once('includes/footer.php');
   #require_once('includes/defines.php');
-  #require_once('includes/galleryview.php');
   require_once('includes/header.php');
   require_once('includes/in-the-loop.php');
   require_once('includes/index.php');
