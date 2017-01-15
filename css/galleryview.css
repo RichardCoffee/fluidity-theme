@@ -1,18 +1,22 @@
 
+.tcc-galleryview {
+	display: none;
+}
+
 .gv_galleryWrap {
-  background-color: white;
+	background-color: white;
 }
 
 .gv_navPlay,
 .gv_navPause,
 .gv_navNext,
 .gv_navPrev {
-  opacity: 1.0;
+	opacity: 1.0;
 }
 
 .gv_navPlay:hover,
 .gv_navPause:hover,
 .gv_navNext:hover,
 .gv_navPrev:hover {
-  color: green;
+	color: green;
 }

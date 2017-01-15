@@ -1,4 +1,4 @@
 
 jQuery(document).ready(function() {
-  jQuery('#myGallery').galleryView();
+  jQuery('.tcc-galleryview').galleryView();
 });
