@@ -91,7 +91,7 @@ log_entry($attachment,$metadata,$img_data);
 			'caption'     => $attachment->post_excerpt,
 			'description' => $attachment->post_content,
 			'href'        => get_permalink( $attachment->ID ),
-			'sizes'       => attachment_sizes($img_data,dirname($attachment->guid)),
+			'sizes'       => attachment_sizes($img_data,url_stem($attachment->guid)),
 			'src'         => $attachment->guid,
 			'title'       => $attachment->post_title
 		);
