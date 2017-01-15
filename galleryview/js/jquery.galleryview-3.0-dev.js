@@ -4,7 +4,10 @@
 	Author:		Jack Anderson
 	Version:	3.0 DEVELOPMENT
 
-  	See README.txt for instructions on how to markup your HTML
+	See README.txt for instructions on how to markup your HTML
+	
+	
+	Resizefunctionality by Jeroen Penninck
 */
 
 // Make sure Object.create is available in the browser (for our prototypal inheritance)
@@ -22,8 +25,8 @@ if (typeof Object.create !== 'function') {
 	var gvImage = function (img) {
 
 		this.src = { 
-			panel: img.attr('src'),
-			frame: img.data('frame') || img.attr('src')
+			panel: img.data('original') || img.attr('src'),
+			frame: img.data('frame') || img.data('original') || img.attr('src')
 		};
 		this.scale = {
 			panel: null,
@@ -35,7 +38,7 @@ if (typeof Object.create !== 'function') {
 			title: img.attr('title') || img.attr('alt'),
 			description: img.data('description')
 		};
-		this.href = null;
+		this.href = img.data('href');  // Important for clickable links
 		this.dom_obj = null;
 		
 		return this;
@@ -163,7 +166,9 @@ if (typeof Object.create !== 'function') {
 			});
 		},
 		
-		setDimensions: function() {
+		setDimensions: function(create) {
+			create = typeof create !== 'undefined' ? create : true;
+
 			var self = this,
 				dom = this.dom,
 				widths = {
@@ -230,13 +235,23 @@ if (typeof Object.create !== 'function') {
 			});
 			
 			
-			
-			$.each(this.gvImages,function(i,img) {
-				dom.gv_panelWrap.append(dom.gv_panel.clone(true));
-			});
-			
-			dom.gv_panels = dom.gv_panelWrap.find('.gv_panel');
-			dom.gv_panels.remove();
+			if(create){
+				$.each(this.gvImages,function(i,img) {
+					dom.gv_panelWrap.append(dom.gv_panel.clone(true));
+				});
+			  
+				dom.gv_panels = dom.gv_panelWrap.find('.gv_panel');
+				dom.gv_panels.remove();
+					
+			}else{
+				this_opts = this.opts;
+				$.each(dom.gv_panels,function(i,panel) {
+					$(panel).css({
+						width: this_opts.panel_width,
+						height: this_opts.panel_height
+					});
+				});
+			}
 			
 			// filmstrip
 			dom.gv_thumbnail.css({
@@ -249,6 +264,20 @@ if (typeof Object.create !== 'function') {
 				marginRight: this.opts.frame_gap,
 				marginBottom: this.opts.frame_gap
 			});
+			
+			if(!create){
+				//also change clones
+				dom.gv_filmstrip.find('.gv_thumbnail').css({
+					width: this.opts.frame_width,
+					height: this.opts.frame_height
+				});
+				dom.gv_filmstrip.find('.gv_frame').css({
+					width: gv.outerWidth(dom.gv_thumbnail),
+					height: gv.outerHeight(dom.gv_thumbnail) + (this.opts.show_captions ? gv.outerHeight(dom.gv_caption) : 0),
+					marginRight: this.opts.frame_gap,
+					marginBottom: this.opts.frame_gap
+				});
+			}
 			
 			
 			if(this.filmstripOrientation === 'horizontal') {
@@ -294,13 +323,15 @@ if (typeof Object.create !== 'function') {
 			}
 			
 			dom.gv_galleryWrap.css({
-					width: gv.outerWidth(dom.gv_gallery) + (this.opts.frame_gap * 2),
-					height: gv.outerHeight(dom.gv_gallery) + (this.opts.frame_gap * 2),
+					width: gv.outerWidth(dom.gv_gallery),
+					height: gv.outerHeight(dom.gv_gallery),
 					padding: this.opts.frame_gap
 			});
 		},
 		
-		setPositions: function() {
+		setPositions: function(create) {
+			create = typeof create !== 'undefined' ? create : true;
+			
 			var self = this,
 				dom = this.dom,
 				navVert = 0, fsVert = 0,
@@ -362,64 +393,68 @@ if (typeof Object.create !== 'function') {
 				dom.gv_showOverlay.css({ bottom: 0, left: 0 });
 			}
 			
-			if(!this.opts.show_filmstrip_nav) {
-				dom.gv_navWrap.remove();	
+			if(create){
+				if(!this.opts.show_filmstrip_nav) {
+					dom.gv_navWrap.remove();	
+				}
 			}
 		},
 		
-		buildFilmstrip: function() {
+		buildFilmstrip: function(create) {
+			create = typeof create !== 'undefined' ? create : true;
+		
 			var self = this,
 				dom = this.dom,
 				framesLength = this.gvImages.length * ((this.filmstripOrientation === 'horizontal' ? this.opts.frame_width : this.opts.frame_height) + this.opts.frame_gap);
 			
-			dom.gv_frame.append(dom.gv_thumbnail);
-			if(this.opts.show_captions) { 
-				dom.gv_frame.append(dom.gv_caption);
-			}
-			dom.gv_thumbnail.css('opacity',this.opts.frame_opacity);
-			
-			dom.gv_thumbnail.bind({
-				mouseover: function() {
-					if(!$(this).hasClass('current')) {
-						$(this).stop().animate({opacity:1},250);
-					}
-				},
-				mouseout: function() {
-					if(!$(this).hasClass('current')) {
-						$(this).stop().animate({opacity:self.opts.frame_opacity},250);
-					}
+			if(create){
+				dom.gv_frame.append(dom.gv_thumbnail);
+				if(this.opts.show_captions) { 
+					dom.gv_frame.append(dom.gv_caption);
 				}
-			});
-			
-			// Drop a clone of the frame element into the filmstrip for each source image
-			$.each(this.gvImages,function(i,img) {
-				dom.gv_frame.clone(true).prependTo(dom.gv_filmstrip);
-			});
+				dom.gv_thumbnail.css('opacity',this.opts.frame_opacity);
+				
+				dom.gv_thumbnail.bind({
+					mouseover: function() {
+						if(!$(this).hasClass('current')) {
+						$(this).stop().animate({opacity:1},250);
+						}
+					},
+					mouseout: function() {
+						if(!$(this).hasClass('current')) {
+							$(this).stop().animate({opacity:self.opts.frame_opacity},250);
+						}
+					}
+				});
+				
+				// Drop a clone of the frame element into the filmstrip for each source image
+				$.each(this.gvImages,function(i,img) {
+					dom.gv_frame.clone(true).prependTo(dom.gv_filmstrip);
+				});
+			}
 			
 			dom.gv_filmstrip.css({
 				width: gv.outerWidth(dom.gv_frame),
 				height: gv.outerHeight(dom.gv_frame)
 			});
+
+			this.framesLength=framesLength;
 			
 			// If we are scrolling the filmstrip, and we can't show all frames at once,
 			// make two additional copies of each frame
 			if(this.opts.filmstrip_style === 'scroll') {
 				if(this.filmstripOrientation === 'horizontal') {
-					if(framesLength > gv.innerWidth(dom.gv_filmstripWrap)) {
-						dom.gv_filmstrip.find('.gv_frame').clone(true).appendTo(dom.gv_filmstrip).clone(true).appendTo(dom.gv_filmstrip);
-						dom.gv_filmstrip.css('width',framesLength * 3);
-						this.scrolling = true;
-					} else {
-						dom.gv_filmstrip.css('width',framesLength);
+					if(create){
+						dom.gv_filmstrip.find('.gv_frame').clone(true).addClass("hideifnoscrolling").appendTo(dom.gv_filmstrip).clone(true).appendTo(dom.gv_filmstrip);
 					}
+          
+					this.activateScrolling(framesLength > gv.innerWidth(dom.gv_filmstripWrap));
 				} else {
-					if(framesLength > gv.innerHeight(dom.gv_filmstripWrap)) {
+					if(create){
 						dom.gv_filmstrip.find('.gv_frame').clone(true).appendTo(dom.gv_filmstrip).clone(true).appendTo(dom.gv_filmstrip);
-						dom.gv_filmstrip.css('height',framesLength * 3);
-						this.scrolling = true;
-					} else {
-						dom.gv_filmstrip.css('height',framesLength);
 					}
+          
+					this.activateScrolling(framesLength > gv.innerHeight(dom.gv_filmstripWrap));
 				}
 			} else {
 				dom.gv_filmstrip.css({
@@ -427,22 +462,75 @@ if (typeof Object.create !== 'function') {
 					height: parseInt(dom.gv_filmstripWrap.css('height'),10)+this.opts.frame_gap
 				});
 			}
-			dom.gv_frames = dom.gv_filmstrip.find('.gv_frame');
-			$.each(dom.gv_frames,function(i,frame) {
-				$(frame).data('frameIndex',i);						  
-			});
-			dom.gv_thumbnails = dom.gv_filmstrip.find('div.gv_thumbnail');
+			
+			if(create){
+				dom.gv_frames = dom.gv_filmstrip.find('.gv_frame');
+				$.each(dom.gv_frames,function(i,frame) {
+					$(frame).data('frameIndex',i);						  
+				});
+				dom.gv_thumbnails = dom.gv_filmstrip.find('div.gv_thumbnail');
+			}
 		},
 		
-		buildGallery: function() {
+		activateScrolling: function(activate){
+		
+			// activate / deactivate scrolling and set the correct filmstripsize
+			var dom = this.dom;
+			if(this.filmstripOrientation === 'horizontal') {
+				if(activate) {
+					dom.gv_filmstrip.css('width',this.framesLength * 3);
+					this.scrolling = true;
+				} else {
+					dom.gv_filmstrip.css('width',this.framesLength);
+					this.scrolling = false;
+				}
+			}else{
+				if(activate) {
+					dom.gv_filmstrip.css('height',this.framesLength * 3);
+					this.scrolling = true;
+				} else {
+					dom.gv_filmstrip.css('height',this.framesLength);
+					this.scrolling = false;
+				}
+			}
+			
+			// show / hide the extra thumbs used in the scroller
+			if(activate){
+				this.dom.gv_filmstrip.find('.hideifnoscrolling').show();
+			}else{
+				this.dom.gv_filmstrip.find('.hideifnoscrolling').hide();
+			}
+			
+			//stop thumb animation
+			if(dom.gv_thumbnails!=undefined){
+				dom.gv_thumbnails.stop(true,true);
+			}
+			
+			//scroll to correct location
+			this.dom.gv_filmstrip.stop(true,true).css({left:0, top:0});
+			
+			if(activate) {
+				var currentFrame = this.frameIterator;
+				this.frameIterator=0;//scroll from position 0
+				if(dom.gv_thumbnails!=undefined){
+					this.updateFilmstrip(currentFrame);
+				}
+				
+				this.dom.gv_filmstrip.stop(true,true);
+			}
+		},
+		
+		buildGallery: function(create) {
+			create = typeof create !== 'undefined' ? create : true;
+			
 			var self = this,
 				dom = this.dom;
 			
-			this.setDimensions();
-			this.setPositions();
+			this.setDimensions(create);
+			this.setPositions(create);
 			
 			if(this.opts.show_filmstrip) {
-				this.buildFilmstrip();
+				this.buildFilmstrip(create);
 			}
 		},
 		
@@ -467,27 +555,40 @@ if (typeof Object.create !== 'function') {
 				img.bind('load.galleryview',function() {
 					var _img = $(this),
 						index = _img.data('index'),
-						width = this.width,
-						height = this.height,
 						parent = dom[(_img.data('parent')).type].eq((_img.data('parent')).index),
-						widthFactor = gv.innerWidth(parent) / width,
-						heightFactor = gv.innerHeight(parent) / height,
 						parentType = parent.hasClass('gv_panel') ? 'panel' : 'frame',
-						heightOffset = 0, widthOffset = 0;
+						width = this.width,
+						height = this.height;
 					
-					gvImage.scale[parentType] = self.opts[parentType+'_scale'] === 'fit' ? Math.min(widthFactor,heightFactor) : Math.max(widthFactor,heightFactor);
-					
-					widthOffset = Math.round((gv.innerWidth(parent) - (width * gvImage.scale[parentType])) / 2);
-					heightOffset = Math.round((gv.innerHeight(parent) - (height * gvImage.scale[parentType])) / 2);	
-					
-					_img.css({
-						width: width * gvImage.scale[parentType],
-						height: height * gvImage.scale[parentType],
-						top: heightOffset,
-						left: widthOffset
+					_img.bind("resizegalleryimage", function(){
+						var _img = $(this),
+							widthFactor = gv.innerWidth(parent) / width,
+							heightFactor = gv.innerHeight(parent) / height,
+							heightOffset = 0, widthOffset = 0;
+						
+						gvImage.scale[parentType] = self.opts[parentType+'_scale'] === 'fit' ? Math.min(widthFactor,heightFactor) : Math.max(widthFactor,heightFactor);
+						
+						//if can not upscale
+						if(!self.opts.panel_can_upscale_image && gvImage.scale[parentType]>1){
+							gvImage.scale[parentType]=1;
+						}
+						
+						
+						widthOffset = Math.round((gv.innerWidth(parent) - (width * gvImage.scale[parentType])) / 2);
+						heightOffset = Math.round((gv.innerHeight(parent) - (height * gvImage.scale[parentType])) / 2);	
+						
+						_img.css({
+							width: width * gvImage.scale[parentType],
+							height: height * gvImage.scale[parentType],
+							top: heightOffset,
+							left: widthOffset
+						});
 					});
+					
+					_img.trigger("resizegalleryimage");
+					
 					_img.hide().css('visibility','visible');
-					_img.remove().appendTo(parent);
+					_img.detach().appendTo(parent);
 					
 					if(parentType === 'frame') {
 						_img.fadeIn();
@@ -536,7 +637,15 @@ if (typeof Object.create !== 'function') {
 		
 		showNext: function() {
 			this.navAction = 'next';
-			this.showItem(this.frameIterator+1);
+			if (this.playing && this.opts.play_random_order) {
+				var nextImage = this.frameIterator;
+				while (nextImage == this.frameIterator) {
+					nextImage = Math.floor(Math.random()*(this.numImages + 1));
+				}
+				this.showItem(nextImage);
+			} else {
+				this.showItem(this.frameIterator+1);
+			}
 		},
 		
 		showPrev: function() {
@@ -558,15 +667,10 @@ if (typeof Object.create !== 'function') {
 				playing = false;
 				
 			// don't go out of bounds
-			if(i >= this.numImages) {
-				i = i % this.numImages;
-			} else if(i < 0) {
-				i = this.numImages - 1;
-				if(dom.gv_frames != undefined) {
-					frame_i = dom.gv_frames.length - 1;
-				} else {
-					frame_i = dom.gv_panels.length - 1;
-				}
+			i = self.getTrueImageIndex(i);
+			
+			if( i == this.iterator ) {
+			  return;
 			}
 			
 			panel = dom.gv_panels.eq(i);
@@ -583,11 +687,11 @@ if (typeof Object.create !== 'function') {
 			
 			switch(this.opts.panel_animation) {
 				case 'crossfade':
-					dom.gv_panels.eq(this.iterator).fadeOut(this.opts.transition_speed,function(){$(this).remove();});
+					dom.gv_panels.eq(this.iterator).fadeOut(this.opts.transition_speed,function(){$(this).detach();});
 					panel.hide().prependTo(dom.gv_panelWrap).fadeIn(this.opts.transition_speed);
 					break;
 				case 'fade':
-					dom.gv_panels.eq(this.iterator).remove();
+					dom.gv_panels.eq(this.iterator).detach();
 					panel.hide().prependTo(dom.gv_panelWrap).fadeIn(this.opts.transition_speed);
 					break;
 				case 'slide':
@@ -606,38 +710,78 @@ if (typeof Object.create !== 'function') {
 					
 					dom.gv_panels.eq(this.iterator).animate(
 						{ left: oldPanelEnd },
-						{ duration: this.opts.transition_speed, easing: this.opts.easing, complete: function(){ $(this).remove(); } }
+						{ duration: this.opts.transition_speed, easing: this.opts.easing, complete: function(){ $(this).detach(); } }
 					);
 					break;
 				default:
-					dom.gv_panels.eq(this.iterator).remove();
+					dom.gv_panels.eq(this.iterator).detach();
 					panel.prependTo(dom.gv_panelWrap);
 					break;
 			}
 			
+			// call the resize event again because IE does not seem to like it
+			// when image are resized that are not on the screen...
+			$("img", this.gv_galleryWrap).trigger( "resizegalleryimage" );
+			
 			this.updateOverlay(i);
+			this.updateClickable(i);
 			
 			this.iterator = i;
 			this.updateFilmstrip(frame_i);
 			this.showInfoBar();
 			
+			if(document.getSelection){
+				document.getSelection().removeAllRanges(); // fixes selection of item
+			}
+		},
+		
+		// given an index i, it will adjust i to an appropriate
+		// index that is within the bounds of the images array
+		// pulled out of showItem so it could be re-used for 
+		// other methods and events
+		getTrueImageIndex: function (i) {
+			if (i >= this.numImages) {
+				i = i % this.numImages;
+			} else if (i < 0) {
+				i = this.numImages - 1;
+				if (dom.gv_frames != undefined) {
+					frame_i = dom.gv_frames.length - 1;
+				} else {
+					frame_i = dom.gv_panels.length - 1;
+				}
+			}
 			
+			return i;
 		},
 		
 		updateOverlay: function(i) {
 			var self = this,
 				dom = this.dom;
 			
+			var cursorStyle = '';
+			
+			if (this.opts.clickable == 'overlay' || this.opts.clickable == 'all') {
+				cursorStyle = ' class="cursor_pointer"';
+			}
+			
+			var overlayHtml = '<h4' + cursorStyle + '>' + 
+			self.gvImages[i].attrs.title + '</h4><p>' + 
+			self.gvImages[i].attrs.description + '</p>';
+
 			if(this.overlayVisible) {
 				this.hideOverlay(null,function(){
-					dom.gv_overlay.html('<h4>'+self.gvImages[i].attrs.title+'</h4><p>'+self.gvImages[i].attrs.description+'</p>');
+				dom.gv_overlay.html(overlayHtml);
 					self.showOverlay();
 				});
 			} else {
-				dom.gv_overlay.html('<h4>'+self.gvImages[i].attrs.title+'</h4><p>'+self.gvImages[i].attrs.description+'</p>');
+				dom.gv_overlay.html(overlayHtml);
 				dom.gv_overlay.css(this.opts.overlay_position,-1 * dom.gv_overlay.outerHeight());
 			}
 			
+			if (this.opts.clickable == 'overlay' || this.opts.clickable == 'all') {
+				dom.gv_panelWrap.undelegate('.gv_overlay h4', 'click.galleryview');
+				dom.gv_panelWrap.delegate('.gv_overlay h4', 'click.galleryview', this.doClick(self.gvImages[i].href));
+			}
 		},
 		
 		hideOverlay: function(s,callback) {
@@ -867,10 +1011,18 @@ if (typeof Object.create !== 'function') {
 			
 			dom.gv_filmstripWrap.delegate('.gv_frame','click.galleryview',function(){
 				var el = $(this),
-					i = el.data('frameIndex');
+					i = self.getTrueImageIndex(el.data('frameIndex'));
 				
+				if (self.opts.filmstrip_use_alt_click && self.gvImages[i].href != "")
+				{
+					self.doClick(self.gvImages[i].href)();
+				}
+				else
+				{
 				this.navAction = 'frame';
 				self.showItem(i);
+				}
+				
 				return false;
 			});
 			
@@ -908,6 +1060,47 @@ if (typeof Object.create !== 'function') {
 			dom.gv_panelNavPrev.hide();	
 		},
 		
+		// There's no need to repeat code, so let's just 
+		// abstract the click stuff a little
+		doClick: function (link) {
+			var self = this,
+				dom = this.dom;
+			
+			if (link != '') {
+				var action;
+				
+				if (this.opts.link_newwindow) {
+					action = function () {
+						window.open(link, "_blank");
+					};
+				}
+				else {
+					action = function () {
+						window.location = link;
+					};
+				}
+				
+				return action;
+			}
+			
+			// Just in case we have an empty href
+			return null;
+		},
+
+		// Added to provide clickable link support for panels
+		updateClickable: function (i) {
+			var self = this,
+				dom = this.dom;
+
+			// If we don't undelegate here, we'll stack
+			// up click actions and cycling through the
+			// gallery can end up opening LOTS of links
+			dom.gv_panelWrap.undelegate('.gv_panel', 'click.galleryview');
+			dom.gv_panelWrap.delegate('.gv_panel', 'click.galleryview', this.doClick(self.gvImages[i].href));
+
+			return false;
+		},
+
 		init: function(options,el) {
 			var self = this,
 				dom = this.dom = {};
@@ -917,7 +1110,7 @@ if (typeof Object.create !== 'function') {
 			this.$el = $(el);
 			this.id = el.id;
 			this.iterator = this.frameIterator = this.opts.start_frame - 1;
-			this.overlayVisible = false;
+			this.overlayVisible = this.opts.show_overlays;
 			this.playing = false;
 			this.scrolling = false;
 			this.isMouseDown = false;
@@ -1014,8 +1207,34 @@ if (typeof Object.create !== 'function') {
 				this.startSlideshow(true);
 			}
 			
+			// if panels should be clickable - set it up
+			if (this.opts.clickable == 'panel' || this.opts.clickable == 'all') {
+				this.updateClickable(this.iterator);
+			}
+			
 			this.updateOverlay(this.iterator);
 			this.updateFilmstrip(this.frameIterator);
+		},
+		
+		/*
+		 * Resizing code...
+		 */
+		resizeGallery: function(panel_width, panel_height, frame_width, frame_height){
+	  
+			// new width and height
+			if(panel_width!=undefined){ this.opts.panel_width = panel_width; }
+			if(panel_height!=undefined){ this.opts.panel_height = panel_height; }
+			if(frame_width!=undefined){ this.opts.frame_width = frame_width; }
+			if(frame_height!=undefined){ this.opts.frame_height = frame_height; }
+		
+			// resize gallery: dimensions & positions
+			this.buildGallery(false);
+			
+			// resize images in view
+			$("img", this.gv_galleryWrap).trigger( "resizegalleryimage" );
+			
+			// resize images out of view
+			$("img", this.dom.gv_panels).trigger( "resizegalleryimage" );
 		}
 		
 	}; // END GalleryView
@@ -1028,6 +1247,26 @@ if (typeof Object.create !== 'function') {
 			return this.each(function () {
 				var gallery = Object.create(GalleryView);
 				gallery.init(options,this);
+				
+				/* -- resizecode -- keep object for when resize is called */
+				this.galleryViewForObject = gallery;
+			});
+		}
+	};
+	
+	/*
+	 * MAIN RESIZING CODE
+	 *
+	 * Call this method to resize the panel and/or the frames
+	 *
+	 * All arguments are optional (use undefined)
+	 */
+	$.fn.resizeGalleryView = function (panel_width, panel_height, frame_width, frame_height){
+		if (this.length) {
+			return this.each(function () {
+				if(this.galleryViewForObject){
+					this.galleryViewForObject.resizeGallery(panel_width, panel_height, frame_width, frame_height);
+				}
 			});
 		}
 	};
@@ -1046,7 +1285,8 @@ if (typeof Object.create !== 'function') {
 		// Panel Options
 		show_panels: true, 				//BOOLEAN - flag to show or hide panel portion of gallery
 		show_panel_nav: true, 			//BOOLEAN - flag to show or hide panel navigation buttons
-		enable_overlays: false, 			//BOOLEAN - flag to show or hide panel overlays
+		enable_overlays: false, 		//BOOLEAN - flag to enable or disable panel overlays
+		show_overlays: false,			//BOOLEAN - flag to show or hide panel overlays on page load (if overlays are enabled) 
 		panel_width: 800, 				//INT - width of gallery panel (in pixels)
 		panel_height: 400, 				//INT - height of gallery panel (in pixels)
 		panel_animation: 'fade', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
@@ -1055,6 +1295,8 @@ if (typeof Object.create !== 'function') {
 		pan_images: false,				//BOOLEAN - flag to allow user to grab/drag oversized images within gallery
 		pan_style: 'drag',				//STRING - panning method (drag = user clicks and drags image to pan, track = image automatically pans based on mouse position
 		pan_smoothness: 15,				//INT - determines smoothness of tracking pan animation (higher number = smoother)
+		link_newwindow: true,           //BOOLEAN - flag to open clickable images in a new window
+		clickable: 'none',              //BOOLEAN - flag to determine if the clickable items (panel, overlay, all, none)
 		
 		// Filmstrip Options
 		start_frame: 1, 				//INT - index of panel/frame to show first when gallery loads
@@ -1062,6 +1304,7 @@ if (typeof Object.create !== 'function') {
 		show_filmstrip_nav: true, 		//BOOLEAN - flag indicating whether to display navigation buttons
 		enable_slideshow: true,			//BOOLEAN - flag indicating whether to display slideshow play/pause button
 		autoplay: false,				//BOOLEAN - flag to start slideshow on gallery load
+		play_random_order: false,       //BOOLEAN - while playing the images are "playing" use a random order
 		show_captions: false, 			//BOOLEAN - flag to show or hide frame captions	
 		filmstrip_size: 3, 				//INT - number of frames to show in filmstrip-only gallery
 		filmstrip_style: 'scroll', 		//STRING - type of filmstrip to use (scroll = display one line of frames, scroll filmstrip if necessary, showall = display multiple rows of frames if necessary)
@@ -1071,9 +1314,12 @@ if (typeof Object.create !== 'function') {
 		frame_opacity: 0.4, 			//FLOAT - transparency of non-active frames (1.0 = opaque, 0.0 = transparent)
 		frame_scale: 'crop', 			//STRING - cropping option for filmstrip images (same as above)
 		frame_gap: 5, 					//INT - spacing between frames within filmstrip (in pixels)
+		filmstrip_use_alt_click: false, //BOOLEAN - allows the filmstrip to use the alternate clickable option as instead of navigating as normal
 		
 		// Info Bar Options
 		show_infobar: true,				//BOOLEAN - flag to show or hide infobar
-		infobar_opacity: 1				//FLOAT - transparency for info bar
+		infobar_opacity: 1,				//FLOAT - transparency for info bar
+		
+		panel_can_upscale_image: true
 	};
 })(jQuery);
