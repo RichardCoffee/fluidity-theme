@@ -104,8 +104,16 @@ if (!function_exists('attachment_sizes')) {
 	function attachment_sizes($data,$stem) {
 		$sizes = array();
 		foreach($data['sizes'] as $size=>$data) {
-			$sizes[$size] = $data['file'];
+			$sizes[$size] = $stem.$data['file'];
 		}
 		return $sizes;
+	}
+}
+
+if (!function_exists('url_stem')) {
+	function url_stem($url) {
+		$pos  = strrpos($url,'/');
+		$stem = substr($url,0,$pos+1);
+		return $stem;
 	}
 }
