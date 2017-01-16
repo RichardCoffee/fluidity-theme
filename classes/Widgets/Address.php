@@ -42,7 +42,7 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 				}
 				esc_html_e('Email: ','tcc-fluid'); ?>
 				<a href="mailto:<?php echo esc_html($instance['tcc-email']); ?>">
-					<?php esc_html($instance['tcc-email']);?>
+					<?php echo esc_html($instance['tcc-email']);?>
 				</a>
 			</address>
 			<br>
