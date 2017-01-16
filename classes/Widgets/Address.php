@@ -10,11 +10,12 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 		$this->desc  = esc_html__('Fluidity address widget','tcc-fluid');
 		$this->slug  = 'tcc_address';
 		$this->address = array('tcc-street' => __('Street Address','tcc-fluid'),
-							'tcc-local'  => __('City','tcc-fluid'),
-							'tcc-region' => __('State','tcc-fluid'),
-							'tcc-code'   => __('Zipcode','tcc-fluid'),
-							'tcc-phone'  => __('Contact Number','tcc-fluid'),
-						);
+		                       'tcc-local'  => __('City','tcc-fluid'),
+		                       'tcc-region' => __('State','tcc-fluid'),
+		                       'tcc-code'   => __('Zipcode','tcc-fluid'),
+		                       'tcc-phone'  => __('Contact Number','tcc-fluid'),
+		                       'tcc-email'  => __('Email Address','tcc-fluid'),
+		       );
 		parent::__construct();
 	}
 
@@ -40,8 +41,8 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 					</span><br><?php
 				}
 				esc_html_e('Email: ','tcc-fluid'); ?>
-				<a href="mailto:<?php echo get_option('admin_email'); ?>">
-					<?php bloginfo ('title');?>
+				<a href="mailto:<?php echo esc_html($instance['tcc-email']); ?>">
+					<?php esc_html($instance['tcc-email']);?>
 				</a>
 			</address>
 			<br>
