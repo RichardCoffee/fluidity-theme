@@ -33,8 +33,9 @@ if (!function_exists('fluid_search_page_noposts')) {
 if (!function_exists('single_search_result')) {
 	#	http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
 	function single_search_result() {
-		if (is_search() || is_archive()) {
 			global $wp_query;
+log_entry('single_search_result',$wp_query);
+		if (is_search() || is_archive()) {
 			if ($wp_query->post_count==1) {
 				wp_redirect(get_permalink($wp_query->posts['0']->ID));
 			}
