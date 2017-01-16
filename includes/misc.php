@@ -79,6 +79,19 @@ WHERE a.post_type = 'revision'
 
 } //*/
 
+if (!function_exists('single_search_result')) {
+	#	 http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
+	function single_search_result() {
+		global $wp_query;
+		if (is_search() || is_archive()) {
+			if ($wp_query->post_count==1) {
+				wp_redirect(get_permalink($wp_query->posts['0']->ID));
+			}
+		}
+	}
+	add_action('template_redirect','single_search_result');
+}
+
 if (!function_exists('wp_get_attachment')) {
 	#	http://stackoverflow.com/questions/25974196/how-to-get-wp-gallery-image-captions
 	function wp_get_attachment( $attachment_id ) {

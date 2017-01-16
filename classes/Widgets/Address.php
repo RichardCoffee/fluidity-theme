@@ -40,10 +40,14 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 					<?php echo esc_html($instance['tcc-phone']); ?>
 					</span><br><?php
 				}
-				esc_html_e('Email: ','tcc-fluid'); ?>
+				if (!empty($instance['tcc-email'])) {
+					esc_html_e('Email: ','tcc-fluid');
+					echo microdata()->email_format(esc_html($instance['tcc-email']));
+				} /*
+ ?>
 				<a href="mailto:<?php echo esc_html($instance['tcc-email']); ?>">
 					<?php echo esc_html($instance['tcc-email']);?>
-				</a>
+				</a>*/ ?>
 			</address>
 			<br>
 			<?php
@@ -57,6 +61,7 @@ class TCC_Widgets_Address extends TCC_Widgets_Basic {
 	}
 
 	public function form($instance) {
+		if (empty($instance['tcc-email'])) { $instance['tcc-email'] = get_option('admin_email'); }
 		parent::form($instance);
 		echo "<p>Caution:  We advise that you think very carefully about putting your address out on the internet.</p>";
 		foreach($this->address as $slug=>$text) {
