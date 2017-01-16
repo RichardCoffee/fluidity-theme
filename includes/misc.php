@@ -85,7 +85,6 @@ if (!function_exists('wp_get_attachment')) {
 		$attachment = get_post( $attachment_id );
 		$metadata   = get_post_meta($attachment_id);
 		$img_data   = unserialize($metadata['_wp_attachment_metadata'][0]);
-log_entry($attachment,$metadata,$img_data);
 		$data = array(
 			'alt'         => get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ),
 			'caption'     => $attachment->post_excerpt,
@@ -95,7 +94,6 @@ log_entry($attachment,$metadata,$img_data);
 			'src'         => $attachment->guid,
 			'title'       => $attachment->post_title
 		);
-log_entry(0,$data);
 		return $data;
 	}
 }
