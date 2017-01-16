@@ -7,6 +7,10 @@
 	background-color: white;
 }
 
+.gv_panel {
+	z-index: 0;
+}
+
 .gv_navPlay,
 .gv_navPause,
 .gv_navNext,
