@@ -1,13 +1,6 @@
-includes/search.php:4:  function fluid_search_page_title() {
-includes/search.php:19:  function fluid_search_page_afterposts() { ?>
-includes/search.php:27:  function fluid_search_page_noposts() {
 includes/galleryview.php:6:		function tcc_register_galleryview() {
 includes/galleryview.php:18:		function tcc_enqueue_galleryview($query) {
 includes/widgets.php:4:   function tcc_register_widgets() {
-includes/widgets.php:16:function fluid_sidebar_admin_setup() {
-includes/widgets.php:21:function fluid_widgets_admin_page() {
-includes/widgets.php:26:function fluid_sidebar_admin_page() {
-includes/index.php:8:function fluid_index_page($page='index') { ?>
 includes/library.php:5:  function tcc_apply_clearfix($args) {
 includes/library.php:18:  function tcc_bootstrap_css($args) {
 includes/library.php:31:  function tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead
