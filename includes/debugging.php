@@ -37,3 +37,16 @@ if (!function_exists('log_entry')) {
     }
   }
 }
+
+if (!function_exists('tcc_log_deprecated')) {
+	function tcc_log_deprecated() {
+		$args = func_get_args();
+		log_entry($args,'dump');
+	}
+	add_action('deprecated_function_run',   'tcc_log_deprecated',10,3);
+	add_action('deprecated_constructor_run','tcc_log_deprecated',10,3);
+	add_action('deprecated_file_included',  'tcc_log_deprecated',10,4);
+	add_action('deprecated_argument_run',   'tcc_log_deprecated',10,3);
+	add_action('deprecated_hook_run',       'tcc_log_deprecated',10,4);
+	add_action('doing_it_wrong_run',        'tcc_log_deprecated',10,3);
+}
