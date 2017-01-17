@@ -46,7 +46,7 @@ if (!function_exists('fluid_navigation')) {
 			$nextt = get_permalink(get_adjacent_post(true,'',true));
 			$prevp = get_permalink(get_adjacent_post(false,'',false));
 			$nextp = get_permalink(get_adjacent_post(false,'',true));
-			if ($prevt===$prevp && $nextt===$nextp) { $all_links = false; }
+			if ($prevt===$prevp && $nextt===$nextp) { $taxonomy = ''; }
 		} ?>
 		<div class="post_link_separator post_link_separator_top"></div><?php
 		if ($taxonomy) { ?>
