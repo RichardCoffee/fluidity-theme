@@ -54,6 +54,7 @@ if (!function_exists('fluid_navigation')) {
 				<h2 class="screen-reader-text">
 					<?php esc_attr_e( 'Category Navigation', 'tcc-fluid' ); ?>
 				</h2>
+				<div class="row">
 				<ul class="pager pager-category">
 					<li class="previous btn-fluidity" title="<?php esc_html_e('Older Posts','tcc-fluid'); ?>">
 						<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
@@ -62,6 +63,7 @@ if (!function_exists('fluid_navigation')) {
 						<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 					</li>
 				</ul>
+				</div>
 			</nav><br><div class="post_link_separator post_link_separator_middle"></div><?php
 		}
 		if (!$taxonomy || $all_links) { ?>
@@ -69,6 +71,7 @@ if (!function_exists('fluid_navigation')) {
 				<h2 class="screen-reader-text">
 					<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
 				</h2>
+				<div class="row">
 				<ul class="pager">
 					<li class="previous btn-fluidity" title="<?php esc_html_e('Older Posts','tcc-fluid'); ?>">
 						<?php previous_post_link('%link',$left); ?>
@@ -77,6 +80,7 @@ if (!function_exists('fluid_navigation')) {
 						<?php next_post_link('%link',$right); ?>
 					</li>
 				</ul>
+				</div>
 			</nav><?php
 		} ?>
 		<br><br><div class="post_link_separator post_link_separator_bottom"></div><?php
