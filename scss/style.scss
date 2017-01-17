@@ -14,15 +14,14 @@
 /* tags list: https://wordpress.org/themes/ */
 
 @import "bootstrap/mixins";
+@import "vendors/vendors";
+// components imported at bottom of this file
 
 body {
   font-size: 18px;
   margin: 0;
   width: 100%;
 }
-
-@import "vendors/vendors";
-@import "components/components";
 
 .content {
   border:1px solid;
@@ -80,3 +79,5 @@ pre {
 .navbar-home {
   margin-top: 3em;
 }
+
+@import "components/components";
