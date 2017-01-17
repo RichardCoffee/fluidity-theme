@@ -23,7 +23,7 @@ if (has_nav_menu($menu)) {
 			</div>
 			<div class="collapse navbar-collapse navbar-<?php echo $menu; ?>-collapse"><?php
 				// FIXME: add filter for wp_nav_menu($args)
-				wp_nav_menu( array('menu'=>$menu,'container'=>false,'menu_class'=>'nav navbar-nav','walker'=> new wp_bootstrap_navwalker())); ?>
+				wp_nav_menu( array('menu'=>$menu,'container'=>false,'menu_class'=>'nav navbar-nav','walker'=> new TCC_NavWalker_Bootstrap(), 'fallback_cb' => '' ) ); ?>
 			</div>
 		</nav><?php
 	} else {
@@ -35,7 +35,7 @@ if (has_nav_menu($menu)) {
 				<i class="fa fa-bars"> </i>
 				<?php #esc_html_e( 'Primary Menu', 'tcc_fluid' ); ?>
 			</button>
-			<?php wp_nav_menu( array( 'theme_location' => $menu, 'menu_id' => 'primary-menu' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => $menu, 'menu_id' => 'primary-menu', 'fallback_cb' => '' ) ); ?>
 		</nav><!-- #site-navigation --><?php
 	}
 }
