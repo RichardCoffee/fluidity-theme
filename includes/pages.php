@@ -116,7 +116,7 @@ if (!function_exists('tcc_page_title')) {
 		if (has_action("tcc_page_title_$slug")) {
 			do_action("tcc_page_title_$slug");
 		} else {
-			$title = get_page_title($slug)
+			$title = get_page_title($slug);
 			if ($title) { ?>
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
 					<div class="<?php echo container_type('title','container'); ?>">
