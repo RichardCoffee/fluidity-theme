@@ -48,7 +48,7 @@ if (!function_exists('fluid_navigation')) {
 			$nextp = get_permalink(get_adjacent_post(false,'',true));
 			if ($prevt===$prevp && $nextt===$nextp) { $all_links = false; }
 		} ?>
-		<br><div class="post_link_separator post_link_separator_top"></div><?php
+		<div class="post_link_separator post_link_separator_top"></div><?php
 		if ($taxonomy) { ?>
 			<nav class="noprint" aria-label="..."><?php // FIXME:  move this out to it own function? ?>
 				<h2 class="screen-reader-text">
