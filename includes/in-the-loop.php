@@ -86,7 +86,8 @@ if (!function_exists('fluid_navigation')) {
 				</div>
 			</nav><?php
 		} ?>
-		<div class="post_link_separator post_link_separator_bottom"></div><?php
+		<div class="post_link_separator post_link_separator_bottom"></div>
+		<p> </p><?php
 	}
 }
 
