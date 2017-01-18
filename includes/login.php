@@ -151,6 +151,7 @@ if (!function_exists('tcc_admin_howdy')) {
 	function tcc_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
 		$user_id      = get_current_user_id();
 		if ( 0 != $user_id ) {
+			require_once('includes/misc.php'); // FIXME:  wtf?
 			/* Add the "My Account" menu */
 			$current = wp_get_current_user();
 			$profile = get_edit_profile_url( $user_id );
