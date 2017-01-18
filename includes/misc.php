@@ -145,5 +145,5 @@ if (!function_exists('tcc_holiday_greeting')) {
 		}
 		return $message;
 	}
-log_entry('tcc_holiday_greeting defined')
+log_entry('tcc_holiday_greeting defined');
 }
