@@ -166,7 +166,7 @@ if (!function_exists('tcc_holiday_greeting')) { return; }
 			$args    = array('id'     => 'my-account',
 			                 'parent' => 'top-secondary',
 			                 'title'  => $howdy . $avatar,
-			                 'href'   => $profile_url,
+			                 'href'   => $profile,
 			                 'meta'   => array( 'class' => $class,
 			                                    'title' => __('My Account','tcc-fluid') ) );
 			$wp_admin_bar->add_menu( $args );
