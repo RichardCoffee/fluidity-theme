@@ -64,6 +64,7 @@ if (is_object($page) && !isset($page->post_type)) { log_entry('bad post type val
          if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
             $slug = $page->post_name;
          } else {
+log_entry(0,$fluidity_theme_template);
             $slug = $fluidity_theme_template;
          }
     }
