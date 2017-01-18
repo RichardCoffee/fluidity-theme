@@ -151,7 +151,10 @@ if (!function_exists('tcc_admin_howdy')) {
 	function tcc_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
 		$user_id      = get_current_user_id();
 		if ( 0 != $user_id ) {
-require_once('includes/misc.php'); // FIXME:  wtf?
+if (!function_exists('tcc_holiday_greeting')) {
+require_once('misc.php'); // FIXME:  wtf?
+log_entry('tcc_holiday_greeting missing');
+}
 if (!function_exists('tcc_holiday_greeting')) { return; }
 			/* Add the "My Account" menu */
 			$current = wp_get_current_user();
