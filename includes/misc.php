@@ -129,7 +129,6 @@ if (!function_exists('url_stem')) {
 	}
 }
 
-log_entry('checking tcc_holiday_greeting');
 if (!function_exists('tcc_holiday_greeting')) {
 	function tcc_holiday_greeting() {
 		$date = date('d-m');
@@ -145,5 +144,4 @@ if (!function_exists('tcc_holiday_greeting')) {
 		}
 		return $message;
 	}
-log_entry('tcc_holiday_greeting defined');
 }
