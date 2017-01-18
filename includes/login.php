@@ -160,9 +160,10 @@ if (!function_exists('tcc_admin_howdy')) {
 			$class   = empty( $avatar ) ? '' : 'with-avatar';
 			$args    = array('id'     => 'my-account',
 			                 'parent' => 'top-secondary',
-			                 'title' => $howdy . $avatar,
-			                 'href' => $profile_url,
-			                 'meta' => array( 'class' => $class ) );
+			                 'title'  => $howdy . $avatar,
+			                 'href'   => $profile_url,
+			                 'meta'   => array( 'class' => $class,
+			                                    'title' => __('My Account','tcc-fluid') ) );
 			$wp_admin_bar->add_menu( $args );
 		}
 	}
