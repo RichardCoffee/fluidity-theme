@@ -16,7 +16,8 @@ require_once('includes/theme-support.php');
 require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
 require_once('includes/footer.php');
-require_once('includes/library.php');                #  load logging function as soon as possible
+require_once('includes/library.php');
+require_once('includes/login.php');
 require_once('includes/menus.php');
 require_once('includes/misc.php');
 require_once('includes/parallax.php');
@@ -35,7 +36,6 @@ if (is_admin()) {
   require_once('includes/header.php');
   require_once('includes/in-the-loop.php');
   require_once('includes/index.php');
-  require_once('includes/login.php');
   require_once('includes/pages.php');
   require_once('includes/third-party.php');
   require_once('classes/microdata.php');

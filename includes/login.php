@@ -5,17 +5,19 @@ if (!WP_DEBUG) { // Source?
 }
 
 if (!function_exists('tcc_admin_login_redirect')) {
-  function tcc_admin_login_redirect($redirect_to,$request,$user) {
+	function tcc_admin_login_redirect($redirect_to,$request,$user) {
 		if (!$user)                       { return home_url(); }
 		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 		if (get_class($user)=='WP_Error') { return $redirect_to; }
-    $from = wp_get_referer();
+		$from = wp_get_referer();
 #    if (!(strpos($from,'wp-admin')===false)) return $from;
 #    if (!in_array("administrator",$user->roles)) return home_url();
-    return home_url();
-    return $redirect_to;
-  }
-  add_filter("login_redirect","tcc_admin_login_redirect",10,3);
+		$user_id = get_current_user_id();
+		if ($user_id===1) { return $redirect_to; }
+		return home_url();
+#		return $redirect_to;
+	}
+	add_filter("login_redirect","tcc_admin_login_redirect",10,3);
 }
 
 if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
@@ -140,4 +142,29 @@ if (!function_exists('tcc_logout_url')) {
     return $url;
   }
   add_filter('logout_url', 'tcc_logout_url', 10, 2);
+}
+
+if (!function_exists('tcc_admin_howdy')) {
+	#	http://www.wpbeginner.com/wp-tutorials/how-to-change-the-howdy-text-in-wordpress-3-3-admin-bar/
+	#	https://premium.wpmudev.org/forums/topic/change-howdy-manually
+	#	http://www.hongkiat.com/blog/wordpress-howdy-customized/
+	function tcc_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
+		$user_id      = get_current_user_id();
+		if ( 0 != $user_id ) {
+			/* Add the "My Account" menu */
+			$current = wp_get_current_user();
+			$profile = get_edit_profile_url( $user_id );
+			$avatar  = get_avatar( $user_id, 28 );
+			$text    = ($user_id===1) ? __('Your Royal Highness','tcc-fluid') : tcc_holiday_greeting();
+			$howdy   = sprintf( _x('%1$s, %2$s','greetings text, user name','tcc-fluid'), $text, $current->display_name );
+			$class   = empty( $avatar ) ? '' : 'with-avatar';
+			$args    = array('id'     => 'my-account',
+			                 'parent' => 'top-secondary',
+			                 'title' => $howdy . $avatar,
+			                 'href' => $profile_url,
+			                 'meta' => array( 'class' => $class ) );
+			$wp_admin_bar->add_menu( $args );
+		}
+	}
+	add_action('admin_bar_menu', 'tcc_admin_howdy', 11 );
 }

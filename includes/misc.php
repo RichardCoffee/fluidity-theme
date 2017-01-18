@@ -128,3 +128,20 @@ if (!function_exists('url_stem')) {
 		return $stem;
 	}
 }
+
+if (!function_exists('tcc_holiday_greeting')) {
+	function tcc_holiday_greeting() {
+		$date = date('d-m');
+		switch($date) {
+			case '01-01':
+				$message = 'Happy New Years';
+				break;
+			case '25-12':
+				$message = 'Merry Christmas';
+				break;
+			default:
+				$message = 'Welcome';
+		}
+		return $message;
+	}
+}
