@@ -36,7 +36,6 @@ if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
 
 if (!function_exists('tcc_login_css')) {
   function tcc_login_css() {
-    echo '<link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/loginpage/login-styles.css" />;';
     // http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
     $logo = tcc_design('logo');
     if ($logo) {
