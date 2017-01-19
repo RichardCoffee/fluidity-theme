@@ -82,7 +82,7 @@ if (!function_exists('fluidity_header_logo')) {
           } ?>
         </a><?php
       } ?>
-    </span><?php
+    </span><span></span><?php
   }
 }
 
