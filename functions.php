@@ -11,7 +11,7 @@ defined('TCC_THEME_VERSION') or define('TCC_THEME_VERSION',FLUIDITY_VERSION);
 
 require_once('includes/loader.php');
 require_once('includes/debugging.php');              #  load logging function as soon as possible
-require_once('includes/james.php');
+#require_once('includes/james.php');
 require_once('includes/theme-support.php');
 require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
