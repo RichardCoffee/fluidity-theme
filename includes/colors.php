@@ -21,7 +21,7 @@ if (!function_exists('fluid_color_scheme')) {
 }
 
 if (!function_exists('tcc_color_scheme')) {
-  function tcc_color_scheme(string $location='') {
+  function tcc_color_scheme( $location='' ) {
 /*
  *    blue: primary
  *   green: success
@@ -54,7 +54,7 @@ function tcc_custom_colors() {
 if (!function_exists('tcc_parallax')) {
 	function tcc_parallax() {
 		$paras = get_option('tcc_options_parallax');
-#log_entry(0,$paras);
+log_entry("paras: $paras");
 		if ($paras) {
 			$string = '.para-img-%1$s { background-image: url("%2$s"); height:400px; }';
 			foreach($paras as $page=>$para) {
@@ -62,7 +62,7 @@ if (!function_exists('tcc_parallax')) {
 			}
 		}
 	}
-#log_entry('paral: '.tcc_design('paral'));
+log_entry('paral: '.tcc_design('paral'));
 	if (tcc_design('paral')==='yes') {
 		add_action('tcc_custom_css','tcc_parallax');
 	}
