@@ -77,7 +77,7 @@ if (!function_exists('get_page_slug')) {
 				}
 			}
 		}
-//log_entry(0,$slug.':  '.debug_calling_function());
+log_entry($slug.':  '.debug_calling_function());
 		return $slug;
 	}
 }
