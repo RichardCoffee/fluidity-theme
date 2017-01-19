@@ -55,5 +55,5 @@ if (!function_exists('tcc_get_template_part')) {
 	function tcc_get_template_part($slug,$name) {
 		log_entry("slug:  $slug","name:  $name");
 	}
-	add_action('get_template_part_footer','tcc_get_template_part',10,2);
+	add_action('get_template_part_template_parts/footer','tcc_get_template_part',10,2);
 }
