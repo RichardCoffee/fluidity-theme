@@ -9,8 +9,9 @@
 
 if (!function_exists('fluid_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
-  function fluid_browser_body_class($classes) {
+  function fluid_browser_body_class( array $classes ) {
     global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+log_entry('fluid_browser_body_class');
     if     ($is_lynx)   $classes[] = 'lynx';
     elseif ($is_gecko)  $classes[] = 'gecko';
     elseif ($is_opera)  $classes[] = 'opera';
@@ -27,7 +28,7 @@ if (!function_exists('fluid_browser_body_class')) {
 
 // Limit length of title string
 if (!function_exists('fluid_browser_title')) {
-  function fluid_browser_title($title) {
+  function fluid_browser_title( string $title ) {
     if (!is_feed()) {
       $test = get_bloginfo('name');
       if (empty($title)) {

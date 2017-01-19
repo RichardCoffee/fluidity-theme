@@ -142,7 +142,7 @@ if (!function_exists('fluidity_register_color_scheme')) {
 
 ##  simple query template
 if (!function_exists('fluidity_show_query')) { // FIXME: move this
-  function fluidity_show_query( $args, $template, $slug='' ) {
+  function fluidity_show_query( array $args, string $template, $slug='' ) {
     $query = new WP_Query($args);
     if ($query->have_posts()) {
       while ($query->have_posts()) {

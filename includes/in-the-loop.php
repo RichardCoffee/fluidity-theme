@@ -8,7 +8,7 @@
  */
 
 if (!function_exists('fluid_content_slug')) {
-  function fluid_content_slug($page='single') {
+  function fluid_content_slug( string $page='single' ) {
     $slug = ($format=get_post_format()) ? $format : get_post_type();
     $slug = apply_filters("tcc-content",$slug);
     $slug = apply_filters("tcc-content-{$slug}",$slug);
@@ -20,10 +20,9 @@ log_entry(0,"fluid_content_slug: $slug");
 }
 
 if (!function_exists('fluid_edit_post_link')) {
-  function fluid_edit_post_link($separator=' ') {
+  function fluid_edit_post_link() {
     $title  = the_title( '<span class="sr-only">"', '"</span>', false );
     $string = sprintf( esc_attr_x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), $title );
-    #edit_post_link( '{'.$string.'}', $separator.'<span class="edit-link">', '</span>' );
     ##  This code replaces the edit_post_link call so that I could add the target attribute
     $link = get_edit_post_link(get_the_ID());
     if ($link) { ?>
@@ -37,7 +36,7 @@ if (!function_exists('fluid_edit_post_link')) {
 }
 
 if (!function_exists('fluid_navigation')) {
-	function fluid_navigation($taxonomy='',$all_links=false) {
+	function fluid_navigation( string $taxonomy='', bool $all_links=false) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude  = '';
@@ -99,7 +98,7 @@ if (!function_exists('fluid_next_post_exists')) {
 }
 
 if (!function_exists('fluid_post_date')) {
-  function fluid_post_date($complete=false) {
+  function fluid_post_date( bool $complete=false) {
     $string = esc_html_x('Posted on %1$s by %2$s','formatted date string, user name','tcc-fluid');
     $date   = get_the_date();
     $author = microdata()->get_the_author();
@@ -154,7 +153,7 @@ if (!function_exists('fluid_postmetadata')) {
 }
 
 if (!function_exists('fluid_post_separator')) {
-  function fluid_post_separator($slug) {
+  function fluid_post_separator( string $slug ) {
     if (fluid_next_post_exists()) {
       if (has_action('fluid_post_separator_'.$slug)) {
         do_action('fluid_post_separator_'.$slug); }
@@ -178,7 +177,7 @@ if (!function_exists('fluid_thumbnail')) {
 }
 
 if (!function_exists('fluid_title')) {
-	function fluid_title($length=0) {
+	function fluid_title( int $length=0 ) {
 		$echo=false; $after='...'; $before=''; // FIXME
 		#$postID = get_post()->ID;
 		$title  = get_the_title( get_the_ID() );
@@ -200,7 +199,7 @@ if (!function_exists('fluid_title')) {
 }
 
 if (!function_exists('get_the_author_posts_link')) {
-  function get_the_author_posts_link($authorID=0) {
+  function get_the_author_posts_link( int $authorID=0 ) {
     $html = '';
     $authorID = ($authorID) ? $authorID : get_the_author_meta('ID');
     if ($authorID) {
@@ -211,39 +210,9 @@ if (!function_exists('get_the_author_posts_link')) {
     return $html;
   }
 }
-/* moved to includes/parallax.php
-if (!function_exists('tcc_excerpt_parallax')) {
-	function tcc_excerpt_parallax() { ?>
-		<style>
-			.post-<?php the_ID(); ?> {
-				background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
-				background-attachment: fixed;
-				background-position: center top;
-				background-repeat: no-repeat;
-				background-size: cover;
-				min-height: 250px;
-			}
-		</style><?php
-	}
-} //*/
-/*
-if (!function_exists('tcc_post_parallax')) {
-	function tcc_post_parallax($css='single-parallax') {
-		if ( has_post_thumbnail() ) { ?>
-			<style>
-				.single-parallax {
-					background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
-					background-position: 50% 135px;
-					min-height: 450px;
-				}
-			</style>
-			<div id="" class="parallax <?php echo $css; ?> parallax-scroll"></div><?php
-		}
-	}
-} //*/
 
 if (!function_exists('tcc_post_title')) {
-	function tcc_post_title($max=0,$anchor=true) {
+	function tcc_post_title( int $max=0, bool $anchor=true ) {
 		$anchor = (is_single()) ? false : $anchor;
 		$title  = fluid_title($max);
 		if ($anchor) {

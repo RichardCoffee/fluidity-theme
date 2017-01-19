@@ -2,7 +2,7 @@
 
 // Use bootstrap's clearfix
 if (!function_exists('tcc_apply_clearfix')) {
-  function tcc_apply_clearfix($args) {
+  function tcc_apply_clearfix( $args ) {
     $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
     $args = wp_parse_args($args,$defs);
     if (empty($args['cnt'])) return;
@@ -15,7 +15,7 @@ if (!function_exists('tcc_apply_clearfix')) {
 }
 
 if (!function_exists('tcc_bootstrap_css')) {
-  function tcc_bootstrap_css($args) {
+  function tcc_bootstrap_css( array $args ) {
     $lg = $md = $sm = $xs = 0;
     extract($args,EXTR_IF_EXISTS);
     $css = ($lg) ?  "col-lg-$lg" : '';
@@ -28,8 +28,9 @@ if (!function_exists('tcc_bootstrap_css')) {
 
 if (!function_exists('tcc_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
-  function tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead
+  function tcc_browser_body_class( array $classes ) { // FIXME:  Ummm, no.  check user-agent string instead
     global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+log_entry('tcc_browser_body_class');
     if($is_lynx)       $classes[] = 'lynx';
     elseif($is_gecko)  $classes[] = 'gecko';
     elseif($is_opera)  $classes[] = 'opera';
@@ -45,7 +46,7 @@ if (!function_exists('tcc_browser_body_class')) {
 }
 
 if (!function_exists('container_type')) {
-  function container_type( $location='post', $ccs='container-fluid' ) {
+  function container_type( string $location='post', string $ccs='container-fluid' ) {
     $css = 'container-fluid'; // FIXME: change default
     if ($location=='header') {
       $css.= " nopad";
@@ -59,7 +60,7 @@ if (!function_exists('container_type')) {
 
 // convert user data to flat object
 if (!function_exists('convert_user_meta')) {
-  function convert_user_meta($ID) {
+  function convert_user_meta( int $ID ) {
     $wp_d = get_userdata($ID);
     $out  = $_wp_d->data;
     $data = get_user_meta($ID);
@@ -69,8 +70,8 @@ if (!function_exists('convert_user_meta')) {
     return $out;
   }
 }
-
-/*if (!function_exists('fluid_get_post_terms')) {
+/*
+if (!function_exists('fluid_get_post_terms')) {
   function fluid_get_post_terms($post_id,$taxonomy,$args) {
     $terms = array();
     if ($post_id) {
@@ -87,7 +88,7 @@ if (!function_exists('convert_user_meta')) {
 
 if (!function_exists('wp_menu_id_by_name')) {
   // http://wordpress.stackexchange.com/questions/104301/get-menu-id-using-its-name
-  function wp_menu_id_by_name($name) {
+  function wp_menu_id_by_name( string $name ) {
     $menus = get_terms('nav_menu');
     foreach ($menus as $menu) {
       if($name===$menu->name) {
@@ -99,20 +100,20 @@ if (!function_exists('wp_menu_id_by_name')) {
 }
 
 if (!function_exists('esc_attr_ex')) {
-	function esc_attr_ex( $text, $context, $domain = 'default' ) {
+	function esc_attr_ex( string $text, string $context, string $domain = 'default' ) {
 		echo esc_attr_x( $text, $context, $domain );
 	}
 }
 
 if (!function_exists('esc_html_ex')) {
-	function esc_html_ex( $text, $context, $domain = 'default' ) {
+	function esc_html_ex( string $text, string $context, string $domain = 'default' ) {
 		echo esc_html_x( $text, $context, $domain );
 	}
 }
 
 #  https://developer.wordpress.org/themes/basics/template-hierarchy/
 if (!function_exists('author_role_template')) {
-  function author_role_template( $templates = '' ) {
+  function author_role_template( string $templates = '' ) {
     $author = get_queried_object();
     if ($author && isset($author->roles)) {
       $role = $author->roles[0];
@@ -135,7 +136,7 @@ if (!function_exists('author_role_template')) {
 #	get featured image url
 #	needs postID if used outside of loop
 if (!function_exists('get_featured_url')) {
-	function get_featured_url($postID=null) {
+	function get_featured_url( int $postID=0 ) {
 		$imgURL = null; # 'invalid post ID passed to get_featured_url';
 		// FIXME: postID should be able to be the post object
 		$postID = (intval($postID,10)>0) ? intval($postID,10) : null;
@@ -149,7 +150,7 @@ if (!function_exists('get_featured_url')) {
 
 #  get term name string
 if (!function_exists('get_term_name')) {
-  function get_term_name($tax,$slug) {
+  function get_term_name( string $tax, string $slug ) {
     $term = get_term_by('slug',$slug,$tax);
     if ($term) return $term->name;
     return '';
@@ -158,7 +159,7 @@ if (!function_exists('get_term_name')) {
 
 if (!function_exists('get_valid_gravatar')) {
   #  https://codex.wordpress.org/Using_Gravatars
-  function get_valid_gravatar($email,$size=96) {
+  function get_valid_gravatar( string $email, int $size=96 ) {
     // Craft a potential url and test its headers
     $hash = md5(strtolower(trim($email)));
     $uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
@@ -181,7 +182,7 @@ if (!function_exists('is_ajax')) {
 
 #  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 if (!function_exists('page_exists')) {
-  function page_exists($search='') {
+  function page_exists( string $search ) {
     $pages = get_pages();
     foreach ($pages as $page) {
       if ($page->post_name==$search)
@@ -192,7 +193,7 @@ if (!function_exists('page_exists')) {
 }
 
 if (!function_exists('sanitize_array')) {
-  function sanitize_array($array,$method='title') {
+  function sanitize_array( array $array, string $method='title' ) {
     $output = array();
     $func   = "sanitize_$method";
     if ((array)$array==$array && function_exists($func)) {
@@ -213,7 +214,7 @@ if (!function_exists('sanitize_array')) {
 
 if (!function_exists('array_insert_after')) {
   #  http://eosrei.net/comment/287
-  function array_insert_after($array, $key, $new_key, $new_value) {
+  function array_insert_after( array $array, string $key, string $new_key, $new_value) {
     if (array_key_exists($key, $array)) {
       $new = array();
       foreach ($array as $k => $value) {
@@ -290,7 +291,7 @@ if (!function_exists('debug_rewrite_rules')) {
 
 #  http://stackoverflow.com/questions/5224209/wordpress-how-do-i-get-all-the-registered-functions-for-the-content-filter
 if (!function_exists('list_filter_hooks')) {
-  function list_filter_hooks( $hook = '' ) {
+  function list_filter_hooks( string $hook = '' ) {
     if (WP_DEBUG) {
       global $wp_filter;
       $hooks = isset( $wp_filter[$hook] ) ? $wp_filter[$hook] : array();
@@ -371,7 +372,7 @@ if (!function_exists('list_template_conditions')) {
 
 #  show data inline
 if (!function_exists('showme')) {
-  function showme($title,$data) {
+  function showme( string $title, $data ) {
     if (WP_DEBUG) { ?>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="panel panel-primary">
@@ -393,7 +394,7 @@ if (!function_exists('showme')) {
 
 #  show string inline
 if (!function_exists('tellme')) {
-  function tellme($string) {
+  function tellme( string $string ) {
     if (WP_DEBUG) {
       echo "<p>$string</p>";
     }
@@ -402,7 +403,7 @@ if (!function_exists('tellme')) {
 
 if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
-  function who_am_i($pos=0) {
+  function who_am_i( int $pos=0 ) {
     if (WP_DEBUG)  {
       #static $flag = ''; // give capability to turn this off via a flag file
       #if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';

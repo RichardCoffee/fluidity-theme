@@ -14,9 +14,7 @@ Note:  this list is probably not accurate, check source for more
  tcc_header_top_menubar       top menubar of header                                                        template-parts/header.php
  tcc_navbar_signout           insert navbar html before signout button          tcc_login_form             includes/login.php
  tcc_pre_header               prior to display of header                                                   template-parts/header.php
- tcc_pre_search               prior to content of search/archive page                                      archive.php
  tcc_post_header              after display of header                                                      template-parts/header.php
- tcc_post_search              after content on search/archive page                                         archive.php
  tcc_register_widgets         register widgets that extend TCC_Basic_Widget     register_fluid_widgets     classes/widgets.php
  tcc_widget_class_loaded      TCC_Basic_Widget class has been loaded                                       classes/widgets.php
  tcc_widget_signout           insert widget html before signout button          tcc_login_form             includes/login.php

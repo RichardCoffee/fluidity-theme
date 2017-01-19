@@ -20,11 +20,10 @@ if (!function_exists('fluid_layout')) {
 }
 
 if (!function_exists('sidebar_layout')) {
-  function sidebar_layout($sidebar='standard',$side=null) {
+  function sidebar_layout( string $sidebar='standard', $side=null ) {
     $layout = fluid_layout();
     $side   = ($side) ? $side : $layout->sb_locate;
     if ($side!=='none') {
-      $micro = microdata();
       $sidebar_class = $layout->sb_class.(($side=='right') ? ' pull-right' : ''); ?>
       <aside class="<? echo $sidebar_class; ?>" <?php microdata()->WPSideBar(); ?>><?php
 			get_template_part('sidebar',$sidebar); ?>

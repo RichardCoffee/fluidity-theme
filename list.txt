@@ -54,7 +54,6 @@ includes/login.php:65:      function tcc_remember_me_checked() {
 includes/login.php:76:  function remove_lostpassword_text($text) {
 includes/login.php:85:  function tcc_login_form($navbar=false,$right=false) {
 includes/login.php:127:  function tcc_logout_url($url, $redirect) {
-includes/archive.php:3:function fluid_archive_page_title() {
 includes/pages.php:9:  function fluid_archive_page_title() { ?>
 includes/pages.php:15:  function fluid_archive_page_noposts() {
 includes/pages.php:22:  function fluid_category_page_title() { ?>

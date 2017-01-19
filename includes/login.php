@@ -151,7 +151,7 @@ if (!function_exists('tcc_admin_howdy')) {
 		$user_id      = get_current_user_id();
 		if ( 0 != $user_id ) {
 if (!function_exists('tcc_holiday_greeting')) {
-require_once('misc.php'); // FIXME:  wtf?
+require_once('misc.php'); // FIXME:  wtf? - theme function file has not been loaded at this point in admin, so how is this function getting called?
 log_entry('tcc_holiday_greeting missing');
 }
 if (!function_exists('tcc_holiday_greeting')) { return; }

@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists('fluid_color_body_class')) {
-	function fluid_color_body_class($classes) {
+	function fluid_color_body_class(array $classes) {
 		$color = fluid_color_scheme();
 		if ($color) {
 		$classes[] = "fluid-color-$color";
@@ -21,7 +21,7 @@ if (!function_exists('fluid_color_scheme')) {
 }
 
 if (!function_exists('tcc_color_scheme')) {
-  function tcc_color_scheme($location='') {
+  function tcc_color_scheme(string $location='') {
 /*
  *    blue: primary
  *   green: success
