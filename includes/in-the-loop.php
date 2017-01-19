@@ -98,7 +98,7 @@ if (!function_exists('fluid_next_post_exists')) {
 }
 
 if (!function_exists('fluid_post_date')) {
-  function fluid_post_date( bool $complete=null ) {
+  function fluid_post_date( $complete=null ) {
     $string = esc_html_x('Posted on %1$s by %2$s','formatted date string, user name','tcc-fluid');
     $date   = get_the_date();
     $author = microdata()->get_the_author();
