@@ -40,7 +40,6 @@ do_action("tcc_{$page}_page_top"); ?>
 						$slug = fluid_content_slug($page);
 						get_template_part("template-parts/$main",$slug);
 						if (!is_singular()) {
-echo "<p> $page </p>";
 							fluid_post_separator($page); }
 					}
 

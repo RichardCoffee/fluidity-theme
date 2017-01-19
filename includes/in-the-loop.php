@@ -153,7 +153,7 @@ if (!function_exists('fluid_postmetadata')) {
 }
 
 if (!function_exists('fluid_post_separator')) {
-  function fluid_post_separator( string $slug ) {
+  function fluid_post_separator( $slug ) {  #  FIXME:  string type hint gives an error here on string
     if (fluid_next_post_exists()) {
       if (has_action('fluid_post_separator_'.$slug)) {
         do_action('fluid_post_separator_'.$slug); }
