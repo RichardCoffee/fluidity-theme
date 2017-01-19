@@ -54,23 +54,31 @@ if (!function_exists('fluid_save_page_template')) {
 }
 
 if (!function_exists('get_page_slug')) {
-  function get_page_slug() {
-    static $slug;
-    if (!$slug) {
-         global $fluidity_theme_template; // FIXME: this is not a reliable source
-         $page = get_queried_object();
-if (is_object($page) && !isset($page->post_type)) { log_entry('bad post type value',$fluidity_theme_template,'class: '.get_class($page),$page); }
-// FIXME: test for post_type property?
-         if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
-            $slug = $page->post_name;
-         } else {
-log_entry(0,$fluidity_theme_template);
-            $slug = $fluidity_theme_template;
-         }
-    }
+	#	http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
+	function get_page_slug() {
+		static $slug = null;
+			if (!$slug) {
+				if ( !is_admin() && $query->is_main_query() ) {
+				global $fluidity_theme_template; // FIXME: this is not a reliable source
+				if ( is_home() && empty( $wp->query_string ) ) {
+					$slug = 'blog';
+				} else if ( ( $query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp->query_string ) ) {
+					$slug = 'front';
+				} else {
+					$page = get_queried_object();
+					if (is_object($page) && !isset($page->post_type)) { log_entry('bad post type value',$fluidity_theme_template,'class: '.get_class($page),$page); }
+					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
+						$slug = $page->post_name;
+					} else {
+#log_entry(0,$fluidity_theme_template);
+						$slug = $fluidity_theme_template;
+					}
+				}
+			}
+		}
 //log_entry(0,$slug.':  '.debug_calling_function());
-    return $slug;
-  }
+		return $slug;
+	}
 }
 
 if (!function_exists('get_page_title')) {
