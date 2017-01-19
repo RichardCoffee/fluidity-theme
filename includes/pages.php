@@ -65,7 +65,9 @@ log_entry($wp_query);
 			if ( !is_admin() && $wp_query->is_main_query() ) {
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'blog';
-				} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
+log_entry(get_option('page_on_front'));
+#} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
+				} else if ( ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) ) && get_option( 'page_on_front' ) ) ) {
 					$slug = 'front';
 				} else {
 					$page = get_queried_object(); // wtf?
