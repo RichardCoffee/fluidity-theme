@@ -26,25 +26,6 @@ if (!function_exists('tcc_bootstrap_css')) {
   }
 }
 
-if (!function_exists('tcc_browser_body_class')) {
-  // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
-  function tcc_browser_body_class( array $classes ) { // FIXME:  Ummm, no.  check user-agent string instead
-    global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
-log_entry('tcc_browser_body_class');
-    if($is_lynx)       $classes[] = 'lynx';
-    elseif($is_gecko)  $classes[] = 'gecko';
-    elseif($is_opera)  $classes[] = 'opera';
-    elseif($is_NS4)    $classes[] = 'ns4';
-    elseif($is_safari) $classes[] = 'safari';
-    elseif($is_chrome) $classes[] = 'chrome';
-    elseif($is_IE)     $classes[] = 'ie';
-    else               $classes[] = 'unknown';
-    if($is_iphone)     $classes[] = 'iphone';
-    return $classes;
-  }
-  add_filter('body_class','tcc_browser_body_class');
-}
-
 if (!function_exists('container_type')) {
   function container_type( $location='post', $ccs='container-fluid' ) {
     $css = 'container-fluid'; // FIXME: change default
