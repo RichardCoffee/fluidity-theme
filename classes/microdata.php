@@ -75,7 +75,7 @@ class TCC_Microdata {
 
   public function microdata($type) {
     if (method_exists($this,$type)) { $this->$type();
-    } else { echo "itemscope itemtype='http://schema.org/$type'"; }
+    } else { echo 'itemscope itemtype="http://schema.org/'.$type.'"'; }
   }
 
   public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
