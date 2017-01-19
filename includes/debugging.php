@@ -2,7 +2,7 @@
 
 if (!function_exists('debug_calling_function')) {
   // http://php.net/debug_backtrace
-  function debug_calling_function( int $depth=1 ) {
+  function debug_calling_function( $depth=1 ) {
     $file = $func = $line = 'n/a';
     $debugTrace = debug_backtrace();
     if (isset($debugTrace[$depth])) {

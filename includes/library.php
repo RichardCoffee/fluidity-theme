@@ -46,7 +46,7 @@ log_entry('tcc_browser_body_class');
 }
 
 if (!function_exists('container_type')) {
-  function container_type( string $location='post', string $ccs='container-fluid' ) {
+  function container_type( $location='post', $ccs='container-fluid' ) {
     $css = 'container-fluid'; // FIXME: change default
     if ($location=='header') {
       $css.= " nopad";
@@ -100,20 +100,20 @@ if (!function_exists('wp_menu_id_by_name')) {
 }
 
 if (!function_exists('esc_attr_ex')) {
-	function esc_attr_ex( string $text, string $context, string $domain = 'default' ) {
+	function esc_attr_ex( string $text, string $context, $domain = 'default' ) {
 		echo esc_attr_x( $text, $context, $domain );
 	}
 }
 
 if (!function_exists('esc_html_ex')) {
-	function esc_html_ex( string $text, string $context, string $domain = 'default' ) {
+	function esc_html_ex( string $text, string $context, $domain = 'default' ) {
 		echo esc_html_x( $text, $context, $domain );
 	}
 }
 
 #  https://developer.wordpress.org/themes/basics/template-hierarchy/
 if (!function_exists('author_role_template')) {
-  function author_role_template( string $templates = '' ) {
+  function author_role_template( string $templates ) {
     $author = get_queried_object();
     if ($author && isset($author->roles)) {
       $role = $author->roles[0];
@@ -136,7 +136,7 @@ if (!function_exists('author_role_template')) {
 #	get featured image url
 #	needs postID if used outside of loop
 if (!function_exists('get_featured_url')) {
-	function get_featured_url( int $postID=0 ) {
+	function get_featured_url( int $postID=null ) {
 		$imgURL = null; # 'invalid post ID passed to get_featured_url';
 		// FIXME: postID should be able to be the post object
 		$postID = (intval($postID,10)>0) ? intval($postID,10) : null;
@@ -159,7 +159,7 @@ if (!function_exists('get_term_name')) {
 
 if (!function_exists('get_valid_gravatar')) {
   #  https://codex.wordpress.org/Using_Gravatars
-  function get_valid_gravatar( string $email, int $size=96 ) {
+  function get_valid_gravatar( string $email, $size=96 ) {
     // Craft a potential url and test its headers
     $hash = md5(strtolower(trim($email)));
     $uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
@@ -193,7 +193,7 @@ if (!function_exists('page_exists')) {
 }
 
 if (!function_exists('sanitize_array')) {
-  function sanitize_array( array $array, string $method='title' ) {
+  function sanitize_array( array $array, $method='title' ) {
     $output = array();
     $func   = "sanitize_$method";
     if ((array)$array==$array && function_exists($func)) {
@@ -291,7 +291,7 @@ if (!function_exists('debug_rewrite_rules')) {
 
 #  http://stackoverflow.com/questions/5224209/wordpress-how-do-i-get-all-the-registered-functions-for-the-content-filter
 if (!function_exists('list_filter_hooks')) {
-  function list_filter_hooks( string $hook = '' ) {
+  function list_filter_hooks( $hook = '' ) {
     if (WP_DEBUG) {
       global $wp_filter;
       $hooks = isset( $wp_filter[$hook] ) ? $wp_filter[$hook] : array();
@@ -403,7 +403,7 @@ if (!function_exists('tellme')) {
 
 if (!function_exists('who_am_i')) {
   //  This function is for debugging purposes only
-  function who_am_i( int $pos=0 ) {
+  function who_am_i( $pos=0 ) {
     if (WP_DEBUG)  {
       #static $flag = ''; // give capability to turn this off via a flag file
       #if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
