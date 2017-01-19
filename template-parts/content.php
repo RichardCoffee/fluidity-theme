@@ -17,10 +17,14 @@ who_am_i(); ?>
 		<h1 class="text-center">
 			<?php tcc_post_title(); ?>
 			<?php fluid_edit_post_link(); ?>
-		</h1><?php
+		</h1>
 
-		fluid_post_date(true);
+		<h3 class="post-date">
+			<?php fluid_post_date(true); ?>
+		</h3><?php
+
 	} ?>
+
 
 	<div class="article" itemprop="articleBody">
 		<?php the_content(); ?>

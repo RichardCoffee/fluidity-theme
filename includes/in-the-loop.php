@@ -119,11 +119,8 @@ if (!function_exists('fluid_post_date')) {
 #log_entry(0,'modified');
     }
 #else log_entry(0,'not modified');
- ?>
-    <h3 class="text-center"><?php
-      echo sprintf($string,$date,$author); ?>
-    </h3><?php
-    if ($show) { echo "<h4 class='text-center'>$posted</h4>"; }
+    echo sprintf($string,$date,$author);
+#    if ($show) { echo "<h4 class='post-modified-date'>$posted</h4>"; }
   }
 }
 
