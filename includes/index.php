@@ -5,7 +5,7 @@
  *
  */
 
-function fluid_index_page( string $page='index' ) {
+function fluid_index_page( $page='index' ) {
 
 do_action("tcc_{$page}_page_top"); ?>
 
