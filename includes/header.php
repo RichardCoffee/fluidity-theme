@@ -72,10 +72,8 @@ if (!function_exists('fluidity_header_logo')) {
           } else if ($logo=tcc_design('logo')) {
             $class = apply_filters('tcc_header_logo_class',array('img-responsive','hidden-xs')); ?>
             <img class='<?php echo implode(' ',$class); ?>' src='<?php echo $logo; ?>' alt='<?php bloginfo('name'); ?>' itemprop='image'><?php
-          } else { ?>
-            <h1>
-              <?php bloginfo('name'); ?>
-            </h1><?php
+          } else {
+            bloginfo('name');
           } ?>
         </a><?php
       } ?>
