@@ -59,7 +59,7 @@ if (!function_exists('fluidity_header_logo')) {
   function fluidity_header_logo() {
 #    if (is_404()) { return; } // FIXME
 ?>
-    <div itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
+    <span itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
       if (function_exists('jetpack_the_site_logo')) {
         jetpack_the_site_logo();
       } else { ?>
@@ -82,7 +82,7 @@ if (!function_exists('fluidity_header_logo')) {
           } ?>
         </a><?php
       } ?>
-    </div><?php
+    </span><?php
   }
 }
 

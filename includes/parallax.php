@@ -1,4 +1,20 @@
 <?php
+/*
+if (!function_exists('tcc_parallax')) {
+|  function tcc_parallax() {
+|  |  $paras = get_option('tcc_options_parallax');
+log_entry('paras',$paras);
+|  |  if ($paras) {
+|  |  |  $string = '.para-img-%1$s { background-image: url("%2$s"); height:400px; }';
+|  |  |  foreach($paras as $page=>$para) {
+|  |  |  |  echo sprintf($string,$page,$para);
+|  |  |  }
+|  |  }
+|  }
+|  if (tcc_design('paral')==='yes') {
+|  |  add_action('tcc_custom_css','tcc_parallax');
+|  }
+} //*/
 
 #  use inside loop only
 if (!function_exists('tcc_excerpt_parallax')) {
