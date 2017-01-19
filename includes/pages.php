@@ -61,7 +61,7 @@ if (!function_exists('get_page_slug')) {
 $slug = $fluidity_theme_template;
 #		static $slug = null;
 #		if (!$slug) {
-log_entry($wp_query);
+#log_entry($wp_query);
 			if ( !is_admin() && $wp_query->is_main_query() ) {
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'blog';
