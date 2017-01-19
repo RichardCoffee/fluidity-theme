@@ -50,3 +50,10 @@ if (!function_exists('tcc_log_deprecated')) {
 	add_action('deprecated_hook_run',       'tcc_log_deprecated',10,4);
 	add_action('doing_it_wrong_run',        'tcc_log_deprecated',10,3);
 }
+
+if (!function_exists('tcc_get_template_part')) {
+	function tcc_get_template_part($slug,$name) {
+		log_entry("slug:  $slug","name:  $name");
+	}
+	add_action('get_template_part_footer','tcc_get_template_part',10,2);
+}
