@@ -10,12 +10,9 @@
 if (!function_exists('fluid_content_slug')) {
   function fluid_content_slug( $page='single' ) {
     $slug = ($format=get_post_format()) ? $format : get_post_type();
-    $slug = apply_filters("tcc-content",$slug);
-    $slug = apply_filters("tcc-content-{$slug}",$slug);
-    $slug = apply_filters("tcc-{$page}-content",$slug);
-    $slug = apply_filters("tcc-{$page}-content-{$slug}",$slug);
-log_entry('page:');
-log_entry(0,$page);
+    $slug = ($slug==='page')            ? $page   : $slug;
+    $slug = apply_filters("tcc-content-slug",         $slug, $page);
+    $slug = apply_filters("tcc-{$page}-content-slug", $slug, $page);
 log_entry(0,"fluid_content_slug: $slug    format:  $format    page:  $page");
     return $slug;
   }

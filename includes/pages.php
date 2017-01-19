@@ -65,7 +65,7 @@ $slug = $fluidity_theme_template;
 			if ( !is_admin() && $wp_query->is_main_query() ) {
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'blog';
-log_entry(get_option('page_on_front'));
+log_entry('before option',get_option('page_on_front'),'after option');
 #} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
 				} else if ( ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) ) && get_option( 'page_on_front' ) ) ) {
 					$slug = 'front';
