@@ -57,32 +57,26 @@ if (!function_exists('get_page_slug')) {
 	#	http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
 	function get_page_slug() {
 		global $wp_query;
-				global $fluidity_theme_template; // FIXME: this is not a reliable source
-$slug = $fluidity_theme_template;
-#		static $slug = null;
-#		if (!$slug) {
-#log_entry($wp_query);
+		static $slug = null;
+		if (!$slug) {
 			if ( !is_admin() && $wp_query->is_main_query() ) {
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'blog';
-log_entry('before option',get_option('page_on_front'),'after option');
-#} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
-				} else if ( ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) ) && get_option( 'page_on_front' ) ) ) {
+				#} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
+				} else if ( get_option('page_on_front') && ( $wp_query->get('page_id') == get_option('page_on_front') ) ) {
 					$slug = 'front';
 				} else {
-					$page = get_queried_object(); // wtf?
-#log_entry($page);
-					if (is_object($page) && !isset($page->post_type)) { log_entry('bad post type value',$fluidity_theme_template,'class: '.get_class($page),$page); }
+					$page = get_queried_object();  #  $wp_query->queried_object
 					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
 						$slug = $page->post_name;
 					} else {
-#log_entry(0,$fluidity_theme_template);
+						global $fluidity_theme_template; // FIXME: this is not a reliable source
 						$slug = $fluidity_theme_template;
 					}
 				}
 			}
-log_entry($slug.':  '.debug_calling_function());
-#		}
+log_entry(0,$slug.' called by '.debug_calling_function());
+		}
 		return $slug;
 	}
 }

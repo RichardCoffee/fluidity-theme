@@ -15,7 +15,7 @@ if (!function_exists('tcc_apply_clearfix')) {
 }
 
 if (!function_exists('tcc_bootstrap_css')) {
-  function tcc_bootstrap_css( array $args ) {
+  function tcc_bootstrap_css( $args ) {
     $lg = $md = $sm = $xs = 0;
     extract($args,EXTR_IF_EXISTS);
     $css = ($lg) ?  "col-lg-$lg" : '';
@@ -41,7 +41,7 @@ if (!function_exists('container_type')) {
 
 // convert user data to flat object
 if (!function_exists('convert_user_meta')) {
-  function convert_user_meta( int $ID ) {
+  function convert_user_meta( $ID ) {
     $wp_d = get_userdata($ID);
     $out  = $_wp_d->data;
     $data = get_user_meta($ID);
@@ -69,7 +69,7 @@ if (!function_exists('fluid_get_post_terms')) {
 
 if (!function_exists('wp_menu_id_by_name')) {
   // http://wordpress.stackexchange.com/questions/104301/get-menu-id-using-its-name
-  function wp_menu_id_by_name( string $name ) {
+  function wp_menu_id_by_name( $name ) {
     $menus = get_terms('nav_menu');
     foreach ($menus as $menu) {
       if($name===$menu->name) {
@@ -94,7 +94,7 @@ if (!function_exists('esc_html_ex')) {
 
 #  https://developer.wordpress.org/themes/basics/template-hierarchy/
 if (!function_exists('author_role_template')) {
-  function author_role_template( string $templates ) {
+  function author_role_template( $templates ) {
     $author = get_queried_object();
     if ($author && isset($author->roles)) {
       $role = $author->roles[0];
@@ -117,7 +117,7 @@ if (!function_exists('author_role_template')) {
 #	get featured image url
 #	needs postID if used outside of loop
 if (!function_exists('get_featured_url')) {
-	function get_featured_url( int $postID=null ) {
+	function get_featured_url( $postID=null ) {
 		$imgURL = null; # 'invalid post ID passed to get_featured_url';
 		// FIXME: postID should be able to be the post object
 		$postID = (intval($postID,10)>0) ? intval($postID,10) : null;
@@ -131,7 +131,7 @@ if (!function_exists('get_featured_url')) {
 
 #  get term name string
 if (!function_exists('get_term_name')) {
-  function get_term_name( string $tax, string $slug ) {
+  function get_term_name( $tax, $slug ) {
     $term = get_term_by('slug',$slug,$tax);
     if ($term) return $term->name;
     return '';
@@ -140,7 +140,7 @@ if (!function_exists('get_term_name')) {
 
 if (!function_exists('get_valid_gravatar')) {
   #  https://codex.wordpress.org/Using_Gravatars
-  function get_valid_gravatar( string $email, $size=96 ) {
+  function get_valid_gravatar( $email, $size=96 ) {
     // Craft a potential url and test its headers
     $hash = md5(strtolower(trim($email)));
     $uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
@@ -163,7 +163,7 @@ if (!function_exists('is_ajax')) {
 
 #  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 if (!function_exists('page_exists')) {
-  function page_exists( string $search ) {
+  function page_exists( $search ) {
     $pages = get_pages();
     foreach ($pages as $page) {
       if ($page->post_name==$search)
@@ -174,7 +174,7 @@ if (!function_exists('page_exists')) {
 }
 
 if (!function_exists('sanitize_array')) {
-  function sanitize_array( array $array, $method='title' ) {
+  function sanitize_array( $array, $method='title' ) {
     $output = array();
     $func   = "sanitize_$method";
     if ((array)$array==$array && function_exists($func)) {
@@ -195,7 +195,7 @@ if (!function_exists('sanitize_array')) {
 
 if (!function_exists('array_insert_after')) {
   #  http://eosrei.net/comment/287
-  function array_insert_after( array $array, string $key, string $new_key, $new_value) {
+  function array_insert_after( $array, $key, $new_key, $new_value) {
     if (array_key_exists($key, $array)) {
       $new = array();
       foreach ($array as $k => $value) {
@@ -353,7 +353,7 @@ if (!function_exists('list_template_conditions')) {
 
 #  show data inline
 if (!function_exists('showme')) {
-  function showme( string $title, $data ) {
+  function showme( $title, $data ) {
     if (WP_DEBUG) { ?>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="panel panel-primary">
@@ -375,7 +375,7 @@ if (!function_exists('showme')) {
 
 #  show string inline
 if (!function_exists('tellme')) {
-  function tellme( string $string ) {
+  function tellme( $string ) {
     if (WP_DEBUG) {
       echo "<p>$string</p>";
     }

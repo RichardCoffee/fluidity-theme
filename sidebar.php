@@ -11,7 +11,7 @@ $called = fluidity_sidebar_parameter();
 if (substr($called,0,6)==='footer') {
   $loaded = fluidity_load_sidebar($called,true);
 } elseif (is_front_page()) {  #  Alternate:  ($wp_query->get('page_id')===get_option('page_on_front'))
-  $loaded = fluidity_load_sidebar('home');
+  $loaded = fluidity_load_sidebar('front');
 } else {
   $loaded = fluidity_load_sidebar($called);
 }
