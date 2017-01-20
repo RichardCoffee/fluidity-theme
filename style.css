@@ -11,6 +11,14 @@
  * Copyright 2015-2016, The Creative Collective
  */
 /* tags list: https://wordpress.org/themes/ */
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
 .wp-custom-header iframe,
 .wp-custom-header img,
 .wp-custom-header video {
