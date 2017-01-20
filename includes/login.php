@@ -4,6 +4,16 @@ if (!WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
 
+#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
+if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
+	add_filter('login_redirect', 'my_login_redirect', 10, 3);
+	function my_login_redirect() {
+		$location = $_SERVER['HTTP_REFERER'];
+		wp_safe_redirect($location);
+		exit();
+	}
+}
+
 if (!function_exists('tcc_admin_login_redirect')) {
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
 		if (!$user)                       { return home_url(); }
@@ -13,7 +23,7 @@ if (!function_exists('tcc_admin_login_redirect')) {
 #    if (!(strpos($from,'wp-admin')===false)) return $from;
 #    if (!in_array("administrator",$user->roles)) return home_url();
 		$user_id = get_current_user_id();
-		if ($user_id===1) { return $redirect_to; }
+		if ($user_id===1) { return $from; }
 		return home_url();
 #		return $redirect_to;
 	}
@@ -101,8 +111,13 @@ if (!function_exists('tcc_login_form')) {
       $upass  = apply_filters('tcc_login_userpass',esc_html__('Password',      'tcc-fluid'));
       $signin = apply_filters('tcc_signin_text',   esc_html__('Sign In',       'tcc-fluid'));
       $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
+
+global $wp;
+log_entry(home_url(add_query_arg(array(),$wp->request)););
+
       $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : ''); ?>
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
+        <input type="hidden" name="login_location" id="login_location" value="<?php echo esc_url("//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); ?>" />
         <div class='form-group'>
           <label class="sr-only" for="log"><?php echo $uname; ?></label>
           <input type="text" name="log" id="log" class="form-control" placeholder="<?php echo $uname; ?>" required>
