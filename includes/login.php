@@ -113,7 +113,7 @@ if (!function_exists('tcc_login_form')) {
       $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
 
 global $wp;
-log_entry(home_url(add_query_arg(array(),$wp->request)););
+log_entry(home_url(add_query_arg(array(),$wp->request)));
 
       $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : ''); ?>
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
