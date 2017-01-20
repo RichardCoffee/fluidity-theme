@@ -9,6 +9,8 @@ if (!function_exists('tcc_login_redirect')) {
 	if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
 		function tcc_login_redirect() {
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
+			#	Alternately:	$location = home_url( add_query_arg( '_', false ) );
+			#	And:	global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) );
 			wp_safe_redirect($location);
 			exit();
 		}
@@ -109,14 +111,15 @@ if (!function_exists('tcc_login_form')) {
         </div>
       </form><?php
     } else {
-      global $wp;
       $uname  = apply_filters('tcc_login_username',esc_html__('Username',      'tcc-fluid'));
       $upass  = apply_filters('tcc_login_userpass',esc_html__('Password',      'tcc-fluid'));
       $signin = apply_filters('tcc_signin_text',   esc_html__('Sign In',       'tcc-fluid'));
       $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
       $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : ''); ?>
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
-        <input type="hidden" name="login_location" id="login_location" value="<?php echo home_url(add_query_arg(array(),$wp->request)); ?>" />
+        <input type="hidden" name="login_location" id="login_location" value="<?php echo home_url( add_query_arg( '_', false ) ); ?>" />
+        <?php #	Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
+        <?php #	And:          global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
         <div class='form-group'>
           <label class="sr-only" for="log"><?php echo $uname; ?></label>
           <input type="text" name="log" id="log" class="form-control" placeholder="<?php echo $uname; ?>" required>
@@ -131,9 +134,10 @@ if (!function_exists('tcc_login_form')) {
           </label>
         </div>
         <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button><?php
-        if (get_page_by_title('Lost Password'))
+        if (get_page_by_title('Lost Password')) {
           $tooltip = __('Request new password','tcc-fluid');
-          echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$lost</small></a>"; ?>
+          echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$lost</small></a>";
+        } ?>
       </form><?php
     }
   }
