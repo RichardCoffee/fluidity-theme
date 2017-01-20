@@ -13,7 +13,7 @@ if (!function_exists('fluid_content_slug')) {
     $slug = ($slug==='page')            ? $page   : $slug;
     $slug = apply_filters("tcc-content-slug",         $slug, $page);
     $slug = apply_filters("tcc-{$page}-content-slug", $slug, $page);
-log_entry(0,"fluid_content_slug: $slug    format:  $format    page:  $page");
+#log_entry(0,"fluid_content_slug: $slug    format:  $format    page:  $page");
     return $slug;
   }
 }
