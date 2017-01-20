@@ -33,6 +33,8 @@ who_am_i(); ?>
 	if (is_single()) {
 		fluid_navigation('category',true);
 		fluid_postmetadata();
-	} ?>
+	}
+
+	tcc_show_comments(); ?>
 
 </article>

@@ -142,9 +142,6 @@ if (!function_exists('fluid_postmetadata')) {
 			$comm_2 = esc_html_x('% Comments','number of comments','tcc-fluid');
 			comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
 		</p><?php
-		if ( comments_open() || get_comments_number() ) {
-			comments_template();
-		}
 	}
 }
 
@@ -217,5 +214,13 @@ if (!function_exists('tcc_post_title')) {
 			$title   = sprintf( $string, get_the_permalink(), esc_attr($tooltip), $title );
 		}
 		echo $title;
+	}
+}
+
+if (!function_exists('tcc_show_comments')) {
+	function tcc_show_comments() {
+		if ( comments_open() || get_comments_number() ) {
+			comments_template();
+		}
 	}
 }
