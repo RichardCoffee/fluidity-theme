@@ -119,7 +119,9 @@ if (!function_exists('tcc_login_form')) {
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
         <input type="hidden" name="login_location" id="login_location" value="<?php echo home_url( add_query_arg( '_', false ) ); ?>" />
         <?php #	Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
-        <?php #	And:          global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
+        <?php #	Or:           home_url( add_query_arg( NULL, NULL ) );
+        <?php #	Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
+        <?php #	Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?>
         <div class='form-group'>
           <label class="sr-only" for="log"><?php echo $uname; ?></label>
           <input type="text" name="log" id="log" class="form-control" placeholder="<?php echo $uname; ?>" required>
