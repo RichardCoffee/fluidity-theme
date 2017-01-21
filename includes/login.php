@@ -3,12 +3,12 @@
 if (!WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
-
+/*
 function fluid_login_form_defaults($args) {
 	log_entry($args);
 	return $args;
 }
-add_filter('login_form_defaults','fluid_login_form_defaults');
+add_filter('login_form_defaults','fluid_login_form_defaults'); //*/
 
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
