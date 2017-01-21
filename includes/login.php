@@ -119,7 +119,7 @@ if (!function_exists('tcc_login_form')) {
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
         <input type="hidden" name="login_location" id="login_location" value="<?php echo home_url( add_query_arg( '_', false ) ); ?>" />
         <?php #	Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
-        <?php #	Or:           home_url( add_query_arg( NULL, NULL ) );
+        <?php #	Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
         <?php #	Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
         <?php #	Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?>
         <div class='form-group'>
@@ -170,11 +170,10 @@ if (!function_exists('tcc_admin_howdy')) {
 	function tcc_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
 		$user_id      = get_current_user_id();
 		if ( 0 != $user_id ) {
-if (!function_exists('tcc_holiday_greeting')) {
-require_once('misc.php'); // FIXME:  wtf? - theme function file has not been loaded at this point in admin, so how is this function getting called?
-log_entry('tcc_holiday_greeting missing');
-}
-if (!function_exists('tcc_holiday_greeting')) { return; }
+			if (!function_exists('tcc_holiday_greeting')) {
+				require_once('misc.php'); // FIXME:  wtf? - theme function file has not been loaded at this point in admin, so how is this function getting called?
+			}
+			if (!function_exists('tcc_holiday_greeting')) { return; }
 			/* Add the "My Account" menu */
 			$current = wp_get_current_user();
 			$profile = get_edit_profile_url( $user_id );
