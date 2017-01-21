@@ -2,7 +2,7 @@
 
 class TCC_Widgets_Login extends TCC_Widgets_Basic {
 
-	private static $wp_login_defaults;
+	private $wp_login_defaults;
 
 	function __construct() {
 		$this->title = esc_html__('Login','tcc-fluid');
