@@ -122,7 +122,7 @@ if (!function_exists('tcc_login_form')) {
 		} else {
 			#	array mainly taken from wp-includes/general-template.php
 			$defaults = array('echo'           => true,
-			                  'redirect'       => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+			                  'redirect'       => home_url( add_query_arg( NULL, NULL ) ),
 			                  'form_id'        => "login_form_$cnt",
 			                  'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) ),
 			                  'label_password' => apply_filters( 'tcc_login_userpass', __( 'Password' ) ),
