@@ -78,6 +78,7 @@ if (!function_exists('fluidity_get_sidebar')) {
 
 if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($args,$force=false) {
+    if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
     $sidebars = ($force) ? (array)$args : array_merge((array)$args,array('standard','home'));
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
