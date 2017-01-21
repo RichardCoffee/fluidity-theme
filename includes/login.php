@@ -26,6 +26,7 @@ if (!function_exists('tcc_login_redirect')) {
 
 if (!function_exists('tcc_admin_login_redirect')) {
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
+log_entry($redirect_to,$request,$user,wp_get_referer());
 		if (!$user)                       { return home_url(); }
 		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 		if (get_class($user)=='WP_Error') { return $redirect_to; }
