@@ -1,5 +1,5 @@
 <?php
-
+log_entry('loading login.php: '.debug_calling_function());
 if (!WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
