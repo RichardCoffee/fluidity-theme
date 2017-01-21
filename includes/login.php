@@ -120,6 +120,8 @@ if (!function_exists('tcc_login_form')) {
 				</div>
 			</form><?php
 		} else {
+			$navbar = false;
+			$right  = false;
 			#	array mainly taken from wp-includes/general-template.php
 			$defaults = array('echo'           => true,
 			                  'redirect'       => home_url( add_query_arg( NULL, NULL ) ),
