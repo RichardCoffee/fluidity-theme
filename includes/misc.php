@@ -1,5 +1,5 @@
 <?php
-
+log_entry('loading misc.php');
 // Source? Purpose?
 function contextual_static_front_page_section($wp_customize) {
   $wp_customize->get_section('static_front_page')->active_callback = 'is_front_page';
