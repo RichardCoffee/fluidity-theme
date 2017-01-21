@@ -117,11 +117,12 @@ if (!function_exists('tcc_login_form')) {
       $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
       $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : ''); ?>
       <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
-        <input type="hidden" name="login_location" id="login_location" value="<?php echo home_url( add_query_arg( '_', false ) ); ?>" />
+        <?php $redirect = home_url( add_query_arg( '_', false ) ); ?>
         <?php #	Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
         <?php #	Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
         <?php #	Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
         <?php #	Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?>
+        <input type="hidden" name="login_location" id="login_location" value="<?php echo $redirect; ?>" />
         <div class='form-group'>
           <label class="sr-only" for="log"><?php echo $uname; ?></label>
           <input type="text" name="log" id="log" class="form-control" placeholder="<?php echo $uname; ?>" required>
@@ -135,7 +136,8 @@ if (!function_exists('tcc_login_form')) {
             <input type="checkbox" id="rememberme" name="rememberme" value="forever"> Remember me
           </label>
         </div>
-        <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button><?php
+        <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button>
+        <input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" /><?php
         if (get_page_by_title('Lost Password')) {
           $tooltip = __('Request new password','tcc-fluid');
           echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$lost</small></a>";
