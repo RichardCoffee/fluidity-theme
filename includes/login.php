@@ -1,8 +1,14 @@
 <?php
-log_entry('loading login.php: '.debug_calling_function());
+
 if (!WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
+
+function fluid_login_form_defaults($args) {
+	log_entry($args);
+	return $args;
+}
+add_filter('login_form_defaults','fluid_login_form_defaults');
 
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
@@ -97,54 +103,80 @@ if (!function_exists('remove_lostpassword_text')) {
 } //*/
 
 if (!function_exists('tcc_login_form')) {
-  function tcc_login_form($navbar=false,$right=false) {
-    if (is_user_logged_in()) {
-      $signout = apply_filters('tcc_signout_text', esc_html__('Sign Out', 'tcc-fluid')); ?>
-      <form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
-        <div class="text-center"><?php
-          $action = ($navbar) ? 'tcc_navbar_signout' : 'tcc_widget_signout';
-          do_action($action);
-          $out  = wp_logout_url(home_url());
-          $html = "<a class='btn btn-fluidity' href='$out'";
-          $html.= " title='$signout'> $signout <i class='fa fa-sign-out'></i></a>";
-          echo $html; ?>
-        </div>
-      </form><?php
-    } else {
-      $uname  = apply_filters('tcc_login_username',esc_html__('Username',      'tcc-fluid'));
-      $upass  = apply_filters('tcc_login_userpass',esc_html__('Password',      'tcc-fluid'));
-      $signin = apply_filters('tcc_signin_text',   esc_html__('Sign In',       'tcc-fluid'));
-      $lost   = apply_filters('tcc_lostpw_text',   esc_html__('Lost Password', 'tcc-fluid'));
-      $formclass = (!$navbar) ? "login-form" : 'navbar-form'.(($right) ? ' navbar-right' : ''); ?>
-      <form id="loginform" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
-        <?php $redirect = home_url( add_query_arg( '_', false ) ); ?>
-        <?php #	Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
-        <?php #	Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
-        <?php #	Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
-        <?php #	Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?>
-        <input type="hidden" name="login_location" id="login_location" value="<?php echo $redirect; ?>" />
-        <div class='form-group'>
-          <label class="sr-only" for="log"><?php echo $uname; ?></label>
-          <input type="text" name="log" id="log" class="form-control" placeholder="<?php echo $uname; ?>" required>
-        </div>
-        <div class='form-group'>
-          <label class="sr-only" for="pwd"><?php echo $upass; ?></label>
-          <input type="password" name="pwd" id="pwd" class="form-control" placeholder="<?php echo $upass; ?>" required>
-        </div>
-        <div class="checkbox<?php echo ($navbar) ? ' hidden' : ''; ?>">
-          <label>
-            <input type="checkbox" id="rememberme" name="rememberme" value="forever"> Remember me
-          </label>
-        </div>
-        <button type="submit" id="wp-submit" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php echo $signin; ?> </button>
-        <input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" /><?php
-        if (get_page_by_title('Lost Password')) {
-          $tooltip = __('Request new password','tcc-fluid');
-          echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$lost</small></a>";
-        } ?>
-      </form><?php
-    }
-  }
+	function tcc_login_form( $args = array() ) {
+		static $cnt = 1;
+		if (is_user_logged_in()) {
+			$navbar  = false;
+			extract($args,EXTR_IF_EXISTS);
+			$signout = apply_filters('tcc_signout_text', esc_html__('Sign Out', 'tcc-fluid')); ?>
+			<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
+				<div class="text-center"><?php
+					$action = ($navbar) ? 'tcc_navbar_signout' : 'tcc_widget_signout';
+					do_action($action);
+					$out  = wp_logout_url(home_url());
+					$html = "<a class='btn btn-fluidity' href='$out'";
+					$html.= " title='$signout'> $signout <i class='fa fa-sign-out'></i></a>";
+					echo $html; ?>
+				</div>
+			</form><?php
+		} else {
+			#	array mainly taken from wp-includes/general-template.php
+			$defaults = array('echo'           => true,
+			                  'redirect'       => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+			                  'form_id'        => "login_form_$cnt",
+			                  'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) ),
+			                  'label_password' => apply_filters( 'tcc_login_userpass', __( 'Password' ) ),
+			                  'label_remember' => __( 'Remember Me' ),
+			                  'label_log_in'   => apply_filters( 'tcc_signin_text',    __('Sign In',       'tcc-fluid') ),
+			                  'label_lost'     => apply_filters( 'tcc_lostpw_text',    __('Lost Password', 'tcc-fluid') ),
+			                  'id_username'    => "user_login_$cnt",
+			                  'id_password'    => "user_pass_$cnt",
+			                  'id_remember'    => "rememberme_$cnt",
+			                  'id_submit'      => "wp-submit_$cnt",
+			                  'remember'       => true,
+			                  'value_username' => '',
+			                  'value_remember' => false,
+			);
+			$args = wp_parse_args( $args, apply_filters( 'login_form_defaults', $defaults ) );
+			extract($args);
+			$remember  = ($navbar)  ? false : $remember;
+			$formclass = (!$navbar) ? "login-form" : 'navbar-form navbar-login-form'.(($right) ? ' navbar-right' : ''); ?>
+			<form id="<?php echo $form_id; ?>" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
+				<?php #$redirect = home_url( add_query_arg( '_', false ) ); ?>
+				<?php #	Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
+				<?php #	Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
+				<?php #	Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
+				<?php #	Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?>
+				<input type="hidden" name="login_location" id="login_location" value="<?php echo $redirect; ?>" />
+				<div class='form-group'>
+					<label class="sr-only" for="<?php echo esc_attr($id_username); ?>"><?php echo esc_html($label_username); ?></label>
+					<input type="text" name="log" id="<?php echo esc_attr($id_username); ?>" class="form-control"
+						placeholder="<?php echo esc_html($label_username); ?>" required>
+				</div>
+				<div class='form-group'>
+					<label class="sr-only" for="<?php echo esc_attr($id_password); ?>"><?php echo $label_password; ?></label>
+					<input type="password" name="pwd" id="<?php echo esc_attr($id_password); ?>" class="form-control" placeholder="<?php echo $label_password; ?>" required>
+				</div><?php
+				if ($remember) { ?>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="<?php echo $id_remember; ?>" name="rememberme" value="forever" <?php checked($value_remember,true); ?>>&nbsp;<?php
+							echo $label_remember; ?>
+						</label>
+					</div><?php
+				} ?>
+				<button type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php
+					echo $label_log_in;
+				?> </button>
+				<input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" /><?php
+				if (get_page_by_title('Lost Password')) {
+					$tooltip = __('Request new password','tcc-fluid');
+					echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$label_lost</small></a>";
+				} ?>
+			</form><?php
+		}
+		$cnt++;
+	}
 }
 
 if (!function_exists('tcc_logout_url')) {
