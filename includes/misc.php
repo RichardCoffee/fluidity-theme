@@ -131,10 +131,45 @@ if (!function_exists('url_stem')) {
 
 if (!function_exists('tcc_holiday_greeting')) {
 	function tcc_holiday_greeting() {
+		#	http://stackoverflow.com/questions/14907561/how-to-get-date-for-holidays-using-php
+		$MLK  = date('m-d', strtotime("january $curYir third monday")); //marthin luthor king day
+		$PD   = date('m-d', strtotime("february $curYir third monday")); //presidents day
+		$Est  =  date('m-d', easter_date($curYir))); // easter
+		$MD   = date('m-d', strtotime("may $curYir last monday")); // memorial day
+		$LD   = date('m-d', strtotime("september $curYir first monday"));  //labor day
+		$CD   = date('m-d', strtotime("october $curYir second monday")); //columbus day
+		$TH   = date('m-d', strtotime("november $curYir last thursday")); // thanks giving
 		$date = date('d-m');
 		switch($date) {
 			case '01-01':
 				$message = 'Happy New Years';
+				break;
+			case $MLK:
+				$message = 'Martin Luthor King Day';
+				break;
+			case $PD:
+				$message = "Presidents' Day";
+				break;
+			case $Est:
+				$message = 'Happy Easter'; // happy easter?  wtf?
+				break;
+			case $MD:
+				$message = 'Memorial Day';
+				break;
+			case '07-04':
+				$message = 'Fourth of July';
+				break;
+			case $LD:
+				$message = 'Labor Day';
+				break;
+			case $CD:
+				$message = 'Columbus Day';
+				break;
+			case $TH:
+				$message = 'Happy Thanksgiving';
+				break;
+			case '11-11':
+				$message = "Veteran's Day";
 				break;
 			case '25-12':
 				$message = 'Merry Christmas';
