@@ -171,13 +171,14 @@ if (!function_exists('tcc_login_form')) {
 				} /*
 				<button type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php
 					echo $label_log_in;
-				?> </button><?php //*/ ?>
+				?> </button><?php //*/ /* ?>
 <div class="input-group">
   <span class="input-group-addon"><i class="fa fa-sign-in"></span>
   <input type="submit" class="form-control btn btn-fluidity" id="<?php echo $id_submit; ?>" name="wp-submit" value="<?php echo esc_html($label_log_in); ?>" />
 </div>
-<?php /*
-				$button = '<i class="fa fa-sign-in"></i>&nbsp;'.esc_html($label_log_in); ?>
+<?php //*/
+/*				$button = '<i class="fa fa-sign-in"></i>&nbsp;'.esc_html($label_log_in); ?> */
+				$button = esc_html($label_log_in); ?>
 				<input type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit" value="<?php echo $button; ?>"/>
 				<input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" /><?php //*/
 				if (get_page_by_title('Lost Password')) {
