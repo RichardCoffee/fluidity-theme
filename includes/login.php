@@ -137,7 +137,6 @@ if (!function_exists('tcc_login_form')) {
 			                  'id_password'    => uniqid("user_pass_"),
 			                  'id_remember'    => uniqid("rememberme_"),
 			                  'id_submit'      => uniqid("wp-submit_"),
-			                  'id_suffix'      => $cnt;
 			                  'remember'       => true,
 			                  'value_username' => '',
 			                  'value_remember' => false,
