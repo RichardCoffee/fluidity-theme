@@ -21,11 +21,14 @@ if (!function_exists('tcc_get_login_form_defaults')) {
 		return $defaults;
 	}
 }
-
+/*
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
 		function tcc_login_redirect( $redirect_to, $request, $user ) {
+			if (!$user)                       { return home_url(); }
+			if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
+			if (get_class($user)=='WP_Error') { return $redirect_to; }
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
 log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refere:  '.wp_get_referer(),'location:  '.$location);
 			#	Alternately:	$location = home_url( add_query_arg( '_', false ) );
@@ -36,10 +39,10 @@ log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refe
 		}
 		add_filter('login_redirect', 'tcc_login_redirect', 10, 3);
 	}
-}
+} //*/
 
 //  FIXME:  the function above gets fired, the one below does not - wtf?
-
+/*
 if (!function_exists('tcc_admin_login_redirect')) {
 log_entry(0,'tcc_admin_login_redirect defined');
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
@@ -56,7 +59,7 @@ log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refe
 		return $redirect_to;
 	}
 	add_filter("login_redirect","tcc_admin_login_redirect",10,3);
-}
+} //*/
 
 if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
   // http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
