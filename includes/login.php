@@ -44,7 +44,7 @@ log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refe
 if (!function_exists('tcc_admin_login_redirect')) {
 log_entry(0,'tcc_admin_login_redirect defined');
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
-log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refere:  '.wp_get_referer(),'location:  '.$location);
+log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refere:  '.wp_get_referer());
 #		if (!$user)                       { return home_url(); }
 #		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 #		if (get_class($user)=='WP_Error') { return $redirect_to; }
