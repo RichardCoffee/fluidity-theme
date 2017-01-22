@@ -13,8 +13,9 @@ add_filter('login_form_defaults','fluid_login_form_defaults'); //*/
 if (!function_exists('tcc_get_login_form_defaults')) {
 	function tcc_get_login_form_defaults() {
 		$defaults = array();
-		add_filter('login_form_defaults', function($args) use ($defaults) {
+		add_filter('login_form_defaults', function($args) use (&$defaults) {
 			$defaults = $args;
+log_entry($args);
 			return $args;
 		}, 1000);
 		wp_login_form( array( 'echo' => false ) );
@@ -132,7 +133,7 @@ if (!function_exists('tcc_login_form')) {
 					do_action($action);
 					$out  = wp_logout_url(home_url());
 					$html = "<a class='btn btn-fluidity' href='$out'";
-					$html.= " title='$signout'> $signout <i class='fa fa-sign-out'></i></a>";
+					$html.= " title='$signout'> $signout&nbsp;&nbsp;<i class='fa fa-sign-out'></i></a>";
 					echo $html; ?>
 				</div>
 			</form><?php
