@@ -13,8 +13,9 @@ add_filter('login_form_defaults','fluid_login_form_defaults'); //*/
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
-		function tcc_login_redirect() {
+		function tcc_login_redirect( $redirect_to, $redirect, $user ) {
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
+log_entry($redirect_to,$request,$user,wp_get_referer(),$location);
 			#	Alternately:	$location = home_url( add_query_arg( '_', false ) );
 			#	And:	global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) );
 			wp_safe_redirect($location);
@@ -125,7 +126,7 @@ if (!function_exists('tcc_login_form')) {
 			$right  = false;
 			extract($args,EXTR_IF_EXISTS);
 			#	array mainly taken from wp-includes/general-template.php
-			$defaults = array('echo'           => true,
+			$defaults = array('echo'           => false,
 			                  'redirect'       => home_url( add_query_arg( NULL, NULL ) ),
 			                  'form_id'        => uniqid("login_form_"),
 			                  'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) ),
