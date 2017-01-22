@@ -13,7 +13,7 @@ add_filter('login_form_defaults','fluid_login_form_defaults'); //*/
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
-		function tcc_login_redirect( $redirect_to, $redirect, $user ) {
+		function tcc_login_redirect( $redirect_to, $request, $user ) {
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
 log_entry($redirect_to,$request,$user,wp_get_referer(),$location);
 			#	Alternately:	$location = home_url( add_query_arg( '_', false ) );
