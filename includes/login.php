@@ -161,6 +161,7 @@ if (!function_exists('tcc_login_form')) {
 			                  'value_username' => '',
 			                  'value_remember' => false,
 			);
+			$defaults = array_merge($defaults,$tcc_form);
 			$args = wp_parse_args( $args, $defaults );
 			extract($args);
 			$remember  = ($navbar)  ? false : $remember;
