@@ -15,7 +15,7 @@ if (!function_exists('tcc_get_login_form_defaults')) {
 		$defaults = array();
 		add_filter('login_form_defaults', function($args) use (&$defaults) {
 			$defaults = $args;
-log_entry($args);
+log_entry(debug_calling_function(),$args);
 			return $args;
 		}, 1000);
 		wp_login_form( array( 'echo' => false ) );
