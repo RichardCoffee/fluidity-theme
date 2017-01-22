@@ -174,7 +174,7 @@ if (!function_exists('tcc_login_form')) {
 				?> </button><?php //*/ ?>
 <div class="input-group">
   <span class="input-group-addon"><i class="fa fa-sign-in"></span>
-  <input type="submit" class="form-control btn btn-fluidity" id="<?php echo $id_submit; ?>" name="wp-submit" value="<?php echo esc_html+($label_log_in); ?>" />
+  <input type="submit" class="form-control btn btn-fluidity" id="<?php echo $id_submit; ?>" name="wp-submit" value="<?php echo esc_html($label_log_in); ?>" />
 </div>
 <?php /*
 				$button = '<i class="fa fa-sign-in"></i>&nbsp;'.esc_html($label_log_in); ?>
