@@ -46,21 +46,35 @@ if (!function_exists('tcc_copyright')) {
 	function tcc_copyright($banner=true) { ?>
 
 		<span class="pull-left">
-			<a href="http://the-creative-collective.com" target="the_creative_collective">
-				<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/icons/tcc-btn.png" class="tcc-icon">
-			</a>
+			<?php do_action('tcc_copyright_left'); ?>
 		</span>
 
 		<span class="pull-right">
-			<a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
-				<img alt="XFN Friendly" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
-			</a>
+			<?php do_action('tcc_copyright_right'); ?>
 		</span>
 
 		<p id="fluidity-copyright" class="text-center"><?php
-			$format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','First string will be a year, Second string is the site name','tcc-fluid');
+			$format = esc_html_x('Copyright %1$s %2$s, All rights reserved.','numeric year, site name','tcc-fluid');
 			$title  = apply_filters('tcc_copyright_name',microdata()->get_bloginfo('name'));
 			echo sprintf($format,fluid_copyright_dates(),$title); ?>
-		</p>
+		</p><?php
+	}
+}
 
-<?php } }
+if (!function_exists('tcc_site_link')) {
+	function tcc_site_link() { ?>
+		<a href="http://the-creative-collective.com" target="the_creative_collective">
+			<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/icons/tcc-btn.png" class="tcc-icon">
+		</a><?php
+	}
+	add_action('tcc_copyright_left','tcc_site_link');
+}
+
+if (!function_exists('tcc_xfn_link')) {
+	function tcc_xfn_link() { ?>
+		<a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
+			<img alt="XFN" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
+		</a><?php
+	}
+	add_action('tcc_copyright_right','tcc_xfn_link');
+}
