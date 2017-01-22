@@ -15,7 +15,6 @@ if (!function_exists('tcc_get_login_form_defaults')) {
 		$defaults = array();
 		add_filter('login_form_defaults', function($args) use (&$defaults) {
 			$defaults = $args;
-log_entry(debug_calling_function(),$args);
 			return $args;
 		}, 1000);
 		wp_login_form( array( 'echo' => false ) );
@@ -141,9 +140,9 @@ if (!function_exists('tcc_login_form')) {
 			$navbar = false;
 			$right  = false;
 			extract($args,EXTR_IF_EXISTS);
-log_entry(tcc_get_login_form_defaults());
+			$defaults = tcc_get_login_form_defaults();
 			#	array mainly taken from wp-includes/general-template.php
-			$defaults = array('echo'           => false,
+			$tcc_form = array('echo'           => false,
 			                  'redirect'       => home_url( add_query_arg( NULL, NULL ) ),
 			                  'form_id'        => uniqid("login_form_"),
 			                  'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) ),
@@ -159,7 +158,7 @@ log_entry(tcc_get_login_form_defaults());
 			                  'value_username' => '',
 			                  'value_remember' => false,
 			);
-			$args = wp_parse_args( $args, apply_filters( 'login_form_defaults', $defaults ) );
+			$args = wp_parse_args( $args, $defaults );
 			extract($args);
 			$remember  = ($navbar)  ? false : $remember;
 			$formclass = (!$navbar) ? "login-form" : 'navbar-form navbar-login-form'.(($right) ? ' navbar-right' : ''); ?>
@@ -170,17 +169,17 @@ log_entry(tcc_get_login_form_defaults());
 				<?php #	Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
 				<?php #	Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?>
 				<input type="hidden" name="login_location" id="login_location" value="<?php echo $redirect; ?>" />
-				<div class='form-group'>
+				<div class='form-group login-username'>
 					<label class="sr-only" for="<?php echo esc_attr($id_username); ?>"><?php echo esc_html($label_username); ?></label>
 					<input type="text" name="log" id="<?php echo esc_attr($id_username); ?>" class="form-control"
 						placeholder="<?php echo esc_html($label_username); ?>" required>
 				</div>
-				<div class='form-group'>
+				<div class='form-group login-password'>
 					<label class="sr-only" for="<?php echo esc_attr($id_password); ?>"><?php echo $label_password; ?></label>
 					<input type="password" name="pwd" id="<?php echo esc_attr($id_password); ?>" class="form-control" placeholder="<?php echo $label_password; ?>" required>
 				</div><?php
 				if ($remember) { ?>
-					<div class="checkbox">
+					<div class="checkbox login-remember">
 						<label>
 							<input type="checkbox" id="<?php echo $id_remember; ?>" name="rememberme" value="forever" <?php checked($value_remember,true); ?>>&nbsp;<?php
 							echo $label_remember; ?>
@@ -197,8 +196,10 @@ log_entry(tcc_get_login_form_defaults());
 <?php //*/
 /*				$button = '<i class="fa fa-sign-in"></i>&nbsp;'.esc_html($label_log_in); ?> */
 				$button = esc_html($label_log_in); ?>
-				<input type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit" value="<?php echo $button; ?>"/>
-				<input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" /><?php //*/
+				<div class="login-submit">
+					<input type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit" value="<?php echo $button; ?>"/>
+					<input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" />
+				</div><?php //*/
 				if (get_page_by_title('Lost Password')) {
 					$tooltip = __('Request new password','tcc-fluid');
 					echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$label_lost</small></a>";
