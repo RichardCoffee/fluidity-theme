@@ -6,10 +6,10 @@ if (!function_exists('debug_calling_function')) {
     $file = $func = $line = 'n/a';
     $debugTrace = debug_backtrace();
     if (isset($debugTrace[$depth])) {
-      $file = ($debugTrace[$depth]['file']) ? $debugTrace[$depth]['file'] : 'n/a';
-      $line = ($debugTrace[$depth]['line']) ? $debugTrace[$depth]['line'] : 'n/a';
+      $file = (empty($debugTrace[$depth]['file'])) ? 'n/a' : $debugTrace[$depth]['file'];
+      $line = (empty($debugTrace[$depth]['line'])) ? 'n/a' : $debugTrace[$depth]['line'];
     }
-    $func = (isset($debugTrace[($depth+1)]['function'])) ? $debugTrace[($depth+1)]['function'] : 'n/a';
+    $func = (empty($debugTrace[($depth+1)]['function'])) ? 'n/a' : $debugTrace[($depth+1)]['function'];
     return "$file, $func, $line";
   }
 }
