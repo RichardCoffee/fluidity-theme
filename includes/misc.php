@@ -134,7 +134,7 @@ if (!function_exists('tcc_holiday_greeting')) {
 		#	http://stackoverflow.com/questions/14907561/how-to-get-date-for-holidays-using-php
 		$MLK  = date('m-d', strtotime("january $curYir third monday")); //marthin luthor king day
 		$PD   = date('m-d', strtotime("february $curYir third monday")); //presidents day
-		$Est  =  date('m-d', easter_date($curYir))); // easter
+		$Est  = date('m-d', easter_date($curYir)); // easter
 		$MD   = date('m-d', strtotime("may $curYir last monday")); // memorial day
 		$LD   = date('m-d', strtotime("september $curYir first monday"));  //labor day
 		$CD   = date('m-d', strtotime("october $curYir second monday")); //columbus day
