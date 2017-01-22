@@ -106,7 +106,6 @@ if (!function_exists('remove_lostpassword_text')) {
 
 if (!function_exists('tcc_login_form')) {
 	function tcc_login_form( $args = array() ) {
-		static $cnt = 1;
 		if (is_user_logged_in()) {
 			$navbar  = false;
 			extract($args,EXTR_IF_EXISTS);
@@ -124,19 +123,21 @@ if (!function_exists('tcc_login_form')) {
 		} else {
 			$navbar = false;
 			$right  = false;
+			extract($args,EXTR_IF_EXISTS);
 			#	array mainly taken from wp-includes/general-template.php
 			$defaults = array('echo'           => true,
 			                  'redirect'       => home_url( add_query_arg( NULL, NULL ) ),
-			                  'form_id'        => "login_form_$cnt",
+			                  'form_id'        => uniqid("login_form_"),
 			                  'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) ),
 			                  'label_password' => apply_filters( 'tcc_login_userpass', __( 'Password' ) ),
 			                  'label_remember' => __( 'Remember Me' ),
 			                  'label_log_in'   => apply_filters( 'tcc_signin_text',    __('Sign In',       'tcc-fluid') ),
 			                  'label_lost'     => apply_filters( 'tcc_lostpw_text',    __('Lost Password', 'tcc-fluid') ),
-			                  'id_username'    => "user_login_$cnt",
-			                  'id_password'    => "user_pass_$cnt",
-			                  'id_remember'    => "rememberme_$cnt",
-			                  'id_submit'      => "wp-submit_$cnt",
+			                  'id_username'    => uniqid("user_login_"),
+			                  'id_password'    => uniqid("user_pass_"),
+			                  'id_remember'    => uniqid("rememberme_"),
+			                  'id_submit'      => uniqid("wp-submit_"),
+			                  'id_suffix'      => $cnt;
 			                  'remember'       => true,
 			                  'value_username' => '',
 			                  'value_remember' => false,
@@ -168,10 +169,12 @@ if (!function_exists('tcc_login_form')) {
 							echo $label_remember; ?>
 						</label>
 					</div><?php
-				} ?>
+				} /*
 				<button type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php
 					echo $label_log_in;
-				?> </button>
+				?> </button><?php //*/
+				$button = '<i class="fa fa-sign-in"></i>&nbsp;'.$label_log_in; ?>
+				<input type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit" value="<?php echo $button; ?>"/>
 				<input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" /><?php
 				if (get_page_by_title('Lost Password')) {
 					$tooltip = __('Request new password','tcc-fluid');
@@ -179,7 +182,6 @@ if (!function_exists('tcc_login_form')) {
 				} ?>
 			</form><?php
 		}
-		$cnt++;
 	}
 }
 
