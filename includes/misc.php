@@ -121,6 +121,26 @@ if (!function_exists('attachment_sizes')) {
 	}
 }
 
+if (!function_exists('get_the_slug')) {
+	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
+	function get_the_slug( $id=null ){
+		if( empty($id) ) {
+			global $post;
+			if( empty($post) ) { return ''; } // No global $post var available.
+			$id = $post->ID;
+		}
+		$slug = basename( get_permalink($id) );
+		return $slug;
+	}
+}
+
+if (!function_exists('the_slug')) {
+	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
+	function the_slug( $id=null ){
+		echo apply_filters( 'the_slug', get_the_slug($id) );
+	}
+}
+
 if (!function_exists('url_stem')) {
 	function url_stem($url) {
 		$pos  = strrpos($url,'/');

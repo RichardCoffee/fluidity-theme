@@ -3,12 +3,6 @@
 if (!WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
-/*
-function fluid_login_form_defaults($args) {
-	log_entry($args);
-	return $args;
-}
-add_filter('login_form_defaults','fluid_login_form_defaults'); //*/
 
 if (!function_exists('tcc_get_login_form_defaults')) {
 	function tcc_get_login_form_defaults() {
@@ -21,6 +15,12 @@ if (!function_exists('tcc_get_login_form_defaults')) {
 		return $defaults;
 	}
 }
+/*
+$redirect = home_url( add_query_arg( '_', false ) ); ?>
+Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
+Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
+Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
+Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
 /*
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
@@ -62,7 +62,7 @@ log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refe
 } //*/
 
 if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
-  // http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
+  # http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
   function tcc_dashboard_logo() {
     $logo = tcc_design('logo');
     if ($logo) {
@@ -77,7 +77,7 @@ if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
 
 if (!function_exists('tcc_login_css')) {
   function tcc_login_css() {
-    // http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
+    # http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
     $logo = tcc_design('logo'); // FIXME: this needs to be done some other way - get logo from customizer?
     if ($logo) {
       echo "<style type='text/css'> h1 a { background-image:url($logo) !important; }</style>";
@@ -100,7 +100,7 @@ if (!function_exists('tcc_login_header_title')) {
   add_filter('login_headertitle','tcc_login_header_title');
 }
 
-// Why is this double enclosed? init vs login_footer?
+// FIXME:  Why is this double enclosed? init vs login_footer?
 if (!function_exists('tcc_remember_me')) {
   function tcc_remember_me() {
     if (!function_exists('tcc_remember_me_checked')) {
@@ -112,16 +112,6 @@ if (!function_exists('tcc_remember_me')) {
   }
   add_action('init','tcc_remember_me');
 }
-/*
-// Source? FIXME:  what is this for, and why do we need it?  Is there a better way?
-if (!function_exists('remove_lostpassword_text')) {
-  function remove_lostpassword_text($text) {
-    if ($text == 'Lost your password?')
-      $text = '';
-    return $text;
-  }
-  add_filter('gettext','remove_lostpassword_text');
-} //*/
 
 if (!function_exists('tcc_login_form')) {
 	function tcc_login_form( $args = array() ) {
@@ -150,63 +140,56 @@ if (!function_exists('tcc_login_form')) {
 			                  'form_id'        => uniqid("login_form_"),
 			                  'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) ),
 			                  'label_password' => apply_filters( 'tcc_login_userpass', __( 'Password' ) ),
-			                  'label_remember' => __( 'Remember Me' ),
+#			                  'label_remember' => __( 'Remember Me' ),
 			                  'label_log_in'   => apply_filters( 'tcc_signin_text',    __('Sign In',       'tcc-fluid') ),
 			                  'label_lost'     => apply_filters( 'tcc_lostpw_text',    __('Lost Password', 'tcc-fluid') ),
 			                  'id_username'    => uniqid("user_login_"),
 			                  'id_password'    => uniqid("user_pass_"),
 			                  'id_remember'    => uniqid("rememberme_"),
 			                  'id_submit'      => uniqid("wp-submit_"),
-			                  'remember'       => true,
-			                  'value_username' => '',
-			                  'value_remember' => false,
+#			                  'remember'       => true,
+#			                  'value_username' => '',
+#			                  'value_remember' => false,
 			);
 			$defaults = array_merge($defaults,$tcc_form);
 			$args = wp_parse_args( $args, $defaults );
 			extract($args);
 			$remember  = ($navbar)  ? false : $remember;
 			$formclass = (!$navbar) ? "login-form" : 'navbar-form navbar-login-form'.(($right) ? ' navbar-right' : ''); ?>
-			<form id="<?php echo $form_id; ?>" class="<?php echo $formclass; ?>" name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
-				<?php #$redirect = home_url( add_query_arg( '_', false ) ); ?>
-				<?php #	Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
-				<?php #	Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
-				<?php #	Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
-				<?php #	Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?>
-				<input type="hidden" name="login_location" id="login_location" value="<?php echo $redirect; ?>" />
+			<form id="<?php echo esc_attr($form_id); ?>" class="<?php echo esc_attr($formclass); ?>"
+			      name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
 				<div class='form-group login-username'>
 					<label class="sr-only" for="<?php echo esc_attr($id_username); ?>"><?php echo esc_html($label_username); ?></label>
 					<input type="text" name="log" id="<?php echo esc_attr($id_username); ?>" class="form-control"
 						placeholder="<?php echo esc_html($label_username); ?>" required>
 				</div>
 				<div class='form-group login-password'>
-					<label class="sr-only" for="<?php echo esc_attr($id_password); ?>"><?php echo $label_password; ?></label>
-					<input type="password" name="pwd" id="<?php echo esc_attr($id_password); ?>" class="form-control" placeholder="<?php echo $label_password; ?>" required>
+					<label class="sr-only" for="<?php echo esc_attr($id_password); ?>"><?php echo esc_html($label_password); ?></label>
+					<input type="password" name="pwd" id="<?php echo esc_attr($id_password); ?>"
+					       class="form-control" placeholder="<?php echo esc_attr($label_password); ?>" required>
 				</div><?php
 				if ($remember) { ?>
 					<div class="checkbox login-remember">
 						<label>
-							<input type="checkbox" id="<?php echo $id_remember; ?>" name="rememberme" value="forever" <?php checked($value_remember,true); ?>>&nbsp;<?php
-							echo $label_remember; ?>
+							<input type="checkbox" id="<?php echo esc_attr($id_remember); ?>" name="rememberme" value="forever" <?php checked($value_remember,true); ?>>&nbsp;
+							<?php echo esc_html($label_remember); ?>
 						</label>
 					</div><?php
-				} /*
-				<button type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i> <?php
-					echo $label_log_in;
-				?> </button><?php //*/ /* ?>
-<div class="input-group">
-  <span class="input-group-addon"><i class="fa fa-sign-in"></span>
-  <input type="submit" class="form-control btn btn-fluidity" id="<?php echo $id_submit; ?>" name="wp-submit" value="<?php echo esc_html($label_log_in); ?>" />
-</div>
-<?php //*/
-/*				$button = '<i class="fa fa-sign-in"></i>&nbsp;'.esc_html($label_log_in); ?> */
-				$button = esc_html($label_log_in); ?>
+				} ?>
 				<div class="login-submit">
-					<input type="submit" id="<?php echo $id_submit; ?>" class="btn btn-fluidity" name="wp-submit" value="<?php echo $button; ?>"/>
-					<input type="hidden" name="redirect_to" value="<?php echo $redirect; ?>" />
+					<button type="submit" id="<?php echo esc_attr($id_submit); ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i>&nbsp;
+						<?php echo esc_html($label_log_in); ?>
+					</button>
+					<input type="hidden" name="redirect_to" value="<?php echo esc_url_raw($redirect); ?>" />
 				</div><?php //*/
-				if (get_page_by_title('Lost Password')) {
-					$tooltip = __('Request new password','tcc-fluid');
-					echo "<a class='lost-password pull-right' href='".wp_lostpassword_url(home_url() )."' title='$tooltip'><small>$label_lost</small></a>";
+#				if (get_page_by_title('Lost Password')) {
+				if ( !empty( $label_lost ) && ( $lost_url=wp_lostpassword_url( home_url() ) ) ) {
+					$tooltip = __('You can request a new password via this link.','tcc-fluid'); ?>
+					<a class="lost-password pull-right" href="<?php echo esc_url_raw($lost_url); ?>" title="<?php echo esc_attr($tooltip); ?>">
+						<small>
+							<?php echo esc_html($label_lost); ?>
+						</small>
+					</a><?php
 				} ?>
 			</form><?php
 		}
@@ -214,6 +197,7 @@ if (!function_exists('tcc_login_form')) {
 }
 
 if (!function_exists('tcc_logout_url')) {
+  #  force redirect for logout url
   function tcc_logout_url($url, $redirect) {
     $site = get_option('siteurl');
     $pos  = strpos($url,'?');
@@ -236,19 +220,20 @@ if (!function_exists('tcc_admin_howdy')) {
 	#	https://premium.wpmudev.org/forums/topic/change-howdy-manually
 	#	http://www.hongkiat.com/blog/wordpress-howdy-customized/
 	function tcc_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
-		$user_id      = get_current_user_id();
-		if ( 0 != $user_id ) {
-			if (!function_exists('tcc_holiday_greeting')) {
-				require_once('misc.php'); // FIXME:  wtf? - theme function file has not been loaded at this point in admin, so how is this function getting called?
+		$user_id = get_current_user_id();
+		if ( $user_id ) {
+/*			if (!function_exists('tcc_holiday_greeting')) {
+				require_once('misc.php'); // FIXME:  wtf? - theme function file has not been loaded at this point in admin, so how is tcc_admin_howdy getting called?
+log_entry('tcc_holiday_greeting'); // FIXME: remove all this code when possible
 			}
-			if (!function_exists('tcc_holiday_greeting')) { return; }
+			if (!function_exists('tcc_holiday_greeting')) { wp_die('tcc_holiday_greeting missing'); } //*/
 			/* Add the "My Account" menu */
 			$current = wp_get_current_user();
 			$profile = get_edit_profile_url( $user_id );
 			$avatar  = get_avatar( $user_id, 28 );
 			$text    = ($user_id===1) ? __('Your Royal Highness','tcc-fluid') : tcc_holiday_greeting();
-			$howdy   = sprintf( _x('%1$s, %2$s','greetings text, user name','tcc-fluid'), $text, $current->display_name );
-			$class   = empty( $avatar ) ? '' : 'with-avatar';
+			$howdy   = sprintf( _x('%1$s, %2$s','text greeting, user name','tcc-fluid'), $text, $current->display_name );
+			$class   = (empty($avatar)) ? '' : 'with-avatar';
 			$args    = array('id'     => 'my-account',
 			                 'parent' => 'top-secondary',
 			                 'title'  => $howdy . $avatar,
