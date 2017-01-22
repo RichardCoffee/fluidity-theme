@@ -36,25 +36,28 @@ if (!function_exists('tcc_page_parallax')) {
 		if (tcc_design('paral')==='yes') {
 			global $post;
 			$pageID = $post->ID;
-#			$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page);
-log_entry(0,"page ID:  $pageID");
 			if ($pageID) {
 				$imgURL = get_featured_url($pageID);
-log_entry(0,"img url:  $imgURL");
 				if ($imgURL) { ?>
 					<style>
 						.parallax-image {
 							background-image: url("<?php echo $imgURL; ?>");
 							<?php do_action('tcc_page_parallax'); ?>
-							<?php do_action("tcc_page_parallax_$page"); ?>
+							<?php do_action('tcc_page_parallax_'.get_page_slug()); ?>
 						}
 					</style><?php
+					$divcss = 'parallax parallax-image parallax-scroll parallax-page-'.get_page_slug();
+#					$divcss = apply_filters('tcc_page_parallax',$divcss);
 					if ($div) { ?>
-						<div class="parallax parallax-image parallax-scroll parallax-page-<?php echo $page; ?> hidden-xs"></div><?php
+						<div class="<?php echo $divcss; ?>"></div><?php
 					}
+					return $divcss;
 				}
+				return 'no-featured-image-for-page-parallax';
 			}
+			return 'no-page-found-in-tcc_page_parallax';
 		}
+		return 'parallax-is-off-in-theme-options';
 	}
 }
 
