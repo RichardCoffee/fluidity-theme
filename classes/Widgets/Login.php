@@ -11,6 +11,7 @@ class TCC_Widgets_Login extends TCC_Widgets_Basic {
 		parent::__construct();
 		add_filter('login_form_defaults',array($this,'login_form_defaults'),1000);
 		$temp = wp_login_form(array('echo'=>false));
+log_entry($temp);
 	}
 
 	public function inner_widget($args,$instance) {

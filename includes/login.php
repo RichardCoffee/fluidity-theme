@@ -25,7 +25,7 @@ if (!function_exists('tcc_login_redirect')) {
 }
 
 if (!function_exists('tcc_admin_login_redirect')) {
-log_entry('tcc_admin_login_redirect');
+log_entry(0,'tcc_admin_login_redirect defined');
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
 log_entry($redirect_to,$request,$user,wp_get_referer());
 #		if (!$user)                       { return home_url(); }
