@@ -10,25 +10,40 @@ function fluid_login_form_defaults($args) {
 }
 add_filter('login_form_defaults','fluid_login_form_defaults'); //*/
 
+if (!function_exists('tcc_get_login_form_defaults')) {
+	function tcc_get_login_form_defaults() {
+		$defaults = array();
+		add_filter('login_form_defaults', function($args) use ($defaults) {
+			$defaults = $args;
+			return $args;
+		}, 1000);
+		wp_login_form( array( 'echo' => false ) );
+		return $defaults;
+	}
+}
+
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
 		function tcc_login_redirect( $redirect_to, $request, $user ) {
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
-log_entry($redirect_to,$request,$user,wp_get_referer(),$location);
+log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refere:  '.wp_get_referer(),'location:  '.$location);
 			#	Alternately:	$location = home_url( add_query_arg( '_', false ) );
 			#	And:	global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) );
-			wp_safe_redirect($location);
-			exit();
+#			wp_safe_redirect($location);
+#			exit();
+			return $location;
 		}
 		add_filter('login_redirect', 'tcc_login_redirect', 10, 3);
 	}
 }
 
+//  FIXME:  the function above gets fired, the one below does not - wtf?
+
 if (!function_exists('tcc_admin_login_redirect')) {
 log_entry(0,'tcc_admin_login_redirect defined');
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
-log_entry($redirect_to,$request,$user,wp_get_referer());
+log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refere:  '.wp_get_referer(),'location:  '.$location);
 #		if (!$user)                       { return home_url(); }
 #		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 #		if (get_class($user)=='WP_Error') { return $redirect_to; }
@@ -60,7 +75,7 @@ if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
 if (!function_exists('tcc_login_css')) {
   function tcc_login_css() {
     // http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
-    $logo = tcc_design('logo');
+    $logo = tcc_design('logo'); // FIXME: this needs to be done some other way - get logo from customizer?
     if ($logo) {
       echo "<style type='text/css'> h1 a { background-image:url($logo) !important; }</style>";
     }
@@ -125,6 +140,7 @@ if (!function_exists('tcc_login_form')) {
 			$navbar = false;
 			$right  = false;
 			extract($args,EXTR_IF_EXISTS);
+log_entry(tcc_get_login_form_defaults());
 			#	array mainly taken from wp-includes/general-template.php
 			$defaults = array('echo'           => false,
 			                  'redirect'       => home_url( add_query_arg( NULL, NULL ) ),
