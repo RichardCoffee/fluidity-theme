@@ -12,7 +12,7 @@ do_action("tcc_{$mypage}_page_top"); ?>
 <main><?php
 
 	if (is_page()) {
-		if (tcc_design('paral')==='yes') { tcc_page_parallax($mypage); }
+		tcc_page_parallax($mypage);
 		tcc_page_title($mypage); // FIXME:  make title bar an option
 	} ?>
 

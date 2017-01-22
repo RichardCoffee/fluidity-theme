@@ -11,7 +11,7 @@ $page = get_page_slug(); ?>
 <main><?php
 
 	if (is_page()) {
-		tcc_page_parallax($page);
+		tcc_page_parallax();
 		tcc_page_title($page); // FIXME:  make title bar an option
 	} ?>
 

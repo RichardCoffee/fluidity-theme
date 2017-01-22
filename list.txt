@@ -27,8 +27,8 @@ includes/library.php:375:  function showme($title,$data) {
 includes/library.php:397:  function tellme($string) {
 includes/library.php:406:  function who_am_i($pos=0) {
 includes/parallax.php:5:	function tcc_excerpt_parallax() {
-includes/parallax.php:19:	function tcc_page_parallax($page) {
-includes/parallax.php:41:	function tcc_post_parallax($css='single-parallax') {
+includes/parallax.php:19:	function tcc_page_parallax( $div=true ) {
+includes/parallax.php:41:	function tcc_post_parallax( $css='single-parallax' ) {
 includes/layout.php:9:  function fluid_layout() {
 includes/layout.php:23:  function sidebar_layout($sidebar='standard',$side=null) {
 includes/in-the-loop.php:11:  function fluid_content_slug($page='single') {
@@ -64,7 +64,6 @@ includes/pages.php:56:  function get_page_slug() {
 includes/pages.php:74:	function get_page_title($slug) {
 includes/pages.php:80:	function tcc_get_page_id_by_slug($slug,$prop='ID') {
 includes/pages.php:100:	function tcc_page_title($slug) { ?>
-includes/pages.php:116:	function tcc_page_parallax($page) {
 includes/menus.php:12:  function tcc_register_nav_menu() {
 includes/loader.php:3:function fluidity_class_loader( $class ) {
 includes/comments.php:9:  function fluid_comment_navigation() {

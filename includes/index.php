@@ -12,7 +12,7 @@ function fluid_index_page( $page='index' ) {
 	<main><?php
 
 		if (is_page()) {
-			if (tcc_design('paral')==='yes') { tcc_page_parallax($page); }
+			tcc_page_parallax();
 			tcc_page_title($page); // FIXME:  make title bar an option
 		} ?>
 

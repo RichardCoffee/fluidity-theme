@@ -32,12 +32,11 @@ if (!function_exists('tcc_excerpt_parallax')) {
 }
 
 if (!function_exists('tcc_page_parallax')) {
-	function tcc_page_parallax($page,$div=true) {
-global $post;
-log_entry('tcc paral:  '.tcc_design('paral'),$post);
+	function tcc_page_parallax( $div=true ) {
 		if (tcc_design('paral')==='yes') {
-log_entry(0,"page:  $page");
-			$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page);
+			global $post;
+			$pageID = $post->ID;
+#			$pageID = (intval($page,10)>0) ? intval($page,10) : tcc_get_page_id_by_slug($page);
 log_entry(0,"page ID:  $pageID");
 			if ($pageID) {
 				$imgURL = get_featured_url($pageID);
