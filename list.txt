@@ -1,123 +1,122 @@
-includes/galleryview.php:6:		function tcc_register_galleryview() {
-includes/galleryview.php:18:		function tcc_enqueue_galleryview($query) {
-includes/widgets.php:4:   function tcc_register_widgets() {
-includes/library.php:5:  function tcc_apply_clearfix($args) {
-includes/library.php:18:  function tcc_bootstrap_css($args) {
-includes/library.php:31:  function tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead
-includes/library.php:48:  function container_type($location='post') {
-includes/library.php:62:  function convert_user_meta($ID) {
-includes/library.php:74:  function fluid_get_post_terms($post_id,$taxonomy,$args) {
-includes/library.php:90:  function wp_menu_id_by_name($name) {
-includes/library.php:102:	function esc_attr_ex( $text, $context, $domain = 'default' ) {
-includes/library.php:108:	function esc_html_ex( $text, $context, $domain = 'default' ) {
-includes/library.php:115:  function author_role_template( $templates = '' ) {
-includes/library.php:138:	function get_featured_url($postID=null) {
-includes/library.php:152:  function get_term_name($tax,$slug) {
-includes/library.php:161:  function get_valid_gravatar($email,$size=96) {
-includes/library.php:177:	function is_ajax() {
-includes/library.php:184:  function page_exists($search='') {
-includes/library.php:195:  function sanitize_array($array,$method='title') {
-includes/library.php:216:  function array_insert_after($array, $key, $new_key, $new_value) {
-includes/library.php:235:  function debug_calling_function($depth=1) {
-includes/library.php:249:  function debug_rewrite_rules() {
-includes/library.php:270:  function list_filter_hooks( $hook = '' ) {
-includes/library.php:309:  function list_template_conditions() {
-includes/library.php:351:  function log_entry() {
-includes/library.php:375:  function showme($title,$data) {
-includes/library.php:397:  function tellme($string) {
-includes/library.php:406:  function who_am_i($pos=0) {
-includes/parallax.php:5:	function tcc_excerpt_parallax() {
-includes/parallax.php:19:	function tcc_page_parallax( $div=true ) {
-includes/parallax.php:41:	function tcc_post_parallax( $css='single-parallax' ) {
-includes/layout.php:9:  function fluid_layout() {
-includes/layout.php:23:  function sidebar_layout($sidebar='standard',$side=null) {
-includes/in-the-loop.php:11:  function fluid_content_slug($page='single') {
-includes/in-the-loop.php:23:  function fluid_edit_post_link($separator=' ') {
-includes/in-the-loop.php:40:	function fluid_navigation($taxonomy='',$all_links=false) {
-includes/in-the-loop.php:80:  function fluid_next_post_exists() {
-includes/in-the-loop.php:87:  function fluid_post_date($complete=false) {
-includes/in-the-loop.php:117:	function fluid_postmetadata() { ?>
-includes/in-the-loop.php:142:  function fluid_post_separator($slug) {
-includes/in-the-loop.php:155:	function fluid_thumbnail() {
-includes/in-the-loop.php:168:	function fluid_title($length=0) {
-includes/in-the-loop.php:190:  function get_the_author_posts_link($authorID=0) {
-includes/in-the-loop.php:203:	function tcc_excerpt_parallax() { ?>
-includes/in-the-loop.php:218:	function tcc_post_parallax($css='single-parallax') {
-includes/in-the-loop.php:233:	function tcc_post_title($max=0,$anchor=true) {
-includes/login.php:8:  function tcc_admin_login_redirect($redirect_to,$request,$user) {
-includes/login.php:23:  function tcc_dashboard_logo() {
-includes/login.php:36:  function tcc_login_css() {
-includes/login.php:48:  function tcc_login_header_url() {
-includes/login.php:55:  function tcc_login_header_title() {
-includes/login.php:63:  function tcc_remember_me() {
-includes/login.php:65:      function tcc_remember_me_checked() {
-includes/login.php:76:  function remove_lostpassword_text($text) {
-includes/login.php:85:  function tcc_login_form($navbar=false,$right=false) {
-includes/login.php:127:  function tcc_logout_url($url, $redirect) {
-includes/pages.php:9:  function fluid_archive_page_title() { ?>
-includes/pages.php:15:  function fluid_archive_page_noposts() {
-includes/pages.php:22:  function fluid_category_page_title() { ?>
-includes/pages.php:28:  function fluid_category_page_noposts() {
-includes/pages.php:35:  function fluid_noposts_page($text) { ?>
-includes/pages.php:47:	function fluid_save_page_template( $template ) {
-includes/pages.php:56:  function get_page_slug() {
-includes/pages.php:74:	function get_page_title($slug) {
-includes/pages.php:80:	function tcc_get_page_id_by_slug($slug,$prop='ID') {
-includes/pages.php:100:	function tcc_page_title($slug) { ?>
-includes/menus.php:12:  function tcc_register_nav_menu() {
-includes/loader.php:3:function fluidity_class_loader( $class ) {
-includes/comments.php:9:  function fluid_comment_navigation() {
-includes/comments.php:29:  function fluid_list_comments($comment,$args,$depth) {
-includes/sidebars.php:6:  function fluidity_register_sidebars() {
-includes/sidebars.php:66:function fluidity_the_widget($widget,$instance,$args) {
-includes/sidebars.php:73:  function fluidity_get_sidebar($sidebar='standard') {
-includes/sidebars.php:79:  function fluidity_load_sidebar($args,$force=false) {
-includes/sidebars.php:93:  function fluidity_sidebar_parameter() {
-includes/sidebars.php:107:  function fluidity_sidebar_layout($sidebar='standard',$side='') {
-includes/third-party.php:19:  function fluidity_jetpack_site_logo_to_bootstrap($html) {
-includes/third-party.php:40:  function has_woocommerce() {
-includes/third-party.php:51:    function woocommerce_and_jetpack_sharedaddy() { ?>
-includes/third-party.php:62:  function fluidity_wpfai_social() {
-includes/footer.php:10:  function fluid_copyright_dates() {
-includes/footer.php:26:  function fluid_footer_autohide() {
-includes/footer.php:46:	function tcc_copyright($banner=true) { ?>
-includes/collective.php:9:function collective_color_scheme($color) {
-includes/collective.php:14:function collective_header() { ?>
-includes/collective.php:26:function collective_enqueue() {
-includes/collective.php:31:function collective_container_type($css) {
-includes/collective.php:41:function collective_sidebars($sidebars) {
-includes/options.php:9:  function stop_heartbeat() {
-includes/options.php:28:  function tcc_currency_symbol() {
-includes/options.php:36:  function tcc_design($option) {
-includes/options.php:45:  function tcc_font_size() {
-includes/options.php:55:  function tcc_layout($option) {
-includes/options.php:64:  function tcc_option($option='',$section='') {
-includes/options.php:92:  function tcc_settings($option) {
-includes/misc.php:4:function contextual_static_front_page_section($wp_customize) {
-includes/misc.php:10:function fluid_read_more_link($output) {
-includes/misc.php:20:  function fluidity_social_icons() {
-includes/misc.php:60:  function fluid_user_profile_link() {
-includes/misc.php:74:  function single_search_result() {
-includes/header.php:12:  function fluid_browser_body_class($classes) {
-includes/header.php:30:  function fluid_browser_title($title) {
-includes/header.php:49:  function tcc_custom_css() { ?>
-includes/header.php:58:  function fluidity_header_logo() {
-includes/header.php:87:  function fluidity_menubar_print_button() {
-includes/colors.php:4:	function fluid_color_body_class($classes) {
-includes/colors.php:15:  function fluid_color_scheme() {
-includes/colors.php:24:  function tcc_color_scheme($location='') {
-includes/colors.php:44:function tcc_custom_colors() {
-includes/colors.php:55:	function tcc_parallax() {
-includes/theme-support.php:59:    function tcc_editor_styles() {
-includes/theme-support.php:67:	function tcc_post_revisions() {
-functions.php:47:  function tcc_enqueue() {
-functions.php:101:  function fluidity_admin_enqueue() {
-functions.php:110:  function fluidity_register_bootstrap() {
-functions.php:116:  function fluidity_bootstrap_backup() {
-functions.php:123:  function fluidity_register_fontawesome() {
-functions.php:129:  function fluidity_register_color_scheme() {
-functions.php:138:  function fluidity_show_query( $args, $template, $slug='' ) {
-classes/microdata.php:27:  function microdata() {
+
+	Galleryview
+========================
+tcc_register_galleryview() {
+tcc_enqueue_galleryview($query) {
+
+tcc_register_widgets() {
+tcc_apply_clearfix($args) {
+tcc_bootstrap_css($args) {
+tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead
+container_type($location='post') {
+convert_user_meta($ID) {
+fluid_get_post_terms($post_id,$taxonomy,$args) {
+wp_menu_id_by_name($name) {
+esc_attr_ex( $text, $context, $domain = 'default' ) {
+esc_html_ex( $text, $context, $domain = 'default' ) {
+author_role_template( $templates = '' ) {
+get_featured_url($postID=null) {
+get_term_name($tax,$slug) {
+get_valid_gravatar($email,$size=96) {
+is_ajax() {
+page_exists($search='') {
+sanitize_array($array,$method='title') {
+array_insert_after($array, $key, $new_key, $new_value) {
+debug_calling_function($depth=1) {
+debug_rewrite_rules() {
+list_filter_hooks( $hook = '' ) {
+list_template_conditions() {
+log_entry() {
+showme($title,$data) {
+tellme($string) {
+who_am_i($pos=0) {
+tcc_excerpt_parallax() {
+tcc_page_parallax( $div=true ) {
+tcc_post_parallax( $css='single-parallax' ) {
+fluid_layout() {
+sidebar_layout($sidebar='standard',$side=null) {
+fluid_content_slug($page='single') {
+fluid_edit_post_link($separator=' ') {
+fluid_navigation($taxonomy='',$all_links=false) {
+fluid_next_post_exists() {
+fluid_post_date($complete=false) {
+fluid_postmetadata() { ?>
+fluid_post_separator($slug) {
+fluid_thumbnail() {
+fluid_title($length=0) {
+get_the_author_posts_link($authorID=0) {
+tcc_excerpt_parallax() { ?>
+tcc_post_parallax($css='single-parallax') {
+tcc_post_title($max=0,$anchor=true) {
+tcc_admin_login_redirect($redirect_to,$request,$user) {
+tcc_dashboard_logo() {
+tcc_login_css() {
+tcc_login_header_url() {
+tcc_login_header_title() {
+tcc_remember_me() {
+tcc_remember_me_checked() {
+remove_lostpassword_text($text) {
+tcc_login_form($navbar=false,$right=false) {
+tcc_logout_url($url, $redirect) {
+fluid_archive_page_title() { ?>
+fluid_archive_page_noposts() {
+function fluid_category_page_title() { ?>
+fluid_category_page_noposts() {
+fluid_noposts_page($text) { ?>
+fluid_save_page_template( $template ) {
+get_page_slug() {
+get_page_title($slug) {
+tcc_get_page_id_by_slug($slug,$prop='ID') {
+tcc_page_title($slug) { ?>
+tcc_register_nav_menu() {
+fluidity_class_loader( $class ) {
+fluid_comment_navigation() {
+fluid_list_comments($comment,$args,$depth) {
+fluidity_register_sidebars() {
+fluidity_the_widget($widget,$instance,$args) {
+fluidity_get_sidebar($sidebar='standard') {
+fluidity_load_sidebar($args,$force=false) {
+fluidity_sidebar_parameter() {
+fluidity_sidebar_layout($sidebar='standard',$side='') {
+fluidity_jetpack_site_logo_to_bootstrap($html) {
+has_woocommerce() {
+woocommerce_and_jetpack_sharedaddy() { ?>
+fluidity_wpfai_social() {
+fluid_copyright_dates() {
+fluid_footer_autohide() {
+tcc_copyright($banner=true) { ?>
+stop_heartbeat() {
+tcc_currency_symbol() {
+tcc_design($option) {
+tcc_font_size() {
+tcc_layout($option) {
+tcc_option($option='',$section='') {
+tcc_settings($option) {
+contextual_static_front_page_section($wp_customize) {
+fluid_read_more_link($output) {
+fluidity_social_icons() {
+fluid_user_profile_link() {
+single_search_result() {
+fluid_browser_body_class($classes) {
+fluid_browser_title($title) {
+tcc_custom_css() { ?>
+fluidity_header_logo() {
+fluidity_menubar_print_button() {
+fluid_color_body_class($classes) {
+fluid_color_scheme() {
+tcc_color_scheme($location='') {
+tcc_custom_colors() {
+tcc_parallax() {
+function tcc_editor_styles() {
+tcc_post_revisions() {
+tcc_enqueue() {
+fluidity_admin_enqueue() {
+fluidity_register_bootstrap() {
+fluidity_bootstrap_backup() {
+fluidity_register_fontawesome() {
+fluidity_register_color_scheme() {
+fluidity_show_query( $args, $template, $slug='' ) {
+function microdata() {
 classes/microdata.php:76:  public function microdata($type) {
 classes/microdata.php:81:  public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
 classes/microdata.php:82:  public function address()  { $this->PostalAddress(); }          // descendant of many types - see itemtype link

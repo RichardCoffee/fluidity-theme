@@ -461,7 +461,7 @@ log_entry($controls);
 
   private function render_display($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    if (isset($layout['default']) && !empty($value)) echo $value; // FIXME - echos value only if default exists
+    if (isset($layout['default']) && !empty($value)) echo $value;
     if (!empty($layout['text'])) echo " <span>{$layout['text']}</span>";
   }
 

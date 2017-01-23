@@ -21,7 +21,7 @@ Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
 Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
 Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
 Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
-/*
+
 if (!function_exists('tcc_login_redirect')) {
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
@@ -75,6 +75,18 @@ if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
   add_action('admin_head','tcc_dashboard_logo');
 }
 
+if (!function_exists('tcc_get_login_form_defaults')) {
+	function tcc_get_login_form_defaults() {
+		$defaults = array();
+		add_filter('login_form_defaults', function($args) use (&$defaults) {
+			$defaults = $args;
+			return $args;
+		}, 1000);
+		wp_login_form( array( 'echo' => false ) );
+		return $defaults;
+	}
+}
+
 if (!function_exists('tcc_login_css')) {
   function tcc_login_css() {
     # http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
@@ -83,14 +95,14 @@ if (!function_exists('tcc_login_css')) {
       echo "<style type='text/css'> h1 a { background-image:url($logo) !important; }</style>";
     }
   }
-  add_action('login_head','tcc_login_css');
+#  add_action('login_head','tcc_login_css');
 }
 
 if (!function_exists('tcc_login_header_url')) {
   function tcc_login_header_url() {
     return home_url();
   }
-  add_filter('login_headerurl','tcc_login_header_url' );
+#  add_filter('login_headerurl','tcc_login_header_url' );
 }
 
 if (!function_exists('tcc_login_header_title')) {
@@ -110,7 +122,7 @@ if (!function_exists('tcc_remember_me')) {
       add_filter('login_footer','tcc_remember_me_checked');
     }
   }
-  add_action('init','tcc_remember_me');
+#  add_action('init','tcc_remember_me');
 }
 
 if (!function_exists('tcc_login_form')) {
@@ -194,6 +206,27 @@ if (!function_exists('tcc_login_form')) {
 			</form><?php
 		}
 	}
+}
+
+if (!function_exists('tcc_login_form_defaults')) {
+	function tcc_login_form_defaults( $args=array() ) {
+		$args['redirect']       = apply_filters( 'tcc_login_redirect', home_url( add_query_arg( NULL, NULL ) ) );
+		$args['form_id']        = uniqid( 'login_form_' );
+		$args['label_username'] = apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) );
+		$args['label_password'] = apply_filters( 'tcc_login_password', __( 'Password' ) );
+#		$args['label_remember'] = __( 'Remember Me' );
+		$args['label_log_in']   = apply_filters( 'tcc_log_in_text',    __( 'Sign In',       'tcc-fluid' ) );
+		$args['label_lostpw']   = apply_filters( 'tcc_lostpw_text',    __( 'Lost Password', 'tcc-fluid' ) );
+		$args['id_username']    = uniqid( 'user_login_' );
+		$args['id_password']    = uniqid( 'user_pass_'  );
+		$args['id_remember']    = uniqid( 'rememberme_' );
+		$args['id_submit']      = uniqid( 'wp-submit_'  );
+#		$args['remember']       = true;
+#		$args['value_username'] = '';
+#		$args['value_remember'] = false;
+		return $args;
+	}
+	add_action('login_form_defaults','tcc_login_form_defaults');
 }
 
 if (!function_exists('tcc_logout_url')) {
