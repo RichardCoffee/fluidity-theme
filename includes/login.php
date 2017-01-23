@@ -176,7 +176,7 @@ if (!function_exists('tcc_login_form')) {
 						</label>
 					</div><?php
 				} ?>
-				<div class="login-submit">
+				<div class="form-group login-submit">
 					<button type="submit" id="<?php echo esc_attr($id_submit); ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i>&nbsp;
 						<?php echo esc_html($label_log_in); ?>
 					</button>
