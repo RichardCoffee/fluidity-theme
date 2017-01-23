@@ -50,7 +50,7 @@ class TCC_Options_Social {
 );
     $layout['prote']  = array('label'   => __('Social Site URL','tcc-fluid'),
                               'text'    => __('Be sure to add the protocol (ie: http:// or https://).','tcc-fluid'),
-                              'render'  => 'display'
+                              'render'  => 'display',
                               'divcss'  => 'social-option-icon');
     $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#3B5998',
                    'GitHub'    => 'black',   'Google Plus' => '#D74D2F', 'LinkedIN' => '#287BBC',
