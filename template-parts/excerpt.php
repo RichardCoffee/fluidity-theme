@@ -16,9 +16,9 @@ who_am_i(); ?>
 	</h1>
 
 	<?php if (tcc_layout('exdate')==='show') { ?>
-		<h2 class="text-center">
+		<h3 class="text-center">
 			<?php fluid_post_date(); ?>
-		</h2><?php
+		</h3><?php
 	} ?>
 
 	<div class="article" itemprop="description"><?php
