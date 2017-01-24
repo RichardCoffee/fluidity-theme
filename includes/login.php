@@ -30,7 +30,7 @@ if (!function_exists('tcc_login_redirect')) {
 			if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 			if (get_class($user)=='WP_Error') { return $redirect_to; }
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
-#log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_referer:  '.wp_get_referer(),'location:  '.$location);
+log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_referer:  '.wp_get_referer(),'location:  '.$location);
 			wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
 			exit;
 		}
@@ -40,7 +40,7 @@ if (!function_exists('tcc_login_redirect')) {
 
 if (!function_exists('tcc_admin_login_redirect')) {
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
-#log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_referer:  '.wp_get_referer());
+log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_referer:  '.wp_get_referer());
 		if (!$user)                       { return home_url(); }
 		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 		if (get_class($user)=='WP_Error') { return $redirect_to; }
