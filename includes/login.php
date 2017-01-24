@@ -204,7 +204,7 @@ if (!function_exists('tcc_login_form')) {
 
 if (!function_exists('tcc_login_form_defaults')) {
 	function tcc_login_form_defaults( $args=array() ) {
-		$args['redirect']       = apply_filters( 'tcc_login_redirect', home_url( add_query_arg( NULL, NULL ) ) );
+		$args['redirect']       = apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) );
 		$args['form_id']        = uniqid( 'login_form_' );
 		$args['label_username'] = apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) );
 		$args['label_password'] = apply_filters( 'tcc_login_password', __( 'Password' ) );
