@@ -30,26 +30,20 @@ if (!function_exists('tcc_login_redirect')) {
 			if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
 			if (get_class($user)=='WP_Error') { return $redirect_to; }
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
-log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refere:  '.wp_get_referer(),'location:  '.$location);
-			#	Alternately:	$location = home_url( add_query_arg( '_', false ) );
-			#	And:	global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) );
-#			wp_safe_redirect($location);
-#			exit();
-			return $location;
+#log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_referer:  '.wp_get_referer(),'location:  '.$location);
+			wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
+			exit;
 		}
 		add_filter('login_redirect', 'tcc_login_redirect', 10, 3);
 	}
 } //*/
 
-//  FIXME:  the function above gets fired, the one below does not - wtf?
-/*
 if (!function_exists('tcc_admin_login_redirect')) {
-log_entry(0,'tcc_admin_login_redirect defined');
 	function tcc_admin_login_redirect($redirect_to,$request,$user) {
-log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refere:  '.wp_get_referer());
-#		if (!$user)                       { return home_url(); }
-#		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
-#		if (get_class($user)=='WP_Error') { return $redirect_to; }
+#log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_referer:  '.wp_get_referer());
+		if (!$user)                       { return home_url(); }
+		if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
+		if (get_class($user)=='WP_Error') { return $redirect_to; }
 #		$from = wp_get_referer();
 ##		if (!(strpos($from,'wp-admin')===false)) return $from;
 ##		if (!in_array("administrator",$user->roles)) return home_url();
@@ -58,7 +52,7 @@ log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_refe
 #		return home_url();
 		return $redirect_to;
 	}
-	add_filter("login_redirect","tcc_admin_login_redirect",10,3);
+	add_filter("tcc_login_redirect","tcc_admin_login_redirect",10,3);
 } //*/
 
 if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
