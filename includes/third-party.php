@@ -9,7 +9,7 @@
 /**  bbPress  **/
 
 #  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
-add_filter('bbp_show_lead_topic', '__return_true');
+add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been fixed yet?
 
 
 /**  Jetpack  **/
@@ -32,6 +32,27 @@ add_filter( 'mc4wp_debug_log_level', function() { return FLUID_MC4WP_LOG_LEVEL; 
 
 if (!defined('FLUID_MC4WP_LOG_FILE')) { define('FLUID_MC4WP_LOG_FILE', WP_CONTENT_DIR . '/debug.log'); }
 add_filter( 'mc4wp_debug_log_file', function( $file ) { return FLUID_MC4WP_LOG_FILE; } );  # default is the download directory (huh?)
+
+
+/**  S2member  **/
+
+if (class_exists('c_ws_plugin__s2member_login_redirects') && !function_exists('tcc_s2member_login_redirect')) {
+	function tcc_s2member_login_redirect($redirect, $vars = array()) {
+log_entry('s2member default redirect: '.$redirect,$vars);
+		// If you want s2Member to perform the redirect, return true.
+		// return true;
+
+		// Or, if you do NOT want s2Member to perform the redirect, return false.
+		return false;
+
+		// Or, if you want s2Member to redirect, but to a custom URL, return that URL.
+		// return 'http://www.example.com/reset-password-please/';
+
+		// Or, just return what s2Member already says about the matter.
+		// return $redirect;
+	}
+	add_filter("ws_plugin__s2member_login_redirect", "tcc_s2member_login_redirect", 10, 2);
+}
 
 
 /**  WooCommerce  **/
