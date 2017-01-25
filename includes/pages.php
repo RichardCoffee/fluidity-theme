@@ -67,6 +67,7 @@ if (!function_exists('get_page_slug')) {
 					$slug = 'front';
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
+log_entry($page);
 					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
 						$slug = $page->post_name;
 					} else {
@@ -75,7 +76,7 @@ if (!function_exists('get_page_slug')) {
 					}
 				}
 			}
-#log_entry(0,$slug.' called by '.debug_calling_function());
+log_entry(0,$slug.' called by '.debug_calling_function());
 		}
 		return $slug;
 	}
