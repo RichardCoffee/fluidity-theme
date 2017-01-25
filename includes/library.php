@@ -161,18 +161,6 @@ if (!function_exists('is_ajax')) {
 	}
 }
 
-#  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
-if (!function_exists('page_exists')) {
-  function page_exists( $search ) {
-    $pages = get_pages();
-    foreach ($pages as $page) {
-      if ($page->post_name==$search)
-        return true;
-    }
-    return false;
-  }
-}
-
 if (!function_exists('sanitize_array')) {
   function sanitize_array( $array, $method='title' ) {
     $output = array();

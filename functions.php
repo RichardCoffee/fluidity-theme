@@ -142,22 +142,3 @@ if (!function_exists('fluidity_register_color_scheme')) {
     }
   }
 }
-
-##  simple query template
-if (!function_exists('fluidity_show_query')) { // FIXME: move this
-  function fluidity_show_query( array $args, string $template, $slug='' ) {
-    $query = new WP_Query($args);
-    if ($query->have_posts()) {
-      while ($query->have_posts()) {
-        $query->the_post();
-        get_template_part($template,$slug);
-      }
-    }
-    wp_reset_postdata();
-  }
-}
-
-/*
-if (!is_child_theme()) {
-  require_once('includes/collective.php');
-}*/

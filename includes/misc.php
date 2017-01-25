@@ -8,13 +8,27 @@ add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 
 // derived from:  http://codex.wordpress.org/Excerpt
 function fluid_read_more_link($output) {
- global $post;
- $read = __('Read More...','creatom');
- $perm = get_permalink($post->ID);
- $link = " [<a href='$perm' itemprop='url'>$read</a>]";
- return $link;
+	global $post;
+	$read = __('Read More...','creatom');
+	$perm = get_permalink($post->ID);
+	$link = " [<a href='$perm' itemprop='url'>$read</a>]";
+	return $link;
 }
 add_filter('excerpt_more', 'fluid_read_more_link');
+
+##  simple query template
+if (!function_exists('fluidity_show_query')) {
+	function fluidity_show_query( array $args, string $template, $slug='' ) {
+		$query = new WP_Query($args);
+		if ($query->have_posts()) {
+			while ($query->have_posts()) {
+				$query->the_post();
+				get_template_part($template,$slug);
+			}
+		}
+		wp_reset_postdata();
+	}
+}
 
 if (!function_exists('fluidity_social_icons')) {
   function fluidity_social_icons() {
@@ -163,40 +177,40 @@ if (!function_exists('tcc_holiday_greeting')) {
 		$date = date('d-m');
 		switch($date) {
 			case '01-01':
-				$message = 'Happy New Years';
+				$message = __('Happy New Year','tcc-fluid');
 				break;
 			case $MLK:
-				$message = 'Martin Luthor King Day';
+				$message = __('Martin Luthor King Day','tcc-fluid');
 				break;
 			case $PD:
-				$message = "Presidents' Day";
+				$message = __("Presidents' Day",'tcc-fluid');
 				break;
 			case $Est:
-				$message = 'Happy Easter'; // happy easter?  wtf?
+				$message = __('Happy Easter','tcc-fluid'); // happy easter?  wtf?
 				break;
 			case $MD:
-				$message = 'Memorial Day';
+				$message = __('Memorial Day','tcc-fluid');
 				break;
 			case '07-04':
-				$message = 'Fourth of July';
+				$message = __('Fourth of July','tcc-fluid');
 				break;
 			case $LD:
-				$message = 'Labor Day';
+				$message = __('Labor Day','tcc-fluid');
 				break;
 			case $CD:
-				$message = 'Columbus Day';
+				$message = __('Columbus Day','tcc-fluid');
 				break;
 			case $TH:
-				$message = 'Happy Thanksgiving';
+				$message = __('Happy Thanksgiving','tcc-fluid');
 				break;
 			case '11-11':
-				$message = "Veteran's Day";
+				$message = __("Veteran's Day",'tcc-fluid');
 				break;
 			case '25-12':
-				$message = 'Merry Christmas';
+				$message = __('Merry Christmas','tcc-fluid');
 				break;
 			default:
-				$message = 'Welcome';
+				$message = __('Welcome','tcc-fluid');
 		}
 		return $message;
 	}

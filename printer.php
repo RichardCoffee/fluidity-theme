@@ -12,6 +12,8 @@ if (!isset($post->ID)) {
 
 require_once('classes/printer.php');
 
+if (!class_exists('Fluidity_Printer')) return;
+
 // create new PDF document
 $pdf = new Fluidity_Printer(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 

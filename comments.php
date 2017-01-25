@@ -16,14 +16,14 @@ who_am_i(); ?>
   if (pings_open()) { ?>
     <p id="respond">
       <span id="trackback-link">
-        <a href="<?php trackback_url() ?>" rel="trackback"><?php esc_attr_e(__('Get a Trackback link','tcc-fluid')); ?></a>
+        <a href="<?php trackback_url() ?>" rel="trackback"><?php esc_html_e('Get a Trackback link','tcc-fluid'); ?></a>
       </span>
     </p><?php
   }
   if (have_comments()) { ?>
     <h2 class="comments-title"><?php
       $number = get_comments_number();
-      $format = esc_attr(_n('One thought on %2$s','%1$s thoughts on %2$s',$number,'tcc-fluid'));
+      $format = esc_html(_n('One thought on %2$s','%1$s thoughts on %2$s',$number,'tcc-fluid'));
       $number = "<span itemprop='commentCount'>$number</span>";
       $title  = '&ldquo;'.get_the_title().'&rdquo;';
       echo sprintf($format,$number,$title); ?>
@@ -35,9 +35,9 @@ who_am_i(); ?>
     fluid_comment_navigation();
     if (!comments_open()) { ?>
       <p class="no-comments"><?php
-        esc_attr_e(__('Comments are closed.','tcc-fluid')); ?>
+        esc_html_e('Comments are closed.','tcc-fluid'); ?>
       </p><?php
     }
   }
-  comment_form(array('title_reply'=>esc_attr__('Leave a Comment','tcc-fluid'))); ?>
+  comment_form(array('title_reply'=>esc_html__('Leave a Comment','tcc-fluid'))); ?>
 </div><!-- #comments -->

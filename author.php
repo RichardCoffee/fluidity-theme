@@ -24,11 +24,11 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
         $role = $current->roles[0];
         get_template_part('template-parts/profile',$role);
         if (have_posts()) {
-          $col = min(12,$wp_query->post_count*4);
+          $col = min(12,$wp_query->post_count*4); // FIXME
           $title_class = "col-lg-$col col-md-$col col-sm-12 col-xs-12";
-          $title_posts = apply_filters( 'tcc_author_posts_header', esc_html__('Most Recent Posts','tcc-fluid')); ?>
+          $title_posts = apply_filters( 'tcc_author_posts_header', __('Most Recent Posts','tcc-fluid')); ?>
           <div class='<?php echo $title_class; ?>' itemprop='headline'>
-            <h3 class='text-center'><?php echo $title_posts; ?></h3>
+            <h3 class='text-center'><?php echo esc_html($title_post); ?></h3>
           </div><?php
           #fluid_navigation('above'); ?>
           <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' itemprop='blogPost' itemscope itemtype='http://schema.org/Blog'><?php

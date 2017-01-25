@@ -94,11 +94,28 @@ if (!function_exists('get_title_class')) {
 		$slug = get_page_slug();
 		$classes = array('page-title',"page-title-$slug");
 		if ($class) {
-			$classes = array_merge( $classes, (array)$class );
-		}
+			$classes = array_merge( $classes, (array)$class ); }
 		$classes = apply_filters('get_title_class',$classes);
 		$clasess = apply_filters("get_title_class_$slug",$classes);
 		return $classes;
+	}
+}
+
+if (!function_exists('has_page')) {
+	function has_page( $title ) {
+		return page_exists( $title );
+	}
+}
+
+#  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
+if (!function_exists('page_exists')) {
+	function page_exists( $search ) {
+		$pages = get_pages();
+		foreach ($pages as $page) {
+			if ($page->post_name==$search) {
+				return true; }
+		}
+		return false;
 	}
 }
 

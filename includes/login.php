@@ -4,13 +4,28 @@ if (!WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
 
+if (!function_exists('tcc_login_page_redirect')) {
+	#	http://www.hongkiat.com/blog/wordpress-custom-loginpage/
+	function tcc_login_page_redirect() {
+		if (has_page('Login') {
+			$login_page  = home_url( '/login/' );
+			$page_viewed = basename($_SERVER['REQUEST_URI']);
+			if( $page_viewed === "wp-login.php" && $_SERVER['REQUEST_METHOD'] === 'GET') {
+				wp_safe_redirect($login_page);
+				exit;
+			}
+		}
+	}
+	add_action('init','tcc_login_page_redirect');
+}
+
 if (!function_exists('tcc_get_login_form_defaults')) {
 	function tcc_get_login_form_defaults() {
 		$defaults = array();
 		add_filter('login_form_defaults', function($args) use (&$defaults) {
 			$defaults = $args;
 			return $args;
-		}, 1000);
+		}, 1000);	#	We want to go last here
 		wp_login_form( array( 'echo' => false ) );
 		return $defaults;
 	}
@@ -246,14 +261,10 @@ if (!function_exists('tcc_admin_howdy')) {
 	#	http://www.wpbeginner.com/wp-tutorials/how-to-change-the-howdy-text-in-wordpress-3-3-admin-bar/
 	#	https://premium.wpmudev.org/forums/topic/change-howdy-manually
 	#	http://www.hongkiat.com/blog/wordpress-howdy-customized/
+	#	Note:  I saw some posts that recommend changing this via gettext.  I would regard that as bad practice.
 	function tcc_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
 		$user_id = get_current_user_id();
 		if ( $user_id ) {
-/*			if (!function_exists('tcc_holiday_greeting')) {
-				require_once('misc.php'); // FIXME:  wtf? - theme function file has not been loaded at this point in admin, so how is tcc_admin_howdy getting called?
-log_entry('tcc_holiday_greeting'); // FIXME: remove all this code when possible
-			}
-			if (!function_exists('tcc_holiday_greeting')) { wp_die('tcc_holiday_greeting missing'); } //*/
 			/* Add the "My Account" menu */
 			$current = wp_get_current_user();
 			$profile = get_edit_profile_url( $user_id );
@@ -263,10 +274,10 @@ log_entry('tcc_holiday_greeting'); // FIXME: remove all this code when possible
 			$class   = (empty($avatar)) ? '' : 'with-avatar';
 			$args    = array('id'     => 'my-account',
 			                 'parent' => 'top-secondary',
-			                 'title'  => $howdy . $avatar,
+			                 'title'  => esc_html($howdy) . $avatar,
 			                 'href'   => $profile,
 			                 'meta'   => array( 'class' => $class,
-			                                    'title' => __('My Account','tcc-fluid') ) );
+			                                    'title' => esc_html__('My Account','tcc-fluid') ) );
 			$wp_admin_bar->add_menu( $args );
 		}
 	}
