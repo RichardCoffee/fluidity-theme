@@ -275,8 +275,8 @@ if (!function_exists('list_filter_hooks')) {
   function list_filter_hooks( $hook = '' ) {
     if (WP_DEBUG) {
       global $wp_filter;
-log_entry($wp_filter);
-return
+#log_entry($wp_filter);
+return;
       $hooks = isset( $wp_filter[$hook] ) ? $wp_filter[$hook] : array();
       $hooks = call_user_func_array( 'array_merge', $hooks );
       foreach( $hooks as &$item ) {
