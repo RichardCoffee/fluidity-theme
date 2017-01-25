@@ -7,7 +7,7 @@ if (!WP_DEBUG) { // Source?
 if (!function_exists('tcc_login_page_redirect')) {
 	#	http://www.hongkiat.com/blog/wordpress-custom-loginpage/
 	function tcc_login_page_redirect() {
-		if (has_page('Login') {
+		if (has_page('Login')) {
 			$login_page  = home_url( '/login/' );
 			$page_viewed = basename($_SERVER['REQUEST_URI']);
 			if( $page_viewed === "wp-login.php" && $_SERVER['REQUEST_METHOD'] === 'GET') {
