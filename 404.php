@@ -1,10 +1,11 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 /**
  * The template for displaying 404 pages (Not Found)
  */
 
-
 get_header();
+
 $micro = microdata();
 
 if (WP_DEBUG && is_user_logged_in()) { ?>
