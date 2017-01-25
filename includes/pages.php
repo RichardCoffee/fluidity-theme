@@ -68,7 +68,7 @@ if (!function_exists('get_page_slug')) {
 #				} else if {
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
-log_entry($wp_query);
+log_entry($wp_query,list_filter_hooks());
 					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
 						$slug = $page->post_name;
 					} else {

@@ -38,7 +38,7 @@ if (!function_exists('log_entry')) {
   }
 }
 
-if (!function_exists('tcc_log_deprecated')) {
+if (WP_DEBUG && !function_exists('tcc_log_deprecated')) {
 	function tcc_log_deprecated() {
 		$args = func_get_args();
 		log_entry($args,'dump');
