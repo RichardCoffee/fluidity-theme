@@ -65,9 +65,10 @@ if (!function_exists('get_page_slug')) {
 				#} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
 				} else if ( get_option('page_on_front') && ( $wp_query->get('page_id') == get_option('page_on_front') ) ) {
 					$slug = 'front';
+#				} else if {
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
-log_entry($page);
+log_entry($wp_query);
 					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
 						$slug = $page->post_name;
 					} else {
