@@ -19,6 +19,30 @@ if (!function_exists('tcc_login_page_redirect')) {
 	add_action('init','tcc_login_page_redirect');
 }
 
+if (!function_exists('tcc_login_failed')) {
+	function tcc_login_failed() {
+		if (has_page('Login')) {
+			$login_page  = home_url( '/login/' );
+			wp_safe_redirect( $login_page . '?login=failed' );
+			exit;
+		}
+	}
+	add_action( 'wp_login_failed', 'tcc_login_failed' );
+}
+
+if (!function_exists('tcc_authenticate_user')) {
+	function tcc_authenticate_password( $user, $username, $password ) {
+		if (has_page('Login')) {
+			$login_page  = home_url( '/login/' );
+			if( $username == "" || $password == "" ) {
+				wp_redirect( $login_page . "?login=empty" );
+				exit;
+			}
+		}
+	}
+	add_filter( 'authenticate', 'tcc_authenticate_user', 1, 3);
+}
+
 if (!function_exists('tcc_get_login_form_defaults')) {
 	function tcc_get_login_form_defaults() {
 		$defaults = array();

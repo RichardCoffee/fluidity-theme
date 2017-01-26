@@ -112,7 +112,7 @@ if (!function_exists('page_exists')) {
 	function page_exists( $search ) {
 		$pages = get_pages();
 		foreach ($pages as $page) {
-			if ($page->post_name==$search) {
+			if ($page->post_name===$search) {
 				return true; }
 		}
 		return false;
