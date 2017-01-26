@@ -93,6 +93,25 @@ WHERE a.post_type = 'revision'
 
 } //*/
 
+if (!function_exists('has_page')) {
+	function has_page( $title ) {
+		return page_exists( $title );
+	}
+}
+
+#  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
+if (!function_exists('page_exists')) {
+	function page_exists( $search ) {
+		$pages = get_pages();
+log_entry($pages);
+		foreach ($pages as $page) {
+			if ($page->post_name===$search) {
+				return true; }
+		}
+		return false;
+	}
+}
+
 if (!function_exists('single_search_result')) {
 	#	 http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
 	function single_search_result() {

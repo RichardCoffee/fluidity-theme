@@ -166,8 +166,9 @@ if (!function_exists('tcc_login_form')) {
 			$signout = apply_filters('tcc_signout_text', esc_html__('Sign Out', 'tcc-fluid')); ?>
 			<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
 				<div class="text-center"><?php
-					$action = ($navbar) ? 'tcc_navbar_signout' : 'tcc_widget_signout';
-					do_action($action);
+					do_action('tcc_signout');
+					$action = ($navbar) ? 'navbar' : 'widget';
+					do_action("tcc_{$action}_signout");
 					$out  = wp_logout_url(home_url());
 					$html = "<a class='btn btn-fluidity' href='$out'";
 					$html.= " title='$signout'> $signout&nbsp;&nbsp;<i class='fa fa-sign-out'></i></a>";
