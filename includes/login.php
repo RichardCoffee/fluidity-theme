@@ -31,7 +31,7 @@ if (!function_exists('tcc_login_failed')) {
 }
 
 if (!function_exists('tcc_authenticate_user')) {
-	function tcc_authenticate_password( $user, $username, $password ) {
+	function tcc_authenticate_user( $user, $username, $password ) {
 		if (has_page('Login')) {
 			$login_page  = home_url( '/login/' );
 			if( $username == "" || $password == "" ) {
