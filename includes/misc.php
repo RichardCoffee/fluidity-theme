@@ -101,9 +101,9 @@ if (!function_exists('has_page')) {
 
 #  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 if (!function_exists('page_exists')) {
-	function page_exists( $search ) {
+	function page_exists( $title ) {
 		$pages = get_pages();
-log_entry($pages);
+		$search = sanitize_title($title);
 		foreach ($pages as $page) {
 			if ($page->post_name===$search) {
 				return true; }
