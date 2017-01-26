@@ -99,14 +99,14 @@ if (!function_exists('has_page')) {
 	}
 }
 
-#  http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 if (!function_exists('page_exists')) {
+	#	http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 	function page_exists( $title ) {
 		$pages = get_pages();
 		$search = sanitize_title($title);
 		foreach ($pages as $page) {
 			if ($page->post_name===$search) {
-				return true; }
+				return true; } // FIXME: return url? -> home_url("/$search/");
 		}
 		return false;
 	}

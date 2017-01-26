@@ -163,16 +163,17 @@ if (!function_exists('tcc_login_form')) {
 		if (is_user_logged_in()) {
 			$navbar  = false;
 			extract($args,EXTR_IF_EXISTS);
-			$signout = apply_filters('tcc_signout_text', esc_html__('Sign Out', 'tcc-fluid')); ?>
+			$signout = apply_filters('tcc_signout_text', __('Sign Out', 'tcc-fluid')); ?>
 			<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
 				<div class="text-center"><?php
 					do_action('tcc_signout');
 					$action = ($navbar) ? 'navbar' : 'widget';
 					do_action("tcc_{$action}_signout");
-					$out  = wp_logout_url(home_url());
-					$html = "<a class='btn btn-fluidity' href='$out'";
-					$html.= " title='$signout'> $signout&nbsp;&nbsp;<i class='fa fa-sign-out'></i></a>";
-					echo $html; ?>
+					$out  = wp_logout_url(home_url()); ?>
+					<a class="btn btn-fluidity" href="<?php echo esc_url($out); ?>" title="<?php echo esc_attr($signout); ?>">&nbsp;
+						<?php echo esc_html($signout); ?>
+						&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
+					</a>
 				</div>
 			</form><?php
 		} else {
@@ -180,24 +181,6 @@ if (!function_exists('tcc_login_form')) {
 			$right  = false;
 			extract($args,EXTR_IF_EXISTS);
 			$defaults = tcc_get_login_form_defaults();
-			#	array mainly taken from wp-includes/general-template.php
-			$tcc_form = array('echo'           => false,
-			                  'redirect'       => home_url( add_query_arg( NULL, NULL ) ),
-			                  'form_id'        => uniqid("login_form_"),
-			                  'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) ),
-			                  'label_password' => apply_filters( 'tcc_login_userpass', __( 'Password' ) ),
-#			                  'label_remember' => __( 'Remember Me' ),
-			                  'label_log_in'   => apply_filters( 'tcc_signin_text',    __('Sign In',       'tcc-fluid') ),
-			                  'label_lost'     => apply_filters( 'tcc_lostpw_text',    __('Lost Password', 'tcc-fluid') ),
-			                  'id_username'    => uniqid("user_login_"),
-			                  'id_password'    => uniqid("user_pass_"),
-			                  'id_remember'    => uniqid("rememberme_"),
-			                  'id_submit'      => uniqid("wp-submit_"),
-#			                  'remember'       => true,
-#			                  'value_username' => '',
-#			                  'value_remember' => false,
-			);
-			$defaults = array_merge($defaults,$tcc_form);
 			$args = wp_parse_args( $args, $defaults );
 			extract($args);
 			$remember  = ($navbar)  ? false : $remember;
@@ -244,13 +227,14 @@ if (!function_exists('tcc_login_form')) {
 
 if (!function_exists('tcc_login_form_defaults')) {
 	function tcc_login_form_defaults( $args=array() ) {
+		#	array mainly taken from wp-includes/general-template.php
 		$args['redirect']       = apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) );
-		$args['form_id']        = uniqid( 'login_form_' );
-		$args['label_username'] = apply_filters( 'tcc_login_username', __( 'Username or Email Address' ) );
-		$args['label_password'] = apply_filters( 'tcc_login_password', __( 'Password' ) );
+		$args['form_id']        = apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) );
+		$args['label_username'] = apply_filters( 'tcc_login_username',    __( 'Username or Email Address' ) );
+		$args['label_password'] = apply_filters( 'tcc_login_password',    __( 'Password' ) );
 #		$args['label_remember'] = __( 'Remember Me' );
-		$args['label_log_in']   = apply_filters( 'tcc_log_in_text',    __( 'Sign In',       'tcc-fluid' ) );
-		$args['label_lostpw']   = apply_filters( 'tcc_lostpw_text',    __( 'Lost Password', 'tcc-fluid' ) );
+		$args['label_log_in']   = apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) );
+		$args['label_lostpw']   = apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) );
 		$args['id_username']    = uniqid( 'user_login_' );
 		$args['id_password']    = uniqid( 'user_pass_'  );
 		$args['id_remember']    = uniqid( 'rememberme_' );
