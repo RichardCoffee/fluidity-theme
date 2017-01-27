@@ -40,7 +40,7 @@ function fluid_index_page( $page='index' ) {
 							<div class="<?php echo tcc_bootstrap_css($css); ?>"><?php
 								get_template_part("template-parts/$main",$slug); ?>
 							</div><?php
-							tcc_apply_clearfix($css.++$cnt);
+							tcc_apply_clearfix($css.'&cnt='.++$cnt);
 							if (!is_singular()) {
 								fluid_post_separator($page); }
 						}
