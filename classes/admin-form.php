@@ -391,6 +391,7 @@ log_entry($controls);
       echo $data[$item];
     } else {
       $func = "render_{$layout[$item]['render']}";
+log_entry("function name:  $func");
       $name = $this->current."[$item]";
       if (!isset($data[$item])) $data[$item] = (empty($layout[$item]['default'])) ? '' : $layout[$item]['default'];
       $fargs = array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name);
