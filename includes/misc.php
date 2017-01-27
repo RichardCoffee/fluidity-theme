@@ -11,10 +11,10 @@ function fluid_read_more_link($output) {
 	global $post;
 	$read = esc_html__('Read More...','creatom');
 	$perm = get_permalink($post->ID);
-	$brac = apply_filter('tcc_read_more_brackets',true);
+	$brac = apply_filters('tcc_read_more_brackets',true);
+	$css  = apply_filters('tcc_read_more_css','');
 	$link = "<a href='$perm' itemprop='url'>$read</a>";
 	if ($brac) { $link = " [$link]"; }
-	$css  = apply_filters('tcc_read_more_css','');
 	if ($css)  { $link = "<span class='$css'>$link</span>"; }
 	return $link;
 }
