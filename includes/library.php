@@ -19,8 +19,6 @@ if (!function_exists('tcc_bootstrap_css')) {
 	function tcc_bootstrap_css( $args ) {
 		$defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
 		$args = wp_parse_args($args,$defs);
-log_entry($args);
-		if (empty($args['cnt'])) return;
 		extract($defs);
 		extract($args,EXTR_IF_EXISTS);
 		$css = ($lg) ? " col-lg-$lg" : '';
