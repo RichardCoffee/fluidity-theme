@@ -41,6 +41,15 @@ if (!function_exists('tcc_design')) {
   }
 }
 
+if (!function_exists('tcc_excerpt_length')) {
+	function tcc_excerpt_length( $length ) {
+		$new = intval(tcc_layout('exlength'),10);
+		return ($new) ? $new : $length;
+	}
+	add_filter( 'excerpt_length', 'tcc_excerpt_length', 999 );
+}
+
+
 if (!function_exists('tcc_font_size')) {
   function tcc_font_size() {
     $size = intval(tcc_design('size'),10);

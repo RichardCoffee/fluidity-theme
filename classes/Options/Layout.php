@@ -25,7 +25,7 @@ class TCC_Options_Layout {
   }
 
   public function describe_options() {
-    _e("Utilize these options to change the theme's style and layout.  These options also show up in the WordPress Customizer.",'tcc-fluid');
+    _e("Utilize these options to change the theme's style and layout.  These options may one day show up in the WordPress Customizer.",'tcc-fluid');
   }
 
   protected function options_layout() {
@@ -62,21 +62,24 @@ class TCC_Options_Layout {
                                'label'   => __('Widgets','tcc-fluid'),
                                'text'    => __('Should the sidebar widgets start open or closed, where applicable','tcc-fluid'),
                                'render'  => 'radio',
-                               'source'  =>array('perm'   => __('Do not provide option to users','tcc-fluid'),
-                                                 'open'   => __('Open','tcc-fluid'),
-                                                 'closed' => __('Closed','tcc-fluid')));
+                               'source'  => array('perm'   => __('Do not provide option to users','tcc-fluid'),
+                                                  'open'   => __('Open','tcc-fluid'),
+                                                  'closed' => __('Closed','tcc-fluid')));
     $layout['content'] = array('default' => 'excerpt',
                                'label'   => __('Blog/News/Search','tcc-fluid'),
                                'text'    => __('Show full post content or just an excerpt on archive/category/search pages','tcc-fluid'),
                                'render'  => 'radio',
-                               'source'  =>array('content' => __('Content','tcc-fluid'),
-                                                 'excerpt' => __('Excerpt','tcc-fluid')));
+                               'source'  => array('content' => __('Content','tcc-fluid'),
+                                                  'excerpt' => __('Excerpt','tcc-fluid')));
     $layout['exdate']  = array('default' => 'show',
                                'label'   => __('Excerpt Date','tcc-fluid'),
                                'text'    => __('Should the post date be displayed with excerpt?','tcc-fluid'),
                                'render'  => 'radio',
-                               'source'  =>array('none' => __('No Date','tcc-fluid'),
-                                                 'show' => __('Show Date','tcc-fluid')));
+                               'source'  => array('none' => __('No Date','tcc-fluid'),
+                                                  'show' => __('Show Date','tcc-fluid')));
+    $layout['exlength']= array('default' => apply_filters('excerpt_length',55),
+                               'label'   => __('Excerpt Length','tcc-fluid'),
+                               'render'  => 'text');
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
