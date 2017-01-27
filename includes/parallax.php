@@ -47,7 +47,6 @@ if (!function_exists('tcc_page_parallax')) {
 						}
 					</style><?php
 					$divcss = 'parallax parallax-image parallax-scroll parallax-page-'.get_page_slug();
-#					$divcss = apply_filters('tcc_page_parallax',$divcss);
 					if ($div) { ?>
 						<div class="<?php echo $divcss; ?>"></div><?php
 					}

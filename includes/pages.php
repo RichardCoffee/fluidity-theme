@@ -96,7 +96,7 @@ if (!function_exists('get_title_class')) {
 		if ($class) {
 			$classes = array_merge( $classes, (array)$class ); }
 		$classes = apply_filters('get_title_class',$classes);
-		$clasess = apply_filters("get_title_class_$slug",$classes);
+		$classes = apply_filters("get_title_class_$slug",$classes);
 		return $classes;
 	}
 }

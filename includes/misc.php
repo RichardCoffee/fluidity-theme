@@ -9,11 +9,11 @@ add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 // derived from:  http://codex.wordpress.org/Excerpt
 function fluid_read_more_link($output) {
 	global $post;
-	$read = esc_html__('Read More...','creatom');
 	$perm = get_permalink($post->ID);
+	$read = apply_filters('tcc_read_more_text',__('Read More...','tcc-fluid'));
 	$brac = apply_filters('tcc_read_more_brackets',true);
 	$css  = apply_filters('tcc_read_more_css','');
-	$link = "<a href='$perm' itemprop='url'>$read</a>";
+	$link = '<a href="$perm" itemprop="url">'.esc_html($read).'</a>';
 	if ($brac) { $link = " [$link]"; }
 	if ($css)  { $link = "<span class='$css'>$link</span>"; }
 	return $link;

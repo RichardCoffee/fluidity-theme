@@ -6,7 +6,10 @@
 
 get_header();
 
+#add_filter ( "fluid_{$mypage}_container_type", function ($css) { return "container"; } );
+
 $mypage = get_page_slug();
+
 do_action("tcc_{$mypage}_page_top"); ?>
 
 <main><?php
@@ -16,7 +19,7 @@ do_action("tcc_{$mypage}_page_top"); ?>
 		tcc_page_title($mypage); // FIXME:  make title bar an option
 	} ?>
 
-	<div id="fluid-content" class="fluid-<?php echo $mypage; ?> <?php echo container_type($mypage); ?>" <?php microdata()->Blog(); ?>>
+	<div id="fluid-content" class="fluid-<?php echo $mypage; ?> <?php echo esc_attr(container_type($mypage)); ?>" <?php microdata()->Blog(); ?>>
 		<div class="row">
 			<?php who_am_i(); ?>
 
@@ -34,7 +37,8 @@ do_action("tcc_{$mypage}_page_top"); ?>
 					$main = (is_single() || is_page()) ? 'content' : tcc_layout('content');
 					while (have_posts ()) {
 						the_post();
-						get_template_part("template-parts/$main",fluid_content_slug($mypage));
+						$slug = fluid_content_slug($mypage);
+						get_template_part( "template-parts/$main", $slug );
 						if (!is_singular()) {
 							fluid_post_separator($mypage); }
 					}

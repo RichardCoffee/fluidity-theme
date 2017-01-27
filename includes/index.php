@@ -16,7 +16,7 @@ function fluid_index_page( $page='index' ) {
 			tcc_page_title($page); // FIXME:  make title bar an option
 		} ?>
 
-		<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo container_type($page); ?>" <?php microdata()->Blog(); ?>>
+		<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo esc_attr(container_type($page)); ?>" <?php microdata()->Blog(); ?>>
 			<div class="row"><?php
 				who_am_i(1); ?>
 
@@ -37,7 +37,7 @@ function fluid_index_page( $page='index' ) {
 						while (have_posts ()) {
 							the_post();
 							$slug = fluid_content_slug($page); ?>
-							<div class="<?php echo tcc_bootstrap_css($css); ?>"><?php
+							<div class="<?php echo esc_attr(tcc_bootstrap_css($css)); ?>"><?php
 								get_template_part("template-parts/$main",$slug); ?>
 							</div><?php
 							tcc_apply_clearfix($css.'&cnt='.++$cnt);
