@@ -533,11 +533,18 @@ log_entry($controls);
     echo '</select>';
   }
 
+	private function render_spinner($data) {
+		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
+		$html = "<input type='number'  id='$ID' class='small-text'";
+		$html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
+		$html.= (isset($layout['help']))   ? " title='{$layout['help']}'" : "";
+		$html.= " min='1' step='1' />";
+		return $html;
+	}
+
   private function render_showhide($layout) {
-    $item = $layout['showhide']['item'];
-    $show = $layout['showhide']['show'];
-    $html = " data-item='$item'";
-    $html.= " data-show='$show'";
+    $html = " data-item='{$layout['showhide']['item']}'";
+    $html.= " data-show='{$layout['showhide']['show']}'";
     return $html;
   }
 
