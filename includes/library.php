@@ -27,8 +27,8 @@ if (!function_exists('tcc_bootstrap_css')) {
 }
 
 if (!function_exists('container_type')) {
-  function container_type( $location='post', $ccs='container-fluid' ) {
-    $css = 'container-fluid'; // FIXME: change default
+  function container_type( $location='post' ) {
+    $css = 'container-fluid';
     if ($location=='header') {
       $css.= " nopad";
     } else if (tcc_layout('width')=='narrow') {

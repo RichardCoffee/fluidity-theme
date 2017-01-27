@@ -6,14 +6,14 @@
  */
 
 get_header();
-$micro = TCC_Microdata::get_instance();
 
+$mypage      = get_page_slug();
 $sidebar     = (is_search()) ? 'archive' : 'author';
 $has_sidebar = is_active_sidebar($sidebar);
 $col_primary = ($has_sidebar) ? "col-lg-8 col-md-8" : "col-lg-12 col-md-12";
 $col_primary.= " col-sm-12 col-xs-12"; ?>
 
-<div id="fluid-content" class="fluid-author <?php echo container_type('post'); ?>" role="main" <?php $micro->Person(); ?>><?php
+<div id="fluid-content" class="fluid-author <?php echo container_type($mypage); ?>" role="main" <?php microdata()->Person(); ?>><?php
   who_am_i(); ?>
   <div class="row">
 
@@ -46,14 +46,14 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
         } else {
           // FIXME: this needs to point to the correct template
           //get_template_part('content','none');
-echo "<p>no posts</p>";
+echo "<p>no posts by this person</p>";
         } ?>
       </div>
 
     </div><!-- .col-md-(8 or 12) --><?php
 
     if ($has_sidebar) { ?>
-      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs" <?php $micro->SideBar(); ?>><?php
+      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs" <?php microdata()->SideBar(); ?>><?php
         get_sidebar($sidebar); ?>
       </div><?php
     } ?>

@@ -141,13 +141,13 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 
 if (!function_exists('tcc_page_title')) {
 	function tcc_page_title($slug) {
-		if (has_action("tcc_page_title_$slug")) {
-			do_action("tcc_page_title_$slug");
+		if (has_action("tcc_page_{$slug}_title")) {
+			do_action("tcc_page_{$slug}_title");
 		} else {
 			$title = get_page_title($slug);
 			if ($title) { ?>
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
-					<div class="<?php echo container_type('title','container'); ?>">
+					<div class="<?php echo container_type("{$slug}_title"); ?>">
 						<div class="row">
 							<h2 class="text-center">
 								<?php echo $title; ?>

@@ -1,122 +1,127 @@
 
 	Galleryview
 ========================
-tcc_register_galleryview() {
-tcc_enqueue_galleryview($query) {
+tcc_register_galleryview()
+tcc_enqueue_galleryview( $query )
 
-tcc_register_widgets() {
-tcc_apply_clearfix($args) {
-tcc_bootstrap_css($args) {
-tcc_browser_body_class($classes) { // FIXME:  Ummm, no.  check user-agent string instead
-container_type($location='post') {
-convert_user_meta($ID) {
-fluid_get_post_terms($post_id,$taxonomy,$args) {
-wp_menu_id_by_name($name) {
-esc_attr_ex( $text, $context, $domain = 'default' ) {
-esc_html_ex( $text, $context, $domain = 'default' ) {
-author_role_template( $templates = '' ) {
-get_featured_url($postID=null) {
-get_term_name($tax,$slug) {
-get_valid_gravatar($email,$size=96) {
-is_ajax() {
-page_exists($search='') {
-sanitize_array($array,$method='title') {
-array_insert_after($array, $key, $new_key, $new_value) {
-debug_calling_function($depth=1) {
-debug_rewrite_rules() {
-list_filter_hooks( $hook = '' ) {
-list_template_conditions() {
-log_entry() {
-showme($title,$data) {
-tellme($string) {
-who_am_i($pos=0) {
-tcc_excerpt_parallax() {
-tcc_page_parallax( $div=true ) {
-tcc_post_parallax( $css='single-parallax' ) {
-fluid_layout() {
-sidebar_layout($sidebar='standard',$side=null) {
-fluid_content_slug($page='single') {
-fluid_edit_post_link($separator=' ') {
-fluid_navigation($taxonomy='',$all_links=false) {
-fluid_next_post_exists() {
-fluid_post_date($complete=false) {
-fluid_postmetadata() { ?>
-fluid_post_separator($slug) {
-fluid_thumbnail() {
-fluid_title($length=0) {
-get_the_author_posts_link($authorID=0) {
-tcc_excerpt_parallax() { ?>
-tcc_post_parallax($css='single-parallax') {
-tcc_post_title($max=0,$anchor=true) {
-tcc_admin_login_redirect($redirect_to,$request,$user) {
-tcc_dashboard_logo() {
-tcc_login_css() {
-tcc_login_header_url() {
-tcc_login_header_title() {
-tcc_remember_me() {
-tcc_remember_me_checked() {
-remove_lostpassword_text($text) {
-tcc_login_form($navbar=false,$right=false) {
-tcc_logout_url($url, $redirect) {
-fluid_archive_page_title() { ?>
-fluid_archive_page_noposts() {
-function fluid_category_page_title() { ?>
-fluid_category_page_noposts() {
-fluid_noposts_page($text) { ?>
-fluid_save_page_template( $template ) {
-get_page_slug() {
-get_page_title($slug) {
-tcc_get_page_id_by_slug($slug,$prop='ID') {
-tcc_page_title($slug) { ?>
-tcc_register_nav_menu() {
-fluidity_class_loader( $class ) {
-fluid_comment_navigation() {
-fluid_list_comments($comment,$args,$depth) {
-fluidity_register_sidebars() {
-fluidity_the_widget($widget,$instance,$args) {
-fluidity_get_sidebar($sidebar='standard') {
-fluidity_load_sidebar($args,$force=false) {
-fluidity_sidebar_parameter() {
-fluidity_sidebar_layout($sidebar='standard',$side='') {
-fluidity_jetpack_site_logo_to_bootstrap($html) {
-has_woocommerce() {
-woocommerce_and_jetpack_sharedaddy() { ?>
-fluidity_wpfai_social() {
-fluid_copyright_dates() {
-fluid_footer_autohide() {
-tcc_copyright($banner=true) { ?>
-stop_heartbeat() {
-tcc_currency_symbol() {
-tcc_design($option) {
-tcc_font_size() {
-tcc_layout($option) {
-tcc_option($option='',$section='') {
-tcc_settings($option) {
-contextual_static_front_page_section($wp_customize) {
-fluid_read_more_link($output) {
-fluidity_social_icons() {
-fluid_user_profile_link() {
-single_search_result() {
-fluid_browser_body_class($classes) {
-fluid_browser_title($title) {
-tcc_custom_css() { ?>
-fluidity_header_logo() {
-fluidity_menubar_print_button() {
-fluid_color_body_class($classes) {
-fluid_color_scheme() {
-tcc_color_scheme($location='') {
-tcc_custom_colors() {
-tcc_parallax() {
-function tcc_editor_styles() {
-tcc_post_revisions() {
-tcc_enqueue() {
-fluidity_admin_enqueue() {
-fluidity_register_bootstrap() {
-fluidity_bootstrap_backup() {
-fluidity_register_fontawesome() {
-fluidity_register_color_scheme() {
-fluidity_show_query( $args, $template, $slug='' ) {
-function microdata() {
+	Widgets
+========================
+tcc_register_widgets()
+
+	General
+========================
+tcc_apply_clearfix( $args )
+tcc_bootstrap_css( $args )
+tcc_browser_body_class( $classes )
+container_type( $location = 'post' )
+convert_user_meta( $ID )
+fluid_get_post_terms( $post_id, $taxonomy, $args )
+wp_menu_id_by_name( $name )
+esc_attr_ex( $text, $context, $domain = 'default' )
+esc_html_ex( $text, $context, $domain = 'default' )
+author_role_template( $templates = '' )
+get_featured_url( $postID = null )
+get_term_name( $tax, $slug )
+get_valid_gravatar( $email, $size = 96 )
+is_ajax()
+page_exists( $search='' )
+sanitize_array( $array, $method = 'title' )
+array_insert_after( $array, $key, $new_key, $new_value )
+debug_calling_function( $depth = 1 )
+debug_rewrite_rules()
+list_filter_hooks( $hook = '' )
+list_template_conditions()
+log_entry()
+showme( $title, $data )
+tellme( $string )
+who_am_i( $pos=0 )
+tcc_excerpt_parallax()
+tcc_page_parallax( $div = true )
+tcc_post_parallax( $css = 'single-parallax' )
+fluid_layout()
+sidebar_layout( $sidebar = 'standard', $side = null )
+fluid_content_slug( $page = 'single' )
+fluid_edit_post_link( $separator = ' ' )
+fluid_navigation( $taxonomy = '', $all_links = false )
+fluid_next_post_exists()
+fluid_post_date( $complete = false )
+fluid_postmetadata()
+fluid_post_separator( $slug )
+fluid_thumbnail()
+fluid_title( $length = 0 )
+get_the_author_posts_link( $authorID = 0 )
+tcc_excerpt_parallax()
+tcc_post_parallax( $css = 'single-parallax' )
+tcc_post_title( $max = 0, $anchor = true )
+tcc_admin_login_redirect( $redirect_to, $request, $user )
+tcc_dashboard_logo()
+tcc_login_css()
+tcc_login_header_url()
+tcc_login_header_title()
+tcc_remember_me()
+tcc_remember_me_checked()
+remove_lostpassword_text( $text )
+tcc_login_form( $navbar = false, $right = false )
+tcc_logout_url( $url, $redirect )
+fluid_archive_page_title()
+fluid_archive_page_noposts()
+function fluid_category_page_title()
+fluid_category_page_noposts()
+fluid_noposts_page( $text )
+fluid_save_page_template( $template )
+get_page_slug()
+get_page_title( $slug )
+tcc_get_page_id_by_slug( $slug, $prop='ID' )
+tcc_page_title( $slug )
+tcc_register_nav_menu()
+fluidity_class_loader( $class )
+fluid_comment_navigation()
+fluid_list_comments( $comment, $args, $depth )
+fluidity_register_sidebars()
+fluidity_the_widget( $widget, $instance, $args )
+fluidity_get_sidebar( $sidebar = 'standard' )
+fluidity_load_sidebar( $args, $force = false )
+fluidity_sidebar_parameter()
+fluidity_sidebar_layout( $sidebar = 'standard', $side = '' )
+fluidity_jetpack_site_logo_to_bootstrap( $html )
+has_woocommerce()
+woocommerce_and_jetpack_sharedaddy()
+fluidity_wpfai_social()
+fluid_copyright_dates()
+fluid_footer_autohide()
+tcc_copyright( $banner = true )
+stop_heartbeat()
+tcc_currency_symbol()
+tcc_design( $option )
+tcc_font_size()
+tcc_layout( $option )
+tcc_option( $option = '', $section = '' )
+tcc_settings( $option )
+contextual_static_front_page_section( $wp_customize )
+fluid_read_more_link( $output )
+fluidity_social_icons()
+fluid_user_profile_link()
+single_search_result()
+fluid_browser_body_class( $classes )
+fluid_browser_title( $title )
+tcc_custom_css()
+fluidity_header_logo()
+fluidity_menubar_print_button()
+fluid_color_body_class( $classes )
+fluid_color_scheme()
+tcc_color_scheme( $location = '' )
+tcc_custom_colors()
+tcc_parallax()
+function tcc_editor_styles()
+tcc_post_revisions()
+tcc_enqueue()
+fluidity_admin_enqueue()
+fluidity_register_bootstrap()
+fluidity_bootstrap_backup()
+fluidity_register_fontawesome()
+fluidity_register_color_scheme()
+fluidity_show_query( $args, $template, $slug='' )
+function microdata()
 classes/microdata.php:76:  public function microdata($type) {
 classes/microdata.php:81:  public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
 classes/microdata.php:82:  public function address()  { $this->PostalAddress(); }          // descendant of many types - see itemtype link

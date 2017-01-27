@@ -5,7 +5,7 @@
  *
  */
 
-if (!function_exists('fluid_browser_body_class')) {
+if (!function_exists('tcc_browser_body_class')) {
   // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
   function tcc_browser_body_class( array $classes ) {
     global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
