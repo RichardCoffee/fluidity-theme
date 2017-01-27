@@ -3,10 +3,11 @@
 // Use bootstrap's clearfix
 if (!function_exists('tcc_apply_clearfix')) {
   function tcc_apply_clearfix( $args ) {
-    $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
+    $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0,'cnt'=>0);
     $args = wp_parse_args($args,$defs);
     if (empty($args['cnt'])) return;
-    extract($args);  #  $defs array + $cnt
+    extract($defs);
+    extract($args,EXTR_IF_EXISTS);
     if ($lg && ($cnt%(intval((12/$lg)))==0)) echo "<div class='clearfix visible-lg-block'></div>";
     if ($md && ($cnt%(intval((12/$md)))==0)) echo "<div class='clearfix visible-md-block'></div>";
     if ($sm && ($cnt%(intval((12/$sm)))==0)) echo "<div class='clearfix visible-sm-block'></div>";
@@ -15,15 +16,18 @@ if (!function_exists('tcc_apply_clearfix')) {
 }
 
 if (!function_exists('tcc_bootstrap_css')) {
-  function tcc_bootstrap_css( $args ) {
-    $lg = $md = $sm = $xs = 0;
-    extract($args,EXTR_IF_EXISTS);
-    $css = ($lg) ?  "col-lg-$lg" : '';
-    $css.= ($md) ? " col-md-$md" : '';
-    $css.= ($sm) ? " col-sm-$sm" : '';
-    $css.= ($xs) ? " col-xs-$xs" : '';
-    return $css;
-  }
+	function tcc_bootstrap_css( $args ) {
+		$defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
+		$args = wp_parse_args($args,$defs);
+		if (empty($args['cnt'])) return;
+		extract($defs);
+		extract($args,EXTR_IF_EXISTS);
+		$css = ($lg) ? " col-lg-$lg" : '';
+		$css.= ($md) ? " col-md-$md" : '';
+		$css.= ($sm) ? " col-sm-$sm" : '';
+		$css.= ($xs) ? " col-xs-$xs" : '';
+		return $css;
+	}
 }
 
 if (!function_exists('container_type')) {
