@@ -53,9 +53,7 @@ if (!function_exists('tcc_custom_css')) {
 }
 
 if (!function_exists('fluidity_header_logo')) {
-  function fluidity_header_logo() {
-#    if (is_404()) { return; } // FIXME
-?>
+  function fluidity_header_logo() { ?>
     <div itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
       if (function_exists('jetpack_the_site_logo')) {
         jetpack_the_site_logo();
