@@ -12,6 +12,10 @@ function fluid_read_more_link($output) {
 	$read = __('Read More...','creatom');
 	$perm = get_permalink($post->ID);
 	$link = " [<a href='$perm' itemprop='url'>$read</a>]";
+	$css  = apply_filters('tcc_read_more_css','');
+	if ($css) {
+		$link = "<span class='$css'>$link</span>";
+	}
 	return $link;
 }
 add_filter('excerpt_more', 'fluid_read_more_link');
