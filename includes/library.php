@@ -21,7 +21,7 @@ if (!function_exists('tcc_bootstrap_css')) {
     $css = ($lg) ?  "col-lg-$lg" : '';
     $css.= ($md) ? " col-md-$md" : '';
     $css.= ($sm) ? " col-sm-$sm" : '';
-    $css.= ($sx) ? " col-xs-$sx" : '';
+    $css.= ($xs) ? " col-xs-$xs" : '';
     return $css;
   }
 }

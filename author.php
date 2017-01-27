@@ -35,11 +35,11 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
             $cnt = 0;
             while (have_posts()) {
               the_post();
-              $fix = 'lg=4&md=4&sm=6&xs=12&cnt='; ?>
-              <div class="<?php echo tcc_bootstrap_css($fix); ?>"><?php
+              $css = 'lg=4&md=4&sm=6&xs=12&cnt='; ?>
+              <div class="<?php echo tcc_bootstrap_css($css); ?>"><?php
                 get_template_part('template-parts/content',get_post_type()); ?>
               </div><?php
-              tcc_apply_clearfix($fix.++$cnt);
+              tcc_apply_clearfix($css.++$cnt);
             } ?>
           </div><?php
           #fluid_navigation('below');

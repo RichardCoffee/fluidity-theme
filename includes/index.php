@@ -32,10 +32,15 @@ function fluid_index_page( $page='index' ) {
 						do_action("tcc_{$page}_page_preposts");
 
 						$main = (is_single() || is_page()) ? 'content' : tcc_layout('content');
+						$css  = ($main==='content') ? '' : apply_filters("tcc_{$page}_content_css",'lg=4&md=4&sm=6&xs=12');
+						$cnt  = 0;
 						while (have_posts ()) {
 							the_post();
-							$slug = fluid_content_slug($page);
-							get_template_part("template-parts/$main",$slug);
+							$slug = fluid_content_slug($page); ?>
+							<div class="<?php echo tcc_bootstrap_css($css); ?>"><?php
+								get_template_part("template-parts/$main",$slug); ?>
+							</div><?php
+							tcc_apply_clearfix($css.++$cnt);
 							if (!is_singular()) {
 								fluid_post_separator($page); }
 						}
