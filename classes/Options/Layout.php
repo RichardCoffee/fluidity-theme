@@ -66,14 +66,14 @@ class TCC_Options_Layout {
                                                  'open'   => __('Open','tcc-fluid'),
                                                  'closed' => __('Closed','tcc-fluid')));
     $layout['content'] = array('default' => 'excerpt',
-                               'label'   => __('Content','tcc-fluid'),
+                               'label'   => __('Blog/News/Search','tcc-fluid'),
                                'text'    => __('Show full post content or just an excerpt on archive/category/search pages','tcc-fluid'),
                                'render'  => 'radio',
                                'source'  =>array('content' => __('Content','tcc-fluid'),
                                                  'excerpt' => __('Excerpt','tcc-fluid')));
     $layout['exdate']  = array('default' => 'show',
                                'label'   => __('Excerpt Date','tcc-fluid'),
-                               'text'    => __('Should the date be displayed with excerpt?','tcc-fluid'),
+                               'text'    => __('Should the post date be displayed with excerpt?','tcc-fluid'),
                                'render'  => 'radio',
                                'source'  =>array('none' => __('No Date','tcc-fluid'),
                                                  'show' => __('Show Date','tcc-fluid')));
