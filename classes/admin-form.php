@@ -391,7 +391,6 @@ log_entry($controls);
       echo $data[$item];
     } else {
       $func = "render_{$layout[$item]['render']}";
-log_entry("function name:  $func");
       $name = $this->current."[$item]";
       if (!isset($data[$item])) $data[$item] = (empty($layout[$item]['default'])) ? '' : $layout[$item]['default'];
       $fargs = array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name);
@@ -540,7 +539,7 @@ log_entry("function name:  $func");
 		$html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
 		$html.= (isset($layout['help']))   ? " title='{$layout['help']}'" : "";
 		$html.= " min='1' step='1' />";
-		return $html;
+		echo $html;
 	}
 
   private function render_showhide($layout) {
