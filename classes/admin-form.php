@@ -149,17 +149,17 @@ abstract class Basic_Admin_Form {
   private function field_label($ID,$data) {
     $html = "<span";
     if ($data['render']=='display') {
-      $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
+      $html.= (isset($data['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
       $html.= $data['label'];
       $html.= "</span>";
     } elseif ($data['render']=='title') {
       $html.= " class='form-title'";
-      $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
+      $html.= (isset($data['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
       $html.= $data['label'];
       $html.= "</span>";
     } else {
       $html = "<label for='$ID'";
-      $html.= (isset($data['help'])) ? " title='{$data['help']}'>" : ">";
+      $html.= (isset($data['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
       $html.= $data['label'];
       $html.= "</label>";
     }
@@ -294,7 +294,11 @@ log_entry($controls);
 
   public function render_single_form() { ?>
     <div class="wrap"><?php
-      if (isset($this->form['title'])) { echo "<h1>{$this->form['title']}</h1>"; }
+      if (isset($this->form['title'])) { ?>
+        <h1>
+          <?php echo esc_html($this->form['title']); ?>
+        </h1><?php
+      }
       settings_errors(); ?>
       <form method="post" action="options.php"><?php
         do_action("form_pre_display");
@@ -313,7 +317,9 @@ log_entry($controls);
     $active_page = sanitize_key($_GET['page']); ?>
     <div class="wrap">
       <div id="icon-themes" class="icon32"></div>
-      <h1 class='centered'><?php echo $this->form['title']; ?></h1><?php
+      <h1 class='centered'>
+        <?php echo esc_html($this->form['title']); ?>
+      </h1><?php
       settings_errors(); ?>
       <h2 class="nav-tab-wrapper"><?php
         $refer = "admin.php?page=$active_page";
@@ -321,8 +327,10 @@ log_entry($controls);
           if (is_string($menu_item)) continue;
           $tab_css  = 'nav-tab';
           $tab_css .= ($this->tab==$key) ? ' nav-tab-active' : '';
-          $tab_ref  = "$refer&tab=$key";
-          echo "<a href='$tab_ref' class='$tab_css'>{$menu_item['title']}</a>";
+          $tab_ref  = "$refer&tab=$key"; ?>
+          <a href='$tab_ref' class='$tab_css'>
+            <?php echo esc_html($menu_item['title']); ?>
+          </a><?php
         } ?>
       </h2>
       <form method="post" action="options.php">
@@ -411,8 +419,8 @@ log_entry($controls);
   }
 
   private function render_attributes($layout) {
-    $attr = (!empty($layout['divcss']))  ? " class='{$layout['divcss']}'"   : "";
-    $attr.= (isset($layout['help']))     ? " title='{$layout['help']}'"     : "";
+    $attr = (!empty($layout['divcss']))  ? " class='".esc_attr($layout['divcss'])."'"   : "";
+    $attr.= (isset($layout['help']))     ? " title='".esc_attr($layout['help'])."'"     : "";
     if (!empty($layout['showhide'])) {
       $item = $layout['showhide']['item'];
       $show = $layout['showhide']['show'];
@@ -497,7 +505,7 @@ log_entry($controls);
     if (empty($layout['source'])) return;
     $uniq = uniqid();
     $html = "<div";
-    $html.= (isset($layout['help'])) ? " title='{$layout['help']}'>" : ">";
+    $html.= (isset($layout['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
     $html.= (isset($layout['text'])) ? "<div id='$uniq'>".esc_attr($layout['text'])."</div>" : "";
     foreach($layout['source'] as $key=>$text) {
       $html.= "<div><label>";
@@ -537,8 +545,9 @@ log_entry($controls);
 		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
 		$html = "<input type='number'  id='$ID' class='small-text'";
 		$html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
-		$html.= (isset($layout['help']))   ? " title='{$layout['help']}'" : "";
+		$html.= (isset($layout['help']))   ? " title='".esc_attr($layout['help'])."'" : "";
 		$html.= " min='1' step='1' />";
+		$html.= (!empty($layout['stext'])) ? ' '.esc_attr($layout['stext'])           : "";
 		echo $html;
 	}
 
@@ -554,11 +563,11 @@ log_entry($controls);
     $html.= "<input type='text' id='$ID' class='";
     $html.= (isset($layout['class']))  ? $layout['class']."'" : "regular-text'";
     $html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
-    $html.= (isset($layout['help']))   ? " title='{$layout['help']}'"             : "";
-    $html.= (isset($layout['place']))  ? " placeholder='{$layout['place']}'"      : "";
-    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}' />"     : "/>";
-    $html.= (!empty($layout['stext'])) ? ' '.esc_attr($layout['stext'])           : "";
-    $html.= (!empty($layout['etext'])) ? "<p> ".esc_attr($layout['etext'])."</p>" : "";
+    $html.= (isset($layout['help']))   ? " title='".esc_attr($layout['help'])."'"        : "";
+    $html.= (isset($layout['place']))  ? " placeholder='".esc_attr($layout['place'])."'" : "";
+    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}' />"            : "/>";
+    $html.= (!empty($layout['stext'])) ? ' '.esc_attr($layout['stext'])                  : "";
+    $html.= (!empty($layout['etext'])) ? "<p> ".esc_attr($layout['etext'])."</p>"        : "";
     echo $html;
   }
 

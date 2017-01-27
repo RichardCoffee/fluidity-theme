@@ -79,7 +79,8 @@ class TCC_Options_Layout {
                                                   'show' => __('Show Date','tcc-fluid')));
     $layout['exlength']= array('default' => apply_filters('excerpt_length',55),
                                'label'   => __('Excerpt Length','tcc-fluid'),
-                               'render'  => 'spinner');
+                               'render'  => 'spinner',
+                               'stext'   => __('number of words','tcc-fluid'));
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
