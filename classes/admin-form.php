@@ -328,7 +328,7 @@ log_entry($controls);
           $tab_css  = 'nav-tab';
           $tab_css .= ($this->tab==$key) ? ' nav-tab-active' : '';
           $tab_ref  = "$refer&tab=$key"; ?>
-          <a href='$tab_ref' class='$tab_css'>
+          <a href='<?php echo esc_attr($tab_ref); ?>' class='<?php echo esc_attr($tab_css); ?>'>
             <?php echo esc_html($menu_item['title']); ?>
           </a><?php
         } ?>
