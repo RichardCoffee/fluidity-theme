@@ -9,13 +9,13 @@ add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 // derived from:  http://codex.wordpress.org/Excerpt
 function fluid_read_more_link($output) {
 	global $post;
-	$read = __('Read More...','creatom');
+	$read = esc_html__('Read More...','creatom');
 	$perm = get_permalink($post->ID);
-	$link = " [<a href='$perm' itemprop='url'>$read</a>]";
+	$brac = apply_filter('tcc_read_more_brackets',true);
+	$link = "<a href='$perm' itemprop='url'>$read</a>";
+	if ($brac) { $link = " [$link]"; }
 	$css  = apply_filters('tcc_read_more_css','');
-	if ($css) {
-		$link = "<span class='$css'>$link</span>";
-	}
+	if ($css)  { $link = "<span class='$css'>$link</span>"; }
 	return $link;
 }
 add_filter('excerpt_more', 'fluid_read_more_link');
