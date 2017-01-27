@@ -149,17 +149,17 @@ abstract class Basic_Admin_Form {
   private function field_label($ID,$data) {
     $html = "<span";
     if ($data['render']=='display') {
-      $html.= (isset($data['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
+      $html.= (isset($data['help'])) ? " title='".esc_attr($data['help'])."'>" : ">";
       $html.= $data['label'];
       $html.= "</span>";
     } elseif ($data['render']=='title') {
       $html.= " class='form-title'";
-      $html.= (isset($data['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
+      $html.= (isset($data['help'])) ? " title='".esc_attr($data['help'])."'>" : ">";
       $html.= $data['label'];
       $html.= "</span>";
     } else {
       $html = "<label for='$ID'";
-      $html.= (isset($data['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
+      $html.= (isset($data['help'])) ? " title='".esc_attr($data['help'])."'>" : ">";
       $html.= $data['label'];
       $html.= "</label>";
     }
