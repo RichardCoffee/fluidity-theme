@@ -561,7 +561,7 @@ log_entry($controls);
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     $html = (!empty($layout['text']))  ? "<p> ".esc_attr($layout['text'])."</p>" : "";
     $html.= "<input type='text' id='$ID' class='";
-    $html.= (isset($layout['class']))  ? $layout['class']."'" : "regular-text'";
+    $html.= (isset($layout['class']))  ? esc_attr($layout['class'])."'" : "regular-text'";
     $html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
     $html.= (isset($layout['help']))   ? " title='".esc_attr($layout['help'])."'"        : "";
     $html.= (isset($layout['place']))  ? " placeholder='".esc_attr($layout['place'])."'" : "";

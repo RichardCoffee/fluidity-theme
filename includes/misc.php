@@ -10,10 +10,10 @@ add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 function fluid_read_more_link($output) {
 	global $post;
 	$perm = get_permalink($post->ID);
-	$read = apply_filters('tcc_read_more_text',__('Read More...','tcc-fluid'));
+	$read = apply_filters('tcc_read_more_text',__('Read More','tcc-fluid'));
 	$brac = apply_filters('tcc_read_more_brackets',true);
 	$css  = apply_filters('tcc_read_more_css','');
-	$link = '<a href="$perm" itemprop="url">'.esc_html($read).'</a>';
+	$link = '<a class="read-more" href="'.esc_url($perm).'" itemprop="url">'.esc_html($read).'</a>';
 	if ($brac) { $link = " [$link]"; }
 	if ($css)  { $link = "<span class='$css'>$link</span>"; }
 	return $link;

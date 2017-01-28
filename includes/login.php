@@ -209,12 +209,12 @@ if (!function_exists('tcc_login_form')) {
 					<button type="submit" id="<?php echo esc_attr($id_submit); ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i>&nbsp;
 						<?php echo esc_html($label_log_in); ?>
 					</button>
-					<input type="hidden" name="redirect_to" value="<?php echo esc_url_raw($redirect); ?>" />
+					<input type="hidden" name="redirect_to" value="<?php echo esc_url($redirect); ?>" />
 				</div><?php //*/
 #				if (get_page_by_title('Lost Password')) {
 				if ( !empty( $label_lost ) && ( $lost_url=wp_lostpassword_url( home_url() ) ) ) {
 					$tooltip = __('You can request a new password via this link.','tcc-fluid'); ?>
-					<a class="lost-password pull-right" href="<?php echo esc_url_raw($lost_url); ?>" title="<?php echo esc_attr($tooltip); ?>">
+					<a class="lost-password pull-right" href="<?php echo esc_url($lost_url); ?>" title="<?php echo esc_attr($tooltip); ?>">
 						<small>
 							<?php echo esc_html($label_lost); ?>
 						</small>

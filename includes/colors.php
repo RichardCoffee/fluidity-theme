@@ -4,7 +4,7 @@ if (!function_exists('fluid_color_body_class')) {
 	function fluid_color_body_class(array $classes) {
 		$color = fluid_color_scheme();
 		if ($color) {
-		$classes[] = "fluid-color-$color";
+			$classes[] = "fluid-color-$color";
 		}
 		return $classes;
 	}

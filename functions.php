@@ -137,8 +137,8 @@ if (!function_exists('fluidity_register_fontawesome')) {
 
 if (!function_exists('fluidity_register_color_scheme')) {
   function fluidity_register_color_scheme() {
-    if ($color_file=fluid_color_scheme()) {
-      wp_register_style('fluid-color',  get_theme_file_uri("css/colors/$color_file.css"),false,FLUIDITY_VERSION);
+    if ($color=fluid_color_scheme()) {
+      wp_register_style('fluid-color',  get_theme_file_uri("css/colors/$color.css"),false,FLUIDITY_VERSION);
     }
   }
 }
