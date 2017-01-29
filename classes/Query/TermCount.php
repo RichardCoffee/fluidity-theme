@@ -25,7 +25,8 @@ log_entry(self::$terms);
 	public function tcc_navmenu_catagory_count( $items ) {
 		if (self::$terms) {
 			foreach( $items as $item ) {
-				if ( $item->object === $this->taxonomy ) {
+				#    Check for taxonomy                     Children only
+				if ( $item->object === $this->taxonomy && ( intval( $item->menu_item_parent, 10 ) > 0 ) ) {
 					log_entry($item);
 				}
 			}
