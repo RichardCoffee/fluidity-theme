@@ -13,7 +13,7 @@ trait TCC_Trait_ParseArgs {
 	private function parse_args( $args ) {
 		if ( ! $args ) return;
 		foreach( $args as $prop => $value ) {
-			if ( property_exists( $this, $name ) ) {
+			if ( property_exists( $this, $prop ) ) {
 				$this->{$prop} = $value;
 			}
 		}
