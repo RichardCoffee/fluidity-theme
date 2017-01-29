@@ -25,8 +25,8 @@ class TCC_Query_TermCount {
 	public function tcc_navmenu_catagory_count( $items ) {
 		if (self::$terms) {
 			foreach( $items as $item ) {
-#				#    Check to see if the menu item is in our taxonomy
-				if ( array_key_exists( $item->object_id, self::$terms ) ) {
+#				#      Operate on children only                       Check to see if the menu item is in our taxonomy
+				if ( ( intval( $item->menu_item_parent, 10 ) > 0 ) && array_key_exists( $item->object_id, self::$terms ) ) {
 					log_entry($item);
 				}
 			}
