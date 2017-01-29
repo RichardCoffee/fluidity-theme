@@ -39,7 +39,7 @@ log_entry(self::$terms);
 log_entry($terms);
 		if ( $terms ) {
 			foreach( $terms as $term ) {
-				self::$terms[ $term->slug ] = $term->count;
+				self::$terms[ $term->term_id ] = $term->count;
 			}
 		}
 	}
