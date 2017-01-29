@@ -56,3 +56,9 @@ log_entry(func_get_args());
 	}
 	add_filter( 'wp_get_nav_menu_items', 'tcc_taxonomy_nav_menu',10,3 );
 } //*/
+
+function tcc_navmenu_catagory_count( $items ) {
+log_entry($items);
+	return $items;
+}
+add_filter( 'wp_nav_menu_objects', 'tcc_navmenu_catagory_count' );
