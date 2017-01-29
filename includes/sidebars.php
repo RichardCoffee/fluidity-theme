@@ -91,6 +91,7 @@ if (!function_exists('fluidity_load_sidebar')) {
     $status   = tcc_settings( 'where' );
 echo "<p>status:  $status</p>";
     foreach($sidebars as $sidebar) {
+echo "<p>sidebar:  $sidebar</p>";
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
           if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
