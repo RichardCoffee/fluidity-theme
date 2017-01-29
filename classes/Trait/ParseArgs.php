@@ -4,6 +4,7 @@
  *
  * Add support for parsing incoming arrays
  *
+ * @package Fluidity\Classes\Traits
  * @since 2.1.1
  *
  */

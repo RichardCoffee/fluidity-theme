@@ -4,6 +4,7 @@
  *
  * Add support for inserting term counts in nav menus
  *
+ * @package Fluidity\Classes\Queries
  * @since 2.1.1
  *
  */
