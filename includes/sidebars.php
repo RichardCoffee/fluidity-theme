@@ -93,7 +93,9 @@ echo "<p>status:  $status</p>";
     foreach($sidebars as $sidebar) {
 echo "<p>sidebar:  $sidebar</p>";
       if (is_active_sidebar($sidebar)) {
+echo "<p>$sidebar active</p>";
         if (dynamic_sidebar($sidebar)) {
+echo "<p>$sidebar dynamic</p>";
           if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
           return true;
         } else if ( $status === 'on' ) { echo "<p>$sidebar non-dynamic</p>"; }
