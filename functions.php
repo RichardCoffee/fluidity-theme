@@ -42,6 +42,7 @@ if (is_admin()) {
   require_once('includes/pages.php');
   require_once('includes/third-party.php');
   require_once('classes/microdata.php');
+	new TCC_Query_TermCount();
 }
 
 if (!function_exists('tcc_enqueue')) {

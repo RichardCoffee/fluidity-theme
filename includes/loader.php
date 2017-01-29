@@ -10,3 +10,5 @@ function fluidity_class_loader( $class ) {
 	}
 }
 spl_autoload_register( 'fluidity_class_loader' );
+
+class_alias('TCC_Query_TermCount','TermCount');
