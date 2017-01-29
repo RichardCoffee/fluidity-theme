@@ -15,7 +15,7 @@ class TCC_Query_TermCount {
 
 	use TCC_Trait_ParseArgs;
 
-	public function __construct( $args ) {
+	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
 		self::$terms = get_terms( array( 'taxonomy' => $this->taxonomy, 'hide_empty' => false, ) );
 log_entry(self::$terms);
