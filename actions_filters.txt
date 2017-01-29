@@ -1,39 +1,56 @@
 Note:  this list is probably not accurate, check source for more
 
 
-    Actions                      Purpose / Occurrance                             Function                      File
-==========================   ==============================================    ========================   ============================
- tcc_custom_css               insert css via inline stylesheet                  tcc_custom_css
+		     Actions                      Purpose / Occurrance                              Function                      File
+	==========================        ==============================================    ========================   ============================
+		fluid_post_separator             between post excerpts, overrides default
+		fluid_post_separator_{$page}     between excerpts on a specific page
+		fluidity_admin_enqueue           runs after fluidity admin enqueues
+		tcc_custom_css                   insert css via inline stylesheet in header         tcc_custom_css
  tcc_custom_post_{post_type}  immediately after the post_type has been          create_post_type
                                 registered
- tcc_enqueue                  enqueue front-end styles/scripts                  fluid_enqueue
+		tcc_pre_enqueue                  run before fluidity enqueues
+		tcc_after_enqueue                run after fluidity enqueues
+		tcc_enqueue                      load child enqueues here, runs last
+		tcc_excerpt_parallax             inline stylesheet for excerpts
  tcc_footer                   footer body
  tcc_header_body_content      control what goes into the header body
                                 used by fluidity_header_body
  tcc_header_menubar           bottom menubar of header
  tcc_header_top_menubar       top menubar of header
  tcc_navbar_signout           insert navbar html before signout button          tcc_login_form
+		tcc_page_parallax                inline stylesheet for pages using parallax
+		tcc_page_parallax_{$page}        inline stylesheet for specific page with parallax
+		tcc_{$page}_page_top             before <main> tag
+		tcc_{$page}_page_bottom          after </main> tag
+		tcc_{$page}_page_preposts        before post loop
+		tcc_{$page}_page_afterposts      after post loop
+		tcc_{$page}_page_noposts         if no posts found - never run, wordpress returns a 404 page instead
  tcc_pre_header               prior to display of header
  tcc_post_header              after display of header
+		tcc_post_parallax                inline stylesheet for posts using parallax
  tcc_register_widgets         register widgets that extend TCC_Basic_Widget     register_fluid_widgets
- tcc_widget_class_loaded      TCC_Basic_Widget class has been loaded
+		fluidity_social_icons            any action here will override fluidity icons
+ tcc_widget_class_loaded      after TCC_Basic_Widget class has been loaded
  tcc_widget_signout           insert widget html before signout button          tcc_login_form
 
 
 		Filters                           Description                                       Function
 	========================          ==============================================    ========================
 		fluid_container_type            control bootstrap container class                  container_type
-		fluid_{$page}_container_type    as above, only on specified page                   container_type
+		fluid_{$page}_container_type    as above, only on specified page/section           container_type
+		fluid_post_date_sprintf         string used to format the post date                fluid_post_date
 		fluidity_options_form_layout    array that displays the theme options              TCC_Options_Fluidity->form_layout
 		get_title_class                 div css for page title                             get_title_class, used in tcc_page_title
 		get_title_class_$page           div css for $page title                            get_title_class, used in tcc_page_title
-		tcc_author_posts_header         title header for author's posts                    author.php
+		tcc_author_posts_header         header title for list of author's posts            author.php
 		tcc_color_scheme                name of color scheme file                          tcc_color_scheme
 		tcc_content_slug                template-part slug                                 fluid_content_slug
 		tcc_{$page}_content_slug        template-part slug for $page                       fluid_content_slug
 		tcc_{$page}_content_css         clearfix css applied to div that surrounds         special template file
 		                                	template-part, css has to be in url format
 		tcc_copyright_name              site title displayed in copyright notice           tcc_copyright
+		tcc_google_fonts                list of google fonts we want to use                Typography::google_fonts
 		tcc_header_logo_class           css applied to header logo image                   fluidity_header_logo
 		tcc_log_in_text                 text for login button                              tcc_login_form_defaults
 		tcc_login_form_id               id for login form div                              tcc_login_form_defaults
@@ -42,11 +59,13 @@ Note:  this list is probably not accurate, check source for more
 		tcc_login_redirect_to           redirect url for login form                        tcc_login_form_defaults
 		tcc_login_username              text/placeholder for user name field               tcc_login_form_defaults
 		tcc_lostpw_text                 text for lost password anchor tag                  tcc_login_form_defaults
+		tcc_mixed_fonts                 combined fonts list                                Typography::mixed_fonts
+		tcc_os_fonts                    user operating system fonts list                   Typography::os_fonts
 		tcc_read_more_brackets          boolean that determines if brackets are displayed  fluid_read_more_link
 		tcc_read_more_css               css applied to read more link                      fluid_read_more_link
 		tcc_read_more_text              text displayed in read more link                   fluid_read_more_link
 		tcc_register_sidebars           array of sidebars to be registered                 register_fluid_sidebars
-		tcc_register_widgets_list  array of stems of widgets registered by fluid           tcc_register_widgets
+		tcc_register_widgets_list       fluidity registered widgets                        tcc_register_widgets
 		tcc_signout_text                text for log out button                            tcc_login_form_defaults
 		tcc_user_profile_link           html link to user profile page, with name          fluid_user_profile_link
 		widget_title                    widget title                                       TCC_Widgets_Basic->widget

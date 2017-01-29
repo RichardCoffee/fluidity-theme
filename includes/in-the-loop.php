@@ -97,11 +97,11 @@ if (!function_exists('fluid_next_post_exists')) {
 }
 
 if (!function_exists('fluid_post_date')) {
-  function fluid_post_date( $complete=null ) {
+  function fluid_post_date( $complete = null ) {
     $default= esc_html_x('Posted on %1$s by %2$s','formatted date string, user name','tcc-fluid');
     $string = apply_filters( 'fluid_post_date_sprintf', $default );
     $date   = get_the_date();
-    $author = microdata()->get_the_author(); // TODO: get author display name
+    $author = microdata()->get_the_author();
     $posted = sprintf($string,$date,$author);
     $show   = false;
     $layout = tcc_settings('postdate');
@@ -204,6 +204,8 @@ if (!function_exists('get_the_author_posts_link')) {
     return $html;
   }
 }
+
+
 
 if (!function_exists('tcc_post_title')) {
 	function tcc_post_title( $max=0, $anchor=true ) {

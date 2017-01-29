@@ -6,9 +6,9 @@
 
 get_header();
 
-#add_filter ( "fluid_{$mypage}_container_type", function ($css) { return "container"; } );
-
 $mypage = get_page_slug();
+
+#add_filter ( "fluid_{$mypage}_container_type", function ($css) { return "container"; } );
 
 do_action("tcc_{$mypage}_page_top"); ?>
 

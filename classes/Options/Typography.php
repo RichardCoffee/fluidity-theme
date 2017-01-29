@@ -96,9 +96,9 @@ class TCC_Options_Typography {
           $google_fonts = self::google_fonts();
           if (in_array($current,$google_fonts)) {
             $myfont = explode(',',$google_fonts[$current]);
-            if ($myfont[0]==='Raleway') $myfont[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?
+            if ($myfont[0]==='Raleway') $myfont[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?  what does this do anyway?
             $query_args = array('family' => urlencode(implode('|',$myfont)),
-                                'subset' => urlencode('latin,latin-ext')); // FIXME: when should subset be something different?
+                                'subset' => urlencode('latin,latin-ext')); // FIXME: when would subset be something different?
             $fonts_url = add_query_arg($query_args,'https://fonts.googleapis.com/css');
             wp_enqueue_style("typography_font",$fonts_url,false,null,'all');
           }

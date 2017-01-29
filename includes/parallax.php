@@ -22,7 +22,7 @@ if (!function_exists('tcc_excerpt_parallax')) {
 		if (tcc_design('paral')==='yes') { ?>
 			<style>
 				.post-<?php the_ID(); ?> {
-					background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
+					background-image: url('<?php echo get_featured_url( ); ?>');
 					<?php do_action('tcc_excerpt_parallax'); ?>
 					<?php //do_action('tcc_excerpt_parallax_'.get_the_ID()); ?>
 				}
@@ -66,9 +66,9 @@ if (!function_exists('tcc_post_parallax')) {
 		if ((tcc_design('paral')==='yes') && has_post_thumbnail() ) { ?>
 			<style>
 				.single-parallax {
-					background-image: url('<?php echo get_featured_url( get_the_ID() ); ?>');
+					background-image: url('<?php echo get_featured_url( ); ?>');
 					<?php do_action('tcc_post_parallax'); ?>
-					<?php do_action('tcc_post_parallax_'.get_the_ID()); ?>
+					<?php //do_action('tcc_post_parallax_'.get_the_ID()); ?>
 				}
 			</style>
 			<div id="" class="parallax <?php echo $css; ?> parallax-scroll"></div><?php
