@@ -88,13 +88,15 @@ if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($args,$force=false) {
     if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
     $sidebars = ($force) ? (array)$args : array_merge((array)$args,array('standard','home'));
+    $status   = tcc_settings( 'where' );
+echo "<p>status:  $status</p>";
     foreach($sidebars as $sidebar) {
       if (is_active_sidebar($sidebar)) {
         if (dynamic_sidebar($sidebar)) {
-          if (tcc_settings('where')==='on') { echo "<p>$sidebar active</p>"; }
+          if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
           return true;
-        } #else { echo "<p>$sidebar non-dynamic</p>"; }
-      } #else {   echo "<p>$sidebar not active</p>";  }
+        } else if ( $status === 'on' ) { echo "<p>$sidebar non-dynamic</p>"; }
+      } else if ( $status === 'on' ) {   echo "<p>$sidebar not active</p>";  }
     }
     return $force;
   }
