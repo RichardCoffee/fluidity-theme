@@ -35,6 +35,7 @@ log_entry(self::$terms);
 
 	private function get_taxonomy_count() {
 		$terms = get_terms( array( 'taxonomy' => $this->taxonomy, 'hide_empty' => false, ) );
+log_entry($terms);
 		if ( $terms ) {
 			foreach( $terms as $term ) {
 				self::$terms[ $term->slug ] = $term->count;
