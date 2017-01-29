@@ -13,10 +13,9 @@ class TCC_Query_TermCount {
 
 	protected static $terms;
 
-	use TCC_Trait_Singleton;
 	use TCC_Trait_ParseArgs;
 
-	protected function __construct( $args ) {
+	public function __construct( $args ) {
 		$this->parse_args( $args );
 		self::$terms = get_terms( array( 'taxonomy' => $this->taxonomy, 'hide_empty' => false, ) );
 log_entry(self::$terms);
