@@ -72,9 +72,9 @@ if (WP_DEBUG && !function_exists('tcc_log_deprecated')) {
 	add_action('deprecated_hook_run',       'tcc_log_deprecated',10,4);
 	add_action('doing_it_wrong_run',        'tcc_log_deprecated',10,3);
 }
-
+/*
 	log_entry(get_declared_classes());
 if ( ! class_exists( 'Paths' ) ) {
 	class_alias('TCC_Plugin_Paths','Paths');
 } else {
-}
+} //*/
