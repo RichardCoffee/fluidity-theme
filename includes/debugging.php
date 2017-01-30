@@ -1,17 +1,29 @@
 <?php
+/*
+ *  @package Fluidity
+ */
 
+/*
+ *  Get the calling function.
+ *
+ *  Retrieve information from the calling function/file, while also
+ *  selectively skipping parts of the stack.
+ *
+ *  @package  Fluidity\Debugging
+ *  @requires PHP 5.3.6
+ */
 if (!function_exists('debug_calling_function')) {
   // http://php.net/debug_backtrace
   function debug_calling_function( $depth=1 ) {
     $file = $func = $line = 'n/a';
-    $call_trace = debug_backtrace();
+    $call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
     $total_cnt  = count($call_trace);
     $skip_list  = array('call_user_func_array','logging');
     do {
+      $file = (isset($call_trace[$depth]['file'])) ? $call_trace[$depth]['file'] : 'n/a';
+      $line = (isset($call_trace[$depth]['line'])) ? $call_trace[$depth]['line'] : 'n/a';
       $depth++;
       $func = (isset($call_trace[$depth]['function'])) ? $call_trace[$depth]['function'] : 'n/a';
-      $file = (isset($call_trace[($depth-1)]['file'])) ? $call_trace[($depth-1)]['file'] : 'n/a';
-      $line = (isset($call_trace[($depth-1)]['line'])) ? $call_trace[($depth-1)]['line'] : 'n/a';
     } while( in_array( $func, $skip_list ) && ( $total_cnt > $depth ) );
     return "$file, $func, $line";
   }
@@ -40,14 +52,13 @@ if (!function_exists('log_entry')) {
     }
   }
   if (defined('TCC_LOG_DEFINED')) {
-    tcc_log_entry('tcc_log_entry defined in '.__FILE__);//,get_defined_constants(true));
+    tcc_log_entry('tcc_log_entry defined in '.__FILE__);
   }
 } else {
   if (defined('TCC_LOG_DEFINED')) {
-    tcc_log_entry('tcc_log_entry NOT defined in '.__FILE__);//,get_defined_constants(true));
+    tcc_log_entry('tcc_log_entry NOT defined in '.__FILE__);
   }
 }
-
 
 if (WP_DEBUG && !function_exists('tcc_log_deprecated')) {
 	function tcc_log_deprecated() {
@@ -62,9 +73,8 @@ if (WP_DEBUG && !function_exists('tcc_log_deprecated')) {
 	add_action('doing_it_wrong_run',        'tcc_log_deprecated',10,3);
 }
 
-if (!function_exists('tcc_get_template_part')) {
-	function tcc_get_template_part($slug,$name) {
-		log_entry("slug:  $slug","name:  $name");
-	}
-	add_action('get_template_part_template_parts/footer','tcc_get_template_part',10,2);
+if ( ! class_exists( 'Paths' ) ) {
+	class_alias('TCC_Plugin_Paths','Paths');
+} else {
+	log_entry(get_declared_classes());
 }
