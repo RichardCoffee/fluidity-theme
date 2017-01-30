@@ -18,7 +18,9 @@ function fluid_index_page( $page='index' ) {
 
 		<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo esc_attr(container_type($page)); ?>" <?php microdata()->Blog(); ?>>
 			<div class="row"><?php
-echo "<p>Page: $page</p>";
+global $wp_query;
+showMe('WP_Query',$wp_query);
+tellMe("<p>Page: $page</p>");
 				who_am_i(1); ?>
 
 				<aside>
