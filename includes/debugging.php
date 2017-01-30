@@ -4,12 +4,15 @@ if (!function_exists('debug_calling_function')) {
   // http://php.net/debug_backtrace
   function debug_calling_function( $depth=1 ) {
     $file = $func = $line = 'n/a';
-    $debugTrace = debug_backtrace();
-    if (isset($debugTrace[$depth])) {
-      $file = (empty($debugTrace[$depth]['file'])) ? 'n/a' : $debugTrace[$depth]['file'];
-      $line = (empty($debugTrace[$depth]['line'])) ? 'n/a' : $debugTrace[$depth]['line'];
-    }
-    $func = (empty($debugTrace[($depth+1)]['function'])) ? 'n/a' : $debugTrace[($depth+1)]['function'];
+    $call_trace = debug_backtrace();
+    $total_cnt  = count($call_trace);
+    $skip_list  = array('call_user_func_array','logging');
+    do {
+      $depth++;
+      $func = (isset($call_trace[$depth]['function'])) ? $call_trace[$depth]['function'] : 'n/a';
+      $file = (isset($call_trace[($depth-1)]['file'])) ? $call_trace[($depth-1)]['file'] : 'n/a';
+      $line = (isset($call_trace[($depth-1)]['line'])) ? $call_trace[($depth-1)]['line'] : 'n/a';
+    } while( in_array( $func, $skip_list ) && ( $total_cnt > $depth ) );
     return "$file, $func, $line";
   }
 }
@@ -25,7 +28,7 @@ if (!function_exists('log_entry')) {
         unset($args[0]);
       }
       if ($depth) error_log(debug_calling_function($depth));
-      foreach ($args as $message) {
+      foreach($args as $message) {
         if (is_array($message) || is_object($message)) {
           error_log(print_r($message, true));
         } else if ($message==='dump') {
@@ -36,7 +39,15 @@ if (!function_exists('log_entry')) {
       }
     }
   }
+  if (defined('TCC_LOG_DEFINED')) {
+    tcc_log_entry('tcc_log_entry defined in '.__FILE__);//,get_defined_constants(true));
+  }
+} else {
+  if (defined('TCC_LOG_DEFINED')) {
+    tcc_log_entry('tcc_log_entry NOT defined in '.__FILE__);//,get_defined_constants(true));
+  }
 }
+
 
 if (WP_DEBUG && !function_exists('tcc_log_deprecated')) {
 	function tcc_log_deprecated() {

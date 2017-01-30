@@ -157,6 +157,19 @@ if (!function_exists('get_valid_gravatar')) {
   }
 }
 
+if (!function_exists('in_action')) {
+	function in_action() {
+		$trace = debug_backTrace();
+		$type  = '';
+		foreach( $trace as $step ) {
+			if ( isset( $step['function'] ) && ( $step['function'] === 'do_action' ) && ( ! isset( $step['class'] ) ) ) {
+				return $step['args'][0];
+			}
+		}
+		return false;
+	}
+}
+
 #	http://stackoverflow.com/questions/14348470/is-ajax-in-wordpress
 if (!function_exists('is_ajax')) {
 	function is_ajax() {

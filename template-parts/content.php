@@ -19,7 +19,7 @@ who_am_i(); ?>
 			<?php fluid_edit_post_link(); ?>
 		</h1>
 
-		<h3 class="post-date">
+		<h3 class="post-date text-center">
 			<?php fluid_post_date(true); ?>
 		</h3><?php
 
