@@ -32,7 +32,7 @@ function fluid_index_page( $page='index' ) {
 						do_action("tcc_{$page}_page_preposts");
 
 						$main = (is_single() || is_page()) ? 'content' : tcc_layout('content');
-						$css  = ($main==='content') ? '' : apply_filters("tcc_{$page}_content_css",'lg=4&md=4&sm=6&xs=12');
+						$css  = ($main==='content') ? '' : apply_filters("tcc_{$page}_excerpt_css",'lg=4&md=4&sm=6&xs=12');
 						$cnt  = 0;
 						while (have_posts ()) {
 							the_post();
