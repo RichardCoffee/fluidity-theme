@@ -208,13 +208,13 @@ if (!function_exists('get_the_author_posts_link')) {
 
 
 if (!function_exists('tcc_post_title')) {
-	function tcc_post_title( $max=0, $anchor=true ) {
-		$anchor = (is_single()) ? false : $anchor;
-		$title  = fluid_title($max);
-		if ($anchor) {
+	function tcc_post_title( $max = 0, $anchor = true ) {
+		$anchor = ( is_single() || is_page() ) ? false : $anchor;
+		$title  = fluid_title( $max );
+		if ( $anchor ) {
 			$tooltip = sprintf( esc_html_x('Read All About %s','a post title','tcc-fluid'), fluid_title() );
 			$string  = '<a href="%s" rel="bookmark" title="%s">%s</a>';
-			$title   = sprintf( $string, get_the_permalink(), esc_attr($tooltip), $title );
+			$title   = sprintf( $string, get_the_permalink(), esc_attr($tooltip), esc_html($title) );
 		}
 		echo $title;
 	}

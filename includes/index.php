@@ -30,7 +30,11 @@ tellMe("<p>Page: $page</p>");
 				</aside>
 
 				<div id="content" role="main" tabindex="-1"><?php
-
+/*
+if ( is_category() ) {
+tcc_category_title();
+}
+*/
 					if (have_posts()) {
 						do_action("tcc_{$page}_page_preposts");
 

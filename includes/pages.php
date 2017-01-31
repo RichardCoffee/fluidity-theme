@@ -149,7 +149,7 @@ if (!function_exists('tcc_page_title')) {
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
 					<div class="<?php echo container_type("{$slug}_title"); ?>">
 						<div class="row">
-							<h2 class="text-center">
+							<h2>
 								<?php echo $title; ?>
 							</h2>
 						</div>
