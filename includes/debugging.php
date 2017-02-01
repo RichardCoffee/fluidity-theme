@@ -37,6 +37,19 @@ if ( ! function_exists( 'get_calling_function' ) ) {
 	}
 }
 
+if ( ! function_exists( 'was_called_by' ) ) {
+	function was_called_by( $func ) {
+		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
+		foreach( $call_trace as $current ) {
+			if ( ! empty( $current['function'] ) ) {
+				if ( $current['function'] === $func )
+					return true;
+			}
+		}
+		return false;
+	}
+}
+
 #  generate log entry, with comment
 if ( ! function_exists( 'log_entry' ) ) {
 	function log_entry() {
