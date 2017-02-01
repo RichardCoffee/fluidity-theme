@@ -88,9 +88,9 @@ if ( ! function_exists( 'is_a_debugger' ) ) {
 		if ( $list && in_array( $user->ID, (array)$list ) ) {
 log_entry($list,$user);
 			return true;
-		} else {
+		} else if ( in_array( "administrator", $user->roles ) ) {
 log_entry($user);
-			return in_array( "administrator", $user->roles);
+			return true;
 		}
 		return false;
 	}
