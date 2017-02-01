@@ -148,4 +148,4 @@ function fluidity_http_request_args( $args, $url ) {
 	log_entry($url,$args);
 	return $args;
 }
-add_filter( 'http_request_args', 'fluidity_http_request_args' );
+add_filter( 'http_request_args', 'fluidity_http_request_args', 10, 2 );
