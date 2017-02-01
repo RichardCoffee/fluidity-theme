@@ -62,8 +62,11 @@ if (!function_exists('get_page_slug')) {
 			if (defined('TCC_PAGE_SLUG')) {
 				$slug = TCC_PAGE_SLUG;
 			} else if ( !is_admin() && $wp_query->is_main_query() ) {
-log_entry('page id:  '.$wp_query->get('page_id'),
-          '  front:  '.get_option('page_on_front'));
+/*log_entry(
+			'is home:  '.is_home(),
+			'page id:  '.$wp_query->get('page_id'),
+			'  front:  '.get_option('page_on_front'),
+); //*/
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'home';
 				#} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
@@ -73,6 +76,7 @@ log_entry('page id:  '.$wp_query->get('page_id'),
 					$page = get_queried_object();  #  $wp_query->queried_object
 					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
 						$slug = $page->post_name;
+$slug = ( $slug === 'front-page' ) ? 'front' : $slug;
 					} else {
 						global $fluidity_theme_template; // FIXME: this is not a reliable source
 						$slug = $fluidity_theme_template;
