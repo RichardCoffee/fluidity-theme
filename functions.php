@@ -154,4 +154,4 @@ function fluidity_pre_http_request( $preempt, $args, $url ) {
 	log_entry($url,$args);
 	return $preempt;
 }
-add_filter( 'pre_http_request', 'my_precious\\pre_version_check_http_request', 10, 3 );
+add_filter( 'pre_http_request', 'fluidity_pre_http_request', 10, 3 );
