@@ -65,7 +65,7 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_style('fluid-color');
 
     #  Javascript
-    if (!(tcc_layout('menu')==='bootstrap')) {
+    if ( tcc_layout('menu') !== 'bootstrap' ) {
       wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
     }
     wp_enqueue_script('bootstrap.js');

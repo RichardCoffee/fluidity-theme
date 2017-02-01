@@ -62,7 +62,7 @@ if (!function_exists('tcc_login_redirect')) {
 	if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
 		function tcc_login_redirect( $redirect_to, $request, $user ) {
 			if (!$user)                       { return home_url(); }
-			if (!is_object($user))            { log_entry('user var is not an object',$user,'dump');  return $redirect_to; }
+			if (!is_object($user))            { log_entry( 'user var is not an object', $user );  return $redirect_to; }
 			if (get_class($user)=='WP_Error') { return $redirect_to; }
 			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
 log_entry('redirect_to:  '.$redirect_to,'request:  '.$request,$user,'wp_get_referer:  '.wp_get_referer(),'location:  '.$location);
@@ -289,7 +289,7 @@ if (!function_exists('tcc_admin_howdy')) {
 	add_action('admin_bar_menu', 'tcc_admin_howdy', 11 );
 }
 
-class TCC_Login {
+class TCC_Form_Login {
 
 	use TCC_Trait_Singleton;
 
