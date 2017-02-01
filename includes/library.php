@@ -357,32 +357,43 @@ if (!function_exists('list_template_conditions')) {
   }
 }
 
+if ( ! function_exists( 'is_a_debugger' ) {
+	function is_a_debugger() {
+		$user = wp_get_current_user();
+		return in_array( "administrator", $user->roles);
+	}
+}
+
 #  show data inline
 if (!function_exists('showme')) {
-  function showme( $title, $data ) {
-    if (WP_DEBUG) { ?>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading" data-collapse="1">
-            <h3 class="panel-title"><?php
-              echo $title; ?>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <pre><?php
-              print_r($data); ?>
-            </pre>
-          </div>
-        </div>
-      </div><?php
-    }
-  }
+	function showme( $title, $data ) {
+		if (WP_DEBUG && is_a_debugger() ) {
+			if ( empty( $data ) && is_array( $title ) ) {
+				$data  = $title;
+				$title = 'Show Me Data';
+			} ?>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading" data-collapse="1">
+						<h3 class="panel-title"><?php
+							echo $title; ?>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<pre><?php
+							print_r($data); ?>
+						</pre>
+					</div>
+				</div>
+			</div><?php
+		}
+	}
 }
 
 #  show string inline
 if (!function_exists('tellme')) {
   function tellme( $string ) {
-    if (WP_DEBUG) {
+    if (WP_DEBUG && is_a_debugger()) {
       echo "<p>$string</p>";
     }
   }
