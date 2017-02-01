@@ -76,7 +76,7 @@ if (!function_exists('get_page_slug')) {
 					$page = get_queried_object();  #  $wp_query->queried_object
 					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
 						$slug = $page->post_name;
-$slug = ( $slug === 'front-page' ) ? 'front' : $slug;
+#$slug = ( $slug === 'front-page' ) ? 'front' : $slug;
 					} else {
 						global $fluidity_theme_template; // FIXME: this is not a reliable source
 						$slug = $fluidity_theme_template;
