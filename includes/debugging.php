@@ -81,6 +81,19 @@ if ( ! function_exists( 'log_entry' ) ) {
 	}
 }
 
+if ( ! function_exists( 'is_a_debugger' ) ) {
+	function is_a_debugger() {
+		$user = wp_get_current_user();
+		$list = apply_filters( 'tcc_debugger_list', array(1) );
+		if ( $list && in_array( $user->ID, (array)$list ) ) {
+			return true;
+		} else {
+			return in_array( "administrator", $user->roles);
+		}
+		return false;
+	}
+}
+
 if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {
 	function tcc_log_deprecated() {
 		$args = func_get_args();

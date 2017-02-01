@@ -357,13 +357,6 @@ if (!function_exists('list_template_conditions')) {
   }
 }
 
-if ( ! function_exists( 'is_a_debugger' ) ) {
-	function is_a_debugger() {
-		$user = wp_get_current_user();
-		return in_array( "administrator", $user->roles);
-	}
-}
-
 #  show data inline
 if (!function_exists('showme')) {
 	function showme( $title, $data ) {
