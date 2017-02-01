@@ -86,10 +86,8 @@ if ( ! function_exists( 'is_a_debugger' ) ) {
 		$user = wp_get_current_user();
 		$list = apply_filters( 'tcc_debugger_list', array(1) );
 		if ( $list && in_array( $user->ID, (array)$list ) ) {
-log_entry($list,$user);
 			return true;
 		} else if ( in_array( "administrator", $user->roles ) ) {
-log_entry($user);
 			return true;
 		}
 		return false;

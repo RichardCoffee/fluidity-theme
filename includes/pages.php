@@ -62,6 +62,8 @@ if (!function_exists('get_page_slug')) {
 			if (defined('TCC_PAGE_SLUG')) {
 				$slug = TCC_PAGE_SLUG;
 			} else if ( !is_admin() && $wp_query->is_main_query() ) {
+log_entry('page id:  '.$wp_query->get('page_id'),
+          '  front:  '.get_option('page_on_front'));
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'home';
 				#} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
