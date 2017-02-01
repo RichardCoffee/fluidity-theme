@@ -39,6 +39,7 @@ if (!function_exists('tcc_authenticate_user')) {
 				exit;
 			}
 		}
+		return $user;
 	}
 	add_filter( 'authenticate', 'tcc_authenticate_user', 1, 3);
 }

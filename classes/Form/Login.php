@@ -35,20 +35,9 @@ if (!function_exists('tcc_authenticate_user')) {
 				exit;
 			}
 		}
+		return $user;
 	}
 	add_filter( 'authenticate', 'tcc_authenticate_user', 1, 3);
-}
-
-if (!function_exists('tcc_get_login_form_defaults')) {
-	function tcc_get_login_form_defaults() {
-		$defaults = array();
-		add_filter('login_form_defaults', function($args) use (&$defaults) {
-			$defaults = $args;
-			return $args;
-		}, 1000);	#	We want to go last here
-		wp_login_form( array( 'echo' => false ) );
-		return $defaults;
-	}
 }
 /*
 $redirect = home_url( add_query_arg( '_', false ) ); ?>
@@ -102,18 +91,6 @@ if (!function_exists('tcc_dashboard_logo') && function_exists('tcc_option')) {
     }
   }
   add_action('admin_head','tcc_dashboard_logo');
-}
-
-if (!function_exists('tcc_get_login_form_defaults')) {
-	function tcc_get_login_form_defaults() {
-		$defaults = array();
-		add_filter('login_form_defaults', function($args) use (&$defaults) {
-			$defaults = $args;
-			return $args;
-		}, 1000);
-		wp_login_form( array( 'echo' => false ) );
-		return $defaults;
-	}
 }
 
 if (!function_exists('tcc_login_css')) {
@@ -221,28 +198,6 @@ if (!function_exists('tcc_login_form')) {
 	}
 }
 
-if (!function_exists('tcc_login_form_defaults')) {
-	function tcc_login_form_defaults( $args=array() ) {
-		#	array mainly taken from wp-includes/general-template.php
-		$args['redirect']       = apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) );
-		$args['form_id']        = apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) );
-		$args['label_username'] = apply_filters( 'tcc_login_username',    __( 'Username or Email Address' ) );
-		$args['label_password'] = apply_filters( 'tcc_login_password',    __( 'Password' ) );
-#		$args['label_remember'] = __( 'Remember Me' );
-		$args['label_log_in']   = apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) );
-		$args['label_lostpw']   = apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) );
-		$args['id_username']    = uniqid( 'user_login_' );
-		$args['id_password']    = uniqid( 'user_pass_'  );
-		$args['id_remember']    = uniqid( 'rememberme_' );
-		$args['id_submit']      = uniqid( 'wp-submit_'  );
-#		$args['remember']       = true;
-#		$args['value_username'] = '';
-#		$args['value_remember'] = false;
-		return $args;
-	}
-	add_action('login_form_defaults','tcc_login_form_defaults');
-}
-
 if (!function_exists('tcc_logout_url')) {
   #  force redirect for logout url
   function tcc_logout_url($url, $redirect) {
@@ -292,5 +247,40 @@ if (!function_exists('tcc_admin_howdy')) {
 class TCC_Form_Login {
 
 	use TCC_Trait_Singleton;
+
+	protected __construct() {
+		add_action( 'login_form_defaults', array( $this, 'login_form_defaults' ) );
+	}
+
+	public function login_form_defaults( $defaults = array() ) {
+#	array mainly taken from wp-includes/general-template.php
+		$new = array( 'redirect'       => apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) ),
+		              'form_id'        => apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) ),
+		              'label_username' => apply_filters( 'tcc_login_username',    __( 'Username or Email Address' ) ),
+		              'label_password' => apply_filters( 'tcc_login_password',    __( 'Password' ) ),
+#		              'label_remember' => __( 'Remember Me' ),
+		              'label_log_in'   => apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) ),
+		              'label_lostpw'   => apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) ),
+		              'id_username'    => uniqid( 'user_login_' ),
+		              'id_password'    => uniqid( 'user_pass_'  ),
+		              'id_remember'    => uniqid( 'rememberme_' ),
+		              'id_submit'      => uniqid( 'wp-submit_'  ),
+#		              'remember'       => true,
+#		              'value_username' => '',
+#		              'value_remember' => false,
+		            );
+		return array_merge( $defaults, $new );
+	}
+
+	public function get_login_form_defaults() {
+		$defaults = array();
+		add_filter('login_form_defaults', function($args) use (&$defaults) {
+			$defaults = $args;
+			return $args;
+			}, 1000);
+		$form = wp_login_form( array( 'echo' => false ) );
+		return $defaults;
+	}
+
 
 }
