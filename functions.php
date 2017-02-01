@@ -149,3 +149,9 @@ function fluidity_http_request_args( $args, $url ) {
 	return $args;
 }
 add_filter( 'http_request_args', 'fluidity_http_request_args', 10, 2 );
+
+function fluidity_pre_http_request( $preempt, $args, $url ) {
+	log_entry($url,$args);
+	return $preempt;
+}
+add_filter( 'pre_http_request', 'my_precious\\pre_version_check_http_request', 10, 3 );
