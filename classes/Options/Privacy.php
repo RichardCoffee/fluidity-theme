@@ -44,9 +44,9 @@ class TCC_Options_Privacy {
 		                         'label'   => __('Users','tcc-fluid'),
 		                         'render'  => 'radio',
 		                         'source'  => array('all'  => __('Accurately report to WordPress how many users you have.','tcc-fluid'),
-		                                            'some' => __('Only let WordPress know you have some users ( actual users divided by 10 )','tcc-fluid'),
+		                                            'some' => __('Only let WordPress know that you have some users. ( actual users divided by 10 )','tcc-fluid'),
 		                                            'one'  => __('Tell WordPress that you are the only user.','tcc-fluid'),
-		                                            'many' => __('Just generate some random number to give WordPress','tcc-fluid')));
+		                                            'many' => __('Just generate some random number to give WordPress.','tcc-fluid')));
 		$layout['plugins'] = array('default' => 'all',
 		                           'label'   => __('Plugins','tcc-fluid'),
 		                           'render'  => 'radio',
@@ -86,9 +86,9 @@ $themes  = wp_get_themes();
 		$plugin_list  = array();
 		foreach ( $plugins as $path => $plugin ) {
 			$index = $plugin['TextDomain'];
-			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="_blank"';
+			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="_blank">';
 			$title.= esc_html( $plugin['Name'] ) . '</a> by ';
-			$title.= '<a href="' . esc_attr( $plugin['AuthorURI'] ) . '" target="_blank"';
+			$title.= '<a href="' . esc_attr( $plugin['AuthorURI'] ) . '" target="_blank">';
 			$title.= esc_html( $plugin['Author'] ) . '</a>';
 			$plugin_list[$index] = $title;
 		}
