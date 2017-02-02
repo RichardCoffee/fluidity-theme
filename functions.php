@@ -24,6 +24,7 @@ require_once('includes/login.php');
 require_once('includes/menus.php');
 require_once(FLUIDITY_HOME.'includes/misc.php');
 require_once('includes/parallax.php');
+require_once('includes/privacy.php');
 require_once('includes/sidebars.php');
 require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
 
