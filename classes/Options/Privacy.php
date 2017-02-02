@@ -94,7 +94,7 @@ log_entry($plugins,$themes); //*/
 log_entry($plugins);
 		$plugin_list  = array();
 		foreach ( $plugins as $path => $plugin ) {
-			$index = ( empty( $plugin['TextDomain'] ) ) ? basename( dirname( $path ) ) : $plugin['TextDomain'];
+			$index = ( empty( $plugin['TextDomain'] ) ) ? basename( $path, '.php' ) : $plugin['TextDomain'];
 			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $index ) . '">';
 			$title.= esc_html( $plugin['Name'] ) . '</a> by ';
 			$title.= '<a href="' . esc_attr( $plugin['AuthorURI'] ) . '" target="' . sanitize_title( $plugin['Author'] ) . '">';
