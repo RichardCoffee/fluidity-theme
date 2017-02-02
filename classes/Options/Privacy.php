@@ -91,6 +91,7 @@ log_entry($plugins,$themes); //*/
 
 	private function get_plugin_list() {
 		$plugins = get_plugins();
+log_entry($plugins);
 		$plugin_list  = array();
 		foreach ( $plugins as $path => $plugin ) {
 			$index = ( empty( $plugin['TextDomain'] ) ) ? basename( dirname( $path ) ) : $plugin['TextDomain'];
