@@ -11,7 +11,7 @@ class TCC_Options_Privacy {
 
   public function form_layout($form) {
     $form[$this->base] = array('describe' => array($this,'describe_social'),
-                               'title'    => __('WP Privacy','tcc-fluid'),
+                               'title'    => __('Privacy','tcc-fluid'),
                                'option'   => 'tcc_options_social',
                                'layout'   => $this->privacy_layout());
     return $form;
@@ -55,7 +55,7 @@ class TCC_Options_Privacy {
 
 $plugins = wp_get_installed_translations( 'plugins' );
 $themes  = wp_get_installed_translations( 'themes' );
-log_entry($plugin,$themes);
+log_entry($plugins,$themes);
 
 /*
 $layout['plugin_list']=array('default' => array(),
