@@ -24,6 +24,7 @@ class TCC_Options_Fluidity extends Basic_Admin_Form {
     new TCC_Options_Social;
     #if (tcc_design('paral')==='yes') { new TCC_Options_Parallax; }
     new TCC_Options_Settings;
+    new TCC_Options_Privacy;
   }
 
   public function add_menu_option() {
