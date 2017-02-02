@@ -449,15 +449,29 @@ log_entry($controls);
     }
   }
 
-  private function render_checkbox($data) {
-    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    $html = "<label>";
-    $html.= "<input type='checkbox' id='$ID' name='$name' value='yes' ";
-    $html.= checked('yes',$value,false);
-    $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
-    $html.= "/> <span>{$layout['text']}</span></label>";
-    echo $html;
-  }
+	private function render_checkbox( $data ) {
+		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
+		$onchange = ( isset( $layout['change'] ) ) ? $layout['change'] : ''; ?>
+		<label>
+			<input type="checkbox"
+			       id="<?php echo esc_attr( $ID ); ?>"
+			       name="<?php echo esc_attr( $name ); ?>"
+			       value="yes"
+			       <?php checked( $value ); ?>
+			       onchange="<?php echo esc_attr( $onchange ); ?>" />&nbsp;
+			<span>
+				<?php echo esc_html( $layout['text'] ); ?>
+			</span>
+		</label><?php
+	}
+
+	private function render_checkbox_multi( $data ) {
+log_entry($data);
+#		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
+#		if ( empty( $layout['source'] ) ) return;
+	}
+
+
 
   private function render_colorpicker($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
@@ -502,7 +516,7 @@ log_entry($controls);
 
 	private function render_radio($data) {
 
-		extract( $data );  #  array( 'ID' => $item, 'value' => $data[ $item ], 'layout' => $layout[ $item ], 'name' => $name )
+		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
 
 		$uniq = uniqid();

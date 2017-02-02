@@ -4,6 +4,7 @@ jQuery(document).ready(function() {
 //  showhideAdminElements(document.querySelector('.tcc-loca'),".tcc-wp_posi","dashboard");
   showhideAdminElements(document.querySelector('.social-option-active'),".social-option-icon","yes");
   showhideAdminElements(document.querySelector('.agent-role-active'),".agent-role-setting","agents");
+  showhideAdminElements(document.querySelector('.plugin-privacy-option'),".plugin-privacy-filter","filter");
   showhideElements(jQuery('.showhide'));
   jQuery('.form-colorpicker' ).wpColorPicker();
   jQuery('.form-image'       ).click(function(e) { imageUploader(this,e); });
