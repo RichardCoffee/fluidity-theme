@@ -30,6 +30,7 @@ class TCC_Options_Privacy {
                                                 'no'  => __('Do not let them know where you are.','tcc-fluid')));
     $layout['site']  = array('default' => 'yes',
                              'label'   => __('Install URL','tcc-fluid'),
+                             'text'    => __('The URLs referred to here and above, only differ if you are running in multi-site mode.','tcc-fluid'),
                              'render'  => 'radio',
                              'source'  => array('yes' => __("Let WordPress know the url you installed WordPress to.",'tcc-fluid'),
                                                 'no'  => __('Do not give WordPress this information.','tcc-fluid')));
@@ -53,8 +54,9 @@ class TCC_Options_Privacy {
                                                 'none'   => __('Do not let them know where you are.','tcc-fluid')));
 
 
-$plugins = wp_get_installed_translations( 'plugins' );
-$themes  = wp_get_installed_translations( 'themes' );
+$plugins = get_plugins();
+$themes  = wp_get_themes();
+$list = wp_get_installed_translations( 'plugins' );
 log_entry($plugins,$themes);
 
 /*
