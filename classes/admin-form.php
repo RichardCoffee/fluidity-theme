@@ -500,25 +500,45 @@ log_entry($controls);
     echo $html;
   }
 
-  private function render_radio($data) {
-    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    if (empty($layout['source'])) return;
-    $uniq = uniqid();
-    $html = "<div";
-    $html.= (isset($layout['help'])) ? " title='".esc_attr($layout['help'])."'>" : ">";
-    $html.= (isset($layout['text'])) ? "<div id='$uniq'>".esc_attr($layout['text'])."</div>" : "";
-    foreach($layout['source'] as $key=>$text) {
-      $html.= "<div><label>";
-      $html.= "<input type='radio' name='$name' value='$key'";
-      $html.= ($value==$key) ? " checked='yes'" : "";
-      $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'" : "";
-      $html.= (isset($layout['text']))   ? " aria-describedby='$uniq'"       : "";
-      $html.= "> $text</label></div>";
-    }
-    $html.= (isset($layout['postext'])) ? "<div>{$layout['postext']}</div>" : "";
-    $html.= "</div>";
-    echo $html;
-  }
+	private function render_radio($data) {
+
+		extract( $data );  #  array( 'ID' => $item, 'value' => $data[ $item ], 'layout' => $layout[ $item ], 'name' => $name )
+		if ( empty( $layout['source'] ) ) return;
+
+		$uniq = uniqid();
+		$tooltip     = ( isset( $layout['help'] ) )    ? $layout['help']    : '';
+		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
+		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
+		$onchange    = ( isset( $layout['change'] ) )  ? $layout['change']  : ''; ?>
+
+		<div title="<?php echo esc_attr( $tooltip ); ?>">
+			<div id="<?php echo $uniq; ?>">
+				<?php echo esc_html( $layout['text'] ); ?>
+			</div><?php
+
+			foreach( $layout['source'] as $key => $text ) { ?>
+				<div>
+					<label>
+						<input type="radio"
+						       name="<?php echo esc_attr($name) ; ?>"
+						       value="<?php echo esc_attr($key); ?>"
+						       <?php checked( $value, $key ); ?>
+						       onchange="<?php echo esc_attr( $onchange ); ?>"
+						       aria-describedby="<?php echo $uniq; ?>">
+						<?php echo esc_html($text); ?>
+					</label>
+				</div><?php
+			} ?>
+
+			<div>
+				<?php echo esc_html( $after_text ) ; ?>
+			</div>
+		</div><?php
+	} //*/
+
+	#  Note:  this has limited use - only displays yes/no radios
+	private function render_radio_multi( $data ) {
+	}
 
   private function render_select($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
