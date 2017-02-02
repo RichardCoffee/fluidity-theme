@@ -24,17 +24,17 @@ class TCC_Options_Privacy {
 
 	public function options_layout() {
 		$layout = array('default'=>true);
-/*		$layout['blog']  = array('default' => 'yes',
-		                         'label'   => __('Blog URL','tcc-fluid'),
-		                         'render'  => 'radio',
-		                         'source'  => array('yes' => __("Let WordPress know your site's url.",'tcc-fluid'),
-		                                            'no'  => __('Do not let them know where you are.','tcc-fluid'))); //*/
-/*		$layout['site']  = array('default' => 'yes',
-		                         'label'   => __('Install URL','tcc-fluid'),
-		                         'text'    => __('The URLs referred to here and above, only differ if you are running in multi-site mode.','tcc-fluid'),
-		                         'render'  => 'radio',
-		                         'source'  => array('yes' => __("Let WordPress know the url you installed WordPress to.",'tcc-fluid'),
-		                                            'no'  => __('Do not give WordPress this information.','tcc-fluid'))); //*/
+		$layout['blog'] = array('default' => 'yes',
+		                        'label'   => __('Blog URL','tcc-fluid'),
+		                        'render'  => 'radio',
+		                        'source'  => array('yes' => __("Let WordPress know your site's url.",'tcc-fluid'),
+		                                           'no'  => __('Do not let them know where you are.','tcc-fluid'))); //*/
+		$layout['install'] = array('default' => 'yes',
+		                           'label'   => __('Install URL','tcc-fluid'),
+		                           'text'    => __('The URLs referred to here and above, only differ if you are running in multi-site mode.','tcc-fluid'),
+		                           'render'  => 'radio',
+		                           'source'  => array('yes' => __("Let WordPress know the url you installed WordPress to.",'tcc-fluid'),
+		                                              'no'  => __('Do not give WordPress this information.','tcc-fluid'))); //*/
 		$layout['blogs'] = array('default' => 'yes',
 		                         'label'   => __('Multi-Site','tcc-fluid'),
 		                         'render'  => 'radio',
