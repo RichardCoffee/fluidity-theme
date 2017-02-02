@@ -36,7 +36,7 @@ class TCC_Options_Privacy {
 		                         'render'  => 'radio',
 		                         'source'  => array('yes' => __("Yes - Let WordPress know if you are running a multi-site blog.",'tcc-fluid'),
 		                                            'no'  => __("No -- Tell WordPress you are running just a single blog.",'tcc-fluid')),
-		                         'change'  => 'showhidePosi(this,".privacy-install-url","filter");',
+		                         'change'  => 'showhidePosi(this,".privacy-install-url","yes");',
 		                         'divcss'  => 'privacy-blogs'); //*/
 
 		$layout['install'] = array('default' => 'yes',
@@ -75,8 +75,8 @@ class TCC_Options_Privacy {
 		                          'source'  => array('all'    => __("Let WordPress know what themes you have installed.",'tcc-fluid'),
 		                                             'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
 		                                             'none'   => __('Do not let them know about your themes.','tcc-fluid')),
-		                          'change'  => 'showhidePosi(this,".plugin-privacy-filter","filter");',
-		                          'divcss'  => 'plugin-privacy-option'); //*/
+		                          'change'  => 'showhidePosi(this,".theme-privacy-filter","filter");',
+		                          'divcss'  => 'theme-privacy-option'); //*/
 
 /*
 $plugins = get_plugins();
