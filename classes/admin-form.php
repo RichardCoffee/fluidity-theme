@@ -587,7 +587,7 @@ log_entry($controls);
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       value="no"
 						       <?php checked( $check, 'no' ); ?> />
-						<?php echo esc_html( $text ); ?>
+						<?php echo $text; ?>
 					</label>
 				</div><?php
 			} ?>

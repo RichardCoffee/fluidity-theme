@@ -77,10 +77,11 @@ class TCC_Options_Privacy {
 		                               'render'  => 'radio_multiple',
 		                               'source'  => $this->get_plugin_list(),
 		                               'divcss'  => 'privacy-plugin-filter'); //*/
-
+#log_entry($layout);
+/*
 		$layout['themes']  = array('default' => 'all',
 		                           'label'   => __('Themes','tcc-fluid'),
-		                           'render'  => 'radio_multiple',
+		                           'render'  => 'radio',
 		                           'source'  => array('all'    => __("Let WordPress know what themes you have installed.",'tcc-fluid'),
 		                                              'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
 		                                              'none'   => __('Do not let them know about your themes.','tcc-fluid')),
