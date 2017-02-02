@@ -3,10 +3,12 @@
 
 class TCC_Options_Privacy {
 
-	private $base = 'privacy';
-	private $sort = 550;
+	private $base    = 'privacy';
+	private $sort    = 550;
+	private $plugins = array();
 
 	public function __construct() {
+		$this->plugins = get_plugins();
 		add_filter('fluidity_options_form_layout', array($this,'form_layout'),$this->sort);
 	}
 
@@ -25,19 +27,19 @@ class TCC_Options_Privacy {
 	public function options_layout() {
 		$layout = array('default'=>true);
 
-		$layout['blog'] = array('default' => 'yes',
-		                        'label'   => __('Blog URL','tcc-fluid'),
-		                        'render'  => 'radio',
-		                        'source'  => array('yes' => __("Let WordPress know your site's url.",'tcc-fluid'),
-		                                           'no'  => __('Do not let them know where you are.','tcc-fluid'))); //*/
+		$layout['blog']    = array('default' => 'yes',
+		                           'label'   => __('Blog URL','tcc-fluid'),
+		                           'render'  => 'radio',
+		                           'source'  => array('yes' => __("Let WordPress know your site's url.",'tcc-fluid'),
+		                                              'no'  => __('Do not let them know where you are.','tcc-fluid'))); //*/
 
-		$layout['blogs'] = array('default' => 'yes',
-		                         'label'   => __('Multi-Site','tcc-fluid'),
-		                         'render'  => 'radio',
-		                         'source'  => array('yes' => __("Yes - Let WordPress know if you are running a multi-site blog.",'tcc-fluid'),
-		                                            'no'  => __("No -- Tell WordPress you are running just a single blog.",'tcc-fluid')),
-		                         'change'  => 'showhidePosi(this,".privacy-install-url","yes");',
-		                         'divcss'  => 'privacy-blogs'); //*/
+		$layout['blogs']   = array('default' => 'yes',
+		                           'label'   => __('Multi-Site','tcc-fluid'),
+		                           'render'  => 'radio',
+		                           'source'  => array('yes' => __("Yes - Let WordPress know if you are running a multi-site blog.",'tcc-fluid'),
+		                                              'no'  => __("No -- Tell WordPress you are running just a single blog.",'tcc-fluid')),
+		                           'change'  => 'showhidePosi(this,".privacy-install-url","yes");',
+		                           'divcss'  => 'privacy-blogs'); //*/
 
 		$layout['install'] = array('default' => 'yes',
 		                           'label'   => __('Install URL','tcc-fluid'),
@@ -46,39 +48,38 @@ class TCC_Options_Privacy {
 		                                              'no'  => __('Do not give WordPress this information.','tcc-fluid')),
 		                           'divcss'  => 'privacy-install-url'); //*/
 
-		$layout['users'] = array('default' => 'all',
-		                         'label'   => __('Users','tcc-fluid'),
-		                         'render'  => 'radio',
-		                         'source'  => array('all'  => __('Accurately report to WordPress how many users you have.','tcc-fluid'),
-		                                            'some' => __('Only let WordPress know that you have some users. ( actual users divided by 10 )','tcc-fluid'),
-		                                            'one'  => __('Tell WordPress that you are the only user.','tcc-fluid'),
-		                                            'many' => __('Just generate some random number to give WordPress.','tcc-fluid')));
+		$layout['users']   = array('default' => 'all',
+		                           'label'   => __('Users','tcc-fluid'),
+		                           'render'  => 'radio',
+		                           'source'  => array('all'  => __('Accurately report to WordPress how many users you have.','tcc-fluid'),
+		                                              'some' => __('Only let WordPress know that you have some users. ( actual users divided by 10 )','tcc-fluid'),
+		                                              'one'  => __('Tell WordPress that you are the only user.','tcc-fluid'),
+		                                              'many' => __('Just generate some random number to give WordPress.','tcc-fluid')));
 
 		$layout['plugins'] = array('default' => 'all',
 		                           'label'   => __('Plugins','tcc-fluid'),
 		                           'render'  => 'radio',
-		                           'source'  => array('all'    => __("Let WordPress know what plugins you have installed.",'tcc-fluid'),
+		                           'source'  => array('all'    => __('Let WordPress know what plugins you have installed.','tcc-fluid'),
 		                                              'filter' => __('Filter the plugin list that gets sent to WordPress.','tcc-fluid'),
 		                                              'none'   => __('Do not let them know about your plugins.','tcc-fluid')),
 		                           'change'  => 'showhidePosi(this,".privacy-plugin-filter","filter");',
 		                           'divcss'  => 'privacy-plugin-option'); //*/
 
-		$layout['plugin_list'] = array('default' => array(),
+		$layout['plugin_list'] = array('default' => $this->get_plugin_defaults('yes'),
+		                               'preset'  => 'yes',
 		                               'label'   => __('Plugin List','tcc-fluid'),
-		                               'render'  => 'checkbox_multiple',
+		                               'render'  => 'radio_multiple',
 		                               'source'  => $this->get_plugin_list(),
 		                               'divcss'  => 'privacy-plugin-filter'); //*/
 
-/*		$layout['themes'] = array('default' => 'all',
-		                          'label'   => __('Themes','tcc-fluid'),
-		                          'render'  => 'radio',
-		                          'source'  => array('all'    => __("Let WordPress know what themes you have installed.",'tcc-fluid'),
-		                                             'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
-		                                             'none'   => __('Do not let them know about your themes.','tcc-fluid')),
-		                          'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
-		                          'divcss'  => 'privacy-theme-option'); //*/
-
-
+		$layout['themes']  = array('default' => 'all',
+		                           'label'   => __('Themes','tcc-fluid'),
+		                           'render'  => 'radio_multiple',
+		                           'source'  => array('all'    => __("Let WordPress know what themes you have installed.",'tcc-fluid'),
+		                                              'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
+		                                              'none'   => __('Do not let them know about your themes.','tcc-fluid')),
+		                           'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
+		                           'divcss'  => 'privacy-theme-option'); //*/
 
 /*
 $plugins = get_plugins();
@@ -89,12 +90,20 @@ log_entry($plugins,$themes); //*/
     return $layout;
   }
 
+	private function get_plugin_defaults( $preset ) {
+		$options = tcc_privacy( 'plugin_list' );
+		foreach( $this->plugins as $path => $plugin ) {
+			$index = $this->generate_index( $path, $plugin );
+			if ( ! isset( $options[$index] ) ) {
+				$options[$index] = $preset;
+			}
+		}
+	}
+
 	private function get_plugin_list() {
-		$plugins = get_plugins();
-log_entry($plugins);
-		$plugin_list  = array();
-		foreach ( $plugins as $path => $plugin ) {
-			$index = ( empty( $plugin['TextDomain'] ) ) ? basename( $path, '.php' ) : $plugin['TextDomain'];
+		$plugin_list = array();
+		foreach ( $this->plugins as $path => $plugin ) {
+			$index = $this->generate_index( $path, $plugin );
 			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $index ) . '">';
 			$title.= esc_html( $plugin['Name'] ) . '</a> by ';
 			$title.= '<a href="' . esc_attr( $plugin['AuthorURI'] ) . '" target="' . sanitize_title( $plugin['Author'] ) . '">';
@@ -102,6 +111,10 @@ log_entry($plugins);
 			$plugin_list[$index] = $title;
 		}
 		return $plugin_list;
+	}
+
+	private function generate_index( $path, $plugin ) {
+		return ( empty( $plugin['TextDomain'] ) ) ? basename( $path, '.php' ) : $plugin['TextDomain'];
 	}
 
 }

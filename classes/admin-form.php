@@ -466,10 +466,22 @@ log_entry($controls);
 	}
 
 	private function render_checkbox_multiple( $data ) {
-log_entry($data);
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
-#		foreach( $layout['source'] as 
+		foreach( $layout['source'] as $key => $text ) {
+			$check = isset( $value[ $key ] ) ? true : false; ?>
+			<div>
+				<label>
+					<input type="checkbox"
+					       id="<?php echo esc_attr( $ID.'-'.$key ); ?>"
+					       name="<?php echo esc_attr( $name.'['.$key.']' ); ?>"
+					       value="yes" <?php checked( $check ); ?> />&nbsp;
+					<span>
+						<?php echo esc_html( $text ); ?>
+					</span>
+				</label>
+			</div><?php
+		}
 	}
 
 
@@ -551,8 +563,38 @@ log_entry($data);
 		</div><?php
 	} //*/
 
-	#  Note:  this has limited use - only displays yes/no radios
-	private function render_radio_multi( $data ) {
+	#	Note:  this has limited use - only displays yes/no radios
+	private function render_radio_multiple( $data ) {
+		extract( $data );   #   associative array: keys are 'ID', 'value', 'layout', 'name'
+		if ( empty( $layout['source'] ) ) return;
+		$tooltip     = ( isset( $layout['help'] ) )    ? $layout['help']    : '';
+		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
+		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
+		$preset      = ( isset( $layout['preset'] ) )  ? $layout['preset']  : 'no'; ?>
+		<div title="<?php echo esc_attr( $tooltip ); ?>">
+			<div>
+				<?php echo esc_html( $before_text ); ?>
+			</div><?php
+			foreach( $layout['source'] as $key => $text ) {
+				$check  = ( isset( $value[ $key ] ) ) ? $value[ $key ] : $preset; ?>
+				<div>
+					<label>
+						<input type="radio"
+						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
+						       value="yes"
+						       <?php checked( $check, 'yes' ); ?> />
+						<input type="radio"
+						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
+						       value="no"
+						       <?php checked( $check, 'no' ); ?> />
+						<?php echo esc_html( $text ); ?>
+					</label>
+				</div><?php
+			} ?>
+			<div>
+				<?php echo esc_html( $after_text ) ; ?>
+			</div>
+		</div><?php
 	}
 
   private function render_select($data) {
