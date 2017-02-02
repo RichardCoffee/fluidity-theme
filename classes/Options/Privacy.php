@@ -54,20 +54,20 @@ class TCC_Options_Privacy {
 		                                            'one'  => __('Tell WordPress that you are the only user.','tcc-fluid'),
 		                                            'many' => __('Just generate some random number to give WordPress.','tcc-fluid')));
 
-/*		$layout['plugins'] = array('default' => 'all',
+		$layout['plugins'] = array('default' => 'all',
 		                           'label'   => __('Plugins','tcc-fluid'),
 		                           'render'  => 'radio',
 		                           'source'  => array('all'    => __("Let WordPress know what plugins you have installed.",'tcc-fluid'),
 		                                              'filter' => __('Filter the plugin list that gets sent to WordPress.','tcc-fluid'),
 		                                              'none'   => __('Do not let them know about your plugins.','tcc-fluid')),
-		                           'change'  => 'showhidePosi(this,".plugin-privacy-filter","filter");',
-		                           'divcss'  => 'plugin-privacy-option'); //*/
+		                           'change'  => 'showhidePosi(this,".privacy-plugin-filter","filter");',
+		                           'divcss'  => 'privacy-plugin-option'); //*/
 
-/*		$layout['plugin_list'] = array('default' => array(),
+		$layout['plugin_list'] = array('default' => array(),
 		                               'label'   => __('Plugin List','tcc-fluid'),
-		                               'render'  => 'checkbox_multi',
+		                               'render'  => 'checkbox_multiple',
 		                               'source'  => $this->get_plugin_list(),
-		                               'divcss'  => 'plugin-privacy-filter'); //*/
+		                               'divcss'  => 'privacy-plugin-filter'); //*/
 
 /*		$layout['themes'] = array('default' => 'all',
 		                          'label'   => __('Themes','tcc-fluid'),
@@ -75,8 +75,10 @@ class TCC_Options_Privacy {
 		                          'source'  => array('all'    => __("Let WordPress know what themes you have installed.",'tcc-fluid'),
 		                                             'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
 		                                             'none'   => __('Do not let them know about your themes.','tcc-fluid')),
-		                          'change'  => 'showhidePosi(this,".theme-privacy-filter","filter");',
-		                          'divcss'  => 'theme-privacy-option'); //*/
+		                          'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
+		                          'divcss'  => 'privacy-theme-option'); //*/
+
+
 
 /*
 $plugins = get_plugins();

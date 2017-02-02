@@ -465,10 +465,11 @@ log_entry($controls);
 		</label><?php
 	}
 
-	private function render_checkbox_multi( $data ) {
+	private function render_checkbox_multiple( $data ) {
 log_entry($data);
-#		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
-#		if ( empty( $layout['source'] ) ) return;
+		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
+		if ( empty( $layout['source'] ) ) return;
+#		foreach( $layout['source'] as 
 	}
 
 
