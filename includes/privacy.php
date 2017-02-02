@@ -55,16 +55,13 @@ if ( ! function_exists( 'privacy_request_args' ) ) {
 		}
 
 		#	strip site URL from headers & user-agent
-		if ( tcc_privacy( 'install' ) === 'no' ) { unset( $args['headers']['wp_install'] ); }
-		if ( tcc_privacy( 'blog' )    === 'no' ) { unset( $args['headers']['wp_blog'] ); }
-
-/*		#	user agent string
-		if( ! empty( $args['user-agent'] ) ) {
+		if ( tcc_privacy( 'blog' ) === 'no' ) {
+			unset( $args['headers']['wp_blog'] );
 			$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-		}
-		if( ! empty( $args['headers']['User-Agent'] ) ) {
 			$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-		} //*/
+		}
+		if ( ( tcc_privacy( 'install' ) === 'no' ) || ( tcc_privacy( 'blogs' ) === 'no' ) ) {
+			unset( $args['headers']['wp_install'] ); }
 
 		return $args;
 	}
