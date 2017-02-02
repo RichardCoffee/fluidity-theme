@@ -10,14 +10,14 @@ class TCC_Options_Privacy {
   }
 
   public function form_layout($form) {
-    $form[$this->base] = array('describe' => array($this,'describe_social'),
+    $form[$this->base] = array('describe' => array($this,'describe_privacy'),
                                'title'    => __('Privacy','tcc-fluid'),
-                               'option'   => 'tcc_options_social',
+                               'option'   => 'tcc_options_privacy',
                                'layout'   => $this->privacy_layout());
     return $form;
   }
 
-  public function describe_social() {
+  public function describe_privacy() {
     _e('Control the information that WordPress gets from your site.  The default settings here duplicate what WordPress currently collects.','tcc-fluid');
   }
 
