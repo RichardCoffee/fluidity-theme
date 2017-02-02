@@ -513,19 +513,19 @@ log_entry($controls);
 
 		<div title="<?php echo esc_attr( $tooltip ); ?>">
 			<div id="<?php echo $uniq; ?>">
-				<?php echo esc_html( $layout['text'] ); ?>
+				<?php echo esc_html( $before_text ); ?>
 			</div><?php
 
 			foreach( $layout['source'] as $key => $text ) { ?>
 				<div>
 					<label>
 						<input type="radio"
-						       name="<?php echo esc_attr($name) ; ?>"
-						       value="<?php echo esc_attr($key); ?>"
+						       name="<?php echo esc_attr( $name ) ; ?>"
+						       value="<?php echo esc_attr( $key ); ?>"
 						       <?php checked( $value, $key ); ?>
 						       onchange="<?php echo esc_attr( $onchange ); ?>"
 						       aria-describedby="<?php echo $uniq; ?>">
-						<?php echo esc_html($text); ?>
+						<?php echo esc_html( $text ); ?>
 					</label>
 				</div><?php
 			} ?>
