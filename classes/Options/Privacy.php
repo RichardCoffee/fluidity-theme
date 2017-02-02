@@ -8,7 +8,13 @@ class TCC_Options_Privacy {
 	private $plugins = array();
 
 	public function __construct() {
+
+		#	https://codex.wordpress.org/Function_Reference/get_plugins
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
 		$this->plugins = get_plugins();
+
 		add_filter('fluidity_options_form_layout', array($this,'form_layout'),$this->sort);
 	}
 
