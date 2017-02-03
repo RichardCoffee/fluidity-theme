@@ -6,6 +6,7 @@ class TCC_Options_Privacy {
 	private $base    = 'privacy';
 	private $sort    = 550;
 	private $plugins = array();
+	private $themes  = array();
 
 	public function __construct() {
 
@@ -14,6 +15,7 @@ class TCC_Options_Privacy {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		$this->plugins = get_plugins();
+		$this->themes  = wp_get_themes();
 
 		add_filter('fluidity_options_form_layout', array($this,'form_layout'),$this->sort);
 	}
@@ -87,19 +89,22 @@ class TCC_Options_Privacy {
 		                           'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
 		                           'divcss'  => 'privacy-theme-action'); //*/
 /*
-		$layout['themes_list'] = array('default' => $this->get_theme_defaults('yes'),
-		                               'preset'  => 'yes',
-		                               'label'   => __('Theme List','tcc-fluid'),
-		                               'render'  => 'radio_multiple',
-		                               'source'  => $this->get_themes_list(),
-		                               'divcss'  => 'privacy-theme-filter'); //*/
+		$layout['theme_list'] = array('default' => $this->get_theme_defaults('yes'),
+		                              'preset'  => 'yes',
+		                              'label'   => __('Theme List','tcc-fluid'),
+		                              'render'  => 'radio_multiple',
+		                              'source'  => $this->get_theme_list(),
+		                              'divcss'  => 'privacy-theme-filter'); //*/
 
-$themes  = wp_get_themes();
+$themes  = $this->get_theme_list();
 log_entry($themes); //*/
 
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
+
+
+	/**  Plugin functions  **/
 
 	private function get_plugin_defaults( $preset ) {
 		$options = tcc_privacy( 'plugin_list' );
@@ -126,6 +131,27 @@ log_entry($themes); //*/
 
 	private function generate_index( $path, $plugin ) {
 		return ( empty( $plugin['TextDomain'] ) ) ? basename( $path, '.php' ) : $plugin['TextDomain'];
+	}
+
+
+	/**  Theme functions  **/
+
+	private function get_theme_defaults( $preset ) {
+		$options = tcc_privacy( 'theme_list' );
+	}
+
+	private function get_theme_list() {
+		$theme_list = array();
+		foreach( $this->themes as $slug => $theme ) {
+			$title = '<a href="' . esc_attr( $theme->get( 'ThemeURI' ) ) . '" target="' . esc_attr( $slug ) . '">';
+			$title.= esc_html( $theme->get( 'Name' ) ) . '</a> by ';
+			$title.= '<a href="' . esc_attr( $theme->get( 'AuthorURI' ) ) . '" target="' . sanitize_title( $theme->get( 'Author' ) ) . '">';
+			$title.= esc_html( $theme->get( 'Author' ) ) . '</a>';
+			$theme_list[ $slug ] = $title;
+
+
+		}
+		return $theme_list;
 	}
 
 }
