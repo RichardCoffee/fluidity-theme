@@ -69,7 +69,7 @@ class TCC_Options_Privacy {
 		                                              'filter' => __('Filter the plugin list that gets sent to WordPress.','tcc-fluid'),
 		                                              'none'   => __('Do not let them know about your plugins.','tcc-fluid')),
 		                           'change'  => 'showhidePosi(this,".privacy-plugin-filter","filter");',
-		                           'divcss'  => 'privacy-plugin-option'); //*/
+		                           'divcss'  => 'privacy-plugin-action'); //*/
 
 		$layout['plugin_list'] = array('default' => $this->get_plugin_defaults('yes'),
 		                               'preset'  => 'yes',
