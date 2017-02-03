@@ -88,16 +88,13 @@ class TCC_Options_Privacy {
 		                                              'none'   => __('Do not let them know about your themes.','tcc-fluid')),
 		                           'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
 		                           'divcss'  => 'privacy-theme-action'); //*/
-/*
+
 		$layout['theme_list'] = array('default' => $this->get_theme_defaults('yes'),
 		                              'preset'  => 'yes',
 		                              'label'   => __('Theme List','tcc-fluid'),
 		                              'render'  => 'radio_multiple',
 		                              'source'  => $this->get_theme_list(),
 		                              'divcss'  => 'privacy-theme-filter'); //*/
-
-$themes  = $this->get_theme_list();
-log_entry($themes); //*/
 
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
@@ -108,10 +105,11 @@ log_entry($themes); //*/
 
 	private function get_plugin_defaults( $preset ) {
 		$options = tcc_privacy( 'plugin_list' );
+		if ( empty( $options ) ) { $options = array(); }
 		foreach( $this->plugins as $path => $plugin ) {
 			$index = $this->generate_index( $path, $plugin );
-			if ( ! isset( $options[$index] ) ) {
-				$options[$index] = $preset;
+			if ( ! isset( $options[ $index ] ) ) {
+				$options[ $index ] = $preset;
 			}
 		}
 	}
@@ -138,6 +136,13 @@ log_entry($themes); //*/
 
 	private function get_theme_defaults( $preset ) {
 		$options = tcc_privacy( 'theme_list' );
+		if ( empty( $options ) ) { $options = array(); }
+		foreach( $this->themes as $slug => $theme ) {
+			if ( ! isset( $options[ $slug ] ) ) {
+				$options[ $slug ] = $preset;
+			}
+		}
+		return $options;
 	}
 
 	private function get_theme_list() {
