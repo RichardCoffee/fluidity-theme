@@ -7,11 +7,10 @@
 
 if ( ! function_exists( 'add_privacy_filters' ) ) {
 	function add_privacy_filters() {
-#		add_filter( 'pre_site_option_blog_count', 'privacy_blog_count',    100, 3 );
-#		add_filter( 'pre_site_option_user_count', 'privacy_user_count',    100, 3 );
-#		add_filter( 'http_request_args',          'privacy_request_args', 9999, 2 );
-#		add_filter( 'pre_http_request',           'privacy_http_request',    1, 3 );
-log_entry('action wp_version_check fired');
+		add_filter( 'pre_site_option_blog_count', 'privacy_blog_count',    100, 3 );
+		add_filter( 'pre_site_option_user_count', 'privacy_user_count',    100, 3 );
+		add_filter( 'http_request_args',          'privacy_request_args', 9999, 2 );
+		add_filter( 'pre_http_request',           'privacy_http_request',    1, 3 );
 	}
 	add_action( 'wp_version_check', 'add_privacy_filters' );
 }
@@ -19,10 +18,12 @@ log_entry('action wp_version_check fired');
 if ( ! function_exists( 'privacy_blog_count' ) ) {
 	function privacy_blog_count( $count, $option, $network_id ) {
 		$privacy = tcc_privacy( 'blogs' );
+
 log_entry($count,$option,$network_id,$privacy);
+/*
 		if ( $privacy && ( $privacy === 'no' ) ) {
 			return 1;
-		}
+		} //*/
 		return $count;
 	}
 }
@@ -30,7 +31,9 @@ log_entry($count,$option,$network_id,$privacy);
 if ( ! function_exists( 'privacy_user_count' ) ) {
 	function privacy_user_count( $count, $option, $network_id ) {
 		$privacy = tcc_privacy( 'users' );
+
 log_entry($count,$option,$network_id,$privacy);
+/*
 		if ( $privacy ) {
 			switch( $privacy ) {
 				case 'all':
@@ -45,8 +48,10 @@ log_entry($count,$option,$network_id,$privacy);
 					$count = rand( 1, ( $users * 10 ) );
 				default:
 			}
-		}
-log_entry($count);
+		} //*/
+
+#log_entry($count);
+
 		return $count;
 	}
 }
@@ -55,6 +60,7 @@ if ( ! function_exists( 'privacy_request_args' ) ) {
 	function privacy_request_args( $args, $url ) {
 
 log_entry($url,$args);
+/*
 		#	only act on requests to api.wordpress.org
 		if( strpos( $url, '://api.wordpress.org/' ) !== 5 ) {
 			return $args;
@@ -89,14 +95,17 @@ log_entry($url,$args);
 			$request['body']['themes'] = json_encode( $themes );
 		} //*/
 
-log_entry($args);
+#log_entry($args);
+
 		return $args;
 	}
 }
 
 if ( ! function_exists( 'privacy_http_request' ) ) {
 	function privacy_http_request( $preempt, $args, $url ) {
+
 log_entry($preempt,$args,$url);
+
 		if( $preempt !== false ) {
 			return $preempt;
 		}
@@ -111,10 +120,14 @@ log_entry($preempt,$args,$url);
 			return $preempt;
 		}
 
+return $preempt;
+
 		#	make request
 		$args['_privacy_retained'] = true;
 		$result = wp_remote_request( $url, $args );
+
 log_entry($result);
+
 		return $result;
 	}
 }

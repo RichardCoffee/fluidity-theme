@@ -95,6 +95,15 @@ if (!function_exists('esc_html_ex')) {
 	}
 }
 
+if (!function_exists('esc_html_nx')) {
+	#| wp_includes/i10n.php#_nx
+	function esc_html_nx( $single, $plural, $number, $context, $domain = 'default' ) {
+		$translations = get_translations_for_domain( $domain );
+		$translation  = $translations->translate_plural( $single, $plural, $number, $context );
+		return esc_html( apply_filters( 'ngettext_with_context', $translation, $single, $plural, $number, $context, $domain ) );
+	}
+}
+
 #  https://developer.wordpress.org/themes/basics/template-hierarchy/
 if (!function_exists('author_role_template')) {
   function author_role_template( $templates ) {

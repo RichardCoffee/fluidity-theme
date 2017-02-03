@@ -27,7 +27,7 @@ class TCC_Options_Privacy {
 	}
 
 	public function title_description() {
-		_e('Control the information that WordPress gets from your site.  The default settings here duplicate what WordPress currently collects.','tcc-fluid');
+		_e('Control the information that WordPress collects from your site.  The default settings here duplicate what WordPress currently collects.','tcc-fluid');
 	}
 
 	public function options_layout() {
@@ -77,8 +77,7 @@ class TCC_Options_Privacy {
 		                               'render'  => 'radio_multiple',
 		                               'source'  => $this->get_plugin_list(),
 		                               'divcss'  => 'privacy-plugin-filter'); //*/
-#log_entry($layout);
-/*
+
 		$layout['themes']  = array('default' => 'all',
 		                           'label'   => __('Themes','tcc-fluid'),
 		                           'render'  => 'radio',
@@ -86,12 +85,17 @@ class TCC_Options_Privacy {
 		                                              'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
 		                                              'none'   => __('Do not let them know about your themes.','tcc-fluid')),
 		                           'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
-		                           'divcss'  => 'privacy-theme-option'); //*/
-
+		                           'divcss'  => 'privacy-theme-action'); //*/
 /*
-$plugins = get_plugins();
+		$layout['themes_list'] = array('default' => $this->get_theme_defaults('yes'),
+		                               'preset'  => 'yes',
+		                               'label'   => __('Theme List','tcc-fluid'),
+		                               'render'  => 'radio_multiple',
+		                               'source'  => $this->get_themes_list(),
+		                               'divcss'  => 'privacy-theme-filter'); //*/
+
 $themes  = wp_get_themes();
-log_entry($plugins,$themes); //*/
+log_entry($themes); //*/
 
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
