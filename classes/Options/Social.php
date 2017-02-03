@@ -32,7 +32,7 @@ class TCC_Options_Social {
                               'change'  => 'showhidePosi(this,".social-option-icon","yes");',
                               'divcss'  => 'social-option-active');
     $layout['target'] = array('default' => 'target',
-                              'label'   => __('Target','tcc-fluid'),
+                              'label'   => __('Browser','tcc-fluid'),
                               'render'  => 'radio',
                               'source'  => array('target'  => __('Open in new tab (default)','tcc-fluid'),
                                                  'replace' => __('Load in same tab','tcc-fluid')),
@@ -46,16 +46,14 @@ class TCC_Options_Social {
                                                  'fa-3x'  => __('3 * font size','tcc-fluid'),
                                                  'fa-4x'  => __('4 * font size','tcc-fluid'),
                                                  'fa-5x'  => __('5 * font size','tcc-fluid')),
-                              'divcss'  => 'social-option-icon'
-);
+                              'divcss'  => 'social-option-icon');
     $layout['prote']  = array('label'   => __('Social Site URL','tcc-fluid'),
                               'text'    => __('Be sure to add the protocol (ie: http:// or https://).','tcc-fluid'),
                               'render'  => 'display',
                               'divcss'  => 'social-option-icon');
     $icons = array('Behance'   => 'blue',    'Bitbucket'   => '#205081', 'Facebook' => '#3B5998',
                    'GitHub'    => 'black',   'Google Plus' => '#D74D2F', 'LinkedIN' => '#287BBC',
-                   'Pinterest' => 'red',     'RSS'         => '#F67F00',
-# 'Steam'    => 'black',
+                   'Pinterest' => 'red',     'RSS'         => '#F67F00',# 'Steam'    => 'black',
                    'Tumblr'    => 'black',   'Twitter'     => '#0084B4', 'Xing'     => 'black',
                    'YouTube'  => 'red');
     foreach($icons as $icon=>$color) {
