@@ -7,10 +7,11 @@
 
 if ( ! function_exists( 'add_privacy_filters' ) ) {
 	function add_privacy_filters() {
-		add_filter( 'pre_site_option_blog_count', 'privacy_blog_count',    100, 3 );
-		add_filter( 'pre_site_option_user_count', 'privacy_user_count',    100, 3 );
+#		add_filter( 'pre_site_option_blog_count', 'privacy_blog_count',    100, 3 );
+#		add_filter( 'pre_site_option_user_count', 'privacy_user_count',    100, 3 );
 #		add_filter( 'http_request_args',          'privacy_request_args', 9999, 2 );
 #		add_filter( 'pre_http_request',           'privacy_http_request',    1, 3 );
+log_entry('action wp_version_check fired');
 	}
 	add_action( 'wp_version_check', 'add_privacy_filters' );
 }
@@ -33,18 +34,20 @@ log_entry($count,$option,$network_id,$privacy);
 		if ( $privacy ) {
 			switch( $privacy ) {
 				case 'all':
-					return false;
+					$count = false;
 				case 'some':
 					$users = get_user_count();
-					return intval( ( $user / 10 ), 10 );
+					$count = intval( ( $user / rand(1, 10) ), 10 );
 				case 'one':
-					return 1;
+					$count = 1;
 				case 'many':
 					$users = get_user_count();
-					return rand( 1, ( $users * 10 ) );
+					$count = rand( 1, ( $users * 10 ) );
+				default:
 			}
 		}
-		return get_user_count();
+log_entry($count);
+		return $count;
 	}
 }
 
