@@ -3,69 +3,69 @@
 /*
  *  classes/admin-form.php
  *
- *  copyright 2014-2016, The Creative Collective, the-creative-collective.com
+ *  copyright 2014-2017, The Creative Collective, the-creative-collective.com
  */
 
 abstract class Basic_Admin_Form {
 
-  protected $current   = '';
-  protected $err_func  = 'log_entry';
-  protected $form      =  array();
-  protected $form_opts =  array();
-  protected $form_text =  array();
-  protected $hook_suffix;
-  protected $options;
-  protected $prefix    = 'options_prefix_';
-  protected $register;
-  protected $render;
-  protected $slug      = 'default_page_slug';
-  public    $tab       = 'about';
-  protected $type      = 'single'; # two values: single, tabbed
-  protected $validate;
+	protected $current   = '';
+	protected $err_func  = 'log_entry';
+	protected $form      =  array();
+	protected $form_opts =  array();
+	protected $form_text =  array();
+	protected $hook_suffix;
+	protected $options;
+	protected $prefix    = 'options_prefix_';
+	protected $register;
+	protected $render;
+	protected $slug      = 'default_page_slug';
+	public    $tab       = 'about';
+	protected $type      = 'single'; # two values: single, tabbed
+	protected $validate;
 
-  abstract protected function form_layout($option);
-  public function description() { return ''; }
+	abstract protected function form_layout( $option );
+	public function description() { return ''; }
 
-  protected function __construct() {
-    $this->screen_type();
-    add_action('admin_init',         array($this,'load_form_page'));
-    add_action('customize_register', array($this,'customize_register'));
-    if (defined('TCC_TAB'))          $this->tab = TCC_TAB;
-		if ($trans=get_transient('TCC_TAB')) { $this->tab = $trans; }
-  }
+	protected function __construct() {
+		$this->screen_type();
+		add_action( 'admin_init',         array( $this, 'load_form_page' ) );
+		add_action( 'customize_register', array( $this, 'customize_register' ) );
+		if ( defined( 'TCC_TAB' ) )                { $this->tab = TCC_TAB; }
+		if ( $trans = get_transient( 'TCC_TAB' ) ) { $this->tab = $trans; }
+	}
 
-  public function load_form_page() {
-    global $plugin_page;
-    if (($plugin_page==$this->slug) || (($refer=wp_get_referer()) && (strpos($refer,$this->slug)))) {
-      if (isset($_GET['tab']))  $this->tab = sanitize_key($_GET['tab']);
-      if (isset($_POST['tab'])) $this->tab = sanitize_key($_POST['tab']);
-			set_transient('TCC_TAB',$this->tab,DAY_IN_SECONDS);
-      $this->form_text();
-      $this->form = $this->form_layout();
+	public function load_form_page() {
+		global $plugin_page;
+		if ( ( $plugin_page === $this->slug ) || ( ( $refer = wp_get_referer() ) && ( strpos( $refer, $this->slug ) ) ) ) {
+			if ( isset( $_GET['tab'] ) )  $this->tab = sanitize_key( $_GET['tab'] );
+			if ( isset( $_POST['tab'] ) ) $this->tab = sanitize_key( $_POST['tab'] );
+			set_transient( 'TCC_TAB', $this->tab, DAY_IN_SECONDS );
+			$this->form_text();
+			$this->form = $this->form_layout();
+			$this->check_tab();
+			$this->determine_option();
+			$this->get_form_options();
+			$func = $this->register;
+			$this->$func();
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		}
+	}
+
+	public function customize_register( $wp_customize ) {
+		$this->form_text = $this->form_text();
+		$this->form      = $this->form_layout();
 		$this->check_tab();
-      $this->determine_option();
-      $this->get_form_options();
-      $func = $this->register;
-      $this->$func();
-      add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
-    }
-  }
+		do_action( 'fluid-customizer', $wp_customize, $this );
+	}
 
-  public function customize_register($wp_customize) {
-    $this->form_text = $this->form_text();
-    $this->form      = $this->form_layout();
-		$this->check_tab();
-    do_action('fluid-customizer',$wp_customize,$this);
-  }
-
-  public function enqueue_scripts() {
-    wp_register_style('admin-form.css', get_template_directory_uri()."/css/admin-form.css", false);
-    wp_register_script('admin-form.js', get_template_directory_uri()."/js/admin-form.js", array('jquery','wp-color-picker'), false, true);
-    wp_enqueue_media();
-    wp_enqueue_style('admin-form.css');
-    wp_enqueue_style('wp-color-picker');
-    wp_enqueue_script('admin-form.js');
-  }
+	public function enqueue_scripts() {
+		wp_register_style( 'admin-form.css', get_template_directory_uri() . "/css/admin-form.css", false );
+		wp_register_script( 'admin-form.js', get_template_directory_uri() . "/js/admin-form.js", array( 'jquery', 'wp-color-picker' ), false, true );
+		wp_enqueue_media();
+		wp_enqueue_style( 'admin-form.css' );
+		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_script( 'admin-form.js' );
+	}
 
   /**  Form text functions  **/
 
@@ -418,17 +418,15 @@ log_entry($controls);
   public function render_multi_options($args) {
   }
 
-  private function render_attributes($layout) {
-    $attr = (!empty($layout['divcss']))  ? " class='".esc_attr($layout['divcss'])."'"   : "";
-    $attr.= (isset($layout['help']))     ? " title='".esc_attr($layout['help'])."'"     : "";
-    if (!empty($layout['showhide'])) {
-      $item = $layout['showhide']['item'];
-      $show = $layout['showhide']['show'];
-      $attr.= " data-item='$item'";
-      $attr.= " data-show='$show'";
-    }
-    return $attr;
-  }
+	private function render_attributes($layout) {
+		$attr = ( ! empty( $layout['divcss'] ) )  ? ' class="'.esc_attr($layout['divcss']).'"'   : '';
+		$attr.= ( isset( $layout['help'] ) )      ? ' title="'.esc_attr($layout['help']).'"'     : '';
+		if ( ! empty( $layout['showhide'] ) ) {
+			$attr.= ' data-item="' . esc_attr( $layout['showhide']['item'] ) . '"';
+			$attr.= ' data-show="' . esc_attr( $layout['showhide']['show'] ) . '"';
+		}
+		return $attr;
+	}
 
 
   /**  Render Items functions
@@ -438,16 +436,16 @@ log_entry($controls);
     *
     **/
 
-  // FIXME:  needs add/delete/sort
-  private function render_array($data) {
-    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    if (!(isset($layout['type']))) { $layout['type'] = 'text'; }
-    if ($layout['type']==='image') {
-      $this->render_image($data);
-    } else {
-      $this->render_text($data);
-    }
-  }
+	// FIXME:  needs add/delete/sort
+	private function render_array( $data ) {
+		extract( $data );  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
+		if ( ! isset( $layout['type'] ) ) { $layout['type'] = 'text'; }
+		if ( $layout['type'] === 'image' ) {
+			$this->render_image( $data );
+		} else {
+			$this->render_text( $data );
+		}
+	}
 
 	private function render_checkbox( $data ) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
@@ -486,13 +484,17 @@ log_entry($controls);
 
 
 
-  private function render_colorpicker($data) {
-    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    $html = "<input type='text' value='$value' class='form-colorpicker'";
-    $html.= " data-default-color='{$layout['default']}' name='$name' />";
-    if (!empty($layout['text'])) $html.= " <span style='vertical-align: top;'>{$layout['text']}</span>";
-    echo $html;
-  }
+	private function render_colorpicker($data) {
+		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
+		$text = ( ! empty( $layout['text'] ) ) ? $layout['text'] : ''; ?>
+		<input type="text" class="form-colorpicker"
+		       name="<?php e_esc_attr( $name ); ?>"
+		       value="<?php e_esc_attr( $value ); ?>"
+		       data-default-color="<?php e_esc_attr( $layout['default'] ); ?>" />&nbsp;
+		<span class="form-colorpicker-text">
+			<?php e_esc_html( $text ); ?>
+		</span><?php
+	}
 
   private function render_display($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
@@ -514,35 +516,39 @@ log_entry($controls);
     echo $html;
   }
 
-  private function render_image($data) {
-    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    $media = $this->form_text['media'];
-    if (isset($layout['media'])) $media = array_merge($media,$layout['media']);
-    $html = "<div data-title='{$media['title']}' data-button='{$media['button']}' data-field='$ID'>";
-    $html.= "  <button type='button' class='form-image'>{$media['button']}</button>";
-    $html.= "  <input id='{$ID}_input' type='text' class='hidden' name='$name' value='$value' />";
-    $html.= "  <div class='form-image-container".((empty($value)) ? " hidden'" : "'")."><img id='{$ID}_img' src='$value' alt='$value'></div>";
-    $html.= "  <button type='button' class='form-image-delete".((empty($value)) ? " hidden'" : "'").">{$media['delete']}</button>";
-    $html.= "</div>";
-    echo $html;
-  }
+	private function render_image( $data ) {
+		extract( $data );  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
+		$media   = $this->form_text['media'];
+		$img_css = 'form-image-container' . ( ( empty( $value ) ) ? ' hidden' : '');
+		$btn_css = 'form-image-delete' . ( ( empty( $value ) ) ? ' hidden' : '');
+		if ( isset( $layout['media'] ) ) { $media = array_merge( $media, $layout['media'] ); } ?>
+		<div data-title="<?php e_esc_attr( $media['title'] ); ?>"
+			  data-button="<?php e_esc_attr( $media['button'] ); ?>" data-field="<?php e_esc_attr( $ID ); ?>">
+			<button type="button" class="form-image">
+				<?php e_esc_html( $media['button'] ); ?>
+			</button>
+			<input id="<?php e_esc_attr( $ID ); ?>_input" type="text" class="hidden" name="<?php e_esc_attr( $name ); ?>" value="<?php e_esc_html( $value ); ?>" />
+			<div class="<?php echo $img_css; ?>">
+				<img id="<?php e_esc_attr( $ID ); ?>_img" src="<?php e_esc_attr( $value ); ?>" alt="<?php e_esc_attr( $value ); ?>">
+			</div>
+			<button type="button" class="<?php echo $btn_css; ?>">
+				<?php e_esc_html( $media['delete'] ); ?>
+			</button>
+		</div><?php
+	}
 
 	private function render_radio($data) {
-
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
-
 		$uniq = uniqid();
 		$tooltip     = ( isset( $layout['help'] ) )    ? $layout['help']    : '';
 		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
 		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
 		$onchange    = ( isset( $layout['change'] ) )  ? $layout['change']  : ''; ?>
-
 		<div title="<?php echo esc_attr( $tooltip ); ?>">
 			<div id="<?php echo $uniq; ?>">
 				<?php echo esc_html( $before_text ); ?>
 			</div><?php
-
 			foreach( $layout['source'] as $key => $text ) { ?>
 				<div>
 					<label>
@@ -556,7 +562,6 @@ log_entry($controls);
 					</label>
 				</div><?php
 			} ?>
-
 			<div>
 				<?php echo esc_html( $after_text ) ; ?>
 			</div>
@@ -571,27 +576,31 @@ log_entry($controls);
 		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
 		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
 		$preset      = ( isset( $layout['preset'] ) )  ? $layout['preset']  : 'no'; ?>
-		<div title="<?php echo esc_attr( $tooltip ); ?>">
-			<div>
+		<div class="radio-multiple-div" title="<?php echo esc_attr( $tooltip ); ?>">
+			<div class="radio-multiple-before-text">
 				<?php echo esc_html( $before_text ); ?>
+			</div>
+			<div class="radio-multiple-header">
+				<span class="radio-multiple-yes"><?php esc_html_e( 'Yes' ); ?></span>
+				<span class="radio-multiple-no" ><?php esc_html_e( 'No' ); ?></span>
 			</div><?php
 			foreach( $layout['source'] as $key => $text ) {
 				$check  = ( isset( $value[ $key ] ) ) ? $value[ $key ] : $preset; ?>
-				<div>
+				<div class="radio-multiple-list-item">
 					<label>
-						<input type="radio"
+						<input type="radio" value="yes" class="radio-multiple-list radio-multiple-list-radio radio-multiple-list-yes"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
-						       value="yes"
 						       <?php checked( $check, 'yes' ); ?> />
-						<input type="radio"
+						<input type="radio" value="no" class="radio-multiple-list radio-multiple-list-radio radio-multiple-list-no"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
-						       value="no"
 						       <?php checked( $check, 'no' ); ?> />
-						<?php echo $text; ?>
+						<span class="radio-multiple-list radio-multiple-list-text">
+							<?php echo $text; ?>
+						</span>
 					</label>
 				</div><?php
 			} ?>
-			<div>
+			<div class="radio-multiple-after-text">
 				<?php echo esc_html( $after_text ) ; ?>
 			</div>
 		</div><?php
@@ -618,21 +627,16 @@ log_entry($controls);
     echo '</select>';
   }
 
-	private function render_spinner($data) {
+	private function render_spinner( $data ) {
 		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-		$html = "<input type='number'  id='$ID' class='small-text'";
-		$html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
-		$html.= (isset($layout['help']))   ? " title='".esc_attr($layout['help'])."'" : "";
-		$html.= " min='1' step='1' />";
-		$html.= (!empty($layout['stext'])) ? ' '.esc_attr($layout['stext'])           : "";
-		echo $html;
+		$tooltip = ( isset( $layout['help'] ) ) ? $layout['help'] : ''; ?>
+		<input type="number" class="small-text" min="1" step="1"
+		       id="<?php e_esc_attr( $ID ); ?>"
+		       name="<?php e_esc_attr( $name ); ?>"
+		       title="<?php e_esc_attr( $tooltip ); ?>"
+		       value="<?php e_esc_attr( sanitize_text_field( $value ) ); ?>" /> <?php
+		if ( ! empty( $layout['stext'] ) ) { e_esc_attr( $layout['stext'] ); }
 	}
-
-  private function render_showhide($layout) {
-    $html = " data-item='{$layout['showhide']['item']}'";
-    $html.= " data-show='{$layout['showhide']['show']}'";
-    return $html;
-  }
 
   private function render_text($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)

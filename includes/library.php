@@ -83,6 +83,18 @@ if (!function_exists('wp_menu_id_by_name')) {
   }
 }
 
+if ( ! function_exists('e_esc_attr') ) {
+	function e_esc_attr( $string ) {
+		echo esc_attr( $string );
+	}
+}
+
+if ( ! function_exists('e_esc_html') ) {
+	function e_esc_html( $string ) {
+		echo esc_html( $string );
+	}
+}
+
 if (!function_exists('esc_attr_ex')) {
 	function esc_attr_ex( $text, $context, $domain = 'default' ) {
 		echo esc_attr_x( $text, $context, $domain );
