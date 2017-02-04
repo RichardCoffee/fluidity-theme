@@ -61,7 +61,7 @@ if (!function_exists('tcc_copyright')) {
 	}
 }
 
-if ( ! function_exists( 'tcc_footer_menu' ) {
+if ( ! function_exists( 'tcc_footer_menu' ) ) {
 	function tcc_footer_menu() {
 		$foot_menu = array();
 		if (page_exists('terms'))           $foot_menu['terms']           = __('Terms & Conditions','tcc-fluid');
