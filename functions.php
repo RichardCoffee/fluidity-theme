@@ -33,8 +33,10 @@ require_once('classes/form-fields.php');
 
 if (is_admin()) {
 log_entry(phpversion());
-#	require_once('classes/admin-form.php');
-#	TCC_Options_Fluidity::instance();
+	#require_once('classes/admin-form.php');
+	if ( method_exists( 'TCC_Options_Fluidity', 'instance' ) ) {
+		TCC_Options_Fluidity::instance();
+	}
 } else {
   //require_once('includes/footer.php');
   #require_once('includes/defines.php');
