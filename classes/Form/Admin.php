@@ -6,7 +6,7 @@
  *  copyright 2014-2017, The Creative Collective, the-creative-collective.com
  */
 
-abstract class Basic_Admin_Form {
+abstract class TCC_Form_Admin {
 
 	protected $current   = '';
 	protected $err_func  = 'log_entry';
@@ -292,26 +292,25 @@ log_entry($controls);
 
   /**  Render Screen functions  **/
 
-  public function render_single_form() { ?>
-    <div class="wrap"><?php
-      if (isset($this->form['title'])) { ?>
-        <h1>
-          <?php echo esc_html($this->form['title']); ?>
-        </h1><?php
-      }
-      settings_errors(); ?>
-      <form method="post" action="options.php"><?php
-        do_action("form_pre_display");
-        do_action("form_pre_display_".$this->current);
-        settings_fields($this->current);
-        do_settings_sections($this->current);
-        do_action("form_post_display_".$this->current);
-        do_action("form_post_display");
-        $this->submit_buttons(); ?>
-      </form>
-    </div><?php //*/
-
-}
+	public function render_single_form() { ?>
+		<div class="wrap"><?php
+			if ( isset( $this->form['title'] ) ) { ?>
+				<h1>
+					<?php echo esc_html( $this->form['title'] ); ?>
+				</h1><?php
+			}
+			settings_errors(); ?>
+			<form method="post" action="options.php"><?php
+#				do_action( 'form_admin_pre_display' );
+#				do_action( 'form_admin_pre_display_' . $this->current );
+				settings_fields($this->current);
+				do_settings_sections($this->current);
+#				do_action( 'form_admin_post_display_' . $this->current );
+#				do_action( 'form_admin_post_display' );
+				$this->submit_buttons(); ?>
+			</form>
+		</div><?php //*/
+	}
 
   public function render_tabbed_form() {
     $active_page = sanitize_key($_GET['page']); ?>
@@ -336,13 +335,13 @@ log_entry($controls);
       <form method="post" action="options.php">
         <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
         $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
-        do_action("fluid_pre_display_".$this->tab);
+        do_action("form_admin_pre_display_".$this->tab);
         settings_fields($current); #$this->slug); #$this->current);
         do_settings_sections($current); #$this->slug); #$this->current);
-        do_action("fluid_post_display_".$this->tab);
+        do_action("form_admin_post_display_".$this->tab);
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
-    </div><?php //*/
+    <div><?php //*/
   }
 
   private function submit_buttons($title='') {

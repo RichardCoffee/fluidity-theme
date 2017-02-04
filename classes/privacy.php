@@ -5,22 +5,36 @@
  *           https://github.com/dannyvankooten/my-precious
  */
 
-if ( ! function_exists( 'privacy_blog_count' ) ) {
-	function privacy_blog_count( $count, $option, $network_id ) {
-		$privacy = tcc_privacy( 'blogs' );
+defined('ABSPATH') || exit;
 
-log_entry($count,$option,$network_id,$privacy);
+
+class Privacy_My_Way {
+
+	protected $options;
+
+	use TCC_Trait_Singleton;
+
+	protected function __construct() {
+		$this->get_options();
+log_entry($this->options);
+		add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
+		add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
+		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),            9999, 2 );
+		add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
+	}
+
+	public function pre_site_option_blog_count( $count, $option, $network_id ) {
+
+log_entry($count,$option,$network_id);
 /*
-		if ( $privacy && ( $privacy === 'no' ) ) {
-			return 1;
+		if ( $this->options === 'no' ) {
+			$count = 1;
 		} //*/
 		return $count;
 	}
-}
 
-if ( ! function_exists( 'privacy_user_count' ) ) {
-	function privacy_user_count( $count, $option, $network_id ) {
-		$privacy = tcc_privacy( 'users' );
+	public function pre_site_option_user_count( $count, $option, $network_id ) {
+		$privacy = $this->options[ 'users' ];
 
 log_entry($count,$option,$network_id,$privacy);
 /*
@@ -44,10 +58,8 @@ log_entry($count,$option,$network_id,$privacy);
 
 		return $count;
 	}
-}
 
-if ( ! function_exists( 'privacy_request_args' ) ) {
-	function privacy_request_args( $args, $url ) {
+	public function http_request_args( $args, $url ) {
 
 		#	only act on requests to api.wordpress.org
 		if ( stripos( $url, '://api.wordpress.org/' ) !== false ) {
@@ -57,7 +69,7 @@ if ( ! function_exists( 'privacy_request_args' ) ) {
 log_entry($url,$args);
 /*
 		#	strip site URL from headers & user-agent
-		if ( tcc_privacy( 'blog' ) === 'no' ) {
+		if ( $this->options['blog'] === 'no' ) {
 			if ( isset( $args['headers']['wp_blog'] ) ) {
 				unset( $args['headers']['wp_blog'] ); }
 			if ( isset( $args['headers']['user-agent'] ) ) {
@@ -66,7 +78,7 @@ log_entry($url,$args);
 				$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
 		}
 /*
-		if ( ( tcc_privacy( 'install' ) === 'no' ) || ( tcc_privacy( 'blogs' ) === 'no' ) ) {
+		if ( ( $this->options['install'] === 'no' ) || ( $this->options['blogs'] === 'no' ) ) {
 			if ( isset( $args['headers']['wp_install'] ) ) {
 				unset( $args['headers']['wp_install'] );
 			}
@@ -76,7 +88,7 @@ log_entry($url,$args);
 			unset( $args['headers']['Referer'] ); }
 /*
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
-			$plugin_filter = tcc_privacy( 'plugin_list' );
+			$plugin_filter = $this->options['plugin_list'];
 			$plugins = json_decode( $request['body']['plugins'] );
 log_entry($plugins);
 			foreach ( $plugin_filter as $plugin => $status ) {
@@ -101,47 +113,41 @@ log_entry($plugins);
 
 		return $args;
 	}
-}
 
-if ( ! function_exists( 'privacy_http_request' ) ) {
-	function privacy_http_request( $preempt, $args, $url ) {
+	public function pre_http_request( $preempt, $args, $url ) {
 
 log_entry($preempt,$args,$url);
 
-		if( $preempt !== false ) {
+		if ( $preempt || isset( $args['_privacy_filter'] ) ) {
 			return $preempt;
 		}
 
 		#	only act on requests to api.wordpress.org
-		if( strpos( $url, '://api.wordpress.org/core/version-check' ) !== false ) {
-			return $preempt;
-		}
-
-		#	did we clean this request already?
-		if( ! empty( $args['_privacy_retained'] ) ) {
+		if ( ( stripos( $url, '://api.wordpress.org/core/version-check' ) === false ) &&
+		     ( stripos( $url, '://api.wordpress.org/plugins/'           ) === false ) &&
+		     ( stripos( $url, '://api.wordpress.org/themes/'            ) === false ) &&
+		     ( stripos( $url, '://api.wordpress.org/translations/'      ) === false ) ) {
 			return $preempt;
 		}
 
 return $preempt;
 
 		#	make request
-		$args['_privacy_retained'] = true;
+		$args['_privacy_filter'] = true;
 		$result = wp_remote_request( $url, $args );
 
 log_entry($result);
 
 		return $result;
 	}
-}
 
-
-if ( ! function_exists( 'tcc_privacy' ) ) {
-	function tcc_privacy( $option ) {
-		static $data;
-		if ( empty( $data ) ) {
-			$data = get_option( 'tcc_options_privacy' ); }
-		if ( isset( $data[ $option ] ) ) {
-			return $data[ $option ]; }
-		return '';
+	private function get_options() {
+		$options = get_option( 'tcc_options_privacy' );
+		if ( ! $options ) {
+			
+		}
+		$this->options = $options;
 	}
-}
+
+
+} # end of class Privacy_My_Way

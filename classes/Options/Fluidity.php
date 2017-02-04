@@ -1,10 +1,10 @@
 <?php /* arrays.php */
 
-class TCC_Options_Fluidity extends Basic_Admin_Form {
+class TCC_Options_Fluidity extends TCC_Form_Admin {
 
   private static $text     = null;
 
-  use TCC_Trait_Single;
+  use TCC_Trait_Singleton;
 
   public function form_trans_text($text,$orig) {
     $text['submit']['object']  = __('Options','tcc-fluid');

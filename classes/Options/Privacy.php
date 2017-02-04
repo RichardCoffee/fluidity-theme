@@ -17,14 +17,14 @@ class TCC_Options_Privacy {
 		$this->plugins = get_plugins();
 		$this->themes  = wp_get_themes();
 
-		add_filter('fluidity_options_form_layout', array($this,'form_layout'),$this->sort);
+		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->sort );
 	}
 
 	public function form_layout($form) {
-		$form[$this->base] = array('describe' => array($this,'title_description'),
-		                           'title'    => __('Privacy','tcc-fluid'),
+		$form[$this->base] = array('describe' => array( $this, 'title_description' ),
+		                           'title'    => __( 'Privacy', 'tcc-fluid' ),
 		                           'option'   => 'tcc_options_' . $this->base,
-		                           'layout'   => $this->options_layout());
+		                           'layout'   => $this->options_layout() );
 		return $form;
 	}
 
@@ -104,31 +104,42 @@ class TCC_Options_Privacy {
 	/**  Plugin functions  **/
 
 	private function get_plugin_defaults( $preset ) {
-		$options = tcc_privacy( 'plugin_list' );
-		if ( empty( $options ) ) { $options = array(); }
+		#	Start with a clean slate
+		$options = $this->clean_plugin_defaults();
+		#	Load our list with the default value
 		foreach( $this->plugins as $path => $plugin ) {
-			$index = $this->generate_index( $path, $plugin );
-			if ( ! isset( $options[ $index ] ) ) {
-				$options[ $index ] = $preset;
+			if ( ! isset( $options[ $path ] ) ) {
+				$options[ $path ] = $preset;
 			}
 		}
+		return $options;
+	}
+
+	private function clean_plugin_defaults() {
+
+		#	The beginning
+		$options = array();
+		$current = tcc_privacy( 'plugin_list' );
+		if ( $current ) {
+			foreach( $current as $key => $status ) {
+				if ( isset( $this->plugins[ $key ] ) ) {
+					$options[ $key ] = $status;
+				}
+			}
+		}
+		return $options;
 	}
 
 	private function get_plugin_list() {
 		$plugin_list = array();
 		foreach ( $this->plugins as $path => $plugin ) {
-			$index = $this->generate_index( $path, $plugin );
-			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $index ) . '">';
+			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $path ) . '">';
 			$title.= esc_html( $plugin['Name'] ) . '</a> by ';
 			$title.= '<a href="' . esc_attr( $plugin['AuthorURI'] ) . '" target="' . sanitize_title( $plugin['Author'] ) . '">';
 			$title.= esc_html( $plugin['Author'] ) . '</a>';
-			$plugin_list[$index] = $title;
+			$plugin_list[ $path ] = $title;
 		}
 		return $plugin_list;
-	}
-
-	private function generate_index( $path, $plugin ) {
-		return ( empty( $plugin['TextDomain'] ) ) ? basename( $path, '.php' ) : $plugin['TextDomain'];
 	}
 
 

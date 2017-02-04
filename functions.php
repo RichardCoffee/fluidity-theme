@@ -33,7 +33,7 @@ require_once('classes/form-fields.php');
 
 if (is_admin()) {
 	require_once('classes/admin-form.php');
-	TCC_Options_Fluidity::get_instance();
+	TCC_Options_Fluidity::instance();
 } else {
   //require_once('includes/footer.php');
   #require_once('includes/defines.php');
@@ -144,15 +144,11 @@ if (!function_exists('fluidity_register_color_scheme')) {
     }
   }
 }
-/*
-function fluidity_http_request_args( $args, $url ) {
-	log_entry($url,$args);
-	return $args;
+
+if ( ! function_exists( 'add_privacy_filters' ) ) {
+	function add_privacy_filters() {
+		include_once('classes/privacy.php');
+		Privacy_My_Way::instance();
+	}
+	add_action( 'wp_version_check', 'add_privacy_filters' );
 }
-add_filter( 'http_request_args', 'fluidity_http_request_args', 10, 2 ); //*/
-/*
-function fluidity_pre_http_request( $preempt, $args, $url ) {
-	log_entry($url,$args);
-	return $preempt;
-}
-add_filter( 'pre_http_request', 'fluidity_pre_http_request', 10, 3 ); //*/
