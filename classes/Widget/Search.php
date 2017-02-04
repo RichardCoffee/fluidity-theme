@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Widgets_Search extends TCC_Widgets_Basic {
+class TCC_Widget_Search extends TCC_Widget_Basic {
 
   function __construct() {
     $this->title = esc_html__('Search','tcc-fluid');

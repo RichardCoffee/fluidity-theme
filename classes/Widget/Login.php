@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Widgets_Login extends TCC_Widgets_Basic {
+class TCC_Widget_Login extends TCC_Widget_Basic {
 
 	function __construct() {
 		$this->title = esc_html__('Login','tcc-fluid');

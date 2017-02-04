@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Widgets_Basic extends WP_Widget {
+class TCC_Widget_Basic extends WP_Widget {
 
 	protected $title = '';
 	protected $desc  = '';
