@@ -75,11 +75,12 @@ class TCC_Options_Privacy {
 		                           'change'  => 'showhidePosi(this,".privacy-plugin-filter","filter");',
 		                           'divcss'  => 'privacy-plugin-action'); //*/
 
-		$warning = sprintf('<span class="red">%s</span>',__('Turning any of these off means you will not be notified of upgrades!','tcc-fluid') );
+		$warning = __('Turning any of these off means you will not be notified of upgrades!','tcc-fluid');
 		$layout['plugin_list'] = array('default' => $this->get_plugin_defaults('yes'),
 		                               'preset'  => 'yes',
 		                               'label'   => __('Plugin List','tcc-fluid'),
 		                               'text'    => $warning,
+		                               'textcss' => 'red',
 		                               'render'  => 'radio_multiple',
 		                               'source'  => $this->get_plugin_list(),
 		                               'divcss'  => 'privacy-plugin-filter'); //*/
@@ -97,6 +98,7 @@ class TCC_Options_Privacy {
 		                              'preset'  => 'yes',
 		                              'label'   => __('Theme List','tcc-fluid'),
 		                              'text'    => $warning,
+		                              'textcss' => 'red',
 		                              'render'  => 'radio_multiple',
 		                              'source'  => $this->get_theme_list(),
 		                              'divcss'  => 'privacy-theme-filter'); //*/

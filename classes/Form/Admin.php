@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  classes/admin-form.php
+ *  classes/Form/Admin.php
  *
  *  copyright 2014-2017, The Creative Collective, the-creative-collective.com
  */
@@ -571,13 +571,14 @@ log_entry($controls);
 	private function render_radio_multiple( $data ) {
 		extract( $data );   #   associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
-		$tooltip     = ( isset( $layout['help'] ) )    ? $layout['help']    : '';
-		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
-		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
-		$preset      = ( isset( $layout['preset'] ) )  ? $layout['preset']  : 'no'; ?>
+		$tooltip   = ( isset( $layout['help'] ) )    ? $layout['help']    : '';
+		$pre_css   = ( isset( $layout['textcss'] ) ) ? $layout['textcss'] : '';
+		$pre_text  = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
+		$post_text = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
+		$preset    = ( isset( $layout['preset'] ) )  ? $layout['preset']  : 'no'; ?>
 		<div class="radio-multiple-div" title="<?php echo esc_attr( $tooltip ); ?>">
-			<div class="radio-multiple-before-text">
-				<?php echo esc_html( $before_text ); ?>
+			<div class="<?php echo $pre_css; ?>">
+				<?php echo esc_html( $pre_text ); ?>
 			</div>
 			<div class="radio-multiple-header">
 				<span class="radio-multiple-yes"><?php esc_html_e( 'Yes' ); ?></span>
@@ -599,8 +600,8 @@ log_entry($controls);
 					</label>
 				</div><?php
 			} ?>
-			<div class="radio-multiple-after-text">
-				<?php echo esc_html( $after_text ) ; ?>
+			<div class="radio-multiple-post-text">
+				<?php echo esc_html( $post_text ) ; ?>
 			</div>
 		</div><?php
 	}
