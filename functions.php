@@ -32,7 +32,7 @@ require_once('classes/autocomplete.php');
 require_once('classes/form-fields.php');
 
 if (is_admin()) {
-log_entry(phpversion());
+#log_entry(phpversion());
 	#require_once('classes/admin-form.php');
 	if ( method_exists( 'TCC_Options_Fluidity', 'instance' ) ) {
 		TCC_Options_Fluidity::instance();
