@@ -52,6 +52,12 @@ class TCC_Options_Settings {
                               'render'  => 'radio',
                               'source'  => array('off' => esc_html__('Show site','tcc-fluid'),
                                                  'on'  => esc_html__('Show Coming Soon page','tcc-fluid'))); //*/
+    $layout['autocore'] = array('default' => 'on',
+                                'label'   => esc_html__('Core Update','tcc-fluid'),
+                                'text'    => esc_html__('Automatically update WordPress core files.','tcc-fluid'),
+                                'render'  => 'radio',
+                                'source'  => array('on'  => esc_html__('Automatically update for new versions. (recommended)','tcc-fluid'),
+                                                   'off' => esc_html__('Manually update core files.','tcc-fluid'))); //*/
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }

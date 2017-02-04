@@ -768,7 +768,8 @@ log_entry($controls);
   }
 
 	private function validate_radio_multiple( $input ) {
-		return array_map( 'sanitize_text_field', $input );
+log_entry($input);
+		return array_map( 'sanitize_text_field', (array) $input );
 	}
 
   private function validate_select($input) {
