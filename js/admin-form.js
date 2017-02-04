@@ -77,9 +77,9 @@ function showhidePosi(el,target,show) {
 
 function showhideAdminElements(el,target,show) {
   if (jQuery(el).find('input:radio:checked').val()==show) {
-    jQuery(target).parent().parent().show(); //removeClass('hidden');
+    jQuery(target).parent().parent().show(2000); //removeClass('hidden');
   } else {
-    jQuery(target).parent().parent().hide(); //addClass('hidden');
+    jQuery(target).parent().parent().hide(2000); //addClass('hidden');
   }
 }
 
