@@ -34,9 +34,13 @@ require_once('classes/form-fields.php');
 if (is_admin()) {
 #log_entry(phpversion());
 	#require_once('classes/admin-form.php');
-	if ( method_exists( 'TCC_Options_Fluidity', 'instance' ) ) {
+#	if ( method_exists( 'TCC_Options_Fluidity', 'instance' ) ) {
 		TCC_Options_Fluidity::instance();
-	}
+#	} else if ( method_exists( 'TCC_Options_Fluidity', 'get_instance' ) ) {
+#		TCC_Options_Fluidity::get_instance();
+#	} else {
+#		log_entry('Missing Trait methods!');
+#	}
 } else {
   //require_once('includes/footer.php');
   #require_once('includes/defines.php');
