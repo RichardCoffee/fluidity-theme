@@ -37,3 +37,7 @@ input.radio-multiple-list {
 }
 
 .tcc_text_3em  input[type="text"]  { width: 3em;  }
+
+tr {
+	transition: all 0.3s ease-in-out 0s;
+}
