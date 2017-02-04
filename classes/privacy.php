@@ -12,6 +12,9 @@ class Privacy_My_Way {
 
 	protected $options;
 
+	private $blog_count_done = false; # debug symbol
+	private $user_count_done = false; # debug symbol
+
 	use TCC_Trait_Singleton;
 
 	protected function __construct() {
@@ -30,6 +33,9 @@ log_entry($count,$option,$network_id);
 		if ( $this->options === 'no' ) {
 			$count = 1;
 		} //*/
+
+$this->blog_count_done = true;  // for debugging
+
 		return $count;
 	}
 
@@ -56,6 +62,8 @@ log_entry($count,$option,$network_id,$privacy);
 
 #log_entry($count);
 
+$this->user_count_done = true; // debugging
+
 		return $count;
 	}
 
@@ -71,7 +79,7 @@ log_entry($url,$args);
 		#	strip site URL from headers & user-agent
 		if ( $this->options['blog'] === 'no' ) {
 			if ( isset( $args['headers']['wp_blog'] ) ) {
-				$args['headers']['wp_blog'] = site_url(); }
+				$args['headers']['wp_blog'] = network_site_url(); }
 
 #	These lines are commented out because I consider including the url in user-agent as a matter of courtesy.
 #		Besides, what is the point in not giving them your website url?  Don't you want more people to see it?
@@ -87,7 +95,7 @@ log_entry($url,$args);
 /*
 		if ( ( $this->options['install'] === 'no' ) || ( $this->options['blogs'] === 'no' ) ) {
 			if ( isset( $args['headers']['wp_install'] ) ) {
-				$args['headers']['wp_install'] = site_url();
+				$args['headers']['wp_install'] = network_site_url(); // whoa, what? isn't this the same thing?
 			}
 		}
 
@@ -140,6 +148,17 @@ log_entry($preempt,$args,$url);
 		}
 
 return $preempt;
+
+		#	Remove/Change url args
+#		$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
+
+      $url_array = parse_url($url);
+
+		$arg_array = wp_parge_args( $url_array['query'] );
+
+
+
+		$url = remove_query_arg( $keys, $url );
 
 		#	make request
 		$args['_privacy_filter'] = true;

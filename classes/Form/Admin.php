@@ -578,11 +578,11 @@ log_entry($controls);
 		$preset    = ( isset( $layout['preset'] ) )  ? $layout['preset']  : 'no'; ?>
 		<div class="radio-multiple-div" title="<?php echo esc_attr( $tooltip ); ?>">
 			<div class="<?php echo $pre_css; ?>">
-				<?php echo esc_html( $pre_text ); ?>
+				<?php e_esc_html( $pre_text ); ?>
 			</div>
 			<div class="radio-multiple-header">
-				<span class="radio-multiple-yes"><?php esc_html_e( 'Yes' ); ?></span>
-				<span class="radio-multiple-no" ><?php esc_html_e( 'No' ); ?></span>
+				<span class="radio-multiple-yes"><?php esc_html_e( 'On' ); ?></span>
+				<span class="radio-multiple-no" ><?php esc_html_e( 'Off' ); ?></span>
 			</div><?php
 			foreach( $layout['source'] as $key => $text ) {
 				$check  = ( isset( $value[ $key ] ) ) ? $value[ $key ] : $preset; ?>
@@ -766,6 +766,10 @@ log_entry($controls);
   private function validate_radio($input) {
     return sanitize_key($input);
   }
+
+	private function validate_radio_multiple( $input ) {
+		return array_map( 'sanitize_text_field', $input );
+	}
 
   private function validate_select($input) {
     return sanitize_file_name($input);

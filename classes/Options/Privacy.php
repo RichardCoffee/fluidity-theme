@@ -33,11 +33,13 @@ class TCC_Options_Privacy {
 	}
 
 	public function options_layout() {
-		$layout = array('default'=>true);
-
+		$warning = __('*** Turning any of these off means you will not be notified of upgrades! ***','tcc-fluid');
+		$layout  = array('default'=>true);
+/*  This is kinda silly */
 		$layout['blog']    = array('default' => 'yes',
 		                           'label'   => __('Blog URL','tcc-fluid'),
 		                           'render'  => 'radio',
+		                           'disable' => !WP_DEBUG,
 		                           'source'  => array('yes' => __("Let WordPress know your site's url.",'tcc-fluid'),
 		                                              'no'  => __('Do not let them know where you are.','tcc-fluid')),
 		                           'change'  => 'showhidePosi(this,".privacy-blog-option","yes");',
@@ -46,14 +48,17 @@ class TCC_Options_Privacy {
 		$layout['blogs']   = array('default' => 'yes',
 		                           'label'   => __('Multi-Site','tcc-fluid'),
 		                           'render'  => 'radio',
+		                           #'disable' => !WP_DEBUG,
 		                           'source'  => array('yes' => __("Yes - Let WordPress know if you are running a multi-site blog.",'tcc-fluid'),
 		                                              'no'  => __("No -- Tell WordPress you are running just a single blog.",'tcc-fluid')),
 		                           'change'  => 'showhidePosi(this,".privacy-multi-option","yes");',
 		                           'divcss'  => 'privacy-multi-active privacy-blog-option'); //*/
 
+/*  really not much point in doing this */
 		$layout['install'] = array('default' => 'yes',
 		                           'label'   => __('Install URL','tcc-fluid'),
 		                           'render'  => 'radio',
+		                           #'disable' => !WP_DEBUG,
 		                           'source'  => array('yes' => __("Let WordPress know the url you installed WordPress to.",'tcc-fluid'),
 		                                              'no'  => __('Do not give WordPress this information.','tcc-fluid')),
 		                           'divcss'  => 'privacy-blog-option privacy-multi-option'); //*/
@@ -75,7 +80,6 @@ class TCC_Options_Privacy {
 		                           'change'  => 'showhidePosi(this,".privacy-plugin-filter","filter");',
 		                           'divcss'  => 'privacy-plugin-action'); //*/
 
-		$warning = __('Turning any of these off means you will not be notified of upgrades!','tcc-fluid');
 		$layout['plugin_list'] = array('default' => $this->get_plugin_defaults('yes'),
 		                               'preset'  => 'yes',
 		                               'label'   => __('Plugin List','tcc-fluid'),
@@ -100,6 +104,7 @@ class TCC_Options_Privacy {
 		                              'text'    => $warning,
 		                              'textcss' => 'red',
 		                              'render'  => 'radio_multiple',
+		                              'titles'  => array( __('On'), __('Off'), __('Description') ),
 		                              'source'  => $this->get_theme_list(),
 		                              'divcss'  => 'privacy-theme-filter'); //*/
 
