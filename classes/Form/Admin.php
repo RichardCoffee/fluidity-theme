@@ -581,7 +581,7 @@ log_entry($controls);
 				<?php e_esc_html( $pre_text ); ?>
 			</div>
 			<div class="radio-multiple-header">
-				<span class="radio-multiple-yes"><?php esc_html_e( 'On' ); ?></span>
+				<span class="radio-multiple-yes"><?php esc_html_e( 'On' ); ?></span>&nbsp;&nbsp;
 				<span class="radio-multiple-no" ><?php esc_html_e( 'Off' ); ?></span>
 			</div><?php
 			foreach( $layout['source'] as $key => $text ) {
