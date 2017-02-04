@@ -4,6 +4,8 @@ jQuery(document).ready(function() {
 //  showhideAdminElements(document.querySelector('.tcc-loca'),'.tcc-wp_posi','dashboard');
   showhideAdminElements(document.querySelector('.social-option-active'),  '.social-option-icon',    'yes');
   showhideAdminElements(document.querySelector('.agent-role-active'),     '.agent-role-setting',    'agents');
+  showhideAdminElements(document.querySelector('.privacy-blog-active'),   '.privacy-blog-option',   'yes');
+  showhideAdminElements(document.querySelector('.privacy-multi-active'),  '.privacy-multi-option',  'filter');
   showhideAdminElements(document.querySelector('.privacy-plugin-active'), '.privacy-plugin-filter', 'filter');
   showhideAdminElements(document.querySelector('.privacy-theme-active'),  '.privacy-theme-filter',  'filter');
   showhideElements(jQuery('.showhide'));

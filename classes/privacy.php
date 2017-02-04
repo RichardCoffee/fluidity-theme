@@ -72,13 +72,18 @@ log_entry($url,$args);
 		if ( $this->options['blog'] === 'no' ) {
 			if ( isset( $args['headers']['wp_blog'] ) ) {
 				$args['headers']['wp_blog'] = site_url(); }
+
 #	These lines are commented out because I consider including the url in user-agent as a matter of courtesy.
-#		Privacy does not mean you can't say hi to your neighbors.
+#		Besides, what is the point in not giving them your website url?  Don't you want more people to see it?
+#		Privacy does not mean you can't say hi to your neighbors.  I really think this whole header section is a moot point.
+#		Also, what if the version check fails because of no url?
+
 #			if ( isset( $args['headers']['user-agent'] ) ) {
 #				$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
-#			if ( isset( $args['headers']['User-Agent'] ) ) {
+#			if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this here?
 #				$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
 		}
+log_entry($url,$args);
 /*
 		if ( ( $this->options['install'] === 'no' ) || ( $this->options['blogs'] === 'no' ) ) {
 			if ( isset( $args['headers']['wp_install'] ) ) {
@@ -88,10 +93,11 @@ log_entry($url,$args);
 
 		if ( isset( $args['headers']['Referer'] ) ) {
 			unset( $args['headers']['Referer'] ); }
+log_entry($url,$args);
 /*
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			$plugin_filter = $this->options['plugin_list'];
-			$plugins = json_decode( $request['body']['plugins'] );
+			$plugins = json_decode( $args['body']['plugins'] );
 log_entry($plugins);
 			foreach ( $plugin_filter as $plugin => $status ) {
 				if ( $status === 'no' ) {
@@ -101,11 +107,12 @@ log_entry($plugins);
 						unset( $plugins->active->$plugin );
 				}
 			}
-			$request['body']['plugins'] = json_encode( $plugins );
+			$args['body']['plugins'] = json_encode( $plugins );
 		}
+log_entry($url,$args);
 /*
-		if ( stripos( $url, '://api.wordpress.org/themes/update-check' ) !== false ) {
-			$themes = json_decode( $request['body']['themes'] );
+		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
+			$themes = json_decode( $args['body']['themes'] );
 			unset( $themes->themes->RxPool5 );
 			unset( $themes->active );
 			$request['body']['themes'] = json_encode( $themes );
@@ -125,10 +132,10 @@ log_entry($preempt,$args,$url);
 		}
 
 		#	only act on requests to api.wordpress.org
-		if ( ( stripos( $url, '://api.wordpress.org/core/version-check' ) === false ) &&
-		     ( stripos( $url, '://api.wordpress.org/plugins/'           ) === false ) &&
-		     ( stripos( $url, '://api.wordpress.org/themes/'            ) === false ) &&
-		     ( stripos( $url, '://api.wordpress.org/translations/'      ) === false ) ) {
+		if ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false ) &&
+		     ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false ) &&
+		     ( stripos( $url, '://api.wordpress.org/themes/update-check/'  ) === false ) &&
+		     ( stripos( $url, '://api.wordpress.org/translations/'         ) === false ) ) {
 			return $preempt;
 		}
 

@@ -39,22 +39,24 @@ class TCC_Options_Privacy {
 		                           'label'   => __('Blog URL','tcc-fluid'),
 		                           'render'  => 'radio',
 		                           'source'  => array('yes' => __("Let WordPress know your site's url.",'tcc-fluid'),
-		                                              'no'  => __('Do not let them know where you are.','tcc-fluid'))); //*/
+		                                              'no'  => __('Do not let them know where you are.','tcc-fluid')),
+		                           'change'  => 'showhidePosi(this,".privacy-blog-option","yes");',
+		                           'divcss'  => 'privacy-blog-active' ); //*/
 
 		$layout['blogs']   = array('default' => 'yes',
 		                           'label'   => __('Multi-Site','tcc-fluid'),
 		                           'render'  => 'radio',
 		                           'source'  => array('yes' => __("Yes - Let WordPress know if you are running a multi-site blog.",'tcc-fluid'),
 		                                              'no'  => __("No -- Tell WordPress you are running just a single blog.",'tcc-fluid')),
-		                           'change'  => 'showhidePosi(this,".privacy-install-url","yes");',
-		                           'divcss'  => 'privacy-blogs'); //*/
+		                           'change'  => 'showhidePosi(this,".privacy-multi-option","yes");',
+		                           'divcss'  => 'privacy-multi-active privacy-blog-option'); //*/
 
 		$layout['install'] = array('default' => 'yes',
 		                           'label'   => __('Install URL','tcc-fluid'),
 		                           'render'  => 'radio',
 		                           'source'  => array('yes' => __("Let WordPress know the url you installed WordPress to.",'tcc-fluid'),
 		                                              'no'  => __('Do not give WordPress this information.','tcc-fluid')),
-		                           'divcss'  => 'privacy-install-url'); //*/
+		                           'divcss'  => 'privacy-blog-option privacy-multi-option'); //*/
 
 		$layout['users']   = array('default' => 'all',
 		                           'label'   => __('Users','tcc-fluid'),
@@ -73,9 +75,11 @@ class TCC_Options_Privacy {
 		                           'change'  => 'showhidePosi(this,".privacy-plugin-filter","filter");',
 		                           'divcss'  => 'privacy-plugin-action'); //*/
 
+		$warning = sprintf('<span class="red">%s</span>',__('Turning any of these off means you will not be notified of upgrades!','tcc-fluid') );
 		$layout['plugin_list'] = array('default' => $this->get_plugin_defaults('yes'),
 		                               'preset'  => 'yes',
 		                               'label'   => __('Plugin List','tcc-fluid'),
+		                               'text'    => $warning,
 		                               'render'  => 'radio_multiple',
 		                               'source'  => $this->get_plugin_list(),
 		                               'divcss'  => 'privacy-plugin-filter'); //*/
@@ -92,6 +96,7 @@ class TCC_Options_Privacy {
 		$layout['theme_list'] = array('default' => $this->get_theme_defaults('yes'),
 		                              'preset'  => 'yes',
 		                              'label'   => __('Theme List','tcc-fluid'),
+		                              'text'    => $warning,
 		                              'render'  => 'radio_multiple',
 		                              'source'  => $this->get_theme_list(),
 		                              'divcss'  => 'privacy-theme-filter'); //*/
