@@ -767,11 +767,6 @@ log_entry($controls);
     return sanitize_key($input);
   }
 
-	private function validate_radio_multiple( $input ) {
-log_entry($input);
-		return array_map( 'sanitize_text_field', (array) $input );
-	}
-
   private function validate_select($input) {
     return sanitize_file_name($input);
   }
