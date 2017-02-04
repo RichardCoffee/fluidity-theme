@@ -71,16 +71,18 @@ log_entry($url,$args);
 		#	strip site URL from headers & user-agent
 		if ( $this->options['blog'] === 'no' ) {
 			if ( isset( $args['headers']['wp_blog'] ) ) {
-				unset( $args['headers']['wp_blog'] ); }
-			if ( isset( $args['headers']['user-agent'] ) ) {
-				$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
-			if ( isset( $args['headers']['User-Agent'] ) ) {
-				$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
+				$args['headers']['wp_blog'] = site_url(); }
+#	These lines are commented out because I consider including the url in user-agent as a matter of courtesy.
+#		Privacy does not mean you can't say hi to your neighbors.
+#			if ( isset( $args['headers']['user-agent'] ) ) {
+#				$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
+#			if ( isset( $args['headers']['User-Agent'] ) ) {
+#				$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
 		}
 /*
 		if ( ( $this->options['install'] === 'no' ) || ( $this->options['blogs'] === 'no' ) ) {
 			if ( isset( $args['headers']['wp_install'] ) ) {
-				unset( $args['headers']['wp_install'] );
+				$args['headers']['wp_install'] = site_url();
 			}
 		}
 
