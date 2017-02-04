@@ -20,9 +20,9 @@ function showhideElements(els) {
     var show   = jQuery(el).attr('data-show');
     if (target && show) {
       if (jQuery(el).find('input:radio:checked').val()==show) {
-        jQuery(target).parent().parent().removeClass('hidden');
+        jQuery(target).parent().parent().show(); //removeClass('hidden');
       } else {
-        jQuery(target).parent().parent().addClass('hidden');
+        jQuery(target).parent().parent().hide(); //addClass('hidden');
       }
     }
   });
@@ -77,9 +77,9 @@ function showhidePosi(el,target,show) {
 
 function showhideAdminElements(el,target,show) {
   if (jQuery(el).find('input:radio:checked').val()==show) {
-    jQuery(target).parent().parent().removeClass('hidden');
+    jQuery(target).parent().parent().show(); //removeClass('hidden');
   } else {
-    jQuery(target).parent().parent().addClass('hidden');
+    jQuery(target).parent().parent().hide(); //addClass('hidden');
   }
 }
 
