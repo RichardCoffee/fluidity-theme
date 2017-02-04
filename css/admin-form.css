@@ -24,7 +24,11 @@
 	font-size: 16px;
 }
 
-.radio-multiple-list {
+.red {
+  color: red;
+}
+
+input.radio-multiple-list {
 	margin: 0.25em;
 }
 
