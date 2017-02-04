@@ -4,7 +4,7 @@
  *  sources: https://gist.github.com/mattyrob/2e492e5ecb92233eb307f7efd039c121
  *           https://github.com/dannyvankooten/my-precious
  */
-
+/*
 if ( ! function_exists( 'privacy_blog_count' ) ) {
 	function privacy_blog_count( $count, $option, $network_id ) {
 		$privacy = tcc_privacy( 'blogs' );
@@ -13,7 +13,7 @@ log_entry($count,$option,$network_id,$privacy);
 /*
 		if ( $privacy && ( $privacy === 'no' ) ) {
 			return 1;
-		} //*/
+		} //* /
 		return $count;
 	}
 }
@@ -38,7 +38,7 @@ log_entry($count,$option,$network_id,$privacy);
 					$count = rand( 1, ( $users * 10 ) );
 				default:
 			}
-		} //*/
+		} //* /
 
 #log_entry($count);
 
@@ -95,7 +95,7 @@ log_entry($plugins);
 			unset( $themes->themes->RxPool5 );
 			unset( $themes->active );
 			$request['body']['themes'] = json_encode( $themes );
-		} //*/
+		} //* /
 
 #log_entry($args);
 
@@ -132,7 +132,7 @@ log_entry($result);
 
 		return $result;
 	}
-}
+} //*/
 
 
 if ( ! function_exists( 'tcc_privacy' ) ) {
