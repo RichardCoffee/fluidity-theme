@@ -61,6 +61,30 @@ if (!function_exists('tcc_copyright')) {
 	}
 }
 
+if ( ! function_exists( 'tcc_footer_menu' ) {
+	function tcc_footer_menu() {
+		$foot_menu = array();
+		if (page_exists('terms'))           $foot_menu['terms']           = __('Terms & Conditions','tcc-fluid');
+		if (page_exists('terms-of-use'))    $foot_menu['terms-of-use']    = __('Terms & Conditions','tcc-fluid');
+		if (page_exists('conditions'))      $foot_menu['conditions']      = __('Terms & Conditions','tcc-fluid');
+		if (page_exists('privacy'))         $foot_menu['privacy']         = __('Privacy Policy',    'tcc-fluid');
+		if (page_exists('privacy-policy'))  $foot_menu['privacy-policy']  = __('Privacy Policy',    'tcc-fluid');
+		if (page_exists('security'))        $foot_menu['security']        = __('Security Policy',   'tcc-fluid');
+		if (page_exists('security-policy')) $foot_menu['security-policy'] = __('Security Policy',   'tcc-fluid');
+		$foot_menu = apply_filters('tcc_footer_menu',$foot_menu);
+		if ($foot_menu) {
+			$menu   = array();
+			foreach($foot_menu as $index => $text) {
+				$menu[] = '<a class="tcc-footer-menu-item" href="/' . esc_url( $index ) . '/"> ' . esc_html( $text ) . ' </a>';
+			} ?>
+			<span class="tcc-footer-menu" <?php microdata()->SiteNavigationElement(); ?>>
+				<?php echo implode( ' | ', $menu ); ?>
+			</span><?php
+		}
+	}
+}
+
+
 if (!function_exists('tcc_site_link')) {
 	function tcc_site_link() { ?>
 		<a href="http://the-creative-collective.com" target="the_creative_collective">
