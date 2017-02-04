@@ -155,7 +155,8 @@ if (!function_exists('fluidity_register_color_scheme')) {
 if ( ! function_exists( 'add_privacy_filters' ) ) {
 	function add_privacy_filters() {
 		include_once('classes/privacy.php');
-		Privacy_My_Way::instance();
+		$instance = Privacy_My_Way::instance();
+log_entry($instance);
 	}
 	add_action( 'wp_version_check', 'add_privacy_filters' );
 }
