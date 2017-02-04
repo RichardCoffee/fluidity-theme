@@ -156,7 +156,6 @@ if ( ! function_exists( 'add_privacy_filters' ) ) {
 	function add_privacy_filters() {
 		include_once('classes/privacy.php');
 		$instance = Privacy_My_Way::instance();
-log_entry($instance);
 	}
 	add_action( 'wp_version_check', 'add_privacy_filters' );
 }

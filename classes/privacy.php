@@ -19,7 +19,6 @@ class Privacy_My_Way {
 
 	protected function __construct() {
 		$this->get_options();
-log_entry($this->options);
 		add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
 		add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
 		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),            9999, 2 );
@@ -29,8 +28,8 @@ log_entry($this->options);
 	public function pre_site_option_blog_count( $count, $option, $network_id ) {
 
 log_entry($count,$option,$network_id);
-/*
-		if ( $this->options === 'no' ) {
+
+		if ( $this->options['blogs'] === 'no' ) {
 			$count = 1;
 		} //*/
 
@@ -40,10 +39,10 @@ $this->blog_count_done = true;  // for debugging
 	}
 
 	public function pre_site_option_user_count( $count, $option, $network_id ) {
-		$privacy = $this->options[ 'users' ];
+		$privacy = $this->options['users'];
 
 log_entry($count,$option,$network_id,$privacy);
-/*
+
 		if ( $privacy ) {
 			switch( $privacy ) {
 				case 'all':
@@ -60,7 +59,7 @@ log_entry($count,$option,$network_id,$privacy);
 			}
 		} //*/
 
-#log_entry($count);
+log_entry($count);
 
 $this->user_count_done = true; // debugging
 
@@ -132,13 +131,10 @@ log_entry($url,$args);
 	}
 
 	public function pre_http_request( $preempt, $args, $url ) {
-
-log_entry($preempt,$args,$url);
-
+		#	check if we, or someone else, has been here before
 		if ( $preempt || isset( $args['_privacy_filter'] ) ) {
 			return $preempt;
 		}
-
 		#	only act on requests to api.wordpress.org
 		if ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false ) &&
 		     ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false ) &&
@@ -147,21 +143,33 @@ log_entry($preempt,$args,$url);
 			return $preempt;
 		}
 
+log_entry($url,$args);
+
 return $preempt;
 
 		#	Remove/Change url args
 #		$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
 
-      $url_array = parse_url($url);
-
+		$url_array = parse_url($url);
 		$arg_array = wp_parge_args( $url_array['query'] );
 
-
-
-		$url = remove_query_arg( $keys, $url );
+		if ( isset( $arg_array['blogs'] ) ) {
+			$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
+			$url   = add_query_arg( 'blogs', $blogs, $url );
+		}
+		if ( isset( $arg_array['users'] ) ) {
+			$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
+			$url   = add_query_arg( 'users', $users, $url );
+		}
+		if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
+			$arg_array['multisite_enabled'] = 0;
+			$url = add_query_arg( 'multisite_enabled', '0', $url );
+		}
 
 		#	make request
 		$args['_privacy_filter'] = true;
+log_entry($url,$args);
+return $preempt;
 		$result = wp_remote_request( $url, $args );
 
 log_entry($result);
@@ -172,7 +180,7 @@ log_entry($result);
 	private function get_options() {
 		$options = get_option( 'tcc_options_privacy' );
 		if ( ! $options ) {
-			
+			// TODO
 		}
 		$this->options = $options;
 	}
