@@ -54,7 +54,9 @@ tcc_category_title();
 
 						if ( ! is_singular() ) { ?>
 							<div class="row">
-								<?php pagination(); ?>
+								<div class="text-wide text-center">
+									<?php pagination(); ?>
+								</div>
 							</div><?php
 						}
 						do_action( "tcc_{$page}_page_afterposts" );
