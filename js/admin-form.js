@@ -2,12 +2,12 @@
 
 jQuery(document).ready(function() {
 //  showhideAdminElements(document.querySelector('.tcc-loca'),'.tcc-wp_posi','dashboard');
-  showhideAdminElements(document.querySelector('.social-option-active'),  '.social-option-icon',    'yes');
-  showhideAdminElements(document.querySelector('.agent-role-active'),     '.agent-role-setting',    'agents');
-  showhideAdminElements(document.querySelector('.privacy-blog-active'),   '.privacy-blog-option',   'yes');
-  showhideAdminElements(document.querySelector('.privacy-multi-active'),  '.privacy-multi-option',  'filter');
-  showhideAdminElements(document.querySelector('.privacy-plugin-active'), '.privacy-plugin-filter', 'filter');
-  showhideAdminElements(document.querySelector('.privacy-theme-active'),  '.privacy-theme-filter',  'filter');
+  showhideAdminElements( document.querySelector( '.social-option-active' ),  '.social-option-icon',    'yes');
+  showhideAdminElements( document.querySelector( '.agent-role-active' ),     '.agent-role-setting',    'agents');
+  showhideAdminElements( document.querySelector( '.privacy-blog-active' ),   '.privacy-blog-option',   'yes');
+  showhideAdminElements( document.querySelector( '.privacy-multi-active' ),  '.privacy-multi-option',  'filter');
+  showhideAdminElements( document.querySelector( '.privacy-plugin-active' ), '.privacy-plugin-filter', 'filter');
+  showhideAdminElements( document.querySelector( '.privacy-theme-active' ),  '.privacy-theme-filter',  'filter');
   showhideElements(jQuery('.showhide'));
   jQuery('.form-colorpicker' ).wpColorPicker();
   jQuery('.form-image'       ).click(function(e) { imageUploader(this,e); });
@@ -76,15 +76,18 @@ function showhidePosi(el,target,show) {
 }
 
 function showhideAdminElements(el,target,show) {
+if (el) {
+console.log(el);
+	var state = jQuery(el).find('input:radio:checked').val();
 
-console.log( jQuery(el).find('input:radio:checked').val() );
-console.log( show );
+console.log( state+' - '+show );
 
-  if (jQuery(el).find('input:radio:checked').val()==show) {
+  if ( state === show) {
     jQuery(target).parent().parent().show(2000); //removeClass('hidden');
   } else {
     jQuery(target).parent().parent().hide(2000); //addClass('hidden');
   }
+}
 }
 
 // Browser compatibility function taken from http://stackoverflow.com/questions/6548748/portability-of-nextelementsibling-nextsibling
