@@ -302,10 +302,10 @@ log_entry($controls);
 			settings_errors(); ?>
 			<form method="post" action="options.php"><?php
 #				do_action( 'form_admin_pre_display' );
-#				do_action( 'form_admin_pre_display_' . $this->current );
+#				do_action( "form_admin_pre_display_{$this->current}" );
 				settings_fields($this->current);
 				do_settings_sections($this->current);
-#				do_action( 'form_admin_post_display_' . $this->current );
+#				do_action( "form_admin_post_display_{$this->current}" );
 #				do_action( 'form_admin_post_display' );
 				$this->submit_buttons(); ?>
 			</form>
@@ -335,10 +335,10 @@ log_entry($controls);
       <form method="post" action="options.php">
         <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
         $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
-        do_action("form_admin_pre_display_".$this->tab);
+        do_action( "form_admin_pre_display_{$this->tab}" );
         settings_fields($current); #$this->slug); #$this->current);
         do_settings_sections($current); #$this->slug); #$this->current);
-        do_action("form_admin_post_display_".$this->tab);
+        do_action("form_admin_post_display_{$this->tab}");
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
     <div><?php //*/

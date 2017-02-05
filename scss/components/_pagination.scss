@@ -1,0 +1,21 @@
+.pagination {
+	& li {
+		display: inline;
+		& a,
+		&.active a,
+		&.disabled,
+		& a:hover {
+			color: #fff;
+			text-decoration:none;
+			background-color: #6FB7E9;
+			border-radius: 3px;
+			cursor: pointer;
+			padding: 12px;
+			padding: 0.75rem;
+		}
+		& a:hover,
+		&.active a {
+			background-color: #3C8DC5;
+		}
+	}
+}

@@ -332,6 +332,22 @@ header {
   width: 30px;
 }
 
+.pagination li {
+  display: inline;
+}
+.pagination li a, .pagination li.active a, .pagination li.disabled, .pagination li a:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #6FB7E9;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 12px;
+  padding: 0.75rem;
+}
+.pagination li a:hover, .pagination li.active a {
+  background-color: #3C8DC5;
+}
+
 /* Create the parallax scrolling effect */
 .parallax,
 .parallax-top, .parallax-center, .parallax-bottom, .parallax-contain,
