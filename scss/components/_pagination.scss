@@ -1,6 +1,10 @@
 .pagination {
 //	& li {
 		display: inline;
+		& a {
+			margin-left: 0.5em;
+			margin-right: 0.5em;
+		}
 		& a,
 		&.active a,
 		&.disabled,

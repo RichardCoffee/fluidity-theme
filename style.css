@@ -335,6 +335,10 @@ header {
 .pagination {
   display: inline;
 }
+.pagination a {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
 .pagination a, .pagination.active a, .pagination.disabled, .pagination a:hover {
   color: #fff;
   text-decoration: none;

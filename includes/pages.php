@@ -133,7 +133,6 @@ if ( ! function_exists( 'pagination' ) ) {
 		if ( empty( $paged ) ) {
 			$paged = 1;
 		}
-log_entry($pages, $range);
 		if ( $pages == '' ) {
 			global $wp_query;
 			$pages = $wp_query->max_num_pages;
@@ -141,11 +140,10 @@ log_entry($pages, $range);
 			$pages = 1;
 			}
 		}
-log_entry(0,$pages,$wp_query);
 		if ( $pages !== 1 ) { ?>
 			<div class="pagination">
 				<span>
-					<?php echo "Page $paged of $pages."; ?>
+					<?php #echo "Page $paged of $pages."; ?>
 				</span><?php
 				if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) && ( $showitems < $pages ) ) {
 					echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";

@@ -52,8 +52,10 @@ tcc_category_title();
 								fluid_post_separator( $page ); }
 						}
 
-						if ( ! is_singular() ) {
-							pagination();
+						if ( ! is_singular() ) { ?>
+							<div class="row">
+								<?php pagination(); ?>
+							</div><?php
 						}
 						do_action( "tcc_{$page}_page_afterposts" );
 					} else {
