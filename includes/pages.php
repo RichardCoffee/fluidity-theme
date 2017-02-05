@@ -146,7 +146,7 @@ if ( ! function_exists( 'pagination' ) ) {
 log_entry("    pages:  $pages",
           "    paged:  $paged",
           "    range:  $range",
-          "showitems:  $showitems",
+          "showitems:  $showitems"
 );
 					if ( $showitems < $pages ) {
 						if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) ) { ?>
