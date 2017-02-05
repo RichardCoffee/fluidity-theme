@@ -220,8 +220,8 @@ class TCC_Microdata {
       if ($format==='Y-m-d H:i:s') {  #  This check is not strictly necessary
         $date = $time;
       } else {
-        $Date = DateTime::createFromFormat($format,$time);
-        $date = $Date->format('Y-m-d H:i:s');
+        $date_time = DateTime::createFromFormat($format,$time);
+        $date      = $date_time->format('Y-m-d H:i:s');
       }
       $time = "<time itemprop='datePublished' datetime='$date'>$time</time>";
     }
