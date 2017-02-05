@@ -53,7 +53,7 @@ tcc_category_title();
 						}
 
 						if ( ! is_singular() ) {
-echo '<p>Pagination goes here</p>';
+							pagination();
 						}
 						do_action( "tcc_{$page}_page_afterposts" );
 					} else {
