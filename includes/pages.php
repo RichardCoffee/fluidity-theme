@@ -133,7 +133,7 @@ if ( ! function_exists( 'pagination' ) ) {
 		if ( empty( $paged ) ) {
 			$paged = 1;
 		}
-		if ( $pages == '' ) {
+		if ( ! $pages ) {
 			global $wp_query;
 			$pages = $wp_query->max_num_pages;
 			if ( ! $pages ) {
@@ -141,28 +141,58 @@ if ( ! function_exists( 'pagination' ) ) {
 			}
 		}
 		if ( $pages !== 1 ) { ?>
-			<div class="pagination">
-				<span>
-					<?php #echo "Page $paged of $pages."; ?>
-				</span><?php
-				if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) && ( $showitems < $pages ) ) {
-					echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
-				}
-				if ( ( $paged > 1 ) && ( $showitems < $pages ) ) {
-					echo "<a href='" . get_pagenum_link( $paged - 1 ) . "'>&lsaquo; Previous</a>";
-				}
-				for ( $i = 1; $i <= $pages; $i++ ) {
-					if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) {
-						echo ($paged == $i) ? '<span class="current">' . $i . '</span>' : '<a href="' . get_pagenum_link( $i ) . '" class="inactive">' . $i . '</a>';
+			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>">
+				<ul class="pagination"><?php
+log_entry("    pages:  $pages",
+          "    paged:  $paged",
+          "    range:  $range",
+          "showitems:  $showitems",
+);
+					if ( $showitems < $pages ) {
+						if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) ) { ?>
+							<li>
+								<a href="<?php echo get_pagenum_link( 1 ); ?>" aria-label="<?php esc_html_e( 'First', 'tcc-fluid' ); ?>">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li><?php
+						} else if ( $paged > 1 ) { ?>
+							<li>
+								<a href="<?php echo get_pagenum_link( $paged - 1 ); ?>" aria-label="<?php esc_html_e( 'Previous', 'tcc-fluid' ); ?>">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li><?php
+						}
 					}
-				}
-				if ( ( $paged < $pages ) && ( $showitems < $pages ) ) {
-					echo '<a href="' . get_pagenum_link( $paged + 1 ) . '">Next &rsaquo;</a>';
-				}
-				if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) {
-					echo '<a href="'.get_pagenum_link($pages).'">Last &raquo;</a>';
-				} ?>
-			</div><?php
+					for ( $i = 1; $i <= $pages; $i++ ) {
+						if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) {
+							if ( $paged === $i ) { ?>
+								<span class="current">
+									<?php echo $i; ?>
+								</span><?php
+							} else { ?>
+								<a href="<?php echo get_pagenum_link( $i ); ?>" class="inactive">
+									<?php echo $i; ?>
+								</a><?php
+							}
+						}
+					}
+					if ( $showitems < $pages ) {
+						if ( $paged < $pages ) { ?>
+							<li>
+								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_html_e( 'Next', 'tcc-fluid' ); ?>">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li><?php
+						} else if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
+							<li>
+								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last', 'tcc-fluid' ); ?>">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li><?php
+						}
+					} ?>
+				</ul>
+			</nav><?php
 		}
 	}
 }
