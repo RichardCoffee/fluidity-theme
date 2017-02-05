@@ -22,9 +22,8 @@ if (!function_exists('tcc_excerpt_parallax')) {
 		if (tcc_design('paral')==='yes') { ?>
 			<style>
 				.post-<?php the_ID(); ?> {
-					background-image: url('<?php echo get_featured_url( ); ?>');
+					ackground-image: url('<?php echo get_featured_url( ); ?>');
 					<?php do_action('tcc_excerpt_parallax'); ?>
-					<?php //do_action('tcc_excerpt_parallax_'.get_the_ID()); ?>
 				}
 			</style><?php
 		}
@@ -38,12 +37,13 @@ if (!function_exists('tcc_page_parallax')) {
 			$pageID = $post->ID;
 			if ($pageID) {
 				$imgURL = get_featured_url($pageID);
-				if ($imgURL) { ?>
+				if ($imgURL) {
+					$slug = get_page_slug(); ?>
 					<style>
 						.parallax-image {
 							background-image: url("<?php echo $imgURL; ?>");
 							<?php do_action('tcc_page_parallax'); ?>
-							<?php do_action('tcc_page_parallax_'.get_page_slug()); ?>
+							<?php do_action("tcc_page_parallax_$slug"); ?>
 						}
 					</style><?php
 					$divcss = 'parallax parallax-image parallax-scroll parallax-page-'.get_page_slug();
@@ -68,10 +68,10 @@ if (!function_exists('tcc_post_parallax')) {
 				.single-parallax {
 					background-image: url('<?php echo get_featured_url( ); ?>');
 					<?php do_action('tcc_post_parallax'); ?>
-					<?php //do_action('tcc_post_parallax_'.get_the_ID()); ?>
 				}
 			</style>
-			<div id="" class="parallax <?php echo $css; ?> parallax-scroll"></div><?php
+			<div id="" class="parallax <?php echo $css; ?> parallax-scroll">
+			</div><?php
 		}
 	}
 }

@@ -7,10 +7,10 @@
 //this is basically just a header body class that is required for some odd reason to make the theme complete in wordpress's theme authoring test thingy...jlg
 if (!isset($content_width)) $content_width = 1600;
 
-define('FLUIDITY_HOME',trailingslashit(dirname(__FILE__)));  #  get current directory
-$data = get_file_data( FLUIDITY_HOME.'style.css', array( 'ver' => 'Version' ) );
-define('FLUIDITY_VERSION',$data['ver']);
-defined('TCC_THEME_VERSION') or define('TCC_THEME_VERSION',FLUIDITY_VERSION);
+define( 'FLUIDITY_HOME', trailingslashit( dirname( __FILE__ ) ) );  #  get current directory
+$data = get_file_data( FLUIDITY_HOME . 'style.css', array( 'ver' => 'Version' ) );
+define( 'FLUIDITY_VERSION', $data['ver'] );
+defined( 'TCC_THEME_VERSION' ) or define( 'TCC_THEME_VERSION', FLUIDITY_VERSION );
 
 require_once('includes/loader.php');
 require_once('includes/debugging.php');              #  load logging function as soon as possible
@@ -32,25 +32,14 @@ require_once('classes/autocomplete.php');
 require_once('classes/form-fields.php');
 
 if (is_admin()) {
-#log_entry(phpversion());
-	#require_once('classes/admin-form.php');
-#	if ( method_exists( 'TCC_Options_Fluidity', 'instance' ) ) {
-		TCC_Options_Fluidity::instance();
-#	} else if ( method_exists( 'TCC_Options_Fluidity', 'get_instance' ) ) {
-#		TCC_Options_Fluidity::get_instance();
-#	} else {
-#		log_entry('Missing Trait methods!');
-#	}
+	TCC_Options_Fluidity::instance();
 } else {
-  //require_once('includes/footer.php');
-  #require_once('includes/defines.php');
   require_once('includes/header.php');
   require_once('includes/in-the-loop.php');
   require_once('includes/index.php');
   require_once('includes/pages.php');
   require_once('includes/third-party.php');
   require_once('classes/microdata.php');
-#	new TCC_Query_TermCount( array( 'taxonomy' => 'category' ) );
 }
 
 if (!function_exists('tcc_enqueue')) {
@@ -88,7 +77,7 @@ if (!function_exists('tcc_enqueue')) {
     if ($hdr_state==='fixed') {
       wp_enqueue_script('tcc-fixed');
     } else if ($hdr_state==='reduce') {
-      wp_enqueue_script('tcc-reduce-css');
+      wp_enqueue_style('tcc-reduce-css');
       wp_enqueue_script('tcc-reduce-js');
     } else if ($hdr_state==='hide') {
       #add_action('wp_footer','fluid_footer_autohide',99);
