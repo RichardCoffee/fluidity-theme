@@ -332,10 +332,10 @@ header {
   width: 30px;
 }
 
-.pagination li {
+.pagination {
   display: inline;
 }
-.pagination li a, .pagination li.active a, .pagination li.disabled, .pagination li a:hover {
+.pagination a, .pagination.active a, .pagination.disabled, .pagination a:hover {
   color: #fff;
   text-decoration: none;
   background-color: #6FB7E9;
@@ -344,7 +344,7 @@ header {
   padding: 12px;
   padding: 0.75rem;
 }
-.pagination li a:hover, .pagination li.active a {
+.pagination a:hover, .pagination.active a {
   background-color: #3C8DC5;
 }
 

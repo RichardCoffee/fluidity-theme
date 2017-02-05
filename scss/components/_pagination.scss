@@ -1,5 +1,5 @@
 .pagination {
-	& li {
+//	& li {
 		display: inline;
 		& a,
 		&.active a,
@@ -17,5 +17,5 @@
 		&.active a {
 			background-color: #3C8DC5;
 		}
-	}
+//	}
 }
