@@ -133,7 +133,7 @@ if ( ! function_exists( 'pagination' ) ) {
 		if ( empty( $paged ) ) {
 			$paged = 1;
 		}
-tcc_log_entry($pages, $range);
+log_entry($pages, $range);
 		if ( $pages == '' ) {
 			global $wp_query;
 			$pages = $wp_query->max_num_pages;
