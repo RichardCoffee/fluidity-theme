@@ -6,7 +6,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-class TCC_MetaBox_Gallery {
+class TCC_Metabox_Gallery {
 
 	private $add_meta =  null;
 	private $button   = 'Assign/Upload Image';
@@ -24,7 +24,7 @@ class TCC_MetaBox_Gallery {
 	private $priority = 'high';
 	private $slug     = 'gallery_meta_box';
 	private $title    = 'Image Gallery';
-	private $type     = 'custom_post_type';
+	private $type     = 'post';
 
 	use TCC_Trait_Magic;
 

@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 
 # [gallery link="file" size="medium" ids="271,272,273,274,275,276,277,278,279,280,281,282,283"]
 
-class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
+class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 
 	public function __construct($args=array()) {
 		parent::__construct($args);

@@ -30,6 +30,7 @@ require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-a
 
 require_once('classes/autocomplete.php');
 require_once('classes/form-fields.php');
+new TCC_Metabox_GalleryView();
 
 if (is_admin()) {
 	TCC_Options_Fluidity::instance();
