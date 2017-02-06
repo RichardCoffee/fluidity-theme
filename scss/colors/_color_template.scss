@@ -52,18 +52,21 @@ li.btn-fluidity > a {
 
 // pagination
 
-ul.pagination {
-	& > li > a {
+ul.pagination > li {
+	& > a {
 		color: color(textcolor);
 		background: color(background);
 		border-color: color(bgHighlight);
 	}
-	& > li > a:hover, & > li> a:focus,
-	& > li.current {
+	& > a:hover,
+	& > a:focus,
+	& > span {
 		color: color(background);
 		background: color(textcolor);
+		border-color: color(bgHighlight);
 	}
 }
+
 
 // panels
 

@@ -153,9 +153,10 @@ ul.pagination > li > a {
   background: #2e3192;
   border-color: #252775;
 }
-ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li.current {
+ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > span {
   color: #2e3192;
   background: #FFFFFF;
+  border-color: #252775;
 }
 
 .panel-fluidity {

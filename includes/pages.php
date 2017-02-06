@@ -127,7 +127,7 @@ if (!function_exists('page_exists')) {
 
 if ( ! function_exists( 'pagination' ) ) {
 	#| http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
-	function pagination( $pages = '', $range = 1 ) {
+	function pagination( $pages = '', $range = 2 ) {
 		$showitems = ( $range * 2 ) + 1;
 		global $paged;
 		if ( empty( $paged ) ) {
@@ -167,11 +167,11 @@ log_entry("    pages:  $pages",
 						if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) { ?>
 							<li><?php
 								if ( $paged === $i ) { ?>
-									<span class="current">
+									<span>
 										<?php echo $i; ?>
 									</span><?php
 								} else { ?>
-									<a href="<?php echo get_pagenum_link( $i ); ?>" class="inactive">
+									<a href="<?php echo get_pagenum_link( $i ); ?>">
 										<?php echo $i; ?>
 									</a><?php
 								} ?>
