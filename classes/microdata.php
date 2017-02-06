@@ -215,18 +215,16 @@ class TCC_Microdata {
     return $link;
   }
 
-  public function get_post_time($time,$format,$gmt) {
-    if (strpos($time,'itemprop')===false) {
-      if ($format==='Y-m-d H:i:s') {  #  This check is not strictly necessary
-        $date = $time;
-      } else {
-        $date_time = DateTime::createFromFormat($format,$time);
-        $date      = $date_time->format('Y-m-d H:i:s');
-      }
-      $time = "<time itemprop='datePublished' datetime='$date'>$time</time>";
-    }
-    return $time;
-  }
+	public function get_post_time( $time, $format, $gmt ) {
+		if ( strpos( $time, 'itemprop' ) === false ) {
+			$date_time = DateTime::createFromFormat( $format, $time );
+			if ( $date_time ) }
+				$date = $date_time->format( 'Y-m-d H:i:s' );
+				$time = '<time itemprop="datePublished" datetime="' . $date . '">' . $time . '</time>';
+			}
+		}
+		return $time;
+	}
 
   public function get_the_archive_description($descrip) {
     if (!strpos($descrip,'itemprop')===false) return $descrip;

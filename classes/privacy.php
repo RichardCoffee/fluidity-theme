@@ -113,17 +113,14 @@ return $args;
 		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
 			$theme_filter = $this->options['theme_list'];
 			$themes = json_decode( $args['body']['themes'] );
-			foreach ( $plugin_filter as $plugin => $status ) {
-			if ( $status === 'no' ) {
-				if ( isset( $plugins->plugins->$plugin ) ) {
-					unset( $plugins->plugins->$plugin );
-				if ( isset( $plugins->active->$plugin ) ) {
-					unset( $plugins->active->$plugin );
+			foreach ( $theme_filter as $theme => $status ) {
+				if ( $status === 'no' ) {
+					if ( isset( $themes->plugins->$theme ) ) {
+						unset( $themes->plugins->$theme );
+					if ( isset( $themes->active->$theme ) ) {
+						unset( $themes->active->$theme );
+				}
 			}
-		}
-
-			unset( $themes->themes->RxPool5 );
-			unset( $themes->active );
 			$args['body']['themes'] = json_encode( $themes );
 		} //*/
 log_entry($args,$themes);

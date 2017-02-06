@@ -6,8 +6,10 @@
  */
 
 function fluid_index_page( $page='index' ) {
-
-	do_action( "tcc_{$page}_page_top" ); ?>
+echo '<p>before '.$page.' do_action</p>';
+	do_action( "tcc_{$page}_page_top" );
+echo '<p>after '.$page.' do_action</p>';
+ ?>
 
 	<main><?php
 
