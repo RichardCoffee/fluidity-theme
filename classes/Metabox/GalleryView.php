@@ -12,7 +12,10 @@ class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 			add_action( 'tcc_after_enqueue', array( $this, 'register_galleryview' ) );
 		}
 		add_shortcode( 'galleryview', array( $this, 'show_galleryview' ) );
+		add_action( 'tcc_gallery_meta_box_pre', array( $this, 'meta_box_description' ) );
 	}
+
+	/**  Setup  **/
 
 	public function register_galleryview() {
 		wp_register_style( 'tcc-gv-css',          get_theme_file_uri('galleryview/css/jquery.galleryview-3.0-dev.css'), null, '3.0');
@@ -35,6 +38,8 @@ class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 			}
 		}
 	}
+
+	/**  Front end display  **/
 
 	public function show_galleryview($postID=0) {
 		$postID = ($postID) ? $postID : get_the_ID();
@@ -65,6 +70,14 @@ class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 		<li>
 			<img <?php echo $attrs; ?> />
 		</li><?php
+	}
+
+	/**  Admin meta box  **/
+
+	public function meta_box_description() { ?>
+		<p>
+			Use the <span class="red">[galleryview]<span> shortcode to place gallery in post.
+		</p><?php
 	}
 
 
