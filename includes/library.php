@@ -429,7 +429,7 @@ if (!function_exists('who_am_i')) {
           $show = substr($show,$pos+10);
         }
         $slug = get_page_slug();
-        echo "<p>$show slug: $slug</p>";
+        echo "<p>$slug : $show</p>";
       }
     }
   }
