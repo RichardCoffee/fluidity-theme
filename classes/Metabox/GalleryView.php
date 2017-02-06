@@ -2,7 +2,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-# [gallery link="file" size="medium" ids="271,272,273,274,275,276,277,278,279,280,281,282,283"]
 
 class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 
@@ -13,19 +12,19 @@ class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 		}
 		add_shortcode( 'galleryview', array( $this, 'show_galleryview' ) );
 		add_action( 'tcc_gallery_meta_box_pre', array( $this, 'meta_box_description' ) );
-log_entry($this);
+#log_entry($this);
 	}
 
 	/**  Setup  **/
 
 	public function register_galleryview() {
 log_entry('in register');
-		wp_register_style( 'tcc-gv-css',          get_theme_file_uri('galleryview/css/jquery.galleryview-3.0-dev.css'), null, '3.0');
-		wp_register_style( 'tcc-galleryview-css', get_theme_file_uri('css/galleryview.css'), array('tcc-gv-css'), TCC_THEME_VERSION);
-		wp_register_script('tcc-gv-js',           get_theme_file_uri('galleryview/js/jquery.galleryview-3.0-dev.js'), array('jquery'), '3.0', true);
-		wp_register_script('tcc-gv-easing',       get_theme_file_uri('galleryview/js/jquery.easing.1.3.js'), array('jquery','tcc-gv-js'), '1.3', true);
-		wp_register_script('tcc-gv-timers',       get_theme_file_uri('galleryview/js/jquery.timers-1.2.js'), array('jquery','tcc-gv-js'), '1.2', true);
-		wp_register_script('tcc-galleryview-js',  get_theme_file_uri('js/galleryview.js'), array('tcc-gv-easing','tcc-gv-timers'), TCC_THEME_VERSION, true);
+		wp_register_style( 'tcc-gv-css',          get_theme_file_uri( 'galleryview/css/jquery.galleryview-3.0-dev.css' ), null, '3.0' );
+		wp_register_style( 'tcc-galleryview-css', get_theme_file_uri( 'css/galleryview.css' ), array( 'tcc-gv-css' ), TCC_THEME_VERSION );
+		wp_register_script('tcc-gv-js',           get_theme_file_uri( 'galleryview/js/jquery.galleryview-3.0-dev.js' ), array( 'jquery' ), '3.0', true );
+		wp_register_script('tcc-gv-easing',       get_theme_file_uri( 'galleryview/js/jquery.easing.1.3.js' ), array( 'jquery','tcc-gv-js' ), '1.3', true );
+		wp_register_script('tcc-gv-timers',       get_theme_file_uri( 'galleryview/js/jquery.timers-1.2.js' ), array( 'jquery','tcc-gv-js' ), '1.2', true );
+		wp_register_script('tcc-galleryview-js',  get_theme_file_uri( 'js/galleryview.js' ), array( 'tcc-gv-easing', 'tcc-gv-timers' ), TCC_THEME_VERSION, true );
 		$this->enqueue_galleryview();
 	}
 
@@ -76,9 +75,10 @@ log_entry('in register');
 
 	/**  Admin meta box  **/
 
-	public function meta_box_description() { ?>
+	public function meta_box_description() {
+		$text = esc_html_x( 'Use the %s shortcode to place the gallery in your post.', 'a wordpress shortcode', 'tcc-fluid' ); ?>
 		<p>
-			Use the <span class="red">[galleryview]<span> shortcode to place gallery in post.
+			<?php echo sprintf( $text, '<span class="red">[galleryview]<span>' ); ?>
 		</p><?php
 	}
 

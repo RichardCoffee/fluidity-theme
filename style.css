@@ -332,17 +332,21 @@ header {
   width: 30px;
 }
 
+/*
 .pagination {
-  clear: both;
-  position: relative;
-}
-.pagination li {
-  display: block;
-  float: left;
-  margin: 0.25em 0.5em 0.25em 0;
-  padding: 0.3em 1em 0.25em 1em;
-  text-decoration: none;
-  width: auto;
+	clear:both;
+	position:relative;
+	& li {
+		display:block;
+		float:left;
+		margin: 0.25em 0.5em 0.25em 0;
+		padding: 0.3em 1em 0.25em 1em;
+		text-decoration:none;
+		width:auto;
+	}
+} //*/
+ul.pagination > li {
+  border-radius: 15px;
 }
 
 /* Create the parallax scrolling effect */

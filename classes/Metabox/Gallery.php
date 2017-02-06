@@ -8,23 +8,23 @@ defined( 'ABSPATH' ) || exit;
 
 class TCC_Metabox_Gallery {
 
-	private $add_meta =  null;
-	private $button   = 'Assign/Upload Image';
-	private $callback =  null;
-	private $confirm  = 'Remove this image?';
-	private $context  = 'normal';
-	private $div_css  = 'section group gallery-images';
-	private $div_id   = 'post-gallery';
-	private $div_img  = 'col span_1_of_4 meta-image';
-	private $field    = 'tcc_gallery';
-	private $icon     = 'dashicons dashicons-trash delete-image';
-	private $img_css  = 'attachment-post-thumbnail img-responsive';
-	private $m_button = 'Assign Image';
-	private $nonce    = 'gallery_nonce';
-	private $priority = 'high';
-	private $slug     = 'gallery_meta_box';
-	private $title    = 'Image Gallery';
-	private $type     = 'post';
+	protected $add_meta =  null;
+	protected $button   = 'Assign/Upload Image';
+	protected $callback =  null;
+	protected $confirm  = 'Remove this image?';
+	protected $context  = 'normal';
+	protected $div_css  = 'section group gallery-images';
+	protected $div_id   = 'post-gallery';
+	protected $div_img  = 'col span_1_of_4 meta-image';
+	protected $field    = 'tcc_gallery';
+	protected $icon     = 'dashicons dashicons-trash delete-image';
+	protected $img_css  = 'attachment-post-thumbnail img-responsive';
+	protected $m_button = 'Assign Image';
+	protected $nonce    = 'gallery_nonce';
+	protected $priority = 'high';
+	protected $slug     = 'gallery_meta_box';
+	protected $title    = 'Image Gallery';
+	protected $type     = 'post';
 
 #	use TCC_Trait_Magic;
 
