@@ -50,6 +50,18 @@ li.btn-fluidity > a {
 @import "navbar";
 @import "underscore";
 
+// pagination
+
+.pagination {
+	color: color(textcolor);
+	background: color(background);
+	& a:hover, & a:focus,
+	& .current {
+		color: color(background);
+		background: color(textcolor);
+	}
+}
+
 // panels
 
 .panel-fluidity {

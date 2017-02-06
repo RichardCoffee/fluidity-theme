@@ -148,6 +148,15 @@ ul.sub-menu {
   background-color: #cbefd0;
 }
 
+.pagination {
+  color: #FFFFFF;
+  background: #39b54a;
+}
+.pagination a:hover, .pagination a:focus, .pagination .current {
+  color: #39b54a;
+  background: #FFFFFF;
+}
+
 .panel-fluidity {
   border-color: #2e913b;
 }

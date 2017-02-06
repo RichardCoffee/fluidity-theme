@@ -6,10 +6,7 @@
  */
 
 function fluid_index_page( $page='index' ) {
-echo '<p>before '.$page.' do_action</p>';
-	do_action( "tcc_{$page}_page_top" );
-echo '<p>after '.$page.' do_action</p>';
- ?>
+	do_action( "tcc_{$page}_page_top" ); ?>
 
 	<main><?php
 
@@ -19,11 +16,8 @@ echo '<p>after '.$page.' do_action</p>';
 		} ?>
 
 		<div id="fluid-content" class="fluid-<?php echo $page; ?> <?php echo esc_attr( container_type( $page ) ); ?>" <?php microdata()->Blog(); ?>>
-			<div class="row"><?php
-#global $wp_query;
-#showMe('WP_Query',$wp_query);
-#tellMe("<p>Page: $page</p>");
-				who_am_i(1); ?>
+			<div class="row">
+				<?php who_am_i(1); ?>
 
 				<aside>
 					<div class="fluid-sidebar hidden-sm hidden-xs">
@@ -32,11 +26,7 @@ echo '<p>after '.$page.' do_action</p>';
 				</aside>
 
 				<div id="content" role="main" tabindex="-1"><?php
-/*
-if ( is_category() ) {
-tcc_category_title();
-}
-*/
+
 					if ( have_posts() ) {
 						do_action( "tcc_{$page}_page_preposts" );
 
