@@ -69,6 +69,9 @@ class TCC_Metabox_Gallery {
 
 	public function gallery_meta_box($post) {
 		wp_nonce_field(basename(__FILE__),$this->nonce); ?>
+<p>
+Use the [galleryview] shortcode to place gallery in post.
+</p>
 		<div id="<?php echo $this->div_id; ?>" class="<?php echo $this->div_css; ?>"><?php
 			$images = $this->get_gallery_images($post->ID,true);
 			foreach($images as $imgID=>$src) { ?>
