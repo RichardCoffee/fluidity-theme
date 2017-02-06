@@ -334,14 +334,13 @@ header {
 
 .pagination {
   clear: both;
-  padding: 20px 0;
   position: relative;
 }
 .pagination span, .pagination a {
   display: block;
   float: left;
-  margin: 0.25em 0.25em 0.25em 0;
-  padding: 6px 9px 5px 9px;
+  margin: 0.25em 0.5em 0.25em 0;
+  padding: 0.3em 1em 0.25em 1em;
   text-decoration: none;
   width: auto;
 }

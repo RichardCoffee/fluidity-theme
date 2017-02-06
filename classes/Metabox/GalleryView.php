@@ -19,6 +19,7 @@ log_entry($this);
 	/**  Setup  **/
 
 	public function register_galleryview() {
+log_entry('in register');
 		wp_register_style( 'tcc-gv-css',          get_theme_file_uri('galleryview/css/jquery.galleryview-3.0-dev.css'), null, '3.0');
 		wp_register_style( 'tcc-galleryview-css', get_theme_file_uri('css/galleryview.css'), array('tcc-gv-css'), TCC_THEME_VERSION);
 		wp_register_script('tcc-gv-js',           get_theme_file_uri('galleryview/js/jquery.galleryview-3.0-dev.js'), array('jquery'), '3.0', true);

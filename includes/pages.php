@@ -127,7 +127,7 @@ if (!function_exists('page_exists')) {
 
 if ( ! function_exists( 'pagination' ) ) {
 	#| http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
-	function pagination( $pages = '', $range = 4 ) {
+	function pagination( $pages = '', $range = 1 ) {
 		$showitems = ( $range * 2 ) + 1;
 		global $paged;
 		if ( empty( $paged ) ) {
@@ -150,13 +150,14 @@ log_entry("    pages:  $pages",
 );
 					if ( $showitems < $pages ) {
 						if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) ) { ?>
-							<li>
+							<li title="<?php esc_html_e('First Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( 1 ); ?>" aria-label="<?php esc_html_e( 'First', 'tcc-fluid' ); ?>">
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li><?php
-						} else if ( $paged > 1 ) { ?>
-							<li>
+						}
+						if ( $paged > 1 ) { ?>
+							<li title="<?php esc_html_e('Previous Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $paged - 1 ); ?>" aria-label="<?php esc_html_e( 'Previous', 'tcc-fluid' ); ?>">
 									<span aria-hidden="true">&laquo;</span>
 								</a>
@@ -178,13 +179,14 @@ log_entry("    pages:  $pages",
 					}
 					if ( $showitems < $pages ) {
 						if ( $paged < $pages ) { ?>
-							<li>
+							<li title="<?php esc_html_e('Next Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_html_e( 'Next', 'tcc-fluid' ); ?>">
 									<span aria-hidden="true">&raquo;</span>
 								</a>
 							</li><?php
-						} else if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
-							<li>
+						}
+						if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
+							<li title="<?php esc_html_e('Last Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last', 'tcc-fluid' ); ?>">
 									<span aria-hidden="true">&laquo;</span>
 								</a>

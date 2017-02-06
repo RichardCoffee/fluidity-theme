@@ -14,7 +14,7 @@ class TCC_Metabox_Gallery {
 	private $confirm  = 'Remove this image?';
 	private $context  = 'normal';
 	private $div_css  = 'section group gallery-images';
-	private $div_id   = 'post-gallery';
+	private $div_id   = 'gallery-images';
 	private $div_img  = 'col span_1_of_4 meta-image';
 	private $field    = 'tcc_gallery';
 	private $icon     = 'dashicons dashicons-trash delete-image';
@@ -28,15 +28,15 @@ class TCC_Metabox_Gallery {
 
 #	use TCC_Trait_Magic;
 
-	public function __construct( $args = array() ) {
+	public function __construct($args=array()) {
 		$this->button   = esc_html__('Assign/Upload Gallery Image','tcc-plugin');
 		$this->confirm  = esc_html__('Remove this image?','tcc-plugin');
 		$this->m_button = esc_html__('Assign Image','tcc-plugin');
 		$this->title    = esc_html__('Image Gallery','tcc-plugin');
-		foreach( $args as $prop => $value ) {
+		foreach($args as $prop=>$value) {
 			$this->{$prop} = $value;
 		}
-		$this->add_meta = ( $this->add_meta ) ? $this->add_meta : "add_meta_boxes_{$this->type}";
+		$this->add_meta = (empty($this->add_meta)) ? "add_meta_boxes_{$this->type}" : $this->add_meta;
 		$this->div_id   = "{$this->type}-gallery";
 		$this->nonce    = "{$this->type}_gallery_nonce";
 		add_action( $this->add_meta,           array( $this, 'add_meta_boxes' ) );
