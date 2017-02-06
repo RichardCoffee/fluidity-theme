@@ -155,8 +155,7 @@ log_entry("    pages:  $pages",
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li><?php
-						}
-						if ( $paged > 1 ) { ?>
+						} else if ( $paged > 1 ) { ?>
 							<li title="<?php esc_html_e('Previous Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $paged - 1 ); ?>" aria-label="<?php esc_html_e( 'Previous', 'tcc-fluid' ); ?>">
 									<span aria-hidden="true">&laquo;</span>
@@ -164,9 +163,9 @@ log_entry("    pages:  $pages",
 							</li><?php
 						}
 					}
-					for ( $i = 1; $i <= $pages; $i++ ) { ?>
-						<li><?php
-							if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) {
+					for ( $i = 1; $i <= $pages; $i++ ) {
+						if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) { ?>
+							<li><?php
 								if ( $paged === $i ) { ?>
 									<span class="current">
 										<?php echo $i; ?>
@@ -175,9 +174,9 @@ log_entry("    pages:  $pages",
 									<a href="<?php echo get_pagenum_link( $i ); ?>" class="inactive">
 										<?php echo $i; ?>
 									</a><?php
-								}
-							} ?>
-						</li><?php
+								} ?>
+							</li><?php
+						}
 					}
 					if ( $showitems < $pages ) {
 						if ( $paged < $pages ) { ?>
@@ -186,8 +185,7 @@ log_entry("    pages:  $pages",
 									<span aria-hidden="true">&raquo;</span>
 								</a>
 							</li><?php
-						}
-						if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
+						} else if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
 							<li title="<?php esc_html_e('Last Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last', 'tcc-fluid' ); ?>">
 									<span aria-hidden="true">&laquo;</span>
