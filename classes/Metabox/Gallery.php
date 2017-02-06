@@ -50,6 +50,7 @@ class TCC_Metabox_Gallery {
 
 	public function admin_enqueue_scripts() {
 		$screen = get_current_screen();
+log_entry($screen);
 		if ( $screen && ( $screen->post_type==$this->type ) ) {
 			wp_enqueue_style('tcc-gallery-css');
 			wp_enqueue_style('tcc-columns');  #  provides 'section group col span_*_of_*' classes
@@ -64,12 +65,13 @@ class TCC_Metabox_Gallery {
 			             );
 			wp_localize_script('tcc-gallery-js','tcc_gallery',$data);
 			wp_enqueue_script('tcc-gallery-js');
+
 		}
 	}
 
 	public function gallery_meta_box($post) {
 		wp_nonce_field(basename(__FILE__),$this->nonce);
-		do_action('tcc_gallery_meta_box'); ?>
+		do_action('tcc_gallery_meta_box_pre'); ?>
 		<div id="<?php echo $this->div_id; ?>" class="<?php echo $this->div_css; ?>"><?php
 			$images = $this->get_gallery_images($post->ID,true);
 			foreach($images as $imgID=>$src) { ?>
