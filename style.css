@@ -336,7 +336,7 @@ header {
   clear: both;
   position: relative;
 }
-.pagination span, .pagination a {
+.pagination li {
   display: block;
   float: left;
   margin: 0.25em 0.5em 0.25em 0;

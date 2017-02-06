@@ -142,12 +142,12 @@ if ( ! function_exists( 'pagination' ) ) {
 		}
 		if ( $pages !== 1 ) { ?>
 			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>">
-				<ul class="pagination"><?php
+				<ul class="pagination"><?php /*
 log_entry("    pages:  $pages",
           "    paged:  $paged",
           "    range:  $range",
           "showitems:  $showitems"
-);
+); //*/
 					if ( $showitems < $pages ) {
 						if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) ) { ?>
 							<li title="<?php esc_html_e('First Page','tcc-fluid'); ?>">
@@ -164,18 +164,20 @@ log_entry("    pages:  $pages",
 							</li><?php
 						}
 					}
-					for ( $i = 1; $i <= $pages; $i++ ) {
-						if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) {
-							if ( $paged === $i ) { ?>
-								<span class="current">
-									<?php echo $i; ?>
-								</span><?php
-							} else { ?>
-								<a href="<?php echo get_pagenum_link( $i ); ?>" class="inactive">
-									<?php echo $i; ?>
-								</a><?php
-							}
-						}
+					for ( $i = 1; $i <= $pages; $i++ ) { ?>
+						<li><?php
+							if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) {
+								if ( $paged === $i ) { ?>
+									<span class="current">
+										<?php echo $i; ?>
+									</span><?php
+								} else { ?>
+									<a href="<?php echo get_pagenum_link( $i ); ?>" class="inactive">
+										<?php echo $i; ?>
+									</a><?php
+								}
+							} ?>
+						</li><?php
 					}
 					if ( $showitems < $pages ) {
 						if ( $paged < $pages ) { ?>
