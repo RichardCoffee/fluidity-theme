@@ -231,8 +231,8 @@ if (!function_exists('tcc_login_form_defaults')) {
 		#	array mainly taken from wp-includes/general-template.php
 		$args['redirect']       = apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) );
 		$args['form_id']        = apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) );
-		$args['label_username'] = apply_filters( 'tcc_login_username',    __( 'Username or Email Address' ) );
-		$args['label_password'] = apply_filters( 'tcc_login_password',    __( 'Password' ) );
+		$args['label_username'] = apply_filters( 'tcc_login_username',    __( 'Username or Email Address', 'tcc-fluid' ) );
+		$args['label_password'] = apply_filters( 'tcc_login_password',    __( 'Password',      'tcc-fluid' ) );
 #		$args['label_remember'] = __( 'Remember Me' );
 		$args['label_log_in']   = apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) );
 		$args['label_lostpw']   = apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) );

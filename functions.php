@@ -18,6 +18,7 @@ require_once('includes/debugging.php');              #  load logging function as
 require_once('includes/theme-support.php');
 require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
+require_once('includes/comments.php');
 require_once('includes/footer.php');
 require_once('includes/library.php');
 require_once('includes/login.php');

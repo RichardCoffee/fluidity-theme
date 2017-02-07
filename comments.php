@@ -8,7 +8,6 @@
 
 if (post_password_required()) { return; }
 
-require_once('includes/comments.php');
 $micro = microdata();
 who_am_i(); ?>
 

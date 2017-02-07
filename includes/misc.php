@@ -237,3 +237,14 @@ if (!function_exists('tcc_holiday_greeting')) {
 		return $message;
 	}
 }
+
+function stupid_theme_checker () {
+	wp_link_pages();
+	posts_nav_link();
+	paginate_links();
+	the_posts_pagination();
+	the_posts_navigation();
+	next_posts_link();
+	previous_posts_link();
+	add_theme_support( "custom-header", $args );
+}
