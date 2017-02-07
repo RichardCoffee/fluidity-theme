@@ -20,6 +20,7 @@ class TCC_Metabox_Gallery {
 	protected $icon     = 'dashicons dashicons-trash delete-image';
 	protected $img_css  = 'attachment-post-thumbnail img-responsive';
 	protected $m_button = 'Assign Image';
+	protected $m_title  = 'Assign/Upload Image';
 	protected $nonce    = 'gallery_nonce';
 	protected $priority = 'high';
 	protected $slug     = 'gallery_meta_box';
@@ -32,6 +33,7 @@ class TCC_Metabox_Gallery {
 		$this->button   = esc_html__('Assign/Upload Gallery Image','tcc-fluid');
 		$this->confirm  = esc_html__('Remove this image?','tcc-fluid');
 		$this->m_button = esc_html__('Assign Image','tcc-fluid');
+		$this->m_title  = esc_html__('Assign/Upload Gallery Image','tcc-fluid');
 		$this->title    = esc_html__('Image Gallery','tcc-fluid');
 		foreach( $args as $prop => $value ) {
 			$this->{$prop} = $value;
@@ -50,20 +52,20 @@ class TCC_Metabox_Gallery {
 
 	public function admin_enqueue_scripts() {
 		$screen = get_current_screen();
-		if ( $screen && ( $screen->post_type==$this->type ) ) {
-			wp_enqueue_style('tcc-gallery-css');
-			wp_enqueue_style('tcc-columns');  #  provides 'section group col span_*_of_*' classes
+		if ( $screen && ( $screen->post_type === $this->type ) ) {
+			wp_enqueue_style( 'tcc-gallery-css' );
+			wp_enqueue_style( 'tcc-columns' );  #  provides 'section group col span_*_of_*' classes
 			$data = array( 'button'  => $this->m_button,
 			               'confirm' => $this->confirm,
 			               'div_img' => $this->div_img,
 			               'icon'    => $this->icon,
 			               'div_id'  => $this->div_id,
 			               'img_css' => $this->img_css,
-			               'field'   => $this->field.'[]',
-			               'title'   => $this->button,
+			               'field'   => $this->field . '[]',
+			               'title'   => $this->m_title,
 			             );
-			wp_localize_script('tcc-gallery-js','tcc_gallery',$data);
-			wp_enqueue_script('tcc-gallery-js');
+			wp_localize_script( 'tcc-gallery-js', 'tcc_gallery', $data );
+			wp_enqueue_script( 'tcc-gallery-js' );
 
 		}
 	}
