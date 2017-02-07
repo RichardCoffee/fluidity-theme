@@ -29,10 +29,10 @@ class TCC_Metabox_Gallery {
 #	use TCC_Trait_Magic;
 
 	public function __construct( $args = array() ) {
-		$this->button   = esc_html__('Assign/Upload Gallery Image','tcc-plugin');
-		$this->confirm  = esc_html__('Remove this image?','tcc-plugin');
-		$this->m_button = esc_html__('Assign Image','tcc-plugin');
-		$this->title    = esc_html__('Image Gallery','tcc-plugin');
+		$this->button   = esc_html__('Assign/Upload Gallery Image','tcc-fluid');
+		$this->confirm  = esc_html__('Remove this image?','tcc-fluid');
+		$this->m_button = esc_html__('Assign Image','tcc-fluid');
+		$this->title    = esc_html__('Image Gallery','tcc-fluid');
 		foreach( $args as $prop => $value ) {
 			$this->{$prop} = $value;
 		}

@@ -147,7 +147,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
                                          'text'    => __('control when theme data is removed','tcc-fluid'),
                                          'render'  => 'title'),
                     'deledata'  => array('default' => 'uninstall',
-                                         'label'   => __('Data Deletion'),
+                                         'label'   => __('Data Deletion','tcc-fluid'),
                                          'render'  => 'radio',
                                          'source'  => array('deactive'  => __('Delete theme data upon theme deactivation','tcc-fluid'),
                                                             'uninstall' => __('Delete theme data upon theme deletion','tcc-fluid'),
@@ -161,7 +161,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
     $describe = array(__('Support Site:','tcc-fluid'),
                       _x('The Creative Collective','company name','tcc-fluid'),
                       __('For help with this theme, or any other general support items, please contact us at any time','tcc-fluid'),
-                      __('Copyright 2014-2016 TCC','tcc-fluid'));
+                      __('Copyright 2014-2017 TCC','tcc-fluid'));
     echo "<p>{$describe[0]} <a href='the-creative-collective.com' target='tcc'>{$describe[1]}</a></p>";
     echo "<p>{$describe[2]}</p>";
     echo "<p>&copy; {$describe[3]}</p>";

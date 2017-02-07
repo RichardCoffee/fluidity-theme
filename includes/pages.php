@@ -6,23 +6,25 @@
  *		Custom Fields on Pages:		<?php echo get_post_meta(get_page_id($page), 'key string here', true); ?>
  */
 
-if(!function_exists('get_page_id')) {
+if ( ! function_exists( 'get_page_id' ) ) {
 	# http://snipplr.com/view/39004/
 	# http://www.smipple.net/snippet/elieandraos/Get%20Page%20ID%20By%20Slug
-	function get_page_id($slug) {
+	function get_page_id( $slug ) {
 		static $page_id;
-		if (!$page_id) {
+		if ( ! $page_id ) {
 			global $wpdb;
-			$page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'");
+			$page_id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'" );
 		}
 		return $page_id;
 	}
 }
 
-if (!function_exists('fluid_category_page_title')) {
-  function fluid_category_page_title() { ?>
-    <h1 class="text-center"><?php single_cat_title(esc_html__('Category: ')); ?></h1><?php
-  }
+if ( ! function_exists( 'fluid_category_page_title' ) ) {
+	function fluid_category_page_title() { ?>
+		<h1 class="text-center">
+			<?php single_cat_title( esc_html__( 'Category: ', 'tcc-fluid' ) ); ?>
+		</h1><?php
+	}
 }
 
 if (!function_exists('fluid_category_page_noposts')) {

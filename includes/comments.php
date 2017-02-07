@@ -30,7 +30,7 @@ if (!function_exists('fluid_list_comments')) {
     static $striping = 'odd';
     $GLOBALS['comment'] = $comment;
     $string    = _x('%1s: %2$s on %3$s','first placeholder is the comment type, second placeholder is an author link, third placeholder is a date','tcc-fluid');
-    $type_arr  = array('comment'=>__('Comment'),'trackback'=>esc_html__('Trackback','tcc-fluid'),'pingback'=>esc_html__('Pingback','tcc-fluid'));
+    $type_arr  = array('comment'=>__('Comment','tcc-fluid'),'trackback'=>esc_html__('Trackback','tcc-fluid'),'pingback'=>esc_html__('Pingback','tcc-fluid'));
     $comm_type = $comment->comment_type;
     switch ( $comm_type ) {
       case 'pingback' :

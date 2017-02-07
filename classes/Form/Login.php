@@ -256,8 +256,8 @@ class TCC_Form_Login {
 #	array mainly taken from wp-includes/general-template.php
 		$new = array( 'redirect'       => apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) ),
 		              'form_id'        => apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) ),
-		              'label_username' => apply_filters( 'tcc_login_username',    __( 'Username or Email Address' ) ),
-		              'label_password' => apply_filters( 'tcc_login_password',    __( 'Password' ) ),
+		              'label_username' => apply_filters( 'tcc_login_username',    __( 'Username or Email Address', 'tcc-fluid' ) ),
+		              'label_password' => apply_filters( 'tcc_login_password',    __( 'Password',      'tcc-fluid' ) ),
 #		              'label_remember' => __( 'Remember Me' ),
 		              'label_log_in'   => apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) ),
 		              'label_lostpw'   => apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) ),

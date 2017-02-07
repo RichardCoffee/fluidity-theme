@@ -33,7 +33,7 @@ abstract class TCC_Plugin_Basic {
 
   /**  Template functions **/
 
-  public function get_stylesheet( $file = 'tcc-plugin.css' ) {
+  public function get_stylesheet( $file = 'tcc-fluid.css' ) {
     if ( file_exists( get_stylesheet_directory() . '/' . $file ) )
       $stylesheet = get_stylesheet_directory_uri() . '/' . $file;
     elseif ( file_exists( get_template_directory() . '/' . $file ) )
@@ -53,7 +53,7 @@ abstract class TCC_Plugin_Basic {
     if (strpos($file,$this->plugin)>-1) {
       unset($links['edit']);
       if (is_plugin_active($file)) { // FIXME:  will this ever get run if the plugin is not active?  if not, why do we need this check?
-        $link = array('settings' => sprintf('<a href="%s"> %s </a>',admin_url("admin.php?page=fluidity_options&tab={$this->tab}"),__('Settings','tcc-plugin')));
+        $link = array('settings' => sprintf('<a href="%s"> %s </a>',admin_url("admin.php?page=fluidity_options&tab={$this->tab}"),__('Settings','tcc-fluid')));
         $links = array_merge($link,$links);
       }
     }
