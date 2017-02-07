@@ -8,7 +8,7 @@
  ?>
 
 <footer>
-	<div id="fluid-footer" class="<? echo container_type('footer'); ?>" <?php microdata()->WPFooter(); ?>>
+	<div id="fluid-footer" class="<?php echo container_type('footer'); ?>" <?php microdata()->WPFooter(); ?>>
 		<?php get_template_part('template-parts/footer',get_page_slug()); ?>
 	</div>
 </footer>

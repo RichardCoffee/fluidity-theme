@@ -77,12 +77,11 @@ if (!function_exists('fluidity_social_icons')) {
 
 if (!function_exists('fluid_user_profile_link')) {
   function fluid_user_profile_link() {
-    global $current_user;
-    get_currentuserinfo();
+    $user = wp_get_current_user();
     $html = "<a href='";
     $html = get_option('siteurl');
     $html = "/wp-admin/profile.php'>";
-    $html = $current_user->display_name;
+    $html = $user->display_name;
     $html = "</a>";
     return apply_filters('tcc_user_profile_link',$html);
   }

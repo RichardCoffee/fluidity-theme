@@ -149,9 +149,9 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
                     'deledata'  => array('default' => 'uninstall',
                                          'label'   => __('Data Deletion'),
                                          'render'  => 'radio',
-                                         'source'  => array('deactive'  => __('Delete theme data upon theme deactivation','tcc-theme-options'),
-                                                            'uninstall' => __('Delete theme data upon theme deletion','tcc-theme-options'),
-                                                            'nodelete'  => __('Do not delete data','tcc-theme-options'))),
+                                         'source'  => array('deactive'  => __('Delete theme data upon theme deactivation','tcc-fluid'),
+                                                            'uninstall' => __('Delete theme data upon theme deletion','tcc-fluid'),
+                                                            'nodelete'  => __('Do not delete data','tcc-fluid'))),
 );
     $layout = apply_filters('tcc_about_options_layout',$layout);
     return $layout;
@@ -180,44 +180,27 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
     return $this->form[$section]['layout'];
   }
 
-  protected function create_file_select($slug='',$base='',$full=false) {
-    if (empty($slug)) return array();
-    $dir = get_stylesheet_directory();
-    if (!empty($base)) $dir .= '/'.$base;
-    $files  = scandir($dir);
-    $result = array();
-    foreach($files as $filename) {
-      if (strpos($filename,$slug)===false) continue;
-      // FIXME:  use WP's get_file_data instead of this mess
-      $handle = fopen($dir.'/'.$filename, "r");
-      if ($handle) {
-        $descrip = self::get_descript($handle);
-        if ($descrip) {
-          $sname = $filename;
-          if (!$full) {
-            $pos1  = strpos($filename,'-');
-            $pos1  = ($pos1===false) ? 0 : $pos1+1;
-            $pos2  = strpos($filename,'.');
-            $sname = substr($filename,$pos1,($pos2-$pos1));
-          }
-          $result[$sname] = $descrip;
-        }
-        fclose($handle);
-      }
-    }
-    return $result;
-  }
-
-  private static function get_descript($fh) {
-    $retval = false;
-    $line   = fgets($fh);
-    if (!strpos($line,'Name:')===false) {
-      $cpos   = strpos($line,':');
-      $apos   = strpos($line,'*/');
-      $retval = substr($line,$cpos+2,($apos-$cpos-3));
-    }
-    return $retval;
-  }
+	protected function create_file_select( $slug, $base = '', $full = false ) {
+		$dir = get_stylesheet_directory();
+		if ( ! empty( $base ) ) { $dir .= '/' . $base; }
+		$files  = scandir( $dir );
+		$result = array();
+		foreach( $files as $filename ) {
+			if ( strpos( $filename, $slug ) === false ) { continue; }
+			$data = get_file_data( $dir . '/' . $filename, array( 'name' => 'Name' ) );
+			if ( $data ) {
+				$sname = $filename;
+				if ( ! $full ) {
+					$pos1  = strpos( $filename, '-' );
+					$pos1  = ( $pos1 === false ) ? 0 : $pos1 + 1;
+					$pos2  = strpos( $filename, '.' );
+					$sname = substr( $filename, $pos1, ( $pos2 - $pos1 ) );
+				}
+			}
+			$result[ $sname ] = $descrip;
+		}
+		return $result;
+	}
 
   protected static function create_select_layout($data,$text) {
     if (is_array($text)) {

@@ -125,8 +125,8 @@ class TCC_Role_Agent {
             <label for="website_image"><?php echo $this->fields['website_image']; ?></label>
           </th>
           <td>
-            <div data-title='<?php _e('Assign/Upload Image','tcc-theme-options'); ?>' data-button='<?php _e('Assign Image','tcc-theme-options'); ?>'>
-              <button class='tcc-image'><?php _e('Assign Image','tcc-theme-options'); ?></button>
+            <div data-title='<?php _e('Assign/Upload Image','tcc-fluid'); ?>' data-button='<?php _e('Assign Image','tcc-fluid'); ?>'>
+              <button class='tcc-image'><?php _e('Assign Image','tcc-fluid'); ?></button>
               <input type='hidden' name='website_image' value='<?php echo esc_url($url); ?>' />
               <div>
                 <img class='tcc-image-size' src='<?php echo esc_url($url); ?>'>

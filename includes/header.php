@@ -86,7 +86,7 @@ if (!function_exists('fluidity_menubar_print')) {
         <button class="btn btn-fluidity" onclick="print();">
           <i class="fa fa-print"></i>
           <span class="hidden-xs"> <?php
-            esc_html_e('Print','tcc-fluidity'); ?>
+            esc_html_e('Print','tcc-fluid'); ?>
           </span>
         </button>
       </span><?php

@@ -11,7 +11,7 @@ class TCC_Widget_Logo extends TCC_Widget_Basic {
 
   public function inner_widget($args,$instance) {
     $logo = tcc_design('logo'); ?>
-    <a href="<?php self::$micro->bloginfo('url'); ?>/">
+    <a href="<?php echo esc_url(home_url()); ?>/">
       <img itemprop="logo" class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
     </a><?php
   }
