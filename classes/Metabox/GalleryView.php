@@ -76,7 +76,7 @@ class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 	public function meta_box_description() {
 		$text = esc_html_x( 'Use the %s shortcode to place the gallery in your post.', 'a wordpress shortcode', 'tcc-fluid' ); ?>
 		<p>
-			<?php echo sprintf( $text, '<span class="red">[galleryview]<span>' ); ?>
+			<?php echo sprintf( $text, '<span class="red">[galleryview]</span>' ); ?>
 		</p><?php
 	}
 
