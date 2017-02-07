@@ -12,13 +12,11 @@ class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
 		}
 		add_shortcode( 'galleryview', array( $this, 'show_galleryview' ) );
 		add_action( 'tcc_gallery_meta_box_pre', array( $this, 'meta_box_description' ) );
-#log_entry($this);
 	}
 
 	/**  Setup  **/
 
 	public function register_galleryview() {
-log_entry('in register');
 		wp_register_style( 'tcc-gv-css',          get_theme_file_uri( 'galleryview/css/jquery.galleryview-3.0-dev.css' ), null, '3.0' );
 		wp_register_style( 'tcc-galleryview-css', get_theme_file_uri( 'css/galleryview.css' ), array( 'tcc-gv-css' ), TCC_THEME_VERSION );
 		wp_register_script('tcc-gv-js',           get_theme_file_uri( 'galleryview/js/jquery.galleryview-3.0-dev.js' ), array( 'jquery' ), '3.0', true );
@@ -63,10 +61,10 @@ log_entry('in register');
 
 	private function show_galleryview_image( $imgID ) {
 		$info  = wp_get_attachment( $imgID );
-		$attrs = ( empty( $info['src'] ) )                ? '' : ' src="' . esc_attr( $info['src'] ) . '"';
-		$attrs.= ( empty( $info['alt'] ) )                ? '' : ' alt="' . esc_attr( $info['alt'] ) . '"';
-		$attrs.= ( empty( $info['title'] ) )              ? '' : ' title="' . esc_attr( $info['title'] ) . '"';
-		$attrs.= ( empty( $info['sizes']['thumbnail'] ) ) ? '' : ' data-frame="' . esc_attr( $info['sizes']['thumbnail'] ) . '"';
+		$attrs = ( empty( $info['src'] ) )                ? '' :              ' src="' . esc_attr( $info['src'] ) . '"';
+		$attrs.= ( empty( $info['alt'] ) )                ? '' :              ' alt="' . esc_attr( $info['alt'] ) . '"';
+		$attrs.= ( empty( $info['title'] ) )              ? '' :            ' title="' . esc_attr( $info['title'] ) . '"';
+		$attrs.= ( empty( $info['sizes']['thumbnail'] ) ) ? '' :       ' data-frame="' . esc_attr( $info['sizes']['thumbnail'] ) . '"';
 		$attrs.= ( empty( $info['description'] ) )        ? '' : ' data-description="' . esc_attr( $info['description'] ) . '"'; ?>
 		<li>
 			<img <?php echo $attrs; ?> />
