@@ -119,6 +119,7 @@ return $args;
 						unset( $themes->plugins->$theme );
 					if ( isset( $themes->active->$theme ) ) {
 						unset( $themes->active->$theme );
+					}
 				}
 			}
 			$args['body']['themes'] = json_encode( $themes );
