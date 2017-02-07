@@ -50,7 +50,6 @@ class TCC_Metabox_Gallery {
 
 	public function admin_enqueue_scripts() {
 		$screen = get_current_screen();
-log_entry($screen);
 		if ( $screen && ( $screen->post_type==$this->type ) ) {
 			wp_enqueue_style('tcc-gallery-css');
 			wp_enqueue_style('tcc-columns');  #  provides 'section group col span_*_of_*' classes
