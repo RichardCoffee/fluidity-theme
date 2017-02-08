@@ -65,7 +65,7 @@ if (!function_exists('fluidity_social_icons')) {
 							'class' => "fa fa-fw fa-$key-square $size",
 							'href'  => $set['link'],
 							'style' => "color:{$set['color']};",
-							'title' => ( $key === 'rss' ) ? esc_html__( 'Subscribe to our RSS feed', 'tcc-fluid' ) : $tool; // TODO: option to change this text
+							'title' => ( $key === 'rss' ) ? esc_html__( 'Subscribe to our RSS feed', 'tcc-fluid' ) : $tool, // TODO: option to change this text
 							'target'=> ( $target === 'target' ) ? "fluidity_$key" : "_blank",
 							); ?>
 						<a <?php apply_attrs( $attr ); ?>> </a>

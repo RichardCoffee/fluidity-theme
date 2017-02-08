@@ -29,7 +29,7 @@ if (!function_exists('tcc_bootstrap_css')) {
 	}
 }
 
-if ( ! function_exists( 'apply_attrs' ) {
+if ( ! function_exists( 'apply_attrs' ) ) {
 	function apply_attrs( $args, $echo = true ) {
 		$attrs = '';
 		foreach( $args as $attr => $value ) {
