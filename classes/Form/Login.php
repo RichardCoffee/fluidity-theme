@@ -51,11 +51,11 @@ class TCC_Form_Login {
 		return $defaults;
 	}
 
-	public function login_form() {
+	public function login_form( $args = array() ) {
 		if ( is_user_logged_in() ) {
 			$this->show_logout_form();
 		} else {
-			$this->show_login_form();
+			$this->show_login_form( $args );
 		}
 	}
 
@@ -108,12 +108,15 @@ class TCC_Form_Login {
 		return $redirect_to;
 	}
 
-	protected function show_login_form() {
+	protected function show_login_form( $args ) {
+		$in_navbar  = $this->in_navbar;
+		$pull_right = $this->pull_right;
+		extract($args,EXTR_IF_EXISTS);
 		$defaults = $this->get_login_form_defaults();
 		extract( $defaults );	#	See $this->login_form_defaults for the list of extracted variables
-		$remember = ( $this->in_navbar ) ?  false : $remember;
-		$form_css = ( $this->in_navbar ) ? 'navbar-form navbar-login-form' . ( ( $this->pull_right ) ? ' navbar-right' : '' ) : 'login-form';
-		$text_css = ( $this->in_navbar ) ? 'sr-only' : 'login-text';
+		$remember = ( $in_navbar ) ?  false : $remember;
+		$form_css = ( $in_navbar ) ? 'navbar-form navbar-login-form' . ( ( $pull_right ) ? ' navbar-right' : '' ) : 'login-form';
+		$text_css = ( $in_navbar ) ? 'sr-only' : 'login-text';
 		$attrs = array(
 			'id'     => $form_id,
 			'class'  => $form_css,
