@@ -21,9 +21,9 @@ class TCC_Form_Login {
 		add_action( 'admin_head',          array( $this, 'dashboard_logo' ) );
 		add_action( 'login_form_defaults', array( $this, 'login_form_defaults' ) );
 
-		add_filter( 'login_headertitle',   function( $args ) { return '' } );
+		add_filter( 'login_headertitle',   function( $args ) { return ''; } );
 		add_filter( 'login_redirect',      array( $this, 'login_redirect'), 10, 3);
-		add_filter( 'tcc_login_redirect',  array( $this, 'login_redirect_admin', 10, 3 );
+		add_filter( 'tcc_login_redirect',  array( $this, 'login_redirect_admin' ), 10, 3 );
 		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
 
 		#	Do not show login errors to users
@@ -91,7 +91,7 @@ class TCC_Form_Login {
 				'       request:  ' . $request,
 				'wp_get_referer:  ' . wp_get_referer(),
 				'      location:  ' . $location,
-				$user,
+				$user
 			);
 			wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
 			exit;
@@ -116,7 +116,7 @@ class TCC_Form_Login {
 		$text_css = ( $this->navbar ) ? 'sr-only' : 'login-text';
 		$attrs = array(
 			'id'     => $form_id,
-			'class'  => $form_css),
+			'class'  => $form_css,
 			'name'   => 'loginform',
 			'action' => site_url( '/wp-login.php' ),
 			'method' => 'post',
