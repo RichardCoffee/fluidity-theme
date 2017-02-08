@@ -171,7 +171,7 @@ if (!function_exists('tcc_login_form')) {
 #					$action = ($navbar) ? 'navbar' : 'widget';
 #					do_action("tcc_{$action}_signout");
 					$out  = wp_logout_url(home_url()); ?>
-					<a class="btn btn-fluidity" href="<?php echo esc_url($out); ?>" title="<?php echo esc_attr($signout); ?>">&nbsp;
+					<a class="btn btn-fluidity" href="<?php echo esc_url($out); ?>" title="<?php echo esc_attr($signout); ?>" rel="nofollow">&nbsp;
 						<?php echo esc_html($signout); ?>
 						&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
 					</a>
@@ -215,7 +215,7 @@ if (!function_exists('tcc_login_form')) {
 #				if (get_page_by_title('Lost Password')) {
 				if ( !empty( $label_lost ) && ( $lost_url=wp_lostpassword_url( home_url() ) ) ) {
 					$tooltip = __('You can request a new password via this link.','tcc-fluid'); ?>
-					<a class="lost-password pull-right" href="<?php echo esc_url($lost_url); ?>" title="<?php echo esc_attr($tooltip); ?>">
+					<a class="lost-password pull-right" href="<?php echo esc_url($lost_url); ?>" title="<?php echo esc_attr($tooltip); ?>" rel="nofollow">
 						<small>
 							<?php echo esc_html($label_lost); ?>
 						</small>
