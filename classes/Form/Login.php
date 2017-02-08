@@ -109,7 +109,7 @@ class TCC_Form_Login {
 	}
 
 	protected function show_login_form() {
-		$defaults = tcc_get_login_form_defaults();
+		$defaults = $this->get_login_form_defaults();
 		extract( $defaults );	#	See $this->login_form_defaults for the list of extracted variables
 		$remember = ( $this->navbar ) ?  false : $remember;
 		$form_css = ( $this->navbar ) ? 'navbar-form navbar-login-form' . ( ( $right ) ? ' navbar-right' : '' ) : 'login-form';
