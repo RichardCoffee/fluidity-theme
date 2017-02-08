@@ -1,6 +1,6 @@
 <?php
 
-if (!WP_DEBUG) { // Source?
+if ( ! WP_DEBUG) { // Source?
   add_filter('login_errors',create_function('$a',"return null;"));
 }
 
@@ -115,7 +115,7 @@ if (!function_exists('tcc_get_login_form_defaults')) {
 		add_filter('login_form_defaults', function($args) use (&$defaults) {
 			$defaults = $args;
 			return $args;
-		}, 1000);
+		}, 9999 );
 		wp_login_form( array( 'echo' => false ) );
 		return $defaults;
 	}
@@ -245,7 +245,7 @@ if (!function_exists('tcc_login_form_defaults')) {
 #		$args['value_remember'] = false;
 		return $args;
 	}
-	add_action('login_form_defaults','tcc_login_form_defaults');
+	#add_action('login_form_defaults','tcc_login_form_defaults');
 }
 
 if (!function_exists('tcc_logout_url')) {

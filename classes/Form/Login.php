@@ -217,38 +217,17 @@ if (!function_exists('tcc_logout_url')) {
   add_filter('logout_url', 'tcc_logout_url', 10, 2);
 }
 
-if (!function_exists('tcc_admin_howdy')) {
-	#	http://www.wpbeginner.com/wp-tutorials/how-to-change-the-howdy-text-in-wordpress-3-3-admin-bar/
-	#	https://premium.wpmudev.org/forums/topic/change-howdy-manually
-	#	http://www.hongkiat.com/blog/wordpress-howdy-customized/
-	#	Note:  I saw some posts that recommend changing this via gettext.  I would regard that as bad practice.
-	function tcc_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
-		$user_id = get_current_user_id();
-		if ( $user_id ) {
-			/* Add the "My Account" menu */
-			$current = wp_get_current_user();
-			$profile = get_edit_profile_url( $user_id );
-			$avatar  = get_avatar( $user_id, 28 );
-			$text    = ($user_id===1) ? __('Your Royal Highness','tcc-fluid') : tcc_holiday_greeting();
-			$howdy   = sprintf( _x('%1$s, %2$s','text greeting, user name','tcc-fluid'), $text, $current->display_name );
-			$class   = (empty($avatar)) ? '' : 'with-avatar';
-			$args    = array('id'     => 'my-account',
-			                 'parent' => 'top-secondary',
-			                 'title'  => esc_html($howdy) . $avatar,
-			                 'href'   => $profile,
-			                 'meta'   => array( 'class' => $class,
-			                                    'title' => esc_html__('My Account','tcc-fluid') ) );
-			$wp_admin_bar->add_menu( $args );
-		}
+if ( ! function_exists( 'tcc_login_form' ) ) {
+	function tcc_login_form( $args ) {
+		TCC_Form_Login::instance()->login_form( $args );
 	}
-	add_action('admin_bar_menu', 'tcc_admin_howdy', 11 );
 }
 
 class TCC_Form_Login {
 
 	use TCC_Trait_Singleton;
 
-	protected __construct() {
+	protected function __construct() {
 		add_action( 'login_form_defaults', array( $this, 'login_form_defaults' ) );
 	}
 
@@ -256,7 +235,7 @@ class TCC_Form_Login {
 #	array mainly taken from wp-includes/general-template.php
 		$new = array( 'redirect'       => apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) ),
 		              'form_id'        => apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) ),
-		              'label_username' => apply_filters( 'tcc_login_username',    __( 'Username or Email Address', 'tcc-fluid' ) ),
+		              'label_username' => apply_filters( 'tcc_login_username',    __( 'UserName or EmailAddress', 'tcc-fluid' ) ),
 		              'label_password' => apply_filters( 'tcc_login_password',    __( 'Password',      'tcc-fluid' ) ),
 #		              'label_remember' => __( 'Remember Me' ),
 		              'label_log_in'   => apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) ),
