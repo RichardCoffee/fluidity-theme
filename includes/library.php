@@ -29,6 +29,17 @@ if (!function_exists('tcc_bootstrap_css')) {
 	}
 }
 
+if ( ! function_exists( 'apply_attrs' ) {
+	function apply_attrs( $args, $echo = true ) {
+		$attrs = '';
+		foreach( $args as $attr => $value ) {
+			if ( empty( $value ) ) { continue; }
+			$attrs .= $attr . '="'. esc_attr( $value ) . '" ';
+		}
+		if ( $echo ) { echo $attrs; } else { return $attrs; }
+	}
+}
+
 if (!function_exists('container_type')) {
   function container_type( $location='post' ) {
     $css = 'container-fluid';
@@ -118,6 +129,7 @@ if (!function_exists('esc_html_nx')) {
 
 #  https://developer.wordpress.org/themes/basics/template-hierarchy/
 if (!function_exists('author_role_template')) {
+// TODO: move this into an author base class re: Agents
   function author_role_template( $templates ) {
     $author = get_queried_object();
     if ($author && isset($author->roles)) {
