@@ -40,7 +40,6 @@ if (is_admin()) {
 } else {
   require_once('includes/header.php');
   require_once('includes/in-the-loop.php');
-  require_once('includes/index.php');
   require_once('includes/pages.php');
   require_once('includes/third-party.php');
   require_once('classes/microdata.php');

@@ -116,6 +116,7 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 }
 
 if (!function_exists('fluidity_sidebar_layout')) {
+	#	DEPRECATED - do not use
   function fluidity_sidebar_layout($sidebar='standard',$side='') {
     if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
     $side = ($side) ? $side : tcc_layout('sidebar');
