@@ -145,3 +145,4 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 			</aside><?php
 		}
 	}
+}
