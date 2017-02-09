@@ -40,7 +40,7 @@ if ( ! function_exists( 'apply_attrs' ) ) {
 	}
 }
 
-if ( ! function_exists( 'clearfix' ) {
+if ( ! function_exists( 'clearfix' ) ) {
 	function clearfix() {
 		return TCC_Post_ClearFix::instance();
 	}

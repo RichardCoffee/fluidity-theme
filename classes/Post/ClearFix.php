@@ -1,6 +1,6 @@
 <?php
 /*  available in includes/library.php
-if ( ! function_exists( 'clearfix' ) {
+if ( ! function_exists( 'clearfix' ) ) {
 	function clearfix() {
 		return TCC_Post_ClearFix::instance();
 	}
