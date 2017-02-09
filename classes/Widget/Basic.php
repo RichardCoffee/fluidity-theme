@@ -9,7 +9,7 @@ class TCC_Widget_Basic extends WP_Widget {
 
 	function __construct($slug='',$title='',$desc=array()) {
 		parent::__construct($this->slug,$this->title,array('description'=>$this->desc));
-		if (!self::$micro && class_exists('TCC_Microdata')) self::$micro = TCC_Microdata::get_instance();
+		if (!self::$micro && class_exists('TCC_Microdata')) { self::$micro = microdata(); }
 	}
 
 	public function widget($args,$instance) {
