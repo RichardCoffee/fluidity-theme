@@ -234,18 +234,18 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 
 if ( ! function_exists( 'tcc_page_title' ) ) {
 	function tcc_page_title( $slug ) {
-		if ( has_action( "tcc_page_{$slug}_title" ) ) {
-			do_action( "tcc_page_{$slug}_title" );
+		if ( has_action( "tcc_page_title_$slug" ) ) {
+			do_action( "tcc_page_title_$slug" );
+		} else if ( has_action( 'tcc_page_title' ) ) {
+			do_action( 'tcc_page_title' );
 		} else {
 			$title = get_page_title( $slug );
 			if ( $title ) { ?>
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
 					<div class="<?php echo container_type( "{$slug}_title" ); ?>">
-						<div class="row">
-							<h2>
-								<?php echo $title; ?>
-							</h2>
-						</div>
+						<h2>
+							<?php echo $title; ?>
+						</h2>
 					</div>
 				</div><?php
 			}
@@ -253,7 +253,7 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 	}
 }
 
-if (!function_exists('title_class')) {
+if ( ! function_exists( 'title_class' ) ) {
 	function title_class( $class = '', $post_id = null ) {
 		// Separates classes with a single space, collates classes for post DIV
 		echo 'class="' . join( ' ', get_title_class( $class, $post_id ) ) . '"';

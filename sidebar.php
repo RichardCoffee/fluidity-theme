@@ -17,8 +17,9 @@ if (substr($called,0,6)==='footer') {
 }
 if (!$loaded) {
   global $wp_query;
-#  $slug = ($format=get_post_format()) ? $format : get_post_type(); // inside loop only, which this is not
   $post_type = $wp_query->get('post_type');
+  $slug = ( $format=get_post_format() ) ? $format : get_post_type(); // inside loop only, which this is not
+log_entry("slugfor sidebar:  $slug");
   if ($post_type) {
     if (!is_string($post_type)) {
       $use_this = 'standard';

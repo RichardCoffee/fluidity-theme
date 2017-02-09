@@ -132,17 +132,16 @@ if (!function_exists('fluidity_sidebar_layout')) {
 } //*/
 
 if ( ! function_exists( 'fluidity_sidebar' ) ) {
-	function fluidity_sidebar( $css, $sidebar = 'standard' ) {
-		if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
+	function fluidity_sidebar( $css = '', $sidebar = 'standard' ) {
+		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
 		$side = tcc_layout( 'sidebar' );
 		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
 		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
 		if ( $side !== 'none' ) {
 			$css .= ( $side === 'right' ) ? ' pull-right' : '';
-			$css .= ' fluid-sidebar fluid-sidebar-' . get_page_slug(); ?>
+			$css .= ' widget-area fluid-sidebar fluid-sidebar-' . get_page_slug(); ?>
 			<aside class="<?php echo esc_attr( $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
-				<?php get_template_part('sidebar',$sidebar); ?>
+				<?php get_template_part( 'sidebar', $sidebar ); ?>
 			</aside><?php
 		}
 	}
-}
