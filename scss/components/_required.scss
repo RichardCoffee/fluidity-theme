@@ -4,7 +4,7 @@
 .alignleft   { @extend .text-left;   }
 .alignright  { @extend .text-right;  }
 
-.wp-caption { 
+.wp-caption {
   margin-bottom: 1.5em;
   max-width: 100%;
   & img[class*="wp-image-"] {

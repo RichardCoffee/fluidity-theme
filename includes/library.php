@@ -40,6 +40,12 @@ if ( ! function_exists( 'apply_attrs' ) ) {
 	}
 }
 
+if ( ! function_exists( 'clearfix' ) {
+	function clearfix() {
+		return TCC_Post_ClearFix::instance();
+	}
+}
+
 if (!function_exists('container_type')) {
   function container_type( $location='post' ) {
     $css = 'container-fluid';

@@ -153,7 +153,8 @@ class TCC_Form_Login {
 			<?php  } ?>
 
 			<div class="form-group login-submit">
-				<button type="submit" id="<?php echo esc_attr($id_submit); ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i>&nbsp;
+				<button type="submit" id="<?php echo esc_attr($id_submit); ?>" class="btn btn-fluidity" name="wp-submit">
+					<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;
 					<?php echo esc_html($label_log_in); ?>
 				</button>
 				<input type="hidden" name="redirect_to" value="<?php echo esc_url($redirect); ?>" />

@@ -57,11 +57,13 @@ if (!function_exists('fluid_save_page_template')) {
 
 if (!function_exists('get_page_slug')) {
 	#	http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
-	function get_page_slug() {
+	function get_page_slug( $set_slug = '' ) {
 		global $wp_query;
 		static $slug = null;
-		if (!$slug) {
-			if (defined('TCC_PAGE_SLUG')) {
+		if ( ! $slug ) {
+			if ( $set_slug ) {
+				$slug = $set_slug;
+			} else if ( defined( 'TCC_PAGE_SLUG' ) ) {
 				$slug = TCC_PAGE_SLUG;
 			} else if ( !is_admin() && $wp_query->is_main_query() ) {
 /*log_entry(
@@ -91,9 +93,18 @@ if (!function_exists('get_page_slug')) {
 	}
 }
 
-if (!function_exists('get_page_title')) {
-	function get_page_title($slug) {
-		return tcc_get_page_id_by_slug($slug,'post_title');
+if ( ! function_exists( 'get_page_title' ) ) {
+	function get_page_title( $slug ) {
+		$title = tcc_get_page_id_by_slug( $slug, 'post_title' );
+		if ( is_archive() && ! get_query_var( 'paged' ) ) {
+			if ( is_tax() || is_category() || is_tag() {
+				$descrip = term_description();
+				if ( $descrip ) {
+					$title =  apply_filters( 'the_content', $descrip );
+				}
+			}
+		}
+		return $title;
 	}
 }
 
@@ -143,7 +154,7 @@ if ( ! function_exists( 'pagination' ) ) {
 			}
 		}
 		if ( $pages !== 1 ) { ?>
-			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>">
+			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
 				<ul class="pagination"><?php /*
 log_entry("    pages:  $pages",
           "    paged:  $paged",
@@ -153,14 +164,14 @@ log_entry("    pages:  $pages",
 					if ( $showitems < $pages ) {
 						if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) ) { ?>
 							<li title="<?php esc_html_e('First Page','tcc-fluid'); ?>">
-								<a href="<?php echo get_pagenum_link( 1 ); ?>" aria-label="<?php esc_html_e( 'First', 'tcc-fluid' ); ?>">
+								<a href="<?php echo get_pagenum_link( 1 ); ?>" aria-label="<?php esc_html_e( 'First Page', 'tcc-fluid' ); ?>" rel="prev">
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li><?php
 						} else if ( $paged > 1 ) { ?>
 							<li title="<?php esc_html_e('Previous Page','tcc-fluid'); ?>">
-								<a href="<?php echo get_pagenum_link( $paged - 1 ); ?>" aria-label="<?php esc_html_e( 'Previous', 'tcc-fluid' ); ?>">
-									<span aria-hidden="true">&laquo;</span>
+								<a href="<?php echo get_pagenum_link( $paged - 1 ); ?>" aria-label="<?php esc_html_e( 'Previous Page', 'tcc-fluid' ); ?>" rel="prev">
+									<span aria-hidden="true">&lt;</span>
 								</a>
 							</li><?php
 						}
@@ -183,13 +194,13 @@ log_entry("    pages:  $pages",
 					if ( $showitems < $pages ) {
 						if ( $paged < $pages ) { ?>
 							<li title="<?php esc_html_e('Next Page','tcc-fluid'); ?>">
-								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_html_e( 'Next', 'tcc-fluid' ); ?>">
-									<span aria-hidden="true">&raquo;</span>
+								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_html_e( 'Next Page', 'tcc-fluid' ); ?>" rel="next">
+									<span aria-hidden="true">&gt;</span>
 								</a>
 							</li><?php
 						} else if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
 							<li title="<?php esc_html_e('Last Page','tcc-fluid'); ?>">
-								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last', 'tcc-fluid' ); ?>">
+								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last Page', 'tcc-fluid' ); ?>">
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li><?php
@@ -221,15 +232,15 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 	}
 }
 
-if (!function_exists('tcc_page_title')) {
-	function tcc_page_title($slug) {
-		if (has_action("tcc_page_{$slug}_title")) {
-			do_action("tcc_page_{$slug}_title");
+if ( ! function_exists( 'tcc_page_title' ) ) {
+	function tcc_page_title( $slug ) {
+		if ( has_action( "tcc_page_{$slug}_title" ) ) {
+			do_action( "tcc_page_{$slug}_title" );
 		} else {
-			$title = get_page_title($slug);
-			if ($title) { ?>
+			$title = get_page_title( $slug );
+			if ( $title ) { ?>
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
-					<div class="<?php echo container_type("{$slug}_title"); ?>">
+					<div class="<?php echo container_type( "{$slug}_title" ); ?>">
 						<div class="row">
 							<h2>
 								<?php echo $title; ?>

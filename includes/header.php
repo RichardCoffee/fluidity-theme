@@ -84,7 +84,7 @@ if (!function_exists('fluidity_menubar_print')) {
     if (is_single() || is_page()) { ?>
       <span class="hidden fluid-print-button">
         <button class="btn btn-fluidity" onclick="print();">
-          <i class="fa fa-print"></i>
+          <i class="fa fa-print" aria-hidden="true"></i>
           <span class="hidden-xs"> <?php
             esc_html_e('Print','tcc-fluid'); ?>
           </span>

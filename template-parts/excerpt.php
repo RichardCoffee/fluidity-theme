@@ -7,22 +7,28 @@
 
 who_am_i(); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
+<div class="<?php clearfix()->div_class(); ?>">
 
-	$format  = esc_html__('Permanent Link to %s','tcc-fluid');
-	$tooltip = sprintf($format,get_the_title()); ?>
-	<h1 class="text-center" itemprop="headline">
-		<?php tcc_post_title(40); ?>
-	</h1>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
 
-	<?php if (tcc_layout('exdate')==='show') { ?>
-		<h3 class="text-center">
-			<?php fluid_post_date(); ?>
-		</h3><?php
-	} ?>
+		$format  = esc_html__( 'Permanent Link to %s', 'tcc-fluid' );
+		$tooltip = sprintf( $format, get_the_title() ); ?>
+		<h1 class="text-center" itemprop="headline">
+			<?php tcc_post_title( 40 ); ?>
+		</h1>
 
-	<div class="article" itemprop="description"><?php
-		the_excerpt(); ?>
-	</div>
+		<?php if ( tcc_layout( 'exdate' ) === 'show' ) { ?>
+			<h3 class="text-center">
+				<?php fluid_post_date(); ?>
+			</h3><?php
+		} ?>
 
-</article>
+		<div class="article" itemprop="description"><?php
+			the_excerpt(); ?>
+		</div>
+
+	</article>
+
+</div>
+
+<?php clearfix()->apply();

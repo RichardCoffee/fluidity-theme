@@ -10,7 +10,9 @@ if (!isset($content_width)) $content_width = 1600;
 define( 'FLUIDITY_HOME', trailingslashit( dirname( __FILE__ ) ) );  #  get current directory
 $data = get_file_data( FLUIDITY_HOME . 'style.css', array( 'ver' => 'Version' ) );
 define( 'FLUIDITY_VERSION', $data['ver'] );
+
 defined( 'TCC_THEME_VERSION' ) or define( 'TCC_THEME_VERSION', FLUIDITY_VERSION );
+defined( 'TCC_SIDEBAR_FLOW' )  or define( 'TCC_SIDEBAR_FLOW', true );
 
 require_once('includes/loader.php');
 require_once('includes/debugging.php');              #  load logging function as soon as possible

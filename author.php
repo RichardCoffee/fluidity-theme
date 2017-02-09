@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  tcc-fluidity/author.php
+ *  author.php
  *
  */
 
@@ -24,25 +24,30 @@ $col_primary.= " col-sm-12 col-xs-12"; ?>
         $role = $current->roles[0];
         get_template_part('template-parts/profile',$role);
         if (have_posts()) {
-          $col = min(12,$wp_query->post_count*4); // FIXME
+
+          // FIXME
+          $col = min(12,$wp_query->post_count*4);
           $title_class = "col-lg-$col col-md-$col col-sm-12 col-xs-12";
           $title_posts = apply_filters( 'tcc_author_posts_header', __('Most Recent Posts','tcc-fluid')); ?>
-          <div class='<?php echo $title_class; ?>' itemprop='headline'>
-            <h3 class='text-center'><?php echo esc_html($title_post); ?></h3>
-          </div><?php
-          #fluid_navigation('above'); ?>
-          <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' itemprop='blogPost' itemscope itemtype='http://schema.org/Blog'><?php
+
+          <div class='<?php echo esc_attr( $title_class ); ?>' itemprop='headline'>
+            <h3 class='text-center'>
+              <?php echo esc_html($title_posts); ?>
+            </h3>
+          </div>
+
+          <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' <?php microdata()->Blog(); ?>><?php
             $cnt = 0;
             while (have_posts()) {
               the_post();
               $css = 'lg=4&md=4&sm=6&xs=12&cnt='; ?>
-              <div class="<?php echo tcc_bootstrap_css($css); ?>"><?php
-                get_template_part('template-parts/content',get_post_type()); ?>
+              <div class="<?php echo tcc_bootstrap_css($css); ?>" <?php microdata()->BlogPosting(); ?>><?php
+                get_template_part('template-parts/excerpt',get_post_type()); ?>
               </div><?php
               tcc_apply_clearfix($css.++$cnt);
             } ?>
           </div><?php
-          #fluid_navigation('below');
+
         } else {
           // FIXME: this needs to point to the correct template
           //get_template_part('content','none');
