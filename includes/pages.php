@@ -97,7 +97,7 @@ if ( ! function_exists( 'get_page_title' ) ) {
 	function get_page_title( $slug ) {
 		$title = tcc_get_page_id_by_slug( $slug, 'post_title' );
 		if ( is_archive() && ! get_query_var( 'paged' ) ) {
-			if ( is_tax() || is_category() || is_tag() {
+			if ( is_tax() || is_category() || is_tag() ) {
 				$descrip = term_description();
 				if ( $descrip ) {
 					$title =  apply_filters( 'the_content', $descrip );
