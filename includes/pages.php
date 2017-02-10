@@ -55,7 +55,7 @@ if (!function_exists('fluid_save_page_template')) {
 	add_action('template_include', 'fluid_save_page_template', 1000);
 }
 
-if (!function_exists('get_page_slug')) {
+if ( ! function_exists( 'get_page_slug' ) ) {
 	#	http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
 	function get_page_slug( $set_slug = '' ) {
 		global $wp_query;
@@ -67,18 +67,18 @@ if (!function_exists('get_page_slug')) {
 				$slug = TCC_PAGE_SLUG;
 			} else if ( !is_admin() && $wp_query->is_main_query() ) {
 /*log_entry(
-			'is home:  '.is_home(),
-			'page id:  '.$wp_query->get('page_id'),
-			'  front:  '.get_option('page_on_front'),
+	'is home:  '.is_home(),
+	'page id:  '.$wp_query->get( 'page_id' ),
+	'  front:  ' . get_option( 'page_on_front' ),
 ); //*/
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'home';
-				#} else if ( ( $wp_query->get( 'page_id' ) == get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
-				} else if ( get_option('page_on_front') && ( $wp_query->get('page_id') == get_option('page_on_front') ) ) {
+				#} else if ( ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
+				} else if ( get_option('page_on_front') && ( $wp_query->get('page_id') === get_option('page_on_front') ) ) {
 					$slug = 'front';
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
-					if (is_object($page) && isset($page->post_type) && ($page->post_type==='page')) {
+					if ( is_object( $page ) && isset( $page->post_type ) && ( $page->post_type === 'page' ) ) {
 						$slug = $page->post_name;
 #$slug = ( $slug === 'front-page' ) ? 'front' : $slug;
 					} else {

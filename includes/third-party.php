@@ -12,6 +12,35 @@
 add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been fixed yet?
 
 
+/**  BuddyPress  **/
+
+if ( class_exists( 'BuddyPress' ) ) {
+	function fluidity_buddypress_login_redirect( $redirect_to, $request, $user ) {
+		$new_url = $redirect_to;
+		if ( ! $user ) {
+			$new_url = home_url();
+		} else if ( ! is_object( $user ) ) {
+			log_entry( 'user var is not an object', $user, 'dump' );
+#			$new_url = $redirect_to;
+		} else if ( get_class( $user ) === 'WP_Error' ) {
+#			$new_url = $redirect_to;
+		} else {
+			$user_name = $user->data->user_nicename;
+			$new_url   = home_url( "members/$user_name/profile/" ) ;
+log_entry(
+	'   redirect_to:  ' . $redirect_to,
+	'       request:  ' . $request,
+	'wp_get_referer:  ' . wp_get_referer(),
+	"       new url:  $new_url",
+	$user
+);
+		}
+		return $new_url;
+	}
+	add_filter( 'login_redirect', 'fluidity_buddypress_login_redirect', 10, 3 );
+} //*/
+
+
 /**  Jetpack  **/
 
 /*  jetpack_the_site_logo() called in includes/header.php, function fluidity_header_logo() */

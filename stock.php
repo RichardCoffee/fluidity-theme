@@ -14,7 +14,7 @@ $mypage = get_page_slug();
 
 #do_action( "tcc_top_$mypage" ); ?>
 
-<div id="fluid-content" class="fluid-<?php echo $mypage; ?> <?php echo esc_attr( container_type( $mypage ) ); ?>" <?php microdata()->Blog(); ?>>
+<div id="fluid-content" class="fluid-<?php e_esc_attr( $mypage); ?> <?php e_esc_attr( container_type( $mypage ) ); ?>" <?php microdata()->Blog(); ?>>
 
 <?php
 		if ( is_page() ) {
@@ -26,12 +26,13 @@ $mypage = get_page_slug();
 		} ?>
 
 	<div class="row">
-		<?php who_am_i();
+		<?php who_am_i(); ?>
 
-		#                  css classes           sidebar
-		fluidity_sidebar( 'hidden-sm hidden-xs', $mypage ); # Uses aside tag ?>
+		<aside class="hidden-sm hidden-xs">
+			<?php tcc_sidebar( $mypage ); ?>
+		</aside>
 
-		<main class="<?php echo tcc_main_tag_class( '' ); ?>">
+		<main class="">
 			<div id="content" role="main" tabindex="-1"><?php
 
 				do_action( "tcc_before_posts_$mypage" );
@@ -67,7 +68,9 @@ $mypage = get_page_slug();
 			</div><!-- #content -->
 		</main>
 
-		<?php fluidity_sidebar( 'visible-sm visible-xs', $mypage ); # Uses aside tag ?>
+		<aside class="visible-sm visible-xs">
+			<?php tcc_sidebar( $mypage ); ?>
+		</aside>
 
 	</div>
 </div><!-- #fluid-content --><?php

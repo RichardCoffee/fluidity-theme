@@ -166,3 +166,29 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'tcc_sidebar' ) ) {
+	function tcc_sidebar( $sidebar = 'standard' ) {
+		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
+		$side = tcc_layout( 'sidebar' );
+		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
+		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
+		if ( $side !== 'none' ) {
+			$slug = get_page_slug();
+			$css  = array(
+				'widget-area',
+				'fluid-sidebar',
+				"fluid-sidebar-$slug"
+			);
+			if ( $side === 'right' ) {
+				$css[] = 'pull-right';
+			}
+			$css = apply_filters( 'fluid_sidebar_css', $css );
+			$css = apply_filters( "fluid_sidebar_css_$slug", $css );
+			$css = array_map( 'esc_attr', array_unique( $css ) ); ?>
+			<div class="<?php echo join( ' ', $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
+				<?php get_template_part( 'sidebar', $sidebar ); ?>
+			</div><?php
+		}
+	}
+}
