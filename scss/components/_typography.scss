@@ -1,15 +1,98 @@
 
-body {
-  background: white;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 18px;
-  color: black;
-  -webkit-font-smoothing: antialiased;
-  //font: "lucida grande","helvetica","arial",sans-serif;
+/**  Typography  **/
+
+html {
+	box-sizing: border-box;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust:     100%;
 }
 
-a, button, input:focus, input[type="button"], input[type="reset"], input[type="submit"], textarea:focus, .button {
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+  background: white;
+  color: black;
+  font-weight: normal;
+  font-style: normal;
+/*  font-size: 18px; set in theme options */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior;
+ * see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+
+a,
+button,
+input:focus,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+textarea:focus,
+.btn,
+.button {
     transition: all 0.1s ease-in-out 0s;
+}
+
+h1,
+.h1 {
+	font-size: 28;
+	font-size: 2em;
+	font-weight:700;
+}
+
+h2,
+.h2 {
+	font-size: 24;
+	font-size: 1.6em;
+	font-weight:700;
+}
+
+h3,
+.h3 {
+	font-size: 20;
+	font-size: 1.3em;
+	font-weight:700;
+}
+
+h4,
+.h4 {
+	font-size: 18;
+	font-size: 1.2em;
+	font-weight:700;
+}
+h5,
+.h5 {
+	font-size: 16;
+	font-size: 1em;
+	font-weight:700;
+}
+
+h6,
+.h6 {
+	font-size: 14;
+	font-weight:700;
+}
+
+h1,   h2,  h3,  h4,  h5,  h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Lato', sans-serif;
+	text-transform:capitalize;
+	clear: both;
+}
+
+p {
+	margin-bottom: 1.5em;
 }

@@ -5,7 +5,7 @@
  * Author: Richard Coffee
  * Author URI: http://rtcenterprises.net
  * Description: Wordpress Theme based on using a fluid design, with bootstrap
- * Version: 2.1.1
+ * Version: 2.2.0
  * Tags: two-columns, right-sidebar, left-sidebar
  * Text Domain: tcc-fluid
  * License: GPLv2
@@ -134,12 +134,6 @@ a:hover, a:active {
   width: 50%;
 }
 
-body {
-  font-size: 18px;
-  margin: 0;
-  width: 100%;
-}
-
 .content {
   border: 1px solid;
   border-radius: 5px;
@@ -155,8 +149,6 @@ logo {
   align: center;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
-  vertical-align: middle;
 }
 
 .pad05perc {
@@ -431,18 +423,101 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   color: #fff;
 }
 
+/**  Typography  **/
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   background: white;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  color: black;
   font-weight: normal;
   font-style: normal;
-  font-size: 18px;
-  color: black;
+  /*  font-size: 18px; set in theme options */
   -webkit-font-smoothing: antialiased;
 }
 
-a, button, input:focus, input[type="button"], input[type="reset"], input[type="submit"], textarea:focus, .button {
+/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior;
+ * see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a,
+button,
+input:focus,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+textarea:focus,
+.btn,
+.button {
   transition: all 0.1s ease-in-out 0s;
+}
+
+h1,
+.h1 {
+  font-size: 28;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+h2,
+.h2 {
+  font-size: 24;
+  font-size: 1.6em;
+  font-weight: 700;
+}
+
+h3,
+.h3 {
+  font-size: 20;
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+h4,
+.h4 {
+  font-size: 18;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+h5,
+.h5 {
+  font-size: 16;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+h6,
+.h6 {
+  font-size: 14;
+  font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Lato', sans-serif;
+  text-transform: capitalize;
+  clear: both;
+}
+
+p {
+  margin-bottom: 1.5em;
 }
 
 .width-fluid {
@@ -496,7 +571,7 @@ a, button, input:focus, input[type="button"], input[type="reset"], input[type="s
     display: none;
   }
 
-  .fluid-sidebar aside {
+  .fluid-sidebar {
     display: none;
   }
 

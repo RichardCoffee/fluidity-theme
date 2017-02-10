@@ -145,7 +145,7 @@ if (!function_exists('fluidity_sidebar_layout')) {
 /**
  *  @brief generates and displays sidebar html.
  *
- *  @param string css class(es) to be applied to sidebar aside tag
+ *  @param string css class(es) to be applied to sidebar div
  *  @param string sidebar to be used, defaults to 'standard' sidebar
  */
 if ( ! function_exists( 'fluidity_sidebar' ) ) {
@@ -160,9 +160,9 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 			$css  = apply_filters( "fluid_sidebar_css_$slug", $css );
 			$css .= ( $side === 'right' ) ? ' pull-right' : '';
 			$css .= ' widget-area fluid-sidebar fluid-sidebar-' . get_page_slug(); ?>
-			<aside class="<?php echo esc_attr( $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
+			<div class="<?php echo esc_attr( $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
 				<?php get_template_part( 'sidebar', $sidebar ); ?>
-			</aside><?php
+			</div><?php
 		}
 	}
 }

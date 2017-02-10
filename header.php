@@ -24,5 +24,5 @@
 </head>
 
 <body <?php body_class( 'background' ); ?>>
-	<a class="skip-link sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'tcc-fluid' ); ?></a><?php
+	<a class="skip-link sr-only" href="#fluid-content"><?php esc_html_e( 'Skip to content', 'tcc-fluid' ); ?></a><?php
 	get_template_part( 'template-parts/header', get_page_slug() );
