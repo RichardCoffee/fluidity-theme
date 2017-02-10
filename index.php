@@ -21,6 +21,7 @@ $mypage = get_page_slug();
 			tcc_page_parallax( $mypage );
 		}
 		if ( is_page() || is_archive() ) {
+			#echo get_page_title( $mypage );
 			tcc_page_title( $mypage );
 		} ?>
 
