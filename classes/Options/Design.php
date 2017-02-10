@@ -49,7 +49,7 @@ class TCC_Options_Design {
                               'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
                               'render'  => 'radio',
                               'source'  => array('no'  => __( 'Do not show the page title.', 'tcc-fluid' ),
-                                                 'yes' => __( 'Show the page title before the content (after the header).', 'tcc-fluid' ) ) );
+                                                 'yes' => __( 'Show the page title after the header and before the content.', 'tcc-fluid' ) ) );
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
                               'text'    => __('Site typography options','tcc-fluid'),
                               'render'  => 'title');
