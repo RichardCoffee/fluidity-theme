@@ -117,6 +117,7 @@ return $args;
 				if ( $status === 'no' ) {
 					if ( isset( $themes->plugins->$theme ) ) {
 						unset( $themes->plugins->$theme );
+					}
 					if ( isset( $themes->active->$theme ) ) {
 						unset( $themes->active->$theme );
 					}
