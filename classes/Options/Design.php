@@ -44,6 +44,12 @@ class TCC_Options_Design {
                               'render'  => 'radio',
                               'source'  => array('no'  => __('Show featured images normally - although currently this is not at all on pages','tcc-fluid'),
                                                  'yes' => __('Use featured image as background','tcc-fluid')));
+    $layout['title']  = array('default' => 'no',
+                              'label'   => __( 'Page Title', 'tcc-fluid' ),
+                              'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
+                              'render'  => 'radio',
+                              'source'  => array('no'  => __( 'Do not show the page title.', 'tcc-fluid' ),
+                                                 'yes' => __( 'Show the page title before the content (after the header).', 'tcc-fluid' ) ) );
     $layout['type']   = array('label'   => __('Typography','tcc-fluid'),
                               'text'    => __('Site typography options','tcc-fluid'),
                               'render'  => 'title');

@@ -232,17 +232,33 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 	}
 }
 
+/**
+ *  @brief Provides filters for css applied to main content tag.
+ *
+ *  @param string initial css class(es)
+ *  @return string css classes to be applied
+ */
+if ( ! function_exists( 'tcc_main_tag_class' ) ) {
+	function tcc_main_tag_class( $css = '' ) {
+		$page = get_page_slug();
+		$css  = apply_filters( 'tcc_main_css', $css );
+		$css  = apply_filters( "tcc_main_css_$page", $css );
+		return $css;
+	}
+}
+
 if ( ! function_exists( 'tcc_page_title' ) ) {
 	function tcc_page_title( $slug ) {
 		if ( has_action( "tcc_page_title_$slug" ) ) {
 			do_action( "tcc_page_title_$slug" );
 		} else if ( has_action( 'tcc_page_title' ) ) {
 			do_action( 'tcc_page_title' );
+		} else if ( tcc_design( 'title' ) === 'no' ) {
 		} else {
 			$title = get_page_title( $slug );
 			if ( $title ) { ?>
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
-					<div class="<?php echo container_type( "{$slug}_title" ); ?>">
+					<div class="<?php echo container_type( "tcc_title_container_$slug" ); ?>">
 						<h2>
 							<?php echo $title; ?>
 						</h2>

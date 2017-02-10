@@ -1,70 +1,76 @@
 <?php
-
 /*
- *  author.php
+ *  File Name: stock.php
  *
  */
 
 get_header();
 
-$mypage      = get_page_slug();
-$sidebar     = (is_search()) ? 'archive' : 'author';
-$has_sidebar = is_active_sidebar($sidebar);
-$col_primary = ($has_sidebar) ? "col-lg-8 col-md-8" : "col-lg-12 col-md-12";
-$col_primary.= " col-sm-12 col-xs-12"; ?>
+$mypage = get_page_slug();
 
-<div id="fluid-content" class="fluid-author <?php echo container_type($mypage); ?>" role="main" <?php microdata()->Person(); ?>><?php
-  who_am_i(); ?>
-  <div class="row">
+#add_filter ( "fluid_{$mypage}_container_type", function ( $css ) { return 'container'; } );
+#add_filter ( "fluid_sidebar_css_$mypage",      function ( $css ) { return "col-md-2 $css"; } );
+#add_filter ( "tcc_main_css_$mypage",           function ( $css ) { return "col-md-10 $css"; } );
 
-    <div id="content" class="<?php echo $col_primary; ?>" role="main" tabindex="-1">
+#do_action( "tcc_top_$mypage" ); ?>
 
-      <div class=""><?php
-        $current = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
-        $role = $current->roles[0];
-        get_template_part('template-parts/profile',$role);
-        if (have_posts()) {
+<div id="fluid-content" class="fluid-<?php echo $mypage; ?> <?php echo esc_attr( container_type( $mypage ) ); ?>" <?php microdata()->Blog(); ?>>
 
-          // FIXME
-          $col = min(12,$wp_query->post_count*4);
-          $title_class = "col-lg-$col col-md-$col col-sm-12 col-xs-12";
-          $title_posts = apply_filters( 'tcc_author_posts_header', __('Most Recent Posts','tcc-fluid')); ?>
+<?php
+		if ( is_page() ) {
+			tcc_page_parallax( $mypage );
+		}
+		if ( is_page() || is_archive() ) {
+			tcc_page_title( $mypage );
+		} ?>
 
-          <div class='<?php echo esc_attr( $title_class ); ?>' itemprop='headline'>
-            <h3 class='text-center'>
-              <?php echo esc_html($title_posts); ?>
-            </h3>
-          </div>
+	<div class="row">
+		<?php who_am_i();
 
-          <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' <?php microdata()->Blog(); ?>><?php
-            $cnt = 0;
-            while (have_posts()) {
-              the_post();
-              $css = 'lg=4&md=4&sm=6&xs=12&cnt='; ?>
-              <div class="<?php echo tcc_bootstrap_css($css); ?>" <?php microdata()->BlogPosting(); ?>><?php
-                get_template_part('template-parts/excerpt',get_post_type()); ?>
-              </div><?php
-              tcc_apply_clearfix($css.++$cnt);
-            } ?>
-          </div><?php
+		#                  css classes           sidebar
+		fluidity_sidebar( 'hidden-sm hidden-xs', $mypage ); # Uses aside tag ?>
 
-        } else {
-          // FIXME: this needs to point to the correct template
-          //get_template_part('content','none');
-echo "<p>no posts by this person</p>";
-        } ?>
-      </div>
+		<main class="<?php echo tcc_main_tag_class( '' ); ?>">
+			<div id="content" role="main" tabindex="-1"><?php
 
-    </div><!-- .col-md-(8 or 12) --><?php
+				do_action( "tcc_before_posts_$mypage" );
 
-    if ($has_sidebar) { ?>
-      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs" <?php microdata()->SideBar(); ?>><?php
-        get_sidebar($sidebar); ?>
-      </div><?php
-    } ?>
+				if ( have_posts() ) {
 
-  </div><!-- .row -->
+					do_action( "tcc_before_loop_$mypage" );
 
-</div><!-- .container --><?php
+					$main = ( is_single() || is_page() ) ? 'content' : tcc_layout( 'content' );
+					while ( have_posts () ) {
+						the_post();
+						$slug = fluid_content_slug( $mypage );
+						get_template_part( "template-parts/$main", $slug );
+						if ( ! is_singular() ) {
+							fluid_post_separator( $mypage );
+						}
+					}
+
+					if ( ! is_singular() ) { ?>
+						<div class="row">
+							<div class="text-wide text-center">
+								<?php pagination(); ?>
+							</div>
+						</div><?php
+					}
+
+#					do_action( "tcc_after_loop_$mypage" );
+				} else {
+#					do_action( "tcc_no_loop_$mypage" );
+				}
+
+#				do_action( "tcc_after_posts_$mypage" ); ?>
+			</div><!-- #content -->
+		</main>
+
+		<?php fluidity_sidebar( 'visible-sm visible-xs', $mypage ); # Uses aside tag ?>
+
+	</div>
+</div><!-- #fluid-content --><?php
+
+#do_action( "tcc_bottom_$mypage" );
 
 get_footer();

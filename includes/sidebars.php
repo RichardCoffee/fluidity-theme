@@ -1,7 +1,17 @@
 <?php
 
-//This sets up the widget area sidebars
 
+/**
+ *  @brief This sets up the widget area sidebars.
+ *
+ *  @since 1.0.0
+ *
+ *  @package Fluidity
+ *  @subpackage Sidebars
+ */
+
+/**
+ */
 if (!function_exists('fluidity_register_sidebars')) {
   function fluidity_register_sidebars() {
     $widget = tcc_layout('widget');
@@ -132,6 +142,12 @@ if (!function_exists('fluidity_sidebar_layout')) {
   }
 } //*/
 
+/**
+ *  @brief generates and displays sidebar html.
+ *
+ *  @param string css class(es) to be applied to sidebar aside tag
+ *  @param string sidebar to be used, defaults to 'standard' sidebar
+ */
 if ( ! function_exists( 'fluidity_sidebar' ) ) {
 	function fluidity_sidebar( $css = '', $sidebar = 'standard' ) {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
@@ -139,6 +155,9 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
 		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
 		if ( $side !== 'none' ) {
+			$slug = get_page_slug();
+			$css  = apply_filters( 'fluid_sidebar_css', $css );
+			$css  = apply_filters( "fluid_sidebar_css_$slug", $css );
 			$css .= ( $side === 'right' ) ? ' pull-right' : '';
 			$css .= ' widget-area fluid-sidebar fluid-sidebar-' . get_page_slug(); ?>
 			<aside class="<?php echo esc_attr( $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
