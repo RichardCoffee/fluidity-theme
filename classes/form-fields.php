@@ -16,13 +16,13 @@ abstract class TCC_Form_Field_Field {
 	protected $field_name;              # field name
 	protected $field_type = 'text';     # type of field
 	protected $field_value;             # field value
-	protected $label_css; = '';         # label css
+	protected $label_css  = '';         # label css
 	protected $label_text = '';         # label text
 	protected $placeholder;             # placeholder text
 #	protected $post_id;                 # word press post id number
 	protected $sanitize   = 'esc_attr'; # default sanitize method
 
-	use TCC_Trait_ParseArgs;
+#	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
 		$this->parse_args( $args );
@@ -36,7 +36,7 @@ abstract class TCC_Form_Field_Field {
 
 	public function input( $label = true ) {
 		$attrs = array(
-			'id'          => ( empty( $this->field_id ) ) ? $this->field_name : $this->field_id,
+			'id'          => $this->field_id,
 			'type'        => $this->field_type,
 			'class'       => $this->field_css,
 			'name'        => $this->field_name,
@@ -52,10 +52,10 @@ abstract class TCC_Form_Field_Field {
 	protected function label() {
 		$attrs = array(
 			'class' => $this->label_css,
-			'for'   => ( ( empty( $this->field_id)) ? $this->name : $this->id);
+			'for'   => $this->field_id,
 		); ?>
 		<label <?php apply_attrs( $attrs ); ?>>
-			<?php e_esc_html( $this->text ); ?>
+			<?php e_esc_html( $this->label_text ); ?>
 		</label><?php
 	}
 
@@ -73,7 +73,7 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 		parent::__construct( $args );
 		$sanitize = $this->sanitize;
 		if ( empty( $this->field_value ) ) {
-			$possible = get_option( $this->field_name )
+			$possible = get_option( $this->field_name );
 			if ( $possible ) {
 				$this->field_value = $sanitize( $possible );
 			}
