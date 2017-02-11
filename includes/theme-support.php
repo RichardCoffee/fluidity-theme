@@ -13,15 +13,19 @@ add_theme_support('title-tag');
 
 // Enable custom background support
 $defaults = array(
-#  'default-color'          => 'ffffff',
-#  'default-image'          => get_template_directory_uri().'/screenshot.jpg',
-  'default-repeat'         => 'no-repeat',
-  'default-position-x'     => 'center',
-  'default-attachment'     => 'fixed',
-#  'wp-head-callback'       => '_custom_background_cb',
-#  'admin-head-callback'    => '',
-#  'admin-preview-callback' => '',
+#	'default-image'          => get_template_directory_uri().'/screenshot.jpg',
+#	'default-preset'         => 'default',
+	'default-position-x'     => 'center',
+#	'default-position-y'     => 'top',
+	'default-size'           => 'cover',
+	'default-repeat'         => 'no-repeat',
+	'default-attachment'     => 'fixed',
+#	'default-color'          => '',
+#	'wp-head-callback'       => '_custom_background_cb',
+#	'admin-head-callback'    => '',
+#	'admin-preview-callback' => '',
 );
+
 add_theme_support( 'custom-background', $defaults ); //*/
 /*
 // Enable custom header support

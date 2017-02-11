@@ -130,10 +130,12 @@ log_entry($args,$themes);
 	}
 
 	public function pre_http_request( $preempt, $args, $url ) {
+
 		#	check if we, or someone else, has been here before
 		if ( $preempt || isset( $args['_privacy_filter'] ) ) {
 			return $preempt;
 		}
+
 		#	only act on requests to api.wordpress.org
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
@@ -142,31 +144,30 @@ log_entry($args,$themes);
 			) {
 			return $preempt;
 		}
-log_entry($url,$args);
-return $preempt;
+
 		#	Remove/Change url args
 		#$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
 		$url_array = parse_url($url);
 		$arg_array = wp_parge_args( $url_array['query'] );
-log_entry($url,$args,$url_array,$arg_array);
+log_entry($url,$url_array,$arg_array,$args);
 return $preempt;
 		if ( isset( $arg_array['blogs'] ) ) {
 			$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
 			$url   = add_query_arg( 'blogs', $blogs, $url );
 		}
-log_entry($url,$args,$url_array,$arg_array);
+log_entry($url,$url_array,$arg_array,$args);
 return $preempt;
 		if ( isset( $arg_array['users'] ) ) {
 			$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
 			$url   = add_query_arg( 'users', $users, $url );
 		}
-log_entry($url,$args,$url_array,$arg_array);
+log_entry($url,$url_array,$arg_array,$args);
 return $preempt;
 		if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$arg_array['multisite_enabled'] = 0;
 			$url = add_query_arg( 'multisite_enabled', '0', $url );
 		}
-log_entry($url,$args,$url_array,$arg_array);
+log_entry($url,$url_array,$arg_array,$args);
 return $preempt;
 		#	make request
 		$args['_privacy_filter'] = true;
