@@ -25,6 +25,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
     #if (tcc_design('paral')==='yes') { new TCC_Options_Parallax; }
     new TCC_Options_Settings;
     new TCC_Options_Privacy;
+    $this->add_currency_symbol();
   }
 
   public function add_menu_option() {
@@ -213,5 +214,17 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
     $select['source']  = $data;
     return $select;
   }
+
+	private add_currency_symbol() {
+		$args = array(
+			'field_css'     => 'small-text',
+			'field_default' => _x( '$', 'primary currency symbol - use your own judgement', 'tcc-fluid' );
+			'field_name'    => 'currency_symbol',
+			'group'         => 'general',
+			'label_text'    => esc_html__( 'Currency Symbol', 'tcc-fluid' ),
+		);
+		new TCC_Form_Field_Admin( $args );
+	}
+
 
 }

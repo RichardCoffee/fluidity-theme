@@ -24,14 +24,6 @@ if (!function_exists('stop_heartbeat')) {
   add_action( 'init', 'stop_heartbeat', 1 );
 }
 
-if (!function_exists('tcc_currency_symbol')) {
-  function tcc_currency_symbol() {
-    $set = array('default'=>'$','group'=>'general','name'=>'currency_symbol','text'=>esc_html__('Currency Symbol','tcc-fluid'),'css'=>'small-text');
-    $ins = new Admin_Field($set);
-  }
-  add_action('admin_init','tcc_currency_symbol',5);
-}
-
 if (!function_exists('tcc_design')) {
   function tcc_design($option) {
     static $data;

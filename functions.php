@@ -32,7 +32,6 @@ require_once('includes/sidebars.php');
 require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
 
 require_once('classes/autocomplete.php');
-require_once('classes/form-fields.php');
 new TCC_Metabox_GalleryView( array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
 
 if (is_admin()) {

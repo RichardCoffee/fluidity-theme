@@ -19,7 +19,7 @@ class TCC_Form_Login {
 		$this->parse_args( $args );
 
 		add_action( 'admin_head',          array( $this, 'dashboard_logo' ) );
-		add_action( 'login_form_defaults', array( $this, 'login_form_defaults' ) );
+		add_action( 'login_form_defaults', array( $this, 'login_form_defaults' ), 1 );	#	run early - make it easy to override values
 
 		add_filter( 'login_headertitle',   function( $args ) { return ''; } );
 		add_filter( 'login_redirect',      array( $this, 'login_redirect'), 10, 3);
@@ -61,41 +61,48 @@ class TCC_Form_Login {
 
 	public function login_form_defaults( $defaults = array() ) {
 #	array mainly taken from wp-includes/general-template.php
-		$new = array( 'redirect'       => apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) ),
-		              'form_id'        => apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) ),
-		              'label_username' => apply_filters( 'tcc_login_username',    __( 'Username or Email Address', 'tcc-fluid' ) ),
-		              'label_password' => apply_filters( 'tcc_login_password',    __( 'Password',      'tcc-fluid' ) ),
-#		              'label_remember' => __( 'Remember Me', 'tcc-fluid' ),
-		              'label_log_in'   => apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) ),
-		              'label_lostpw'   => apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) ),
-		              'id_username'    => uniqid( 'user_login_' ),
-		              'id_password'    => uniqid( 'user_pass_'  ),
-		              'id_remember'    => uniqid( 'rememberme_' ),
-		              'id_submit'      => uniqid( 'wp-submit_'  ),
-#		              'remember'       => true,
-#		              'value_username' => '',
-#		              'value_remember' => false,
-		            );
+		$new = array(
+			'redirect'       => apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) ),
+			'form_id'        => apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) ),
+			'label_username' => apply_filters( 'tcc_login_username',    __( 'Username or Email Address', 'tcc-fluid' ) ),
+			'label_password' => apply_filters( 'tcc_login_password',    __( 'Password',      'tcc-fluid' ) ),
+#			'label_remember' => __( 'Remember Me', 'tcc-fluid' ),
+			'label_log_in'   => apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) ),
+			'label_lostpw'   => apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) ),
+			'id_username'    => uniqid( 'user_login_' ),
+			'id_password'    => uniqid( 'user_pass_'  ),
+			'id_remember'    => uniqid( 'rememberme_' ),
+			'id_submit'      => uniqid( 'wp-submit_'  ),
+#			'remember'       => true,
+#			'value_username' => '',
+#			'value_remember' => false,
+		);
 		return array_merge( $defaults, $new );
 	}
 
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	function login_redirect( $redirect_to, $request, $user ) {
-		if ( (isset($_GET['action']) && $_GET['action'] != 'logout') || (isset($_POST['login_location']) && !empty($_POST['login_location'])) ) {
-			if (!$user)                       { return home_url(); }
-			if (!is_object($user))            { log_entry( 'user var is not an object', $user );  return $redirect_to; }
-			if (get_class($user)=='WP_Error') { return $redirect_to; }
-			$location = (isset($_POST['login_location'])) ? esc_url_raw($_POST['login_location']) : esc_url_raw($_SERVER['HTTP_REFERER']);
-			log_entry(
-				'   redirect_to:  ' . $redirect_to,
-				'       request:  ' . $request,
-				'wp_get_referer:  ' . wp_get_referer(),
-				'      location:  ' . $location,
-				$user
-			);
-			wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
-			exit;
+		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
+			if ( ! $user ) {
+				$redirect_to = home_url();
+			} else if ( ! is_object( $user ) ) {
+				log_entry( 'user var is not an object', $user );
+			} else if ( get_class( $user ) === 'WP_Error' ) {
+				log_entry( 'user error', $user );
+			} else {
+				$location = ( isset( $_POST['login_location'] ) ) ? esc_url_raw( $_POST['login_location'] ) : esc_url_raw( $_SERVER['HTTP_REFERER'] );
+				log_entry(
+					'   redirect_to:  ' . $redirect_to,
+					'       request:  ' . $request,
+					'wp_get_referer:  ' . wp_get_referer(),
+					'      location:  ' . $location,
+					$user  //  FIXME:  php complains when there is a comma on this line. wtf?
+				);
+				wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
+				exit;
+			}
 		}
+		return $redirect_to;
 	}
 
 	public function login_redirect_admin( $redirect_to, $request, $user ) {
@@ -111,7 +118,7 @@ class TCC_Form_Login {
 	protected function show_login_form( $args ) {
 		$in_navbar  = $this->in_navbar;
 		$pull_right = $this->pull_right;
-		extract($args,EXTR_IF_EXISTS);
+		extract( $args, EXTR_IF_EXISTS );
 		$defaults = $this->get_login_form_defaults();
 		extract( $defaults );	#	See $this->login_form_defaults for the list of extracted variables
 		$remember = ( $in_navbar ) ?  false : $remember;
@@ -127,44 +134,44 @@ class TCC_Form_Login {
 		<form <?php apply_attrs( $attrs ); ?>>
 
 			<div class='form-group login-username'>
-				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr($id_username); ?>">
-					<?php echo esc_html($label_username); ?>
+				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr( $id_username ); ?>">
+					<?php echo esc_html( $label_username ); ?>
 				</label>
-				<input type="text" name="log" id="<?php echo esc_attr($id_username); ?>" class="form-control"
-					placeholder="<?php echo esc_html($label_username); ?>" required>
+				<input type="text" name="log" id="<?php echo esc_attr( $id_username ); ?>" class="form-control"
+					placeholder="<?php echo esc_html( $label_username ); ?>" required>
 			</div>
 
 			<div class='form-group login-password'>
-				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr($id_password); ?>">
-					<?php echo esc_html($label_password); ?>
+				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr( $id_password ); ?>">
+					<?php echo esc_html( $label_password ); ?>
 				</label>
-				<input type="password" name="pwd" id="<?php echo esc_attr($id_password); ?>"
-					class="form-control" placeholder="<?php echo esc_attr($label_password); ?>" required>
+				<input type="password" name="pwd" id="<?php echo esc_attr( $id_password ); ?>"
+					class="form-control" placeholder="<?php echo esc_attr( $label_password ); ?>" required>
 			</div>
 
-			<?php if ($remember) { ?>
+			<?php if ( $remember ) { ?>
 				<div class="checkbox login-remember">
 					<label>
-						<input type="checkbox" id="<?php echo esc_attr($id_remember); ?>"
-							name="rememberme" value="forever" <?php checked($value_remember,true); ?>>&nbsp;
-						<?php echo esc_html($label_remember); ?>
+						<input type="checkbox" id="<?php echo esc_attr( $id_remember ); ?>"
+							name="rememberme" value="forever" <?php checked( $value_remember, true ); ?>>&nbsp;
+						<?php echo esc_html( $label_remember ); ?>
 					</label>
 				</div>
 			<?php  } ?>
 
 			<div class="form-group login-submit">
-				<button type="submit" id="<?php echo esc_attr($id_submit); ?>" class="btn btn-fluidity" name="wp-submit">
+				<button type="submit" id="<?php echo esc_attr( $id_submit ); ?>" class="btn btn-fluidity" name="wp-submit">
 					<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;
-					<?php echo esc_html($label_log_in); ?>
+					<?php echo esc_html( $label_log_in ); ?>
 				</button>
-				<input type="hidden" name="redirect_to" value="<?php echo esc_url($redirect); ?>" />
+				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect ); ?>" />
 			</div>
 
-			<?php if ( !empty( $label_lost ) && ( $lost_url = wp_lostpassword_url( home_url() ) ) ) {
+			<?php if ( ! empty( $label_lostpw ) && ( $lost_url = wp_lostpassword_url( home_url() ) ) ) {
 				$tooltip = __( 'You can request a new password via this link.', 'tcc-fluid' ); ?>
 				<a class="lost-password pull-right" href="<?php echo esc_url( $lost_url ); ?>" title="<?php echo esc_attr( $tooltip ); ?>" rel="nofollow">
 					<small>
-						<?php echo esc_html($label_lost); ?>
+						<?php echo esc_html( $label_lost ); ?>
 					</small>
 				</a>
 			<?php } ?>
