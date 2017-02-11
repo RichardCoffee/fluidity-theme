@@ -27,7 +27,7 @@ abstract class TCC_Form_Field_Field {
 	public function __construct( $args ) {
 		$this->parse_args( $args );
 		if ( ( empty( $this->placeholder ) ) && ( ! empty( $this->label_text ) ) ) {
-			$this->placeholder = $this->text;
+			$this->placeholder = $this->field_text;
 		}
 		if ( empty( $this->field_id ) ) {
 			$this->field_id = $this->field_name;
@@ -43,7 +43,7 @@ abstract class TCC_Form_Field_Field {
 			'value'       => $this->field_value,
 			'placeholder' => $this->placeholder,
 		);
-		if ($label && $this->label_text) {
+		if ( $label && $this->label_text ) {
 			$this->label();
 		} ?>
 		<input <?php apply_attrs( $attrs ); ?> /><?php
