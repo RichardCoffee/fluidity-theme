@@ -148,7 +148,7 @@ log_entry($args,$themes);
 		#	Remove/Change url args
 		#$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
 		$url_array = parse_url($url);
-		$arg_array = wp_parge_args( $url_array['query'] );
+		$arg_array = wp_parse_args( $url_array['query'] );
 log_entry($url,$url_array,$arg_array,$args);
 return $preempt;
 		if ( isset( $arg_array['blogs'] ) ) {

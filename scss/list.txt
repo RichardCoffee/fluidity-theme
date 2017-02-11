@@ -13,3 +13,4 @@ success-inverse
 warning
 warning-inverse
 fire-engine
+leaf-green

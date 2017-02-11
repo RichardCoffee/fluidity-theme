@@ -1,95 +1,115 @@
 <?php
 
-/*  
- *  File:   classes/form-fields.php
+/*
+ *  File:   classes/Form/Field/Field.php
  *
  *  note:  register_setting calls need to be updated to WP4.7
  */
 
-abstract class Form_Field {
+abstract class TCC_Form_Field_Field {
 
-  protected $callback = 'input';    # function to display field
-  protected $click;                 # onchange attribute
-  protected $css      = '';         # field css
-  protected $echo     = true;       # echo html
-  protected $id;                    # field id
-  protected $label;                 # label css
-  protected $name;                  # field name
-  protected $placeholder;           # placeholder text
-  protected $post_id;               # word press post id number
-  protected $sanit    = 'esc_attr'; # sanitize value before display
-  protected $text     = '';         # label text
-  protected $type     = 'text';     # type of field
-  protected $value;                 # field value
+#	protected $click;                   # onchange attribute
+#	protected $echo      = true;        # echo html
+	protected $field_css = '';          # field css
+	protected $field_default;           # default value
+	protected $field_id;                # field id
+	protected $field_name;              # field name
+	protected $field_type = 'text';     # type of field
+	protected $field_value;             # field value
+	protected $label_css; = '';         # label css
+	protected $label_text = '';         # label text
+	protected $placeholder;             # placeholder text
+#	protected $post_id;                 # word press post id number
+	protected $sanitize   = 'esc_attr'; # default sanitize method
 
-  public function __construct($args) {
-    foreach($args as $key=>$value) {
-      $this->$key = $value;
-    }
-    if ((empty($this->placeholder)) && (!empty($this->text))) {
-      $this->placeholder = $this->text; }
-  }
+	use TCC_Trait_ParseArgs;
 
-  public function input($label=true) {
-    $html = '';
-    if ($label && $this->text) { $html.= $this->label(); }
-    $html.= "<input";
-    $html.= (empty($this->id)) ? " id='{$this->name}'" : " id='{$this->id}'";
-    $html.= " type='{$this->type}'";
-    $html.= " class='{$this->css}'";
-    $html.= " name='{$this->name}'";
-    $html.= " value='{$this->value}'";
-    $html.= " placeholder='{$this->placeholder}'";
-    $html.= " />";
-    echo $html;
-  }
+	public function __construct( $args ) {
+		$this->parse_args( $args );
+		if ( ( empty( $this->placeholder ) ) && ( ! empty( $this->label_text ) ) ) {
+			$this->placeholder = $this->text;
+		}
+		if ( empty( $this->field_id ) ) {
+			$this->field_id = $this->field_name;
+		}
+	}
 
-  protected function label() {
-    $html = "<label";
-    $html.= ($this->label) ? " class='{$this->label}'" : "";
-    $html.= " for='".((empty($this->id)) ? $this->name : $this->id);
-    $html.= "'>{$this->text}</label>";
-    return $html;
-  }
+	public function input( $label = true ) {
+		$attrs = array(
+			'id'          => ( empty( $this->field_id ) ) ? $this->field_name : $this->field_id,
+			'type'        => $this->field_type,
+			'class'       => $this->field_css,
+			'name'        => $this->field_name,
+			'value'       => $this->field_value,
+			'placeholder' => $this->placeholder,
+		);
+		if ($label && $this->label_text) {
+			$this->label();
+		} ?>
+		<input <?php apply_attrs( $attrs ); ?> /><?php
+	}
+
+	protected function label() {
+		$attrs = array(
+			'class' => $this->label_css,
+			'for'   => ( ( empty( $this->field_id)) ? $this->name : $this->id);
+		); ?>
+		<label <?php apply_attrs( $attrs ); ?>>
+			<?php e_esc_html( $this->text ); ?>
+		</label><?php
+	}
+
+
+}	#	end of TCC_Form_Field_Field class
+
+class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
+
+	protected $action   = 'admin_init';  #  when to register variable
+	protected $callback = 'input';       #  display method
+	protected $default  = '';
+	protected $group;
+
+	public function __construct( $args ) {
+		parent::__construct( $args );
+		$sanitize = $this->sanitize;
+		if ( empty( $this->field_value ) ) {
+			$possible = get_option( $this->field_name )
+			if ( $possible ) {
+				$this->field_value = $sanitize( $possible );
+			}
+		}
+		if ( empty( $this->field_value) && ! empty( $this->field_default ) ) {
+			$this->field_value = $sanitize( $this->field_default );
+		}
+		add_action( $this->action, array( &$this, 'register_field' ), 9 );
+	}
+
+	public function register_field() {
+		if ( ! empty( $this->group ) ) {
+			register_setting( $this->group, $this->name, $this->sanitize );
+			$callback = ( is_array( $this->callback ) ) ? $this->callback : array( &$this, $this->callback );
+			add_settings_field( $this->name, $this->label(), $callback, $this->group );
+		}
+	}
+
+	public function input( $label = false ) {
+		parent::input( $label );
+	}
+
 
 }
 
-class Admin_Field extends Form_Field {
-
-  protected $default = '';
-  protected $group;
-
-  public function __construct($args) {
-    parent::__construct($args);
-    $sanit = $this->sanit;
-    $this->value = $sanit(get_option($this->name));
-    if (empty($value)) $value = $sanit($this->default);
-    add_filter('admin_init',array(&$this,'register_field'),9);
-  }
-
-  public function register_field() {
-    if (!empty($this->group)) {
-      register_setting($this->group,$this->name,$this->sanit);
-      $callback = (is_array($this->callback)) ? $this->callback : array(&$this,$this->callback);
-      add_settings_field($this->name, $this->label(), $callback, $this->group);
-    }
-  }
-
-  public function input($label=false) {
-    parent::input($label);
-  }
-
-}
-
-class Meta_Field extends Form_Field {
+class TCC_Form_Field_Meta extends TCC_Form_Field_Field {
 
   public function __construct($args) {
     parent::__construct($args);
     $this->value = get_post_meta($this->post_id,$this->name,true);
   }
 
+
 }
 
-class Theme_Field extends Form_Field {
+class TCC_Form_Field_Theme extends TCC_Form_Field_Field {
+
 
 }
