@@ -196,7 +196,7 @@ if (!function_exists('get_valid_gravatar')) {
   }
 }
 
-if (!function_exists('in_action')) {
+if ( ! function_exists( 'in_action' ) ) {
 	function in_action() {
 		$trace = debug_backTrace();
 		$type  = '';
@@ -210,9 +210,9 @@ if (!function_exists('in_action')) {
 }
 
 #	http://stackoverflow.com/questions/14348470/is-ajax-in-wordpress
-if (!function_exists('is_ajax')) {
+if ( ! function_exists( 'is_ajax' ) ) {
 	function is_ajax() {
-		return (defined('DOING_AJAX') && DOING_AJAX) ? true : false;
+		return ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ? true : false;
 	}
 }
 
@@ -431,26 +431,28 @@ if (!function_exists('tellme')) {
   }
 }
 
-if (!function_exists('who_am_i')) {
-  //  This function is for debugging purposes only
-  function who_am_i( $pos=0 ) {
-    if (WP_DEBUG) { # && is_a_debugger())  {
-      #static $flag = ''; // give capability to turn this off via a flag file
-      #if (empty($flag)) $flag = (file_exists(WP_CONTENT_DIR.'/who_am_i.flg')) ? 'yes' : 'no';
-      #if ($flag=='yes') {  #  FIXME:  make this a theme option
-      static $status;
-      if (empty($status)) { $status = tcc_settings('where'); }
-      if ($status==='on') {
-        $trace = debug_backtrace();
-        $show  = $trace[$pos]['file'];
-        if ($pos=strpos($show,'wp-content')) {
-          $show = substr($show,$pos+10);
-        }
-        $slug = get_page_slug();
-        echo "<p>$slug : $show</p>";
-      }
-    }
-  }
+if ( ! function_exists( 'who_am_i' ) ) {
+	//  This function is for debugging purposes only
+	function who_am_i( $pos=0 ) {
+		if ( WP_DEBUG ) {
+			static $status;
+			if ( empty( $status ) ) {
+				$status = tcc_settings( 'where' );
+				if ( file_exists( WP_CONTENT_DIR . '/who_am_i.flg' ) ) {
+					$status = 'on';
+				}
+			}
+			if ( $status === 'on' ) {
+				$trace = debug_backtrace();
+				$show  = $trace[ $pos ]['file'];
+				if ($pos=strpos( $show, 'wp-content' ) ) {
+					$show = substr( $show, $pos + 10 );
+				}
+				$slug = get_page_slug();
+				echo "<p>$slug : $show</p>";
+			}
+		}
+	}
 }
 
 #$perm_struct = get_option('permalink_structure');

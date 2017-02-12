@@ -130,18 +130,18 @@ if (!function_exists('single_search_result')) {
 	add_action('template_redirect','single_search_result');
 }
 
-if (!function_exists('wp_get_attachment')) {
+if ( ! function_exists( 'wp_get_attachment' ) ) {
 	#	http://stackoverflow.com/questions/25974196/how-to-get-wp-gallery-image-captions
 	function wp_get_attachment( $attachment_id ) {
 		$attachment = get_post( $attachment_id );
-		$metadata   = get_post_meta($attachment_id);
-		$img_data   = unserialize($metadata['_wp_attachment_metadata'][0]);
+		$metadata   = get_post_meta( $attachment_id );
+		$img_data   = unserialize( $metadata['_wp_attachment_metadata'][ 0 ] );
 		$data = array(
 			'alt'         => get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ),
 			'caption'     => $attachment->post_excerpt,
 			'description' => $attachment->post_content,
 			'href'        => get_permalink( $attachment->ID ),
-			'sizes'       => attachment_sizes($img_data,url_stem($attachment->guid)),
+			'sizes'       => attachment_sizes( $img_data, url_stem( $attachment->guid ) ),
 			'src'         => $attachment->guid,
 			'title'       => $attachment->post_title
 		);
@@ -149,40 +149,40 @@ if (!function_exists('wp_get_attachment')) {
 	}
 }
 
-if (!function_exists('attachment_sizes')) {
-	function attachment_sizes($data,$stem) {
+if ( ! function_exists( 'attachment_sizes' ) ) {
+	function attachment_sizes( $data, $stem ) {
 		$sizes = array();
-		foreach($data['sizes'] as $size=>$data) {
-			$sizes[$size] = $stem.$data['file'];
+		foreach( $data['sizes'] as $size => $data ) {
+			$sizes[ $size ] = $stem . $data['file'];
 		}
 		return $sizes;
 	}
 }
 
-if (!function_exists('get_the_slug')) {
+if ( ! function_exists( 'get_the_slug' ) ) {
 	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
-	function get_the_slug( $id=null ){
-		if( empty($id) ) {
+	function get_the_slug( $id = null ) {
+		if( empty( $id ) ) {
 			global $post;
 			if( empty($post) ) { return ''; } // No global $post var available.
 			$id = $post->ID;
 		}
-		$slug = basename( get_permalink($id) );
+		$slug = basename( get_permalink( $id ) );
 		return $slug;
 	}
 }
 
-if (!function_exists('the_slug')) {
+if ( ! function_exists( 'the_slug' ) ) {
 	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
-	function the_slug( $id=null ){
-		echo apply_filters( 'the_slug', get_the_slug($id) );
+	function the_slug( $id = null ) {
+		echo apply_filters( 'the_slug', get_the_slug( $id ) );
 	}
 }
 
-if (!function_exists('url_stem')) {
-	function url_stem($url) {
-		$pos  = strrpos($url,'/');
-		$stem = substr($url,0,$pos+1);
+if ( ! function_exists( 'url_stem' ) ) {
+	function url_stem( $url ) {
+		$pos  = strrpos( $url, '/' );
+		$stem = substr( $url, 0, $pos + 1 );
 		return $stem;
 	}
 }
