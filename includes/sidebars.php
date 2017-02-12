@@ -21,8 +21,8 @@ if (!function_exists('fluidity_register_sidebars')) {
     $fa_sign       = ($widget==='open')   ? "fa-minus" : "fa-plus";
     $before_title .= ($widget==='perm')   ? "" : "<i class='fa $fa_sign pull-right panel-sign'></i>";
     $before_css    = ($widget==='perm')   ? '' : "text-center scroll-this pointer";
-    $before_title .= "<h3 class='panel-title $before_css'><b>";
-    $after_title   = "</b></h3></div><div class='panel-body'>";
+    $before_title .= "<h4 class='panel-title $before_css'><b>";
+    $after_title   = "</b></h4></div><div class='panel-body'>";
     $after_widget  = "</div></div>";
     #$before_widget = apply_filters('tcc_before_widget',$before_widget);
     #$before_title  = apply_filters('tcc_before_title', $before_title);
