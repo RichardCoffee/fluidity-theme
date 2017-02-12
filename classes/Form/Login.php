@@ -171,7 +171,7 @@ class TCC_Form_Login {
 				$tooltip = __( 'You can request a new password via this link.', 'tcc-fluid' ); ?>
 				<a class="lost-password pull-right" href="<?php echo esc_url( $lost_url ); ?>" title="<?php echo esc_attr( $tooltip ); ?>" rel="nofollow">
 					<small>
-						<?php echo esc_html( $label_lost ); ?>
+						<?php echo esc_html( $label_lostpw ); ?>
 					</small>
 				</a>
 			<?php } ?>
