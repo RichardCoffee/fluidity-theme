@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Widget_Logo extends TCC_Widget_Basic {
+class TCC_Widget_Logo extends TCC_Widget_Widget {
 
   function __construct() {
     $this->title = esc_html__('Logo','tcc-fluid');

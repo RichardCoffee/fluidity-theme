@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Widget_Address extends TCC_Widget_Basic {
+class TCC_Widget_Address extends TCC_Widget_Widget {
 
 	private $address;
 

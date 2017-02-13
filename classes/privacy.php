@@ -65,67 +65,21 @@ $this->user_count_done = true; // debugging
 		if ( stripos( $url, '://api.wordpress.org/' ) !== false ) {
 			return $args;
 		}
+log_entry($url,$args);
+return $args;
 
-log_entry($url,$args);
+#		$args = $this->strip_site_url( $args );
+		$temp = $this->strip_site_url( $args );
+log_entry($url,$args,$temp);
 return $args;
-#	These lines are commented out because I consider including the url in user-agent as a matter of courtesy.
-#		Besides, what is the point in not giving them your website url?  Don't you want more people to see it?
-#		Privacy does not mean you can't say hi to your neighbors.  I really think this whole header section is a moot point.
-#		Also, what if devs at wordpress.org cause the version check/update to fail because of no url?
-		#	strip site URL from headers & user-agent
-/*		if ( $this->options['blog'] === 'no' ) {
-			if ( isset( $args['headers']['wp_blog'] ) ) {
-				$args['headers']['wp_blog'] = network_site_url(); }
-			if ( isset( $args['headers']['user-agent'] ) ) {
-				$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
-			if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this here?
-				$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] ); }
-		} //*/
-log_entry($url,$args);
-return $args;
-/*		if ( ( $this->options['install'] === 'no' ) || ( $this->options['blogs'] === 'no' ) ) {
-			if ( isset( $args['headers']['wp_install'] ) ) {
-				$args['headers']['wp_install'] = network_site_url(); // whoa, what? isn't this the same thing?
-			}
-		} //*/
-		#	Why remove this?
-/*		if ( isset( $args['headers']['Referer'] ) ) {
-			unset( $args['headers']['Referer'] ); } //*/
-log_entry($url,$args);
-return $args;
-/*		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
-			$plugin_filter = $this->options['plugin_list'];
-			$plugins = json_decode( $args['body']['plugins'] );
-log_entry($plugins);
-return $args;
-			foreach ( $plugin_filter as $plugin => $status ) {
-				if ( $status === 'no' ) {
-					if ( isset( $plugins->plugins->$plugin ) ) {
-						unset( $plugins->plugins->$plugin );
-					if ( isset( $plugins->active->$plugin ) ) {
-						unset( $plugins->active->$plugin );
-				}
-			}
-			$args['body']['plugins'] = json_encode( $plugins );
-		} //*/
-log_entry($url,$args);
-return $args;
-		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
-			$theme_filter = $this->options['theme_list'];
-			$themes = json_decode( $args['body']['themes'] );
-			foreach ( $theme_filter as $theme => $status ) {
-				if ( $status === 'no' ) {
-					if ( isset( $themes->plugins->$theme ) ) {
-						unset( $themes->plugins->$theme );
-					}
-					if ( isset( $themes->active->$theme ) ) {
-						unset( $themes->active->$theme );
-					}
-				}
-			}
-			$args['body']['themes'] = json_encode( $themes );
-		} //*/
-log_entry($args,$themes);
+
+#| |  $args = $this->filter_plugins( $url, $args );
+		$temp = $this->filter_plugins( $url, $args );
+log_entry($url,$args,$temp);
+
+#		$args = $this->filter_themes( $url, $args );
+		$temp = $this->filter_themes( $url, $args );
+log_entry($url,$args,$temp);
 		return $args;
 	}
 
@@ -145,34 +99,29 @@ log_entry($args,$themes);
 			return $preempt;
 		}
 
-		#	Remove/Change url args
-		#$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
-		$url_array = parse_url($url);
-		$arg_array = wp_parse_args( $url_array['query'] );
-log_entry($url,$url_array,$arg_array,$args);
+		$temp = $this->strip_site_url( $args );
+log_entry($url,$temp,$args);
 return $preempt;
-		if ( isset( $arg_array['blogs'] ) ) {
-			$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
-			$url   = add_query_arg( 'blogs', $blogs, $url );
-		}
-log_entry($url,$url_array,$arg_array,$args);
+
+#		$args = $this->filter_plugins( $url, $args );
+		$temp = $this->filter_plugins( $url, $args );
+log_entry($url,$temp,$args);
 return $preempt;
-		if ( isset( $arg_array['users'] ) ) {
-			$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
-			$url   = add_query_arg( 'users', $users, $url );
-		}
-log_entry($url,$url_array,$arg_array,$args);
+
+#		$args = $this->filter_themes( $url, $args );
+		$temp = $this->filter_themes( $url, $args );
+log_entry($url,$temp,$args);
 return $preempt;
-		if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
-			$arg_array['multisite_enabled'] = 0;
-			$url = add_query_arg( 'multisite_enabled', '0', $url );
-		}
-log_entry($url,$url_array,$arg_array,$args);
+
+		$temp = $this->filter_url( $url );
+log_entry($url,$temp,$args);
 return $preempt;
+
 		#	make request
 		$args['_privacy_filter'] = true;
 log_entry($url,$args);
 return $preempt;
+
 		$result = wp_remote_request( $url, $args );
 log_entry($result);
 		return $result;
@@ -185,6 +134,137 @@ log_entry($result);
 		}
 		$this->options = $options;
 	}
+
+/**
+ *  @brief  Strip site URL from headers & user-agent.
+ *
+ *		I consider including the url in user-agent as a matter of courtesy.  Besides,
+ *		what is the point in not giving them your website url?  Don't you want more
+ *		people to see it?  Privacy does not mean you can't say hi to your neighbors.
+ *		I really think this whole header section is a moot point.  Also, what if
+ *		devs at wordpress.org cause the version check/update to fail because of no url?
+ */
+	protected function strip_site_url( $args ) {
+		if ( ! empty( $args['header'] ) ) {
+			if ( $this->options['blog'] === 'no' ) {
+				if ( isset( $args['headers']['wp_blog'] ) ) {
+					if ( $this->options['install'] === 'no' ) {
+						unset( $args['headers']['wp_blog'] );
+					} else {
+						$args['headers']['wp_blog'] = network_site_url();
+					}
+				}
+				if ( isset( $args['headers']['user-agent'] ) ) {
+					$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+				}
+				if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this here?
+					$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+					log_entry( 'header:User-Agent has been seen.' );
+				}
+			}
+			if ( ( $this->options['install'] === 'no' ) || ( $this->options['blogs'] === 'no' ) ) {
+				if ( isset( $args['headers']['wp_install'] ) ) {
+					unset( $args['headers']['wp_install'] );
+#					$args['headers']['wp_install'] = network_site_url();
+				}
+			}
+			#	Why remove this? I have not seen it...
+			if ( isset( $args['headers']['Referer'] ) ) {
+				unset( $args['headers']['Referer'] );
+				log_entry( 'headers:Referer has been deleted.' );
+			}
+		}
+		return $args;
+	}
+
+	protected function filter_plugins( $url, $args ) {
+		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
+			if ( ! empty( $args['body']['plugins'] ) ) {
+				if ( $this->option['plugins'] === 'none' ) {
+					$args['body']['plugins'] = json_encode( array() );
+				} else if ( $this->options['plugins'] === 'filter' ) {
+					$plugin_filter = $this->options['plugin_list'];
+					$plugins = json_decode( $args['body']['plugins'] );
+log_entry($plugin_filter,$plugins);
+return $args;
+					foreach ( $plugin_filter as $plugin => $status ) {
+						if ( $status === 'no' ) {
+							if ( isset( $plugins->plugins->$plugin ) ) {
+								unset( $plugins->plugins->$plugin );
+							}
+							if ( isset( $plugins->active->$plugin ) ) {
+								unset( $plugins->active->$plugin );
+							}
+						}
+					}
+					$args['body']['plugins'] = json_encode( $plugins );
+				}
+			}
+		}
+		return $args;
+	}
+
+	protected function filter_themes( $url, $args ) {
+		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
+			if ( ! empty( $args['body']['themes'] ) ) {
+
+				if ( $this->option['themes'] === 'none' ) {
+					$args['body']['themes'] = json_encode( array() );
+
+				} else if ( $this->options['themes'] === 'filter' ) {
+					$theme_filter = $this->options['theme_list'];
+					$themes = json_decode( $args['body']['themes'] );
+					foreach ( $theme_filter as $theme => $status ) {
+						if ( $status === 'no' ) {
+							if ( isset( $themes->plugins->$theme ) ) {
+								unset( $themes->plugins->$theme );
+							}
+							if ( isset( $themes->active->$theme ) ) {
+								unset( $themes->active->$theme );
+							}
+						}
+					}
+					$args['body']['themes'] = json_encode( $themes );
+				}
+			}
+		}
+		return $args;
+	}
+
+	protected function filter_url( $url ) {
+$orig = $url;
+		#$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
+		$url_array = parse_url( $url );
+		$arg_array = ( isset( $url_array['query'] ) ) ? wp_parse_args( $url_array['query'] ) : array();
+log_entry($url,$url_array,$arg_array);
+return $orig;
+
+		if ( isset( $arg_array['blogs'] ) ) {
+			$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
+			$url   = add_query_arg( 'blogs', $blogs, $url );
+		}
+log_entry($url,$url_array,$arg_array);
+return $orig;
+
+		if ( isset( $arg_array['users'] ) ) {
+			$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
+			$url   = add_query_arg( 'users', $users, $url );
+		}
+log_entry($url,$url_array,$arg_array);
+return $orig;
+
+		if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
+			$arg_array['multisite_enabled'] = 0;
+			$url = add_query_arg( 'multisite_enabled', '0', $url );
+		}
+log_entry($url,$url_array,$arg_array);
+return $orig;
+
+		return $url;
+	}
+
+
+
 
 
 } # end of class Privacy_My_Way
