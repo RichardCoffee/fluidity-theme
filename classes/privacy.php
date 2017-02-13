@@ -20,11 +20,20 @@ class Privacy_My_Way {
 
 	protected function __construct() {
 		$this->get_options();
-		#	I don't think these first two filters work as is - the callbacks are never being called - testing continues
+		#	I don't think these first two filters work as is - the filter functions are never being called - testing continues
 		add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
 		add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
-		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),            9999, 2 );
+		#	This filter only rarely gets called on my test sites.
+		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
 		add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
+	}
+
+	protected function get_options() {
+		$options = get_option( 'tcc_options_privacy' );
+		if ( ! $options ) {
+			// TODO
+		}
+		$this->options = $options;
 	}
 
 	public function pre_site_option_blog_count( $count, $option, $network_id ) {
@@ -45,7 +54,7 @@ log_entry($count,$option,$network_id,$privacy);
 					$count = false;
 				case 'some':
 					$users = get_user_count();
-					$count = intval( ( $user / rand(1, 10) ), 10 );
+					$count = max( 1, intval( ( $user / rand(1, 10) ), 10 ) );
 				case 'one':
 					$count = 1;
 				case 'many':
@@ -127,32 +136,26 @@ log_entry($result);
 		return $result;
 	}
 
-	private function get_options() {
-		$options = get_option( 'tcc_options_privacy' );
-		if ( ! $options ) {
-			// TODO
-		}
-		$this->options = $options;
-	}
-
 /**
  *  @brief  Strip site URL from headers & user-agent.
  *
- *		I consider including the url in user-agent as a matter of courtesy.  Besides,
- *		what is the point in not giving them your website url?  Don't you want more
- *		people to see it?  Privacy does not mean you can't say hi to your neighbors.
- *		I really think this whole header section is a moot point.  Also, what if
- *		devs at wordpress.org cause the version check/update to fail because of no url?
+ *		I would consider including the url in user-agent as a matter of courtesy.
+ *		Besides, what is the point in not giving them your website url?  Don't
+ *		you want more people to see it?  Privacy does not mean you shouldn't say
+ *		hi to your neighbors. I really think this whole header section is a moot
+ *		point.  Also, what if the devs at wordpress.org have decided to cause the
+ *		version check/update to fail because of no url?
+ *
  */
 	protected function strip_site_url( $args ) {
 		if ( ! empty( $args['header'] ) ) {
 			if ( $this->options['blog'] === 'no' ) {
 				if ( isset( $args['headers']['wp_blog'] ) ) {
-					if ( $this->options['install'] === 'no' ) {
+#					if ( $this->options['install'] === 'no' ) {
 						unset( $args['headers']['wp_blog'] );
-					} else {
-						$args['headers']['wp_blog'] = network_site_url();
-					}
+#					} else {
+#						$args['headers']['wp_blog'] = network_site_url();
+#					}
 				}
 				if ( isset( $args['headers']['user-agent'] ) ) {
 					$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
@@ -214,6 +217,8 @@ return $args;
 				} else if ( $this->options['themes'] === 'filter' ) {
 					$theme_filter = $this->options['theme_list'];
 					$themes = json_decode( $args['body']['themes'] );
+log_entry($theme_filter,$themes);
+return $args;
 					foreach ( $theme_filter as $theme => $status ) {
 						if ( $status === 'no' ) {
 							if ( isset( $themes->plugins->$theme ) ) {
