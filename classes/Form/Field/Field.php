@@ -22,7 +22,7 @@ abstract class TCC_Form_Field_Field {
 #	protected $post_id;                 # word press post id number
 	protected $sanitize   = 'esc_attr'; # default sanitize method
 
-	use TCC_Trait_ParseArgs;
+#	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
 		$this->parse_args( $args );

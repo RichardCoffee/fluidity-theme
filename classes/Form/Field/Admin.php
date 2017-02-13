@@ -30,9 +30,9 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 
 	public function register_field() {
 		if ( ! empty( $this->group ) ) {
-			register_setting( $this->group, $this->name, $this->sanitize );
+			register_setting( $this->group, $this->field_name, $this->sanitize );
 			$callback = ( is_array( $this->callback ) ) ? $this->callback : array( &$this, $this->callback );
-			add_settings_field( $this->name, $this->label(), $callback, $this->group );
+			add_settings_field( $this->field_name, $this->label(), $callback, $this->group );
 		}
 	}
 
