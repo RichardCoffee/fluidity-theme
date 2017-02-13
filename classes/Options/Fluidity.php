@@ -222,6 +222,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 			'field_name'    => 'currency_symbol',
 			'group'         => 'general',
 			'label_text'    => esc_html__( 'Currency Symbol', 'tcc-fluid' ),
+			'sanitize'      => 'sanitize_text_field',
 		);
 		new TCC_Form_Field_Admin( $args );
 	}
