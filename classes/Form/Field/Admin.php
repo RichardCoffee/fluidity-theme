@@ -40,6 +40,7 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 	}
 
 	public function input( $label = false ) {
+log_entry('dump');
 		parent::input( $label );
 	}
 
