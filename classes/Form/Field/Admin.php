@@ -9,7 +9,7 @@
 class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 
 	protected $action   = 'admin_init';  #  when to register variable
-	protected $callback = array( $this, 'input' );       #  display method
+	protected $callback = null;          #  display method
 	protected $default  = '';
 	protected $group;
 
@@ -24,6 +24,9 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 		}
 		if ( empty( $this->field_value) && ! empty( $this->field_default ) ) {
 			$this->field_value = $sanitize( $this->field_default );
+		}
+		if ( empty( $this->callback ) ) {
+			$this->callback = array( $this, 'input' );
 		}
 		add_action( $this->action, array( &$this, 'register_field' ), 9 );
 	}
