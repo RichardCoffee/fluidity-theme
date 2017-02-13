@@ -28,7 +28,7 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 		if ( empty( $this->callback ) ) {
 			$this->callback = array( $this, 'input' );
 		}
-		add_action( $this->action, array( &$this, 'register_field' ), 9 );
+		add_action( $this->action, array( $this, 'register_field' ), 9 );
 	}
 
 	public function register_field() {

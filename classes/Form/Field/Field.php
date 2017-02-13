@@ -50,6 +50,7 @@ abstract class TCC_Form_Field_Field {
 	}
 
 	protected function label() {
+log_entry('dump');
 		$attrs = array(
 			'class' => $this->label_css,
 			'for'   => $this->field_id,
