@@ -31,7 +31,7 @@ if (!function_exists('tcc_bootstrap_css')) {
 
 if ( ! function_exists( 'apply_attrs' ) ) {
 	function apply_attrs( $args, $echo = true ) {
-		$attrs = '';
+		$attrs = ' ';
 		foreach( $args as $attr => $value ) {
 			if ( empty( $value ) ) { continue; }
 			$attrs .= $attr . '="'. esc_attr( $value ) . '" ';

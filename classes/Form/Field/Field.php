@@ -14,7 +14,7 @@ abstract class TCC_Form_Field_Field {
 	protected $field_default;           # default value
 	protected $field_id;                # field id
 	protected $field_name;              # field name
-	protected $field_type = 'text';     # type of field
+	protected $field_type = 'string';   # type of field
 	protected $field_value;             # field value
 	protected $label_css  = '';         # label css
 	protected $label_text = '';         # label text
@@ -54,10 +54,11 @@ log_entry('dump');
 		$attrs = array(
 			'class' => $this->label_css,
 			'for'   => $this->field_id,
-		); ?>
-		<label <?php apply_attrs( $attrs ); ?>>
-			<?php e_esc_html( $this->label_text ); ?>
-		</label><?php
+		);
+		$label  = '<label ' . apply_attrs( $attrs, false ) . '>';
+		$label .= esc_html( $this->label_text );
+		$label .= '</label>';
+		return $label;
 	}
 
 
