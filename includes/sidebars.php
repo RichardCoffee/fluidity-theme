@@ -31,7 +31,7 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 		$sidebars   = array();
 		#	Standard Page
 		$sidebars['standard'] = array(
-			'name'=> esc_html__('Standard Page Sidebar','tcc-fluid'),
+			'name'          => esc_html__('Standard Page w/Panels','tcc-fluid'),
 			'id'            => 'standard',
 			'before_widget' => $before_widget,
 			'before_title'  => $before_title,
@@ -39,16 +39,25 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 			'after_widget'  => $after_widget);
 		#	Home Page
 		$sidebars['home'] = array(
-			'name'    => esc_html__('Home Page Sidebar','tcc-fluid'),
+			'name'          => esc_html__('Home Page w/Panels','tcc-fluid'),
 			'id'            => 'home',
 			'before_widget' => $before_widget,
 			'before_title'  => $before_title,
 			'after_title'   => $after_title,
 			'after_widget'  => $after_widget,
 		);
+		$f2_before = "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='panel panel-fluidity'><div class='panel-body back-fluidity'>";
+		$sidebars['two'] = array(
+			'name'          => esc_html__('Horizontal Panels (2 col)','tcc-fluid'),
+			'id'            => 'footer2',
+			'before_widget' => $f2_before,
+			'before_title'  => '',
+			'after_title'   => '',
+			'after_widget'  => '</div></div></div>',
+		);
 		#	Header sidebar
 		$sidebars['three'] = array(
-			'name'   => esc_html__('Horizontal Sidebar (3 col)','tcc-fluid'),
+			'name'          => esc_html__('Horizontal Panels (3 col)','tcc-fluid'),
 			'id'            => 'three_column',
 			'before_widget' => "<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>$before_widget",
 			'before_title'  => $before_title,
@@ -57,30 +66,12 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 		); //*/
 		#	Footer sidebar
 		$sidebars['four'] = array(
-			'name'    => esc_html__('Footer Widget Area (4 col)','tcc-fluid'),
+			'name'          => esc_html__('Horizontal Panels (4 col)','tcc-fluid'),
 			'id'            => 'footer4',
-			'before_widget' => "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'><div class='panel panel-fluidity'><div class='panel-body'>",
-			'before_title'  => '',
-			'after_title'   => '',
-			'after_widget'  => '</div></div></div>',
-		);
-		$sidebars['col4panel'] = array(
-			'name'   => esc_html__('Horizontal Sidebar (3 col)','tcc-fluid'),
-			'id'            => 'col4panel',
 			'before_widget' => "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>$before_widget",
 			'before_title'  => $before_title,
 			'after_title'   => $after_title,
-			'after_widget'  => "$after_widget</div>"
-		); //*/
-		#	Footer sidebar
-		$f2_before = "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='panel panel-fluidity'><div class='panel-body back-fluidity'>";
-		$sidebars['two'] = array(
-			'name'     => esc_html__('Front page Footer (2 col)','tcc-fluid'),
-			'id'            => 'footer2',
-			'before_widget' => $f2_before,
-			'before_title'  => '',
-			'after_title'   => '',
-			'after_widget'  => '</div></div></div>',
+			'after_widget'  => "$after_widget</div>",
 		);
 		#	apply filters
 		$sidebars = apply_filters('tcc_register_sidebars',$sidebars);

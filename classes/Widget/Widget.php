@@ -21,9 +21,11 @@ class TCC_Widget_Widget extends WP_Widget {
 	}
 
 	protected function tcc_widget_title($args) {
-			echo $args['before_title'].$title.$args['after_title'];
 		if (strpos($args['after_title'],'panel-body')) {  #  FIXME
-			echo '<div>'; }
+			echo '<div>';
+		} else {
+			echo $args['before_title'] . $title . $args['after_title'];
+		}
 	}
 
 	public function form($instance) {
