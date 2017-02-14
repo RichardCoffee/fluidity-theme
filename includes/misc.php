@@ -190,16 +190,16 @@ if ( ! function_exists( 'url_stem' ) ) {
 if (!function_exists('tcc_holiday_greeting')) {
 	function tcc_holiday_greeting() {
 		#	http://stackoverflow.com/questions/14907561/how-to-get-date-for-holidays-using-php
-		$curYir = date('Y');
-		$MLK  = date('m-d', strtotime("january $curYir third monday")); //marthin luthor king day
-		$PD   = date('m-d', strtotime("february $curYir third monday")); //presidents day
-		$Est  = date('m-d', easter_date($curYir)); // easter
-		$MD   = date('m-d', strtotime("may $curYir last monday")); // memorial day
-		$LD   = date('m-d', strtotime("september $curYir first monday"));  //labor day
-		$CD   = date('m-d', strtotime("october $curYir second monday")); //columbus day
-		$TH   = date('m-d', strtotime("november $curYir last thursday")); // thanksgiving
-		$date = date('m-d');
-		switch($date) {
+		$year = date('Y');
+		$MLK  = date( 'm-d', strtotime( "january $year third monday" ) ); //marthin luthor king day
+		$PD   = date( 'm-d', strtotime( "february $year third monday" ) ); //presidents day
+		$Est  = date( 'm-d', easter_date( $year ) ); // easter
+		$MD   = date( 'm-d', strtotime( "may $year last monday" ) ); // memorial day
+		$LD   = date( 'm-d', strtotime( "september $year first monday" ) );  //labor day
+		$CD   = date( 'm-d', strtotime( "october $year second monday" ) ); //columbus day
+		$TG   = date( 'm-d', strtotime( "november $year last thursday" ) ); // thanksgiving
+		$date = date( 'm-d' );
+		switch( $date ) {
 			case '01-01':
 				$message = __( 'Happy New Year', 'tcc-fluid' );
 				break;
@@ -227,17 +227,17 @@ if (!function_exists('tcc_holiday_greeting')) {
 			case $CD:
 				$message = __( 'Columbus Day', 'tcc-fluid' );
 				break;
-			case $TH:
+			case $TG:
 				$message = __( 'Happy Thanksgiving', 'tcc-fluid' );
 				break;
 			case '11-11':
 				$message = __( "Veteran's Day", 'tcc-fluid' );
 				break;
-			case '25-12':
+			case '12-25':
 				$message = __( 'Merry Christmas', 'tcc-fluid' );
 				break;
 			default:
-				$message = __( 'Welcome', 'tcc-fluid' );
+				$message = ( get_current_user_id() === 1 ) ? __( 'Your Royal Highness', 'tcc-fluid' ) : __( 'Welcome', 'tcc-fluid' );
 		}
 		return $message;
 	}

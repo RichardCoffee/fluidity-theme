@@ -588,13 +588,13 @@ log_entry($controls);
 				$check  = ( isset( $value[ $key ] ) ) ? $value[ $key ] : $preset; ?>
 				<div class="radio-multiple-list-item">
 					<label>
-						<input type="radio" value="yes" class="radio-multiple-list radio-multiple-list-radio radio-multiple-list-yes"
+						<input type="radio" value="yes" class="radio-multiple-list radio-multiple-list-yes"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       <?php checked( $check, 'yes' ); ?> />
-						<input type="radio" value="no" class="radio-multiple-list radio-multiple-list-radio radio-multiple-list-no"
+						<input type="radio" value="no" class="radio-multiple-list radio-multiple-list-no"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       <?php checked( $check, 'no' ); ?> />
-						<span class="radio-multiple-list radio-multiple-list-text">
+						<span class="radio-multiple-list-text">
 							<?php echo $text; ?>
 						</span>
 					</label>

@@ -165,7 +165,6 @@ if (!function_exists('tcc_admin_howdy')) {
 			$current = wp_get_current_user();
 			$profile = get_edit_profile_url( $user_id );
 			$avatar  = get_avatar( $user_id, 28 );
-			#$text    = ($user_id===1) ? __('Your Royal Highness','tcc-fluid') : tcc_holiday_greeting();
 			$text    = tcc_holiday_greeting();
 			$howdy   = sprintf( _x('%1$s, %2$s','text greeting, user name','tcc-fluid'), $text, $current->display_name );
 			$class   = (empty($avatar)) ? '' : 'with-avatar';
