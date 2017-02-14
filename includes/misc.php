@@ -198,7 +198,7 @@ if (!function_exists('tcc_holiday_greeting')) {
 		$LD   = date('m-d', strtotime("september $curYir first monday"));  //labor day
 		$CD   = date('m-d', strtotime("october $curYir second monday")); //columbus day
 		$TH   = date('m-d', strtotime("november $curYir last thursday")); // thanksgiving
-		$date = date('d-m');
+		$date = date('m-d');
 log_entry("date:  $date");
 		switch($date) {
 			case '01-01':
