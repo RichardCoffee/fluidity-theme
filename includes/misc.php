@@ -199,6 +199,7 @@ if (!function_exists('tcc_holiday_greeting')) {
 		$CD   = date('m-d', strtotime("october $curYir second monday")); //columbus day
 		$TH   = date('m-d', strtotime("november $curYir last thursday")); // thanksgiving
 		$date = date('d-m');
+log_entry("date:  $date");
 		switch($date) {
 			case '01-01':
 				$message = __( 'Happy New Year', 'tcc-fluid' );
