@@ -61,8 +61,10 @@ if (!function_exists('tcc_enqueue')) {
     if (tcc_option('active','social')==='yes') {
 		 wp_enqueue_style('fa-social'); }
     wp_enqueue_style('bootstrap.css');
-    wp_enqueue_style('fluidity');
-    wp_enqueue_style('fluid-color');
+#    wp_enqueue_style('fluidity');
+#    wp_enqueue_style('fluid-color');
+
+    do_action( 'tcc_during_enqueue' );
 
     #  Javascript
     if ( tcc_layout('menu') !== 'bootstrap' ) {
