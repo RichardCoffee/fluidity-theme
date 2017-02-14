@@ -60,7 +60,7 @@ if (!function_exists('tcc_enqueue')) {
     wp_enqueue_style('tcc-fawe');	#  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
     if (tcc_option('active','social')==='yes') {
 		 wp_enqueue_style('fa-social'); }
-    wp_enqueue_style('bootstrap.css');
+#    wp_enqueue_style('bootstrap.css');
 #    wp_enqueue_style('fluidity');
 #    wp_enqueue_style('fluid-color');
 
