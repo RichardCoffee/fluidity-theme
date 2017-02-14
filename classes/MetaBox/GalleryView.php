@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 
-class TCC_Metabox_GalleryView extends TCC_Metabox_Gallery {
+class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
 
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );

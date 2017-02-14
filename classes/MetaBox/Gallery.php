@@ -6,7 +6,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-class TCC_Metabox_Gallery {
+class TCC_MetaBox_Gallery {
 
 	protected $add_meta =  null;
 	protected $button   = 'Assign/Upload Image';
@@ -27,17 +27,16 @@ class TCC_Metabox_Gallery {
 	protected $title    = 'Image Gallery';
 	protected $type     = 'post';
 
-#	use TCC_Trait_Magic;
+	use TCC_Trait_Magic;
+	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args = array() ) {
-		$this->button   = esc_html__('Assign/Upload Gallery Image','tcc-fluid');
-		$this->confirm  = esc_html__('Remove this image?','tcc-fluid');
-		$this->m_button = esc_html__('Assign Image','tcc-fluid');
-		$this->m_title  = esc_html__('Assign/Upload Gallery Image','tcc-fluid');
-		$this->title    = esc_html__('Image Gallery','tcc-fluid');
-		foreach( $args as $prop => $value ) {
-			$this->{$prop} = $value;
-		}
+		$this->button   = esc_html__( 'Assign/Upload Gallery Image', 'tcc-fluid' );
+		$this->confirm  = esc_html__( 'Remove this image?', 'tcc-fluid' );
+		$this->m_button = esc_html__( 'Assign Image', 'tcc-fluid' );
+		$this->m_title  = esc_html__( 'Assign/Upload Gallery Image', 'tcc-fluid' );
+		$this->title    = esc_html__( 'Image Gallery', 'tcc-fluid' );
+		$this->parse_args_all( $args );
 		$this->add_meta = ( $this->add_meta ) ? $this->add_meta : "add_meta_boxes_{$this->type}";
 		$this->div_id   = "{$this->type}-gallery";
 		$this->nonce    = "{$this->type}_gallery_nonce";
@@ -47,7 +46,7 @@ class TCC_Metabox_Gallery {
 	}
 
 	public function add_meta_boxes() {
-		add_meta_box( $this->slug, $this->title, array($this,'gallery_meta_box'), $this->type, $this->context, $this->priority, $this->callback );
+		add_meta_box( $this->slug, $this->title, array( $this, 'gallery_meta_box' ), $this->type, $this->context, $this->priority, $this->callback );
 	}
 
 	public function admin_enqueue_scripts() {
@@ -70,12 +69,12 @@ class TCC_Metabox_Gallery {
 		}
 	}
 
-	public function gallery_meta_box($post) {
-		wp_nonce_field(basename(__FILE__),$this->nonce);
-		do_action('tcc_gallery_meta_box_pre'); ?>
+	public function gallery_meta_box( $post ) {
+		wp_nonce_field( basename( __FILE__ ), $this->nonce );
+		do_action( 'tcc_gallery_meta_box_pre' ); ?>
 		<div id="<?php echo $this->div_id; ?>" class="<?php echo $this->div_css; ?>"><?php
-			$images = $this->get_gallery_images($post->ID,true);
-			foreach($images as $imgID=>$src) { ?>
+			$images = $this->get_gallery_images( $post->ID, true );
+			foreach( $images as $imgID => $src ) { ?>
 				<div class="<?php echo $this->div_img; ?>">
 					<span class="<?php echo $this->icon; ?>"></span>
 					<img class="<?php echo $this->img_css; ?>" src="<?php echo $src; ?>" data-id="<?php echo $imgID ?>">
@@ -86,19 +85,25 @@ class TCC_Metabox_Gallery {
 	}
 
 	#	http://www.wpbeginner.com/wp-themes/how-to-get-all-post-attachments-in-wordpress-except-for-featured-image/
-	public function get_gallery_images($postID,$exclude=false) {
+	public function get_gallery_images( $postID, $exclude = false ) {
 		$images = array();
-		if ($postID) {
-			$data = array('post_type'      => 'attachment',
-			              'posts_per_page' => -1,
-			              'post_parent'    => $postID);
-			if ($exclude) { $data['exclude'] = get_post_thumbnail_id($postID); }
-			$attachments = get_posts($data);
-			if ($attachments) {
-				usort($attachments,function($a,$b) { return (intval($a->ID,10) - intval($b->ID,10)); });
-				foreach ($attachments as $attachment) {
-					$image_src = wp_get_attachment_image_src($attachment->ID,'full');
-					$images[$attachment->ID] = $image_src[0];
+		if ( $postID ) {
+			$data = array(
+				'post_type'      => 'attachment',
+				'posts_per_page' => -1,
+				'post_parent'    => $postID
+			);
+			if ( $exclude ) {
+				$data['exclude'] = get_post_thumbnail_id( $postID );
+			}
+			$attachments = get_posts( $data );
+			if ( $attachments ) {
+				usort( $attachments, function( $a, $b ) {
+					return ( intval( $a->ID, 10 ) - intval( $b->ID, 10 ) );
+				});
+				foreach ( $attachments as $attachment ) {
+					$image_src = wp_get_attachment_image_src( $attachment->ID, 'full' );
+					$images[ $attachment->ID ] = $image_src[0];
 				}
 			}
 		}
@@ -116,7 +121,12 @@ class TCC_Metabox_Gallery {
 		if ( ! empty( $incoming[ $this->field ] ) ) {
 			foreach( $incoming[ $this->field ] as $imageID ) {
 				$check = intval( $imageID, 10 );
-				if ( $check ) { wp_update_post( array( 'ID'=>$check, 'post_parent'=>$postID ) ); }
+				if ( $check ) {
+					wp_update_post( array(
+						'ID'          => $check,
+						'post_parent' => $postID
+					));
+				}
 			}
 		}
 		if ( ! empty( $incoming['delete_image'] ) ) {

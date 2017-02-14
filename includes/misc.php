@@ -201,40 +201,42 @@ if (!function_exists('tcc_holiday_greeting')) {
 		$date = date('d-m');
 		switch($date) {
 			case '01-01':
-				$message = __('Happy New Year','tcc-fluid');
+				$message = __( 'Happy New Year', 'tcc-fluid' );
 				break;
 			case $MLK:
-				$message = __('Martin Luthor King Day','tcc-fluid');
+				$message = __( 'Martin Luthor King Day', 'tcc-fluid' );
 				break;
+			case '02-14':
+				$message = __( "Valentine's Day", 'tcc-fluid' );
 			case $PD:
-				$message = __("Presidents' Day",'tcc-fluid');
+				$message = __( "Presidents' Day", 'tcc-fluid' );
 				break;
 			case $Est:
-				$message = __('Happy Easter','tcc-fluid'); // happy easter?  wtf?
+				$message = __( 'Happy Easter', 'tcc-fluid' ); // happy easter?  wtf?
 				break;
 			case $MD:
-				$message = __('Memorial Day','tcc-fluid');
+				$message = __( 'Memorial Day', 'tcc-fluid' );
 				break;
 			case '07-04':
-				$message = __('Fourth of July','tcc-fluid');
+				$message = __( 'Fourth of July', 'tcc-fluid' );
 				break;
 			case $LD:
-				$message = __('Labor Day','tcc-fluid');
+				$message = __( 'Labor Day', 'tcc-fluid' );
 				break;
 			case $CD:
-				$message = __('Columbus Day','tcc-fluid');
+				$message = __( 'Columbus Day', 'tcc-fluid' );
 				break;
 			case $TH:
-				$message = __('Happy Thanksgiving','tcc-fluid');
+				$message = __( 'Happy Thanksgiving', 'tcc-fluid' );
 				break;
 			case '11-11':
-				$message = __("Veteran's Day",'tcc-fluid');
+				$message = __( "Veteran's Day", 'tcc-fluid' );
 				break;
 			case '25-12':
-				$message = __('Merry Christmas','tcc-fluid');
+				$message = __( 'Merry Christmas', 'tcc-fluid' );
 				break;
 			default:
-				$message = __('Welcome','tcc-fluid');
+				$message = __( 'Welcome', 'tcc-fluid' );
 		}
 		return $message;
 	}

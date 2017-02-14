@@ -98,9 +98,11 @@ if (!function_exists('fluidity_load_sidebar')) {
   function fluidity_load_sidebar($args,$force=false) {
     if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
     $sidebars = ($force) ? (array)$args : array_merge((array)$args,array('standard','home'));
+    $sidebars = apply_filters( 'fluidity_load_sidebar', $sidebars );
+    $sidebars = apply_filters( 'fluidity_load_sidebar_' . get_page_slug(), $sidebars );
     $status   = tcc_settings( 'where' );
     foreach($sidebars as $sidebar) {
-      if (is_active_sidebar($sidebar)) {
+      if ( is_active_sidebar( $sidebar ) ) {
         if ($dyn=dynamic_sidebar($sidebar)) {
           if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
           return true;

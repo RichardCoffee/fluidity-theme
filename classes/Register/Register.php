@@ -2,7 +2,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-class TCC_Register_Plugin {
+class TCC_Register_Register {
 
 	private static $dep_func  = 'log_entry';  // FIXME:  not a good value to check for theme dependency on.
 	private static $our_site  = "<a href='the-creative-collective.com' target='tcc'>%s</a>";
@@ -11,9 +11,12 @@ class TCC_Register_Plugin {
 	private static function our_email() { return ( ( mt_rand( 1, 10 ) > 5 ) ? self::$rc_email : self::$jg_email ); }
 
 	public static function activate() {
-		if ( ! current_user_can( 'activate_plugins' ) ) return false;
+		$return = false;
+		if ( current_user_can( 'activate_plugins' ) ) {
+			$return = true;
+		}
 #		self::theme_dependency();
-		return true;
+		return $return;
 	}
 
 	protected static function theme_dependency() {

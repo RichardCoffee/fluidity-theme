@@ -151,7 +151,6 @@ class TCC_Role_Agent {
   }
 
   public function save_agent_information($user_id) {
-#tcc_log_entry($_POST);
     foreach($this->fields as $field=>$title) {
 #error_log("field: $field");
       if (isset($_POST[$field])) {
