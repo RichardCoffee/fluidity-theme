@@ -157,8 +157,12 @@ log_entry($result);
 #						$args['headers']['wp_blog'] = network_site_url();
 #					}
 				}
-				if ( isset( $args['headers']['user-agent'] ) ) {
+				if ( isset( $args['user-agent'] ) ) {
 					$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+				}
+				if ( isset( $args['headers']['user-agent'] ) ) {
+					$args['headers']['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+					log_entry( 'header:user-agent has been seen.' );
 				}
 				if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this here?
 					$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
