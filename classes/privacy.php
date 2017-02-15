@@ -26,6 +26,7 @@ class Privacy_My_Way {
 		#	This filter only rarely gets called on my test sites.
 		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
 		add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
+log_entry($this);
 	}
 
 	protected function get_options() {
@@ -148,37 +149,30 @@ log_entry($result);
  *
  */
 	protected function strip_site_url( $args ) {
-		if ( ! empty( $args['header'] ) ) {
-			if ( $this->options['blog'] === 'no' ) {
-				if ( isset( $args['headers']['wp_blog'] ) ) {
-#					if ( $this->options['install'] === 'no' ) {
-						unset( $args['headers']['wp_blog'] );
-#					} else {
-#						$args['headers']['wp_blog'] = network_site_url();
-#					}
-				}
-				if ( isset( $args['user-agent'] ) ) {
-					$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-				}
-				if ( isset( $args['headers']['user-agent'] ) ) {
-					$args['headers']['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-					log_entry( 'header:user-agent has been seen.' );
-				}
-				if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this here?
-					$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-					log_entry( 'header:User-Agent has been seen.' );
-				}
+		if ( $this->options['blog'] === 'no' ) {
+			if ( isset( $args['headers']['wp_blog'] ) ) {
+				unset( $args['headers']['wp_blog'] );
 			}
-			if ( ( $this->options['install'] === 'no' ) || ( $this->options['blogs'] === 'no' ) ) {
-				if ( isset( $args['headers']['wp_install'] ) ) {
-					unset( $args['headers']['wp_install'] );
-#					$args['headers']['wp_install'] = network_site_url();
-				}
+			if ( isset( $args['user-agent'] ) ) {
+				$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+			}
+			if ( isset( $args['headers']['user-agent'] ) ) {
+				$args['headers']['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+				log_entry( 'header:user-agent has been seen.' );
+			}
+			if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this?
+				$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+				log_entry( 'header:User-Agent has been seen.' );
 			}
 			#	Why remove this? I have not seen it...
 			if ( isset( $args['headers']['Referer'] ) ) {
 				unset( $args['headers']['Referer'] );
 				log_entry( 'headers:Referer has been deleted.' );
+			}
+		}
+		if ( ( $this->options['install'] === 'no' ) ) {
+			if ( isset( $args['headers']['wp_install'] ) ) {
+				unset( $args['headers']['wp_install'] );
 			}
 		}
 		return $args;

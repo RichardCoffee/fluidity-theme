@@ -39,30 +39,28 @@ class TCC_Options_Privacy {
 		$layout['blog']    = array('default' => 'yes',
 		                           'label'   => __('Blog URL','tcc-fluid'),
 		                           'render'  => 'radio',
-		                           'disable' => !WP_DEBUG,
+#		                           'disable' => ( ! WP_DEBUG ),
 		                           'source'  => array('yes' => __("Let WordPress know your site's url.",'tcc-fluid'),
 		                                              'no'  => __('Do not let them know where you are.','tcc-fluid')),
-		                           'change'  => 'showhidePosi(this,".privacy-blog-option","yes");',
+		                           'change'  => 'showhidePosi( this, ".privacy-blog-option", "yes" );',
 		                           'divcss'  => 'privacy-blog-active' ); //*/
-
-		$layout['blogs']   = array('default' => 'yes',
-		                           'label'   => __('Multi-Site','tcc-fluid'),
-		                           'render'  => 'radio',
-		                           #'disable' => !WP_DEBUG,
-		                           'source'  => array('yes' => __("Yes - Let WordPress know if you are running a multi-site blog.",'tcc-fluid'),
-		                                              'no'  => __("No -- Tell WordPress you are running just a single blog.",'tcc-fluid')),
-		                           'change'  => 'showhidePosi(this,".privacy-multi-option","yes");',
-		                           'divcss'  => 'privacy-multi-active privacy-blog-option'); //*/
-
-/*  really not much point in doing this */
-		$layout['install'] = array('default' => 'yes',
-		                           'label'   => __('Install URL','tcc-fluid'),
-		                           'render'  => 'radio',
-		                           #'disable' => !WP_DEBUG,
-		                           'source'  => array('yes' => __("Let WordPress know the url you installed WordPress to.",'tcc-fluid'),
-		                                              'no'  => __('Do not give WordPress this information.','tcc-fluid')),
-		                           'divcss'  => 'privacy-blog-option privacy-multi-option'); //*/
-
+#		if ( is_multisite() && is_main_site() ) {
+			$layout['blogs']   = array('default' => 'yes',
+			                           'label'   => __('Multi-Site','tcc-fluid'),
+			                           'render'  => 'radio',
+			                           #'disable' => ( ! WP_DEBUG ),
+			                           'source'  => array('yes' => __("Yes - Let WordPress know if you are running a multi-site blog.",'tcc-fluid'),
+			                                              'no'  => __("No -- Tell WordPress you are running just a single blog.",'tcc-fluid')),
+			                           'change'  => 'showhidePosi( this, ".privacy-multi-option", "yes" );',
+			                           'divcss'  => 'privacy-multi-active privacy-blog-option'); //*/
+			$layout['install'] = array('default' => 'yes',
+			                           'label'   => __('Install URL','tcc-fluid'),
+			                           'render'  => 'radio',
+			                           #'disable' => ( ! WP_DEBUG ),
+			                           'source'  => array('yes' => __("Let WordPress know the url you installed WordPress to.",'tcc-fluid'),
+			                                              'no'  => __('Do not give WordPress this information.','tcc-fluid')),
+			                           'divcss'  => 'privacy-blog-option privacy-multi-option'); //*/
+#		}
 		$layout['users']   = array('default' => 'all',
 		                           'label'   => __('Users','tcc-fluid'),
 		                           'render'  => 'radio',
@@ -84,43 +82,42 @@ class TCC_Options_Privacy {
 		                               'preset'  => 'yes',
 		                               'label'   => __('Plugin List','tcc-fluid'),
 		                               'text'    => $warning,
-		                               'textcss' => 'red',
+		                               'textcss' => 'red', // FIXME: bad css
 		                               'render'  => 'radio_multiple',
 		                               'source'  => $this->get_plugin_list(),
 		                               'divcss'  => 'privacy-plugin-filter'); //*/
 
-		$layout['themes']  = array('default' => 'all',
-		                           'label'   => __('Themes','tcc-fluid'),
-		                           'render'  => 'radio',
-		                           'source'  => array('all'    => __("Let WordPress know what themes you have installed.",'tcc-fluid'),
-		                                              'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
-		                                              'none'   => __('Do not let them know about your themes.','tcc-fluid')),
-		                           'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
-		                           'divcss'  => 'privacy-theme-action'); //*/
+		$layout['themes']      = array('default' => 'all',
+		                               'label'   => __('Themes','tcc-fluid'),
+		                               'render'  => 'radio',
+		                               'source'  => array('all'    => __("Let WordPress know what themes you have installed.",'tcc-fluid'),
+		                                                  'filter' => __('Filter the theme list that gets sent to WordPress.','tcc-fluid'),
+		                                                  'none'   => __('Do not let them know about your themes.','tcc-fluid')),
+		                               'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
+		                               'divcss'  => 'privacy-theme-action'); //*/
 
-		$layout['theme_list'] = array('default' => $this->get_theme_defaults('yes'),
-		                              'preset'  => 'yes',
-		                              'label'   => __('Theme List','tcc-fluid'),
-		                              'text'    => $warning,
-		                              'textcss' => 'red',
-		                              'render'  => 'radio_multiple',
-		                              'titles'  => array( __('On','tcc-fluid'),
-		                                                  __('Off','tcc-fluid'),
-		                                                  __('Description','tcc-fluid') ),
-		                              'source'  => $this->get_theme_list(),
-		                              'divcss'  => 'privacy-theme-filter'); //*/
+		$layout['theme_list']  = array('default' => $this->get_theme_defaults('yes'),
+		                               'preset'  => 'yes',
+		                               'label'   => __('Theme List','tcc-fluid'),
+		                               'text'    => $warning,
+		                               'textcss' => 'red', // FIXME: bad css
+		                               'render'  => 'radio_multiple',
+		                               'titles'  => array( __('On','tcc-fluid'),
+		                                                   __('Off','tcc-fluid'),
+		                                                   __('Description','tcc-fluid') ),
+		                               'source'  => $this->get_theme_list(),
+		                               'divcss'  => 'privacy-theme-filter'); //*/
 
     $layout = apply_filters("tcc_{$this->base}_options_layout",$layout);
     return $layout;
   }
-
 
 	/**  Plugin functions  **/
 
 	private function get_plugin_defaults( $preset ) {
 		#	Start with a clean slate
 		$options = $this->clean_plugin_defaults();
-		#	Load our list with the default value
+		#	Load missing items with the default value
 		foreach( $this->plugins as $path => $plugin ) {
 			if ( ! isset( $options[ $path ] ) ) {
 				$options[ $path ] = $preset;
@@ -129,8 +126,8 @@ class TCC_Options_Privacy {
 		return $options;
 	}
 
+	#	Removes deleted plugins by generating a new list
 	private function clean_plugin_defaults() {
-
 		#	The beginning
 		$options = array();
 		$current = tcc_privacy( 'plugin_list' );
@@ -160,11 +157,24 @@ class TCC_Options_Privacy {
 	/**  Theme functions  **/
 
 	private function get_theme_defaults( $preset ) {
-		$options = tcc_privacy( 'theme_list' );
-		if ( empty( $options ) ) { $options = array(); }
+		$options = $this->clean_theme_defaults();
 		foreach( $this->themes as $slug => $theme ) {
 			if ( ! isset( $options[ $slug ] ) ) {
 				$options[ $slug ] = $preset;
+			}
+		}
+		return $options;
+	}
+
+	#	removes deleted themes by generating a new list
+	private function clean_theme_defaults() {
+		$options = array();
+		$current = tcc_privacy( 'theme_list' );
+		if ( $current ) {
+			foreach( $current as $key => $status ) {
+				if ( isset( $this->plugins[ $key ] ) ) {
+					$options[ $key ] = $status;
+				}
 			}
 		}
 		return $options;
