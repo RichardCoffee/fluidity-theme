@@ -1,0 +1,18 @@
+
+	Document Conventions
+--------------------------
+
+	No line longer than 80 characters.  This is to facilitate printing.
+		It doesn't matter if the document is never actually printed.
+
+
+
+	Bones of Contention
+------------------------
+
+	Anyone can add a bone to the contention list.
+
+	Only the person who added the bone can remove the bone.
+
+	Bones can not be worked on by anyone, until an agreement is reached on
+		how work on the bone is to proceed.
