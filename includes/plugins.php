@@ -7,6 +7,19 @@ add_action( 'tgmpa_register', 'fluidity_plugins' );
 if ( ! function_exists( 'fluidity_plugins' ) ) {
 	function fluidity_plugins() {
 		$plugins = array(
+			array(
+				'name'        => 'Nav Menu Roles by Kathy Darling',
+				'slug'        => 'nav-menu-roles',
+				'require'     => false,
+				'is_callable' => 'Nav_Menu_Roles',
+			),
+			array(
+				'name'        => 'WordPress SEO by Yoast',
+				'slug'        => 'wordpress-seo',
+				'required'    => false,
+				'is_callable' => 'wpseo_init',
+			),
+
 		);
 		$plugins = apply_filters( 'fluidity_tgmpa_plugins', $plugins );
 		$config  = array(
