@@ -181,12 +181,18 @@ log_entry($result);
 	protected function filter_plugins( $url, $args ) {
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
-				if ( $this->option['plugins'] === 'none' ) {
-					$args['body']['plugins'] = json_encode( array() );
+				$plugins = json_decode( $args['body']['plugins'] );
+				if ( $this->options['plugins'] === 'none' ) {
+					$plugins = array();
+log_entry('plugins:  none',$plugin_filter,$plugins);
+return $args;
+				} else if ( $this->options['plugins'] === 'active' ) {
+					unset( $plugins->plugins );
+log_entry('plugins:  active',$plugin_filter,$plugins);
+return $args;
 				} else if ( $this->options['plugins'] === 'filter' ) {
 					$plugin_filter = $this->options['plugin_list'];
-					$plugins = json_decode( $args['body']['plugins'] );
-log_entry($plugin_filter,$plugins);
+log_entry('plugins:  filter',$plugin_filter,$plugins);
 return $args;
 					foreach ( $plugin_filter as $plugin => $status ) {
 						if ( $status === 'no' ) {
@@ -198,8 +204,8 @@ return $args;
 							}
 						}
 					}
-					$args['body']['plugins'] = json_encode( $plugins );
 				}
+				$args['body']['plugins'] = json_encode( $plugins );
 			}
 		}
 		return $args;
@@ -209,7 +215,7 @@ return $args;
 		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['themes'] ) ) {
 
-				if ( $this->option['themes'] === 'none' ) {
+				if ( $this->options['themes'] === 'none' ) {
 					$args['body']['themes'] = json_encode( array() );
 
 				} else if ( $this->options['themes'] === 'filter' ) {
