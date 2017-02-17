@@ -25,6 +25,9 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
     #if (tcc_design('paral')==='yes') { new TCC_Options_Parallax; }
     new TCC_Options_Settings;
     new TCC_Options_Privacy;
+    if ( WP_DEBUG ) {
+      new TCC_Options_Bootstrap;
+    }
     $this->add_currency_symbol();
   }
 

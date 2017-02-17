@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+for file in alerts badges breadcrumbs buttons button-groups carousel close component-animations code core dropdowns forms glyphicons grid input-groups jumbotron labels list-group media modals navbar navs normalize pager pagination panels popovers print progress-bars responsive-embed responsive-utilities scaffolding tables thumbnails tooltip type utilities wells; do
+	echo Compiling $file
+	sass --sourcemap=none --style=compressed scss/bootstrap/$file.scss css/bootstrap/bootstrap-$file.min.css
+done
