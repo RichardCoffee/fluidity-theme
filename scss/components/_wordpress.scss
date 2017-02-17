@@ -1,8 +1,8 @@
 /*  Class definitions required by WordPress  */
 
-.aligncenter { @extend .text-center; }
-.alignleft   { @extend .text-left;   }
-.alignright  { @extend .text-right;  }
+.aligncenter { text-align: center; }
+.alignleft   { text-align: left;   }
+.alignright  { text-align: right;  }
 
 .wp-caption {
   margin-bottom: 1.5em;
@@ -23,4 +23,14 @@
 
 .sticky { }
 
-.screen-reader-text { @extend .sr-only }
+// http://a11yproject.com/posts/how-to-hide-content
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}

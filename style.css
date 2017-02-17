@@ -5,7 +5,7 @@
  * Author: Richard Coffee
  * Author URI: http://rtcenterprises.net
  * Description: Wordpress Theme based on using a fluid design, with bootstrap
- * Version: 2.2.0
+ * Version: 2.2.1
  * Tags: two-columns, right-sidebar, left-sidebar
  * Text Domain: tcc-fluid
  * License: GPLv2
@@ -185,6 +185,49 @@ pre {
 
 .navbar-home {
   margin-top: 3em;
+}
+
+/*  Class definitions required by WordPress  */
+.aligncenter {
+  text-align: center;
+}
+
+.alignleft {
+  text-align: left;
+}
+
+.alignright {
+  text-align: right;
+}
+
+.wp-caption {
+  margin-bottom: 1.5em;
+  max-width: 100%;
+}
+.wp-caption img[class*="wp-image-"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption-text {
+  text-align: center;
+}
+
+.gallery-caption,
+.bypostauthor {
+  display: block;
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .updraft {
