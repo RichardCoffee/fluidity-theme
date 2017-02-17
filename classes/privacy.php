@@ -23,8 +23,9 @@ class Privacy_My_Way {
 		#	I don't think these first two filters work as is - the filter functions are never being called - testing continues
 		add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
 		add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
-		#	This filter only rarely gets called on my test sites.
+		#	This filter rarely gets called on my test sites.
 		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
+		#	This seems to be the main workhorse
 		add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
 log_entry($this);
 	}
@@ -95,7 +96,7 @@ log_entry($url,$args,$temp);
 
 	public function pre_http_request( $preempt, $args, $url ) {
 
-		#	check if we, or someone else, has been here before
+		#	check if we have been here before
 		if ( $preempt || isset( $args['_privacy_filter'] ) ) {
 			return $preempt;
 		}
@@ -109,9 +110,7 @@ log_entry($url,$args,$temp);
 			return $preempt;
 		}
 
-		$temp = $this->strip_site_url( $args );
-log_entry($url,$temp,$args);
-return $preempt;
+		$args = $this->strip_site_url( $args );
 
 #		$args = $this->filter_plugins( $url, $args );
 		$temp = $this->filter_plugins( $url, $args );
@@ -123,6 +122,7 @@ return $preempt;
 log_entry($url,$temp,$args);
 return $preempt;
 
+#		$args = $this->filter_url( $url );
 		$temp = $this->filter_url( $url );
 log_entry($url,$temp,$args);
 return $preempt;
