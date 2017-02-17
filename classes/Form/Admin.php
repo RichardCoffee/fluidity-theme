@@ -147,21 +147,23 @@ abstract class TCC_Form_Admin {
   }
 
   private function field_label($ID,$data) {
-    $html = "<span";
+    $html = '';
     if ($data['render']=='display') {
-      $html.= (isset($data['help'])) ? " title='".esc_attr($data['help'])."'>" : ">";
-      $html.= $data['label'];
-      $html.= "</span>";
+      $html = '<span';
+      $html.= (isset($data['help']))  ? ' title="'.esc_attr($data['help']).'">' : '>';
+      $html.= (isset($data['label'])) ? esc_html($data['label']) : '';
+      $html.= '</span>';
     } elseif ($data['render']=='title') {
-      $html.= " class='form-title'";
-      $html.= (isset($data['help'])) ? " title='".esc_attr($data['help'])."'>" : ">";
-      $html.= $data['label'];
-      $html.= "</span>";
+      $html = '<span';
+      $html.= ' class="form-title"';
+      $html.= (isset($data['help']))  ? ' title="'.esc_attr($data['help']).'">' : '>';
+      $html.= (isset($data['label'])) ? esc_html($data['label']) : '';
+      $html.= '</span>';
     } else {
-      $html = "<label for='$ID'";
-      $html.= (isset($data['help'])) ? " title='".esc_attr($data['help'])."'>" : ">";
-      $html.= $data['label'];
-      $html.= "</label>";
+      $html = '<label for="'.esc_attr($ID).'"'
+      $html.= (isset($data['help']))  ? ' title="'.esc_attr($data['help']).'">' : '>';
+      $html.= (isset($data['label'])) ? esc_html($data['label']) : '';
+      $html.= '</label>';
     }
     return $html;
   }
@@ -197,7 +199,7 @@ abstract class TCC_Form_Admin {
             $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,$name,$controls));
             $name = false;
             break;
-          case "image": // FIXME: does not work as advertised
+          case "image": // FIXME: does not seem to work as advertised
             //$controls['type'] = 'image';
             if (isset($option['context'])) $controls['context'] = $option['context'];
 log_entry($controls);
