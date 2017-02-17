@@ -58,7 +58,7 @@ class TCC_Options_Bootstrap {
 		); //*/
 		$layout['utilities'] = array(
 			'default' => $this->get_bootstrap_defaults('utilities'),
-			'text'    => __( 'Utilities', 'tcc-fluid' ),
+			'label'   => __( 'Utilities', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
 			'source'  => $this->get_bootstrap_list('utilities'),
 		); //*/

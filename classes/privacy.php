@@ -182,13 +182,21 @@ log_entry($result);
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
+log_entry('plugins:  list',$plugins);
+return $args;
 				if ( $this->options['plugins'] === 'none' ) {
 					$plugins = array();
-log_entry('plugins:  none',$plugin_filter,$plugins);
+log_entry('plugins:  none',$plugins);
 return $args;
 				} else if ( $this->options['plugins'] === 'active' ) {
-					unset( $plugins->plugins );
-log_entry('plugins:  active',$plugin_filter,$plugins);
+					$active = new stdClass;
+					foreach( $plugins->plugins as $plugin => $info ) {
+						if ( isset( $plugins->active->$plugin ) ) {
+							$active->$plugin = $info;
+						}
+					}
+					$plugins->plugins = $active;
+log_entry('plugins:  active',$plugins);
 return $args;
 				} else if ( $this->options['plugins'] === 'filter' ) {
 					$plugin_filter = $this->options['plugin_list'];
@@ -204,7 +212,11 @@ return $args;
 							}
 						}
 					}
+log_entry('plugins:  filter',$plugin_filter,$plugins);
+return $args;
 				}
+log_entry('plugins:  done',$plugins);
+return $args;
 				$args['body']['plugins'] = json_encode( $plugins );
 			}
 		}
@@ -214,27 +226,44 @@ return $args;
 	protected function filter_themes( $url, $args ) {
 		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['themes'] ) ) {
-
+				$themes = json_decode( $args['body']['themes'] );
+log_entry($themes,$args);
+return $args;
 				if ( $this->options['themes'] === 'none' ) {
 					$args['body']['themes'] = json_encode( array() );
-
+					$themes = array();
+log_entry($themes,$args);
+return $args;
+				} else if ( $this->options['themes'] === 'active' ) {
+					$active = new stdClass;
+					foreach( $themes->themes as $theme => $info ) {
+						if ( isset( $themes->active->$theme ) ) {
+							$active->$theme = $info;
+						}
+					}
+					$themes->themes = $active;
+log_entry($themes,$args);
+return $args;
 				} else if ( $this->options['themes'] === 'filter' ) {
 					$theme_filter = $this->options['theme_list'];
-					$themes = json_decode( $args['body']['themes'] );
-log_entry($theme_filter,$themes);
+log_entry($theme_filter,$themes,$args);
 return $args;
 					foreach ( $theme_filter as $theme => $status ) {
 						if ( $status === 'no' ) {
-							if ( isset( $themes->plugins->$theme ) ) {
-								unset( $themes->plugins->$theme );
+							if ( isset( $themes->themes->$theme ) ) {
+								unset( $themes->themes->$theme );
 							}
 							if ( isset( $themes->active->$theme ) ) {
 								unset( $themes->active->$theme );
 							}
 						}
 					}
-					$args['body']['themes'] = json_encode( $themes );
 				}
+log_entry($themes,$args);
+return $args;
+				$args['body']['themes'] = json_encode( $themes );
+log_entry($themes,$args);
+return $args;
 			}
 		}
 		return $args;

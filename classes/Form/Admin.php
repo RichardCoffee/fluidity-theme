@@ -148,12 +148,12 @@ abstract class TCC_Form_Admin {
 
   private function field_label($ID,$data) {
     $html = '';
-    if ($data['render']=='display') {
+    if (($data['render']==='display') || ($data['render']==='radio_multiple')) {
       $html = '<span';
       $html.= (isset($data['help']))  ? ' title="'.esc_attr($data['help']).'">' : '>';
       $html.= (isset($data['label'])) ? esc_html($data['label']) : '';
       $html.= '</span>';
-    } elseif ($data['render']=='title') {
+    } elseif ($data['render']==='title') {
       $html = '<span';
       $html.= ' class="form-title"';
       $html.= (isset($data['help']))  ? ' title="'.esc_attr($data['help']).'">' : '>';
