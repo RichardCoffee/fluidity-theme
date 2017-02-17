@@ -160,7 +160,7 @@ abstract class TCC_Form_Admin {
       $html.= (isset($data['label'])) ? esc_html($data['label']) : '';
       $html.= '</span>';
     } else {
-      $html = '<label for="'.esc_attr($ID).'"'
+      $html = '<label for="'.esc_attr($ID).'"';
       $html.= (isset($data['help']))  ? ' title="'.esc_attr($data['help']).'">' : '>';
       $html.= (isset($data['label'])) ? esc_html($data['label']) : '';
       $html.= '</label>';
