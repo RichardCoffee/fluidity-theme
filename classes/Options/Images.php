@@ -3,7 +3,7 @@
 class TCC_Options_Images {
 
   private $base     = 'images';
-  private $priority = 34; # customizer priority
+#  private $priority = 34; # customizer priority
 
   public function __construct() {
     add_filter('fluidity_options_form_layout', array($this,'form_layout'),10);

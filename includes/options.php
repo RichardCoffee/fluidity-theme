@@ -24,6 +24,13 @@ if (!function_exists('stop_heartbeat')) {
   add_action( 'init', 'stop_heartbeat', 1 );
 }
 
+function tcc_bootstrap( $option ) {
+	static $data;
+	if (empty($data)) { $data = get_option('tcc_options_bootstrap'); }
+	if (isset($data[$option])) { return $data[$option]; }
+	return '';
+}
+
 if (!function_exists('tcc_design')) {
   function tcc_design($option) {
     static $data;

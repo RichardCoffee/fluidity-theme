@@ -3,9 +3,10 @@
 class TCC_Options_Settings {
 
   private $base     = 'admin';
+  private $priority = 500;
 
   public function __construct() {
-    add_filter('fluidity_options_form_layout', array($this,'form_layout'),500);
+    add_filter('fluidity_options_form_layout', array($this,'form_layout'),$this->priority);
   }
 
   private function form_title() {

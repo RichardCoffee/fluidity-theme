@@ -3,10 +3,11 @@
 
 class TCC_Options_Social {
 
-  private $base = 'social';
+  private $base     = 'social';
+  private $priority = 100;
 
   public function __construct() {
-    add_filter('fluidity_options_form_layout', array($this,'form_layout'),100);
+    add_filter('fluidity_options_form_layout', array($this,'form_layout'),$this->priority);
   }
 
   public function form_layout($form) {

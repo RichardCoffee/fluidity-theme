@@ -116,7 +116,6 @@ class TCC_Options_Typography {
         $font    = $mixed[$current];
         $size    = (isset($font_options['size'])) ? intval($font_options['size']) : 14;
         $output  = "html {";
-#        $output .= " color:        $color;";
         $output .= " font-family:  $font;";
 #        $output .= " font-weight:  $weight;";
         $output .= " font-size:    {$size}px;";

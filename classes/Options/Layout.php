@@ -8,7 +8,7 @@ class TCC_Options_Layout {
   private $priority = 35; # customizer priority
 
   public function __construct() {
-    add_filter('fluidity_options_form_layout', array($this,'form_layout'),10);
+    add_filter('fluidity_options_form_layout', array($this,'form_layout'),$this->priority);
     add_action('fluid-customizer', array($this,'options_customize_register'),$this->priority,2);
   }
 

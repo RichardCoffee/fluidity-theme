@@ -3,21 +3,19 @@
 
 class TCC_Options_Privacy {
 
-	private $base    = 'privacy';
-	private $sort    = 550;  #  internal theme option
-	private $plugins = array();
-	private $themes  = array();
+	private $base     = 'privacy';
+	private $priority = 550;  #  internal theme option
+	private $plugins  = array();
+	private $themes   = array();
 
 	public function __construct() {
-
 		#	https://codex.wordpress.org/Function_Reference/get_plugins
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		$this->plugins = get_plugins();
 		$this->themes  = wp_get_themes();
-
-		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->sort );
+		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->priority );
 	}
 
 	public function form_layout($form) {
