@@ -111,18 +111,12 @@ log_entry($url,$args,$temp);
 		}
 
 		$args = $this->strip_site_url( $args );
-
-#		$args = $this->filter_plugins( $url, $args );
-		$temp = $this->filter_plugins( $url, $args );
+		$args = $this->filter_plugins( $url, $args );
+		$args = $this->filter_themes( $url, $args );
 log_entry($url,$temp,$args);
 return $preempt;
 
-#		$args = $this->filter_themes( $url, $args );
-		$temp = $this->filter_themes( $url, $args );
-log_entry($url,$temp,$args);
-return $preempt;
-
-#		$args = $this->filter_url( $url );
+#		$url = $this->filter_url( $url );
 		$temp = $this->filter_url( $url );
 log_entry($url,$temp,$args);
 return $preempt;
@@ -190,9 +184,12 @@ log_entry('plugins:  none',$plugins);
 return $args;
 				} else if ( $this->options['plugins'] === 'active' ) {
 					$active = new stdClass;
+					$installed = new stdClass;
+					$count  = 1;
 					foreach( $plugins->plugins as $plugin => $info ) {
 						if ( isset( $plugins->active->$plugin ) ) {
-							$active->$plugin = $info;
+							$active->$count = $plugin;
+							$count++;
 						}
 					}
 					$plugins->plugins = $active;
@@ -207,12 +204,19 @@ return $args;
 							if ( isset( $plugins->plugins->$plugin ) ) {
 								unset( $plugins->plugins->$plugin );
 							}
-							if ( isset( $plugins->active->$plugin ) ) {
-								unset( $plugins->active->$plugin );
-							}
 						}
 					}
 log_entry('plugins:  filter',$plugin_filter,$plugins);
+return $args;
+					$active = new stdClass;
+					$count  = 1;
+					foreach( $plugins->active as $key => $plugin ) {
+						if ( isset( $plugins->plugins->$key ) ) {
+							$active->$count = $key;
+						}
+					}
+					$plugins->active = $active;
+log_entry('plugins:  filter',$plugin_filter,$plugins,$active);
 return $args;
 				}
 log_entry('plugins:  done',$plugins);
