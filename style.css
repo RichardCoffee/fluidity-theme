@@ -511,53 +511,6 @@ textarea:focus,
   transition: all 0.1s ease-in-out 0s;
 }
 
-h1,
-.h1 {
-  font-size: 28;
-  font-size: 2em;
-  font-weight: 700;
-}
-
-h2,
-.h2 {
-  font-size: 24;
-  font-size: 1.6em;
-  font-weight: 700;
-}
-
-h3,
-.h3 {
-  font-size: 20;
-  font-size: 1.3em;
-  font-weight: 700;
-}
-
-h4,
-.h4 {
-  font-size: 18;
-  font-size: 1.2em;
-  font-weight: 700;
-}
-
-h5,
-.h5 {
-  font-size: 16;
-  font-size: 1em;
-  font-weight: 700;
-}
-
-h6,
-.h6 {
-  font-size: 14;
-  font-weight: 700;
-}
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: 'Lato', sans-serif;
-  clear: both;
-}
-
 p {
   margin-bottom: 1.5em;
 }

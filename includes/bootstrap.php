@@ -108,6 +108,7 @@ log_entry('bootstrap enqueued',$load_bootstrap,$bootstrap,$load_resets,$resets,$
 function fluidity_check_bootstrap( $section ) {
 	$return = array();
 	$options = tcc_bootstrap( $section );
+log_entry("section:  $section",$options);
 	if ( $options ) {
 		foreach( $options as $component => $status ) {
 			if ( $status === 'on' ) {
