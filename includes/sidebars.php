@@ -170,7 +170,7 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 }
 
 if ( ! function_exists( 'tcc_sidebar' ) ) {
-	function tcc_sidebar( $sidebar = 'standard' ) {
+	function tcc_sidebar( $sidebar = 'standard', $extra_css = array() ) {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
 		$side = tcc_layout( 'sidebar' );
 		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
@@ -180,11 +180,12 @@ if ( ! function_exists( 'tcc_sidebar' ) ) {
 			$css  = array(
 				'widget-area',
 				'fluid-sidebar',
-				"fluid-sidebar-$slug"
+				"fluid-sidebar-$slug",
 			);
 			if ( $side === 'right' ) {
 				$css[] = 'pull-right';
 			}
+			$css = array_merge( $css, $extra_css );
 			$css = apply_filters( 'fluid_sidebar_css', $css );
 			$css = apply_filters( "fluid_sidebar_css_$slug", $css );
 			$css = array_map( 'esc_attr', array_unique( $css ) ); ?>
