@@ -46,6 +46,7 @@ if ( ! function_exists( 'fluidity_register_bootstrap' ) ) {
 		wp_register_style( 'bootstrap-utility',              get_theme_file_uri( 'css/bootstrap/bootstrap-utility.min.css' ),              null, '3.3.7' );
 		wp_register_style( 'bootstrap-wells',                get_theme_file_uri( 'css/bootstrap/bootstrap-wells.min.css' ),                null, '3.3.7' );
 		wp_register_script('bootstrap.js', get_theme_file_uri('js/bootstrap.min.js'),   array('jquery'),'3.3.7',true);
+log_entry('bootstrap registered');
 	}
 }
 
@@ -100,6 +101,7 @@ if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
 				wp_enqueue_script( 'bootstrap.js' );
 			}
 		}
+log_entry('bootstrap enqueued',$load_bootstrap,$bootstrap,$load_resets,$resets,$load_core,$core,$load_components,$components,$load_javascript,$javascript,$load_utility,$utility);
 	}
 }
 

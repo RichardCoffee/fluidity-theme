@@ -51,8 +51,8 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		do_action( 'tcc_pre_enqueue' );
 
 		#	Register
-		fluidity_register_bootstrap();
 		fluidity_register_fontawesome();
+		fluidity_register_bootstrap();
 		fluidity_register_color_scheme();
 		fluidity_register_css_js();
 
@@ -126,13 +126,13 @@ if (!function_exists('fluidity_admin_enqueue')) {
   }
   add_action('admin_enqueue_scripts','fluidity_admin_enqueue');
 }
-
+/*
 if ( ! function_exists( 'fluidity_register_bootstrap' ) ) {
 	function fluidity_register_bootstrap() {
 		wp_register_style('bootstrap.css', get_theme_file_uri('css/bootstrap.min.css'), null,           '3.3.7');
 		wp_register_script('bootstrap.js', get_theme_file_uri('js/bootstrap.min.js'),   array('jquery'),'3.3.7',true);
 	}
-}
+} //*/
 
 if (!function_exists('fluidity_register_fontawesome')) {
   function fluidity_register_fontawesome() {
