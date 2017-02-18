@@ -28,9 +28,7 @@ $mypage = get_page_slug();
 	<div class="row">
 		<?php who_am_i(); ?>
 
-		<div class="hidden-sm hidden-xs fluid-sidebar">
-			<?php tcc_sidebar( $mypage ); ?>
-		</div>
+		<?php tcc_sidebar( $mypage, array( 'hidden-sm', 'hidden-xs' ) ); ?>
 
 		<main id="content" role="main" tabindex="-1"><?php
 
@@ -67,9 +65,7 @@ $mypage = get_page_slug();
 
 		</main><!-- #content -->
 
-		<div class="visible-sm visible-xs fluid-sidebar">
-			<?php tcc_sidebar( $mypage ); ?>
-		</div>
+		<?php tcc_sidebar( $mypage, array( 'visible-sm', 'visible-xs' ) ); ?>
 
 	</div>
 </div><!-- #fluid-content --><?php

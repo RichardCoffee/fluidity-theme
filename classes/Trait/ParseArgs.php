@@ -19,7 +19,7 @@ trait TCC_Trait_ParseArgs {
 		}
 	}
 
-	private function parse_args_all( $args ) {
+	private function parse_all_args( $args ) {
 		if ( ! $args ) return;
 		foreach( $args as $prop => $value ) {
 			$this->{$prop} = $value;
