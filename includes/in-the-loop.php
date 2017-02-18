@@ -47,17 +47,20 @@ if (!function_exists('fluid_navigation')) {
 			if ($prevt===$prevp && $nextt===$nextp) { $taxonomy = ''; }
 		} ?>
 		<div class="post_link_separator post_link_separator_top"></div><?php
-		if ($taxonomy) { ?>
-			<nav class="noprint" aria-label="..."><?php // FIXME:  move this out to it own function? ?>
+		if ($taxonomy) {
+			$tax_obj = get_taxonomy( $taxonomy );
+			$older_tooltip = sprintf( _x( 'Older Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name );
+			$newer_tooltip = sprintf( _x( 'Newer Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name ); ?>
+			<nav class="noprint" aria-label="...">
 				<h2 class="screen-reader-text">
 					<?php esc_attr_e( 'Category Navigation', 'tcc-fluid' ); ?>
 				</h2>
 				<div class="row">
 					<ul class="pager pager-category">
-						<li class="previous btn-fluidity" title="<?php esc_html_e('Older Posts','tcc-fluid'); ?>">
+						<li class="previous btn-fluidity" title="<?php e_esc_attr( $older_tooltip ); ?>">
 							<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
 						</li>
-						<li class="next btn-fluidity" title="<?php esc_html_e('Newer Posts','tcc-fluid'); ?>">
+						<li class="next btn-fluidity" title="<?php e_esc_attr( $newer_tooltip ); ?>">
 							<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
 						</li>
 					</ul>

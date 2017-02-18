@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *  tcc-fluidity/functions.php
  *
  */
@@ -16,8 +16,8 @@ defined( 'TCC_SIDEBAR_FLOW' )  or define( 'TCC_SIDEBAR_FLOW', true );
 
 require_once('includes/loader.php');
 require_once('includes/debugging.php');              #  load logging function as soon as possible
-#require_once('includes/james.php');
 require_once('includes/theme-support.php');
+require_once('includes/bootstrap.php');
 require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
 require_once('includes/comments.php');
@@ -37,65 +37,68 @@ new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) ); // TODO:  turn on/off 
 if (is_admin()) {
 	TCC_Options_Fluidity::instance();
 } else {
-  require_once('includes/header.php');
-  require_once('includes/in-the-loop.php');
-  require_once('includes/pages.php');
-  require_once('includes/third-party.php');
-  require_once('classes/microdata.php');
+	require_once('includes/header.php');
+	require_once('includes/in-the-loop.php');
+	require_once('includes/pages.php');
+	require_once('includes/third-party.php');
+	require_once('classes/microdata.php');
 	TCC_Form_Login::instance();
 }
 
-if (!function_exists('tcc_enqueue')) {
-  function tcc_enqueue() {
+if ( ! function_exists( 'tcc_enqueue' ) ) {
+	function tcc_enqueue() {
 
-    do_action('tcc_pre_enqueue');
+		do_action( 'tcc_pre_enqueue' );
 
-    #  Register
-    fluidity_register_bootstrap();
-    fluidity_register_fontawesome();
-    fluidity_register_color_scheme();
-    fluidity_register_css_js();
+		#	Register
+		fluidity_register_bootstrap();
+		fluidity_register_fontawesome();
+		fluidity_register_color_scheme();
+		fluidity_register_css_js();
 
-	#	Stylesheets
-    wp_enqueue_style('tcc-fawe');	#  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
-    if (tcc_option('active','social')==='yes') {
-		 wp_enqueue_style('fa-social'); }
-#    wp_enqueue_style('bootstrap.css');
+		#	Stylesheets
+		wp_enqueue_style('tcc-fawe');	#  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
+		if (tcc_option('active','social')==='yes') {
+			wp_enqueue_style('fa-social');
+		}
+		fluidity_enqueue_bootstrap();
 #    wp_enqueue_style('fluidity');
 #    wp_enqueue_style('fluid-color');
 
-    do_action( 'tcc_during_enqueue' );
+		do_action( 'tcc_during_enqueue' );
 
-    #  Javascript
-    if ( tcc_layout('menu') !== 'bootstrap' ) {
-      wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
-    }
+		#	Javascript
+		if ( tcc_layout('menu') !== 'bootstrap' ) {
+			wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
+		}
 #    wp_enqueue_script('bootstrap.js');
-    wp_enqueue_script('tcc-skiplink');
-    if ((tcc_layout('widget')!=='perm') || is_404()) {
-      wp_enqueue_script('tcc-collapse'); }
-    if (is_singular() && comments_open() && get_option('thread_comments')) {
-      wp_enqueue_script('comment-reply'); }  #  enable threaded comments
+		wp_enqueue_script('tcc-skiplink');
+		if ((tcc_layout('widget')!=='perm') || is_404()) {
+			wp_enqueue_script('tcc-collapse');
+		}
+		if (is_singular() && comments_open() && get_option('thread_comments')) {
+			wp_enqueue_script('comment-reply');  #  enable threaded comments
+		}
 
-    // experimental
-    $hdr_state = tcc_layout('header');
-    if ($hdr_state==='fixed') {
-      wp_enqueue_script('tcc-fixed');
-    } else if ($hdr_state==='reduce') {
-      wp_enqueue_style('tcc-reduce-css');
-      wp_enqueue_script('tcc-reduce-js');
-    } else if ($hdr_state==='hide') {
-      #add_action('wp_footer','fluid_footer_autohide',99);
-    }
+		// experimental
+		$hdr_state = tcc_layout('header');
+		if ($hdr_state==='fixed') {
+			 wp_enqueue_script('tcc-fixed');
+		} else if ($hdr_state==='reduce') {
+			wp_enqueue_style('tcc-reduce-css');
+			wp_enqueue_script('tcc-reduce-js');
+		} else if ($hdr_state==='hide') {
+#			add_action('wp_footer','fluid_footer_autohide',99);
+		}
 
-    do_action('tcc_after_enqueue');
-    do_action('tcc_enqueue');  #  load child theme enqueues here
+		do_action('tcc_after_enqueue');
+		do_action('tcc_enqueue');  #  load child theme enqueues here
 
-  }
-  add_action('wp_enqueue_scripts','tcc_enqueue');
+	}
+	add_action('wp_enqueue_scripts','tcc_enqueue');
 }
 
-if (!function_exists('fluidity_register_css_js')) {
+if ( ! function_exists( 'fluidity_register_css_js' ) ) {
 	function fluidity_register_css_js() {
 
 		wp_register_style('fa-social',       get_theme_file_uri("css/fa-social-hover.css"), array('tcc-fawe'), FLUIDITY_VERSION);
@@ -124,16 +127,16 @@ if (!function_exists('fluidity_admin_enqueue')) {
   add_action('admin_enqueue_scripts','fluidity_admin_enqueue');
 }
 
-if (!function_exists('fluidity_register_bootstrap')) {
-  function fluidity_register_bootstrap() {
-    wp_register_style('bootstrap.css', get_theme_file_uri('css/bootstrap.min.css'), null,           '3.3.7');
-    wp_register_script('bootstrap.js', get_theme_file_uri('js/bootstrap.min.js'),   array('jquery'),'3.3.7',true);
-  }
+if ( ! function_exists( 'fluidity_register_bootstrap' ) ) {
+	function fluidity_register_bootstrap() {
+		wp_register_style('bootstrap.css', get_theme_file_uri('css/bootstrap.min.css'), null,           '3.3.7');
+		wp_register_script('bootstrap.js', get_theme_file_uri('js/bootstrap.min.js'),   array('jquery'),'3.3.7',true);
+	}
 } else {
-  function fluidity_bootstrap_backup() {
-    wp_enqueue_style('bootstrap-backup', get_theme_file_uri('css/bootstrap-backup.min.css'),null,FLUIDITY_VERSION);
-  }
-  add_action('tcc_pre_enqueue','fluidity_bootstrap_backup');
+	function fluidity_bootstrap_backup() {
+		wp_enqueue_style('bootstrap-backup', get_theme_file_uri('css/bootstrap-backup.min.css'),null,FLUIDITY_VERSION);
+	}
+	add_action('tcc_pre_enqueue','fluidity_bootstrap_backup');
 }
 
 if (!function_exists('fluidity_register_fontawesome')) {

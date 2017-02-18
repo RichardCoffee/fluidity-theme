@@ -113,7 +113,7 @@ log_entry($url,$args,$temp);
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
-log_entry($url,$temp,$args);
+log_entry($url,$args);
 return $preempt;
 
 #		$url = $this->filter_url( $url );
@@ -176,8 +176,6 @@ log_entry($result);
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
-log_entry('plugins:  list',$plugins);
-return $args;
 				if ( $this->options['plugins'] === 'none' ) {
 					$plugins = array();
 log_entry('plugins:  none',$plugins);
