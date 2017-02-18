@@ -132,11 +132,6 @@ if ( ! function_exists( 'fluidity_register_bootstrap' ) ) {
 		wp_register_style('bootstrap.css', get_theme_file_uri('css/bootstrap.min.css'), null,           '3.3.7');
 		wp_register_script('bootstrap.js', get_theme_file_uri('js/bootstrap.min.js'),   array('jquery'),'3.3.7',true);
 	}
-} else {
-	function fluidity_bootstrap_backup() {
-		wp_enqueue_style('bootstrap-backup', get_theme_file_uri('css/bootstrap-backup.min.css'),null,FLUIDITY_VERSION);
-	}
-	add_action('tcc_pre_enqueue','fluidity_bootstrap_backup');
 }
 
 if (!function_exists('fluidity_register_fontawesome')) {
