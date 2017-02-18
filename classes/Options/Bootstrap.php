@@ -31,7 +31,7 @@ class TCC_Options_Bootstrap {
 
 	protected function options_layout() {
 		$layout = array('default'=>true);
-		$layout['reset-deps'] = array(
+		$layout['resets'] = array(
 			'default' => $this->get_bootstrap_defaults('reset'),
 			'label'   => __( 'Reset/Dependencies', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
@@ -56,7 +56,7 @@ class TCC_Options_Bootstrap {
 			'render'  => 'radio_multiple',
 			'source'  => $this->get_bootstrap_list('javascript'),
 		); //*/
-		$layout['utilities'] = array(
+		$layout['utility'] = array(
 			'default' => $this->get_bootstrap_defaults('utilities'),
 			'label'   => __( 'Utilities', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
