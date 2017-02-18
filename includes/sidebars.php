@@ -173,8 +173,12 @@ if ( ! function_exists( 'tcc_sidebar' ) ) {
 	function tcc_sidebar( $sidebar = 'standard', $extra_css = array() ) {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
 		$side = tcc_layout( 'sidebar' );
-		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
-		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
+		if ( defined( 'TCC_LEFT_SIDEBAR' ) ) {
+			$side = 'left';
+		}
+		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) {
+			$side = 'right';
+		}
 		if ( $side !== 'none' ) {
 log_entry("side:  $side");
 			$slug = get_page_slug();
