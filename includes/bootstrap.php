@@ -111,7 +111,7 @@ function fluidity_check_bootstrap( $section ) {
 log_entry("section:  $section",$options);
 	if ( $options ) {
 		foreach( $options as $component => $status ) {
-			if ( $status === 'on' ) {
+			if ( $status === 'yes' ) {
 				$return[] = $component;
 			}
 		}
