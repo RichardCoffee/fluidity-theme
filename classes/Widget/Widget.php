@@ -23,12 +23,7 @@ class TCC_Widget_Widget extends WP_Widget {
 	}
 
 	protected function tcc_widget_title( $args ) {
-log_entry($args);
-		if ( strpos( $args['after_title'], 'panel-body' ) ) {  #  FIXME
-			echo '<div>';
-		} else {
-			echo $args['before_title'] . $title . $args['after_title'];
-		}
+		echo $args['before_title'] . $title . $args['after_title'];
 	}
 
 	public function form( $instance ) {
