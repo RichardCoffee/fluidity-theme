@@ -227,7 +227,7 @@ return $args;
 		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['themes'] ) ) {
 				$themes = json_decode( $args['body']['themes'] );
-log_entry($themes,$args);
+log_entry($url,$themes,$args);
 return $args;
 				if ( $this->options['themes'] === 'none' ) {
 					$args['body']['themes'] = json_encode( array() );
@@ -266,6 +266,7 @@ return $args;
 				$args['body']['themes'] = json_encode( $themes );
 			}
 		}
+log_entry('themes:  end');
 		return $args;
 	}
 
