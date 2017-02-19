@@ -592,7 +592,7 @@ log_entry($controls);
 					<label>
 						<input type="radio" value="yes" class="radio-multiple-list radio-multiple-list-yes"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
-						       <?php checked( $check, 'yes' ); ?> />&nbsp;
+						       <?php checked( $check, 'yes' ); ?> />
 						<input type="radio" value="no" class="radio-multiple-list radio-multiple-list-no"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       <?php checked( $check, 'no' ); ?> />

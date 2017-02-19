@@ -24,6 +24,10 @@
 	font-size: 16px;
 }
 
+.radio-multiple-list::before {
+	content: " ";
+}
+
 .red {
   color: red;
 }
