@@ -25,10 +25,12 @@
 }
 
 input[type="radio"].radio-multiple-list-no:checked::before {
+	border-color: red;
 	color: red;
 }
 
 input[type="radio"].radio-multiple-list-yes:checked::before {
+	border-color: green;
 	color: green;
 }
 
