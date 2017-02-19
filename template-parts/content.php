@@ -12,7 +12,7 @@ who_am_i(); ?>
 
 	<?php fluid_thumbnail();
 
-	if (!is_page()) { ?>
+	if ( ! is_page() ) { ?>
 
 		<h1 class="text-center">
 			<?php tcc_post_title(); ?>
@@ -20,7 +20,7 @@ who_am_i(); ?>
 		</h1>
 
 		<h3 class="post-date text-center">
-			<?php fluid_post_date(true); ?>
+			<?php fluid_post_date( true ); ?>
 		</h3><?php
 
 	} ?>
@@ -30,8 +30,8 @@ who_am_i(); ?>
 		<?php the_content(); ?>
 	</div><?php
 
-	if (is_single()) {
-		fluid_navigation('category',true);
+	if ( is_single() ) {
+		fluid_navigation( 'category', true );
 		fluid_postmetadata();
 	}
 

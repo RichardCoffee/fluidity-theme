@@ -583,8 +583,8 @@ log_entry($controls);
 				<?php e_esc_html( $pre_text ); ?>
 			</div>
 			<div class="radio-multiple-header">
-				<span class="radio-multiple-yes"><?php esc_html_e( 'On',  'tcc-fluid' ); ?></span>&nbsp;&nbsp;
-				<span class="radio-multiple-no" ><?php esc_html_e( 'Off', 'tcc-fluid' ); ?></span>
+				<span class="radio-multiple-yes"><?php esc_html_e( 'Yes',  'tcc-fluid' ); ?></span>&nbsp;
+				<span class="radio-multiple-no" ><?php esc_html_e( 'No', 'tcc-fluid' ); ?></span>
 			</div><?php
 			foreach( $layout['source'] as $key => $text ) {
 				$check  = ( isset( $value[ $key ] ) ) ? $value[ $key ] : $preset; ?>
