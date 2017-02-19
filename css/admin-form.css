@@ -24,11 +24,11 @@
 	font-size: 16px;
 }
 
-input[type="radio"].radio-multiple-list-no:checked {
+input[type="radio"].radio-multiple-list-no:checked::before {
 	color: red;
 }
 
-input[type="radio"].radio-multiple-list-yes:checked {
+input[type="radio"].radio-multiple-list-yes:checked::before {
 	color: green;
 }
 
