@@ -589,10 +589,10 @@ log_entry($controls);
 			foreach( $layout['source'] as $key => $text ) {
 				$check  = ( isset( $value[ $key ] ) ) ? $value[ $key ] : $preset; ?>
 				<div class="radio-multiple-list-item">
-					<label>
+					<label>&nbsp;
 						<input type="radio" value="yes" class="radio-multiple-list radio-multiple-list-yes"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
-						       <?php checked( $check, 'yes' ); ?> />
+						       <?php checked( $check, 'yes' ); ?> />&nbsp;
 						<input type="radio" value="no" class="radio-multiple-list radio-multiple-list-no"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       <?php checked( $check, 'no' ); ?> />
