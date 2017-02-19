@@ -582,14 +582,14 @@ log_entry($controls);
 			<div class="<?php echo $pre_css; ?>">
 				<?php e_esc_html( $pre_text ); ?>
 			</div>
-			<div class="radio-multiple-header">&nbsp;
+			<div class="radio-multiple-header">
 				<span class="radio-multiple-yes"><?php esc_html_e( 'Yes',  'tcc-fluid' ); ?></span>&nbsp;
 				<span class="radio-multiple-no" ><?php esc_html_e( 'No', 'tcc-fluid' ); ?></span>
 			</div><?php
 			foreach( $layout['source'] as $key => $text ) {
 				$check  = ( isset( $value[ $key ] ) ) ? $value[ $key ] : $preset; ?>
 				<div class="radio-multiple-list-item">
-					<label>&nbsp;
+					<label>
 						<input type="radio" value="yes" class="radio-multiple-list radio-multiple-list-yes"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       <?php checked( $check, 'yes' ); ?> />&nbsp;
