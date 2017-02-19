@@ -101,14 +101,14 @@ if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
 				wp_enqueue_script( 'bootstrap.js' );
 			}
 		}
-log_entry('bootstrap enqueued',$load_bootstrap,$bootstrap,$load_resets,$resets,$load_core,$core,$load_components,$components,$load_javascript,$javascript,$load_utility,$utility);
+#log_entry('bootstrap enqueued',$load_bootstrap,$bootstrap,$load_resets,$resets,$load_core,$core,$load_components,$components,$load_javascript,$javascript,$load_utility,$utility);
 	}
 }
 
 function fluidity_check_bootstrap( $section ) {
 	$return = array();
 	$options = tcc_bootstrap( $section );
-log_entry("section:  $section",$options);
+#log_entry("section:  $section",$options);
 	if ( $options ) {
 		foreach( $options as $component => $status ) {
 			if ( $status === 'yes' ) {
