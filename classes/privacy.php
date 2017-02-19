@@ -195,8 +195,6 @@ log_entry('plugins:  active',$plugins);
 return $args;
 				} else if ( $this->options['plugins'] === 'filter' ) {
 					$plugin_filter = $this->options['plugin_list'];
-log_entry('plugins:  filter',$plugin_filter,$plugins);
-return $args;
 					foreach ( $plugin_filter as $plugin => $status ) {
 						if ( $status === 'no' ) {
 							if ( isset( $plugins->plugins->$plugin ) ) {
@@ -234,7 +232,7 @@ return $args;
 				if ( $this->options['themes'] === 'none' ) {
 					$args['body']['themes'] = json_encode( array() );
 					$themes = array();
-log_entry($themes,$args);
+log_entry('themes: none',$themes,$args);
 return $args;
 				} else if ( $this->options['themes'] === 'active' ) {
 					$active = new stdClass;
@@ -244,11 +242,11 @@ return $args;
 						}
 					}
 					$themes->themes = $active;
-log_entry($themes,$args);
+log_entry('themes: active',$themes,$args);
 return $args;
 				} else if ( $this->options['themes'] === 'filter' ) {
 					$theme_filter = $this->options['theme_list'];
-log_entry($theme_filter,$themes,$args);
+log_entry('themes: filter',$theme_filter,$themes,$args);
 return $args;
 					foreach ( $theme_filter as $theme => $status ) {
 						if ( $status === 'no' ) {
@@ -260,12 +258,12 @@ return $args;
 							}
 						}
 					}
+log_entry('themes: filter',$theme_filter,$themes,$args);
+return $args;
 				}
 log_entry($themes,$args);
 return $args;
 				$args['body']['themes'] = json_encode( $themes );
-log_entry($themes,$args);
-return $args;
 			}
 		}
 		return $args;

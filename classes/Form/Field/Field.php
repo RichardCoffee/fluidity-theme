@@ -42,10 +42,7 @@ abstract class TCC_Form_Field_Field {
 			'name'        => $this->field_name,
 			'value'       => $this->field_value,
 			'placeholder' => $this->placeholder,
-		);
-		if ( $label && $this->label_text ) {
-			$this->label();
-		} ?>
+		); ?>
 		<input <?php apply_attrs( $attrs ); ?> /><?php
 	}
 
