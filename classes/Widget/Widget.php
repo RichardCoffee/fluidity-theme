@@ -15,14 +15,14 @@ class TCC_Widget_Widget extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
-		$title = apply_filters( 'widget_title', $instance['title'], $this->id_base );
 		echo $args['before_widget'];
-		$this->tcc_widget_title( $args );
+		$this->tcc_widget_title( $args, $instance );
 		$this->inner_widget( $args, $instance );
 		echo $args['after_widget'];
 	}
 
-	protected function tcc_widget_title( $args ) {
+	protected function tcc_widget_title( $args, $instance ) {
+		$title = apply_filters( 'widget_title', $instance['title'], $this->id_base );
 		echo $args['before_title'] . $title . $args['after_title'];
 	}
 
