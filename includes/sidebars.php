@@ -180,11 +180,11 @@ if ( ! function_exists( 'tcc_sidebar' ) ) {
 			$side = 'right';
 		}
 		if ( $side !== 'none' ) {
-#log_entry("side:  $side");
 			$slug = get_page_slug();
 			$css  = array(
 				'widget-area',
 				'fluid-sidebar',
+				"fluid-sidebar-$side",
 				"fluid-sidebar-$slug",
 			);
 			if ( $side === 'right' ) {

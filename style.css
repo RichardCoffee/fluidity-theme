@@ -535,6 +535,14 @@ p {
     width: 25%;
   }
 
+  .fluid-sidebar-left {
+    margin-left: 1em;
+  }
+
+  .fluid-sidebar-right {
+    margin-right: 1em;
+  }
+
   .width-narrow {
     width: 970px;
   }
