@@ -20,10 +20,10 @@ class Privacy_My_Way {
 
 	protected function __construct() {
 		$this->get_options();
-		#	I don't think these first two filters work as is - the filter functions are never being called - testing continues
+		#	These filters are multisite only
 		add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
 		add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
-		#	This filter rarely gets called on my test sites.
+		#	This filter has never gotten called in my tests.
 		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
 		#	This seems to be the main workhorse
 		add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
@@ -33,99 +33,76 @@ log_entry($this);
 	protected function get_options() {
 		$options = get_option( 'tcc_options_privacy' );
 		if ( ! $options ) {
-			// TODO
+			// FIXME
 		}
 		$this->options = $options;
 	}
 
 	public function pre_site_option_blog_count( $count, $option, $network_id ) {
-log_entry($count,$option,$network_id);
 		if ( $this->options['blogs'] === 'no' ) {
 			$count = 1;
 		} //*/
-$this->blog_count_done = true;  // for debugging
 		return $count;
 	}
 
 	public function pre_site_option_user_count( $count, $option, $network_id ) {
 		$privacy = $this->options['users'];
-log_entry($count,$option,$network_id,$privacy);
 		if ( $privacy ) {
+			#	if $count has a value, then use it because we're single site and this is being called from inside this class
+			$users = ($count) ? $count : get_user_count();
 			switch( $privacy ) {
 				case 'all':
 					$count = false;
 				case 'some':
-					$users = get_user_count();
-					$count = max( 1, intval( ( $user / rand(1, 10) ), 10 ) );
+					$count = max( 1, intval( ( $users / rand(1, 10) ), 10 ) );
 				case 'one':
 					$count = 1;
 				case 'many':
-					$users = get_user_count();
 					$count = rand( 1, ( $users * 10 ) );
 				default:
 			}
 		} //*/
-log_entry($count);
-$this->user_count_done = true; // debugging
 		return $count;
 	}
 
 	public function http_request_args( $args, $url ) {
-
 		#	only act on requests to api.wordpress.org
 		if ( stripos( $url, '://api.wordpress.org/' ) !== false ) {
 			return $args;
 		}
-log_entry($url,$args);
-return $args;
-
 #		$args = $this->strip_site_url( $args );
 		$temp = $this->strip_site_url( $args );
-log_entry($url,$args,$temp);
-return $args;
-
 #| |  $args = $this->filter_plugins( $url, $args );
-		$temp = $this->filter_plugins( $url, $args );
-log_entry($url,$args,$temp);
-
+		$temp = $this->filter_plugins( $url, $temp );
 #		$args = $this->filter_themes( $url, $args );
-		$temp = $this->filter_themes( $url, $args );
-log_entry($url,$args,$temp);
+		$temp = $this->filter_themes( $url, $temp );
+log_entry($url,$temp);
 		return $args;
 	}
 
 	public function pre_http_request( $preempt, $args, $url ) {
-
 		#	check if we have been here before
 		if ( $preempt || isset( $args['_privacy_filter'] ) ) {
 			return $preempt;
 		}
-
 		#	only act on requests to api.wordpress.org
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/themes/update-check/'  ) === false )
-#			&& ( stripos( $url, '://api.wordpress.org/translations/'         ) === false )	#	outgoing never has data - need to see what this looks like
+			&& ( stripos( $url, '://api.wordpress.org/translations/'         ) === false )	#	outgoing never seems to have data - need to see what this looks like
 			) {
 			return $preempt;
 		}
-
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
-log_entry($url,$args);
-return $preempt;
-
-#		$url = $this->filter_url( $url );
+#		$url  = $this->filter_url( $url );
 		$temp = $this->filter_url( $url );
-log_entry($url,$temp,$args);
-return $preempt;
-
+log_entry($url,$temp);
 		#	make request
 		$args['_privacy_filter'] = true;
 log_entry($url,$args);
 return $preempt;
-
 		$result = wp_remote_request( $url, $args );
 log_entry($result);
 		return $result;
@@ -176,10 +153,10 @@ log_entry($result);
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
+log_entry('plugins:  list',$plugins);
 				if ( $this->options['plugins'] === 'none' ) {
 					$plugins = array();
 log_entry('plugins:  none',$plugins);
-return $args;
 				} else if ( $this->options['plugins'] === 'active' ) {
 					$active = new stdClass;
 					$installed = new stdClass;
@@ -192,7 +169,6 @@ return $args;
 					}
 					$plugins->plugins = $active;
 log_entry('plugins:  active',$plugins);
-return $args;
 				} else if ( $this->options['plugins'] === 'filter' ) {
 					$plugin_filter = $this->options['plugin_list'];
 					foreach ( $plugin_filter as $plugin => $status ) {
@@ -202,8 +178,6 @@ return $args;
 							}
 						}
 					}
-log_entry('plugins:  filter',$plugin_filter,$plugins);
-return $args;
 					$active = new stdClass;
 					$count  = 1;
 					foreach( $plugins->active as $key => $plugin ) {
@@ -213,10 +187,8 @@ return $args;
 					}
 					$plugins->active = $active;
 log_entry('plugins:  filter',$plugin_filter,$plugins,$active);
-return $args;
 				}
 log_entry('plugins:  done',$plugins);
-return $args;
 				$args['body']['plugins'] = json_encode( $plugins );
 			}
 		}
@@ -227,13 +199,11 @@ return $args;
 		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['themes'] ) ) {
 				$themes = json_decode( $args['body']['themes'] );
-log_entry($url,$themes,$args);
-return $args;
+log_entry($url,$themes);
 				if ( $this->options['themes'] === 'none' ) {
 					$args['body']['themes'] = json_encode( array() );
 					$themes = array();
-log_entry('themes: none',$themes,$args);
-return $args;
+log_entry('themes: none',$themes);
 				} else if ( $this->options['themes'] === 'active' ) {
 					$active = new stdClass;
 					foreach( $themes->themes as $theme => $info ) {
@@ -242,27 +212,17 @@ return $args;
 						}
 					}
 					$themes->themes = $active;
-log_entry('themes: active',$themes,$args);
-return $args;
+log_entry('themes: active',$themes);
 				} else if ( $this->options['themes'] === 'filter' ) {
 					$theme_filter = $this->options['theme_list'];
-log_entry('themes: filter',$theme_filter,$themes,$args);
-return $args;
 					foreach ( $theme_filter as $theme => $status ) {
-						if ( $status === 'no' ) {
-							if ( isset( $themes->themes->$theme ) ) {
-								unset( $themes->themes->$theme );
-							}
-							if ( isset( $themes->active->$theme ) ) {
-								unset( $themes->active->$theme );
-							}
+						if ( ( $status === 'no' ) && isset( $themes->themes->$theme ) ) {
+							unset( $themes->themes->$theme );
 						}
 					}
-log_entry('themes: filter',$theme_filter,$themes,$args);
-return $args;
+log_entry('themes: filter',$theme_filter,$themes);
 				}
-log_entry($themes,$args);
-return $args;
+log_entry($themes);
 				$args['body']['themes'] = json_encode( $themes );
 			}
 		}
@@ -276,34 +236,27 @@ $orig = $url;
 		$url_array = parse_url( $url );
 		$arg_array = ( isset( $url_array['query'] ) ) ? wp_parse_args( $url_array['query'] ) : array();
 log_entry($url,$url_array,$arg_array);
-return $orig;
-
-		if ( isset( $arg_array['blogs'] ) ) {
-			$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
-			$url   = add_query_arg( 'blogs', $blogs, $url );
+		if ( ! is_multisite() ) {	#	If multisite then these have already been filtered
+			if ( isset( $arg_array['blogs'] ) ) {
+				$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
+				$url   = add_query_arg( 'blogs', $blogs, $url );
+			}
+log_entry(0,$url);
+			if ( isset( $arg_array['users'] ) ) {
+				$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
+				$url   = add_query_arg( 'users', $users, $url );
+			}
 		}
-log_entry($url,$url_array,$arg_array);
-return $orig;
-
-		if ( isset( $arg_array['users'] ) ) {
-			$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
-			$url   = add_query_arg( 'users', $users, $url );
-		}
-log_entry($url,$url_array,$arg_array);
-return $orig;
-
+log_entry(0,$url);
+		#	I really think that fibbing on this is a bad idea, but the choice is yours
 		if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$arg_array['multisite_enabled'] = 0;
 			$url = add_query_arg( 'multisite_enabled', '0', $url );
 		}
-log_entry($url,$url_array,$arg_array);
+log_entry(0,$url);
 return $orig;
-
 		return $url;
 	}
-
-
-
 
 
 } # end of class Privacy_My_Way

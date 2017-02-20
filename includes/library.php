@@ -1,20 +1,5 @@
 <?php
 
-// Use bootstrap's clearfix
-if (!function_exists('tcc_apply_clearfix')) {
-  function tcc_apply_clearfix( $args ) {
-    $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0,'cnt'=>0);
-    $args = wp_parse_args($args,$defs);
-    if (empty($args['cnt'])) return;
-    extract($defs);
-    extract($args,EXTR_IF_EXISTS);
-    if ($lg && ($cnt%(intval((12/$lg)))==0)) echo "<div class='clearfix visible-lg-block'></div>";
-    if ($md && ($cnt%(intval((12/$md)))==0)) echo "<div class='clearfix visible-md-block'></div>";
-    if ($sm && ($cnt%(intval((12/$sm)))==0)) echo "<div class='clearfix visible-sm-block'></div>";
-    if ($xs && ($cnt%(intval((12/$xs)))==0)) echo "<div class='clearfix visible-xs-block'></div>";
-  }
-}
-
 if (!function_exists('tcc_bootstrap_css')) {
 	function tcc_bootstrap_css( $args ) {
 		$defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);

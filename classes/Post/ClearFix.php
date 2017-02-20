@@ -24,11 +24,11 @@ class TCC_Post_ClearFix {
 	}
 
 	public function initialize( $args ) {
-		$this->parse_args( $args );
 		if ( ! $this->active ) {
-			$this->count = 0;
+			$this->parse_args( $args );
+			$this->count  = 0;
+			$this->active = true;
 		}
-		$this->active = true;
 	}
 
 	public function div_class( $css = '' ) {
@@ -42,11 +42,13 @@ class TCC_Post_ClearFix {
 	}
 
 	public function apply() {
-		$this->count++;
-		if ( $this->lg && ( $this->count % ( intval( ( 12 / $this->lg ) ) ) === 0 ) ) echo "<div class='clearfix visible-lg-block'></div>";
-		if ( $this->md && ( $this->count % ( intval( ( 12 / $this->md ) ) ) === 0 ) ) echo "<div class='clearfix visible-md-block'></div>";
-		if ( $this->sm && ( $this->count % ( intval( ( 12 / $this->sm ) ) ) === 0 ) ) echo "<div class='clearfix visible-sm-block'></div>";
-		if ( $this->xs && ( $this->count % ( intval( ( 12 / $this->xs ) ) ) === 0 ) ) echo "<div class='clearfix visible-xs-block'></div>";
+		if ( $this->active ) {
+			$this->count++;
+			if ( $this->lg && ( $this->count % ( intval( ( 12 / $this->lg ) ) ) === 0 ) ) echo "<div class='clearfix visible-lg-block'></div>";
+			if ( $this->md && ( $this->count % ( intval( ( 12 / $this->md ) ) ) === 0 ) ) echo "<div class='clearfix visible-md-block'></div>";
+			if ( $this->sm && ( $this->count % ( intval( ( 12 / $this->sm ) ) ) === 0 ) ) echo "<div class='clearfix visible-sm-block'></div>";
+			if ( $this->xs && ( $this->count % ( intval( ( 12 / $this->xs ) ) ) === 0 ) ) echo "<div class='clearfix visible-xs-block'></div>";
+		}
 	}
 
 

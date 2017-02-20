@@ -41,14 +41,8 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 #				'show_in_rest'      => false,
 			);
 			register_setting( $this->group, $this->field_name, $args );
-#			$callback = ( is_array( $this->callback ) ) ? $this->callback : array( &$this, $this->callback );
 			add_settings_field( $this->field_name, $this->label(), $this->callback, $this->group );
 		}
-	}
-
-	public function input( $label = false ) {
-#log_entry('dump');
-		parent::input( $label );
 	}
 
 

@@ -22,8 +22,12 @@ if ( ! function_exists( 'tcc_before_posts_author' ) ) {
 
 if ( ! function_exists( 'tcc_start_author_loop' ) ) {
 	function tcc_start_author_loop() {
-		$args = array( 'lg' => 4, 'md' => 4, 'sm' => 6, 'xs' => 12 );
-		clearfix()->initialize( $args );
+		clearfix()->initialize( array(
+			'lg' => 4,
+			'md' => 4,
+			'sm' => 6,
+			'xs' => 12,
+		);
 	}
 	add_action( 'tcc_before_posts_author', 'tcc_start_author_loop', 20 );
 }

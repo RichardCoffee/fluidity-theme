@@ -207,6 +207,9 @@ class TCC_Options_Privacy {
 	private function get_theme_list() {
 		$theme_list = array();
 		foreach( $this->themes as $slug => $theme ) {
+			if ( strpos( 'twenty', $slug ) === 0 ) {
+				continue;  #  Do not filter wordpress themes
+			}
 			$title = '<a href="' . esc_attr( $theme->get( 'ThemeURI' ) ) . '" target="' . esc_attr( $slug ) . '">';
 			$title.= esc_html( $theme->get( 'Name' ) ) . '</a> by ';
 			$title.= '<a href="' . esc_attr( $theme->get( 'AuthorURI' ) ) . '" target="' . sanitize_title( $theme->get( 'Author' ) ) . '">';

@@ -27,15 +27,14 @@
 		is_ajax()
 		page_exists( $search='' )
 		sanitize_array( $array, $method = 'title' )
-		tcc_apply_clearfix( $args )
 		tcc_bootstrap_css( $args )
 		tcc_browser_body_class( $classes )
 		wp_menu_id_by_name( $name )
 
 			Header
 	==================================
-fluidity_social_icons()
-tcc_custom_css()
+		fluidity_social_icons()
+		tcc_custom_css()
 
 			Login
 	==================================
@@ -70,7 +69,7 @@ tcc_custom_css()
 		fluid_edit_post_link( $separator = ' ' )
 		fluid_list_comments( $comment, $args, $depth )
 		fluid_navigation( $taxonomy = '', $all_links = false )
-		+fluid_next_post_exists()
+		fluid_next_post_exists()
 		fluid_post_date( $complete = false )
 		fluid_post_separator( $slug )
 		fluid_postmetadata()
@@ -138,6 +137,25 @@ tcc_enqueue()
 fluidity_admin_enqueue()
 fluidity_bootstrap_backup()
 fluidity_register_fontawesome()
+		who_am_i( $pos=0 )
+
+contextual_static_front_page_section( $wp_customize )
+fluid_user_profile_link()
+single_search_result()
+fluid_browser_title( $title )
+fluidity_header_logo()
+fluidity_menubar_print_button()
+fluid_color_body_class( $classes )
+fluid_color_scheme()
+tcc_color_scheme( $location = '' )
+tcc_custom_colors()
+tcc_parallax()
+function tcc_editor_styles()
+tcc_post_revisions()
+tcc_enqueue()
+fluidity_admin_enqueue()
+fluidity_bootstrap_backup()
+fluidity_register_fontawesome()
 fluidity_register_color_scheme()
 fluidity_show_query( $args, $template, $slug='' )
 function microdata()
@@ -159,25 +177,6 @@ classes/microdata.php:94:  public function profile()  { $this->ProfilePage(); } 
 classes/microdata.php:95:  public function search()   { $this->SearchResultsPage(); }      // CreativeWork > WebPage > SearchResultsPage
 classes/microdata.php:96:  public function sidebar()  { $this->WPSideBar(); }              // CreativeWork > WebPage > WebPageElement > WPSideBar
 classes/microdata.php:98:  public function BlogPosting() { // CreativeWork > Blog > BlogPosting
-classes/microdata.php:102:  public function PostalAddress() { // descendant of many types - see itemtype link
-classes/microdata.php:115:  public function bloginfo($show,$filter='raw') {
-classes/microdata.php:122:  public function get_bloginfo($show,$filter='raw') {
-classes/microdata.php:129:  public function get_the_author($addlink=false) {
-classes/microdata.php:175:  public function comments_popup_link_attributes($attr) {
-classes/microdata.php:179:  public function comment_reply_link($link) {
-classes/microdata.php:185:  public function get_archives_link($link) {
-classes/microdata.php:193:  public function get_avatar($avatar) {
-classes/microdata.php:200:  public function get_comment_author_link($link) {
-classes/microdata.php:209:  public function get_comment_author_url_link($link) {
-classes/microdata.php:216:  public function get_post_time($time,$format,$gmt) {
-classes/microdata.php:229:  public function get_the_archive_description($descrip) {
-classes/microdata.php:234:  public function get_the_archive_title($title) {
-classes/microdata.php:244:  public function get_the_date($the_date,$format,$postID) {
-classes/microdata.php:252:  public function get_the_title($title,$id) {
-classes/microdata.php:260:  public function post_thumbnail_html($html) {
-classes/microdata.php:265:  public function single_term_title($title) {
-classes/microdata.php:271:  public function the_author_posts_link($link) {
-classes/microdata.php:278:  public function wp_get_attachment_image_attributes($attr,$attachment) {
 classes/microdata.php:283:  public function wp_get_attachment_link($link) {
 classes/microdata.php:291:  public function description($text) {
 classes/microdata.php:296:  public function email_format($email) {
