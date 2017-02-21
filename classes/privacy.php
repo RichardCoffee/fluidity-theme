@@ -23,9 +23,9 @@ class Privacy_My_Way {
 		#	These filters are multisite only
 		add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
 		add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
-		#	This filter has never gotten called in my tests.
+		#	This filter has never gotten called in my tests, but I am not running multisite so...
 		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
-		#	This seems to be the main workhorse
+		#	This seems to be the main workhorse, at least for single site installation
 		add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
 log_entry($this);
 	}
@@ -41,14 +41,14 @@ log_entry($this);
 	public function pre_site_option_blog_count( $count, $option, $network_id ) {
 		if ( $this->options['blogs'] === 'no' ) {
 			$count = 1;
-		} //*/
+		}
 		return $count;
 	}
 
 	public function pre_site_option_user_count( $count, $option, $network_id ) {
 		$privacy = $this->options['users'];
 		if ( $privacy ) {
-			#	if $count has a value, then use it because we're single site and this is being called from inside this class
+			#	if $count has a value, then use it.
 			$users = ($count) ? $count : get_user_count();
 			switch( $privacy ) {
 				case 'all':
@@ -61,7 +61,7 @@ log_entry($this);
 					$count = rand( 1, ( $users * 10 ) );
 				default:
 			}
-		} //*/
+		}
 		return $count;
 	}
 
@@ -153,7 +153,6 @@ log_entry($result);
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
-#log_entry('plugins:  list',$plugins);
 				if ( $this->options['plugins'] === 'none' ) {
 					$plugins = array();
 log_entry('plugins:  none',$plugins);
@@ -183,7 +182,6 @@ log_entry('plugins:  active',$plugins);
 						}
 					}
 					$plugins->active = $active;
-#log_entry('plugins:  filter',$plugin_filter,$plugins,$active);
 				}
 log_entry('plugins:  done',$plugins);
 				$args['body']['plugins'] = json_encode( $plugins );
@@ -214,12 +212,20 @@ log_entry('themes: active',$themes);
 					$theme_filter  = $this->options['theme_list'];
 					$active_backup = $themes->active;
 					foreach ( $theme_filter as $theme => $status ) {
+						#	Is theme still installed?
 						if ( isset( $themes->themes->$theme ) ) {
+							#	Is the theme being filtered?
 							if ( ( $status === 'no' ) ) {
 								unset( $themes->themes->$theme );
-								$active_backup = ( $active_backup === $theme ) ? false : $active_backup;
+								#	Is this the active theme?
+								$active_backup = ( $active_backup === $theme ) ? '' : $active_backup;
+							} else {
+								#	Should a new active theme be assigned?
+								$active_backup = ( $active_backup ) ? $active_backup : $theme;
 							}
-							$active_backup = ( $active_backup ) ? $active_backup : $theme;
+						} else {
+							#	Is this the active theme?
+							$active_backup = ( $active_backup === $theme ) ? '' : $active_backup;
 						}
 					}
 					$themes->active = $active_backup;
