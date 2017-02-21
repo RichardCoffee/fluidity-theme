@@ -207,6 +207,7 @@ class TCC_Options_Privacy {
 	private function get_theme_list() {
 		$theme_list = array();
 		foreach( $this->themes as $slug => $theme ) {
+log_entry($slug);
 			if ( strpos( 'twenty', $slug ) === 0 ) {
 				continue;  #  Do not filter wordpress themes
 			}
