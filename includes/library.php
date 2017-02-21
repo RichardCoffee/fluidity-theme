@@ -19,7 +19,9 @@ if ( ! function_exists( 'apply_attrs' ) ) {
 		$attrs = ' ';
 		foreach( $args as $attr => $value ) {
 			if ( empty( $value ) ) { continue; }
-			$attrs .= $attr . '="'. esc_attr( $value ) . '" ';
+			$sanitize = ( $attr === 'href' ) ? 'esc_url' : 'esc_attr';
+			$sanitize = ( $attr === 'src' )  ? 'esc_url' : $sanitize;
+			$attrs .= $attr . '="'. $sanitize( $value ) . '" ';
 		}
 		if ( $echo ) { echo $attrs; } else { return $attrs; }
 	}

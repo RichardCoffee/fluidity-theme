@@ -75,10 +75,13 @@ class TCC_Microdata {
     $this->microdata($name);
   }
 
-  public function microdata($type) {
-    if (method_exists($this,$type)) { $this->$type();
-    } else { echo "itemscope itemtype='http://schema.org/$type'"; }
-  }
+	public function microdata( $type ) {
+		if ( method_exists( $this, $type ) ) {
+			$this->$type();
+		} else {
+			echo 'itemscope itemtype="http://schema.org/' . esc_attr( $type ) . '"';
+		}
+	}
 
   public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
   public function address()  { $this->PostalAddress(); }          // descendant of many types - see itemtype link
@@ -98,11 +101,11 @@ class TCC_Microdata {
   public function sidebar()  { $this->WPSideBar(); }              // CreativeWork > WebPage > WebPageElement > WPSideBar
 
   public function BlogPosting() { // CreativeWork > Blog > BlogPosting
-    echo "itemprop='blogPost' itemscope itemtype='http://schema.org/BlogPosting'";
+    echo 'itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"';
   }
 
   public function PostalAddress() { // descendant of many types - see itemtype link
-    echo "itemprop='address' itemscope itemtype='http://schema.org/PostalAddress'";
+    echo 'itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"';
   }
 
 
@@ -114,12 +117,17 @@ class TCC_Microdata {
   *
   */
 
-  public function bloginfo($show,$filter='raw') {
-    if ($show=='url') { echo esc_url(home_url()); return; } // bloginfo('url') has been deprecated by WordPress
-    $string = get_bloginfo($show,$filter);
-    if ($show=='name') { $string = "<span itemprop='copyrightHolder'>$string</span>"; }
-    echo $string;
-  }
+	public function bloginfo( $show, $filter = 'raw' ) {
+		if ( $show === 'url' ) { // bloginfo('url') has been deprecated by WordPress
+			$string = esc_url( home_url('/' ) );
+		} else {
+			$string = esc_html( get_bloginfo( $show, $filter ) );
+			if ( $show === 'name' ) {
+				$string = '<span itemprop="copyrightHolder">' . esc_html( $string ) . '</span>';
+			}
+		}
+		echo $string;
+	}
 
   public function get_bloginfo($show,$filter='raw') {
     if ($show=='url') return esc_url(home_url()); // get_bloginfo('url') has been deprecated by WordPress

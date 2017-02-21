@@ -153,21 +153,18 @@ log_entry($result);
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
-log_entry('plugins:  list',$plugins);
+#log_entry('plugins:  list',$plugins);
 				if ( $this->options['plugins'] === 'none' ) {
 					$plugins = array();
 log_entry('plugins:  none',$plugins);
 				} else if ( $this->options['plugins'] === 'active' ) {
-					$active = new stdClass;
 					$installed = new stdClass;
-					$count  = 1;
 					foreach( $plugins->plugins as $plugin => $info ) {
-						if ( isset( $plugins->active->$plugin ) ) {
-							$active->$count = $plugin;
-							$count++;
+						if ( in_array( $plugin, (array)$plugins->active ) ) {
+							$installed->$plugin = $info;
 						}
 					}
-					$plugins->plugins = $active;
+					$plugins->plugins = $installed;
 log_entry('plugins:  active',$plugins);
 				} else if ( $this->options['plugins'] === 'filter' ) {
 					$plugin_filter = $this->options['plugin_list'];
@@ -186,7 +183,7 @@ log_entry('plugins:  active',$plugins);
 						}
 					}
 					$plugins->active = $active;
-log_entry('plugins:  filter',$plugin_filter,$plugins,$active);
+#log_entry('plugins:  filter',$plugin_filter,$plugins,$active);
 				}
 log_entry('plugins:  done',$plugins);
 				$args['body']['plugins'] = json_encode( $plugins );
@@ -202,24 +199,30 @@ log_entry('plugins:  done',$plugins);
 log_entry($url,$themes);
 				if ( $this->options['themes'] === 'none' ) {
 					$args['body']['themes'] = json_encode( array() );
-					$themes = array();
+					$themes = new stdClass;
 log_entry('themes: none',$themes);
 				} else if ( $this->options['themes'] === 'active' ) {
-					$active = new stdClass;
+					$installed = new stdClass;
 					foreach( $themes->themes as $theme => $info ) {
 						if ( isset( $themes->active->$theme ) ) {
-							$active->$theme = $info;
+							$installed->$theme = $info;
 						}
 					}
-					$themes->themes = $active;
+					$themes->themes = $installed;
 log_entry('themes: active',$themes);
 				} else if ( $this->options['themes'] === 'filter' ) {
-					$theme_filter = $this->options['theme_list'];
+					$theme_filter  = $this->options['theme_list'];
+					$active_backup = $themes->active;
 					foreach ( $theme_filter as $theme => $status ) {
-						if ( ( $status === 'no' ) && isset( $themes->themes->$theme ) ) {
-							unset( $themes->themes->$theme );
+						if ( isset( $themes->themes->$theme ) ) {
+							if ( ( $status === 'no' ) ) {
+								unset( $themes->themes->$theme );
+								$active_backup = ( $active_backup === $theme ) ? false : $active_backup;
+							}
+							$active_backup = ( $active_backup ) ? $active_backup : $theme;
 						}
 					}
+					$themes->active = $active_backup;
 log_entry('themes: filter',$theme_filter,$themes);
 				}
 log_entry($themes);
@@ -235,25 +238,23 @@ $orig = $url;
 		#$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
 		$url_array = parse_url( $url );
 		$arg_array = ( isset( $url_array['query'] ) ) ? wp_parse_args( $url_array['query'] ) : array();
-log_entry($url,$url_array,$arg_array);
+log_entry($url_array,$arg_array);
 		if ( ! is_multisite() ) {	#	If multisite then these have already been filtered
 			if ( isset( $arg_array['blogs'] ) ) {
 				$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
 				$url   = add_query_arg( 'blogs', $blogs, $url );
 			}
-log_entry(0,$url);
 			if ( isset( $arg_array['users'] ) ) {
 				$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
 				$url   = add_query_arg( 'users', $users, $url );
 			}
 		}
-log_entry(0,$url);
 		#	I really think that fibbing on this is a bad idea, but the choice is yours
 		if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$arg_array['multisite_enabled'] = 0;
 			$url = add_query_arg( 'multisite_enabled', '0', $url );
 		}
-log_entry(0,$url);
+log_entry(0,$orig,$url);
 return $orig;
 		return $url;
 	}

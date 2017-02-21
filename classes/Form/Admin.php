@@ -28,8 +28,7 @@ abstract class TCC_Form_Admin {
 
 	protected function __construct() {
 		$this->screen_type();
-		add_action( 'admin_init',         array( $this, 'load_form_page' ) );
-		add_action( 'customize_register', array( $this, 'customize_register' ) );
+		add_action( 'admin_init', array( $this, 'load_form_page' ) );
 		if ( defined( 'TCC_TAB' ) )                { $this->tab = TCC_TAB; }
 		if ( $trans = get_transient( 'TCC_TAB' ) ) { $this->tab = $trans; }
 	}
@@ -39,7 +38,7 @@ abstract class TCC_Form_Admin {
 		if ( ( $plugin_page === $this->slug ) || ( ( $refer = wp_get_referer() ) && ( strpos( $refer, $this->slug ) ) ) ) {
 			if ( isset( $_GET['tab'] ) )  $this->tab = sanitize_key( $_GET['tab'] );
 			if ( isset( $_POST['tab'] ) ) $this->tab = sanitize_key( $_POST['tab'] );
-			set_transient( 'TCC_TAB', $this->tab, DAY_IN_SECONDS );
+			set_transient( 'TCC_TAB', $this->tab, ( DAY_IN_SECONDS * 5 ) );
 			$this->form_text();
 			$this->form = $this->form_layout();
 			$this->check_tab();
@@ -49,13 +48,6 @@ abstract class TCC_Form_Admin {
 			$this->$func();
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
-	}
-
-	public function customize_register( $wp_customize ) {
-		$this->form_text = $this->form_text();
-		$this->form      = $this->form_layout();
-		$this->check_tab();
-		do_action( 'fluid-customizer', $wp_customize, $this );
 	}
 
 	public function enqueue_scripts() {
