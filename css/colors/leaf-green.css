@@ -1,5 +1,5 @@
 /*
- *  css/colors/green.css
+ *  css/colors/leaf-green.css
  *
  */
 .btn-fluidity,
@@ -186,6 +186,11 @@ ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li >
 blockquote,
 .content-fluidity {
   border-color: #2e913b;
+}
+
+code {
+  background-color: #FFFFFF;
+  color: #39b54a;
 }
 
 #fluid-footer {

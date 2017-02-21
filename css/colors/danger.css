@@ -190,6 +190,11 @@ blockquote,
   border-color: #d43f3a;
 }
 
+code {
+  background-color: #FFFFFF;
+  color: #d9534f;
+}
+
 #fluid-footer {
   background-color: #d9534f;
   color: #FFFFFF;

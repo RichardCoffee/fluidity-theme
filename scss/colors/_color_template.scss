@@ -103,6 +103,11 @@ blockquote,
 	border-color: color(bgHighlight);
 }
 
+code {
+	background-color: color(textcolor);
+	color: color(background);
+}
+
 #fluid-footer {
    background-color: color(background);
    color: color(textcolor);
