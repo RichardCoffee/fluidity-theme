@@ -21,11 +21,11 @@ Note:  this list is probably not accurate, check source for more
  tcc_navbar_signout           insert navbar html before signout button          tcc_login_form
 		tcc_page_parallax                inline stylesheet for pages using parallax
 		tcc_page_parallax_{$page}        inline stylesheet for specific page with parallax
-		tcc_{$page}_page_top             before <main> tag
-		tcc_{$page}_page_bottom          after </main> tag
-		tcc_{$page}_page_preposts        before post loop
-		tcc_{$page}_page_afterposts      after post loop
-		tcc_{$page}_page_noposts         if no posts found - never run, wordpress returns a 404 page instead
+		tcc_{$page}_top                  before <main> tag
+		tcc_{$page}_bottom               after </main> tag
+		tcc_{$page}_preposts             before post loop
+		tcc_{$page}_afterposts           after post loop
+		tcc_{$page}_noposts              if no posts found - never run, wordpress returns a 404 page instead
  tcc_pre_header               prior to display of header
  tcc_post_header              after display of header
 		tcc_post_parallax                inline stylesheet for posts using parallax
@@ -52,6 +52,7 @@ Note:  this list is probably not accurate, check source for more
 		tcc_copyright_name              site title displayed in copyright notice           tcc_copyright
 		tcc_google_fonts                list of google fonts we want to use                Typography::google_fonts
 		tcc_header_logo_class           css applied to header logo image                   fluidity_header_logo
+		tcc_header_logo_size            control size of logo image, default: medium        fluidity_header_logo
 		tcc_log_in_text                 text for login button                              tcc_login_form_defaults
 		tcc_login_form_id               id for login form div                              tcc_login_form_defaults
 		tcc_login_password              text for user password field                       tcc_login_form_defaults
