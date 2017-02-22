@@ -68,9 +68,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 						'itemprop' => 'url', // 'relatedLink',
 					); ?>
 					<a <?php apply_attrs( $attrs ); ?>><?php
-						$logo_id = get_theme_mod( 'custom-logo' );
-log_entry('logo id: '.$logo_id);
-log_entry( get_theme_mods() );
+						$logo_id = get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
 							$class = apply_filters( 'tcc_header_logo_class', array( 'img-responsive', "attachment-$size", 'hidden-xs' ) );
 							$size  = apply_filters( 'tcc_header_logo_size', 'medium' );
