@@ -30,43 +30,43 @@ class TCC_Options_Bootstrap {
 	}
 
 	protected function options_layout() {
-		$layout = array('default'=>true);
+		$layout = array( 'default' => true );
 		$layout['resets'] = array(
-			'default' => $this->get_bootstrap_defaults('reset'),
+			'default' => $this->get_bootstrap_defaults( 'reset' ),
 			'label'   => __( 'Reset/Dependencies', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
-			'source'  => $this->get_bootstrap_list('reset'),
+			'source'  => $this->get_bootstrap_list( 'reset' ),
 		); //*/
 		$layout['core'] = array(
-			'default' => $this->get_bootstrap_defaults('core'),
+			'default' => $this->get_bootstrap_defaults( 'core' ),
 			'label'   => __( 'Core CSS', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
-			'source'  => $this->get_bootstrap_list('core'),
+			'source'  => $this->get_bootstrap_list( 'core' ),
 		); //*/
 		$layout['components'] = array(
-			'default' => $this->get_bootstrap_defaults('components'),
+			'default' => $this->get_bootstrap_defaults( 'components' ),
 			'label'   => __( 'Components', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
-			'source'  => $this->get_bootstrap_list('components'),
+			'source'  => $this->get_bootstrap_list( 'components' ),
 		); //*/
 		$layout['javascript'] = array(
-			'default' => $this->get_bootstrap_defaults('javascript'),
+			'default' => $this->get_bootstrap_defaults( 'javascript', 'no' ),
 			'label'   => __( 'Javascript', 'tcc-fluid' ),
 			'text'    => __( 'Components with Javascript', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
-			'source'  => $this->get_bootstrap_list('javascript'),
+			'source'  => $this->get_bootstrap_list( 'javascript' ),
 		); //*/
 		$layout['utility'] = array(
-			'default' => $this->get_bootstrap_defaults('utilities'),
+			'default' => $this->get_bootstrap_defaults( 'utilities' ),
 			'label'   => __( 'Utilities', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
-			'source'  => $this->get_bootstrap_list('utilities'),
+			'source'  => $this->get_bootstrap_list( 'utilities' ),
 		); //*/
 		$layout = apply_filters( "tcc_{$this->base}_options_layout", $layout );
 		return $layout;
 	}
 
-	protected function get_bootstrap_defaults( $section ) {
+	protected function get_bootstrap_defaults( $section, $default = 'yes' ) {
 		$list   = $this->get_bootstrap_list( $section );
 		$return = tcc_bootstrap( $section );
 		if ( empty( $return ) ) {
@@ -75,7 +75,7 @@ class TCC_Options_Bootstrap {
 		if ( $list ) {
 			foreach( $list as $key => $text ) {
 				if ( ! isset( $return [ $key ] ) ) {
-					$return[ $key ] = 'no';
+					$return[ $key ] = $default;
 				}
 			}
 		}

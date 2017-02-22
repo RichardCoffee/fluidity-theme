@@ -153,6 +153,7 @@ log_entry($result);
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
+log_entry('plugins:  initial',$plugins);
 				if ( $this->options['plugins'] === 'none' ) {
 					$plugins = array();
 log_entry('plugins:  none',$plugins);
@@ -183,7 +184,7 @@ log_entry('plugins:  active',$plugins);
 					}
 					$plugins->active = $active;
 				}
-log_entry('plugins:  done',$plugins);
+log_entry('plugins:  ' . $this->options[plugin_l,$plugins);
 				$args['body']['plugins'] = json_encode( $plugins );
 			}
 		}
