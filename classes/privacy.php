@@ -184,7 +184,7 @@ log_entry('plugins:  active',$plugins);
 					}
 					$plugins->active = $active;
 				}
-log_entry('plugins:  ' . $this->options[plugin_l,$plugins);
+log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 				$args['body']['plugins'] = json_encode( $plugins );
 			}
 		}
