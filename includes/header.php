@@ -53,9 +53,9 @@ if (!function_exists('tcc_custom_css')) {
 }
 
 if ( ! function_exists( 'fluidity_header_logo' ) ) {
-	function fluidity_header_logo( $html, $blog_id ) {
+	function fluidity_header_logo( $html = '', $blog_id = 1 ) {
+		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  for backward compatibility
 		if ( ! is_customize_preview() ) {
-			$html = '';
 			ob_start(); ?>
 			<div class="pointer" itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
 #				if ( function_exists( 'jetpack_the_site_logo' ) ) {
@@ -95,7 +95,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 			</div><?php
 			$html = ob_get_clean();
 		}
-		return $html;
+		if ( $echo ) { echo $html; } else { return $html; }
 	}
 	add_filter( 'get_custom_logo', 'fluidity_header_logo', 20, 2 );
 }
