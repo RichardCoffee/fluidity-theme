@@ -57,7 +57,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 		if ( ! is_customize_preview() ) {
 			$html = '';
 			ob_start(); ?>
-			<div itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
+			<div class="pointer" itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
 #				if ( function_exists( 'jetpack_the_site_logo' ) ) {
 #					jetpack_the_site_logo();
 #				} else {
