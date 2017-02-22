@@ -200,7 +200,7 @@ log_entry($url,$themes);
 				if ( $this->options['themes'] === 'none' ) {
 					$args['body']['themes'] = json_encode( array() );
 					$themes = new stdClass;
-log_entry('themes: none',$themes);
+log_entry('themes: none');
 				} else if ( $this->options['themes'] === 'active' ) {
 					$installed = new stdClass;
 					foreach( $themes->themes as $theme => $info ) {
@@ -209,7 +209,7 @@ log_entry('themes: none',$themes);
 						}
 					}
 					$themes->themes = $installed;
-log_entry('themes: active',$themes);
+log_entry('themes: active');
 				} else if ( $this->options['themes'] === 'filter' ) {
 					$theme_filter  = $this->options['theme_list'];
 					$active_backup = $themes->active;
@@ -231,13 +231,12 @@ log_entry('themes: active',$themes);
 						}
 					}
 					$themes->active = $active_backup;
-log_entry('themes: filter',$theme_filter,$themes);
+log_entry('themes: filter');
 				}
 log_entry($themes);
 				$args['body']['themes'] = json_encode( $themes );
 			}
 		}
-log_entry('themes:  end');
 		return $args;
 	}
 
@@ -245,24 +244,27 @@ log_entry('themes:  end');
 $orig = $url;
 		#$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
 		$url_array = parse_url( $url );
-		$arg_array = ( isset( $url_array['query'] ) ) ? wp_parse_args( $url_array['query'] ) : array();
+		#	Do we need to filter?
+		if ( isset( $url_array['query'] ) ) {
+			$arg_array = wp_parse_args( $url_array['query'] );
 log_entry($url_array,$arg_array);
-		if ( ! is_multisite() ) {	#	If multisite then these have already been filtered
-			if ( isset( $arg_array['blogs'] ) ) {
-				$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
-				$url   = add_query_arg( 'blogs', $blogs, $url );
+			#	If multisite then these have already been filtered
+			if ( ! is_multisite() ) {
+				if ( isset( $arg_array['blogs'] ) ) {
+					$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
+					$url   = add_query_arg( 'blogs', $blogs, $url );
+				}
+				if ( isset( $arg_array['users'] ) ) {
+					$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
+					$url   = add_query_arg( 'users', $users, $url );
+				}
 			}
-			if ( isset( $arg_array['users'] ) ) {
-				$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
-				$url   = add_query_arg( 'users', $users, $url );
+			#	I really think that fibbing on this is a bad idea, but the choice is yours
+			if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
+				$url = add_query_arg( 'multisite_enabled', '0', $url );
 			}
-		}
-		#	I really think that fibbing on this is a bad idea, but the choice is yours
-		if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
-			$arg_array['multisite_enabled'] = 0;
-			$url = add_query_arg( 'multisite_enabled', '0', $url );
-		}
 log_entry(0,$orig,$url);
+		}
 return $orig;
 		return $url;
 	}
