@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  *  @brief This sets up the widget area sidebars.
  *

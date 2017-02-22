@@ -20,20 +20,22 @@ class Privacy_My_Way {
 
 	protected function __construct() {
 		$this->get_options();
-		#	These filters are multisite only
-		add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
-		add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
-		#	This filter has never gotten called in my tests, but I am not running multisite so...
-		add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
-		#	This seems to be the main workhorse, at least for single site installation
-		add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
+		if ( $this->options ) {  #  opt-in only
+			#	These filters are multisite only
+			add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
+			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
+			#	This filter has never gotten called in my tests, but I am not running multisite so...
+			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
+			#	This seems to be the main workhorse, at least for single site installations
+			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
 log_entry($this);
+		}
 	}
 
 	protected function get_options() {
 		$options = get_option( 'tcc_options_privacy' );
 		if ( ! $options ) {
-			// FIXME
+			// FIXME - get defaults from TCC_Options_Privacy
 		}
 		$this->options = $options;
 	}
@@ -153,19 +155,17 @@ log_entry($result);
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
+				$new_set = new stdClass;
 log_entry('plugins:  initial',$plugins);
 				if ( $this->options['plugins'] === 'none' ) {
-					$plugins = array();
-log_entry('plugins:  none',$plugins);
+					$plugins = $new_set;
 				} else if ( $this->options['plugins'] === 'active' ) {
-					$installed = new stdClass;
 					foreach( $plugins->plugins as $plugin => $info ) {
 						if ( in_array( $plugin, (array)$plugins->active ) ) {
-							$installed->$plugin = $info;
+							$new_set->$plugin = $info;
 						}
 					}
-					$plugins->plugins = $installed;
-log_entry('plugins:  active',$plugins);
+					$plugins->plugins = $new_set;
 				} else if ( $this->options['plugins'] === 'filter' ) {
 					$plugin_filter = $this->options['plugin_list'];
 					foreach ( $plugin_filter as $plugin => $status ) {
@@ -175,14 +175,15 @@ log_entry('plugins:  active',$plugins);
 							}
 						}
 					}
-					$active = new stdClass;
+					#	Rebuild active plugins object
 					$count  = 1;
-					foreach( $plugins->active as $key => $plugin ) {
-						if ( isset( $plugins->plugins->$key ) ) {
-							$active->$count = $key;
+					foreach( (array)$plugins->active as $key => $plugin ) {
+						if ( isset( $plugins->plugins->$plugin ) ) {
+							$new_set->$count = $plugin;
+							$count++;
 						}
 					}
-					$plugins->active = $active;
+					$plugins->active = $new_set;
 				}
 log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 				$args['body']['plugins'] = json_encode( $plugins );

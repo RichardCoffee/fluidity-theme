@@ -15,17 +15,22 @@ class TCC_Options_Privacy {
 		}
 		$this->plugins = get_plugins();
 		$this->themes  = wp_get_themes();
-		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->priority );
+		add_filter( 'fluidity_options_form_layout', array( $this, 'add_form_layout' ), $this->priority );
 	}
 
-	public function form_layout($form) {
-		$form[$this->base] = array(
+	public function add_form_layout( $form ) {
+		#	Add form to theme options screen
+		$form[ $this->base ] = $this->default_form_layout();
+		return $form;
+	}
+
+	public function default_form_layout() {
+		return array(
 			'describe' => array( $this, 'title_description' ),
 			'title'    => __( 'Privacy', 'tcc-fluid' ),
 			'option'   => 'tcc_options_' . $this->base,
 			'layout'   => $this->options_layout()
 		);
-		return $form;
 	}
 
 	public function title_description() {
@@ -43,10 +48,10 @@ class TCC_Options_Privacy {
 				'yes'  => __( "Let WordPress know your site's url.", 'tcc-fluid' ),
 				'no'   => __( 'Do not let them know where you are.', 'tcc-fluid' ),
 			),
-			'change'  => 'showhidePosi( this, ".privacy-blog-option", "yes" );',
-			'divcss'  => 'privacy-blog-active'
+			'divcss'  => 'privacy-blog-active',
 		); //*/
-#		if ( is_multisite() && is_main_site() ) {
+		if ( is_multisite() && is_main_site() ) {
+			$layout['blog']['change'] = 'showhidePosi( this, ".privacy-blog-option", "yes" );';
 			$layout['blogs'] = array(
 				'default' => 'yes',
 				'label'   => __( 'Multi-Site', 'tcc-fluid' ),
@@ -68,7 +73,7 @@ class TCC_Options_Privacy {
 				),
 				'divcss'  => 'privacy-blog-option privacy-multi-option',
 			); //*/
-#		}
+		}
 		$layout['users'] = array(
 			'default' => 'all',
 			'label'   => __( 'Users', 'tcc-fluid' ),
