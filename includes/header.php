@@ -70,7 +70,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 					<a <?php apply_attrs( $attrs ); ?>><?php
 						$logo_id = get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
-							$size  = apply_filters( 'tcc_header_logo_size', 'medium' );
+							$size  = apply_filters( 'tcc_header_logo_size', 'thumbnail' );
 							$class = apply_filters( 'tcc_header_logo_class', array( 'img-responsive', "attachment-$size", 'hidden-xs' ) );
 							$attrs = array(
 								'class'     => implode( ' ', $class ),
