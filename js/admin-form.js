@@ -76,18 +76,16 @@ function showhidePosi(el,target,show) {
 }
 
 function showhideAdminElements(el,target,show) {
-if (el) {
+	if (el) {
 console.log(el);
-	var state = jQuery(el).find('input:radio:checked').val();
-
+		var state = jQuery(el).find('input:radio:checked').val();
 console.log( state+' - '+show );
-
-  if ( state === show) {
-    jQuery(target).parent().parent().show(2000); //removeClass('hidden');
-  } else {
-    jQuery(target).parent().parent().hide(2000); //addClass('hidden');
-  }
-}
+		if ( state === show) {
+			jQuery(target).parent().parent().show(2000); //removeClass('hidden');
+		} else {
+		jQuery(target).parent().parent().hide(2000); //addClass('hidden');
+		}
+	}
 }
 
 // Browser compatibility function taken from http://stackoverflow.com/questions/6548748/portability-of-nextelementsibling-nextsibling

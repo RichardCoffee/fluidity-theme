@@ -91,7 +91,9 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 				</a><?php
 #			} ?>
 		</div><?php
-		return ob_get_clean();
+		$html = ob_get_clean();
+log_entry($html);
+		return $html;
 	}
 	add_filter( 'get_custom_logo', 'fluidity_header_logo' );
 }
