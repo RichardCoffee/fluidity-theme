@@ -13,9 +13,6 @@ class Privacy_My_Way {
 
 	protected $options;
 
-	private $blog_count_done = false; # debug symbol
-	private $user_count_done = false; # debug symbol
-
 	use TCC_Trait_Singleton;
 
 	protected function __construct() {
@@ -41,7 +38,7 @@ log_entry($this);
 	}
 
 	public function pre_site_option_blog_count( $count, $option, $network_id ) {
-		if ( $this->options['blogs'] === 'no' ) {
+		if ( isset( $this->options['blogs'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$count = 1;
 		}
 		return $count;
@@ -68,17 +65,14 @@ log_entry($this);
 	}
 
 	public function http_request_args( $args, $url ) {
+log_entry($url);
 		#	only act on requests to api.wordpress.org
 		if ( stripos( $url, '://api.wordpress.org/' ) !== false ) {
 			return $args;
 		}
-#		$args = $this->strip_site_url( $args );
-		$temp = $this->strip_site_url( $args );
-#| |  $args = $this->filter_plugins( $url, $args );
-		$temp = $this->filter_plugins( $url, $temp );
-#		$args = $this->filter_themes( $url, $args );
-		$temp = $this->filter_themes( $url, $temp );
-log_entry($url,$temp);
+		$args = $this->strip_site_url( $args );
+		$args = $this->filter_plugins( $url, $args );
+		$args = $this->filter_themes( $url, $args );
 		return $args;
 	}
 
@@ -87,6 +81,7 @@ log_entry($url,$temp);
 		if ( $preempt || isset( $args['_privacy_filter'] ) ) {
 			return $preempt;
 		}
+log_entry($url);
 		#	only act on requests to api.wordpress.org
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
@@ -98,16 +93,20 @@ log_entry($url,$temp);
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
-#		$url  = $this->filter_url( $url );
-		$temp = $this->filter_url( $url );
-log_entry($url,$temp);
+		$url  = $this->filter_url( $url );
 		#	make request
 		$args['_privacy_filter'] = true;
 log_entry($url,$args);
 return $preempt;
-		$result = wp_remote_request( $url, $args );
-log_entry($result);
-		return $result;
+		$response = wp_remote_request( $url, $args );
+		if ( is_wp_error( $response ) ) {
+			log_entry( $response );
+		} else {
+			$body = trim( wp_remote_retrieve_body( $response ) );
+			$body = json_decode( $body, true );
+			log_entry( $body );
+		}
+		return $response;
 	}
 
 /**
@@ -143,7 +142,7 @@ log_entry($result);
 				log_entry( 'headers:Referer has been deleted.' );
 			}
 		}
-		if ( ( $this->options['install'] === 'no' ) ) {
+		if ( isset( $this->options['install'] ) && ( $this->options['install'] === 'no' ) ) {
 			if ( isset( $args['headers']['wp_install'] ) ) {
 				unset( $args['headers']['wp_install'] );
 			}
@@ -186,7 +185,7 @@ log_entry('plugins:  initial',$plugins);
 					$plugins->active = $new_set;
 				}
 log_entry('plugins:  ' . $this->options['plugins'],$plugins);
-				$args['body']['plugins'] = json_encode( $plugins );
+				$args['body']['plugins'] = wp_json_encode( $plugins );
 			}
 		}
 		return $args;
@@ -197,19 +196,23 @@ log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 			if ( ! empty( $args['body']['themes'] ) ) {
 				$themes = json_decode( $args['body']['themes'] );
 log_entry($url,$themes);
+				#	Report no themes installed
 				if ( $this->options['themes'] === 'none' ) {
-					$args['body']['themes'] = json_encode( array() );
 					$themes = new stdClass;
-log_entry('themes: none');
+					$themes->active = '';
+					$themes->themes = new stdClass;
+				#	Report only active theme, plus parent if active is child
 				} else if ( $this->options['themes'] === 'active' ) {
 					$installed = new stdClass;
-					foreach( $themes->themes as $theme => $info ) {
-						if ( isset( $themes->active->$theme ) ) {
-							$installed->$theme = $info;
-						}
+					$active    = $themes->active;
+					$installed->$active = $themes->themes->$active;
+					#	Check for child theme
+					if ( $installed->$active->Template !== $installed->$active->Stylesheet ) {
+						$parent = $installed->$active->Template;
+						$installed->$parent = $themes->themes->$parent;
 					}
 					$themes->themes = $installed;
-log_entry('themes: active');
+				#	Filter themes
 				} else if ( $this->options['themes'] === 'filter' ) {
 					$theme_filter  = $this->options['theme_list'];
 					$active_backup = $themes->active;
@@ -231,10 +234,9 @@ log_entry('themes: active');
 						}
 					}
 					$themes->active = $active_backup;
-log_entry('themes: filter');
 				}
-log_entry($themes);
-				$args['body']['themes'] = json_encode( $themes );
+log_entry('themes:  '.$this->options['themes'],$themes);
+				$args['body']['themes'] = wp_json_encode( $themes );
 			}
 		}
 		return $args;
@@ -259,7 +261,7 @@ log_entry($url_array,$arg_array);
 					$url   = add_query_arg( 'users', $users, $url );
 				}
 			}
-			#	I really think that fibbing on this is a bad idea, but the choice is yours
+			#	I really think that fibbing on this is a bad idea, but I am quite definitely pro-choice.
 			if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 				$url = add_query_arg( 'multisite_enabled', '0', $url );
 			}

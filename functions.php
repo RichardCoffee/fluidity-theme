@@ -160,3 +160,9 @@ function themeslug_customize_register( $wp_customize ) {
   log_entry( $wp_customize );
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
+
+function tcc_core_version_check_locale( $locale ) {
+log_entry('doing version check - core_version_check_locale');
+	return $locale;
+}
+add_filter( 'core_version_check_locale', 'tcc_core_version_check_locale' );

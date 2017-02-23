@@ -80,7 +80,7 @@ class TCC_Options_Privacy {
 			'render'  => 'radio',
 			'source'  => array(
 				'all'  => __( 'Accurately report to WordPress how many users you have.', 'tcc-fluid' ),
-				'some' => __( 'Only let WordPress know that you have some users. ( actual users divided by 10 )', 'tcc-fluid' ),
+				'some' => __( 'Only let WordPress know that you have some users.', 'tcc-fluid' ),
 				'one'  => __( 'Tell WordPress that you are the only user.', 'tcc-fluid' ),
 				'many' => __( 'Just generate some random number to give WordPress.', 'tcc-fluid' ),
 			),
