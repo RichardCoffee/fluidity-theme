@@ -124,9 +124,10 @@ class TCC_Options_Privacy {
 		$layout['theme_list'] = array(
 			'default' => $this->get_theme_defaults( 'yes' ),
 			'preset'  => 'yes',
-			'label'   => __( 'Theme List', 'tcc-fluid' ),
+			'label'   => __( 'Theme List', 'tcc-privacy' ),
 			'text'    => $warning,
 			'textcss' => 'red', // FIXME: bad css
+			'help'    => __( 'This list does not filter default WordPress themes.  If WordPress themes are installed, it will report them.', 'tcc-privacy' ),
 			'render'  => 'radio_multiple',
 			'titles'  => array(
 				__( 'On', 'tcc-fluid' ),

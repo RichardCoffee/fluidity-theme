@@ -1,13 +1,13 @@
 // js/basic-form.js
 
 jQuery(document).ready(function() {
-//  showhideAdminElements(document.querySelector('.tcc-loca'),'.tcc-wp_posi','dashboard');
-  showhideAdminElements( document.querySelector( '.social-option-active' ),  '.social-option-icon',    'yes');
-  showhideAdminElements( document.querySelector( '.agent-role-active' ),     '.agent-role-setting',    'agents');
-  showhideAdminElements( document.querySelector( '.privacy-blog-active' ),   '.privacy-blog-option',   'yes');
-  showhideAdminElements( document.querySelector( '.privacy-multi-active' ),  '.privacy-multi-option',  'filter');
-  showhideAdminElements( document.querySelector( '.privacy-plugin-active' ), '.privacy-plugin-filter', 'filter');
-  showhideAdminElements( document.querySelector( '.privacy-theme-active' ),  '.privacy-theme-filter',  'filter');
+//  showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
+  showhideAdminElements( '.social-option-active',  '.social-option-icon',    'yes');
+  showhideAdminElements( '.agent-role-active',     '.agent-role-setting',    'agents');
+  showhideAdminElements( '.privacy-blog-active',   '.privacy-blog-option',   'yes');
+  showhideAdminElements( '.privacy-multi-active',  '.privacy-multi-option',  'filter');
+  showhideAdminElements( '.privacy-plugin-active', '.privacy-plugin-filter', 'filter');
+  showhideAdminElements( '.privacy-theme-active',  '.privacy-theme-filter',  'filter');
   showhideElements(jQuery('.showhide'));
   jQuery('.form-colorpicker' ).wpColorPicker();
   jQuery('.form-image'       ).click(function(e) { imageUploader(this,e); });
@@ -19,7 +19,7 @@ function showhideElements(els) {
     var target = jQuery(el).attr('data-item');
     var show   = jQuery(el).attr('data-show');
     if (target && show) {
-      if (jQuery(el).find('input:radio:checked').val()==show) {
+      if (jQuery(el).find('input:radio:checked').val()===show) {
         jQuery(target).parent().parent().show(); //removeClass('hidden');
       } else {
         jQuery(target).parent().parent().hide(); //addClass('hidden');
@@ -75,15 +75,20 @@ function showhidePosi(el,target,show) {
   }
 }
 
-function showhideAdminElements(el,target,show) {
-	if (el) {
+function showhideAdminElements( origin, target, show ) {
+	var el = document.querySelector( origin );
 console.log(el);
-		var state = jQuery(el).find('input:radio:checked').val();
+	if ( el ) {
+		var radio = jQuery( el ).find( 'input:radio:checked' );
+console.log(radio);
+		if ( radio ) {
+			var state = jQuery( radio ).val();
 console.log( state+' - '+show );
-		if ( state === show) {
-			jQuery(target).parent().parent().show(2000); //removeClass('hidden');
-		} else {
-		jQuery(target).parent().parent().hide(2000); //addClass('hidden');
+			if ( state === show ) {
+				jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
+			} else {
+				jQuery( target ).parent().parent().hide( 2000 ); //addClass('hidden');
+			}
 		}
 	}
 }
