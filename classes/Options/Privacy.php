@@ -96,7 +96,7 @@ class TCC_Options_Privacy {
 				'none'   => __( 'Do not let them know about your plugins.', 'tcc-fluid' ),
 			),
 			'change'    => 'showhidePosi( this, ".privacy-plugin-filter", "filter" );',
-			'divcss'    => 'privacy-plugin-action',
+			'divcss'    => 'privacy-plugin-active',
 		); //*/
 		$layout['plugin_list'] = array(
 			'default' => $this->get_plugin_defaults( 'yes' ),
@@ -119,7 +119,7 @@ class TCC_Options_Privacy {
 				'none'   => __( 'Do not let them know about your themes.', 'tcc-fluid' ),
 			),
 			'change'  => 'showhidePosi(this,".privacy-theme-filter","filter");',
-			'divcss'  => 'privacy-theme-action',
+			'divcss'  => 'privacy-theme-active',
 		); //*/
 		$layout['theme_list'] = array(
 			'default' => $this->get_theme_defaults( 'yes' ),
