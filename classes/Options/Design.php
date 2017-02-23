@@ -29,14 +29,14 @@ class TCC_Options_Design {
   }
 
   protected function options_layout() {
-    $layout = array('default'=>true);
+    $layout = array('default'=>true); /*
     $layout['logo']   = array('default' => '',
                               'label'   => __('Theme Logo','tcc-fluid'),
                               'render'  => 'image',
                               'divcss'  => 'upload-img',
                               'media'   => array('title'  => __('Assign/Upload Theme Logo','tcc-fluid'),
                                                  'button' => __('Assign Logo', 'tcc-fluid'),
-                                                 'delete' => __('Remove Logo', 'tcc-fluid')));
+                                                 'delete' => __('Remove Logo', 'tcc-fluid'))); //*/
     $layout['paral']  = array('default' => 'no',
                               'label'   => __('Parallax','tcc-fluid'),
                               'text'    => __("Do you want to use the parallax effect for a page's featured image?",'tcc-fluid'),
