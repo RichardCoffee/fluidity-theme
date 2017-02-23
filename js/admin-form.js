@@ -76,6 +76,7 @@ function showhidePosi(el,target,show) {
 }
 
 function showhideAdminElements( origin, target, show ) {
+console.log( origin+' : '+target+' : '+show);
 	var el = document.querySelector( origin );
 console.log(el);
 	if ( el ) {
