@@ -40,25 +40,25 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude  = apply_filters( 'fluid_navigation_exclude',  array() );
 		$taxonomy = apply_filters( 'fluid_navigation_taxonomy', $taxonomy );
-log_entry($taxonomy,$all_links,get_the_category() );
+#log_entry($taxonomy,$all_links,get_the_category() );
 		if ( $taxonomy && $all_links ) {
 			$prev_tax = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
 			$next_tax = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
 			$prev_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
 			$next_all = get_permalink( get_adjacent_post( false, $exclude, true ) );
 			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) { $taxonomy = ''; }
-log_entry(
+/*log_entry(
 	"    taxonomy: $taxonomy",
-	"previous tax: $prevt",
-	"previous all: $prevp",
-	"    next tax: $nextt",
-	"    next all: $nextp"
-);
+	"previous tax: $prev_tax",
+	"previous all: $prev_all",
+	"    next tax: $next_tax",
+	"    next all: $next_all"
+); //*/
 		} ?>
 		<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
 		if ( $taxonomy ) {
-log_entry(0,get_the_category());
-log_entry(0,'taxonomy links');
+#log_entry(0,get_the_category());
+#log_entry(0,'taxonomy links');
 			$tax_obj = get_taxonomy( $taxonomy );
 			$older_tooltip = sprintf( _x( 'Older Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name );
 			$newer_tooltip = sprintf( _x( 'Newer Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name ); ?>
@@ -70,12 +70,12 @@ log_entry(0,'taxonomy links');
 					<ul class="pager pager-category">
 						<li class="previous btn-fluidity" title="<?php e_esc_attr( $older_tooltip ); ?>">
 							<?php previous_post_link( '%link', $left, true, $exclude, $taxonomy );
-log_entry( '%link', $left, true, $exclude, $taxonomy );
+#log_entry( '%link', $left, true, $exclude, $taxonomy );
  ?>
 						</li>
 						<li class="next btn-fluidity" title="<?php e_esc_attr( $newer_tooltip ); ?>">
 							<?php next_post_link( '%link', $right, true, $exclude, $taxonomy );
-log_entry( '%link', $right, true, $exclude, $taxonomy );
+#log_entry( '%link', $right, true, $exclude, $taxonomy );
  ?>
 						</li>
 					</ul>
@@ -86,8 +86,8 @@ log_entry( '%link', $right, true, $exclude, $taxonomy );
 			<div class="post-link-separator post-link-separator-middle"></div><?php
 		}
 		if ( ! $taxonomy || $all_links ) {
-log_entry(0,get_the_category());
-log_entry(0,'all links');
+#log_entry(0,get_the_category());
+#log_entry(0,'all links');
  ?>
 			<nav class="noprint" aria-label="...">
 				<h2 class="screen-reader-text">
@@ -107,7 +107,7 @@ log_entry(0,'all links');
 		} ?>
 		<div class="post-link-separator post-link-separator-bottom"></div>
 		<p> </p><?php
-log_entry('stack');
+#log_entry('stack');
 	}
 }
 
