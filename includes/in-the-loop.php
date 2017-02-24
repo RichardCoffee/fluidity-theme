@@ -34,18 +34,18 @@ if (!function_exists('fluid_edit_post_link')) {
   }
 }
 
-if (!function_exists('fluid_navigation')) {
-	function fluid_navigation( $taxonomy='', $all_links=false) {
+if ( ! function_exists( 'fluid_navigation' ) ) {
+	function fluid_navigation( $taxonomy = '', $all_links = false ) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
-		$exclude  = '';
+		$exclude = apply_filter( 'fluid_navigation_links_exclude', '' );
 log_entry($taxonomy,$all_links);
-		if ($taxonomy && $all_links) {
-			$prevt = get_permalink(get_adjacent_post(true,'',false));
-			$nextt = get_permalink(get_adjacent_post(true,'',true));
-			$prevp = get_permalink(get_adjacent_post(false,'',false));
-			$nextp = get_permalink(get_adjacent_post(false,'',true));
-			if ($prevt===$prevp && $nextt===$nextp) { $taxonomy = ''; }
+		if ( $taxonomy && $all_links ) {
+			$prevt = get_permalink( get_adjacent_post( true,  '', false, $taxonomy ) );
+			$nextt = get_permalink( get_adjacent_post( true,  '', true,  $taxonomy ) );
+			$prevp = get_permalink( get_adjacent_post( false, '', false ) );
+			$nextp = get_permalink( get_adjacent_post( false, '', true ) );
+			if ( ( $prevt === $prevp ) && ( $nextt === $nextp ) ) { $taxonomy = ''; }
 log_entry(
 	"    taxonomy: $taxonomy",
 	"previous tax: $prevt",
@@ -55,7 +55,7 @@ log_entry(
 );
 		} ?>
 		<div class="post-link-separator post-link-separator-top"></div><?php
-		if ($taxonomy) {
+		if ( $taxonomy ) {
 log_entry(0,'taxonomy links');
 			$tax_obj = get_taxonomy( $taxonomy );
 			$older_tooltip = sprintf( _x( 'Older Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name );
@@ -67,19 +67,23 @@ log_entry(0,'taxonomy links');
 				<div class="row">
 					<ul class="pager pager-category">
 						<li class="previous btn-fluidity" title="<?php e_esc_attr( $older_tooltip ); ?>">
-							<?php previous_post_link('%link',$left,true,$exclude,$taxonomy); ?>
+							<?php previous_post_link( '%link', $left, true, $exclude, $taxonomy );
+log_entry( '%link', $left, true, $exclude, $taxonomy );
+ ?>
 						</li>
 						<li class="next btn-fluidity" title="<?php e_esc_attr( $newer_tooltip ); ?>">
-							<?php next_post_link('%link',$right,true,$exclude,$taxonomy); ?>
+							<?php next_post_link( '%link', $right, true, $exclude, $taxonomy );
+log_entry( '%link', $right, true, $exclude, $taxonomy );
+ ?>
 						</li>
 					</ul>
 				</div>
 			</nav><?php
 		}
-		if ($taxonomy && $all_links) { ?>
+		if ( $taxonomy && $all_links ) { ?>
 			<div class="post-link-separator post-link-separator-middle"></div><?php
 		}
-		if (!$taxonomy || $all_links) {
+		if ( ! $taxonomy || $all_links ) {
 log_entry(0,'all links');
  ?>
 			<nav class="noprint" aria-label="...">
@@ -87,12 +91,12 @@ log_entry(0,'all links');
 					<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
 				</h2>
 				<div class="row">
-					<ul class="pager">
-						<li class="previous btn-fluidity" title="<?php esc_html_e('Older Posts','tcc-fluid'); ?>">
-							<?php previous_post_link('%link',$left); ?>
+					<ul class="pager pager-all">
+						<li class="previous btn-fluidity" title="<?php esc_html_e( 'Older Posts', 'tcc-fluid' ); ?>">
+							<?php previous_post_link( '%link', $left ); ?>
 						</li>
-						<li class="next btn-fluidity" title="<?php esc_html_e('Newer Posts','tcc-fluid'); ?>">
-							<?php next_post_link('%link',$right); ?>
+						<li class="next btn-fluidity" title="<?php esc_html_e( 'Newer Posts', 'tcc-fluid' ); ?>">
+							<?php next_post_link( '%link', $right ); ?>
 						</li>
 					</ul>
 				</div>
