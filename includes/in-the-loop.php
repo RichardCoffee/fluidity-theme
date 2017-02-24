@@ -38,7 +38,7 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 	function fluid_navigation( $taxonomy = '', $all_links = false ) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
-		$exclude = apply_filters( 'fluid_navigation_links_exclude', array() );
+		$exclude = apply_filters( 'fluid_navigation_exclude', array() );
 log_entry($taxonomy,$all_links,get_the_category() );
 		if ( $taxonomy && $all_links ) {
 			$prevt = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
@@ -56,6 +56,7 @@ log_entry(
 		} ?>
 		<div class="post-link-separator post-link-separator-top"></div><?php
 		if ( $taxonomy ) {
+log_entry(0,get_the_category());
 log_entry(0,'taxonomy links');
 			$tax_obj = get_taxonomy( $taxonomy );
 			$older_tooltip = sprintf( _x( 'Older Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name );
@@ -84,6 +85,7 @@ log_entry( '%link', $right, true, $exclude, $taxonomy );
 			<div class="post-link-separator post-link-separator-middle"></div><?php
 		}
 		if ( ! $taxonomy || $all_links ) {
+log_entry(0,get_the_category());
 log_entry(0,'all links');
  ?>
 			<nav class="noprint" aria-label="...">
