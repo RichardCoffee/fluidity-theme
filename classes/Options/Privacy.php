@@ -38,7 +38,7 @@ class TCC_Options_Privacy {
 	}
 
 	public function options_layout() {
-		$warning = __( '*** Turning any of these off means you will not be notified of upgrades! ***', 'tcc-fluid' );
+		$warning = _x( '*** Turning off a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
 		$layout  = array( 'default' => true );
 		$layout['blog'] = array(
 			'default' => 'yes',
@@ -102,7 +102,7 @@ class TCC_Options_Privacy {
 			'default' => $this->get_plugin_defaults( 'yes' ),
 			'preset'  => 'yes',
 			'label'   => __( 'Plugin List', 'tcc-fluid' ),
-			'text'    => $warning,
+			'text'    => sprintf( $warning, __( 'plugin', 'tcc_fluid' ) );
 			'textcss' => 'red', // FIXME: bad css
 			'render'  => 'radio_multiple',
 			'source'  => $this->get_plugin_list(),
@@ -125,7 +125,7 @@ class TCC_Options_Privacy {
 			'default' => $this->get_theme_defaults( 'yes' ),
 			'preset'  => 'yes',
 			'label'   => __( 'Theme List', 'tcc-privacy' ),
-			'text'    => $warning,
+			'text'    => sprintf( $warning, __( 'theme', 'tcc_fluid' ) );
 			'textcss' => 'red', // FIXME: bad css
 			'help'    => __( 'This list does not filter default WordPress themes.  If WordPress themes are installed, it will report them.', 'tcc-privacy' ),
 			'render'  => 'radio_multiple',
