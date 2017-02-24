@@ -19,10 +19,10 @@ class Privacy_My_Way {
 		$this->get_options();
 		if ( $this->options ) {  #  opt-in only
 			#	These first two filters are multisite only
-			add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
-			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
-			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
-			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
+			add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ), 10, 3 );
+			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ), 10, 3 );
+			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),            2, 3 );
+			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),          11, 2 );
 log_entry($this);
 		}
 	}
@@ -94,7 +94,7 @@ log_entry($url);
 		$args = $this->filter_themes( $url, $args );
 		#	make request
 		$args['_privacy_filter'] = true;
-log_entry($url,$args);
+log_entry($url,$args,$preempt);
 return $preempt;
 		$response = wp_remote_request( $url, $args );
 		if ( is_wp_error( $response ) ) {
@@ -102,7 +102,7 @@ return $preempt;
 		} else {
 			$body = trim( wp_remote_retrieve_body( $response ) );
 			$body = json_decode( $body, true );
-			log_entry( $body );
+			log_entry( $response, $body );
 		}
 		return $response;
 	}
