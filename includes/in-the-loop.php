@@ -107,7 +107,7 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 		} ?>
 		<div class="post-link-separator post-link-separator-bottom"></div>
 		<p> </p><?php
-#log_entry('stack');
+log_entry('stack','dump');
 	}
 }
 
