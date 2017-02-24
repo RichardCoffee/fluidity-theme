@@ -18,13 +18,11 @@ class Privacy_My_Way {
 	protected function __construct() {
 		$this->get_options();
 		if ( $this->options ) {  #  opt-in only
-			#	These filters are multisite only
+			#	These first two filters are multisite only
 			add_filter( 'pre_site_option_blog_count', array( $this, 'pre_site_option_blog_count' ),     10, 3 );
 			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ),     10, 3 );
-			#	This filter has never gotten called in my tests, but I am not running multisite so...
-			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
-			#	This seems to be the main workhorse, at least for single site installations
 			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),                2, 3 );
+			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),              11, 2 );
 log_entry($this);
 		}
 	}
@@ -66,6 +64,8 @@ log_entry($this);
 
 	public function http_request_args( $args, $url ) {
 log_entry($url);
+$test = stripos( $url, '://api.wordpress.org/' );
+log_entry( 'str pos = ' . $test );
 		#	only act on requests to api.wordpress.org
 		if ( stripos( $url, '://api.wordpress.org/' ) !== false ) {
 			return $args;
@@ -73,6 +73,7 @@ log_entry($url);
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
+log_entry($args);
 		return $args;
 	}
 
@@ -90,10 +91,10 @@ log_entry($url);
 			) {
 			return $preempt;
 		}
+		$url  = $this->filter_url( $url );
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
-		$url  = $this->filter_url( $url );
 		#	make request
 		$args['_privacy_filter'] = true;
 log_entry($url,$args);
@@ -155,7 +156,7 @@ return $preempt;
 			if ( ! empty( $args['body']['plugins'] ) ) {
 				$plugins = json_decode( $args['body']['plugins'] );
 				$new_set = new stdClass;
-log_entry('plugins:  initial',$plugins);
+#log_entry('plugins:  initial',$plugins);
 				if ( $this->options['plugins'] === 'none' ) {
 					$plugins = $new_set;
 				} else if ( $this->options['plugins'] === 'active' ) {
