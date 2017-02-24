@@ -38,7 +38,8 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 	function fluid_navigation( $taxonomy = '', $all_links = false ) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
-		$exclude = apply_filters( 'fluid_navigation_exclude', array() );
+		$exclude  = apply_filters( 'fluid_navigation_exclude',  array() );
+		$taxonomy = apply_filters( 'fluid_navigation_taxonomy', $taxonomy );
 log_entry($taxonomy,$all_links,get_the_category() );
 		if ( $taxonomy && $all_links ) {
 			$prevt = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );

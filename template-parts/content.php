@@ -31,7 +31,10 @@ who_am_i(); ?>
 	</div><?php
 
 	if ( is_single() ) {
-		fluid_navigation( 'category', true );
+		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
+log_entry('before fluid_navigation');
+		fluid_navigation( $taxonomy, true );
+log_entry('after fluid_navigation');
 		fluid_postmetadata();
 	}
 

@@ -39,6 +39,8 @@ Note:  this list is probably not accurate, check source for more
 	========================          ==============================================    ========================
 		fluid_container_type            control bootstrap container class                  container_type
 		fluid_{$page}_container_type    as above, only on specified page/section           container_type
+		fluid_navigation_exclude        control what terms are excluded from post links    fluid_navigation
+		fluid_navigation_taxonomy       What taxonomy should be used for taxonomy links    fluid_navigation
 		fluid_post_date_sprintf         string used to format the post date                fluid_post_date
 		fluidity_options_form_layout    array that displays the theme options              TCC_Options_Fluidity->form_layout
 		get_title_class                 div css for page title                             get_title_class, used in tcc_page_title
