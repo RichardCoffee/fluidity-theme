@@ -39,6 +39,7 @@ if (!function_exists('fluid_navigation')) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude  = '';
+log_entry($taxonomy,$all_links);
 		if ($taxonomy && $all_links) {
 			$prevt = get_permalink(get_adjacent_post(true,'',false));
 			$nextt = get_permalink(get_adjacent_post(true,'',true));
