@@ -46,6 +46,7 @@ log_entry($taxonomy,$all_links);
 			$prevp = get_permalink(get_adjacent_post(false,'',false));
 			$nextp = get_permalink(get_adjacent_post(false,'',true));
 			if ($prevt===$prevp && $nextt===$nextp) { $taxonomy = ''; }
+log_entry($prevt,$next,$prevp,$nextp);
 		} ?>
 		<div class="post_link_separator post_link_separator_top"></div><?php
 		if ($taxonomy) {
