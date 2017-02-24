@@ -38,11 +38,11 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 	function fluid_navigation( $taxonomy = '', $all_links = false ) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
-		$exclude = apply_filters( 'fluid_navigation_links_exclude', '' );
+		$exclude = apply_filters( 'fluid_navigation_links_exclude', array() );
 log_entry($taxonomy,$all_links);
 		if ( $taxonomy && $all_links ) {
-			$prevt = get_permalink( get_adjacent_post( true,  '', false, $taxonomy ) );
-			$nextt = get_permalink( get_adjacent_post( true,  '', true,  $taxonomy ) );
+			$prevt = get_permalink( get_adjacent_post( true,  '', false, $exclude, $taxonomy ) );
+			$nextt = get_permalink( get_adjacent_post( true,  '', true,  $exclude, $taxonomy ) );
 			$prevp = get_permalink( get_adjacent_post( false, '', false ) );
 			$nextp = get_permalink( get_adjacent_post( false, '', true ) );
 			if ( ( $prevt === $prevp ) && ( $nextt === $nextp ) ) { $taxonomy = ''; }
@@ -93,10 +93,10 @@ log_entry(0,'all links');
 				<div class="row">
 					<ul class="pager pager-all">
 						<li class="previous btn-fluidity" title="<?php esc_html_e( 'Older Posts', 'tcc-fluid' ); ?>">
-							<?php previous_post_link( '%link', $left ); ?>
+							<?php previous_post_link( '%link', $left, false, $exclude ); ?>
 						</li>
 						<li class="next btn-fluidity" title="<?php esc_html_e( 'Newer Posts', 'tcc-fluid' ); ?>">
-							<?php next_post_link( '%link', $right ); ?>
+							<?php next_post_link( '%link', $right, false, $exclude ); ?>
 						</li>
 					</ul>
 				</div>
