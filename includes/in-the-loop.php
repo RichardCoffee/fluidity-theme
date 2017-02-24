@@ -47,14 +47,16 @@ log_entry($taxonomy,$all_links);
 			$nextp = get_permalink(get_adjacent_post(false,'',true));
 			if ($prevt===$prevp && $nextt===$nextp) { $taxonomy = ''; }
 log_entry(
+	"    taxonomy: $taxonomy",
 	"previous tax: $prevt",
 	"previous all: $prevp",
 	"    next tax: $nextt",
 	"    next all: $nextp"
 );
 		} ?>
-		<div class="post_link_separator post_link_separator_top"></div><?php
+		<div class="post-link-separator post-link-separator-top"></div><?php
 		if ($taxonomy) {
+log_entry('taxonomy links');
 			$tax_obj = get_taxonomy( $taxonomy );
 			$older_tooltip = sprintf( _x( 'Older Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name );
 			$newer_tooltip = sprintf( _x( 'Newer Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name ); ?>
@@ -75,9 +77,11 @@ log_entry(
 			</nav><?php
 		}
 		if ($taxonomy && $all_links) { ?>
-			<div class="post_link_separator post_link_separator_middle"></div><?php
+			<div class="post-link-separator post-link-separator-middle"></div><?php
 		}
-		if (!$taxonomy || $all_links) { ?>
+		if (!$taxonomy || $all_links) {
+log_entry('all links');
+ ?>
 			<nav class="noprint" aria-label="...">
 				<h2 class="screen-reader-text">
 					<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
@@ -94,7 +98,7 @@ log_entry(
 				</div>
 			</nav><?php
 		} ?>
-		<div class="post_link_separator post_link_separator_bottom"></div>
+		<div class="post-link-separator post-link-separator-bottom"></div>
 		<p> </p><?php
 	}
 }
