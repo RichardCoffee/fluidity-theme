@@ -39,7 +39,7 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 		$left  = '<span aria-hidden="true">&laquo;</span> %title';
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude = apply_filters( 'fluid_navigation_links_exclude', array() );
-log_entry($taxonomy,$all_links, get_post() );
+log_entry($taxonomy,$all_links,get_the_category() );
 		if ( $taxonomy && $all_links ) {
 			$prevt = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
 			$nextt = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
