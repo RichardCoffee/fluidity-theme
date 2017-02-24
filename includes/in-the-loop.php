@@ -56,7 +56,7 @@ log_entry(
 		} ?>
 		<div class="post-link-separator post-link-separator-top"></div><?php
 		if ($taxonomy) {
-log_entry('taxonomy links');
+log_entry(0,'taxonomy links');
 			$tax_obj = get_taxonomy( $taxonomy );
 			$older_tooltip = sprintf( _x( 'Older Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name );
 			$newer_tooltip = sprintf( _x( 'Newer Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name ); ?>
@@ -80,7 +80,7 @@ log_entry('taxonomy links');
 			<div class="post-link-separator post-link-separator-middle"></div><?php
 		}
 		if (!$taxonomy || $all_links) {
-log_entry('all links');
+log_entry(0,'all links');
  ?>
 			<nav class="noprint" aria-label="...">
 				<h2 class="screen-reader-text">
@@ -100,6 +100,7 @@ log_entry('all links');
 		} ?>
 		<div class="post-link-separator post-link-separator-bottom"></div>
 		<p> </p><?php
+log_entry('stack');
 	}
 }
 

@@ -64,8 +64,13 @@ if ( ! function_exists( 'log_entry' ) ) {
 			foreach( $args as $message ) {
 				if ( is_array( $message ) || is_object( $message ) ) {
 					error_log( print_r( $message, true ) );
-				} else if ( $message === 'dump' ) {
+				} else if ( $message === 'stack' ) {
 					error_log( print_r( debug_backtrace(), true ) );
+				} else if ( $message === 'dump' ) {
+					ob_start();
+					var_dump( get_defined_vars() );
+					$vars = ob_get_clean();
+					error_log( print_r( $vars ), true );
 				} else {
 					error_log( $message );
 				}
