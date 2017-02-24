@@ -164,7 +164,7 @@ class TCC_Options_Privacy {
 		if ( $current ) {
 			foreach( $current as $key => $status ) {
 				if ( isset( $this->plugins[ $key ] ) ) {
-					$options[ $key ] = $status;
+					$options[ $key ] = ( $key === 'privacy-my-way' )  ? 'no' : $status;
 				}
 			}
 		}

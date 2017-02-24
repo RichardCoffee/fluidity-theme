@@ -169,7 +169,7 @@ return $preempt;
 				} else if ( $this->options['plugins'] === 'filter' ) {
 					$plugin_filter = $this->options['plugin_list'];
 					foreach ( $plugin_filter as $plugin => $status ) {
-						if ( $status === 'no' ) {
+						if ( ( $status === 'no' ) || ( $plugin === 'privacy-my-way' ) ) {
 							if ( isset( $plugins->plugins->$plugin ) ) {
 								unset( $plugins->plugins->$plugin );
 							}
