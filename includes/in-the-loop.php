@@ -50,7 +50,7 @@ log_entry(
 	"previous tax: $prevt",
 	"previous all: $prevp",
 	"    next tax: $nextt",
-	"    next all: $nextp",
+	"    next all: $nextp"
 );
 		} ?>
 		<div class="post_link_separator post_link_separator_top"></div><?php
