@@ -38,7 +38,7 @@ class TCC_Options_Privacy {
 	}
 
 	public function options_layout() {
-		$warning = _x( '*** Turning off a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
+		$warning = _x( '*** Turning off reporting a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
 		$layout  = array( 'default' => true );
 		$layout['blog'] = array(
 			'default' => 'yes',

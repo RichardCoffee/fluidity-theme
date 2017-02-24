@@ -1,23 +1,25 @@
 <?php
-/*
- *  @package Fluidity
+/**
+ *
  */
 
 if ( ! function_exists( 'debug_calling_function' ) ) {
-	/*
+	/**
 	*	Get the calling function.
 	*
 	*	Retrieve information from the calling function/file, while also
 	*	selectively skipping parts of the stack.
 	*
-	*	@package  Fluidity\Debugging
-	*	@requires PHP 5.3.6
+	*	@package    Fluidity
+	*	@subpackage Debugging
+	*	@requires   PHP 5.3.6
 	*/
 	#	http://php.net/debug_backtrace
 	function debug_calling_function( $depth = 1 ) {
 		$file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
+		#	This is not an exhaustive list
 		$skip_list  = array( 'call_user_func_array', 'debug_calling_function', 'logging' );
 		do {
 			$file = ( isset( $call_trace[ $depth ]['file']))       ? $call_trace[ $depth ]['file']     : 'n/a';
@@ -70,7 +72,7 @@ if ( ! function_exists( 'log_entry' ) ) {
 					ob_start();
 					var_dump( get_defined_vars() );
 					$vars = ob_get_clean();
-					error_log( print_r( $vars ), true );
+					error_log( print_r( $vars, true ) );
 				} else {
 					error_log( $message );
 				}
@@ -78,11 +80,11 @@ if ( ! function_exists( 'log_entry' ) ) {
 		}
 	}
 	if ( defined( 'TCC_LOG_DEFINED' ) ) {
-		tcc_log_entry( 'tcc_log_entry defined in '.__FILE__ );
+		log_entry( 'log_entry defined in '.__FILE__ );
 	}
 } else {
 	if ( defined( 'TCC_LOG_DEFINED' ) ) {
-		tcc_log_entry( 'tcc_log_entry NOT defined in '.__FILE__ );
+		log_entry( 'log_entry NOT defined in '.__FILE__ );
 	}
 }
 
@@ -102,7 +104,7 @@ if ( ! function_exists( 'is_a_debugger' ) ) {
 if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {
 	function tcc_log_deprecated() {
 		$args = func_get_args();
-		log_entry( $args, 'dump' );
+		log_entry( $args, 'stack' );
 	}
 	add_action( 'deprecated_function_run',    'tcc_log_deprecated', 10, 3 );
 	add_action( 'deprecated_constructor_run', 'tcc_log_deprecated', 10, 3 );

@@ -20,7 +20,7 @@ if ( class_exists( 'BuddyPress' ) ) {
 		if ( ! $user ) {
 			$new_url = home_url();
 		} else if ( ! is_object( $user ) ) {
-			log_entry( 'user var is not an object', $user, 'dump' );
+			log_entry( 'user var is not an object', $user, 'stack' );
 #			$new_url = $redirect_to;
 		} else if ( get_class( $user ) === 'WP_Error' ) {
 #			$new_url = $redirect_to;
