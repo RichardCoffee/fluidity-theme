@@ -63,17 +63,13 @@ log_entry($this);
 	}
 
 	public function http_request_args( $args, $url ) {
-log_entry($url);
-$test = stripos( $url, '://api.wordpress.org/' );
-log_entry( 'str pos = ' . $test );
 		#	only act on requests to api.wordpress.org
-		if ( stripos( $url, '://api.wordpress.org/' ) !== false ) {
+		if ( stripos( $url, '://api.wordpress.org/' ) === false ) {
 			return $args;
 		}
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
-log_entry($args);
 		return $args;
 	}
 
@@ -92,6 +88,7 @@ log_entry($url);
 			return $preempt;
 		}
 		$url  = $this->filter_url( $url );
+		#	These should already have been filtered by this time, but just in case...
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
@@ -122,71 +119,76 @@ return $preempt;
  *
  */
 	protected function strip_site_url( $args ) {
-		if ( $this->options['blog'] === 'no' ) {
-			if ( isset( $args['headers']['wp_blog'] ) ) {
-				unset( $args['headers']['wp_blog'] );
+		if ( ! isset( $args['_privacy_strip_site'] ) ) {
+			if ( $this->options['blog'] === 'no' ) {
+				if ( isset( $args['headers']['wp_blog'] ) ) {
+					unset( $args['headers']['wp_blog'] );
+				}
+				if ( isset( $args['user-agent'] ) ) {
+					$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+				}
+				if ( isset( $args['headers']['user-agent'] ) ) {
+					$args['headers']['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+					log_entry( 'header:user-agent has been seen.' );
+				}
+				if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this?
+					$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+					log_entry( 'header:User-Agent has been seen.' );
+				}
+				#	Why remove this? I have not seen it...
+				if ( isset( $args['headers']['Referer'] ) ) {
+					unset( $args['headers']['Referer'] );
+					log_entry( 'headers:Referer has been deleted.' );
+				}
 			}
-			if ( isset( $args['user-agent'] ) ) {
-				$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
+			if ( isset( $this->options['install'] ) && ( $this->options['install'] === 'no' ) ) {
+				if ( isset( $args['headers']['wp_install'] ) ) {
+					unset( $args['headers']['wp_install'] );
+				}
 			}
-			if ( isset( $args['headers']['user-agent'] ) ) {
-				$args['headers']['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-				log_entry( 'header:user-agent has been seen.' );
-			}
-			if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this?
-				$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-				log_entry( 'header:User-Agent has been seen.' );
-			}
-			#	Why remove this? I have not seen it...
-			if ( isset( $args['headers']['Referer'] ) ) {
-				unset( $args['headers']['Referer'] );
-				log_entry( 'headers:Referer has been deleted.' );
-			}
-		}
-		if ( isset( $this->options['install'] ) && ( $this->options['install'] === 'no' ) ) {
-			if ( isset( $args['headers']['wp_install'] ) ) {
-				unset( $args['headers']['wp_install'] );
-			}
+			$args['_privacy_strip_site'] = true;
 		}
 		return $args;
 	}
 
 	protected function filter_plugins( $url, $args ) {
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
-			if ( ! empty( $args['body']['plugins'] ) ) {
-				$plugins = json_decode( $args['body']['plugins'] );
-				$new_set = new stdClass;
-#log_entry('plugins:  initial',$plugins);
-				if ( $this->options['plugins'] === 'none' ) {
-					$plugins = $new_set;
-				} else if ( $this->options['plugins'] === 'active' ) {
-					foreach( $plugins->plugins as $plugin => $info ) {
-						if ( in_array( $plugin, (array)$plugins->active ) ) {
-							$new_set->$plugin = $info;
-						}
-					}
-					$plugins->plugins = $new_set;
-				} else if ( $this->options['plugins'] === 'filter' ) {
-					$plugin_filter = $this->options['plugin_list'];
-					foreach ( $plugin_filter as $plugin => $status ) {
-						if ( ( $status === 'no' ) || ( $plugin === 'privacy-my-way' ) ) {
-							if ( isset( $plugins->plugins->$plugin ) ) {
-								unset( $plugins->plugins->$plugin );
+			if ( ! isset( $args['_privacy_filter_plugins'] ) ) {
+				if ( ! empty( $args['body']['plugins'] ) ) {
+					$plugins = json_decode( $args['body']['plugins'] );
+					$new_set = new stdClass;
+					if ( $this->options['plugins'] === 'none' ) {
+						$plugins = $new_set;
+					} else if ( $this->options['plugins'] === 'active' ) {
+						foreach( $plugins->plugins as $plugin => $info ) {
+							if ( in_array( $plugin, (array)$plugins->active ) ) {
+								$new_set->$plugin = $info;
 							}
 						}
-					}
-					#	Rebuild active plugins object
-					$count  = 1;
-					foreach( (array)$plugins->active as $key => $plugin ) {
-						if ( isset( $plugins->plugins->$plugin ) ) {
-							$new_set->$count = $plugin;
-							$count++;
+						$plugins->plugins = $new_set;
+					} else if ( $this->options['plugins'] === 'filter' ) {
+						$plugin_filter = $this->options['plugin_list'];
+						foreach ( $plugin_filter as $plugin => $status ) {
+							if ( ( $status === 'no' ) || ( $plugin === 'privacy-my-way' ) ) {
+								if ( isset( $plugins->plugins->$plugin ) ) {
+									unset( $plugins->plugins->$plugin );
+								}
+							}
 						}
+						#	Rebuild active plugins object
+						$count  = 1;
+						foreach( (array)$plugins->active as $key => $plugin ) {
+							if ( isset( $plugins->plugins->$plugin ) ) {
+								$new_set->$count = $plugin;
+								$count++;
+							}
+						}
+						$plugins->active = $new_set;
 					}
-					$plugins->active = $new_set;
-				}
 log_entry('plugins:  ' . $this->options['plugins'],$plugins);
-				$args['body']['plugins'] = wp_json_encode( $plugins );
+					$args['body']['plugins'] = wp_json_encode( $plugins );
+					$args['_privacy_filter_plugins'] = true;
+				}
 			}
 		}
 		return $args;
@@ -194,50 +196,55 @@ log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 
 	protected function filter_themes( $url, $args ) {
 		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
-			if ( ! empty( $args['body']['themes'] ) ) {
-				$themes = json_decode( $args['body']['themes'] );
+			if ( ! isset( $args['_privacy_filter_themes'] ) ) {
+				if ( ! empty( $args['body']['themes'] ) ) {
+					$themes = json_decode( $args['body']['themes'] );
 log_entry($url,$themes);
-				#	Report no themes installed
-				if ( $this->options['themes'] === 'none' ) {
-					$themes = new stdClass;
-					$themes->active = '';
-					$themes->themes = new stdClass;
-				#	Report only active theme, plus parent if active is child
-				} else if ( $this->options['themes'] === 'active' ) {
-					$installed = new stdClass;
-					$active    = $themes->active;
-					$installed->$active = $themes->themes->$active;
-					#	Check for child theme
-					if ( $installed->$active->Template !== $installed->$active->Stylesheet ) {
-						$parent = $installed->$active->Template;
-						$installed->$parent = $themes->themes->$parent;
-					}
-					$themes->themes = $installed;
-				#	Filter themes
-				} else if ( $this->options['themes'] === 'filter' ) {
-					$theme_filter  = $this->options['theme_list'];
-					$active_backup = $themes->active;
-					foreach ( $theme_filter as $theme => $status ) {
-						#	Is theme still installed?
-						if ( isset( $themes->themes->$theme ) ) {
-							#	Is the theme being filtered?
-							if ( ( $status === 'no' ) ) {
-								unset( $themes->themes->$theme );
+					#	Report no themes installed
+					if ( $this->options['themes'] === 'none' ) {
+						$themes = new stdClass;
+						$themes->active = '';
+						$themes->themes = new stdClass;
+					#	Report only active theme, plus parent if active is child
+					} else if ( $this->options['themes'] === 'active' ) {
+						$installed = new stdClass;
+						$active    = $themes->active;
+						$installed->$active = $themes->themes->$active;
+						#	Check for child theme
+						if ( $installed->$active->Template !== $installed->$active->Stylesheet ) {
+							$parent = $installed->$active->Template;
+							$installed->$parent = $themes->themes->$parent;
+						}
+						$themes->themes = $installed;
+					#	Filter themes
+					} else if ( $this->options['themes'] === 'filter' ) {
+						$theme_filter  = $this->options['theme_list'];
+						#	Store site active theme
+						$active_backup = $themes->active;
+						#	Loop through our filter list
+						foreach ( $theme_filter as $theme => $status ) {
+							#	Is theme still installed?
+							if ( isset( $themes->themes->$theme ) ) {
+								#	Is the theme being filtered?
+								if ( ( $status === 'no' ) ) {
+									unset( $themes->themes->$theme );
+									#	Is this the active theme?
+									$active_backup = ( $active_backup === $theme ) ? '' : $active_backup;
+								} else {
+									#	Should a different active theme be reported?
+									$active_backup = ( $active_backup ) ? $active_backup : $theme;
+								}
+							} else {
 								#	Is this the active theme?
 								$active_backup = ( $active_backup === $theme ) ? '' : $active_backup;
-							} else {
-								#	Should a new active theme be assigned?
-								$active_backup = ( $active_backup ) ? $active_backup : $theme;
 							}
-						} else {
-							#	Is this the active theme?
-							$active_backup = ( $active_backup === $theme ) ? '' : $active_backup;
 						}
+						$themes->active = $active_backup;
 					}
-					$themes->active = $active_backup;
-				}
 log_entry('themes:  '.$this->options['themes'],$themes);
-				$args['body']['themes'] = wp_json_encode( $themes );
+					$args['body']['themes'] = wp_json_encode( $themes );
+					$args['_privacy_filter_plugins'] = true;
+				}
 			}
 		}
 		return $args;
