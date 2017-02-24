@@ -102,7 +102,7 @@ class TCC_Options_Privacy {
 			'default' => $this->get_plugin_defaults( 'yes' ),
 			'preset'  => 'yes',
 			'label'   => __( 'Plugin List', 'tcc-fluid' ),
-			'text'    => sprintf( $warning, __( 'plugin', 'tcc_fluid' ) );
+			'text'    => sprintf( $warning, __( 'plugin', 'tcc_fluid' ) ),
 			'textcss' => 'red', // FIXME: bad css
 			'render'  => 'radio_multiple',
 			'source'  => $this->get_plugin_list(),
@@ -125,7 +125,7 @@ class TCC_Options_Privacy {
 			'default' => $this->get_theme_defaults( 'yes' ),
 			'preset'  => 'yes',
 			'label'   => __( 'Theme List', 'tcc-privacy' ),
-			'text'    => sprintf( $warning, __( 'theme', 'tcc_fluid' ) );
+			'text'    => sprintf( $warning, __( 'theme', 'tcc_fluid' ) ),
 			'textcss' => 'red', // FIXME: bad css
 			'help'    => __( 'This list does not filter default WordPress themes.  If WordPress themes are installed, it will report them.', 'tcc-privacy' ),
 			'render'  => 'radio_multiple',
