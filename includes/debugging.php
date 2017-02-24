@@ -16,16 +16,21 @@ if ( ! function_exists( 'debug_calling_function' ) ) {
 	*/
 	#	http://php.net/debug_backtrace
 	function debug_calling_function( $depth = 1 ) {
-		$file = $func = $line = 'n/a';
+		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
 		#	This is not an exhaustive list
-		$skip_list  = array( 'call_user_func_array', 'debug_calling_function', 'logging' );
+		$skip_list  = array(
+			'call_user_func',
+			'call_user_func_array',
+			'debug_calling_function',
+			'logging'
+		);
 		do {
-			$file = ( isset( $call_trace[ $depth ]['file']))       ? $call_trace[ $depth ]['file']     : 'n/a';
-			$line = ( isset( $call_trace[ $depth ]['line'] ) )     ? $call_trace[ $depth ]['line']     : 'n/a';
+			$file = ( isset( $call_trace[ $depth ]['file']))       ? $call_trace[ $depth ]['file']     : $default;
+			$line = ( isset( $call_trace[ $depth ]['line'] ) )     ? $call_trace[ $depth ]['line']     : $default;
 			$depth++;
-			$func = ( isset( $call_trace[ $depth ]['function'] ) ) ? $call_trace[ $depth ]['function'] : 'n/a';
+			$func = ( isset( $call_trace[ $depth ]['function'] ) ) ? $call_trace[ $depth ]['function'] : $default;
 		} while( in_array( $func, $skip_list ) && ( $total_cnt > $depth ) );
 		return "$file, $func, $line";
 	}
@@ -64,15 +69,13 @@ if ( ! function_exists( 'log_entry' ) ) {
 			}
 			if ( $depth ) { error_log( debug_calling_function( $depth ) ); }
 			foreach( $args as $message ) {
+				#	log an array or object
 				if ( is_array( $message ) || is_object( $message ) ) {
 					error_log( print_r( $message, true ) );
+				#	log the stack trace
 				} else if ( $message === 'stack' ) {
 					error_log( print_r( debug_backtrace(), true ) );
-				} else if ( $message === 'dump' ) {
-					ob_start();
-					var_dump( get_defined_vars() );
-					$vars = ob_get_clean();
-					error_log( print_r( $vars, true ) );
+				#	log everything else
 				} else {
 					error_log( $message );
 				}
@@ -80,24 +83,11 @@ if ( ! function_exists( 'log_entry' ) ) {
 		}
 	}
 	if ( defined( 'TCC_LOG_DEFINED' ) ) {
-		log_entry( 'log_entry defined in '.__FILE__ );
+		log_entry( 'log_entry defined in ' . __FILE__ );
 	}
 } else {
 	if ( defined( 'TCC_LOG_DEFINED' ) ) {
-		log_entry( 'log_entry NOT defined in '.__FILE__ );
-	}
-}
-
-if ( ! function_exists( 'is_a_debugger' ) ) {
-	function is_a_debugger() {
-		$user = wp_get_current_user();
-		$list = apply_filters( 'tcc_debugger_list', array(1) );
-		if ( $list && in_array( $user->ID, (array)$list ) ) {
-			return true;
-		} else if ( in_array( "administrator", $user->roles ) ) {
-			return true;
-		}
-		return false;
+		log_entry( 'log_entry NOT defined in ' . __FILE__ );
 	}
 }
 

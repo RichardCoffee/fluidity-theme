@@ -300,6 +300,19 @@ if (!function_exists('debug_rewrite_rules')) {
   }
 }
 
+if ( ! function_exists( 'is_a_debugger' ) ) {
+	function is_a_debugger() {
+		$user = wp_get_current_user();
+		$list = apply_filters( 'tcc_debugger_list', array(1) );
+		if ( $list && in_array( $user->ID, (array)$list ) ) {
+			return true;
+		} else if ( in_array( "administrator", $user->roles ) ) {
+			return true;
+		}
+		return false;
+	}
+}
+
 #  http://stackoverflow.com/questions/5224209/wordpress-how-do-i-get-all-the-registered-functions-for-the-content-filter
 if (!function_exists('list_filter_hooks')) {
   function list_filter_hooks( $hook = '' ) {
