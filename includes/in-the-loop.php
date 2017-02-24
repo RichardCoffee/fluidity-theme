@@ -41,10 +41,10 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 		$exclude = apply_filters( 'fluid_navigation_links_exclude', array() );
 log_entry($taxonomy,$all_links);
 		if ( $taxonomy && $all_links ) {
-			$prevt = get_permalink( get_adjacent_post( true,  '', false, $exclude, $taxonomy ) );
-			$nextt = get_permalink( get_adjacent_post( true,  '', true,  $exclude, $taxonomy ) );
-			$prevp = get_permalink( get_adjacent_post( false, '', false ) );
-			$nextp = get_permalink( get_adjacent_post( false, '', true ) );
+			$prevt = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
+			$nextt = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
+			$prevp = get_permalink( get_adjacent_post( false, $exclude, false ) );
+			$nextp = get_permalink( get_adjacent_post( false, $exclude, true ) );
 			if ( ( $prevt === $prevp ) && ( $nextt === $nextp ) ) { $taxonomy = ''; }
 log_entry(
 	"    taxonomy: $taxonomy",
