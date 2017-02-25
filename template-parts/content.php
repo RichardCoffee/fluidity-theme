@@ -32,9 +32,9 @@ who_am_i(); ?>
 
 	if ( is_single() ) {
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
-log_entry('before fluid_navigation');
+#log_entry('before fluid_navigation');
 		fluid_navigation( $taxonomy, true );
-log_entry('after fluid_navigation');
+#log_entry('after fluid_navigation');
 		fluid_postmetadata();
 	}
 
