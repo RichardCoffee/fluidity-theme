@@ -23,7 +23,7 @@ class Privacy_My_Way {
 			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ), 10, 3 );
 			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),            2, 3 );
 			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),          11, 2 );
-log_entry($this);
+log_entry($this,'stack');
 		}
 	}
 
@@ -185,7 +185,7 @@ return $preempt;
 						}
 						$plugins->active = $new_set;
 					}
-log_entry('plugins:  ' . $this->options['plugins'],$plugins);
+#log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 					$args['body']['plugins'] = wp_json_encode( $plugins );
 					$args['_privacy_filter_plugins'] = true;
 				}
@@ -199,7 +199,7 @@ log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 			if ( ! isset( $args['_privacy_filter_themes'] ) ) {
 				if ( ! empty( $args['body']['themes'] ) ) {
 					$themes = json_decode( $args['body']['themes'] );
-log_entry($url,$themes);
+#log_entry($url,$themes);
 					#	Report no themes installed
 					if ( $this->options['themes'] === 'none' ) {
 						$themes = new stdClass;
@@ -241,7 +241,7 @@ log_entry($url,$themes);
 						}
 						$themes->active = $active_backup;
 					}
-log_entry('themes:  '.$this->options['themes'],$themes);
+#log_entry('themes:  '.$this->options['themes'],$themes);
 					$args['body']['themes'] = wp_json_encode( $themes );
 					$args['_privacy_filter_plugins'] = true;
 				}

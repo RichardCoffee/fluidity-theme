@@ -149,20 +149,16 @@ if (!function_exists('fluidity_register_color_scheme')) {
 }
 
 if ( ! function_exists( 'add_privacy_filters' ) && file_exists( WP_CONTENT_DIR . '/privacy.flg' ) ) {
-	function add_privacy_filters() {
+	function add_privacy_filters( $locale = '' ) {
 		include_once('classes/privacy.php');
 		$instance = Privacy_My_Way::instance();
+		return $locale;
 	}
 	add_action( 'wp_version_check', 'add_privacy_filters' );
+	add_filter( 'core_version_check_locale', 'add_privacy_filters' );
 }
 
 function themeslug_customize_register( $wp_customize ) {
   log_entry( $wp_customize );
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
-
-function tcc_core_version_check_locale( $locale ) {
-log_entry('doing version check - core_version_check_locale','testing log entry');
-	return $locale;
-}
-add_filter( 'core_version_check_locale', 'tcc_core_version_check_locale' );

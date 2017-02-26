@@ -67,7 +67,7 @@ if ( ! function_exists( 'log_entry' ) ) {
 				$depth = $args[0];
 				unset( $args[0] );
 			}
-			if ( $depth ) { error_log( debug_calling_function( $depth ) ); }
+			if ( $depth ) { error_log( 'source:  ' . debug_calling_function( $depth ) ); }
 			foreach( $args as $message ) {
 				#	log an array or object
 				if ( is_array( $message ) || is_object( $message ) ) {
