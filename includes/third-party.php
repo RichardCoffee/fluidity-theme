@@ -108,6 +108,8 @@ if ( class_exists( 'c_ws_plugin__s2member_login_redirects' ) ) {
 	}
 	add_action('tcc_copyright_right','tcc_s2member_security_badge'); //*/
 
+	add_filter("ws_plugin__s2member_lazy_load_css_js", "__return_true");
+
 }
 
 /**  WooCommerce  **/

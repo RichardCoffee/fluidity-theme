@@ -27,6 +27,17 @@ if ( ! function_exists( 'apply_attrs' ) ) {
 	}
 }
 
+if ( ! function_exists( 'array_remove_value' ) ) {
+	function array_remove_value( $needle, $haystack ) {
+		if ( $needle && is_string( $needle ) && $haystack && is_array( $haystack ) ) {
+			if( ( $key = array_search( $needle, $haystack ) ) !== false ) {
+				unset( $haystack[ $key ] );
+			}
+		}
+		return $haystack;
+	}
+}
+
 if ( ! function_exists( 'clearfix' ) ) {
 	function clearfix() {
 		return TCC_Post_ClearFix::instance();
@@ -184,6 +195,7 @@ if (!function_exists('get_valid_gravatar')) {
 }
 
 if ( ! function_exists( 'in_action' ) ) {
+	#	Complement to WP's doing_action()
 	function in_action() {
 		$trace = debug_backTrace();
 		$type  = '';
