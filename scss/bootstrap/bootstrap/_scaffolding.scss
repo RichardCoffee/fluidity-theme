@@ -8,12 +8,20 @@
 // Heads up! This reset may cause conflicts with some third-party widgets.
 // For recommendations on resolving such conflicts, see
 // http://getbootstrap.com/getting-started/#third-box-sizing
+
+// fix box-sizing - rtc
+html {
+	@include box-sizing(border-box);
+}
+
 * {
-  @include box-sizing(border-box);
+//  @include box-sizing(border-box);
+  @include box-sizing(inherit);
 }
 *:before,
 *:after {
-  @include box-sizing(border-box);
+//  @include box-sizing(border-box);
+  @include box-sizing(inherit);
 }
 
 
