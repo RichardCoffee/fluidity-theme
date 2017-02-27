@@ -2,7 +2,7 @@
 
 
 		Document Conventions
-	--------------------------
+	---------------------------
 
 	The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
 		“SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in
@@ -14,9 +14,17 @@
 		as a guideline.
 
 
+		Partnership
+	------------------
+
+	All decisions effecting the partnership, work the partnership engages in, or any
+		aspect of such work, MUST be agreed upon by all partners prior to the engagement
+		of any commitment, or promise of commitment.
+
+
 
 		Bones of Contention Agreement
-	-----------------------------------
+	------------------------------------
 
 	Anyone MAY add a Bone to the contention list.
 
@@ -28,7 +36,7 @@
 
 
 		Budget Agreement
-	----------------------
+	-----------------------
 
 	Company funds MUST be deposited, without alteration, into a previously
 		determined holding account, or location, upon receipt.

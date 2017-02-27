@@ -23,7 +23,7 @@ class Privacy_My_Way {
 			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ), 10, 3 );
 			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),            2, 3 );
 			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),          11, 2 );
-log_entry($this,'stack');
+log_entry($this);
 		}
 	}
 
@@ -35,18 +35,21 @@ log_entry($this,'stack');
 		$this->options = $options;
 	}
 
-	public function pre_site_option_blog_count( $count, $option, $network_id ) {
+	public function pre_site_option_blog_count( $count, $option, $network_id = 1 ) {
+$orig = $count;
 		if ( isset( $this->options['blogs'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$count = 1;
 		}
+log_entry( $orig, $count, $option, $network_id );
 		return $count;
 	}
 
-	public function pre_site_option_user_count( $count, $option, $network_id ) {
+	public function pre_site_option_user_count( $count, $option, $network_id = 1 ) {
 		$privacy = $this->options['users'];
 		if ( $privacy ) {
-			#	if $count has a value, then use it.
-			$users = ($count) ? $count : get_user_count();
+$orig = $count;
+			#	if $count has a value, then maybe use it.
+			$users = ( $count && ( $option === 'fluid_user_count' ) ) ? $count : get_user_count();
 			switch( $privacy ) {
 				case 'all':
 					$count = false;
@@ -58,6 +61,7 @@ log_entry($this,'stack');
 					$count = rand( 1, ( $users * 10 ) );
 				default:
 			}
+log_entry( $orig, $count, $option, $network_id );
 		}
 		return $count;
 	}
@@ -75,7 +79,7 @@ log_entry($this,'stack');
 
 	public function pre_http_request( $preempt, $args, $url ) {
 		#	check if we have been here before
-		if ( $preempt || isset( $args['_privacy_filter'] ) ) {
+		if ( $preempt || isset( $args['_pmw_privacy_filter'] ) ) {
 			return $preempt;
 		}
 log_entry($url);
@@ -93,7 +97,7 @@ log_entry($url);
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
 		#	make request
-		$args['_privacy_filter'] = true;
+		$args['_pmw_privacy_filter'] = true;
 log_entry($url,$args,$preempt);
 return $preempt;
 		$response = wp_remote_request( $url, $args );
@@ -119,7 +123,7 @@ return $preempt;
  *
  */
 	protected function strip_site_url( $args ) {
-		if ( ! isset( $args['_privacy_strip_site'] ) ) {
+		if ( ! isset( $args['_pmw_privacy_strip_site'] ) || ( ! $args['_pmw_privacy_strip_site'] ) ) {
 			if ( $this->options['blog'] === 'no' ) {
 				if ( isset( $args['headers']['wp_blog'] ) ) {
 					unset( $args['headers']['wp_blog'] );
@@ -127,11 +131,13 @@ return $preempt;
 				if ( isset( $args['user-agent'] ) ) {
 					$args['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
 				}
+				#	Hmmm, really?
 				if ( isset( $args['headers']['user-agent'] ) ) {
 					$args['headers']['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
 					log_entry( 'header:user-agent has been seen.' );
 				}
-				if ( isset( $args['headers']['User-Agent'] ) ) { // Anybody seen this?
+				#	Anybody seen this?
+				if ( isset( $args['headers']['User-Agent'] ) ) {
 					$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
 					log_entry( 'header:User-Agent has been seen.' );
 				}
@@ -146,14 +152,14 @@ return $preempt;
 					unset( $args['headers']['wp_install'] );
 				}
 			}
-			$args['_privacy_strip_site'] = true;
+			$args['_pmw_privacy_strip_site'] = true;
 		}
 		return $args;
 	}
 
 	protected function filter_plugins( $url, $args ) {
 		if ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) !== false ) {
-			if ( ! isset( $args['_privacy_filter_plugins'] ) ) {
+			if ( ! isset( $args['_pmw_privacy_filter_plugins'] ) || ( ! $args['_pmw_privacy_filter_plugins'] ) ) {
 				if ( ! empty( $args['body']['plugins'] ) ) {
 					$plugins = json_decode( $args['body']['plugins'] );
 					$new_set = new stdClass;
@@ -187,7 +193,7 @@ return $preempt;
 					}
 #log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 					$args['body']['plugins'] = wp_json_encode( $plugins );
-					$args['_privacy_filter_plugins'] = true;
+					$args['_pmw_privacy_filter_plugins'] = true;
 				}
 			}
 		}
@@ -196,7 +202,7 @@ return $preempt;
 
 	protected function filter_themes( $url, $args ) {
 		if ( stripos( $url, '://api.wordpress.org/themes/update-check/' ) !== false ) {
-			if ( ! isset( $args['_privacy_filter_themes'] ) ) {
+			if ( ! isset( $args['_pmw_privacy_filter_themes'] ) || ( ! $args['_pmw_privacy_filter_themes'] ) ) {
 				if ( ! empty( $args['body']['themes'] ) ) {
 					$themes = json_decode( $args['body']['themes'] );
 #log_entry($url,$themes);
@@ -243,7 +249,7 @@ return $preempt;
 					}
 #log_entry('themes:  '.$this->options['themes'],$themes);
 					$args['body']['themes'] = wp_json_encode( $themes );
-					$args['_privacy_filter_plugins'] = true;
+					$args['_pmw_privacy_filter_plugins'] = true;
 				}
 			}
 		}
@@ -258,22 +264,23 @@ $orig = $url;
 		if ( isset( $url_array['query'] ) ) {
 			$arg_array = wp_parse_args( $url_array['query'] );
 log_entry($url_array,$arg_array);
-			#	If multisite then these have already been filtered
-			if ( ! is_multisite() ) {
+			if ( is_multisite() ) {
+				#	I really think that fibbing on this is a bad idea, but I am quite definitely pro-choice.
+				if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
+					$url = add_query_arg( 'multisite_enabled', '0', $url );
+				}
+			} else {
+				#	If multisite then these have already been filtered
 				if ( isset( $arg_array['blogs'] ) ) {
-					$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count', '' );
+					$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count' );
 					$url   = add_query_arg( 'blogs', $blogs, $url );
 				}
 				if ( isset( $arg_array['users'] ) ) {
-					$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count', '' );
+					$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count' );
 					$url   = add_query_arg( 'users', $users, $url );
 				}
 			}
-			#	I really think that fibbing on this is a bad idea, but I am quite definitely pro-choice.
-			if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
-				$url = add_query_arg( 'multisite_enabled', '0', $url );
-			}
-log_entry(0,$orig,$url);
+log_entry($orig,$url);
 		}
 return $orig;
 		return $url;
