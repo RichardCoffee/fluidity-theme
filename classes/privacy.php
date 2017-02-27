@@ -53,12 +53,16 @@ $orig = $count;
 			switch( $privacy ) {
 				case 'all':
 					$count = false;
+					break;
 				case 'some':
 					$count = max( 1, intval( ( $users / rand(1, 10) ), 10 ) );
+					break;
 				case 'one':
 					$count = 1;
+					break;
 				case 'many':
 					$count = rand( 1, ( $users * 10 ) );
+					break;
 				default:
 			}
 log_entry( $orig, $count, $option, $network_id );
@@ -78,11 +82,11 @@ log_entry( $orig, $count, $option, $network_id );
 	}
 
 	public function pre_http_request( $preempt, $args, $url ) {
-		#	check if we have been here before
+		#	check if already preempted or if we have been here before
 		if ( $preempt || isset( $args['_pmw_privacy_filter'] ) ) {
 			return $preempt;
 		}
-log_entry($url);
+log_entry($url,$args);
 		#	only act on requests to api.wordpress.org
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
@@ -92,7 +96,7 @@ log_entry($url);
 			return $preempt;
 		}
 		$url  = $this->filter_url( $url );
-		#	These should already have been filtered by this time, but just in case...
+		#	Would think that these have already been filtered, but...
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
