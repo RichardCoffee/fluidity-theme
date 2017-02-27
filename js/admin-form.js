@@ -76,13 +76,10 @@ function showhidePosi(el,target,show) {
 }
 
 function showhideAdminElements( origin, target, show ) {
-console.log( origin+' : '+target+' : '+show);
 	if ( origin ) {
 		var radio = jQuery( origin ).find( 'input:radio:checked' );
-console.log(radio);
 		if ( radio ) {
 			var state = jQuery( radio ).val();
-console.log( state+' - '+show );
 			if ( state === show ) {
 				jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
 			} else {
