@@ -175,7 +175,7 @@ class TCC_Options_Privacy {
 	private function get_plugin_list() {
 		$plugin_list = array();
 		$active_list = get_option( 'active_plugins', array() );
-log_entry($active_list);
+log_entry($active_list, $this->plugins );
 		foreach ( $this->plugins as $path => $plugin ) {
 			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $path ) . '">';
 			$title.= esc_html( $plugin['Name'] ) . '</a> by ';
