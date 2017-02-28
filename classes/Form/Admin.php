@@ -495,7 +495,7 @@ log_entry($controls);
 
   private function render_font($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    $html = "<select id='$ID' name='$name'";
+    $html = "<select id='$ID' name='$name[]' multiple";
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : ">";
     foreach($layout['source'] as $key=>$text) {
       $html.= "<option value='$key'";
@@ -602,8 +602,9 @@ log_entry($controls);
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
     if (empty($layout['source'])) return;
     $source_func = $layout['source'];
-    if (!empty($layout['text'])) echo "<div class='form-select-text'> ".esc_attr($layout['text'])."</div>";
+    if (!empty($layout['text'])) echo '<div class="form-select-text"> ' . esc_attr( $layout['text'] ) . '</div>';
     $html = "<select id='$ID' name='$name'";
+    $html.= ( strpos( '[]', $name ) )  ? ' multiple' : '';
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : ">";
     echo $html;
     if (is_array($source_func)) {
@@ -618,6 +619,11 @@ log_entry($controls);
     }
     echo '</select>';
   }
+
+	private function render_select_multiple( $data ) {
+		$data['name'] .= '[]';
+		render_select( $data );
+	}
 
 	private function render_spinner( $data ) {
 		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
@@ -739,6 +745,7 @@ log_entry($controls);
       $output = $func($input);
     } else { // FIXME:  test for data type
       $output = $this->validate_text($input);
+		log_entry("missing validation function: $func");
     }
     return $output;
   }
@@ -746,6 +753,11 @@ log_entry($controls);
   private function validate_colorpicker($input) {
     return (preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|',$input)) ? $input : '';
   }
+
+	private function validate_font( $input ) {
+log_entry($input);
+		return $input; // FIXME NOW!
+	}
 
   private function validate_image($input) {
     return esc_url_raw(strip_tags(stripslashes($input)));
@@ -759,9 +771,17 @@ log_entry($controls);
     return sanitize_key($input);
   }
 
+	private function validate_radio_multiple( $input ) {
+		return array_map( array( $this, 'validate_radio' ), $input );
+	}
+
   private function validate_select($input) {
     return sanitize_file_name($input);
   }
+
+	private function validate_select_multiple( $input ) {
+		return array_map( array( $this, 'validate_select' ), $input );
+	}
 
   protected function validate_text($input) {
     return strip_tags(stripslashes($input));
