@@ -495,7 +495,7 @@ log_entry($controls);
 
   private function render_font($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    $html = "<select id='$ID' name='$name[]' multiple";
+    $html = "<select id='$ID' name='{$name}[]' multiple";
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : ">";
     foreach($layout['source'] as $key=>$text) {
       $html.= "<option value='$key'";
