@@ -27,11 +27,12 @@ body {
 /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior;
  * see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
  */
+/*  commented out because it has been incorporated into bootstrap
 *,
 *:before,
 *:after {
 	box-sizing: inherit;
-}
+} */
 
 
 a,
