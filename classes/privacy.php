@@ -67,7 +67,7 @@ log_entry(
 	" actual: $orig",
 	" calced: $count",
 	" source: $option",
-	"network: $network_id",
+	"network: $network_id"
 );
 		}
 		return $count;
