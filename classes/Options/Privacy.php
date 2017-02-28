@@ -136,8 +136,8 @@ class TCC_Options_Privacy {
 /*			'titles'  => array(
 				__( 'On', 'tcc-fluid' ),
 				__( 'Off', 'tcc-fluid' ),
-				__( 'Description', 'tcc-fluid' ), //*/
-			),
+				__( 'Description', 'tcc-fluid' ),
+			), //*/
 			'source'  => $this->get_theme_list(),
 			'divcss'  => 'privacy-theme-filter',
 		); //*/
