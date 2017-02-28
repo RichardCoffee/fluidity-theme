@@ -1,8 +1,22 @@
-/*  Class definitions required by WordPress  */
+/**
+ *  Class definitions required by WordPress
+ *
+ *  Also some other wordpress related stuff
+ */
 
 .aligncenter { text-align: center; }
 .alignleft   { text-align: left;   }
 .alignright  { text-align: right;  }
+
+.bypostauthor,
+.gallery-caption {
+  display: block;
+}
+
+.size-full { padding: 0.5em 1em; }
+
+
+.sticky { }
 
 .wp-caption {
   margin-bottom: 1.5em;
@@ -16,12 +30,13 @@
 
 .wp-caption-text { text-align: center; }
 
-.gallery-caption,
-.bypostauthor {
-  display: block;
+.wp-custom-header iframe,
+.wp-custom-header img,
+.wp-custom-header video {
+	display: block;
+	height: auto;
+	max-width: 100%;
 }
-
-.sticky { }
 
 // http://a11yproject.com/posts/how-to-hide-content
 .screen-reader-text {
