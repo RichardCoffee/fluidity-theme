@@ -114,6 +114,7 @@ class TCC_Options_Privacy {
 		$layout['themes'] = array(
 			'default' => 'all',
 			'label'   => __( 'Themes', 'tcc-fluid' ),
+			'text'    => __( 'Note:  This plugin will always report the WordPress twenty* themes that are installed.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
 				'all'    => __( 'Let WordPress know what themes you have installed.', 'tcc-fluid' ),
