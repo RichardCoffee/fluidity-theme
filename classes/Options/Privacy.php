@@ -178,7 +178,7 @@ class TCC_Options_Privacy {
 log_entry($active_list, $this->plugins );
 		foreach ( $this->plugins as $path => $plugin ) {
 			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $path ) . '">';
-			$title.= esc_html( $plugin['Name'] ) . '</a>'
+			$title.= esc_html( $plugin['Name'] ) . '</a>';
 			if ( in_array( $path, $active_list ) ) {
 				$title .= ' <span class="red">(active)</span>';
 			}
