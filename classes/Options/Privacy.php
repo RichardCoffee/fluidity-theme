@@ -3,6 +3,7 @@
 
 class TCC_Options_Privacy {
 
+	private $active   = array();
 	private $base     = 'privacy';
 	private $priority = 550;  #  internal theme option
 	private $plugins  = array();
@@ -14,6 +15,7 @@ class TCC_Options_Privacy {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		$this->plugins = get_plugins();
+		$this->active  = get_option( 'active_plugins', array() );
 		$this->themes  = wp_get_themes();
 		add_filter( 'fluidity_options_form_layout', array( $this, 'add_form_layout' ), $this->priority );
 	}
@@ -151,7 +153,7 @@ class TCC_Options_Privacy {
 		#	Load missing items with the default value
 		foreach( $this->plugins as $path => $plugin ) {
 			if ( ! isset( $options[ $path ] ) ) {
-				$options[ $path ] = $preset;
+				$options[ $path ] = ( in_array( $path, $this->active ) ) ? 'yes' : $preset;
 			}
 		}
 		return $options;
@@ -174,12 +176,10 @@ class TCC_Options_Privacy {
 
 	private function get_plugin_list() {
 		$plugin_list = array();
-		$active_list = get_option( 'active_plugins', array() );
-log_entry($active_list, $this->plugins );
 		foreach ( $this->plugins as $path => $plugin ) {
 			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $path ) . '">';
 			$title.= esc_html( $plugin['Name'] ) . '</a>';
-			if ( in_array( $path, $active_list ) ) {
+			if ( in_array( $path, $this->active ) ) {
 				$title .= ' <span class="red">(active)</span>';
 			}
 			$title.= ' by <a href="' . esc_attr( $plugin['AuthorURI'] ) . '" target="' . sanitize_title( $plugin['Author'] ) . '">';
