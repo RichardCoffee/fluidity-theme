@@ -36,11 +36,9 @@ log_entry($this);
 	}
 
 	public function pre_site_option_blog_count( $count, $option, $network_id = 1 ) {
-$orig = $count;
 		if ( isset( $this->options['blogs'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$count = 1;
 		}
-log_entry( $orig, $count, $option, $network_id );
 		return $count;
 	}
 
@@ -65,7 +63,12 @@ $orig = $count;
 					break;
 				default:
 			}
-log_entry( $orig, $count, $option, $network_id );
+log_entry(
+	" actual: $orig",
+	" calced: $count",
+	" source: $option",
+	"network: $network_id",
+);
 		}
 		return $count;
 	}
@@ -86,7 +89,7 @@ log_entry( $orig, $count, $option, $network_id );
 		if ( $preempt || isset( $args['_pmw_privacy_filter'] ) ) {
 			return $preempt;
 		}
-log_entry($url,$args);
+log_entry($url);
 		#	only act on requests to api.wordpress.org
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
@@ -102,7 +105,7 @@ log_entry($url,$args);
 		$args = $this->filter_themes( $url, $args );
 		#	make request
 		$args['_pmw_privacy_filter'] = true;
-log_entry($url,$args,$preempt);
+log_entry($url);
 return $preempt;
 		$response = wp_remote_request( $url, $args );
 		if ( is_wp_error( $response ) ) {

@@ -43,6 +43,7 @@ class TCC_Options_Privacy {
 		$layout['blog'] = array(
 			'default' => 'yes',
 			'label'   => __( 'Blog URL', 'tcc-fluid' ),
+			'text'    => __( 'I personally recommend that you not change this setting.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
 				'yes'  => __( "Let WordPress know your site's url.", 'tcc-fluid' ),
@@ -173,6 +174,8 @@ class TCC_Options_Privacy {
 
 	private function get_plugin_list() {
 		$plugin_list = array();
+		$active_list = get_option( 'active_plugins', array() );
+log_entry($active_list);
 		foreach ( $this->plugins as $path => $plugin ) {
 			$title = '<a href="' . esc_attr( $plugin['PluginURI'] ) . '" target="' . esc_attr( $path ) . '">';
 			$title.= esc_html( $plugin['Name'] ) . '</a> by ';
