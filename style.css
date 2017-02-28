@@ -13,26 +13,7 @@
  * Copyright 2015-2017, The Creative Collective
  */
 /* tags list: https://wordpress.org/themes/ */
-.alignleft {
-  float: left;
-}
-
-.alignright {
-  float: right;
-}
-
-.size-full {
-  padding: 0.5em 1em;
-}
-
-.wp-custom-header iframe,
-.wp-custom-header img,
-.wp-custom-header video {
-  display: block;
-  height: auto;
-  max-width: 100%;
-}
-
+/**  s2member  **/
 .ws-plugin--s2member-s-badge {
   margin-top: 8px;
 }
@@ -179,7 +160,11 @@ pre {
   margin-bottom: 0;
 }
 
-/*  Class definitions required by WordPress  */
+/**
+ *  Class definitions required by WordPress
+ *
+ *  Also some other wordpress related stuff
+ */
 .aligncenter {
   text-align: center;
 }
@@ -190,6 +175,15 @@ pre {
 
 .alignright {
   text-align: right;
+}
+
+.bypostauthor,
+.gallery-caption {
+  display: block;
+}
+
+.size-full {
+  padding: 0.5em 1em;
 }
 
 .wp-caption {
@@ -206,9 +200,12 @@ pre {
   text-align: center;
 }
 
-.gallery-caption,
-.bypostauthor {
+.wp-custom-header iframe,
+.wp-custom-header img,
+.wp-custom-header video {
   display: block;
+  height: auto;
+  max-width: 100%;
 }
 
 .screen-reader-text {
