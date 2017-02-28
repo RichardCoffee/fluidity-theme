@@ -181,6 +181,9 @@ log_entry($active_list, $this->plugins );
 			$title.= esc_html( $plugin['Name'] ) . '</a> by ';
 			$title.= '<a href="' . esc_attr( $plugin['AuthorURI'] ) . '" target="' . sanitize_title( $plugin['Author'] ) . '">';
 			$title.= esc_html( $plugin['Author'] ) . '</a>';
+			if ( in_array( $path, $active_list ) ) {
+				$title .= ' <span class="red">active</span>';
+			}
 			$plugin_list[ $path ] = $title;
 		}
 		return $plugin_list;
