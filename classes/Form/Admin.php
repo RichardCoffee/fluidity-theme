@@ -475,8 +475,6 @@ log_entry($controls);
 		}
 	}
 
-
-
 	private function render_colorpicker($data) {
 		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
 		$text = ( ! empty( $layout['text'] ) ) ? $layout['text'] : ''; ?>
