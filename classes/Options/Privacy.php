@@ -133,10 +133,10 @@ class TCC_Options_Privacy {
 			'textcss' => 'red', // FIXME: bad css
 			'help'    => __( 'This list does not filter default WordPress themes.  If WordPress themes are installed, it will report them.', 'tcc-privacy' ),
 			'render'  => 'radio_multiple',
-			'titles'  => array(
+/*			'titles'  => array(
 				__( 'On', 'tcc-fluid' ),
 				__( 'Off', 'tcc-fluid' ),
-				__( 'Description', 'tcc-fluid' ),
+				__( 'Description', 'tcc-fluid' ), //*/
 			),
 			'source'  => $this->get_theme_list(),
 			'divcss'  => 'privacy-theme-filter',
@@ -197,7 +197,7 @@ class TCC_Options_Privacy {
 		$options = $this->clean_theme_defaults();
 		foreach( $this->themes as $slug => $theme ) {
 			if ( ! isset( $options[ $slug ] ) ) {
-				$options[ $slug ] = $preset;
+				$options[ $slug ] = ( strpos( $slug, 'twenty' ) === 0 ) ? $preset : 'yes';
 			}
 		}
 		return $options;
