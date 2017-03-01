@@ -604,12 +604,12 @@ log_entry($controls);
     $source_func = $layout['source'];
     if (!empty($layout['text'])) echo '<div class="form-select-text"> ' . esc_attr( $layout['text'] ) . '</div>';
     $html = "<select id='$ID' name='$name'";
-    $html.= ( strpos( '[]', $name ) )  ? ' multiple' : '';
+    $html.= ( strpos( '[]', $name ) )  ? ' multiple="multiple"' : '';
     $html.= (isset($layout['change'])) ? " onchange='{$layout['change']}'>" : ">";
     echo $html;
     if (is_array($source_func)) {
       foreach($source_func as $key=>$text) {
-        $select = ($key==$value) ? "selected='selected'" : '';
+        $select = ( in_array( $key, (array)$value ) ? "selected='selected'" : '';
         echo "<option value='$key' $select> $text </option>";
       }
     } elseif (method_exists($this,$source_func)) {

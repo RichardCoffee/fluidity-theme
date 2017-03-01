@@ -112,7 +112,7 @@ log_entry($url);
 		$args['_pmw_privacy_filter'] = true;
 log_entry($url);
 		$response = wp_remote_request( $url, $args );
-		//  response seems to have a lot of duplicated data in it.
+		//	response seems to have a lot of duplicated data in it.
 		if ( is_wp_error( $response ) ) {
 			log_entry( $response );
 		} else {
@@ -179,6 +179,7 @@ else { log_entry($args); }
 			if ( ! isset( $args['_pmw_privacy_filter_plugins'] ) || ( ! $args['_pmw_privacy_filter_plugins'] ) ) {
 				if ( ! empty( $args['body']['plugins'] ) ) {
 					$plugins = json_decode( $args['body']['plugins'] );
+#					log_entry($url,$plugins);
 					$new_set = new stdClass;
 					if ( $this->options['plugins'] === 'none' ) {
 						$plugins = $new_set;
@@ -213,8 +214,8 @@ else { log_entry($args); }
 					$args['_pmw_privacy_filter_plugins'] = true;
 				}
 			}
-		}
 else { log_entry($args); }
+		}
 		return $args;
 	}
 
@@ -223,7 +224,7 @@ else { log_entry($args); }
 			if ( ! isset( $args['_pmw_privacy_filter_themes'] ) || ( ! $args['_pmw_privacy_filter_themes'] ) ) {
 				if ( ! empty( $args['body']['themes'] ) ) {
 					$themes = json_decode( $args['body']['themes'] );
-#log_entry($url,$themes);
+#					log_entry($url,$themes);
 					#	Report no themes installed
 					if ( $this->options['themes'] === 'none' ) {
 						$themes = new stdClass;
@@ -285,19 +286,19 @@ $orig = $url;
 			$arg_array = wp_parse_args( $url_array['query'] );
 log_entry($arg_array);
 			if ( is_multisite() ) {
-				#	I really think that fibbing on this is a bad idea, but my pro-choice stance says I can't make other people's choices for them.
+				#	I really think that fibbing on this is a bad idea, but my pro-choice stance dictates that I can't make other people's choices for them.
 				if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 					$url = add_query_arg( 'multisite_enabled', '0', $url );
 				}
 log_entry($orig,$url);
 			} else {
-				#	If multisite then these have already been filtered
+				#	Need this for single site. If multisite then these have already been filtered
 				if ( isset( $arg_array['blogs'] ) ) {
-					$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'fluid_blog_count' );
+					$blogs = $this->pre_site_option_blog_count( $arg_array['blogs'], 'pmw_blog_count' );
 					$url   = add_query_arg( 'blogs', $blogs, $url );
 				}
 				if ( isset( $arg_array['users'] ) ) {
-					$users = $this->pre_site_option_user_count( $arg_array['users'], 'fluid_user_count' );
+					$users = $this->pre_site_option_user_count( $arg_array['users'], 'pmw_user_count' );
 					$url   = add_query_arg( 'users', $users, $url );
 				}
 			}
