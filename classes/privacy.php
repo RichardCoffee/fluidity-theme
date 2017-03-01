@@ -64,6 +64,7 @@ $orig = $count;
 				default:
 			}
 log_entry(
+	'setting: ' . $this->options['users'],
 	" actual: $orig",
 	" calced: $count",
 	" source: $option",
@@ -86,7 +87,11 @@ log_entry(
 
 	public function pre_http_request( $preempt, $args, $url ) {
 		#	check if already preempted or if we have been here before
-		if ( $preempt || isset( $args['_pmw_privacy_filter'] ) ) {
+		if ( $preempt ) { // || isset( $args['_pmw_privacy_filter'] ) ) {
+			return $preempt;
+		}
+		if ( isset( $args['_pmw_privacy_filter'] ) ) {
+log_entry($args);
 			return $preempt;
 		}
 log_entry($url);
@@ -94,7 +99,8 @@ log_entry($url);
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/themes/update-check/'  ) === false )
-			&& ( stripos( $url, '://api.wordpress.org/translations/'         ) === false )	#	outgoing never seems to have data - need to see what this looks like
+			//  FIXME:  I have no way of testing this or what the object looks like.
+			&& ( stripos( $url, '://api.wordpress.org/translations/'         ) === false )
 			) {
 			return $preempt;
 		}
@@ -106,7 +112,6 @@ log_entry($url);
 		#	make request
 		$args['_pmw_privacy_filter'] = true;
 log_entry($url);
-return $preempt;
 		$response = wp_remote_request( $url, $args );
 		if ( is_wp_error( $response ) ) {
 			log_entry( $response );
@@ -115,6 +120,7 @@ return $preempt;
 			$body = json_decode( $body, true );
 			log_entry( $response, $body );
 		}
+return $preempt;
 		return $response;
 	}
 
@@ -141,17 +147,17 @@ return $preempt;
 				#	Hmmm, really?
 				if ( isset( $args['headers']['user-agent'] ) ) {
 					$args['headers']['user-agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-					log_entry( 'header:user-agent has been seen.' );
+log_entry( 'header:user-agent has been seen.' );
 				}
 				#	Anybody seen this?
 				if ( isset( $args['headers']['User-Agent'] ) ) {
 					$args['headers']['User-Agent'] = sprintf( 'WordPress/%s', $GLOBALS['wp_version'] );
-					log_entry( 'header:User-Agent has been seen.' );
+log_entry( 'header:User-Agent has been seen.' );
 				}
 				#	Why remove this? I have not seen it...
 				if ( isset( $args['headers']['Referer'] ) ) {
 					unset( $args['headers']['Referer'] );
-					log_entry( 'headers:Referer has been deleted.' );
+log_entry( 'headers:Referer has been deleted.' );
 				}
 			}
 			if ( isset( $this->options['install'] ) && ( $this->options['install'] === 'no' ) ) {
@@ -161,6 +167,7 @@ return $preempt;
 			}
 			$args['_pmw_privacy_strip_site'] = true;
 		}
+else { log_entry($args); }
 		return $args;
 	}
 
@@ -267,15 +274,17 @@ return $preempt;
 $orig = $url;
 		#$keys = array( 'php', 'locale', 'mysql', 'local_package', 'blogs', 'users', 'multisite_enabled', 'initial_db_version',);
 		$url_array = parse_url( $url );
+#log_entry($url_array);
 		#	Do we need to filter?
 		if ( isset( $url_array['query'] ) ) {
 			$arg_array = wp_parse_args( $url_array['query'] );
-log_entry($url_array,$arg_array);
+log_entry($arg_array);
 			if ( is_multisite() ) {
 				#	I really think that fibbing on this is a bad idea, but I am quite definitely pro-choice.
 				if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 					$url = add_query_arg( 'multisite_enabled', '0', $url );
 				}
+log_entry($orig,$url);
 			} else {
 				#	If multisite then these have already been filtered
 				if ( isset( $arg_array['blogs'] ) ) {
@@ -287,9 +296,8 @@ log_entry($url_array,$arg_array);
 					$url   = add_query_arg( 'users', $users, $url );
 				}
 			}
-log_entry($orig,$url);
 		}
-return $orig;
+#log_entry($orig,$url);
 		return $url;
 	}
 
