@@ -51,6 +51,7 @@ log_entry($this);
 		if ( $privacy ) {
 $orig = $count;
 			#	if $count has a value, then maybe use it.
+if ( ! function_exists( 'get_user_count' ) ) { log_entry('missing get_user_count function','stack'); }
 			$users = ( $count && ( $option === 'fluid_user_count' ) ) ? $count : get_user_count();
 			switch( $privacy ) {
 				case 'all':
