@@ -4,6 +4,8 @@
  *  sources: https://core.trac.wordpress.org/ticket/16778
  *           https://gist.github.com/mattyrob/2e492e5ecb92233eb307f7efd039c121
  *           https://github.com/dannyvankooten/my-precious
+ *
+ *  Note:  if WP_DEBUG is true, then this will fill up your log file... ;-)
  */
 
 defined('ABSPATH') || exit;
@@ -35,6 +37,7 @@ log_entry($this);
 		$this->options = $options;
 	}
 
+	#	Only triggered on multisite installs
 	public function pre_site_option_blog_count( $count, $option, $network_id = 1 ) {
 		if ( isset( $this->options['blogs'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$count = 1;
@@ -42,6 +45,7 @@ log_entry($this);
 		return $count;
 	}
 
+	#	Only triggered on multisite installs
 	public function pre_site_option_user_count( $count, $option, $network_id = 1 ) {
 		$privacy = $this->options['users'];
 		if ( $privacy ) {
@@ -87,11 +91,7 @@ log_entry(
 
 	public function pre_http_request( $preempt, $args, $url ) {
 		#	check if already preempted or if we have been here before
-		if ( $preempt ) { // || isset( $args['_pmw_privacy_filter'] ) ) {
-			return $preempt;
-		}
-		if ( isset( $args['_pmw_privacy_filter'] ) ) {
-log_entry($args);
+		if ( $preempt || isset( $args['_pmw_privacy_filter'] ) ) {
 			return $preempt;
 		}
 log_entry($url);
@@ -99,13 +99,12 @@ log_entry($url);
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/themes/update-check/'  ) === false )
-			//  FIXME:  I have no way of testing this or what the object looks like.
+			//  FIXME:  I have no way of testing this or knowing what the object looks like.  Filtering this is probably a bad idea anyway.
 			&& ( stripos( $url, '://api.wordpress.org/translations/'         ) === false )
 			) {
 			return $preempt;
 		}
 		$url  = $this->filter_url( $url );
-		#	Would think that these have already been filtered, but...
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
 		$args = $this->filter_themes( $url, $args );
@@ -113,14 +112,14 @@ log_entry($url);
 		$args['_pmw_privacy_filter'] = true;
 log_entry($url);
 		$response = wp_remote_request( $url, $args );
+		//  response seems to have a lot of duplicated data in it.
 		if ( is_wp_error( $response ) ) {
 			log_entry( $response );
 		} else {
 			$body = trim( wp_remote_retrieve_body( $response ) );
 			$body = json_decode( $body, true );
-			log_entry( $response, $body );
+			log_entry( $body );
 		}
-return $preempt;
 		return $response;
 	}
 
@@ -162,7 +161,11 @@ log_entry( 'headers:Referer has been deleted.' );
 			}
 			if ( isset( $this->options['install'] ) && ( $this->options['install'] === 'no' ) ) {
 				if ( isset( $args['headers']['wp_install'] ) ) {
-					unset( $args['headers']['wp_install'] );
+					if ( $this->options['blog'] === 'no' ) {
+						unset( $args['headers']['wp_install'] );
+					} else { // FIXME:  not sure this is a good idea, need more data
+						$args['headers']['wp_install'] = $args['headers']['wp_blog'];
+					}
 				}
 			}
 			$args['_pmw_privacy_strip_site'] = true;
@@ -205,12 +208,13 @@ else { log_entry($args); }
 						}
 						$plugins->active = $new_set;
 					}
-#log_entry('plugins:  ' . $this->options['plugins'],$plugins);
+#					log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 					$args['body']['plugins'] = wp_json_encode( $plugins );
 					$args['_pmw_privacy_filter_plugins'] = true;
 				}
 			}
 		}
+else { log_entry($args); }
 		return $args;
 	}
 
@@ -261,11 +265,12 @@ else { log_entry($args); }
 						}
 						$themes->active = $active_backup;
 					}
-#log_entry('themes:  '.$this->options['themes'],$themes);
+#					log_entry('themes:  '.$this->options['themes'],$themes);
 					$args['body']['themes'] = wp_json_encode( $themes );
 					$args['_pmw_privacy_filter_plugins'] = true;
 				}
 			}
+else { log_entry($args); }
 		}
 		return $args;
 	}
@@ -280,7 +285,7 @@ $orig = $url;
 			$arg_array = wp_parse_args( $url_array['query'] );
 log_entry($arg_array);
 			if ( is_multisite() ) {
-				#	I really think that fibbing on this is a bad idea, but I am quite definitely pro-choice.
+				#	I really think that fibbing on this is a bad idea, but my pro-choice stance says I can't make other people's choices for them.
 				if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 					$url = add_query_arg( 'multisite_enabled', '0', $url );
 				}
