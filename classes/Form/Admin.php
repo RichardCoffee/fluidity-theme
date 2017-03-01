@@ -609,7 +609,7 @@ log_entry($controls);
     echo $html;
     if (is_array($source_func)) {
       foreach($source_func as $key=>$text) {
-        $select = ( in_array( $key, (array)$value ) ? "selected='selected'" : '';
+        $select = ( in_array( $key, (array)$value ) ) ? "selected='selected'" : '';
         echo "<option value='$key' $select> $text </option>";
       }
     } elseif (method_exists($this,$source_func)) {
