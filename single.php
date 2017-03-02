@@ -28,7 +28,7 @@ $mypage = get_page_slug();
 	<div class="row">
 		<?php who_am_i(); ?>
 
-		<?php tcc_sidebar( $mypage, array( 'hidden-sm', 'hidden-xs' ) ); ?>
+		<?php tcc_sidebar( $mypage ); ?>
 
 		<main id="content" role="main" tabindex="-1"><?php
 
