@@ -184,6 +184,7 @@ if ( ! function_exists( 'tcc_sidebar' ) ) {
 				'fluid-sidebar',
 				"fluid-sidebar-$side",
 				"fluid-sidebar-$slug",
+				"mobile-sidebar",
 			);
 			if ( $side === 'right' ) {
 				$css[] = 'pull-right';
