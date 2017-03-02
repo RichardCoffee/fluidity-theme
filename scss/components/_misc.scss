@@ -17,3 +17,12 @@
 	height: 15px;
 	width: auto;
 }
+
+@media (min-width: 992px) {
+	main {
+		float: left;
+	}
+	.mobile-sidebar {
+		float: right;
+	}
+}

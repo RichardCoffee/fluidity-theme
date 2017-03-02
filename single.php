@@ -65,7 +65,7 @@ $mypage = get_page_slug();
 
 		</main><!-- #content -->
 
-		<?php tcc_sidebar( $mypage, array( 'visible-sm', 'visible-xs' ) ); ?>
+		<?php #tcc_sidebar( $mypage, array( 'visible-sm', 'visible-xs' ) ); ?>
 
 	</div>
 </div><!-- #fluid-content --><?php
