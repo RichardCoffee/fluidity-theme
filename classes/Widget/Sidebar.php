@@ -22,7 +22,7 @@ class TCC_Widget_Sidebar {
 			$mobile = tcc_layout( 'mobile_sidebar' );
 			if ( $this->is_mobile && ( $mobile === 'bottom' ) && ( ! $this->horizontal ) ) {
 			}
-			if ( ( $this->side === 'right' )  && $this->css ) {
+			if ( ( $this->position === 'right' )  && $this->css ) {
 				$this->action = 'tcc_after_main';
 			}
 			add_action( $this->action, array( $this, 'show_sidebar' ) );
@@ -57,11 +57,11 @@ log_entry($this);
 		$css  = array(
 			'widget-area',
 			'fluid-sidebar',
-			'fluid-sidebar-' . $this->side,
+			'fluid-sidebar-' . $this->position,
 			"fluid-sidebar-$slug",
 		);
 		if ( empty( $this->css ) ) {
-			$css[] = 'pull-' . $this->side;
+			$css[] = 'pull-' . $this->position;
 		}
 		$css = array_merge( $css, $this->css );
 		$css = apply_filters( 'fluid_sidebar_css', $css );
