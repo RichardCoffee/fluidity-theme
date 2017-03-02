@@ -41,7 +41,7 @@ class TCC_Widget_Sidebar {
 		return $side;
 	}
 
-	protected function show_sidebar() {
+	public function show_sidebar() {
 		$side = $this->positioning;
 		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
