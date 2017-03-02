@@ -168,34 +168,47 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 }
 
 if ( ! function_exists( 'tcc_sidebar' ) ) {
-	function tcc_sidebar( $sidebar = 'standard', $extra_css = array() ) {
+	function tcc_sidebar( $sidebar = 'standard' ) {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
 		$side = tcc_layout( 'sidebar' );
-		if ( defined( 'TCC_LEFT_SIDEBAR' ) ) {
-			$side = 'left';
+		if ( $side === 'none' ) { return; }
+		if ( wp_is_mobile() ) {
+			add_filter( 'tcc_after_posts', 'fluid_mobile_sidebar', 10, 2 );
+			return;
 		}
-		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) {
-			$side = 'right';
+		fluid_show_sidebar( $sidebar );
+	}
+}
+
+if ( ! function_exists( 'fluid_mobile_sidebar' ) ) {
+	function fluid_mobile_sidebar( $page, $sidebar ) {
+		fluid_show_sidebar( $sidebar );
+	}
+}
+
+
+if ( ! function_exists( 'fluid_show_sidebar' ) ) {
+	function fluid_show_sidebar( $sidebar = 'standard' ) {
+		$side = tcc_layout( 'sidebar' );
+		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
+		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
+		$slug = get_page_slug();
+		$css  = array(
+			'widget-area',
+			'fluid-sidebar',
+			"fluid-sidebar-$side",
+			"fluid-sidebar-$slug",
+#			"mobile-sidebar",
+		);
+		if ( $side === 'right' ) {
+			$css[] = 'pull-right';
 		}
-		if ( $side !== 'none' ) {
-			$slug = get_page_slug();
-			$css  = array(
-				'widget-area',
-				'fluid-sidebar',
-				"fluid-sidebar-$side",
-				"fluid-sidebar-$slug",
-#				"mobile-sidebar",
-			);
-			if ( $side === 'right' ) {
-				$css[] = 'pull-right';
-			}
-			$css = array_merge( $css, $extra_css );
-			$css = apply_filters( 'fluid_sidebar_css', $css );
-			$css = apply_filters( "fluid_sidebar_css_$slug", $css );
-			$css = array_map( 'esc_attr', array_unique( $css ) ); ?>
-			<div class="<?php echo join( ' ', $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
-				<?php get_template_part( 'sidebar', $sidebar ); ?>
-			</div><?php
-		}
+		$css = array_merge( $css, $extra_css );
+		$css = apply_filters( 'fluid_sidebar_css', $css );
+		$css = apply_filters( "fluid_sidebar_css_$slug", $css );
+		$css = array_map( 'esc_attr', array_unique( $css ) ); ?>
+		<div class="<?php echo join( ' ', $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
+			<?php get_template_part( 'sidebar', $sidebar ); ?>
+		</div><?php
 	}
 }

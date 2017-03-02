@@ -9,8 +9,14 @@ get_header();
 $mypage = get_page_slug();
 
 #add_filter ( "fluid_{$mypage}_container_type", function ( $css ) { return 'container'; } );
-#add_filter ( "fluid_sidebar_css_$mypage",      function ( $css ) { return "col-md-2 $css"; } );
-#add_filter ( "tcc_main_css_$mypage",           function ( $css ) { return "col-md-10 $css"; } );
+#add_filter ( "fluid_sidebar_css_$mypage",      function ( $css, $mypage ) { return "col-md-2 $css";  }, 10, 2 );
+#add_filter ( "tcc_main_css_$mypage",           function ( $css, $mypage ) { return "col-md-10 $css"; }, 10, 2 );
+new TCC_Widget_Sidebar( array(
+#	'action'     => 'tcc_before_main',
+#	'css'        => array(),
+#	'horizontal' => false,
+	'sidebar'    => $mypage,
+) );
 
 #do_action( "tcc_top_$mypage" ); ?>
 
@@ -28,11 +34,11 @@ $mypage = get_page_slug();
 	<div class="row">
 		<?php who_am_i(); ?>
 
-		<?php tcc_sidebar( $mypage ); ?>
+		<?php do_action( 'tcc_before_main' ); ?>
 
-		<main id="content" role="main" tabindex="-1"><?php
+		<main id="content" class="<?php echo tcc_main_tag_css( '' ); ?>" role="main" tabindex="-1"><?php
 
-			do_action( 'tcc_before_posts' );
+#			do_action( 'tcc_before_posts' );
 			do_action( "tcc_before_posts_$mypage" );
 
 			if ( have_posts() ) {
@@ -63,11 +69,11 @@ $mypage = get_page_slug();
 			}
 
 #			do_action( "tcc_after_posts_$mypage" );
-#		do_action( 'tcc_after_posts' ); ?>
+			do_action( 'tcc_after_posts' ); ?>
 
 		</main><!-- #content -->
 
-		<?php #tcc_sidebar( $mypage, array( 'visible-sm', 'visible-xs' ) ); ?>
+		<?php do_action( 'tcc_after_main' ); ?>
 
 	</div>
 </div><!-- #fluid-content --><?php

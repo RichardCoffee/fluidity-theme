@@ -31,7 +31,7 @@ log_entry(
 	'   redirect_to:  ' . $redirect_to,
 	'       request:  ' . $request,
 	'wp_get_referer:  ' . wp_get_referer(),
-	"       new url:  $new_url",
+	'       new url:  ' . $new_url,
 	$user
 );
 		}
@@ -137,9 +137,17 @@ if (has_woocommerce()) {
 /**  WP Font Awesome Share Icons  **/
 
 if (function_exists('wpfai_social') && !function_exists('fluidity_wpfai_social')) {
-  function fluidity_wpfai_social() {
-    $attributes = array('icons' => 'twitter,facebook,google-plus,pinterest,linkedin', // FIXME: can we assign list from options data?
-                        'shape' => 'square', 'inverse' => 'yes', 'size' => 'lg', 'loadfa' => 'no'); ?>
+	function fluidity_wpfai_social() {
+#		$default    = 'twitter,facebook,google-plus,pinterest,linkedin';
+#		$possible   = ''; // icons plugin provides
+#		$fluid_social = tcc_social();
+		$attributes = array(
+			'icons'   => 'twitter,facebook,google-plus,pinterest,linkedin', // FIXME: can we assign list from options data?
+			'shape'   => 'square',
+			'inverse' => 'yes',
+			'size'    => 'lg',
+			'loadfa'  => 'no'
+); ?>
     <div class="fluidity-social-icons"><?php
       echo wpfai_social($attributes); ?>
     </div><?php

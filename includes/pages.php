@@ -238,8 +238,8 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
  *  @param string initial css class(es)
  *  @return string css classes to be applied
  */
-if ( ! function_exists( 'tcc_main_tag_class' ) ) {
-	function tcc_main_tag_class( $css = '' ) {
+if ( ! function_exists( 'tcc_main_tag_css' ) ) {
+	function tcc_main_tag_css( $css = '' ) {
 		$page = get_page_slug();
 		$css  = apply_filters( 'tcc_main_css', $css );
 		$css  = apply_filters( "tcc_main_css_$page", $css );

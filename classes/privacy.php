@@ -5,6 +5,8 @@
  *           https://gist.github.com/mattyrob/2e492e5ecb92233eb307f7efd039c121
  *           https://github.com/dannyvankooten/my-precious
  *
+ *  Multisite code is untested
+ *
  *  Note:  if WP_DEBUG is true, then this will fill up your log file... ;-)
  */
 
@@ -37,7 +39,7 @@ log_entry($this);
 		$this->options = $options;
 	}
 
-	#	Only triggered on multisite installs
+	#	Filter triggered on multisite installs
 	public function pre_site_option_blog_count( $count, $option, $network_id = 1 ) {
 		if ( isset( $this->options['blogs'] ) && ( $this->options['blogs'] === 'no' ) ) {
 			$count = 1;
@@ -45,14 +47,13 @@ log_entry($this);
 		return $count;
 	}
 
-	#	Only triggered on multisite installs
+	#	Filter triggered on multisite installs
 	public function pre_site_option_user_count( $count, $option, $network_id = 1 ) {
 		$privacy = $this->options['users'];
 		if ( $privacy ) {
 $orig = $count;
-			#	if $count has a value, then maybe use it.
-if ( ! function_exists( 'get_user_count' ) ) { log_entry('missing get_user_count function','stack'); }
-			$users = ( $count && ( $option === 'fluid_user_count' ) ) ? $count : get_user_count();
+			#	if $count has a value, then use it if we are calling the function
+			$users = ( $count && ( $option === 'fluid_user_count' ) ) ? $count : $this->get_user_count();
 			switch( $privacy ) {
 				case 'all':
 					$count = false;
@@ -75,6 +76,18 @@ log_entry(
 	" source: $option",
 	"network: $network_id"
 );
+		}
+		return $count;
+	}
+
+	private function get_user_count() {
+		$count = 1;
+		#	wp-includes/update.php
+		if ( is_multisite() ) {
+			$count = get_user_count();
+		} else {
+			$users = count_users();
+			$count = $count['total_users'];
 		}
 		return $count;
 	}
