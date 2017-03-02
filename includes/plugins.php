@@ -8,18 +8,23 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 	function fluidity_plugins() {
 		$plugins = array(
 			array(
+				'name'        => 'mobble by Scott Evans',
+				'slug'        => 'mobble',
+				'require'     =>  false,
+				'is_callable' => 'is_mobile',
+			),
+			array(
 				'name'        => 'Nav Menu Roles by Kathy Darling',
 				'slug'        => 'nav-menu-roles',
-				'require'     => false,
+				'require'     =>  false,
 				'is_callable' => 'Nav_Menu_Roles',
 			),
 			array(
 				'name'        => 'WordPress SEO by Yoast',
 				'slug'        => 'wordpress-seo',
-				'required'    => false,
+				'required'    =>  false,
 				'is_callable' => 'wpseo_init',
 			),
-
 		);
 		$plugins = apply_filters( 'fluidity_tgmpa_plugins', $plugins );
 		$config  = array(
@@ -35,7 +40,7 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 			'message'      => '',                      // Message to output right before the plugins table.
 		);
 		$config = apply_filters( 'fluidity_tgmpa_config', $config );
-		if ( $plugins ) {
+		if ( $plugins && $config ) {
 			tgmpa( $plugins, $config );
 		}
 	}

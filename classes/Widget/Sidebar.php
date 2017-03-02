@@ -31,7 +31,12 @@ log_entry($this);
 	}
 
 	protected function is_mobile() {
-		$mobile = wp_is_mobile();
+		#	Use mobble plugin if present
+		if ( class_exists( 'Mobile_Detect' ) ) {
+			$mobile = is_mobile();
+		} else {
+			$mobile = wp_is_mobile();
+		}
 		return $mobile;
 	}
 
@@ -52,7 +57,7 @@ log_entry($this);
 		$css  = array(
 			'widget-area',
 			'fluid-sidebar',
-			"fluid-sidebar-$side",
+			'fluid-sidebar-' . $this->side,
 			"fluid-sidebar-$slug",
 		);
 		if ( empty( $this->css ) ) {
