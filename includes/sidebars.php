@@ -187,7 +187,7 @@ if ( ! function_exists( 'tcc_sidebar' ) ) {
 #				"mobile-sidebar",
 			);
 			if ( $side === 'right' ) {
-#				$css[] = 'pull-right';
+				$css[] = 'pull-right';
 			}
 			$css = array_merge( $css, $extra_css );
 			$css = apply_filters( 'fluid_sidebar_css', $css );

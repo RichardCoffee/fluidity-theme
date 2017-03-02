@@ -32,6 +32,7 @@ $mypage = get_page_slug();
 
 		<main id="content" role="main" tabindex="-1"><?php
 
+			do_action( 'tcc_before_posts' );
 			do_action( "tcc_before_posts_$mypage" );
 
 			if ( have_posts() ) {
@@ -61,7 +62,8 @@ $mypage = get_page_slug();
 #				do_action( "tcc_no_loop_$mypage" );
 			}
 
-#			do_action( "tcc_after_posts_$mypage" ); ?>
+#			do_action( "tcc_after_posts_$mypage" );
+#		do_action( 'tcc_after_posts' ); ?>
 
 		</main><!-- #content -->
 

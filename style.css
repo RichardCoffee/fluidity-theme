@@ -347,7 +347,7 @@ header {
   width: auto;
 }
 
-@media (min-width: 992px) {
+@media (max-width: 991px) {
   main {
     float: left;
   }
