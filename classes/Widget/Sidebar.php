@@ -9,7 +9,7 @@ class TCC_Widget_Sidebar {
 	protected $position   = 'none';
 	protected $sidebar    = 'standard';
 
-#	use TCC_Trait_ParseArgs;
+	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args = array() ) {
 		$this->is_mobile = $this->is_mobile();
