@@ -347,15 +347,6 @@ header {
   width: auto;
 }
 
-@media (max-width: 991px) {
-  main {
-    float: left;
-  }
-
-  .mobile-sidebar {
-    float: right;
-  }
-}
 /*
 .pagination {
 	clear:both;
@@ -570,10 +561,6 @@ p {
   }
 
   #fluid-header {
-    display: none;
-  }
-
-  .fluid-sidebar {
     display: none;
   }
 
