@@ -25,6 +25,7 @@ class TCC_Widget_Sidebar {
 			}
 			add_action( $this->action, array( $this, 'show_sidebar' ) );
 		}
+log_entry($this);
 	}
 
 	protected function is_mobile() {
@@ -42,7 +43,7 @@ class TCC_Widget_Sidebar {
 	}
 
 	public function show_sidebar() {
-		$side = $this->positioning;
+		$side = $this->position;
 		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
 		$slug = get_page_slug();
@@ -57,7 +58,7 @@ class TCC_Widget_Sidebar {
 		$css = apply_filters( "fluid_sidebar_css_$slug", $css );
 		$css = array_map( 'esc_attr', array_unique( $css ) ); ?>
 		<div class="<?php echo join( ' ', $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
-			<?php get_template_part( 'sidebar', $sidebar ); ?>
+			<?php get_template_part( 'sidebar', $this->sidebar ); ?>
 		</div><?php
 	}
 
