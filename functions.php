@@ -162,9 +162,9 @@ function themeslug_customize_register( $wp_customize ) {
   log_entry( $wp_customize );
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
-
+/*
 function tcc_template_test( $template, $stem ) {
 	log_entry('slug: '.$template,'stem: '.$stem);
 }
 add_action( 'get_template_part_template-parts/header', 'tcc_template_test',0,2);
-add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,2);
+add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,2); //*/
