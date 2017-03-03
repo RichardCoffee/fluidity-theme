@@ -46,7 +46,7 @@ class TCC_Options_Privacy {
 		$layout['blog'] = array(
 			'default' => 'yes',
 			'label'   => __( 'Blog URL', 'tcc-fluid' ),
-			'text'    => __( 'I personally recommend that you not change this setting.', 'tcc-fluid' ),
+			'text'    => __( 'I would suggest that you not change this setting.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
 				'yes'  => __( "Let WordPress know your site's url.", 'tcc-fluid' ),

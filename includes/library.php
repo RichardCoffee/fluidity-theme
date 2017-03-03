@@ -43,7 +43,7 @@ if ( ! function_exists( 'apply_attrs' ) ) {
 			if ( empty( $value ) ) {
 				continue;
 			}
-			// FIXME: use assoc array
+			// FIXME: use assoc array?
 			$sanitize = 'esc_attr';
 			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : $sanitize;
 			$sanitize = ( $attr === 'src'   ) ? 'esc_url'  : $sanitize;
