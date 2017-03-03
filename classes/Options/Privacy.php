@@ -101,6 +101,16 @@ class TCC_Options_Privacy {
 			'change'    => 'showhidePosi( this, ".privacy-plugin-filter", "filter" );',
 			'divcss'    => 'privacy-plugin-active',
 		); //*/
+		$layout['plugin_default'] = array(
+			'default' => 'yes',
+			'label'   => __( 'Default', 'tcc-fluid' ),
+			'text'    => __( 'Default setting for newly installed plugins.', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'yes'  => __( 'Allow wordpress report on new installs.', 'tcc-fluid' ),
+				'no'   => __( 'Block reports on new installs.', 'tcc-fluid' ),
+			),
+		);
 		$layout['plugin_list'] = array(
 			'default' => $this->get_plugin_defaults( 'yes' ),
 			'preset'  => 'yes',

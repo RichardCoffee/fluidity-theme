@@ -44,10 +44,11 @@ if ( ! function_exists( 'apply_attrs' ) ) {
 				continue;
 			}
 			// FIXME: use assoc array
-			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : 'esc_attr';
+			$sanitize = 'esc_attr';
+			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : $sanitize;
 			$sanitize = ( $attr === 'src'   ) ? 'esc_url'  : $sanitize;
 			$sanitize = ( $attr === 'value' ) ? 'esc_html' : $sanitize;
-			$attrs . = $attr . '="' . $sanitize( $value ) . '" ';
+			$attrs .= $attr . '="' . $sanitize( $value ) . '" ';
 		}
 		if ( $echo ) {
 			echo $attrs;
