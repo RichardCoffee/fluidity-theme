@@ -115,6 +115,7 @@ class TCC_Options_Privacy {
 				'no'   => __( 'Block reports on new installs.', 'tcc-fluid' ),
 			),
 			'extra_html' => $extra_html,
+			'divcss'  => 'privacy-plugin-filter',
 		);
 		$layout['plugin_list'] = array(
 			'default' => $this->get_plugin_defaults( 'yes' ),
