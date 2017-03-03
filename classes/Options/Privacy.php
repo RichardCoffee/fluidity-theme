@@ -42,7 +42,7 @@ class TCC_Options_Privacy {
 	public function options_layout() {
 		$layout  = array( 'default' => true );
 		$warning = _x( '*** Turning off reporting a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
-		$extra_html = array( 'yes' => ' <span class="red"> ' . __( 'Recommended', 'tcc-fluid' ) . '</span>' );
+		$extra_html = array( 'yes' => ' <span class="red"> ' . __( ' ( Recommended ) ', 'tcc-fluid' ) . '</span>' );
 		$layout['blog'] = array(
 			'default' => 'yes',
 			'label'   => __( 'Blog URL', 'tcc-fluid' ),
