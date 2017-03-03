@@ -1,5 +1,21 @@
 <?php
 
+// Use bootstrap's clearfix
+if (!function_exists('tcc_apply_clearfix')) {
+  function tcc_apply_clearfix( $args ) {
+    $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0,'cnt'=>0);
+    $args = wp_parse_args($args,$defs);
+    if (empty($args['cnt'])) return;
+    extract($defs);
+    extract($args,EXTR_IF_EXISTS);
+    if ($lg && ($cnt%(intval((12/$lg)))==0)) echo "<div class='clearfix visible-lg-block'></div>";
+    if ($md && ($cnt%(intval((12/$md)))==0)) echo "<div class='clearfix visible-md-block'></div>";
+    if ($sm && ($cnt%(intval((12/$sm)))==0)) echo "<div class='clearfix visible-sm-block'></div>";
+    if ($xs && ($cnt%(intval((12/$xs)))==0)) echo "<div class='clearfix visible-xs-block'></div>";
+  }
+}
+
+
 if (!function_exists('tcc_bootstrap_css')) {
 	function tcc_bootstrap_css( $args ) {
 		$defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
@@ -14,16 +30,30 @@ if (!function_exists('tcc_bootstrap_css')) {
 	}
 }
 
+if ( ! function_exists( 'get_applied_attrs' ) ) {
+	function get_applied_attrs( $args ) {
+		return apply_attrs( $args, false );
+	}
+}
+
 if ( ! function_exists( 'apply_attrs' ) ) {
 	function apply_attrs( $args, $echo = true ) {
 		$attrs = ' ';
 		foreach( $args as $attr => $value ) {
-			if ( empty( $value ) ) { continue; }
-			$sanitize = ( $attr === 'href' ) ? 'esc_url' : 'esc_attr';
-			$sanitize = ( $attr === 'src' )  ? 'esc_url' : $sanitize;
-			$attrs .= $attr . '="'. $sanitize( $value ) . '" ';
+			if ( empty( $value ) ) {
+				continue;
+			}
+			// FIXME: use assoc array
+			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : 'esc_attr';
+			$sanitize = ( $attr === 'src'   ) ? 'esc_url'  : $sanitize;
+			$sanitize = ( $attr === 'value' ) ? 'esc_html' : $sanitize;
+			$attrs . = $attr . '="' . $sanitize( $value ) . '" ';
 		}
-		if ( $echo ) { echo $attrs; } else { return $attrs; }
+		if ( $echo ) {
+			echo $attrs;
+		} else {
+			return $attrs;
+		}
 	}
 }
 

@@ -184,7 +184,7 @@ log_entry( 'headers:Referer has been deleted.' );
 			}
 			$args['_pmw_privacy_strip_site'] = true;
 		}
-else { log_entry($args); }
+#else { log_entry($args); }
 		return $args;
 	}
 
@@ -228,7 +228,7 @@ else { log_entry($args); }
 					$args['_pmw_privacy_filter_plugins'] = true;
 				}
 			}
-else { log_entry($args); }
+#else { log_entry($args); }
 		}
 		return $args;
 	}

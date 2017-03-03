@@ -4,6 +4,8 @@
  *  classes/Form/Admin.php
  *
  *  copyright 2014-2017, The Creative Collective, the-creative-collective.com
+ *
+ *  I sure hope that Fields API thing works out
  */
 
 abstract class TCC_Form_Admin {
@@ -51,8 +53,10 @@ abstract class TCC_Form_Admin {
 	}
 
 	public function enqueue_scripts() {
-		wp_register_style( 'admin-form.css', get_template_directory_uri() . "/css/admin-form.css", false );
-		wp_register_script( 'admin-form.js', get_template_directory_uri() . "/js/admin-form.js", array( 'jquery', 'wp-color-picker' ), false, true );
+#		wp_register_style( 'admin-form.css', get_theme_file_uri( 'css/admin-form.css' ), false );
+#		wp_register_script( 'admin-form.js', get_theme_file_uri( 'js/admin-form.js' ), array( 'jquery', 'wp-color-picker' ), false, true );
+		wp_register_style( 'admin-form.css', get_template_directory_uri() . '/css/admin-form.css', false );
+		wp_register_script( 'admin-form.js', get_template_directory_uri() . '/js/admin-form.js', array( 'jquery', 'wp-color-picker' ), false, true );
 		wp_enqueue_media();
 		wp_enqueue_style( 'admin-form.css' );
 		wp_enqueue_style( 'wp-color-picker' );
@@ -61,29 +65,37 @@ abstract class TCC_Form_Admin {
 
   /**  Form text functions  **/
 
-  private function form_text() {
-    $text = array('error'  => array('render'    => _x('ERROR: Unable to locate function %s','string - a function name','tcc-fluid'),
-                                    'subscript' => _x('ERROR: Not able to locate form data subscript:  %s','placeholder will be an ASCII character string','tcc-fluid')),
-                  'submit' => array('save'      => __('Save Changes','tcc-fluid'),
-                                    'object'    => __('Form','tcc-fluid'),
-                                    'reset'     => _x('Reset %s','placeholder is a noun, may be plural','tcc-fluid'),
-                                    'subject'   => __('Form','tcc-fluid'),
-                                    'restore'   => _x('Default %s options restored.','placeholder is a noun, probably singular','tcc-fluid')),
-                  'media'  => array('title'     => __('Assign/Upload Image','tcc-fluid'),
-                                    'button'    => __('Assign Image','tcc-fluid'),
-                                    'delete'    => __('Unassign Image','tcc-fluid')));
-    $this->form_text = apply_filters('form_text_'.$this->slug,$text,$text);
-  }
+	private function form_text() {
+	$text = array(
+		'error'  => array(
+			'render'    => _x( 'ERROR: Unable to locate function %s', 'string - a function name', 'tcc-fluid' ),
+			'subscript' => _x( 'ERROR: Not able to locate form data subscript:  %s', 'placeholder will be an ASCII character string', 'tcc-fluid' )
+		),
+		'submit' => array(
+			'save'      => __( 'Save Changes', 'tcc-fluid' ),
+			'object'    => __( 'Form', 'tcc-fluid' ),
+			'reset'     => _x( 'Reset %s', 'placeholder is a noun, may be plural', 'tcc-fluid' ),
+			'subject'   => __( 'Form', 'tcc-fluid' ),
+			'restore'   => _x( 'Default %s options restored.', 'placeholder is a noun, probably singular', 'tcc-fluid' )
+		),
+		'media'  => array(
+			'title'     => __( 'Assign/Upload Image', 'tcc-fluid' ),
+			'button'    => __( 'Assign Image', 'tcc-fluid' ),
+			'delete'    => __( 'Unassign Image', 'tcc-fluid' )
+		)
+	);
+	$this->form_text = apply_filters( 'form_text_' . $this->slug, $text, $text );
+	}
 
 
   /**  Register Screen functions **/
 
-  private function screen_type() {
-    $this->register = "register_{$this->type}_form";
-    $this->render   = "render_{$this->type}_form";
-    $this->options  = "render_{$this->type}_options";
-    $this->validate = "validate_{$this->type}_form";
-  }
+	private function screen_type() {
+		$this->register = 'register_' . $this->type . '_form';
+		$this->render   =   'render_' . $this->type . '_form';
+		$this->options  =   'render_' . $this->type . '_options';
+		$this->validate = 'validate_' . $this->type . '_form';
+	}
 
   public function register_single_form() {
     register_setting($this->current,$this->current,array($this,$this->validate));
@@ -163,6 +175,10 @@ abstract class TCC_Form_Admin {
 
   /**  Customizer  **/
 
+	public function customizer_settings( $wp_customize, $base ) {
+		log_entry($base,$wp_customize);
+	}
+/*  All this is either going to get moved or done away with altogether
   public function customizer_settings($wp_customize,$base) {
     if ($base && $this->form[$base]) {
       $layout = $this->form[$base];
@@ -213,7 +229,7 @@ log_entry($controls);
         if ($name) $wp_customize->add_control($name,$controls);
       }
     }
-  }
+  } //*/
 
   private function sanitize_callback($option) {
     $valid_func = "validate_{$option['render']}";
@@ -231,8 +247,9 @@ log_entry($controls);
   /**  Data functions  **/
 
 	private function check_tab() {
-		if (!isset($this->form[$this->tab])) {
-			$this->tab = 'about'; }
+		if ( ! isset( $this->form[ $this->tab ] ) ) {
+			$this->tab = 'about';
+		}
 	}
 
   private function determine_option() {
@@ -296,10 +313,10 @@ log_entry($controls);
 			settings_errors(); ?>
 			<form method="post" action="options.php"><?php
 #				do_action( 'form_admin_pre_display' );
-#				do_action( "form_admin_pre_display_{$this->current}" );
-				settings_fields($this->current);
-				do_settings_sections($this->current);
-#				do_action( "form_admin_post_display_{$this->current}" );
+#				do_action( 'form_admin_pre_display_' . $this->current );
+				settings_fields( $this->current );
+				do_settings_sections( $this->current );
+#				do_action( 'form_admin_post_display_' . $this->current );
 #				do_action( 'form_admin_post_display' );
 				$this->submit_buttons(); ?>
 			</form>
@@ -412,8 +429,8 @@ log_entry($controls);
   }
 
 	private function render_attributes($layout) {
-		$attr = ( ! empty( $layout['divcss'] ) )  ? ' class="'.esc_attr($layout['divcss']).'"'   : '';
-		$attr.= ( isset( $layout['help'] ) )      ? ' title="'.esc_attr($layout['help']).'"'     : '';
+		$attr = ( ! empty( $layout['divcss'] ) )  ? ' class="' . esc_attr( $layout['divcss'] ).'"'   : '';
+		$attr.= ( isset( $layout['help'] ) )      ? ' title="' . esc_attr( $layout['help']   ).'"'   : '';
 		if ( ! empty( $layout['showhide'] ) ) {
 			$attr.= ' data-item="' . esc_attr( $layout['showhide']['item'] ) . '"';
 			$attr.= ' data-show="' . esc_attr( $layout['showhide']['show'] ) . '"';
@@ -627,7 +644,16 @@ log_entry($controls);
 
 	private function render_spinner( $data ) {
 		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-		$tooltip = ( isset( $layout['help'] ) ) ? $layout['help'] : ''; ?>
+		$tooltip = ( isset( $layout['help'] ) ) ? $layout['help'] : '';
+		$attrs = array(
+			'id'    => $ID,
+			'name'  => $name,
+			'title' => $tooltip,
+			'value' => sanitize_text_field( $value ),
+ ?>" /> <?php
+
+
+ ?>
 		<input type="number" class="small-text" min="1" step="1"
 		       id="<?php e_esc_attr( $ID ); ?>"
 		       name="<?php e_esc_attr( $name ); ?>"
@@ -796,4 +822,32 @@ log_entry($input);
   }
 
 
+}
+
+
+if ( ! function_exists( 'get_applied_attrs' ) ) {
+	function get_applied_attrs( $args ) {
+		return apply_attrs( $args, false );
+	}
+}
+
+if ( ! function_exists( 'apply_attrs' ) ) {
+	function apply_attrs( $args, $echo = true ) {
+		$attrs = ' ';
+		foreach( $args as $attr => $value ) {
+			if ( empty( $value ) ) {
+				continue;
+			}
+			// FIXME: use assoc array
+			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : 'esc_attr';
+			$sanitize = ( $attr === 'src'   ) ? 'esc_url'  : $sanitize;
+			$sanitize = ( $attr === 'value' ) ? 'esc_html' : $sanitize;
+			$attrs .= $attr . '="'. $sanitize( $value ) . '" ';
+		}
+		if ( $echo ) {
+			echo $attrs;
+		} else {
+			return $attrs;
+		}
+	}
 }
