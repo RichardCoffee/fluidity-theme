@@ -670,8 +670,13 @@ log_entry($controls);
 			'class' => ( isset( $layout['class'] ) )  ? $layout['class'] : 'regular-text';
 			'name'  => $name,
 			'value' => $value,
-			'title' => ( isset( $layout['help'] ) )   ? " title='".esc_attr($layout['help'])."'"        : "";
-*/
+			'title' => ( isset( $layout['help'] ) )   ? $layout['help']  : '';
+			'placeholder' => ( isset( $layout['place'] ) ) ? $layout['place'] : '';
+			'onchange' => ( isset( $layout['change'] ) ) ? $layout['change']  : '';
+
+
+
+//*/
 
     $html.= "<input type='text' id='$ID' class='";
     $html.= (isset($layout['class']))  ? esc_attr($layout['class'])."'" : "regular-text'";
