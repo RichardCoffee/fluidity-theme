@@ -162,3 +162,9 @@ function themeslug_customize_register( $wp_customize ) {
   log_entry( $wp_customize );
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
+
+function tcc_template_test( $template ) {
+	log_entry('template redirect: '.$template);
+}
+add_action( 'template_redirect', 'tcc_template_test',0);
+add_action( 'template_redirect', 'tcc_template_test',1001);
