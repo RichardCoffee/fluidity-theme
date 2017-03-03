@@ -46,10 +46,14 @@ if (!function_exists('fluid_noposts_page')) {
   }
 }
 
+// FIXME: can we get rid of this function yet?
 if (!function_exists('fluid_save_page_template')) {
 	function fluid_save_page_template( $template ) {
+log_entry('template_include: '.$template);
 		global $fluidity_theme_template;
-		$fluidity_theme_template = basename($template,".php");
+		if ( empty( $fluidity_theme_template ) ) {
+			$fluidity_theme_template = basename($template,".php");
+		}
 		return $template;
 	}
 	add_action('template_include', 'fluid_save_page_template', 1000);
