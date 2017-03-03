@@ -65,6 +65,18 @@ class TCC_Options_Layout {
 				'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
 			),
 		);
+		if ( WP_DEBUG ) {
+			$layout['main_css'] = array(
+				'default' => 'col-lg-9 col-md-9 col-sm-12 col-xs-12',
+				'label'   => __( 'Main CSS', 'tcc-fluid' ),
+				'render'  => 'text',
+			);
+			$layout['sidebar_css'] = array(
+				'default' => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
+				'label'   => __( 'Sidebar CSS', 'tcc-fluid' ),
+				'render'  => 'text',
+			);
+		}
 		$layout['sidebar'] = array(
 			'default' => 'left',
 			'label'   => __( 'Sidebar', 'tcc-fluid' ),
@@ -84,6 +96,7 @@ class TCC_Options_Layout {
 			'text'    => __( 'Where should the sidebar show up on mobile devices?', 'tcc-fluid' ),
 			'render'  =>'radio',
 			'source'  => array(
+				'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
 				'top'    => __( 'Before post content', 'tcc-fluid' ),
 				'bottom' => __( 'After post content', 'tcc-fluid' ),
 			),

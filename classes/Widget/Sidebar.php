@@ -13,9 +13,10 @@ class TCC_Widget_Sidebar {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args = array() ) {
-		$this->slug      = get_page_slug();
+		$this->css       = tcc_layout( 'sidebar_css' );
 		$this->is_mobile = $this->is_mobile();
 		$this->position  = $this->positioning();
+		$this->slug      = get_page_slug();
 		$this->parse_args( $args );
 		$this->css = ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css );
 		if ( $this->position !== 'none' ) {
@@ -53,7 +54,7 @@ log_entry($this);
 	}
 
 	public function show_sidebar() {
-		$css  = array(
+		$css = array(
 			'fluid-sidebar-' . $this->position,
 			'noprint',
 			'widget-area',
@@ -65,17 +66,24 @@ log_entry($this);
 			$css[] = 'fluid-sidebar';
 			$css[] = 'pull-' . $this->position;
 		} else {
-			$css = array_merge( $css, $this->css );
+			$css = array_merge( $css, (array)$this->css );
 		}
-		$css = apply_filters( 'fluid_sidebar_css', $css );
+		$new = apply_filters( 'fluid_sidebar_css', '' );
 		if ( $this->slug ) {
-			$css = apply_filters( 'fluid_sidebar_css_' . $this->slug, $css );
+			$new = apply_filters( 'fluid_sidebar_css_' . $this->slug, $new, $this->sidebar );
 		}
-		$css = array_map( 'esc_attr', array_unique( $css ) ); ?>
-		<div class="<?php echo join( ' ', $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
+		if ( $this->slug !== $this->sidebar ) {
+			$new = apply_filters( 'fluid_sidebar_css_' . $this->sidebar, $new, $this->sidebar );
+		}
+		if ( $new ) {
+			$new = ( is_array( $new ) ) ? $new : explode( ' ', $new );
+			$css = array_merge( $css, $new );
+		}
+		$css = array_unique( $css ); ?>
+		<div class="<?php echo esc_attr( join( ' ', $css ) ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
 			<?php get_template_part( 'sidebar', $this->sidebar ); ?>
 		</div><?php
 	}
 
 
-}
+}	#	end of class TCC_Widget_Sidebar

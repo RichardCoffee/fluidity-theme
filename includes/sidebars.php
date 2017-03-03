@@ -149,6 +149,7 @@ if (!function_exists('fluidity_sidebar_layout')) {
  *  @param string sidebar to be used, defaults to 'standard' sidebar
  */
 if ( ! function_exists( 'fluidity_sidebar' ) ) {
+	#	DEPRECATED - do not use
 	function fluidity_sidebar( $css = '', $sidebar = 'standard' ) {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
 		$side = tcc_layout( 'sidebar' );
@@ -169,40 +170,14 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 
 if ( ! function_exists( 'tcc_sidebar' ) ) {
 	function tcc_sidebar( $sidebar = 'standard' ) {
-		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
 		$side = tcc_layout( 'sidebar' );
-		if ( $side === 'none' ) { return; }
-		if ( wp_is_mobile() ) {
-			add_filter( 'tcc_after_posts', 'fluid_mobile_sidebar', 10, 2 );
-			return;
-		}
-		fluid_show_sidebar( $sidebar );
-	}
-}
-
-if ( ! function_exists( 'fluid_mobile_sidebar' ) ) {
-	function fluid_mobile_sidebar( $page, $sidebar ) {
-		fluid_show_sidebar( $sidebar );
-	}
-}
-
-
-if ( ! function_exists( 'fluid_show_sidebar' ) ) {
-	function fluid_show_sidebar( $sidebar = 'standard' ) {
-		$side = tcc_layout( 'sidebar' );
-		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
-		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
 		$slug = get_page_slug();
 		$css  = array(
 			'widget-area',
 			'fluid-sidebar',
 			"fluid-sidebar-$side",
 			"fluid-sidebar-$slug",
-#			"mobile-sidebar",
 		);
-		if ( $side === 'right' ) {
-			$css[] = 'pull-right';
-		}
 		$css = array_merge( $css, $extra_css );
 		$css = apply_filters( 'fluid_sidebar_css', $css );
 		$css = apply_filters( "fluid_sidebar_css_$slug", $css );
