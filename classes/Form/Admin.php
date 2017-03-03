@@ -785,7 +785,7 @@ log_entry($controls);
       $output = $this->$func($input);
     } elseif (function_exists($func)) {
       $output = $func($input);
-    } else { // FIXME:  test for data type
+    } else { // FIXME:  test for data type?
       $output = $this->validate_text($input);
 		log_entry("missing validation function: $func");
     }
@@ -814,7 +814,7 @@ log_entry($input);
   }
 
 	private function validate_radio_multiple( $input ) {
-		return array_map( array( $this, 'validate_radio' ), $input );
+		return $this->validate_radio( $input );
 	}
 
   private function validate_select($input) {

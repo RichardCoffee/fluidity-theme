@@ -59,7 +59,7 @@ $orig = $count;
 					$count = false;
 					break;
 				case 'some':
-					$count = max( 1, intval( ( $users / rand(1, 10) ), 10 ) );
+					$count = rand(1, $users);
 					break;
 				case 'one':
 					$count = 1;
@@ -75,7 +75,7 @@ log_entry(
 	" calced: $count",
 	" source: $option",
 	"network: $network_id"
-);
+); //*/
 		}
 		return $count;
 	}
@@ -108,7 +108,7 @@ log_entry(
 		if ( $preempt || isset( $args['_pmw_privacy_filter'] ) ) {
 			return $preempt;
 		}
-log_entry($url);
+#log_entry($url);
 		#	only act on requests to api.wordpress.org
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
@@ -205,16 +205,28 @@ log_entry( 'headers:Referer has been deleted.' );
 						}
 						$plugins->plugins = $new_set;
 					} else if ( $this->options['plugins'] === 'filter' ) {
-						$plugin_filter = $this->options['plugin_list'];
+						$plugin_filter   = $this->options['plugin_list'];
+						$installed_list  = get_plugins();
 						foreach ( $plugin_filter as $plugin => $status ) {
-							if ( ( $status === 'no' ) || ( $plugin === 'privacy-my-way' ) ) {
+							if ( ( $status === 'no' ) ) { # || ( $plugin === 'privacy-my-way' ) ) {
 								if ( isset( $plugins->plugins->$plugin ) ) {
+									unset( $plugins->plugins->$plugin );
+								}
+							}
+							if ( ( $this->options['install_default'] === 'no' ) && isset( $installed_list[ $plugin ] ) ) {
+								unset( $installed_list[ $plugin ] );
+							}
+						}
+						#	Check for newly installed plugins
+						if ( ( $this->options['install_default'] === 'no' ) && $installed_list ) {
+							foreach( $installed_list as $key => $plugin ) {
+								if ( isset( $plugins->plugins->$key ) ) {
 									unset( $plugins->plugins->$plugin );
 								}
 							}
 						}
 						#	Rebuild active plugins object
-						$count  = 1;
+						$count = 1;
 						foreach( (array)$plugins->active as $key => $plugin ) {
 							if ( isset( $plugins->plugins->$plugin ) ) {
 								$new_set->$count = $plugin;
@@ -223,7 +235,7 @@ log_entry( 'headers:Referer has been deleted.' );
 						}
 						$plugins->active = $new_set;
 					}
-#					log_entry('plugins:  ' . $this->options['plugins'],$plugins);
+					log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 					$args['body']['plugins'] = wp_json_encode( $plugins );
 					$args['_pmw_privacy_filter_plugins'] = true;
 				}

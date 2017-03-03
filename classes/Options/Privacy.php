@@ -105,10 +105,10 @@ class TCC_Options_Privacy {
 			'change'    => 'showhidePosi( this, ".privacy-plugin-filter", "filter" );',
 			'divcss'    => 'privacy-plugin-active',
 		); //*/
-		$layout['plugin_default'] = array(
+		$layout['install_default'] = array(
 			'default' => 'yes',
 			'label'   => __( 'Default', 'tcc-fluid' ),
-			'text'    => __( 'Default setting for newly installed plugins.', 'tcc-fluid' ),
+			'text'    => __( 'Default setting for newly installed plugins/themes.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
 				'yes'  => __( 'Allow wordpress report on new installs.', 'tcc-fluid' ),
@@ -118,7 +118,7 @@ class TCC_Options_Privacy {
 			'divcss'  => 'privacy-plugin-filter',
 		);
 		$layout['plugin_list'] = array(
-			'default' => $this->get_plugin_defaults( 'yes' ),
+			'default' => $this->get_plugin_defaults( ),
 			'preset'  => 'yes',
 			'label'   => __( 'Plugin List', 'tcc-fluid' ),
 			'text'    => sprintf( $warning, __( 'plugin', 'tcc_fluid' ) ),
@@ -130,7 +130,6 @@ class TCC_Options_Privacy {
 		$layout['themes'] = array(
 			'default' => 'all',
 			'label'   => __( 'Themes', 'tcc-fluid' ),
-			'postext' => __( 'Note:  For the first three options, the WordPress twenty* themes that are installed will always be reported.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
 				'all'    => __( 'Let WordPress know what themes you have installed.', 'tcc-fluid' ),
@@ -142,11 +141,12 @@ class TCC_Options_Privacy {
 			'divcss'  => 'privacy-theme-active',
 		); //*/
 		$layout['theme_list'] = array(
-			'default' => $this->get_theme_defaults( 'yes' ),
+			'default' => $this->get_theme_defaults( ),
 			'preset'  => 'yes',
 			'label'   => __( 'Theme List', 'tcc-privacy' ),
 			'text'    => sprintf( $warning, __( 'theme', 'tcc_fluid' ) ),
 			'textcss' => 'red', // FIXME: bad css
+			'postext' => __( 'The WordPress twenty* themes that are installed will always be reported.', 'tcc-fluid' ),
 			'help'    => __( 'This plugin does not filter default WordPress themes.', 'tcc-privacy' ),
 			'render'  => 'radio_multiple',
 /*			'titles'  => array(
@@ -164,10 +164,11 @@ class TCC_Options_Privacy {
 
 	/**  Plugin functions  **/
 
-	private function get_plugin_defaults( $preset ) {
+	public function get_plugin_defaults( ) {
 		#	Start with a clean slate
 		$options = $this->clean_plugin_defaults();
-		#	Load missing items with the default value
+		#	Load missing items with the default value, with new actives getting an automatic 'yes'
+		$preset = tcc_privacy( 'install_default', 'yes' );
 		foreach( $this->plugins as $path => $plugin ) {
 			if ( ! isset( $options[ $path ] ) ) {
 				$options[ $path ] = ( in_array( $path, $this->active ) ) ? 'yes' : $preset;
@@ -180,12 +181,10 @@ class TCC_Options_Privacy {
 	private function clean_plugin_defaults() {
 		#	The beginning
 		$options = array();
-		$current = tcc_privacy( 'plugin_list' );
-		if ( $current ) {
-			foreach( $current as $key => $status ) {
-				if ( isset( $this->plugins[ $key ] ) ) {
-					$options[ $key ] = ( $key === 'privacy-my-way' )  ? 'no' : $status;
-				}
+		$current = tcc_privacy( 'plugin_list', array() );
+		foreach( $current as $key => $status ) {
+			if ( isset( $this->plugins[ $key ] ) ) {
+				$options[ $key ] = $status; # ( $key === 'privacy-my-way' )  ? 'no' : $status;
 			}
 		}
 		return $options;
@@ -209,8 +208,9 @@ class TCC_Options_Privacy {
 
 	/**  Theme functions  **/
 
-	private function get_theme_defaults( $preset ) {
+	private function get_theme_defaults() {
 		$options = $this->clean_theme_defaults();
+		$preset  = tcc_privacy( 'install_default', 'yes' );
 		foreach( $this->themes as $slug => $theme ) {
 			if ( ! isset( $options[ $slug ] ) ) {
 				$options[ $slug ] = ( strpos( $slug, 'twenty' ) === 0 ) ? $preset : 'yes';
@@ -222,12 +222,10 @@ class TCC_Options_Privacy {
 	#	removes deleted themes by generating a new list
 	private function clean_theme_defaults() {
 		$options = array();
-		$current = tcc_privacy( 'theme_list' );
-		if ( $current ) {
-			foreach( $current as $key => $status ) {
-				if ( isset( $this->plugins[ $key ] ) ) {
-					$options[ $key ] = $status;
-				}
+		$current = tcc_privacy( 'theme_list', array() );
+		foreach( $current as $key => $status ) {
+			if ( isset( $this->plugins[ $key ] ) ) {
+				$options[ $key ] = $status;
 			}
 		}
 		return $options;
