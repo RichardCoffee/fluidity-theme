@@ -645,13 +645,11 @@ log_entry($controls);
 	private function render_spinner( $data ) {
 		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
 		$tooltip = ( isset( $layout['help'] ) ) ? $layout['help'] : '';
-		$attrs = array(
+/*		$attrs = array(
 			'id'    => $ID,
 			'name'  => $name,
 			'title' => $tooltip,
-			'value' => sanitize_text_field( $value ),
- ?>" /> <?php
-
+			'value' => sanitize_text_field( $value ), */
 
  ?>
 		<input type="number" class="small-text" min="1" step="1"
@@ -662,9 +660,19 @@ log_entry($controls);
 		if ( ! empty( $layout['stext'] ) ) { e_esc_attr( $layout['stext'] ); }
 	}
 
-  private function render_text($data) {
-    extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-    $html = (!empty($layout['text']))  ? "<p> ".esc_attr($layout['text'])."</p>" : "";
+	private function render_text( $data ) {
+		extract( $data );  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
+		$html = (!empty($layout['text']))  ? "<p> ".esc_attr($layout['text'])."</p>" : "";
+/*
+		$html.= '<input type="text"';
+		$attrs = array(
+			'id' => $ID,
+			'class' => ( isset( $layout['class'] ) )  ? $layout['class'] : 'regular-text';
+			'name'  => $name,
+			'value' => $value,
+			'title' => ( isset( $layout['help'] ) )   ? " title='".esc_attr($layout['help'])."'"        : "";
+*/
+
     $html.= "<input type='text' id='$ID' class='";
     $html.= (isset($layout['class']))  ? esc_attr($layout['class'])."'" : "regular-text'";
     $html.= " name='$name' value='".esc_attr(sanitize_text_field($value))."'";
