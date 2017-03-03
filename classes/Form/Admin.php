@@ -565,8 +565,11 @@ log_entry($controls);
 						       value="<?php echo esc_attr( $key ); ?>"
 						       <?php checked( $value, $key ); ?>
 						       onchange="<?php echo esc_attr( $onchange ); ?>"
-						       aria-describedby="<?php echo $uniq; ?>">
-						<?php echo esc_html( $text ); ?>
+						       aria-describedby="<?php echo $uniq; ?>"><?php
+						echo esc_html( $text );
+						if ( isset( $layout['extra_html'][ $key ] ) ) {
+							echo $layout['extra_html'][ $key ];
+						} ?>
 					</label>
 				</div><?php
 			} ?>

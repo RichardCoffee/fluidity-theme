@@ -40,19 +40,20 @@ class TCC_Options_Privacy {
 	}
 
 	public function options_layout() {
-		$warning = _x( '*** Turning off reporting a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
-		$recommended = __( 'Recommended', 'tcc-fluid' );
 		$layout  = array( 'default' => true );
+		$warning = _x( '*** Turning off reporting a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
+		$extra_html = array( 'yes' => ' <span class="red"> ' . __( 'Recommended', 'tcc-fluid' ) . '</span>' );
 		$layout['blog'] = array(
 			'default' => 'yes',
 			'label'   => __( 'Blog URL', 'tcc-fluid' ),
 			'text'    => __( 'I personally recommend that you not change this setting.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'yes'  => __( "Let WordPress know your site's url.", 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
+				'yes'  => __( "Let WordPress know your site's url.", 'tcc-fluid' ),
 				'no'   => __( 'Do not let them know where you are.', 'tcc-fluid' ),
 			),
-			'divcss'  => 'privacy-blog-active',
+			'extra_html' => $extra_html,
+			'divcss'     => 'privacy-blog-active',
 		); //*/
 		if ( is_multisite() && is_main_site() ) {
 			$layout['blog']['change'] = 'showhidePosi( this, ".privacy-blog-option", "yes" );';
@@ -61,9 +62,10 @@ class TCC_Options_Privacy {
 				'label'   => __( 'Multi-Site', 'tcc-fluid' ),
 				'render'  => 'radio',
 				'source'  => array(
-					'yes'  => __( "Yes - Let WordPress know if you are running a multi-site blog.", 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
+					'yes'  => __( "Yes - Let WordPress know if you are running a multi-site blog.", 'tcc-fluid' ),
 					'no'   => __( "No -- Tell WordPress you are running just a single blog.", 'tcc-fluid' ),
 				),
+				'extra_html' => $extra_html,
 				'change'  => 'showhidePosi( this, ".privacy-multi-option", "yes" );',
 				'divcss'  => 'privacy-multi-active privacy-blog-option',
 			); //*/
@@ -72,9 +74,10 @@ class TCC_Options_Privacy {
 				'label'   => __( 'Install URL', 'tcc-fluid' ),
 				'render'  => 'radio',
 				'source'  => array(
-					'yes'  => __( 'Let WordPress know the url you installed WordPress to.', 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
+					'yes'  => __( 'Let WordPress know the url you installed WordPress to.', 'tcc-fluid' ),
 					'no'   => __( 'Do not give WordPress this information.', 'tcc-fluid' ),
 				),
+				'extra_html' => $extra_html,
 				'divcss'  => 'privacy-blog-option privacy-multi-option',
 			); //*/
 		}
@@ -108,9 +111,10 @@ class TCC_Options_Privacy {
 			'text'    => __( 'Default setting for newly installed plugins.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'yes'  => __( 'Allow wordpress report on new installs.', 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
+				'yes'  => __( 'Allow wordpress report on new installs.', 'tcc-fluid' ),
 				'no'   => __( 'Block reports on new installs.', 'tcc-fluid' ),
 			),
+			'extra_html' => $extra_html,
 		);
 		$layout['plugin_list'] = array(
 			'default' => $this->get_plugin_defaults( 'yes' ),
