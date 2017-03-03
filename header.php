@@ -27,4 +27,4 @@
 	<a class="skip-link sr-only" href="#fluid-content"><?php esc_html_e( 'Skip to content', 'tcc-fluid' ); ?></a><?php
 	$slug = get_page_slug();
 log_entry('slug: '.$slug ); #, list_filter_hooks() );
-	get_template_part( 'template-parts/header', $slug );
+	get_template_part( 'template-parts/header', 'front' );
