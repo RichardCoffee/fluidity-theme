@@ -41,6 +41,7 @@ class TCC_Options_Privacy {
 
 	public function options_layout() {
 		$warning = _x( '*** Turning off reporting a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
+		$recommended = __( 'Recommended', 'tcc-fluid' );
 		$layout  = array( 'default' => true );
 		$layout['blog'] = array(
 			'default' => 'yes',
@@ -48,7 +49,7 @@ class TCC_Options_Privacy {
 			'text'    => __( 'I personally recommend that you not change this setting.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'yes'  => __( "Let WordPress know your site's url.", 'tcc-fluid' ),
+				'yes'  => __( "Let WordPress know your site's url.", 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
 				'no'   => __( 'Do not let them know where you are.', 'tcc-fluid' ),
 			),
 			'divcss'  => 'privacy-blog-active',
@@ -60,7 +61,7 @@ class TCC_Options_Privacy {
 				'label'   => __( 'Multi-Site', 'tcc-fluid' ),
 				'render'  => 'radio',
 				'source'  => array(
-					'yes'  => __( "Yes - Let WordPress know if you are running a multi-site blog.", 'tcc-fluid' ),
+					'yes'  => __( "Yes - Let WordPress know if you are running a multi-site blog.", 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
 					'no'   => __( "No -- Tell WordPress you are running just a single blog.", 'tcc-fluid' ),
 				),
 				'change'  => 'showhidePosi( this, ".privacy-multi-option", "yes" );',
@@ -71,7 +72,7 @@ class TCC_Options_Privacy {
 				'label'   => __( 'Install URL', 'tcc-fluid' ),
 				'render'  => 'radio',
 				'source'  => array(
-					'yes'  => __( 'Let WordPress know the url you installed WordPress to.', 'tcc-fluid' ),
+					'yes'  => __( 'Let WordPress know the url you installed WordPress to.', 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
 					'no'   => __( 'Do not give WordPress this information.', 'tcc-fluid' ),
 				),
 				'divcss'  => 'privacy-blog-option privacy-multi-option',
@@ -107,7 +108,7 @@ class TCC_Options_Privacy {
 			'text'    => __( 'Default setting for newly installed plugins.', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'yes'  => __( 'Allow wordpress report on new installs.', 'tcc-fluid' ),
+				'yes'  => __( 'Allow wordpress report on new installs.', 'tcc-fluid' ) . ' <span class="red"> ' . $recommended . '</span>',
 				'no'   => __( 'Block reports on new installs.', 'tcc-fluid' ),
 			),
 		);
@@ -141,7 +142,7 @@ class TCC_Options_Privacy {
 			'label'   => __( 'Theme List', 'tcc-privacy' ),
 			'text'    => sprintf( $warning, __( 'theme', 'tcc_fluid' ) ),
 			'textcss' => 'red', // FIXME: bad css
-			'help'    => __( 'This list does not filter default WordPress themes.  If WordPress themes are installed, it will report them.', 'tcc-privacy' ),
+			'help'    => __( 'This plugin does not filter default WordPress themes.', 'tcc-privacy' ),
 			'render'  => 'radio_multiple',
 /*			'titles'  => array(
 				__( 'On', 'tcc-fluid' ),
