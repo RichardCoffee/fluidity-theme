@@ -1,12 +1,6 @@
 <?php
-/*  available in includes/library.php
-if ( ! function_exists( 'clearfix' ) ) {
-	function clearfix() {
-		return TCC_Post_ClearFix::instance();
-	}
-} //*/
 
-class TCC_Post_ClearFix {
+class TCC_Theme_ClearFix {
 
 	private $lg = 0;
 	private $md = 0;

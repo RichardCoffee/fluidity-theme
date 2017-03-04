@@ -34,7 +34,9 @@ log_entry($this);
 	protected function get_options() {
 		$options = get_option( 'tcc_options_privacy' );
 		if ( ! $options ) {
-			// FIXME - get defaults from TCC_Options_Privacy
+			$privacy = new TCC_Options_Privacy;
+			$options = $privacy->get_privacy_defaults();
+			set_option( 'tcc_options_privacy', $options );
 		}
 		$this->options = $options;
 	}

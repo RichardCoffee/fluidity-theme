@@ -71,7 +71,7 @@ if ( ! function_exists( 'array_remove_value' ) ) {
 
 if ( ! function_exists( 'clearfix' ) ) {
 	function clearfix() {
-		return TCC_Post_ClearFix::instance();
+		return TCC_Theme_ClearFix::instance();
 	}
 }
 

@@ -39,7 +39,7 @@ class TCC_Options_Privacy {
 		_e( 'Control the information that WordPress collects from your site.  The default settings here duplicate what WordPress currently collects.', 'tcc-fluid' );
 	}
 
-	public function options_layout() {
+	public function options_layout( $all = false ) {
 		$layout  = array( 'default' => true );
 		$warning = _x( '*** Turning off reporting a %1$s means you will not be notified of upgrades for that %1$s! ***', 'noun - singular', 'tcc-fluid' );
 		$extra_html = array( 'yes' => ' <span class="red"> ' . __( ' ( Recommended ) ', 'tcc-fluid' ) . '</span>' );
@@ -55,7 +55,7 @@ class TCC_Options_Privacy {
 			'extra_html' => $extra_html,
 			'divcss'     => 'privacy-blog-active',
 		); //*/
-		if ( is_multisite() && is_main_site() ) {
+		if ( ( is_multisite() && is_main_site() ) || $all ) {
 			$layout['blog']['change'] = 'showhidePosi( this, ".privacy-blog-option", "yes" );';
 			$layout['blogs'] = array(
 				'default' => 'yes',
@@ -159,6 +159,17 @@ class TCC_Options_Privacy {
 		); //*/
 		$layout = apply_filters( "tcc_{$this->base}_options_layout", $layout );
 		return $layout;
+	}
+
+	public function get_privacy_defaults() {
+		$form = $this->options_layout( true );
+		$defs = array();
+		foreach( $form as $key => $option ) {
+			if ( isset( $option['default'] ) ) {
+				$defs[ $key ] = $option['default'];
+			}
+		}
+		return $defs;
 	}
 
 

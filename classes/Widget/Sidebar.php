@@ -5,7 +5,6 @@ class TCC_Widget_Sidebar {
 	protected $action     = 'tcc_before_main';
 	protected $css        =  array();
 	protected $horizontal =  false;
-	protected $is_mobile  =  false;
 	protected $position   = 'none';
 	protected $sidebar    = 'standard';
 	protected $slug;
@@ -14,20 +13,26 @@ class TCC_Widget_Sidebar {
 
 	public function __construct( $args = array() ) {
 		$this->css       = tcc_layout( 'sidebar_css' );
-		$this->is_mobile = $this->is_mobile();
 		$this->position  = $this->positioning();
 		$this->slug      = get_page_slug();
 		$this->parse_args( $args );
 		$this->css = ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css );
 		if ( $this->position !== 'none' ) {
-			if ( ( $this->position === 'right' )  && $this->css ) {
-				$this->action = 'tcc_after_main';
+			if ( ! $this->horizontal ) {
+				if ( $this->is_mobile() ) {
+					$mobile = tcc_layout( 'mobile_sidebar' );
+					if ( $mobile === 'none' ) {
+						$this->action = false;
+					} else if ( $mobile === 'bottom' ) {
+						$this->action = 'tcc_after_main';
+					}
+				} else if ( ( $this->position === 'right' ) && $this->css ) {
+					$this->action = 'tcc_after_main';
+				}
 			}
-			$mobile = tcc_layout( 'mobile_sidebar' );
-			if ( $this->is_mobile && ( $mobile === 'bottom' ) && ( ! $this->horizontal ) ) {
-				$this->action = 'tcc_after_main';
+			if ( $this->action ) {
+				add_action( $this->action, array( $this, 'show_sidebar' ) );
 			}
-			add_action( $this->action, array( $this, 'show_sidebar' ) );
 		}
 log_entry($this);
 	}

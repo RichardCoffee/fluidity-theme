@@ -1,12 +1,11 @@
 $(window).scroll(function() {
-if ($(this).scrollTop() >310){
-    $('header').addClass("sticky");
-	$('#logo').addClass("sticky");
-  }
-  else{
-    $('header').removeClass("sticky");
-	$('#logo').removeClass("sticky");
-  }
+	if ($(this).scrollTop() >310){
+		$('header').addClass("scrolleffects");
+		$('#logo').addClass("scrolleffects");
+	} else{
+		$('header').removeClass("scrolleffects");
+		$('#logo').removeClass("scrolleffects");
+	}
 });
 
 /* http://blog.bassta.bg/2013/05/smooth-page-scrolling-with-tweenmax/ */

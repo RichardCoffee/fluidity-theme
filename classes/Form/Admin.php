@@ -31,8 +31,12 @@ abstract class TCC_Form_Admin {
 	protected function __construct() {
 		$this->screen_type();
 		add_action( 'admin_init', array( $this, 'load_form_page' ) );
-		if ( defined( 'TCC_TAB' ) )                { $this->tab = TCC_TAB; }
-		if ( $trans = get_transient( 'TCC_TAB' ) ) { $this->tab = $trans; }
+		if ( defined( 'TCC_TAB' ) ) {
+			$this->tab = TCC_TAB;
+		}
+		if ( $trans = get_transient( 'TCC_TAB' ) ) {
+			$this->tab = $trans;
+		}
 	}
 
 	public function load_form_page() {
@@ -97,18 +101,20 @@ abstract class TCC_Form_Admin {
 		$this->validate = 'validate_' . $this->type . '_form';
 	}
 
-  public function register_single_form() {
-    register_setting($this->current,$this->current,array($this,$this->validate));
-    foreach($this->form as $key=>$group) {
-      if (is_string($group)) continue; // skip string variables
-      $title = (isset($group['title']))    ? $group['title'] : '';
-      $desc  = (isset($group['describe'])) ? array($this,$group['describe']) : 'description';
-      add_settings_section($key,$title,array($this,$desc),$this->slug);
-      foreach($group['layout'] as $item=>$data) {
-        $this->register_field($this->slug,$key,$item,$data);
-      }
-    }
-  }
+	public function register_single_form() {
+		register_setting( $this->current, $this->current, array( $this, $this->validate ) );
+		foreach( $this->form as $key => $group ) {
+			if ( is_string( $group ) ) {
+				continue; // skip string variables
+			}
+			$title = ( isset( $group['title'] ) )    ? $group['title'] : '';
+			$desc  = ( isset( $group['describe'] ) ) ? array( $this, $group['describe'] ) : 'description';
+			add_settings_section( $key, $title, array( $this, $desc ), $this->slug );
+			foreach( $group['layout'] as $item => $data ) {
+				$this->register_field( $this->slug, $key, $item, $data );
+			}
+		}
+	}
 
   public function register_tabbed_form() {
     $validater = (isset($this->form['validate'])) ? $this->form['validate'] : $this->validate;
