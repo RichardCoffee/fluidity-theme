@@ -3,7 +3,7 @@
 
 class TCC_Theme_Sidebar {
 
-	static $sidebar = null;
+	protected static $sidebar = null;
 
 	use TCC_Trait_Singleton;
 
