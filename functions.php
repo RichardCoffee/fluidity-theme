@@ -12,7 +12,6 @@ $data = get_file_data( FLUIDITY_HOME . 'style.css', array( 'ver' => 'Version' ) 
 define( 'FLUIDITY_VERSION', $data['ver'] );
 
 defined( 'TCC_THEME_VERSION' ) or define( 'TCC_THEME_VERSION', FLUIDITY_VERSION );
-defined( 'TCC_SIDEBAR_FLOW' )  or define( 'TCC_SIDEBAR_FLOW', true );
 
 require_once('includes/loader.php');
 require_once('includes/debugging.php');              #  load logging function as soon as possible
@@ -31,7 +30,7 @@ require_once('includes/privacy.php');
 require_once('includes/sidebars.php');
 require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
 
-require_once('classes/autocomplete.php');
+require_once( 'classes/autocomplete.php' );
 new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
 
 if (is_admin()) {
@@ -50,7 +49,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 
 		do_action( 'tcc_pre_enqueue' );
 
-		#	Register
+		#	Register scripts
 		fluidity_register_fontawesome();
 		fluidity_register_bootstrap();
 		fluidity_register_color_scheme();
@@ -62,8 +61,8 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 			wp_enqueue_style('fa-social');
 		}
 		fluidity_enqueue_bootstrap();
-#    wp_enqueue_style('fluidity');
-#    wp_enqueue_style('fluid-color');
+#		wp_enqueue_style('fluidity');
+#		wp_enqueue_style('fluid-color');
 
 		do_action( 'tcc_during_enqueue' );
 
@@ -71,7 +70,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		if ( tcc_layout('menu') !== 'bootstrap' ) {
 			wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
 		}
-#    wp_enqueue_script('bootstrap.js');
+#		wp_enqueue_script('bootstrap.js');
 		wp_enqueue_script('tcc-skiplink');
 		if ((tcc_layout('widget')!=='perm') || is_404()) {
 			wp_enqueue_script('tcc-collapse');
@@ -147,6 +146,9 @@ if (!function_exists('fluidity_register_color_scheme')) {
     }
   }
 }
+
+
+/**  Test functions  **/
 
 if ( ! function_exists( 'add_privacy_filters' ) && file_exists( WP_CONTENT_DIR . '/privacy.flg' ) ) {
 	function add_privacy_filters( $locale = '' ) {

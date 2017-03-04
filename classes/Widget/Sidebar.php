@@ -64,7 +64,6 @@ log_entry($this);
 		}
 		if ( empty( $this->css ) ) {
 			$css[] = 'fluid-sidebar';
-			$css[] = 'pull-' . $this->position;
 		} else {
 			$css = array_merge( $css, (array)$this->css );
 		}
