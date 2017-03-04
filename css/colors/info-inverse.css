@@ -211,6 +211,10 @@ hr {
   border-color: #BCE8F1;
 }
 
+.lost-password {
+  color: #D9EDF7;
+}
+
 .page-title {
   color: #31708F;
   text-shadow: #BCE8F1 1px 1px 2px;
