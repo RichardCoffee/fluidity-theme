@@ -8,7 +8,7 @@ class TCC_Theme_Sidebar {
 	use TCC_Trait_Singleton;
 
 	protected function __construct( $args = array() ) {
-		if ( ! $sidebar ) {
+		if ( ! self::$sidebar ) {
 			$args = $this->check_args( $args );
 			self::$sidebar = new TCC_Widget_Sidebar( $args );
 		}
@@ -19,6 +19,7 @@ class TCC_Theme_Sidebar {
 			$available = $GLOBALS['wp_registered_sidebars'];
 log_entry($available);
 		}
+		return $args;
 	}
 
 }
