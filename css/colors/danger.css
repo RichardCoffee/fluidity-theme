@@ -220,6 +220,10 @@ hr {
   background-color: rgba(217, 83, 79, 0.7) !important;
 }
 
+.sticky {
+  color: #FFFFFF;
+}
+
 .tml {
   color: #d9534f;
 }

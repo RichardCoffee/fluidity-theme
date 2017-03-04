@@ -12,7 +12,7 @@ $mypage = get_page_slug();
 #add_filter ( "fluid_sidebar_css_$mypage",      function ( $css, $mypage ) { return "col-md-2 $css";  }, 10, 2 );
 #add_filter ( "tcc_main_css_$mypage",           function ( $css, $mypage ) { return "col-md-10 $css"; }, 10, 2 );
 
-$mysidebar = new TCC_Theme_Sidebar( array(
+$mysidebar = TCC_Theme_Sidebar::get_instance( array(
 #	'action'     => 'tcc_before_main', # action to show sidebar in
 #	'css'        => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
 #	'horizontal' =>  false, # true for horizontal sidebars

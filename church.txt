@@ -1,3 +1,0 @@
-s:libertypbc.org:2082/login
-u:lwwhite
-p:ScLPC_16

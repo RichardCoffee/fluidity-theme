@@ -133,6 +133,10 @@ hr {
 	background-color: rgba( $headerBody, .7 ) !important;
 }
 
+.sticky {
+	color: color(textHighlight);
+}
+
 .tml {
 	color: color(background);
 	& input {

@@ -218,6 +218,10 @@ hr {
   background-color: rgba(255, 0, 0, 0.7) !important;
 }
 
+.sticky {
+  color: inverse(#ff0000);
+}
+
 .tml {
   color: #ff0000;
 }
