@@ -250,8 +250,8 @@ if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 				$css = $tcc;
 			}
 		}
-		$css  = apply_filters( 'tcc_main_css', $css );
-		$css  = apply_filters( "tcc_main_css_$page", $css );
+		$css  = apply_filters( 'tcc_main_tag_css', $css );
+		$css  = apply_filters( "tcc_main_tag_css_$page", $css );
 		return $css;
 	}
 }

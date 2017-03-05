@@ -6,6 +6,7 @@ class TCC_Widget_Sidebar {
 	protected $css        =  array();
 	protected $horizontal =  false;
 	protected $position   = 'none';
+	protected $root       = 'sidebar';
 	protected $sidebar    = 'standard';
 	protected $slug;
 
@@ -16,35 +17,10 @@ class TCC_Widget_Sidebar {
 		$this->position  = $this->positioning();
 		$this->slug      = get_page_slug();
 		$this->parse_args( $args );
-		$this->css = ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css );
-		if ( $this->position !== 'none' ) {
-			if ( ! $this->horizontal ) {
-				if ( $this->is_mobile() ) {
-					$mobile = tcc_layout( 'mobile_sidebar' );
-					if ( $mobile === 'none' ) {
-						$this->action = false;
-					} else if ( $mobile === 'bottom' ) {
-						$this->action = 'tcc_after_main';
-					}
-				} else if ( ( $this->position === 'right' ) && $this->css ) {
-					$this->action = 'tcc_after_main';
-				}
-			}
-			if ( $this->action ) {
-				add_action( $this->action, array( $this, 'show_sidebar' ) );
-			}
+		if ( $this->action ) {
+			add_action( $this->action, array( $this, 'show_sidebar' ) );
 		}
 log_entry($this);
-	}
-
-	protected function is_mobile() {
-		#	Use mobble plugin if present
-		if ( class_exists( 'Mobile_Detect' ) ) {
-			$mobile = is_mobile();
-		} else {
-			$mobile = wp_is_mobile();
-		}
-		return $mobile;
 	}
 
 	protected function positioning() {
@@ -70,7 +46,7 @@ log_entry($this);
 		if ( empty( $this->css ) ) {
 			$css[] = 'fluid-sidebar';
 		} else {
-			$css = array_merge( $css, (array)$this->css );
+			$css = array_merge( $css, ( ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css ) ) );
 		}
 		$new = apply_filters( 'fluid_sidebar_css', '' );
 		if ( $this->slug ) {
@@ -85,7 +61,7 @@ log_entry($this);
 		}
 		$css = array_unique( $css ); ?>
 		<div class="<?php echo esc_attr( join( ' ', $css ) ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
-			<?php get_template_part( 'sidebar', $this->sidebar ); ?>
+			<?php get_template_part( $this->root, $this->sidebar ); ?>
 		</div><?php
 	}
 

@@ -10,12 +10,12 @@ class TCC_Plugin_Paths {
 	protected $version;
 
 	use TCC_Trait_Magic;
+	use TCC_Trait_ParseArgs;
+	use TCC_Trait_Singleton;
 
-	public function __construct( $args ) {
-		foreach ( $args as $key => $arg ) {
-			if ( property_exists( $this, $key ) ) {
-				$this->$key = $arg; }
-		}
+	private function __construct( $args ) {
+		$this->parse_args( $args );
+		$this->dir = trailingslashit( $this->dir );
 	}
 
 	/**  Template functions  **/

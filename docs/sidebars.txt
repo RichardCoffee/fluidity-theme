@@ -1,0 +1,61 @@
+
+
+To display a sidebar, you can use one of the two sidebar classes that Fluidity
+provides.  Only the Theme specific sidebar =must= be used in order for the
+sidebar theme options to work correctly.  Both classes default to displaying
+the sidebar using 'get_template_part' in accordance with wordpress recommended
+practice.  Please note that these classes do not attempt to control the actual
+sidebar widget displayed.  That is controlled elsewhere in 'includes/sidebar.php'.
+
+
+TCC_Theme_Sidebar
+--------------------
+The first sidebar class is for the page main sidebar and always obeys the
+theme option sidebar setting.  It can be initialized like this:
+
+TCC_Theme_Sidebar::get_instance( array(
+	'action'     => 'tcc_before_main',
+	'css'        => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
+	'horizontal' =>  false,
+	'root'       => 'sidebar',
+	'sidebar'    => 'sidebar_slug',
+);
+
+'action' is optional, and defaults to 'tcc_before_main'.  You generally will
+	not want to change this since it is automatically set if on a mobile device.
+
+'css' is optional, and defaults to the theme option setting.  If set then the
+	main tag css would also need to be set manually.
+
+'horizontal' is optional, and should only be set if the sidebar is to be
+	displayed in a horizontal fashion.  If set, then the sidebar will always be
+	displayed where the 'action' parameter is set to, and will not be moved nor
+	hidden on a mobile device.  If set, then you should also manually set the
+	'css' parameter.
+
+'root' is optional and defaults to 'sidebar'.  This is used as the first
+	parameter that is passed to 'get_template_part'. If the sidebar template part
+	is located in a sub directory, then this can be set to '<directory>/sidebar'.
+
+'sidebar' is optional and will default to the page slug.  It is used as the
+	second parameter passed to 'get_template_part'.  This parameter may also
+	affect the sidebar widget displayed, but it is not controlled by this class.
+
+
+TCC_Widget_Sidebar
+---------------------
+The second class is TCC_Widget_Sidebar.  This is an optional class that need
+not be used at all, and only exists as a helper class for TCC_Theme_Sidebar.
+It is included here for informational purposes.  It will accept the same
+parameters as TCC_Theme_Sidebar and can be called like this:
+
+$sidebar = new TCC_Widget_Sidebar( array(
+	'action'     => 'tcc_before_main',
+	'css'        => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
+	'horizontal' =>  false,
+	'root'       => 'sidebar',
+	'sidebar'    => 'sidebar_slug',
+);
+
+Note that the 'action' parameter will never be changed by this class, even on mobile
+devices, and you should always set the 'css' parameter.

@@ -9,15 +9,10 @@ get_header();
 $mypage = get_page_slug();
 
 #add_filter ( "fluid_{$mypage}_container_type", function ( $css ) { return 'container'; } );
-#add_filter ( "fluid_sidebar_css_$mypage",      function ( $css, $mypage ) { return "col-md-2 $css";  }, 10, 2 );
-#add_filter ( "tcc_main_css_$mypage",           function ( $css, $mypage ) { return "col-md-10 $css"; }, 10, 2 );
+#add_filter ( "fluid_sidebar_css_$mypage",      function ( $css, $mypage ) { return 'col-lg-3 col-md-3 col-sm-12 col-xs-12';  }, 10, 2 );
+#add_filter ( "tcc_main_tag_css_$mypage",       function ( $css ) { return "col-lg-9 col-md-9 col-sm-12 col-xs-12"; } );
 
-$mysidebar = TCC_Theme_Sidebar::get_instance( array(
-#	'action'     => 'tcc_before_main', # action to show sidebar in
-#	'css'        => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
-#	'horizontal' =>  false, # true for horizontal sidebars
-	'sidebar'    => $mypage,
-) );
+TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what values the array can have
 
 #do_action( "tcc_top_$mypage" ); ?>
 
@@ -37,7 +32,7 @@ $mysidebar = TCC_Theme_Sidebar::get_instance( array(
 
 		<?php do_action( 'tcc_before_main' ); ?>
 
-		<main id="content" class="<?php echo tcc_main_tag_css( 'col-md-10' ); ?>" role="main" tabindex="-1"><?php
+		<main id="content" class="<?php echo tcc_main_tag_css( '' ); ?>" role="main" tabindex="-1"><?php
 
 #			do_action( 'tcc_before_posts' );
 			do_action( "tcc_before_posts_$mypage" );

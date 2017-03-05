@@ -53,27 +53,28 @@ log_entry($this);
 	public function pre_site_option_user_count( $count, $option, $network_id = 1 ) {
 		$privacy = $this->options['users'];
 		if ( $privacy ) {
-$orig = $count;
-			#	if $count has a value, then use it if we are calling the function
-			$users = ( $count && ( $option === 'fluid_user_count' ) ) ? $count : $this->get_user_count();
+			$saved = $count;
+			#	if $count has a value, then use it, otherwise get our own count
+			$users = ( $count ) ? $count : $this->get_user_count();
 			switch( $privacy ) {
 				case 'all':
 					$count = false;
 					break;
 				case 'some':
-					$count = rand(1, $users);
+					$count = random_int(1, $users);
 					break;
 				case 'one':
 					$count = 1;
 					break;
 				case 'many':
-					$count = rand( 1, ( $users * 10 ) );
+					$count = random_int( 1, ( $users * 10 ) );
 					break;
 				default:
 			}
 log_entry(
 	'setting: ' . $this->options['users'],
-	" actual: $orig",
+	" actual: $saved",
+	"  users: $users",
 	" calced: $count",
 	" source: $option",
 	"network: $network_id"
@@ -110,7 +111,6 @@ log_entry(
 		if ( $preempt || isset( $args['_pmw_privacy_filter'] ) ) {
 			return $preempt;
 		}
-#log_entry($url);
 		#	only act on requests to api.wordpress.org
 		if  ( ( stripos( $url, '://api.wordpress.org/core/version-check/'   ) === false )
 			&& ( stripos( $url, '://api.wordpress.org/plugins/update-check/' ) === false )
@@ -126,15 +126,14 @@ log_entry(
 		$args = $this->filter_themes( $url, $args );
 		#	make request
 		$args['_pmw_privacy_filter'] = true;
-log_entry($url);
 		$response = wp_remote_request( $url, $args );
 		//	response seems to have a lot of duplicated data in it.
 		if ( is_wp_error( $response ) ) {
-			log_entry( $response );
+			log_entry( $url, $response );
 		} else {
 			$body = trim( wp_remote_retrieve_body( $response ) );
 			$body = json_decode( $body, true );
-			log_entry( $body );
+#			log_entry( $body );
 		}
 		return $response;
 	}
