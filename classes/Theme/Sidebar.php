@@ -13,7 +13,9 @@ class TCC_Theme_Sidebar {
 	private function __construct( $args = array() ) {
 		if ( ! $this->sidebar ) {
 			$args = $this->check_args( $args );
-			$this->sidebar = new TCC_Widget_Sidebar( $args );
+			if ( ( $args['position'] !== 'none' ) && $args['action'] ) {
+				$this->sidebar = new TCC_Widget_Sidebar( $args );
+			}
 log_entry($this);
 		}
 	}

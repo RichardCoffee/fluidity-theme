@@ -13,7 +13,6 @@ class TCC_Widget_Sidebar {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args = array() ) {
-		$this->css  = tcc_layout( 'sidebar_css' );
 		$this->slug = get_page_slug();
 		$this->parse_args( $args );
 		if ( $this->action ) {
@@ -29,6 +28,9 @@ class TCC_Widget_Sidebar {
 		);
 		if ( $this->slug ) {
 			$css[] = 'fluid-sidebar-' . $this->slug;
+		}
+		if ( $this->slug !== $this->sidebar ) {
+			$css[] = 'fluid-sidebar-' . $this->sidebar;
 		}
 		if ( empty( $this->css ) ) {
 			$css[] = 'fluid-sidebar';
