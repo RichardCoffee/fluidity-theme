@@ -45,7 +45,7 @@ log_entry($this);
 				} else if ( $mobile === 'bottom' ) {
 					$action = 'tcc_after_main';
 				}
-			} else if ( ( tcc_layout( 'sidebar' ) === 'right' ) && $this->css ) {
+			} else if ( ( tcc_layout( 'sidebar' ) === 'right' ) && $args['css'] ) {
 				$action = 'tcc_after_main';
 			}
 		}
