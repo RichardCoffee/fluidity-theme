@@ -23,7 +23,7 @@ log_entry($this);
 			'action'     => 'tcc_before_main',
 			'css'        => tcc_layout( 'sidebar_css' ),
 			'horizontal' => false,
-			'position'   => 'none',
+			'position'   => tcc_layout( 'sidebar' ),
 			'sidebar'    => get_page_slug(),
 		);
 		$args = array_merge( $defaults, $args );
@@ -36,7 +36,7 @@ log_entry($this);
 
 	private function action_position( $args ) {
 		$action = $args['action'];
-		if ( ! $args['horizontal'] ) {
+		if ( ! $args['horizontal'] && ( $args['position'] !== 'none' ) ) {
 			if ( $this->is_mobile() ) {
 				$mobile = tcc_layout( 'mobile_sidebar' );
 				if ( $mobile === 'none' ) {
