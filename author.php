@@ -42,8 +42,8 @@ TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what value
 				do_action( "tcc_before_loop_$mypage" );
 
 				$root = ( is_single() || is_page() ) ? 'content' : tcc_layout( 'content' );
-				while ( have_posts () ) { ?>
-					the_post();
+				while ( have_posts () ) {
+					the_post(); ?>
 					<div class="col-xs-12 nopad"><?php
 						$stem = fluid_content_slug( $mypage );
 						get_template_part( "template-parts/$root", $stem );
