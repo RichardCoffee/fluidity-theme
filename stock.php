@@ -43,14 +43,12 @@ TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what value
 
 				$root = ( is_single() || is_page() ) ? 'content' : tcc_layout( 'content' );
 				while ( have_posts () ) {
-					the_post(); ?>
-					<div class="col-xs-12 nopad"><?php
+					the_post();
 						$stem = fluid_content_slug( $mypage );
 						get_template_part( "template-parts/$root", $stem );
 						if ( ! is_singular() ) {
 							fluid_post_separator( $mypage );
-						} ?>
-					</div><?php
+						}
 				}
 
 				if ( ! is_singular() ) { ?>
