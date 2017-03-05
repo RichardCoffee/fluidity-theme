@@ -658,7 +658,7 @@ log_entry($controls);
 			'id'    => $ID,
 			'name'  => $name,
 			'title' => $tooltip,
-			'value' => sanitize_text_field( $value ), */
+			'value' => $value, */
 
  ?>
 		<input type="number" class="small-text" min="1" step="1"
@@ -783,20 +783,21 @@ log_entry($controls);
     return apply_filters($this->current.'_validate_settings',$output,$input);
   }
 
-  private function do_validate_function($input,$item) {
-    if (empty($item['render'])) { $item['render'] = 'non_existing_render_type'; }
-    $func = 'validate_';
-    $func.= (isset($item['validate'])) ? $item['validate'] : $item['render'];
-    if (method_exists($this,$func)) {
-      $output = $this->$func($input);
-    } elseif (function_exists($func)) {
-      $output = $func($input);
-    } else { // FIXME:  test for data type?
-      $output = $this->validate_text($input);
-		log_entry("missing validation function: $func");
-    }
-    return $output;
-  }
+	private function do_validate_function( $input, $item ) {
+		if ( empty( $item['render'] ) ) {
+			$item['render'] = 'non_existing_render_type';
+		}
+		$func = ( isset( $item['validate'] ) ) ? $item['validate'] : 'validate_' . $item['render'];
+		if ( method_exists( $this, $func ) ) {
+			$output = $this->$func( $input );
+		} elseif ( function_exists( $func ) ) {
+			$output = $func( $input );
+		} else { // FIXME:  test for data type?
+			$output = $this->validate_text( $input );
+			log_entry( "missing validation function: $func" );
+		}
+		return $output;
+	}
 
   private function validate_colorpicker($input) {
     return (preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|',$input)) ? $input : '';
@@ -831,9 +832,13 @@ log_entry($input);
 		return array_map( array( $this, 'validate_select' ), $input );
 	}
 
-  protected function validate_text($input) {
-    return strip_tags(stripslashes($input));
-  }
+	private function validate_spinner( $input ) {
+		return $this->validate_text( $input );
+	}
+
+	protected function validate_text($input) {
+		return strip_tags( stripslashes( $input ) );
+	}
 
   private function validate_text_color($input) {
     return $this->validate_text($input);

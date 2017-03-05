@@ -4,7 +4,8 @@ jQuery(document).ready(function() {
 //	showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
 	showhideAdminElements( '.social-option-active',  '.social-option-icon',     'yes');
 	showhideAdminElements( '.agent-role-active',     '.agent-role-setting',     'agents');
-	showhideAdminElements( '.mobile-sidebar-active', '.mobile-sidebar-setting',  null, 'none');
+	showhideAdminElements( '.fluid-sidebar-active',  '.fluid-sidebar-setting',  'no');
+	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
 	showhideAdminElements( '.privacy-blog-active',   '.privacy-blog-option',    'yes');
 	showhideAdminElements( '.privacy-multi-active',  '.privacy-multi-option',   'filter');
 	showhideAdminElements( '.privacy-plugin-active', '.privacy-plugin-filter',  'filter');

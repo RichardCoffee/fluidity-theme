@@ -78,20 +78,6 @@ class TCC_Options_Layout {
 			'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
 			'divcss'  => 'no-sidebar-active',
 		);
-		if ( WP_DEBUG ) {
-			$layout['main_css'] = array(
-				'default' => 'col-lg-9 col-md-9 col-sm-12 col-xs-12',
-				'label'   => __( 'Main CSS', 'tcc-fluid' ),
-				'render'  => 'text',
-				'divcss'  => 'no-sidebar-setting',
-			);
-			$layout['sidebar_css'] = array(
-				'default' => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
-				'label'   => __( 'Sidebar CSS', 'tcc-fluid' ),
-				'render'  => 'text',
-				'divcss'  => 'no-sidebar-setting',
-			);
-		}
 		$layout['fluid_sidebar'] = array(
 			'default' => 'no',
 			'label'   => __( 'Fluid Sidebar', 'tcc-fluid' ),
@@ -101,8 +87,23 @@ class TCC_Options_Layout {
 				'no'  => __( 'Static content', 'tcc-fluid' ),
 				'yes' => __( 'Fluid content', 'tcc-fluid' ),
 			),
-			'divcss'  => 'no-sidebar-setting',
+			'change'  => 'showhidePosi( this, ".fluid-sidebar-setting", "no" );',
+			'divcss'  => 'fluid-sidebar-active no-sidebar-setting',
 		);
+		if ( WP_DEBUG ) {
+			$layout['main_css'] = array(
+				'default' => 'col-lg-9 col-md-9 col-sm-12 col-xs-12',
+				'label'   => __( 'Main CSS', 'tcc-fluid' ),
+				'render'  => 'text',
+				'divcss'  => 'no-sidebar-setting fluid-sidebar-setting',
+			);
+			$layout['sidebar_css'] = array(
+				'default' => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
+				'label'   => __( 'Sidebar CSS', 'tcc-fluid' ),
+				'render'  => 'text',
+				'divcss'  => 'no-sidebar-setting fluid-sidebar-setting',
+			);
+		}
 		$layout['mobile_sidebar'] = array(
 			'default' => 'bottom',
 			'label'   => __( 'Mobile Sidebar', 'tcc-fluid' ),
