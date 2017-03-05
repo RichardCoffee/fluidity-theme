@@ -23,7 +23,7 @@ log_entry($this, get_option('tcc_options_layout'));
 	private function check_args( $args ) {
 		$defaults = array(
 			'action'     => 'tcc_before_main',
-			'css'        => tcc_layout( 'sidebar_css' ),
+			'css'        => ( tcc_layout( 'fluid_sidebar' ) === 'no' ) ? tcc_layout( 'sidebar_css' ) : '',
 			'horizontal' => false,
 			'position'   => $this->positioning(),
 			'sidebar'    => get_page_slug(),
