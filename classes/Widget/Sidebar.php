@@ -13,25 +13,13 @@ class TCC_Widget_Sidebar {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args = array() ) {
-		$this->css       = tcc_layout( 'sidebar_css' );
-		$this->position  = $this->positioning();
-		$this->slug      = get_page_slug();
+		$this->css  = tcc_layout( 'sidebar_css' );
+		$this->slug = get_page_slug();
 		$this->parse_args( $args );
 		if ( $this->action ) {
 			add_action( $this->action, array( $this, 'show_sidebar' ) );
 		}
 log_entry($this);
-	}
-
-	protected function positioning() {
-		$side = 'none';
-		if ( ! defined( 'TCC_NO_SIDEBAR' ) ) {
-			$side = tcc_layout( 'sidebar' );
-		}
-		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
-		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
-		$side = ( $this->horizontal ) ? 'horizontal' : $side;
-		return $side;
 	}
 
 	public function show_sidebar() {

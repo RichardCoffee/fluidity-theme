@@ -23,12 +23,11 @@ log_entry($this);
 			'action'     => 'tcc_before_main',
 			'css'        => tcc_layout( 'sidebar_css' ),
 			'horizontal' => false,
-			'position'   => tcc_layout( 'sidebar' ),
+			'position'   => $this->positioning(),
 			'sidebar'    => get_page_slug(),
 		);
 		$args = array_merge( $defaults, $args );
 		$args['action'] = $this->action_position( $args );
-		$args['css']    = $this->bootstrap_css(   $args );
 #$available = $GLOBALS['wp_registered_sidebars'];
 #log_entry($available);
 		return $args;
@@ -51,6 +50,16 @@ log_entry($this);
 		return $action;
 	}
 
+	protected function positioning() {
+		$side = 'none';
+		if ( ! defined( 'TCC_NO_SIDEBAR' ) ) {
+			$side = tcc_layout( 'sidebar' );
+		}
+		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
+		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
+		return $side;
+	}
+/*
 	private function bootstrap_css( $bootstrap ) {
 		$defaults = array(
 			'lg' => 3,
@@ -73,7 +82,7 @@ log_entry($this);
 		$this->sidebar_css = join( ' ', $sidebar );
 		add_filter( 'tcc_main_tag_css', function( $css ) { return $this->main_css; });
 		return $this->sidebar_css;
-	}
+	} //*/
 
 	private function is_mobile() {
 		#| Use mobble plugin if present
