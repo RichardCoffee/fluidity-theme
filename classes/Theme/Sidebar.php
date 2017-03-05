@@ -16,7 +16,7 @@ class TCC_Theme_Sidebar {
 			if ( ( $args['position'] !== 'none' ) && $args['action'] ) {
 				$this->sidebar = new TCC_Widget_Sidebar( $args );
 			}
-log_entry($this);
+log_entry($this, get_option('tcc_options_layout'));
 		}
 	}
 
