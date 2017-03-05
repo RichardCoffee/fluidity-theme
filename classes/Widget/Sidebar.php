@@ -19,7 +19,6 @@ class TCC_Widget_Sidebar {
 		if ( $this->action ) {
 			add_action( $this->action, array( $this, 'show_sidebar' ) );
 		}
-log_entry($this);
 	}
 
 	public function show_sidebar() {
