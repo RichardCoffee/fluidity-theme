@@ -22,7 +22,6 @@ class TCC_Widget_Sidebar {
 
 	public function show_sidebar() {
 		$css = array(
-			'fluid-sidebar-' . $this->position,
 			'noprint',
 			'widget-area',
 		);
@@ -34,6 +33,7 @@ class TCC_Widget_Sidebar {
 		}
 		if ( empty( $this->css ) ) {
 			$css[] = 'fluid-sidebar';
+			$css[] = 'fluid-sidebar-' . $this->position;
 		} else {
 			$css = array_merge( $css, ( ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css ) ) );
 		}
