@@ -87,8 +87,19 @@ class TCC_Options_Layout {
 				'left'  => __( 'Left side', 'tcc-fluid' ),
 				'right' => __( 'Right side', 'tcc-fluid' ),
 			),
-			'change'  => 'showhidePosi( this, ".mobile-sidebar-setting", null, "none" );',
-			'divcss'  => 'mobile-sidebar-active',
+			'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
+			'divcss'  => 'no-sidebar-active',
+		);
+		$layout['fluid_sidebar'] = array(
+			'default' => 'no',
+			'label'   => __( 'Fluid Sidebar', 'tcc-fluid' ),
+			'text'    => __( 'Let content flow around sidebar', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'no'  => __( 'Static content', 'tcc-fluid' ),
+				'yes' => __( 'Fluid content', 'tcc-fluid' ),
+			),
+			'divcss'  => 'no-sidebar-setting',
 		);
 		$layout['mobile_sidebar'] = array(
 			'default' => 'bottom',
@@ -100,7 +111,7 @@ class TCC_Options_Layout {
 				'top'    => __( 'Before post content', 'tcc-fluid' ),
 				'bottom' => __( 'After post content', 'tcc-fluid' ),
 			),
-			'divcss'   => 'mobile-sidebar-setting',
+			'divcss'   => 'no-sidebar-setting',
 		);
 		$layout['widget'] = array(
 			'default' => 'perm',

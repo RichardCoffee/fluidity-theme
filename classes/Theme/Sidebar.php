@@ -28,10 +28,9 @@ log_entry($this);
 		);
 		$args = array_merge( $defaults, $args );
 		$args['action'] = $this->action_position( $args );
-		$this->set_main_tag_css;
 		$args['css']    = $this->bootstrap_css(   $args );
-$available = $GLOBALS['wp_registered_sidebars'];
-log_entry($available);
+#$available = $GLOBALS['wp_registered_sidebars'];
+#log_entry($available);
 		return $args;
 	}
 
@@ -45,7 +44,7 @@ log_entry($available);
 				} else if ( $mobile === 'bottom' ) {
 					$action = 'tcc_after_main';
 				}
-			} else if ( ( $this->position === 'right' ) && $this->css ) {
+			} else if ( ( tcc_layout( 'sidebar' ) === 'right' ) && $this->css ) {
 				$action = 'tcc_after_main';
 			}
 		}

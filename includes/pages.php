@@ -244,14 +244,14 @@ if (!function_exists('tcc_get_page_id_by_slug')) {
 if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 	function tcc_main_tag_css( $css = '' ) {
 		$page = get_page_slug();
-		if ( ! $css ) {
+		if ( ! $css && ( tcc_layout( 'fluid_sidebar' ) === 'no' ) ) {
 			$tcc  = tcc_layout( 'main_css' );
 			if ( $tcc ) {
 				$css = $tcc;
 			}
 		}
-		$css  = apply_filters( 'tcc_main_tag_css', $css );
-		$css  = apply_filters( "tcc_main_tag_css_$page", $css );
+		$css = apply_filters( 'tcc_main_tag_css', $css );
+		$css = apply_filters( "tcc_main_tag_css_$page", $css );
 		return $css;
 	}
 }
