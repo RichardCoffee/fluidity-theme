@@ -34,6 +34,7 @@ class TCC_Widget_Sidebar {
 		if ( empty( $this->css ) ) {
 			$css[] = 'fluid-sidebar';
 			$css[] = 'fluid-sidebar-' . $this->position;
+			$css[] = 'pull-' . $this->position;
 		} else {
 			$css = array_merge( $css, ( ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css ) ) );
 		}
