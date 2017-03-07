@@ -3,7 +3,7 @@
 class TCC_Options_Fluidity extends TCC_Form_Admin {
 
 	private $classes = array();
-	private $options = array();
+	private $current = array();
 
 	private static $text = null;
 
@@ -228,7 +228,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	}
 
 	public function get_options() {
-		if ( empty( $this->options ) ) {
+		if ( empty( $this->current ) ) {
 			if ( empty( $this->classes ) ) {
 				$this->initialize_options();
 			}
@@ -239,7 +239,7 @@ log_entry($this->form);
 			foreach( $this->form as $key => $section ) {
 			}
 		}
-		return $this->options;
+		return $this->current;
 	}
 
 	protected function create_file_select( $slug, $base = '', $full = false ) {
