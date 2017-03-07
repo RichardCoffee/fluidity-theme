@@ -47,16 +47,17 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	}
 
 	public function initialize_options() {
-		new TCC_Options_Layout;	# 35
-		new TCC_Options_Design;	# 34
-		new TCC_Options_Social;
-		new TCC_Options_Settings;
+		new TCC_Options_Layout;    # 35
+		new TCC_Options_Design;    # 34
+		new TCC_Options_Content;   # 36
+		new TCC_Options_Social;    # 100
+		new TCC_Options_Settings;  # 500
 /*		if (tcc_design('paral')==='yes') {
-			new TCC_Options_Parallax;
+			new TCC_Options_Parallax; #
 		} //*/
-		new TCC_Options_Privacy;
+		new TCC_Options_Privacy;   # 550
 		if ( WP_DEBUG ) {
-			new TCC_Options_Bootstrap;
+			new TCC_Options_Bootstrap; # 600
 		}
 	}
 

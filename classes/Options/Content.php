@@ -3,7 +3,7 @@
 class TCC_Options_Content extends TCC_Options_Options {
 
 	protected $base     = 'content';
-	protected $priority = 40;
+	protected $priority = 36;
 
 	protected function form_title() {
 		return __( 'Content', 'tcc-fluid' );
