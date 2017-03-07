@@ -82,7 +82,8 @@ if (!function_exists('tcc_option')) {
           if (isset($data[$option])) return $data[$option];
         }
       } else {
-        $opts = TCC_Theme_Options_Values::options_menu_array();
+#	     $opts = TCC_Theme_Options_Values::options_menu_array();
+        $opts = TCC_Options_Fluidity::instance()->get_options();
         foreach($opts as $key=>$options) {
           foreach($options as $opt=>$layout) {
             if ($opt==$option) {

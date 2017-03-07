@@ -2,6 +2,9 @@
 
 class TCC_Options_Fluidity extends TCC_Form_Admin {
 
+	private $classes = array();
+	private $options = array();
+
 	private static $text = null;
 
 	use TCC_Trait_Singleton;
@@ -47,17 +50,17 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	}
 
 	public function initialize_options() {
-		new TCC_Options_Layout;    # 35
-		new TCC_Options_Design;    # 34
-		new TCC_Options_Content;   # 36
-		new TCC_Options_Social;    # 100
-		new TCC_Options_Settings;  # 500
+		$this->classes['Layout']   = new TCC_Options_Layout;    # 35
+		$this->classes['Design']   = new TCC_Options_Design;    # 34
+		$this->classes['Content']  = new TCC_Options_Content;   # 36
+		$this->classes['Social']   = new TCC_Options_Social;    # 100
+		$this->classes['Settings'] = new TCC_Options_Settings;  # 500
 /*		if (tcc_design('paral')==='yes') {
-			new TCC_Options_Parallax; #
+			$this->classes['Parallax'] = new TCC_Options_Parallax; #
 		} //*/
-		new TCC_Options_Privacy;   # 550
+		$this->classes['Privacy'] = new TCC_Options_Privacy;   # 550
 		if ( WP_DEBUG ) {
-			new TCC_Options_Bootstrap; # 600
+			$this->classes['Bootstrap'] = new TCC_Options_Bootstrap; # 600
 		}
 	}
 
@@ -114,7 +117,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
  *                               This must be an associative array.
  *                     -or-
  *                   (string)  Name of the function that returns the select options (render: select)
- *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
+	private $options = array(); *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
  *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
  *           change: (string)  Required only if render is set to 'checkbox','font','radio','select', and 'text'.
@@ -222,6 +225,21 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 
 	protected function get_options_layout( $section ) {
 	return $this->form[ $section ]['layout'];
+	}
+
+	public function get_options() {
+		if ( empty( $this->options ) ) {
+			if ( empty( $this->classes ) ) {
+				$this->initialize_options();
+			}
+			if ( empty( $this->form ) ) {
+				$this->form = $this->form_layout();
+			}
+log_entry($this->form);
+			foreach( $this->form as $key => $section ) {
+			}
+		}
+		return $this->options;
 	}
 
 	protected function create_file_select( $slug, $base = '', $full = false ) {
