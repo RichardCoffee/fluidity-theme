@@ -45,6 +45,24 @@ li.btn-fluidity > a {
 	}
 }
 
+//textarea,
+input {
+	@include placeholder(color(textcolor));
+}
+
+// http://stackoverflow.com/questions/2610497/change-an-html5-inputs-placeholder-color-with-css
+[type="search"] {
+	-moz-appearance:    textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+
+[type="search"] {
+	-moz-appearance:    textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+
 // navigation
 
 @import "navbar";
