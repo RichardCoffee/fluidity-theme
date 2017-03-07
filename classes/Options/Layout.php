@@ -43,7 +43,7 @@ class TCC_Options_Layout {
 				'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
 			),
 		);
-		$layout['header'] = array(
+/*		$layout['header'] = array(
 			'default' => 'static',
 			'label'   => __( 'Header', 'tcc-fluid' ),
 			'text'    => __( 'How do you want the header to behave?', 'tcc-fluid' ),
@@ -54,17 +54,19 @@ class TCC_Options_Layout {
 				'reduce' => __( 'Reducing - Gets smaller when scrolling down', 'tcc-fluid' ),
 				'hide'   => __( 'Hiding - Hidden when scrolling, show on hover', 'tcc-fluid' ),
 			),
-		);
-		$layout['menu']    = array(
-			'default' => 'underscore',
-			'label'   => __( 'Menu', 'tcc-fluid' ),
-			'text'    => __( 'Which menuing system do you want to use?', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'underscore' => __( 'Underscores - WordPress starter theme', 'tcc-fluid' ),
-				'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
-			),
-		);
+		); //*/
+		if ( WP_DEBUG ) {
+			$layout['menu']    = array(
+				'default' => 'underscore',
+				'label'   => __( 'Menu', 'tcc-fluid' ),
+				'text'    => __( 'Which menuing system do you want to use?', 'tcc-fluid' ),
+				'render'  => 'radio',
+				'source'  => array(
+					'underscore' => __( 'Underscores - WordPress starter theme', 'tcc-fluid' ),
+					'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
+				),
+			);
+		}
 		$layout['sidebar'] = array(
 			'default' => 'left',
 			'label'   => __( 'Sidebar', 'tcc-fluid' ),
@@ -126,32 +128,6 @@ class TCC_Options_Layout {
 				'open'   => __( 'Open', 'tcc-fluid' ),
 				'closed' => __( 'Closed', 'tcc-fluid' ),
 			),
-		);
-		$layout['content'] = array(
-			'default' => 'excerpt',
-			'label'   => __( 'Blog/News/Search', 'tcc-fluid' ),
-			'text'    => __( 'Show full post content or just an excerpt on archive/category/search pages', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'content' => __( 'Content', 'tcc-fluid' ),
-				'excerpt' => __( 'Excerpt', 'tcc-fluid' ),
-			),
-		);
-		$layout['exdate'] = array(
-			'default' => 'show',
-			'label'   => __( 'Excerpt Date', 'tcc-fluid' ),
-			'text'    => __( 'Should the post date be displayed with excerpt?', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'none' => __( 'No Date', 'tcc-fluid' ),
-				'show' => __( 'Show Date', 'tcc-fluid' ),
-			),
-		);
-		$layout['exlength'] = array(
-			'default' => apply_filters( 'excerpt_length', 55 ),
-			'label'   => __( 'Excerpt Length', 'tcc-fluid' ),
-			'render'  => 'spinner',
-			'stext'   => __( 'number of words', 'tcc-fluid' ),
 		);
 		$layout = apply_filters( "tcc_{$this->base}_options_layout", $layout );
 		return $layout;

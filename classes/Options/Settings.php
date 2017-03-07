@@ -29,15 +29,6 @@ class TCC_Options_Settings {
 
 	protected function options_layout() {
 		$layout = array( 'default' => true );
-		$layout['postdate'] = array(
-			'default'  => 'modified',
-			'label'    => esc_html__( 'Post Edit Date', 'tcc-fluid' ),
-			'render'   => 'radio',
-			'source'   => array(
-			'modified' => esc_html__( 'Use modified date, where applicable', 'tcc-fluid' ),
-			'original' => esc_html__( 'Always use original post date', 'tcc-fluid' ),
-			),
-		);
 		$layout['heart'] = array(
 			'default' => 'on',
 			'label'   => esc_html__( 'WP Heartbeat', 'tcc-fluid' ),
