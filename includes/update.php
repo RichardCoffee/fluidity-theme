@@ -3,8 +3,8 @@
 if ( ! function_exists( 'fluidity_check_update' ) ) {
 	function fluidity_check_update() {
 		$version = get_option( 'tcc_theme_version', FLUIDITY_VERSION );
-log_entry($version, FLUIDITY_VERSION);
 		if ( $version !== FLUIDITY_VERSION ) {
+log_entry($version, FLUIDITY_VERSION);
 			$func = 'fluidity_update_' . implode( '_', explode( '.', FLUIDITY_VERSION ) );
 			if ( function_exists( $func ) ) {
 				$func( $version );
