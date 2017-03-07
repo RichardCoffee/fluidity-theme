@@ -9,7 +9,7 @@ if ( ! function_exists( 'fluidity_check_update' ) ) {
 				$func( $version );
 			}
 		}
-		set_option( 'tcc_theme_version', FLUIDITY_VERSION );
+		update_option( 'tcc_theme_version', FLUIDITY_VERSION );
 	}
 }
 
@@ -38,7 +38,7 @@ if ( ! function_exists( 'fluidity_update_2_2_2' ) ) {
 				}
 			}
 		}
-		set_option( 'tcc_options_content', $content );
+		update_option( 'tcc_options_content', $content );
 	}
 }
 
