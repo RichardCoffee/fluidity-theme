@@ -89,18 +89,31 @@ li.btn-fluidity > a:focus {
   color: #dff0d8;
 }
 
-input::-moz-placeholder {
+form .form-control::-moz-placeholder {
   color: #3c763d;
   opacity: 1;
 }
-input:-moz-placeholder {
+form .form-control:-moz-placeholder {
   color: #3c763d;
 }
-input:-ms-input-placeholder {
+form .form-control:-ms-input-placeholder {
   color: #3c763d;
 }
-input::-webkit-input-placeholder {
+form .form-control::-webkit-input-placeholder {
   color: #3c763d;
+}
+form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
+  color: #dff0d8;
+  opacity: 1;
+}
+form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
+  color: #dff0d8;
+}
+form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
+  color: #dff0d8;
+}
+form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
+  color: #dff0d8;
 }
 
 [type="search"] {

@@ -87,18 +87,31 @@ li.btn-fluidity > a:focus {
   color: #ff0000;
 }
 
-input::-moz-placeholder {
+form .form-control::-moz-placeholder {
   color: #FFFFFF;
   opacity: 1;
 }
-input:-moz-placeholder {
+form .form-control:-moz-placeholder {
   color: #FFFFFF;
 }
-input:-ms-input-placeholder {
+form .form-control:-ms-input-placeholder {
   color: #FFFFFF;
 }
-input::-webkit-input-placeholder {
+form .form-control::-webkit-input-placeholder {
   color: #FFFFFF;
+}
+form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
+  color: #ff0000;
+  opacity: 1;
+}
+form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
+  color: #ff0000;
+}
+form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
+  color: #ff0000;
+}
+form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
+  color: #ff0000;
 }
 
 [type="search"] {

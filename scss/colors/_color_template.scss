@@ -45,9 +45,11 @@ li.btn-fluidity > a {
 	}
 }
 
-//textarea,
-input {
+form .form-control {
 	@include placeholder(color(textcolor));
+	&:hover, &:focus {
+		@include placeholder(color(background));
+	}
 }
 
 // http://stackoverflow.com/questions/2610497/change-an-html5-inputs-placeholder-color-with-css

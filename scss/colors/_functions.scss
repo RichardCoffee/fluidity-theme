@@ -1,5 +1,5 @@
 
-$input-color-placeholder:        #999 !default;
+$input-color-placeholder: #999;
 
 @function color($key) {
   @if not map-has-key($colors, $key) {
@@ -13,7 +13,8 @@ $input-color-placeholder:        #999 !default;
     background: rgba($color, $opacity);
 }
 
-@mixin placeholder($color: $input-color-placeholder) {
+//  bootstrap/mixins/_vendor-prefixes.scss
+@mixin placeholder($color: $input-color-placeholder ) {
 	// Firefox 19+
 	&::-moz-placeholder {
 		color: $color;
