@@ -16,7 +16,7 @@ abstract class TCC_MetaBox_MetaBox {
 	use TCC_Trait_ParseArgs;
 
 	abstract function admin_enqueue_scripts();
-	abstract function show_meta_box();
+	abstract function show_meta_box( $post );
 
 	public function __construct( $args = array() ) {
 		$this->add_meta  = ( $this->add_meta )  ? $this->add_meta  : 'add_meta_boxes_' . $this->type;
