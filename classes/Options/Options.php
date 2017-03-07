@@ -5,9 +5,9 @@ abstract class TCC_Options_Options {
 	protected $base     = 'options'; # change this in child
 	protected $priority = 1000;      # change this in child
 
-	abstract function form_title();
-	abstract function describe_options();
-	abstract function options_layout();
+	abstract protected function form_title();
+	abstract protected function describe_options();
+	abstract protected function options_layout();
 
 	public function __construct() {
 		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->priority );
