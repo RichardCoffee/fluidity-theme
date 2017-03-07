@@ -127,7 +127,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 		$posted = sprintf( $string, $date, $author );
 		$show   = false;
 #		$layout = tcc_option( 'postdate' );
-		$layout = tcc_setting( 'postdate' );
+		$layout = tcc_settings( 'postdate' );
 		if ( ( $layout === 'modified' ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
 			$show   = ( $complete ) ? $complete : $show;
 			$single = esc_html_x( 'Last modified on %1$s', 'formatted date string', 'tcc-fluid' );
