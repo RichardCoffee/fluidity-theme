@@ -38,6 +38,7 @@ if ( ! function_exists( 'fluidity_update_2_2_2' ) ) {
 				}
 			}
 		}
+log_entry($content);
 		update_option( 'tcc_options_content', $content );
 	}
 }
