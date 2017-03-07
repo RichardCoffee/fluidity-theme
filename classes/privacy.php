@@ -27,7 +27,7 @@ class Privacy_My_Way {
 			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ), 10, 3 );
 			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),            2, 3 );
 			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),          11, 2 );
-log_entry($this);
+#log_entry($this);
 		}
 	}
 
@@ -236,12 +236,11 @@ log_entry( 'headers:Referer has been deleted.' );
 						}
 						$plugins->active = $new_set;
 					}
-					log_entry('plugins:  ' . $this->options['plugins'],$plugins);
+#					log_entry('plugins:  ' . $this->options['plugins'],$plugins);
 					$args['body']['plugins'] = wp_json_encode( $plugins );
 					$args['_pmw_privacy_filter_plugins'] = true;
 				}
-			}
-#else { log_entry($args); }
+			} #else { log_entry($args); }
 		}
 		return $args;
 	}
@@ -297,7 +296,7 @@ log_entry( 'headers:Referer has been deleted.' );
 					$args['body']['themes'] = wp_json_encode( $themes );
 					$args['_pmw_privacy_filter_plugins'] = true;
 				}
-			}
+			} #
 else { log_entry($args); }
 		}
 		return $args;
@@ -317,7 +316,6 @@ log_entry($arg_array);
 				if ( isset( $arg_array['multisite_enabled'] ) && ( $this->options['blogs'] === 'no' ) ) {
 					$url = add_query_arg( 'multisite_enabled', '0', $url );
 				}
-log_entry($orig,$url);
 			} else {
 				#	Need this for single site. If multisite then these have already been filtered
 				if ( isset( $arg_array['blogs'] ) ) {
@@ -330,7 +328,7 @@ log_entry($orig,$url);
 				}
 			}
 		}
-#log_entry($orig,$url);
+log_entry($orig,$url);
 		return $url;
 	}
 
