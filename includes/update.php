@@ -3,7 +3,7 @@
 if ( ! function_exists( 'fluidity_check_update' ) ) {
 	function fluidity_check_update() {
 		$version = get_option( 'tcc_theme_version', FLUIDITY_VERSION );
-fluidity_update_2_2_2();
+fluidity_update_2_2_2('');
 $content = get_option( 'tcc_options_content', array() );
 $settings = get_option( 'tcc_options_admin', array() );
 $layout = get_option( 'tcc_options_layout', array() );
