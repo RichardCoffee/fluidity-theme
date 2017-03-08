@@ -37,10 +37,12 @@ log_entry('in main');
 #			do_action( 'tcc_before_posts' );
 			do_action( "tcc_before_posts_$mypage" );
 
+log_entry('before posts');
 			if ( have_posts() ) {
 
 				do_action( "tcc_before_loop_$mypage" );
 
+log_entry('before loop');
 				$root = ( is_single() || is_page() ) ? 'content' : tcc_option( 'content' );
 log_entry($root);
 				while ( have_posts () ) { ?>
