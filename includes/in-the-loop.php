@@ -122,6 +122,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 	function fluid_post_date( $complete = false ) {
 		$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
 		$postdate = ( ! $postdate || ( $postdate === 'default' ) ) ? tcc_option( 'postdate' ) : $postdate;
+log_entry($postdate);
 		if ( $postdate !== 'none' ) {
 			$default  = _x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: user name', 'tcc-fluid' );
 			$string   = apply_filters( 'fluid_post_date_sprintf', $default );

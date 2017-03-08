@@ -163,11 +163,11 @@ if ( ! function_exists( 'add_privacy_filters' ) && file_exists( WP_CONTENT_DIR .
 	add_action( 'wp_version_check', 'add_privacy_filters' );
 	add_filter( 'core_version_check_locale', 'add_privacy_filters' );
 }
-
+/*
 function themeslug_customize_register( $wp_customize ) {
   log_entry( $wp_customize );
 }
-add_action( 'customize_register', 'themeslug_customize_register' );
+add_action( 'customize_register', 'themeslug_customize_register' ); //*/
 /*
 function tcc_template_test( $template, $stem ) {
 	log_entry('slug: '.$template,'stem: '.$stem);
