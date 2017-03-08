@@ -33,7 +33,7 @@ TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what value
 		<?php do_action( 'tcc_before_main' ); ?>
 
 		<main id="content" class="<?php echo tcc_main_tag_css( '' ); ?>" role="main" tabindex="-1"><?php
-
+log_entry('in main');
 #			do_action( 'tcc_before_posts' );
 			do_action( "tcc_before_posts_$mypage" );
 
