@@ -17,6 +17,7 @@ defined('ABSPATH') || exit;
 class Privacy_My_Way {
 
 	protected $debug   = false;        #  set to true to enable logging
+	protected $force   = false;        #  can be used to force a logging entry on a one time basis
 	protected $logging = 'log_entry';  #  set to a valid logging function - must be able to accept a variable number of parameters
 	protected $options;
 
@@ -30,6 +31,7 @@ class Privacy_My_Way {
 			add_filter( 'pre_site_option_user_count', array( $this, 'pre_site_option_user_count' ), 10, 3 );
 			add_filter( 'pre_http_request',           array( $this, 'pre_http_request' ),            2, 3 );
 			add_filter( 'http_request_args',          array( $this, 'http_request_args' ),          11, 2 );
+$this->force = true;
 			$this->logging($this);
 		}
 	}
@@ -105,7 +107,7 @@ class Privacy_My_Way {
 		}
 		$args = $this->strip_site_url( $args );
 		$args = $this->filter_plugins( $url, $args );
-		$args = $this->filter_themes( $url, $args );
+		$args = $this->filter_themes(  $url, $args );
 		return $args;
 	}
 
@@ -132,6 +134,7 @@ class Privacy_My_Way {
 		$response = wp_remote_request( $url, $args );
 		//	response really seems to have a lot of duplicated data in it.
 		if ( is_wp_error( $response ) ) {
+			$this->force = true;
 			$this->logging( $url, $response );
 		} else {
 			$body = trim( wp_remote_retrieve_body( $response ) );
@@ -336,10 +339,11 @@ class Privacy_My_Way {
 
 	/*  Debugging  */
 
-	public function logging() {
-		if ( $this->debug && isset( $this->logging ) ) {
+	protected function logging() {
+		if ( $this->logging && ( $this->debug || $this->force ) ) {
 			call_user_func_array( $this->logging, func_get_args() );
 		}
+		$this->force = false;
 	}
 
 
