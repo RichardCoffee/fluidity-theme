@@ -30,19 +30,15 @@ if ( ! function_exists( 'fluidity_update_future_version_number' ) ) {
 if ( ! function_exists( 'fluidity_update_2_2_2' ) ) {
 	function fluidity_update_2_2_2( $version ) {
 		$content = get_option( 'tcc_options_content', array() );
-		if ( ! isset( $content['postdate'] ) ) {
-			$settings = get_option( 'tcc_options_admin', array() );
-			if ( isset( $settings['postdate'] ) ) {
-				$content['postdate'] = $settings['postdate'];
-			}
+		$settings = get_option( 'tcc_options_admin', array() );
+		if ( isset( $settings['postdate'] ) ) {
+			$content['postdate'] = $settings['postdate'];
 		}
 		$checks = array( 'content', 'exdate', 'exlength' );
 		$layout = get_option( 'tcc_options_layout', array() );
 		foreach ( $checks as $check ) {
-			if ( ! isset( $content[ $check ] ) ) {
-				if ( isset( $layout[ $check ] ) ) {
-					$content[ $check ] = $layout[ $check ];
-				}
+			if ( isset( $layout[ $check ] ) ) {
+				$content[ $check ] = $layout[ $check ];
 			}
 		}
 		update_option( 'tcc_options_content', $content );
