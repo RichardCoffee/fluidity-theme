@@ -244,6 +244,28 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		return $this->values;
 	}
 
+	public function get_option_source_text( $section_key, $item_key, $source_key ) {
+		$text = '';
+		if ( empty( $this->classes ) ) {
+			$this->initialize_options();
+		}
+		if ( empty( $this->form ) ) {
+			$this->form = $this->form_layout();
+		}
+		if ( isset( $this->form[ $section_key ] ) ) {
+			if ( isset( $this->form[ $section_key ]['layout'] ) ) {
+				if ( isset( $this->form[ $section_key ]['layout'][ $item_key ] ) ) {
+					if ( isset( $this->form[ $section_key ]['layout'][ $item_key ]['source'] ) ) {
+						if ( isset( $this->form[ $section_key ]['layout'][ $item_key ]['source'][ $source_key ] ) ) {
+							$text = $this->form[ $section_key ]['layout'][ $item_key ]['source'][ $source_key ];
+						} else { log_entry( "form section '$section_key' layout item '$item_key' source '$source_key' not found"); }
+					} else { log_entry( "form section '$section_key' layout item '$item_key' source not found"); }
+				} else { log_entry( "form section '$section_key' layout item '$item_key' not found"); }
+			} else { log_entry( "form section '$section_key' layout not found"); }
+		} else { log_entry( "form section '$section_key' not found"); }
+		return $text;
+	}
+
 	protected function create_file_select( $slug, $base = '', $full = false ) {
 		$dir = get_stylesheet_directory();
 		if ( ! empty( $base ) ) { $dir .= '/' . $base; }

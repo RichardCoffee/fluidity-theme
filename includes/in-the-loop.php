@@ -119,24 +119,23 @@ if (!function_exists('fluid_next_post_exists')) {
 }
 
 if ( ! function_exists( 'fluid_post_date' ) ) {
-	function fluid_post_date( $complete = null ) {
-		$default  = esc_html_x( 'Posted on %1$s by %2$s', 'formatted date string, user name', 'tcc-fluid' );
-		$string   = apply_filters( 'fluid_post_date_sprintf', $default );
-		$date     = get_the_date();
-		$author   = microdata()->get_the_author();
-		$posted   = sprintf( $string, $date, $author );
-		$show     = false;
-		$layout   = tcc_option( 'postdate' );
-log_entry($layout);
-		$postdate = tcc_settings( 'postdate' );
-		if ( ( $postdate === 'modified' ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
-			$show   = ( $complete ) ? $complete : $show;
-			$single = esc_html_x( 'Last modified on %1$s', 'formatted date string', 'tcc-fluid' );
-			$double = esc_html_x( 'Last modified on %1$s by %2$s', 'formatted date string, user name', 'tcc-fluid' );
-			$string = ( $show ) ? $single : $double;
-			$date   = get_the_modified_date();
+	function fluid_post_date( $complete = false ) {
+		$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
+		$postdate = ( ! $postdate || ( $postdate === 'default' ) ) ? tcc_option( 'postdate' ) : $postdate;
+		if ( $postdate !== 'none' ) {
+			$default  = _x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: user name', 'tcc-fluid' );
+			$string   = apply_filters( 'fluid_post_date_sprintf', $default );
+			$date     = get_the_date();
+			$author   = microdata()->get_the_author();
+			$posted   = sprintf( $string, $date, $author );
+			if ( ( $postdate === 'modified' ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
+				$single = _x( 'Last modified on %1$s', '1: formatted date string', 'tcc-fluid' );
+				$double = _x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: user name', 'tcc-fluid' );
+				$string = ( $complete ) ? $single : $double;
+				$date   = get_the_modified_date();
+			}
+			echo esc_html( sprintf( $string, $date, $author ) );
 		}
-		echo sprintf($string,$date,$author);
 	}
 }
 

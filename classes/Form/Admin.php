@@ -568,7 +568,7 @@ log_entry($controls);
 					<label>
 						<input type="radio"
 						       name="<?php echo esc_attr( $name ) ; ?>"
-						       value="<?php echo esc_attr( $key ); ?>"
+						       value="<?php echo esc_html( $key ); ?>"
 						       <?php checked( $value, $key ); ?>
 						       onchange="<?php echo esc_attr( $onchange ); ?>"
 						       aria-describedby="<?php echo $uniq; ?>"><?php

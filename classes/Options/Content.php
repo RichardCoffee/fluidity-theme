@@ -17,11 +17,12 @@ class TCC_Options_Content extends TCC_Options_Options {
 		$layout = array( 'default' => true );
 		$layout['postdate'] = array(
 			'default'  => 'original',
-			'label'    => esc_html__( 'Post Edit Date', 'tcc-fluid' ),
+			'label'    => __( 'Post Edit Date', 'tcc-fluid' ),
 			'render'   => 'radio',
 			'source'   => array(
-				'modified' => esc_html__( 'Use modified date, where applicable', 'tcc-fluid' ),
-				'original' => esc_html__( 'Always use original post date', 'tcc-fluid' ),
+				'modified' => __( 'Use modified date, where applicable.', 'tcc-fluid' ),
+				'original' => __( 'Always use published post date.', 'tcc-fluid' ),
+				'none'     => __( 'Never show the post date.', 'tcc-fluid' ),
 			),
 		);
 		$layout['content'] = array(
@@ -40,8 +41,8 @@ class TCC_Options_Content extends TCC_Options_Options {
 			'text'    => __( 'Should the post date be displayed with excerpt?', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'none' => __( 'No Date', 'tcc-fluid' ),
-				'show' => __( 'Show Date', 'tcc-fluid' ),
+				'none' => __( 'Do not show date', 'tcc-fluid' ),
+				'show' => __( 'Always show date', 'tcc-fluid' ),
 			),
 		);
 		$layout['exlength'] = array(

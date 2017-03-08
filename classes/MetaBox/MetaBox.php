@@ -16,6 +16,7 @@ abstract class TCC_MetaBox_MetaBox {
 	use TCC_Trait_ParseArgs;
 
 	abstract function admin_enqueue_scripts();
+	abstract function save_meta_box( $post );
 	abstract function show_meta_box( $post );
 
 	public function __construct( $args = array() ) {
@@ -30,15 +31,14 @@ abstract class TCC_MetaBox_MetaBox {
 		add_meta_box( $this->slug, $this->title, array( $this, 'show_meta_box' ), $this->type, $this->context, $this->priority, $this->callback );
 	}
 
-	protected function save_meta_box( $postID ) {
+	protected function pre_save_meta_box( $postID, $file ) {
 		remove_action( $this->save_meta, array( $this, 'save_meta_boxe' ) ); # prevent recursion
-		$return = false;
-		if ( ! isset( $_POST[ $this->nonce ] ) )          $return = true;
-		if ( ! current_user_can( 'edit_post', $postID ) ) $return = true;
-		if ( wp_is_post_autosave( $postID ) )             $return = true;
-		if ( wp_is_post_revision( $postID ) )             $return = true;
-		if ( ! wp_verify_nonce( $_POST[ $this->nonce ], basename(__FILE__) ) ) $return = true;
-		return $return;
+		if ( ! isset( $_POST[ $this->nonce ] ) )                  return true;
+		if ( ! wp_verify_nonce( $_POST[ $this->nonce ], $file ) ) return true;
+		if ( ! current_user_can( 'edit_post', $postID ) )         return true;
+		if ( wp_is_post_autosave( $postID ) )                     return true;
+		if ( wp_is_post_revision( $postID ) )                     return true;
+		return false;
 	}
 
 }

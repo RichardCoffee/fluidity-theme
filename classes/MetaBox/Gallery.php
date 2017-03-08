@@ -94,7 +94,7 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 	}
 
 	public function save_meta_box( $postID ) {
-		if ( parent::save_meta_box( $postID ) ) { return; }
+		if ( $this->pre_save_meta_box( $postID, basename( __FILE__ ) ) ) { return; }
 		$incoming = $_POST;
 		if ( ! empty( $incoming[ $this->field ] ) ) {
 			foreach( $incoming[ $this->field ] as $imageID ) {
@@ -110,7 +110,13 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 		if ( ! empty( $incoming['delete_image'] ) ) {
 			foreach( $incoming['delete_image'] as $deleteID ) {
 				$check = intval( $deleteID, 10 );
-				if ( $check ) { wp_delete_post( $check ); }
+				if ( $check ) {
+					#	Verify image ID really belongs to the current post
+					$attach = get_post( $check );
+					if ( $attach->post_parent === $postID ) {
+						wp_delete_post( $check );
+					}
+				}
 			}
 		}
 	}

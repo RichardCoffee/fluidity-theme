@@ -3,21 +3,23 @@
 /*
  *  File:   classes/Form/Field/Field.php
  *
- *  note:  register_setting calls need to be updated to WP4.7
  */
 
 abstract class TCC_Form_Field_Field {
 
-#	protected $click;                   # onchange attribute
-#	protected $echo      = true;        # echo html
-	protected $field_css = '';          # field css
+#	protected $echo       = true;       # echo html
+	protected $field_css  = '';         # field css
 	protected $field_default;           # default value
+	protected $field_help = '';         # used for tooltip text
 	protected $field_id;                # field id
 	protected $field_name;              # field name
-	protected $field_type = 'string';   # type of field
+	protected $field_postext = '';      # text shown below input
+	protected $field_pretext = '';      # text shown above input
+	protected $field_type = 'text';     # input type
 	protected $field_value;             # field value
 	protected $label_css  = '';         # label css
 	protected $label_text = '';         # label text
+	protected $onchange = null;         # onchange attribute
 	protected $placeholder;             # placeholder text
 #	protected $post_id;                 # word press post id number
 	protected $sanitize   = 'esc_attr'; # default sanitize method
@@ -57,5 +59,14 @@ abstract class TCC_Form_Field_Field {
 		return $label;
 	}
 
+	public function sanitize( $input ) {
+		if ( $this->sanitize ) {
+			$sanitize = $this->sanitize;
+			$output   = $sanitize( $input );
+		} else {
+			$output = strip_tags( stripslashes( $input ) );
+		}
+		return $output;
+	}
 
 }
