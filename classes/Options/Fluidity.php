@@ -235,9 +235,11 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 			if ( empty( $this->form ) ) {
 				$this->form = $this->form_layout();
 			}
-log_entry($this->form);
-#			foreach( $this->form as $key => $section ) {
-#			}
+			foreach( $this->form as $key => $section ) {
+				if ( is_array( $section ) && isset( $section['option'] ) ) {
+					$this->values[ $key ] = get_option( $section['option'], array() );
+				}
+			}
 		}
 		return $this->values;
 	}
