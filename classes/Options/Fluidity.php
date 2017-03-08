@@ -236,8 +236,8 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 				$this->form = $this->form_layout();
 			}
 log_entry($this->form);
-			foreach( $this->form as $key => $section ) {
-			}
+#			foreach( $this->form as $key => $section ) {
+#			}
 		}
 		return $this->values;
 	}
