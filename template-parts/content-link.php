@@ -27,7 +27,7 @@ who_am_i(); ?>
 					<?php tcc_post_title( 40 ); ?>
 				</h1>
 
-				<?php if ( tcc_layout( 'exdate' ) === 'show' ) { fluid_post_date(); } ?>
+				<?php if ( tcc_option( 'exdate' ) === 'show' ) { fluid_post_date(); } ?>
 
 				<div class="article" itemprop="description">
 					<?php the_content(); ?>

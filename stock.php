@@ -41,7 +41,7 @@ TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what value
 
 				do_action( "tcc_before_loop_$mypage" );
 
-				$root = ( is_single() || is_page() ) ? 'content' : tcc_layout( 'content' );
+				$root = ( is_single() || is_page() ) ? 'content' : tcc_option( 'content' );
 				while ( have_posts () ) { ?>
 					<div><?php
 						the_post();
