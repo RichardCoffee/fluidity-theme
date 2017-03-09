@@ -73,11 +73,8 @@ if (!function_exists('tcc_layout')) {
 if (!function_exists('tcc_option')) {
 	function tcc_option($option='',$section='') {
 		if ($option) {
-log_entry('option: '.$option);
 			if ($section) {
-log_entry('section: '.$section);
 				$tcc_func = "tcc_$section";
-log_entry('function: '.$tcc_func);
 				if (function_exists($tcc_func)) {
 					$retval = $tcc_func($option);
 				} else {
@@ -86,7 +83,6 @@ log_entry('function: '.$tcc_func);
 				}
 			} else {
 				$opts = TCC_Options_Fluidity::instance()->get_options();
-log_entry($opts);
 				foreach( $opts as $key => $options ) {
 					if ( isset( $options[ $option ] ) ) {
 						return $options[ $option ];
