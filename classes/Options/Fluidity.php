@@ -55,13 +55,14 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		$this->classes['Content']  = new TCC_Options_Content;   # 36
 		$this->classes['Social']   = new TCC_Options_Social;    # 100
 		$this->classes['Settings'] = new TCC_Options_Settings;  # 500
-/*		if (tcc_design('paral')==='yes') {
+/*		if ( tcc_design( 'paral' ) === 'yes' ) {
 			$this->classes['Parallax'] = new TCC_Options_Parallax; #
 		} //*/
-		$this->classes['Privacy'] = new TCC_Options_Privacy;   # 550
+#		$this->classes['Privacy'] = new TCC_Options_Privacy;   # 550
 		if ( WP_DEBUG ) {
 			$this->classes['Bootstrap'] = new TCC_Options_Bootstrap; # 600
 		}
+		$this->classes = apply_filters( 'fluidity_initialize_options', $this->classes );
 	}
 
 

@@ -36,11 +36,11 @@ class Privacy_My_Way {
 	}
 
 	protected function get_options() {
-		$options = get_option( 'tcc_options_privacy' );
+		$options = get_option( 'tcc_options_privacy', array() );
 		if ( ! $options ) {
 			$privacy = new TCC_Options_Privacy;
 			$options = $privacy->get_privacy_defaults();
-			set_option( 'tcc_options_privacy', $options );
+			update_option( 'tcc_options_privacy', $options );
 		}
 		$this->options = $options;
 	}
@@ -198,7 +198,7 @@ class Privacy_My_Way {
 			if ( ! isset( $args['_pmw_privacy_filter_plugins'] ) || ( ! $args['_pmw_privacy_filter_plugins'] ) ) {
 				if ( ! empty( $args['body']['plugins'] ) ) {
 					$plugins = json_decode( $args['body']['plugins'] );
-					$this->logging($url,$plugins);
+					$this->logging( $url, $plugins );
 					$new_set = new stdClass;
 					if ( $this->options['plugins'] === 'none' ) {
 						$plugins = $new_set;
