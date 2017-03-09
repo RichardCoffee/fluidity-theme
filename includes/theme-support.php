@@ -58,8 +58,8 @@ add_theme_support('custom-logo',$defaults); //*/
 #$args = array( 'header-text' => array( 'site-title',
 #                                       'site-description' ),
 #               'size' => 'medium');
-add_theme_support('site-logo'); #,$args);
-
+#add_theme_support('site-logo'); #,$args);
+/*
 add_editor_style();
 
 if (!function_exists('tcc_editor_styles')) {
@@ -67,9 +67,9 @@ if (!function_exists('tcc_editor_styles')) {
     function tcc_editor_styles() {
       add_editor_style('tcc-editor-style.css');
     }
-    add_action('admin_init','tcc_editor_styles' ); //*/
+    add_action('admin_init','tcc_editor_styles' );
   }
-}
+} //*/
 
 if (!function_exists('tcc_post_revisions')) {
 	function tcc_post_revisions() {

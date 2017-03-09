@@ -11,13 +11,15 @@
 if (!function_exists('tcc_register_nav_menu')) {
   function tcc_register_nav_menu() {
     $menus = array('primary' => esc_html__('Site Menu','tcc-fluid'),
-                   'header'  => esc_html__('Header Menu','tcc-fluid'),
-                   'footer'  => esc_html__('Footer Menu','tcc-fluid'));
+#                   'header'  => esc_html__('Header Menu','tcc-fluid'),
+#                   'footer'  => esc_html__('Footer Menu','tcc-fluid')
+);
     $items = array('primary' => array(array('menu-item-title'  => esc_html__('Home','tcc-fluid'),
                                             'menu-item-url'    => home_url('/'),
                                             'menu-item-status' => 'publish')),
-                   'header'  => array(),
-                   'footer'  => array());
+#                   'header'  => array(),
+#                   'footer'  => array()
+);
     register_nav_menus($menus);
     $locations  = get_theme_mod('nav_menu_locations');
     $registered = get_registered_nav_menus();
