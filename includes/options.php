@@ -86,6 +86,7 @@ log_entry('function: '.$tcc_func);
 					if (isset($data[$option])) return $data[$option];
 				}
 			} else {
+log_entry('checking opts');
 				$opts = TCC_Options_Fluidity::instance()->get_options();
 log_entry($opts);
 				foreach( $opts as $key => $options ) {
