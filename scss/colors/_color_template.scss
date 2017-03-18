@@ -101,6 +101,16 @@ ul.pagination > li {
 
 // miscellaneous
 
+a.tcc-footer-menu-item {
+	color: color(textcolor);
+	&:visited {
+		border-bottom: 1px wavy color(textcolor);
+	}
+	&:hover, &:focus {
+		border-bottom: 2px solid color(textcolor);
+	}
+}
+
 .article {
 	& a {
 		border-bottom: 1px solid color(background);

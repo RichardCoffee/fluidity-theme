@@ -215,6 +215,16 @@ ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li >
   color: #a94442;
 }
 
+a.tcc-footer-menu-item {
+  color: #a94442;
+}
+a.tcc-footer-menu-item:visited {
+  border-bottom: 1px wavy #a94442;
+}
+a.tcc-footer-menu-item:hover, a.tcc-footer-menu-item:focus {
+  border-bottom: 2px solid #a94442;
+}
+
 .article a {
   border-bottom: 1px solid #f2dede;
   color: #f2dede;
