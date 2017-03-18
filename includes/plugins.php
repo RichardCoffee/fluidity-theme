@@ -1,6 +1,6 @@
 <?php
 
-require_once( FLUIDITY_HOME . 'classes/class-tgm-plugin-activation.php' );
+require_once( FLUIDITY_HOME . 'assets/class-tgm-plugin-activation.php' );
 
 add_action( 'tgmpa_register', 'fluidity_plugins' );
 
