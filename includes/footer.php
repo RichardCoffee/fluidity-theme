@@ -75,7 +75,7 @@ if ( ! function_exists( 'tcc_footer_menu' ) ) {
 		if ($foot_menu) {
 			$menu   = array();
 			foreach($foot_menu as $index => $text) {
-				$menu[] = '<a class="tcc-footer-menu-item" href="/' . esc_url( $index ) . '/">&nbsp;' . esc_html( $text ) . '&nbsp; </a>';
+				$menu[] = '<a class="tcc-footer-menu-item" href="/' . $index . '/">&nbsp;' . esc_html( $text ) . '&nbsp; </a>';
 			} ?>
 			<span class="tcc-footer-menu" <?php microdata()->SiteNavigationElement(); ?>>
 				<?php echo implode( '&nbsp;|&nbsp', $menu ); ?>
