@@ -2,12 +2,12 @@
 
 class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 
-	protected $radio      = array();
-	protected $sanitize   = 'sanitize_title';
-	protected $field_type = 'radio';
+	protected $field_radio = array();
+	protected $sanitize    = 'sanitize_title';
+	protected $field_type  = 'radio';
 
 	public function radio() {
-		if ( $this->radio ) {
+		if ( $this->field_radio ) {
 			$attrs = array(
 				'type'  => $this->field_type,
 				'name'  => $this->field_name,
@@ -23,7 +23,7 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 					</div><?php
 					$attrs['aria-describedby'] = $uniq;
 				}
-				foreach( $this->radio as $key => $text ) {
+				foreach( $this->field_radio as $key => $text ) {
 					$attrs['value'] = $key; ?>
 					<div>
 						<label>
