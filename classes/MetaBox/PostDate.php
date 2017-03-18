@@ -16,8 +16,8 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 
 	public function admin_enqueue_scripts() { }
 
-	protected function initialize_radio() {
-		$postdate = get_post_meta( $post->ID, 'postdate_display', true );
+	protected function initialize_radio( $postID ) {
+		$postdate = get_post_meta( $postID, 'postdate_display', true );
 		$default  = __( 'Use theme default: %s', 'tcc-fluid' );
 		$current  = tcc_option( 'postdate' );
 		$cur_text = TCC_Options_Fluidity::instance()->get_option_source_text( 'content', 'postdate', $current );
@@ -36,6 +36,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	}
 
 	public function show_meta_box( $post ) {
+		$this->initialize_radio( $post->ID );
 		wp_nonce_field( basename( __FILE__ ), $this->nonce ); ?>
 		<div id="<?php echo $this->slug; ?>">
 			<?php $this->radio->radio(); ?>

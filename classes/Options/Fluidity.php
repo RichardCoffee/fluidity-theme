@@ -58,7 +58,6 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 /*		if ( tcc_design( 'paral' ) === 'yes' ) {
 			$this->classes['Parallax'] = new TCC_Options_Parallax; #
 		} //*/
-		$this->classes['Privacy'] = new TCC_Options_Privacy;   # 550
 		if ( WP_DEBUG ) {
 			$this->classes['Bootstrap'] = new TCC_Options_Bootstrap; # 600
 		}
