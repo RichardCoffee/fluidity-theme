@@ -24,7 +24,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$args = array(
 			'field_default' => 'default',
 			'field_name'    => $this->field,
-			'field_value'   => $postdate,
+			'field_value'   => ( $postdate ) ? $postdate : 'default',
 			'field_radio'   => array(
 				'default'  => sprintf( $default, $cur_text ),
 				'original' => __( 'Always show published date', 'tcc-fluid' ),
