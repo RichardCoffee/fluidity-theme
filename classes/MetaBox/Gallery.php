@@ -93,7 +93,7 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 		return $images;
 	}
 
-	public function save_meta_boxes( $postID ) {
+	public function save_meta_box( $postID ) {
 		if ( $this->pre_save_meta_box( $postID, basename( __FILE__ ) ) ) {
 			return;
 		}
