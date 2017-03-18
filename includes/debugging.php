@@ -82,13 +82,6 @@ if ( ! function_exists( 'log_entry' ) ) {
 			}
 		}
 	}
-	if ( defined( 'TCC_LOG_DEFINED' ) ) {
-		log_entry( 'log_entry defined in ' . __FILE__ );
-	}
-} else {
-	if ( defined( 'TCC_LOG_DEFINED' ) ) {
-		log_entry( 'log_entry NOT defined in ' . __FILE__ );
-	}
 }
 
 if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {

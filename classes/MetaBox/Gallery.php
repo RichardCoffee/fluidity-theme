@@ -18,8 +18,8 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 	protected $img_css  = 'attachment-post-thumbnail img-responsive';
 	protected $m_button = 'Assign Image';
 	protected $m_title  = 'Assign/Upload Image';
-	protected $nonce    = 'gallery_nonce';
 	protected $slug     = 'gallery_meta_box';
+
 
 	public function __construct( $args = array() ) {
 		$this->button   = esc_html__( 'Assign/Upload Gallery Image', 'tcc-fluid' );
@@ -27,10 +27,9 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 		$this->m_button = esc_html__( 'Assign Image', 'tcc-fluid' );
 		$this->m_title  = esc_html__( 'Assign/Upload Gallery Image', 'tcc-fluid' );
 		$this->title    = esc_html__( 'Image Gallery', 'tcc-fluid' );
-		$this->parse_all_args( $args );
+		parent::__construct( $args );
 		$this->div_id   = "{$this->type}-gallery";
 		$this->nonce    = "{$this->type}_gallery_nonce";
-		parent::__construct();
 	}
 
 	public function admin_enqueue_scripts() {
@@ -38,17 +37,18 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 		if ( $screen && ( $screen->post_type === $this->type ) ) {
 			wp_enqueue_style( 'tcc-gallery-css' );
 			wp_enqueue_style( 'tcc-columns' );  #  provides 'section group col span_*_of_*' classes
-			$data = array( 'button'  => $this->m_button,
-			               'confirm' => $this->confirm,
-			               'div_img' => $this->div_img,
-			               'icon'    => $this->icon,
-			               'div_id'  => $this->div_id,
-			               'img_css' => $this->img_css,
-			               'field'   => $this->field . '[]',
-			               'title'   => $this->m_title,
-			             );
+			$data = array(
+				'button'  => $this->m_button,
+				'confirm' => $this->confirm,
+				'div_img' => $this->div_img,
+				'icon'    => $this->icon,
+				'div_id'  => $this->div_id,
+				'img_css' => $this->img_css,
+				'field'   => $this->field . '[]',
+				'title'   => $this->m_title,
+			);
 			wp_localize_script( 'tcc-gallery-js', 'tcc_gallery', $data );
-			wp_enqueue_script( 'tcc-gallery-js' );
+			wp_enqueue_script(  'tcc-gallery-js' );
 		}
 	}
 
@@ -93,8 +93,10 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 		return $images;
 	}
 
-	public function save_meta_box( $postID ) {
-		if ( $this->pre_save_meta_box( $postID, basename( __FILE__ ) ) ) { return; }
+	public function save_meta_boxes( $postID ) {
+		if ( $this->pre_save_meta_box( $postID, basename( __FILE__ ) ) ) {
+			return;
+		}
 		$incoming = $_POST;
 		if ( ! empty( $incoming[ $this->field ] ) ) {
 			foreach( $incoming[ $this->field ] as $imageID ) {
@@ -111,7 +113,6 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 			foreach( $incoming['delete_image'] as $deleteID ) {
 				$check = intval( $deleteID, 10 );
 				if ( $check ) {
-					#	Verify image ID really belongs to the current post
 					$attach = get_post( $check );
 					if ( $attach->post_parent === $postID ) {
 						wp_delete_post( $check );

@@ -5,7 +5,7 @@
  *
  *  copyright 2014-2017, The Creative Collective, the-creative-collective.com
  *
- *  I sure hope that Fields API thing works out
+ *  I sure hope that Fields API thing works out, cause then I can get rid of this monstrosity.
  */
 
 abstract class TCC_Form_Admin {
@@ -17,7 +17,7 @@ abstract class TCC_Form_Admin {
 	protected $form_text =  array();
 	protected $hook_suffix;
 	protected $options;
-	protected $prefix    = 'options_prefix_';
+	protected $prefix    = 'tcc_options_';
 	protected $register;
 	protected $render;
 	protected $slug      = 'default_page_slug';
@@ -31,23 +31,31 @@ abstract class TCC_Form_Admin {
 	protected function __construct() {
 		$this->screen_type();
 		add_action( 'admin_init', array( $this, 'load_form_page' ) );
-		if ( defined( 'TCC_TAB' ) ) {
-			$this->tab = TCC_TAB;
-		}
-		if ( $trans = get_transient( 'TCC_TAB' ) ) {
-			$this->tab = $trans;
-		}
 	}
 
 	public function load_form_page() {
 		global $plugin_page;
 		if ( ( $plugin_page === $this->slug ) || ( ( $refer = wp_get_referer() ) && ( strpos( $refer, $this->slug ) ) ) ) {
-			if ( isset( $_GET['tab'] ) )  $this->tab = sanitize_key( $_GET['tab'] );
-			if ( isset( $_POST['tab'] ) ) $this->tab = sanitize_key( $_POST['tab'] );
-			set_transient( 'TCC_TAB', $this->tab, ( DAY_IN_SECONDS * 5 ) );
+			if ( $this->type === 'tabbed' ) {
+				if ( defined( 'TCC_TAB' ) ) {
+					$this->tab = TCC_TAB;
+				}
+				if ( $trans = get_transient( 'TCC_TAB' ) ) {
+					$this->tab = $trans;
+				}
+				if ( isset( $_GET['tab'] ) )  {
+					$this->tab = sanitize_key( $_GET['tab'] );
+				}
+				if ( isset( $_POST['tab'] ) ) {
+					$this->tab = sanitize_key( $_POST['tab'] );
+				}
+				set_transient( 'TCC_TAB', $this->tab, ( DAY_IN_SECONDS * 5 ) );
+			}
 			$this->form_text();
 			$this->form = $this->form_layout();
-			$this->check_tab();
+			if ( ( $this->type === 'tabbed' ) && ! isset( $this->form[ $this->tab ] ) ) {
+				$this->tab = 'about';
+			}
 			$this->determine_option();
 			$this->get_form_options();
 			$func = $this->register;
@@ -57,15 +65,13 @@ abstract class TCC_Form_Admin {
 	}
 
 	public function enqueue_scripts() {
-#		wp_register_style( 'admin-form.css', get_theme_file_uri( 'css/admin-form.css' ), false );
-#		wp_register_script( 'admin-form.js', get_theme_file_uri( 'js/admin-form.js' ), array( 'jquery', 'wp-color-picker' ), false, true );
-		wp_register_style( 'admin-form.css', get_template_directory_uri() . '/css/admin-form.css', false );
-		wp_register_script( 'admin-form.js', get_template_directory_uri() . '/js/admin-form.js', array( 'jquery', 'wp-color-picker' ), false, true );
+		wp_register_style(  'admin-form.css', get_theme_file_uri( 'css/admin-form.css' ), false );
+		wp_register_script( 'admin-form.js',  get_theme_file_uri( 'js/admin-form.js' ), array( 'jquery', 'wp-color-picker' ), false, true );
 		wp_enqueue_media();
-		wp_enqueue_style( 'admin-form.css' );
-		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_script( 'admin-form.js' );
+		wp_enqueue_style(  'admin-form.css' );
+		wp_enqueue_script( 'admin-form.js'  );
 	}
+
 
   /**  Form text functions  **/
 
@@ -103,16 +109,15 @@ abstract class TCC_Form_Admin {
 
 	public function register_single_form() {
 		register_setting( $this->current, $this->current, array( $this, $this->validate ) );
-		foreach( $this->form as $key => $group ) {
-			if ( is_string( $group ) ) {
-				continue; // skip string variables
+		$title = ( isset( $this->form['title']    ) ) ? $this->form['title']    : '';
+		$desc  = ( isset( $this->form['describe'] ) ) ? $this->form['describe'] : 'description';
+		$desc  = ( is_array( $desc ) ) ? $desc : ( ( method_exists( $this, $desc ) ) ? array( $this, $desc ) : $desc );
+		add_settings_section( $this->current, $title, $desc, $this->current );
+		foreach( $this->form['layout'] as $item => $data ) {
+			if ( is_string( $data ) ) {
+				continue;	#	skip string variables
 			}
-			$title = ( isset( $group['title'] ) )    ? $group['title'] : '';
-			$desc  = ( isset( $group['describe'] ) ) ? array( $this, $group['describe'] ) : 'description';
-			add_settings_section( $key, $title, array( $this, $desc ), $this->slug );
-			foreach( $group['layout'] as $item => $data ) {
-				$this->register_field( $this->slug, $key, $item, $data );
-			}
+			$this->register_field( $this->current, $this->current, $item, $data );
 		}
 	}
 
@@ -252,59 +257,56 @@ log_entry($controls);
 
   /**  Data functions  **/
 
-	private function check_tab() {
-		if ( ! isset( $this->form[ $this->tab ] ) ) {
-			$this->tab = 'about';
+	private function determine_option() {
+		if ( $this->type === 'single' ) {
+			$this->current = $this->prefix . $this->slug;
+		} else if ( $this->type === 'tabbed' ) {
+			if ( isset( $this->form[ $this->tab ]['option'] ) ) {
+				$this->current = $this->form[ $this->tab ]['option'];
+			} else {
+				$this->current = $this->prefix . $this->tab;
+			}
 		}
 	}
 
-  private function determine_option() {
-    if ($this->type=='single') {
-      $this->current = $this->slug;
-    } elseif ($this->type=='tabbed') {
-      if (isset($this->form[$this->tab]['option'])) {
-        $this->current = $this->form[$this->tab]['option'];
-      } else {
-        $this->current = $this->prefix.$this->tab;
-      }
-    }
-  }
+	protected function get_defaults( $option = '' ) {
+		if ( empty( $this->form ) ) {
+			$this->form = $this->form_layout();
+		}
+		$defaults = array();
+		if ( $this->type === 'single' ) {
+			foreach( $this->form['layout'] as $ID => $item ) {
+				if ( is_string( $item ) || empty( $item['default'] ) ) {
+					continue;
+				}
+				$defaults[ $ID ] = $item['default'];
+			}
+		} else {  #  tabbed page
+			if ( isset( $this->form[ $option ] ) ) {
+				foreach( $this->form[ $option ]['layout'] as $key => $item ) {
+					if ( empty( $item['default'] ) ) {
+						continue;
+					}
+					$defaults[ $key ] = $item['default'];
+				}
+			} else {
+				if ( ! empty( $this->err_func ) ) {
+					$func = $this->err_func;
+					$func( sprintf( $this->form_text['error']['subscript'], $option ), debug_backtrace() );
+				}
+			}
+		}
+		return $defaults;
+	} //*/
 
-  protected function get_defaults($option) {
-    if (empty($this->form)) { $this->form = $this->form_layout(); }
-    $defaults = array();
-    if ($this->type=='single') {
-      foreach($this->form as $key=>$group) {
-        if (is_string($group)) continue;
-        foreach($group['layout'] as $ID=>$item) {
-          if (empty($item['default'])) continue;
-          $defaults[$key][$ID] = $item['default'];
-        }
-      }
-    } else {  #  tabbed page
-      if (isset($this->form[$option])) {
-        foreach($this->form[$option]['layout'] as $key=>$item) {
-          if (empty($item['default'])) continue;
-          $defaults[$key] = $item['default'];
-        }
-      } else {
-        if (!empty($this->err_func)) {
-          $func = $this->err_func;
-          $func(sprintf($this->form_text['error']['subscript'],$option),debug_backtrace());
-        }
-      }
-    }
-    return $defaults;
-  } //*/
-
-  private function get_form_options() {
-    $this->form_opts = get_option($this->current);
-    if (empty($this->form_opts)) {
-      $option = explode('_',$this->current); // FIXME: explode for tabbed, what about single?
-      $this->form_opts = $this->get_defaults($option[2]);
-      add_option($this->current,$this->form_opts);
-    }
-  }
+	private function get_form_options() {
+		$this->form_opts = get_option( $this->current );
+		if ( empty( $this->form_opts ) ) {
+			$option = explode( '_', $this->current );
+			$this->form_opts = $this->get_defaults( $option[2] );
+			add_option( $this->current, $this->form_opts );
+		}
+	}
 
 
   /**  Render Screen functions  **/
@@ -353,8 +355,8 @@ log_entry($controls);
         <input type='hidden' name='tab' value='<?php echo $this->tab; ?>'><?php
         $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
         do_action( "form_admin_pre_display_{$this->tab}" );
-        settings_fields($current); #$this->slug); #$this->current);
-        do_settings_sections($current); #$this->slug); #$this->current);
+        settings_fields($current);
+        do_settings_sections($current);
         do_action("form_admin_post_display_{$this->tab}");
         $this->submit_buttons($this->form[$this->tab]['title']); ?>
       </form>
@@ -373,37 +375,42 @@ log_entry($controls);
     </p><?php
   }
 
-  public function render_single_options($args) {
-    extract($args);  #  array( 'key'=>$key, 'item'=>$item, 'num'=>$i);
-    $data   = $this->form_opts;
-    $layout = $this->form[$key]['layout'];
-    $attr   = $this->render_attributes($layout[$item]);
-    echo "<div $attr>";
-    if (empty($layout[$item]['render'])) {
-      echo $data[$key][$item];
-    } else {
-      $func  = "render_{$layout[$item]['render']}";
-      $name  = $this->slug."[$item]";
-      $value = (isset($data[$key][$item])) ? $data[$key][$item] : '';
-      if ($layout[$item]['render']=='array') {
-        $name.= "[$num]";
-        #if ((isset($add)) && ($add)) { $layout[$item]['add'] = true; }
-        $value = (isset($data[$key][$item][$num])) ? $data[$key][$item][$num] : '';
-      }
-      $field = str_replace(array('[',']'),array('_',''),$name);
-      $fargs = array('ID'=>$field, 'value'=>$value, 'layout'=>$layout[$item], 'name'=>$name);
-      if (method_exists($this,$func)) {
-        $this->$func($fargs);
-      } elseif (function_exists($func)) {
-        $func($fargs);
-      } else {
-        if (!empty($this->err_func)) {
-          $func = $this->err_func;
-          $func(sprintf($this->form_text['error']['render'],$func)); }
-      }
-    }
-    echo "</div>";
-  }
+	public function render_single_options( $args ) {
+		extract( $args );  #  array( 'key'=>$key, 'item'=>$item, 'num'=>$i);
+		$data   = $this->form_opts;
+		$layout = $this->form['layout'];
+		echo '<div ' . $this->render_attributes( $layout[ $item ] ) . '>';
+		if ( empty( $layout[ $item ]['render'] ) ) {
+			echo $data[ $item ];
+		} else {
+			$func  = 'render_' . $layout[ $item ]['render'];
+			$name  = $this->current . '[' . $item . ']';
+			$value = ( isset( $data[ $item ] ) ) ? $data[ $item ] : '';
+			if ( $layout[ $item ]['render'] === 'array' ) {
+				$name .= '[' . $num . ']';
+				#if ( isset( $add ) && $add ) { $layout[ $item ]['add'] = true; }
+				$value = ( isset( $data[ $item ][ $num ] ) ) ? $data[ $item ][ $num ] : '';
+			}
+			$field = str_replace( array( '[', ']' ), array( '_', '' ), $name );
+			$fargs = array(
+				'ID'     => $field,
+				'value'  => $value,
+				'layout' => $layout[ $item ],
+				'name'   => $name,
+			);
+			if ( method_exists( $this, $func ) ) {
+				$this->$func( $fargs );
+			} else if ( function_exists( $func ) ) {
+				$func( $fargs );
+			} else {
+				if ( ! empty( $this->err_func ) ) {
+					$func = $this->err_func;
+					$func( sprintf( $this->form_text['error']['render'], $func ) );
+				}
+			}
+		}
+		echo '</div>';
+	}
 
   public function render_tabbed_options($args) {
     extract($args);  #  $args = array( 'key' => {group-slug}, 'item' => {item-slug})
@@ -718,49 +725,40 @@ log_entry($controls);
 
   /**  Validate functions  **/
 
-  public function validate_single_form($input) {
-    $form   = $this->form;
-    $output = $this->get_defaults();
-    if (isset($_POST['reset'])) {
-      $object = (isset($this->form['title'])) ? $this->form['title'] : $this->form_test['submit']['object'];
-      $string = sprintf($this->form_text['submit']['restore'],$object);
-      add_settings_error($this->slug,'restore_defaults',$string,'updated fade');
-      return $output;
-    }
-    foreach($input as $key=>$data) {
-      if (!((array)$data==$data)) continue;
-      foreach($data as $ID=>$subdata) {
-        $item = $form[$key]['layout'][$ID];
-        if ($item['render']==='array') {
-          $item['render'] = (isset($item['type'])) ? $item['type'] : 'text';
-          $vals = array();
-          foreach($subdata as $indiv) {
-            $vals[] = $this->do_validate_function($indiv,$item);
-          }
-          $output[$key][$ID] = $vals;
-        } else {
-          $output[$key][$ID] = $this->do_validate_function($subdata,$item);
-        }
-      }
-    }
-    // check for required fields
-    foreach($output as $key=>$data) {
-      if (!((array)$data==$data)) continue;
-      foreach($data as $ID=>$subdata) {
-        if (!isset($form[$key]['layout'][$ID]['require'])) { continue; }
-        if (empty($output[$key][$ID])) {
-          $output[$key][$ID] = $subdata;
-        }
-      }
-    }
-    return apply_filters($this->slug.'_validate_settings',$output,$input);
-  }
+	public function validate_single_form( $input ) {
+		$output = $this->get_defaults();
+		if ( isset( $_POST['reset'] ) ) {
+			$object = ( isset( $this->form['title'] ) ) ? $this->form['title'] : $this->form_test['submit']['object'];
+			$string = sprintf( $this->form_text['submit']['restore'], $object );
+			add_settings_error( $this->slug, 'restore_defaults', $string, 'updated fade' );
+			return $output;
+		}
+		foreach( $input as $ID => $data ) {
+			$item = $this->form['layout'][ $ID ];
+			$multiple = array( 'array', 'radio_multiple' );
+			if ( in_array( $item['render'], $multiple ) ) {
+				$item['render'] = ( isset( $item['type'] ) ) ? $item['type'] : 'text';
+				$vals = array();
+				foreach( $data as $key => $indiv ) {
+					$vals[ $key ] = $this->do_validate_function( $indiv, $item );
+				}
+				$output[ $ID ] = $vals;
+			} else {
+				$output[ $ID ] = $this->do_validate_function( $data, $item );
+			}
+		}
+		// check for required fields FIXME: notify user
+		foreach( $this->form['layout'] as $ID => $item ) {
+			if ( is_array( $item ) && isset( $item['require'] ) ) {
+				if ( empty( $output[ $ID ] ) ) {
+					$output[ $ID ] = $item['default'];
+				}
+			}
+		}
+		return apply_filters( "{$this->slug}_validate_settings", $output, $input );
+	}
 
   public function validate_tabbed_form($input) {
-    #log_entry('_GET',$_GET);
-    #log_entry('_POST',$_POST);
-    #log_entry('form',$this->form);
-    #log_entry('input',$input);
     $option = sanitize_key($_POST['tab']);
     $output = $this->get_defaults($option);
     if (isset($_POST['reset'])) {
@@ -779,7 +777,6 @@ log_entry($controls);
         $output[$key] = $this->do_validate_function($data,$item);
       }
     }
-    #log_entry('output',$output);
     return apply_filters($this->current.'_validate_settings',$output,$input);
   }
 
@@ -829,14 +826,14 @@ log_entry($input);
   }
 
 	private function validate_select_multiple( $input ) {
-		return array_map( array( $this, 'validate_select' ), $input );
+		return array_map( array( $this, 'validate_select' ), $input ); // FIXME
 	}
 
 	private function validate_spinner( $input ) {
 		return $this->validate_text( $input );
 	}
 
-	protected function validate_text($input) {
+	protected function validate_text( $input ) {
 		return strip_tags( stripslashes( $input ) );
 	}
 
@@ -849,7 +846,7 @@ log_entry($input);
   }
 
 
-}
+}	#	end of TCC_Form_Admin class
 
 
 if ( ! function_exists( 'get_applied_attrs' ) ) {
@@ -876,5 +873,12 @@ if ( ! function_exists( 'apply_attrs' ) ) {
 		} else {
 			return $attrs;
 		}
+	}
+}
+
+if ( ! function_exists('e_esc_html') ) {
+	#   This is just a shorthand function
+	function e_esc_html( $string ) {
+		echo esc_html( $string );
 	}
 }

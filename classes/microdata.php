@@ -35,18 +35,12 @@ if (!class_exists('TCC_Microdata')) {
 
 class TCC_Microdata {
 
-  static $instance = null;
+	use TCC_Trait_Singleton;
 
   private function __construct() {
     $this->filters();
   }
 
-  public static function instance() {
-    if (self::$instance===null) {
-      self::$instance = new TCC_Microdata();
-    }
-    return self::$instance;
-  }
 
  /*
   *  These functions should be inserted into elements like so:
