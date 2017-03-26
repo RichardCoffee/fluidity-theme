@@ -159,6 +159,17 @@ if ( ! function_exists( 'attachment_sizes' ) ) {
 	}
 }
 
+if ( ! function_exists( 'disable_website_field' ) ) {
+	#	https://github.com/taniarascia/wp-functions
+	function disable_website_field( $field ) { 
+		if( isset($field['url']) ) {
+			unset( $field['url'] );
+		}
+		return $field;
+	}
+	add_filter('comment_form_default_fields', 'disable_website_field');
+}
+
 if ( ! function_exists( 'get_the_slug' ) ) {
 	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
 	function get_the_slug( $id = null ) {

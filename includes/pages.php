@@ -10,12 +10,8 @@ if ( ! function_exists( 'get_page_id' ) ) {
 	# http://snipplr.com/view/39004/
 	# http://www.smipple.net/snippet/elieandraos/Get%20Page%20ID%20By%20Slug
 	function get_page_id( $slug ) {
-		static $page_id;
-		if ( ! $page_id ) {
-			global $wpdb;
-			$page_id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'" );
-		}
-		return $page_id;
+		global $wpdb;
+		return $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'" );
 	}
 }
 
@@ -83,7 +79,6 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 					$page = get_queried_object();  #  $wp_query->queried_object
 					if ( is_object( $page ) && isset( $page->post_type ) && ( $page->post_type === 'page' ) ) {
 						$slug = $page->post_name;
-#$slug = ( $slug === 'front-page' ) ? 'front' : $slug;
 					} else {
 						global $fluidity_theme_template; // FIXME: this is not a reliable source
 						$slug = $fluidity_theme_template;

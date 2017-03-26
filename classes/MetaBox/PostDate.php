@@ -12,6 +12,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	public function __construct( $args = array() ) {
 		$this->title = __( 'Displayed Post Date', 'tcc-fluid' );
 		parent::__construct( $args );
+		$this->initialize_radio( $post->ID );
 	}
 
 	public function admin_enqueue_scripts() { }
@@ -36,7 +37,6 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	}
 
 	public function show_meta_box( $post ) {
-		$this->initialize_radio( $post->ID );
 		wp_nonce_field( basename( __FILE__ ), $this->nonce ); ?>
 		<div id="<?php echo $this->slug; ?>">
 			<?php $this->radio->radio(); ?>
