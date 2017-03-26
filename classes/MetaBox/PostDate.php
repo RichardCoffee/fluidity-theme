@@ -12,7 +12,6 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	public function __construct( $args = array() ) {
 		$this->title = __( 'Displayed Post Date', 'tcc-fluid' );
 		parent::__construct( $args );
-		$this->initialize_radio( $post->ID );
 	}
 
 	public function admin_enqueue_scripts() { }
@@ -37,6 +36,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	}
 
 	public function show_meta_box( $post ) {
+		$this->initialize_radio( $post->ID );
 		wp_nonce_field( basename( __FILE__ ), $this->nonce ); ?>
 		<div id="<?php echo $this->slug; ?>">
 			<?php $this->radio->radio(); ?>
@@ -48,7 +48,8 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 			return;
 		}
 		if ( ! empty( $_POST[ $this->field ] ) ) {
-			$value = sanitize_title( $_POST[ $this->field ] );
+			$this->initialize_radio( $postID );
+			$value = $this->radio->sanitize( $_POST[ $this->field ] );
 			if ( array_key_exists( $value, $this->radio->field_radio ) ) {
 				update_post_meta( $postID, $this->field, $value );
 			}
