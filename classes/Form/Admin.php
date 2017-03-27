@@ -65,7 +65,7 @@ abstract class TCC_Form_Admin {
 	}
 
 	public function enqueue_scripts() {
-		wp_register_style(  'admin-form.css', get_theme_file_uri( 'css/admin-form.css' ), false );
+		wp_register_style(  'admin-form.css', get_theme_file_uri( 'css/admin-form.css' ), array( 'wp-color-picker' ) );
 		wp_register_script( 'admin-form.js',  get_theme_file_uri( 'js/admin-form.js' ), array( 'jquery', 'wp-color-picker' ), false, true );
 		wp_enqueue_media();
 		wp_enqueue_style(  'admin-form.css' );
@@ -511,10 +511,12 @@ log_entry($controls);
 		<input type="text" class="form-colorpicker"
 		       name="<?php e_esc_attr( $name ); ?>"
 		       value="<?php e_esc_attr( $value ); ?>"
-		       data-default-color="<?php e_esc_attr( $layout['default'] ); ?>" />&nbsp;
-		<span class="form-colorpicker-text">
-			<?php e_esc_html( $text ); ?>
-		</span><?php
+		       data-default-color="<?php e_esc_attr( $layout['default'] ); ?>" />&nbsp;<?php
+		if ( ! empty( $text ) ) { ?>
+			<span class="form-colorpicker-text">
+				<?php e_esc_html( $text ); ?>
+			</span><?php
+		}
 	}
 
   private function render_display($data) {
@@ -705,16 +707,16 @@ log_entry($controls);
     echo $html;
   }
 
-  private function render_text_color($data) {
-    $this->render_text($data);
-    $basic = explode('[',$data['name']);
-    $index = substr($basic[1],0,-1).'_color';
-    $data['name']  = "{$basic[0]}[{$index}]";
-    $data['value'] = (isset($this->form_opts[$index])) ? $this->form_opts[$index] : $data['layout']['color'];
-    $data['layout']['default'] = $data['layout']['color'];
-    $data['layout']['text']    = '';
-    $this->render_colorpicker($data);
-  }
+	private function render_text_color( $data ) {
+		$this->render_text( $data );
+		$basic = explode( '[', $data['name'] );
+		$index = substr( $basic[1], 0, -1 ) . '_color';
+		$data['name']  = $basic[0] . '[' . $index . ']';
+		$data['value'] = ( isset( $this->form_opts[ $index ] ) ) ? $this->form_opts[$index] : $data['layout']['color'];
+		$data['layout']['default'] = $data['layout']['color'];
+		$data['layout']['text']    = '';
+		$this->render_colorpicker( $data );
+	}
 
   private function render_title($data) {
     extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)

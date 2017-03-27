@@ -72,7 +72,6 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		if ( tcc_layout('menu') !== 'bootstrap' ) {
 			wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
 		}
-#		wp_enqueue_script('bootstrap.js');
 		wp_enqueue_script('tcc-skiplink');
 		if ((tcc_layout('widget')!=='perm') || is_404()) {
 			wp_enqueue_script('tcc-collapse');
@@ -151,19 +150,6 @@ if (!function_exists('fluidity_register_color_scheme')) {
 
 
 /**  Test functions  **/
-/*
-if ( ! function_exists( 'add_privacy_filters' ) && file_exists( WP_CONTENT_DIR . '/privacy.flg' ) ) {
-	function add_privacy_filters( $locale = '' ) {
-		if ( ! function_exists( 'random_int' ) ) {
-			require_once( FLUIDITY_HOME . 'assets/random_compat/lib/random.php' );
-		}
-		include_once('classes/privacy.php');
-		$instance = Privacy_My_Way::instance();
-		return $locale;
-	}
-	add_action( 'wp_version_check', 'add_privacy_filters' );
-	add_filter( 'core_version_check_locale', 'add_privacy_filters' );
-} //*/
 /*
 function themeslug_customize_register( $wp_customize ) {
   log_entry( $wp_customize );

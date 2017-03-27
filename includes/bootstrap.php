@@ -104,7 +104,7 @@ if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
 }
 
 function fluidity_check_bootstrap( $section ) {
-	$return = array();
+	$return  = array();
 	$options = tcc_bootstrap( $section );
 	if ( $options ) {
 		foreach( $options as $component => $status ) {

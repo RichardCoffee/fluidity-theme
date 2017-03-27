@@ -141,20 +141,21 @@ if ( ! function_exists('e_esc_html') ) {
 	}
 }
 
-if (!function_exists('esc_attr_ex')) {
+if ( ! function_exists( 'esc_attr_ex' ) ) {
 	function esc_attr_ex( $text, $context, $domain = 'default' ) {
-		echo esc_attr_x( $text, $context, $domain );
+		$translation = translate_with_gettext_context( $text, $context, $domain );
+		echo esc_attr( $translation );
 	}
 }
 
-if (!function_exists('esc_html_ex')) {
+if ( ! function_exists( 'esc_html_ex' ) ) {
 	function esc_html_ex( $text, $context, $domain = 'default' ) {
-		echo esc_html_x( $text, $context, $domain );
+		$translation = translate_with_gettext_context( $text, $context, $domain );
+		echo esc_html( $translation );
 	}
 }
 
-if (!function_exists('esc_html_nx')) {
-	#| wp_includes/i10n.php#_nx
+if ( ! function_exists( 'esc_html_nx' ) ) {
 	function esc_html_nx( $single, $plural, $number, $context, $domain = 'default' ) {
 		$translations = get_translations_for_domain( $domain );
 		$translation  = $translations->translate_plural( $single, $plural, $number, $context );
