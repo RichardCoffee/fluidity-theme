@@ -11,7 +11,6 @@
 abstract class TCC_Form_Admin {
 
 	protected $current   = '';
-	protected $err_func  = 'log_entry';
 	protected $form      =  array();
 	protected $form_opts =  array();
 	protected $form_text =  array();
@@ -24,6 +23,8 @@ abstract class TCC_Form_Admin {
 	public    $tab       = 'about';
 	protected $type      = 'single'; # two values: single, tabbed
 	protected $validate;
+
+	use TCC_Trait_Logging
 
 	abstract protected function form_layout( $option );
 	public function description() { return ''; }
@@ -60,6 +61,7 @@ abstract class TCC_Form_Admin {
 			$this->get_form_options();
 			$func = $this->register;
 			$this->$func();
+			do_action( 'tcc_load_form_page' );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
 	}
@@ -290,10 +292,7 @@ log_entry($controls);
 					$defaults[ $key ] = $item['default'];
 				}
 			} else {
-				if ( ! empty( $this->err_func ) ) {
-					$func = $this->err_func;
-					$func( sprintf( $this->form_text['error']['subscript'], $option ), debug_backtrace() );
-				}
+				$this->logging( sprintf( $this->form_text['error']['subscript'], $option ), 'stack' );
 			}
 		}
 		return $defaults;
@@ -312,13 +311,8 @@ log_entry($controls);
   /**  Render Screen functions  **/
 
 	public function render_single_form() { ?>
-		<div class="wrap"><?php
-			if ( isset( $this->form['title'] ) ) { ?>
-				<h1>
-					<?php echo esc_html( $this->form['title'] ); ?>
-				</h1><?php
-			}
-			settings_errors(); ?>
+		<div class="wrap">
+			<?php settings_errors(); ?>
 			<form method="post" action="options.php"><?php
 #				do_action( 'form_admin_pre_display' );
 #				do_action( 'form_admin_pre_display_' . $this->current );
@@ -403,10 +397,7 @@ log_entry($controls);
 			} else if ( function_exists( $func ) ) {
 				$func( $fargs );
 			} else {
-				if ( ! empty( $this->err_func ) ) {
-					$func = $this->err_func;
-					$func( sprintf( $this->form_text['error']['render'], $func ) );
-				}
+				$this->logging( sprintf( $this->form_text['error']['render'], $func ) );
 			}
 		}
 		echo '</div>';
@@ -430,9 +421,7 @@ log_entry($controls);
       } elseif (function_exists($func)) {
         $func($fargs);
       } else {
-        if (!empty($this->err_func))
-          $func = $this->err_func;
-          $func(sprintf($this->form_text['error']['render'],$func));
+        $this->logging( sprintf( $this->form_text['error']['render'], $func ) );
       }
     }
     echo "</div>"; //*/
@@ -793,7 +782,7 @@ log_entry($controls);
 			$output = $func( $input );
 		} else { // FIXME:  test for data type?
 			$output = $this->validate_text( $input );
-			log_entry( "missing validation function: $func" );
+			$this->logging( "missing validation function: $func" );
 		}
 		return $output;
 	}
@@ -803,7 +792,7 @@ log_entry($controls);
   }
 
 	private function validate_font( $input ) {
-log_entry($input);
+		$this->logging($input);
 		return $input; // FIXME NOW!
 	}
 
