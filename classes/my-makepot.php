@@ -1,6 +1,9 @@
 <?php
 
 require_once( '/home/richard/work/svn/wpdev/tools/i18n/makepot.php' );
+require_once( '/home/richard/work/entechpc/fluidity/includes/debugging.php' );
+
+date_default_timezone_set('UTC');
 
 class Fluid_MakePOT extends MakePOT {
 
@@ -35,6 +38,7 @@ class Fluid_StringExtractor extends StringExtractor {
 			'languages',
 			'scss',
 			'tests',
+			'vendor',
 		);
 		if ( in_array( $dir, $dir_excludes, true ) ) {
 			$translations = new Translations;

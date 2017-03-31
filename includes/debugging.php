@@ -3,6 +3,10 @@
  *
  */
 
+if ( ! defined( WP_DEBUG ) ) {
+	define( 'WP_DEBUG', true );
+}
+
 if ( ! function_exists( 'debug_calling_function' ) ) {
 	/**
 	*	Get the calling function.
@@ -67,9 +71,10 @@ if ( ! function_exists( 'log_entry' ) ) {
 				$depth = $args[0];
 				unset( $args[0] );
 			}
-			if ( $depth ) { error_log( 'source:  ' . debug_calling_function( $depth ) ); }
+#			if ( $depth ) { error_log( 'source:  ' . debug_calling_function( $depth ) ); }
+			if ( $depth ) { tcc_write_error_log( 'source:  ' . debug_calling_function( $depth ) ); }
 			foreach( $args as $message ) {
-				#	log an array or object
+/*				#	log an array or object
 				if ( is_array( $message ) || is_object( $message ) ) {
 					error_log( print_r( $message, true ) );
 				#	log the stack trace
@@ -78,21 +83,48 @@ if ( ! function_exists( 'log_entry' ) ) {
 				#	log everything else
 				} else {
 					error_log( $message );
-				}
+				} //*/
+				tcc_write_error_log( $message );
 			}
 		}
 	}
 }
 
-if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {
-	function tcc_log_deprecated() {
-		$args = func_get_args();
-		log_entry( $args, 'stack' );
+if ( ! function_exists( 'tcc_write_error_log' ) ) {
+	function tcc_write_error_log( $log_me, $log_file = 'error_log' ) {
+		static $destination = '';
+		if ( empty( $destination ) ) {
+			$destination = $log_file;
+			if ( defined( 'ABSPATH' ) ) {
+				$destination = ABSPATH . 'wp-content/debug.log';
+			} else if ( file_exists( '../logs' ) ) {
+				$destination = '../logs/pbl-' . date( 'Ymd' ) . '.log';
+			} else if ( function_exists( 'pbl_raw_path' ) ) {
+				$destination = pbl_raw_path() . '/error_log';
+			}
+		}
+		$message = $log_me;
+		if ( is_array( $log_me ) || is_object( $log_me ) ) {
+			$message = print_r( $log_me, true );
+		} else if ( $log_me === 'stack' ) {
+			$message = print_r( debug_backtrace(), true );
+		}
+		$message = date( '[d-M-Y H:i:s e] ' ) . $message . "\n";
+		error_log( $message, 3, $destination );
 	}
-	add_action( 'deprecated_function_run',    'tcc_log_deprecated', 10, 3 );
-	add_action( 'deprecated_constructor_run', 'tcc_log_deprecated', 10, 3 );
-	add_action( 'deprecated_file_included',   'tcc_log_deprecated', 10, 4 );
-	add_action( 'deprecated_argument_run',    'tcc_log_deprecated', 10, 3 );
-	add_action( 'deprecated_hook_run',        'tcc_log_deprecated', 10, 4 );
-	add_action( 'doing_it_wrong_run',         'tcc_log_deprecated', 10, 3 );
+}
+
+if ( function_exists( 'add_action' ) ) {
+	if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {
+		function tcc_log_deprecated() {
+			$args = func_get_args();
+			log_entry( $args, 'stack' );
+		}
+		add_action( 'deprecated_function_run',    'tcc_log_deprecated', 10, 3 );
+		add_action( 'deprecated_constructor_run', 'tcc_log_deprecated', 10, 3 );
+		add_action( 'deprecated_file_included',   'tcc_log_deprecated', 10, 4 );
+		add_action( 'deprecated_argument_run',    'tcc_log_deprecated', 10, 3 );
+		add_action( 'deprecated_hook_run',        'tcc_log_deprecated', 10, 4 );
+		add_action( 'doing_it_wrong_run',         'tcc_log_deprecated', 10, 3 );
+	}
 }

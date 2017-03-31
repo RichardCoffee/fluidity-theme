@@ -4,1236 +4,1254 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Creative Fluidity 2.2.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fluidity\n"
-"POT-Creation-Date: 2017-03-26 04:57:43+00:00\n"
+"POT-Creation-Date: 2017-03-31 07:19:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2017-03-31 07:19:15+00:00\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: 404-james.php:35 404-richard.php:35 404.php:35
 msgid "Ooops.....Well this is somewhat embarrassing, isn't it?"
-msgstr ""
+msgstr "Ooops.....Well this is somewhat embarrassing, isn't it?"
 
 #: 404-james.php:42
 msgid ""
 "It seems as if the page you are looking for is not here. I guess you could "
 "hang out here all day if you really wanted to. But if ya wanted to you could."
 msgstr ""
+"It seems as if the page you are looking for is not here. I guess you could "
+"hang out here all day if you really wanted to. But if ya wanted to you could."
 
 #: 404-james.php:54 404-richard.php:56 404.php:56
 msgid "Home Page"
-msgstr ""
+msgstr "Home Page"
 
 #: 404-richard.php:41 404.php:41
 msgid "It seems as if the page you are looking for is not here"
-msgstr ""
+msgstr "It seems as if the page you are looking for is not here"
 
 #: 404-richard.php:45 404.php:45
 msgid "It looks like nothing was found at this location"
-msgstr ""
+msgstr "It looks like nothing was found at this location"
 
-#: classes/Form/Admin.php:81
+#: classes/Form/Admin.php:83
 msgctxt "string - a function name"
 msgid "ERROR: Unable to locate function %s"
-msgstr ""
+msgstr "ERROR: Unable to locate function %s"
 
-#: classes/Form/Admin.php:82
+#: classes/Form/Admin.php:84
 msgctxt "placeholder will be an ASCII character string"
 msgid "ERROR: Not able to locate form data subscript:  %s"
-msgstr ""
-
-#: classes/Form/Admin.php:85
-msgid "Save Changes"
-msgstr ""
-
-#: classes/Form/Admin.php:86 classes/Form/Admin.php:88
-msgid "Form"
-msgstr ""
+msgstr "ERROR: Not able to locate form data subscript:  %s"
 
 #: classes/Form/Admin.php:87
-msgctxt "placeholder is a noun, may be plural"
-msgid "Reset %s"
-msgstr ""
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: classes/Form/Admin.php:88 classes/Form/Admin.php:90
+msgid "Form"
+msgstr "Form"
 
 #: classes/Form/Admin.php:89
+msgctxt "placeholder is a noun, may be plural"
+msgid "Reset %s"
+msgstr "Reset %s"
+
+#: classes/Form/Admin.php:91
 msgctxt "placeholder is a noun, probably singular"
 msgid "Default %s options restored."
-msgstr ""
+msgstr "Default %s options restored."
 
-#: classes/Form/Admin.php:92 classes/Options/Parallax.php:32
+#: classes/Form/Admin.php:94 classes/Options/Parallax.php:32
 #: classes/Role/Agent.php:140
 msgid "Assign/Upload Image"
-msgstr ""
+msgstr "Assign/Upload Image"
 
-#: classes/Form/Admin.php:93 classes/MetaBox/Gallery.php:27
+#: classes/Form/Admin.php:95 classes/MetaBox/Gallery.php:27
 #: classes/Options/Parallax.php:33 classes/Role/Agent.php:140
 #: classes/Role/Agent.php:141
 msgid "Assign Image"
-msgstr ""
+msgstr "Assign Image"
 
-#: classes/Form/Admin.php:94
+#: classes/Form/Admin.php:96
 msgid "Unassign Image"
-msgstr ""
+msgstr "Unassign Image"
 
-#: classes/Form/Admin.php:609
+#: classes/Form/Admin.php:600
 msgid "Yes"
-msgstr ""
+msgstr "Yes"
 
-#: classes/Form/Admin.php:610
+#: classes/Form/Admin.php:601
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: classes/Form/Login.php:67
 msgid "Username or Email Address"
-msgstr ""
+msgstr "Username or Email Address"
 
 #: classes/Form/Login.php:68
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: classes/Form/Login.php:70
 msgid "Sign In"
-msgstr ""
+msgstr "Sign In"
 
 #: classes/Form/Login.php:71
 msgid "Lost Password"
-msgstr ""
+msgstr "Lost Password"
 
 #: classes/Form/Login.php:171
 msgid "You can request a new password via this link."
-msgstr ""
+msgstr "You can request a new password via this link."
 
 #: classes/Form/Login.php:183
 msgid "Sign Out"
-msgstr ""
+msgstr "Sign Out"
 
 #: classes/MetaBox/Gallery.php:25 classes/MetaBox/Gallery.php:28
 msgid "Assign/Upload Gallery Image"
-msgstr ""
+msgstr "Assign/Upload Gallery Image"
 
 #: classes/MetaBox/Gallery.php:26
 msgid "Remove this image?"
-msgstr ""
+msgstr "Remove this image?"
 
 #: classes/MetaBox/Gallery.php:29
 msgid "Image Gallery"
-msgstr ""
+msgstr "Image Gallery"
 
 #: classes/MetaBox/GalleryView.php:77
 msgctxt "a wordpress shortcode"
 msgid "Use the %s shortcode to place the gallery in your post."
-msgstr ""
+msgstr "Use the %s shortcode to place the gallery in your post."
 
 #: classes/MetaBox/PostDate.php:13
 msgid "Displayed Post Date"
-msgstr ""
+msgstr "Displayed Post Date"
 
 #: classes/MetaBox/PostDate.php:21
 msgid "Use theme default: %s"
-msgstr ""
+msgstr "Use theme default: %s"
 
 #: classes/MetaBox/PostDate.php:30
 msgid "Always show published date"
-msgstr ""
+msgstr "Always show published date"
 
 #: classes/MetaBox/PostDate.php:31
 msgid "Show modified date, when applicable"
-msgstr ""
+msgstr "Show modified date, when applicable"
 
 #: classes/MetaBox/PostDate.php:32
 msgid "Never show a date for this post."
-msgstr ""
+msgstr "Never show a date for this post."
 
 #: classes/Options/Bootstrap.php:13
 msgid "Bootstrap"
-msgstr ""
+msgstr "Bootstrap"
 
 #: classes/Options/Bootstrap.php:28
 msgid "Bootstrap Components - specify which bootstrap components to load."
-msgstr ""
+msgstr "Bootstrap Components - specify which bootstrap components to load."
 
 #: classes/Options/Bootstrap.php:36
 msgid "Reset/Dependencies"
-msgstr ""
+msgstr "Reset/Dependencies"
 
 #: classes/Options/Bootstrap.php:42
 msgid "Core CSS"
-msgstr ""
+msgstr "Core CSS"
 
 #: classes/Options/Bootstrap.php:48
 msgid "Components"
-msgstr ""
+msgstr "Components"
 
 #: classes/Options/Bootstrap.php:54
 msgid "Javascript"
-msgstr ""
+msgstr "Javascript"
 
 #: classes/Options/Bootstrap.php:55
 msgid "Components with Javascript"
-msgstr ""
+msgstr "Components with Javascript"
 
 #: classes/Options/Bootstrap.php:61 classes/Options/Bootstrap.php:141
 msgid "Utilities"
-msgstr ""
+msgstr "Utilities"
 
 #: classes/Options/Bootstrap.php:90
 msgid "Normalize"
-msgstr ""
+msgstr "Normalize"
 
 #: classes/Options/Bootstrap.php:91 includes/header.php:110
 msgid "Print"
-msgstr ""
+msgstr "Print"
 
 #: classes/Options/Bootstrap.php:92
 msgid "Glyphicons"
-msgstr ""
+msgstr "Glyphicons"
 
 #: classes/Options/Bootstrap.php:97
 msgid "Scaffolding"
-msgstr ""
+msgstr "Scaffolding"
 
 #: classes/Options/Bootstrap.php:98
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: classes/Options/Bootstrap.php:99
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: classes/Options/Bootstrap.php:100
 msgid "Grid"
-msgstr ""
+msgstr "Grid"
 
 #: classes/Options/Bootstrap.php:101
 msgid "Tables"
-msgstr ""
+msgstr "Tables"
 
 #: classes/Options/Bootstrap.php:102
 msgid "Forms"
-msgstr ""
+msgstr "Forms"
 
 #: classes/Options/Bootstrap.php:103
 msgid "Buttons"
-msgstr ""
+msgstr "Buttons"
 
 #: classes/Options/Bootstrap.php:108
 msgid "Component Animations"
-msgstr ""
+msgstr "Component Animations"
 
 #: classes/Options/Bootstrap.php:109
 msgid "Dropdowns"
-msgstr ""
+msgstr "Dropdowns"
 
 #: classes/Options/Bootstrap.php:110
 msgid "Button Groups"
-msgstr ""
+msgstr "Button Groups"
 
 #: classes/Options/Bootstrap.php:111
 msgid "Input Groups"
-msgstr ""
+msgstr "Input Groups"
 
 #: classes/Options/Bootstrap.php:112
 msgid "Navs"
-msgstr ""
+msgstr "Navs"
 
 #: classes/Options/Bootstrap.php:113
 msgid "Navbar"
-msgstr ""
+msgstr "Navbar"
 
 #: classes/Options/Bootstrap.php:114
 msgid "Breadcrumbs"
-msgstr ""
+msgstr "Breadcrumbs"
 
 #: classes/Options/Bootstrap.php:115
 msgid "Pagination"
-msgstr ""
+msgstr "Pagination"
 
 #: classes/Options/Bootstrap.php:116
 msgid "Pager"
-msgstr ""
+msgstr "Pager"
 
 #: classes/Options/Bootstrap.php:117
 msgid "Labels"
-msgstr ""
+msgstr "Labels"
 
 #: classes/Options/Bootstrap.php:118
 msgid "Badges"
-msgstr ""
+msgstr "Badges"
 
 #: classes/Options/Bootstrap.php:119
 msgid "Jumbotron"
-msgstr ""
+msgstr "Jumbotron"
 
 #: classes/Options/Bootstrap.php:120
 msgid "Thumbnails"
-msgstr ""
+msgstr "Thumbnails"
 
 #: classes/Options/Bootstrap.php:121
 msgid "Alerts"
-msgstr ""
+msgstr "Alerts"
 
 #: classes/Options/Bootstrap.php:122
 msgid "Progress Bars"
-msgstr ""
+msgstr "Progress Bars"
 
 #: classes/Options/Bootstrap.php:123
 msgid "Media"
-msgstr ""
+msgstr "Media"
 
 #: classes/Options/Bootstrap.php:124
 msgid "List Group"
-msgstr ""
+msgstr "List Group"
 
 #: classes/Options/Bootstrap.php:125
 msgid "Panels"
-msgstr ""
+msgstr "Panels"
 
 #: classes/Options/Bootstrap.php:126
 msgid "Responsive Embed"
-msgstr ""
+msgstr "Responsive Embed"
 
 #: classes/Options/Bootstrap.php:127
 msgid "Wells"
-msgstr ""
+msgstr "Wells"
 
 #: classes/Options/Bootstrap.php:128
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: classes/Options/Bootstrap.php:133
 msgid "Modals"
-msgstr ""
+msgstr "Modals"
 
 #: classes/Options/Bootstrap.php:134
 msgid "Tooltip"
-msgstr ""
+msgstr "Tooltip"
 
 #: classes/Options/Bootstrap.php:135
 msgid "Popovers"
-msgstr ""
+msgstr "Popovers"
 
 #: classes/Options/Bootstrap.php:136
 msgid "Carousel"
-msgstr ""
+msgstr "Carousel"
 
 #: classes/Options/Bootstrap.php:142
 msgid "Responsive Utilities"
-msgstr ""
+msgstr "Responsive Utilities"
 
 #: classes/Options/Content.php:9 classes/Options/Content.php:34
 msgid "Content"
-msgstr ""
+msgstr "Content"
 
 #: classes/Options/Content.php:13
 msgid ""
 "Utilize these options to change the way content is displayed.  These options "
 "may one day show up in the WordPress Customizer."
 msgstr ""
+"Utilize these options to change the way content is displayed.  These options "
+"may one day show up in the WordPress Customizer."
 
 #: classes/Options/Content.php:20
 msgid "Post Edit Date"
-msgstr ""
+msgstr "Post Edit Date"
 
 #: classes/Options/Content.php:23
 msgid "Use modified date, where applicable."
-msgstr ""
+msgstr "Use modified date, where applicable."
 
 #: classes/Options/Content.php:24
 msgid "Always use published post date."
-msgstr ""
+msgstr "Always use published post date."
 
 #: classes/Options/Content.php:25
 msgid "Never show the post date."
-msgstr ""
+msgstr "Never show the post date."
 
 #: classes/Options/Content.php:30
 msgid "Blog/News/Search"
-msgstr ""
+msgstr "Blog/News/Search"
 
 #: classes/Options/Content.php:31
 msgid ""
 "Show full post content or just an excerpt on archive/category/search pages"
 msgstr ""
+"Show full post content or just an excerpt on archive/category/search pages"
 
 #: classes/Options/Content.php:35
 msgid "Excerpt"
-msgstr ""
+msgstr "Excerpt"
 
 #: classes/Options/Content.php:40
 msgid "Excerpt Date"
-msgstr ""
+msgstr "Excerpt Date"
 
 #: classes/Options/Content.php:41
 msgid "Should the post date be displayed with excerpt?"
-msgstr ""
+msgstr "Should the post date be displayed with excerpt?"
 
 #: classes/Options/Content.php:44
 msgid "Do not show date"
-msgstr ""
+msgstr "Do not show date"
 
 #: classes/Options/Content.php:45
 msgid "Always show date"
-msgstr ""
+msgstr "Always show date"
 
 #: classes/Options/Content.php:50
 msgid "Excerpt Length"
-msgstr ""
+msgstr "Excerpt Length"
 
 #: classes/Options/Content.php:52
 msgid "number of words"
-msgstr ""
+msgstr "number of words"
 
 #: classes/Options/Design.php:14 classes/Options/Images.php:14
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 #: classes/Options/Design.php:27 classes/Options/Images.php:26
 msgid ""
 "Design Options - these options also show up in the WordPress Customizer."
 msgstr ""
+"Design Options - these options also show up in the WordPress Customizer."
 
 #: classes/Options/Design.php:41 classes/Options/Parallax.php:14
 msgid "Parallax"
-msgstr ""
+msgstr "Parallax"
 
 #: classes/Options/Design.php:42
 msgid "Do you want to use the parallax effect for a page's featured image?"
-msgstr ""
+msgstr "Do you want to use the parallax effect for a page's featured image?"
 
 #: classes/Options/Design.php:45
 msgid ""
 "Show featured images normally - although currently this is not at all on "
 "pages"
 msgstr ""
+"Show featured images normally - although currently this is not at all on "
+"pages"
 
 #: classes/Options/Design.php:46
 msgid "Use featured image as background"
-msgstr ""
+msgstr "Use featured image as background"
 
 #: classes/Options/Design.php:48
 msgid "Page Title"
-msgstr ""
+msgstr "Page Title"
 
 #: classes/Options/Design.php:49
 msgid "Do you want to show the page title before the content?"
-msgstr ""
+msgstr "Do you want to show the page title before the content?"
 
 #: classes/Options/Design.php:51
 msgid "Do not show the page title."
-msgstr ""
+msgstr "Do not show the page title."
 
 #: classes/Options/Design.php:52
 msgid "Show the page title after the header and before the content."
-msgstr ""
+msgstr "Show the page title after the header and before the content."
 
 #: classes/Options/Design.php:53 classes/Options/Images.php:63
 msgid "Typography"
-msgstr ""
+msgstr "Typography"
 
 #: classes/Options/Design.php:54 classes/Options/Images.php:64
 msgid "Site typography options"
-msgstr ""
+msgstr "Site typography options"
 
 #: classes/Options/Design.php:57 classes/Options/Images.php:67
 msgid "Font Type"
-msgstr ""
+msgstr "Font Type"
 
 #: classes/Options/Design.php:61 classes/Options/Images.php:71
 msgid "Font Size"
-msgstr ""
+msgstr "Font Size"
 
 #: classes/Options/Design.php:62 classes/Options/Images.php:72
 msgctxt "abbreviation for 'pixel'"
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #: classes/Options/Fluidity.php:13
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: classes/Options/Fluidity.php:14
 msgid "Theme"
-msgstr ""
+msgstr "Theme"
 
 #: classes/Options/Fluidity.php:36 classes/Options/Fluidity.php:37
 #: classes/Options/Fluidity.php:82
 msgid "Theme Options"
-msgstr ""
+msgstr "Theme Options"
 
 #: classes/Options/Fluidity.php:86
 msgid "About / Contact"
-msgstr ""
+msgstr "About / Contact"
 
 #: classes/Options/Fluidity.php:141
 msgid "Theme Version"
-msgstr ""
+msgstr "Theme Version"
 
 #: classes/Options/Fluidity.php:146
 msgid "Theme Settings"
-msgstr ""
+msgstr "Theme Settings"
 
 #: classes/Options/Fluidity.php:147
 msgid "control the menu location of the theme options screen."
-msgstr ""
+msgstr "control the menu location of the theme options screen."
 
 #: classes/Options/Fluidity.php:152
 msgid "Page Location"
-msgstr ""
+msgstr "Page Location"
 
 #: classes/Options/Fluidity.php:153
 msgid "You can choose where the Theme Options page appears"
-msgstr ""
+msgstr "You can choose where the Theme Options page appears"
 
 #: classes/Options/Fluidity.php:154
 msgid "I recommend you leave it on the default setting, which is Appearance"
-msgstr ""
+msgstr "I recommend you leave it on the default setting, which is Appearance"
 
 #: classes/Options/Fluidity.php:157
 msgid "Dashboard menu"
-msgstr ""
+msgstr "Dashboard menu"
 
 #: classes/Options/Fluidity.php:158
 msgid "Appearance menu"
-msgstr ""
+msgstr "Appearance menu"
 
 #: classes/Options/Fluidity.php:159
 msgid "Settings menu"
-msgstr ""
+msgstr "Settings menu"
 
 #: classes/Options/Fluidity.php:170
 msgid "Dashboard location"
-msgstr ""
+msgstr "Dashboard location"
 
 #: classes/Options/Fluidity.php:171
 msgid ""
 "This controls where on the WordPress Dashboard menu that Theme Options will "
 "appear"
 msgstr ""
+"This controls where on the WordPress Dashboard menu that Theme Options will "
+"appear"
 
 #: classes/Options/Fluidity.php:172
 msgid ""
 "Bottom is best for this option.  Having it at the top can be annoying.  YMMV"
 msgstr ""
+"Bottom is best for this option.  Having it at the top can be annoying.  YMMV"
 
 #: classes/Options/Fluidity.php:175
 msgid "Top"
-msgstr ""
+msgstr "Top"
 
 #: classes/Options/Fluidity.php:176
 msgid "Bottom"
-msgstr ""
+msgstr "Bottom"
 
 #: classes/Options/Fluidity.php:181
 msgid "Theme Data"
-msgstr ""
+msgstr "Theme Data"
 
 #: classes/Options/Fluidity.php:182
 msgid "control when theme data is removed"
-msgstr ""
+msgstr "control when theme data is removed"
 
 #: classes/Options/Fluidity.php:187
 msgid "Data Deletion"
-msgstr ""
+msgstr "Data Deletion"
 
 #: classes/Options/Fluidity.php:190
 msgid "Delete theme data upon theme deactivation"
-msgstr ""
+msgstr "Delete theme data upon theme deactivation"
 
 #: classes/Options/Fluidity.php:191
 msgid "Delete theme data upon theme deletion"
-msgstr ""
+msgstr "Delete theme data upon theme deletion"
 
 #: classes/Options/Fluidity.php:192
 msgid "Do not delete data"
-msgstr ""
+msgstr "Do not delete data"
 
 #: classes/Options/Fluidity.php:204
 msgid "Support Site:"
-msgstr ""
+msgstr "Support Site:"
 
 #: classes/Options/Fluidity.php:206
 msgctxt "company name"
 msgid "The Creative Collective"
-msgstr ""
+msgstr "The Creative Collective"
 
 #: classes/Options/Fluidity.php:210
 msgid ""
 "For help with this theme, or any other general support items, please contact "
 "us at any time"
 msgstr ""
+"For help with this theme, or any other general support items, please contact "
+"us at any time"
 
 #: classes/Options/Fluidity.php:213
 msgid "Copyright 2014-2017 TCC"
-msgstr ""
+msgstr "Copyright 2014-2017 TCC"
 
 #: classes/Options/Fluidity.php:306
 msgctxt "primary currency symbol"
 msgid "$"
-msgstr ""
+msgstr "$"
 
 #: classes/Options/Fluidity.php:309
 msgid "Currency Symbol"
-msgstr ""
+msgstr "Currency Symbol"
 
 #: classes/Options/Images.php:32
 msgid "Theme Logo"
-msgstr ""
+msgstr "Theme Logo"
 
 #: classes/Options/Images.php:35
 msgid "Assign/Upload Theme Logo"
-msgstr ""
+msgstr "Assign/Upload Theme Logo"
 
 #: classes/Options/Images.php:36
 msgid "Assign Logo"
-msgstr ""
+msgstr "Assign Logo"
 
 #: classes/Options/Images.php:37
 msgid "Remove Logo"
-msgstr ""
+msgstr "Remove Logo"
 
 #: classes/Options/Images.php:39
 msgid "Background Repeat"
-msgstr ""
+msgstr "Background Repeat"
 
 #: classes/Options/Images.php:41
 msgid "No Repeat"
-msgstr ""
+msgstr "No Repeat"
 
 #: classes/Options/Images.php:42
 msgid "Tile"
-msgstr ""
+msgstr "Tile"
 
 #: classes/Options/Images.php:43
 msgid "Tile Horizontally"
-msgstr ""
+msgstr "Tile Horizontally"
 
 #: classes/Options/Images.php:44
 msgid "Tile Vertically"
-msgstr ""
+msgstr "Tile Vertically"
 
 #: classes/Options/Images.php:46
 msgid "Background Position"
-msgstr ""
+msgstr "Background Position"
 
 #: classes/Options/Images.php:48
 msgid "Left"
-msgstr ""
+msgstr "Left"
 
 #: classes/Options/Images.php:49
 msgid "Center"
-msgstr ""
+msgstr "Center"
 
 #: classes/Options/Images.php:50
 msgid "Right"
-msgstr ""
+msgstr "Right"
 
 #: classes/Options/Images.php:52
 msgid "Background Movement"
-msgstr ""
+msgstr "Background Movement"
 
 #: classes/Options/Images.php:54
 msgid "Scroll with page"
-msgstr ""
+msgstr "Scroll with page"
 
 #: classes/Options/Images.php:55
 msgid "Fixed position in viewport"
-msgstr ""
+msgstr "Fixed position in viewport"
 
 #: classes/Options/Layout.php:16
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: classes/Options/Layout.php:30
 msgid ""
 "Utilize these options to change the theme's style and layout.  These options "
 "may one day show up in the WordPress Customizer."
 msgstr ""
+"Utilize these options to change the theme's style and layout.  These options "
+"may one day show up in the WordPress Customizer."
 
 #: classes/Options/Layout.php:37
 msgid "Width"
-msgstr ""
+msgstr "Width"
 
 #: classes/Options/Layout.php:38
 msgid "How much screen real estate do you want the theme to use?"
-msgstr ""
+msgstr "How much screen real estate do you want the theme to use?"
 
 #: classes/Options/Layout.php:39
 msgid "This determines the margins for the main body of the website"
-msgstr ""
+msgstr "This determines the margins for the main body of the website"
 
 #: classes/Options/Layout.php:42
 msgid "Full Width (small margins)"
-msgstr ""
+msgstr "Full Width (small margins)"
 
 #: classes/Options/Layout.php:43
 msgid "Standard Margins"
-msgstr ""
+msgstr "Standard Margins"
 
 #: classes/Options/Layout.php:61
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #: classes/Options/Layout.php:62
 msgid "Which menuing system do you want to use?"
-msgstr ""
+msgstr "Which menuing system do you want to use?"
 
 #: classes/Options/Layout.php:65
 msgid "Underscores - WordPress starter theme"
-msgstr ""
+msgstr "Underscores - WordPress starter theme"
 
 #: classes/Options/Layout.php:66
 msgid "Bootstrap - web site front-end framework"
-msgstr ""
+msgstr "Bootstrap - web site front-end framework"
 
 #: classes/Options/Layout.php:72
 msgid "Sidebar"
-msgstr ""
+msgstr "Sidebar"
 
 #: classes/Options/Layout.php:73
 msgid "Which side of the screen should the sidebar show up on?"
-msgstr ""
+msgstr "Which side of the screen should the sidebar show up on?"
 
 #: classes/Options/Layout.php:76
 msgid "No Sidebar"
-msgstr ""
+msgstr "No Sidebar"
 
 #: classes/Options/Layout.php:77
 msgid "Left side"
-msgstr ""
+msgstr "Left side"
 
 #: classes/Options/Layout.php:78
 msgid "Right side"
-msgstr ""
+msgstr "Right side"
 
 #: classes/Options/Layout.php:85
 msgid "Fluid Sidebar"
-msgstr ""
+msgstr "Fluid Sidebar"
 
 #: classes/Options/Layout.php:86
 msgid "Let content flow around sidebar"
-msgstr ""
+msgstr "Let content flow around sidebar"
 
 #: classes/Options/Layout.php:89
 msgid "Static content"
-msgstr ""
+msgstr "Static content"
 
 #: classes/Options/Layout.php:90
 msgid "Fluid content"
-msgstr ""
+msgstr "Fluid content"
 
 #: classes/Options/Layout.php:98
 msgid "Main CSS"
-msgstr ""
+msgstr "Main CSS"
 
 #: classes/Options/Layout.php:104
 msgid "Sidebar CSS"
-msgstr ""
+msgstr "Sidebar CSS"
 
 #: classes/Options/Layout.php:111
 msgid "Mobile Sidebar"
-msgstr ""
+msgstr "Mobile Sidebar"
 
 #: classes/Options/Layout.php:112
 msgid "Where should the sidebar show up on mobile devices?"
-msgstr ""
+msgstr "Where should the sidebar show up on mobile devices?"
 
 #: classes/Options/Layout.php:115
 msgid "Do not show sidebar on mobile devices"
-msgstr ""
+msgstr "Do not show sidebar on mobile devices"
 
 #: classes/Options/Layout.php:116
 msgid "Before post content"
-msgstr ""
+msgstr "Before post content"
 
 #: classes/Options/Layout.php:117
 msgid "After post content"
-msgstr ""
+msgstr "After post content"
 
 #: classes/Options/Layout.php:123
 msgid "Widgets"
-msgstr ""
+msgstr "Widgets"
 
 #: classes/Options/Layout.php:124
 msgid "Should the sidebar widgets start open or closed, where applicable"
-msgstr ""
+msgstr "Should the sidebar widgets start open or closed, where applicable"
 
 #: classes/Options/Layout.php:127
 msgid "Do not provide option to users"
-msgstr ""
+msgstr "Do not provide option to users"
 
 #: classes/Options/Layout.php:128
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: classes/Options/Layout.php:129
 msgid "Closed"
-msgstr ""
+msgstr "Closed"
 
 #: classes/Options/Parallax.php:27
 msgid "Parallax Options - assign background images for parallax effects."
-msgstr ""
+msgstr "Parallax Options - assign background images for parallax effects."
 
 #: classes/Options/Parallax.php:34
 msgid "Remove Image"
-msgstr ""
+msgstr "Remove Image"
 
 #: classes/Options/Parallax.php:37
 msgid "Front Page"
-msgstr ""
+msgstr "Front Page"
 
 #: classes/Options/Settings.php:13 classes/Plugin/Plugin.php:109
 msgid "Settings"
-msgstr ""
+msgstr "Settings"
 
 #: classes/Options/Settings.php:27
 msgid "Theme Behavior Options"
-msgstr ""
+msgstr "Theme Behavior Options"
 
 #: classes/Options/Settings.php:34
 msgid "WP Heartbeat"
-msgstr ""
+msgstr "WP Heartbeat"
 
 #: classes/Options/Settings.php:35
 msgid "Control the status of the WordPress Heartbeat API"
-msgstr ""
+msgstr "Control the status of the WordPress Heartbeat API"
 
 #: classes/Options/Settings.php:36
 msgid ""
 "The Heartbeat API will always remain active on these pages: post.php, post-"
 "new.php, and admin.php"
 msgstr ""
+"The Heartbeat API will always remain active on these pages: post.php, post-"
+"new.php, and admin.php"
 
 #: classes/Options/Settings.php:39 classes/Options/Settings.php:51
 msgid "On"
-msgstr ""
+msgstr "On"
 
 #: classes/Options/Settings.php:40 classes/Options/Settings.php:52
 msgid "Off"
-msgstr ""
+msgstr "Off"
 
 #: classes/Options/Settings.php:46
 msgid "Where Am I?"
-msgstr ""
+msgstr "Where Am I?"
 
 #: classes/Options/Settings.php:47
 msgid "Display template file names on site front end - for development only"
-msgstr ""
+msgstr "Display template file names on site front end - for development only"
 
 #: classes/Options/Settings.php:48
 msgid "Hi!"
-msgstr ""
+msgstr "Hi!"
 
 #: classes/Options/Settings.php:77
 msgid "ON"
-msgstr ""
+msgstr "ON"
 
 #: classes/Options/Settings.php:77
 msgid "OFF"
-msgstr ""
+msgstr "OFF"
 
 #: classes/Options/Settings.php:79
 msgid "WP Debug status"
-msgstr ""
+msgstr "WP Debug status"
 
 #: classes/Options/Settings.php:80
 msgid "WP Debug is %s"
-msgstr ""
+msgstr "WP Debug is %s"
 
 #: classes/Options/Social.php:15
 msgid "Social Icons"
-msgstr ""
+msgstr "Social Icons"
 
 #: classes/Options/Social.php:22
 msgid "Fluidity Social Icons (powered by Font Awesome)"
-msgstr ""
+msgstr "Fluidity Social Icons (powered by Font Awesome)"
 
 #: classes/Options/Social.php:28
 msgid "Use Theme Icons"
-msgstr ""
+msgstr "Use Theme Icons"
 
 #: classes/Options/Social.php:29
 msgid "Contact us if you need help with a third-party plugin"
-msgstr ""
+msgstr "Contact us if you need help with a third-party plugin"
 
 #: classes/Options/Social.php:31
 msgid "Yes - you want to use the theme's internal social icons"
-msgstr ""
+msgstr "Yes - you want to use the theme's internal social icons"
 
 #: classes/Options/Social.php:32
 msgid "No -- you are using a plugin, or do not want social icons"
-msgstr ""
+msgstr "No -- you are using a plugin, or do not want social icons"
 
 #: classes/Options/Social.php:36
 msgid "Browser"
-msgstr ""
+msgstr "Browser"
 
 #: classes/Options/Social.php:38
 msgid "Open in new tab (default)"
-msgstr ""
+msgstr "Open in new tab (default)"
 
 #: classes/Options/Social.php:39
 msgid "Load in same tab"
-msgstr ""
+msgstr "Load in same tab"
 
 #: classes/Options/Social.php:42
 msgid "Icon Size"
-msgstr ""
+msgstr "Icon Size"
 
 #: classes/Options/Social.php:44
 msgid "Site font size"
-msgstr ""
+msgstr "Site font size"
 
 #: classes/Options/Social.php:45
 msgid "33% larger than font size"
-msgstr ""
+msgstr "33% larger than font size"
 
 #: classes/Options/Social.php:46
 msgid "2 * font size"
-msgstr ""
+msgstr "2 * font size"
 
 #: classes/Options/Social.php:47
 msgid "3 * font size"
-msgstr ""
+msgstr "3 * font size"
 
 #: classes/Options/Social.php:48
 msgid "4 * font size"
-msgstr ""
+msgstr "4 * font size"
 
 #: classes/Options/Social.php:49
 msgid "5 * font size"
-msgstr ""
+msgstr "5 * font size"
 
 #: classes/Options/Social.php:51
 msgid "Social Site URL"
-msgstr ""
+msgstr "Social Site URL"
 
 #: classes/Options/Social.php:52
 msgid "Be sure to add the protocol (ie: http:// or https://)."
-msgstr ""
+msgstr "Be sure to add the protocol (ie: http:// or https://)."
 
 #: classes/Options/Social.php:65
 msgid "Default color is %s"
-msgstr ""
+msgstr "Default color is %s"
 
 #: classes/Options/Social.php:66
 msgid "site url"
-msgstr ""
+msgstr "site url"
 
 #: classes/Options/Typography.php:30
 msgctxt "Arial font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:31
 msgctxt "Avant Garde font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:32
 msgctxt "Cambria font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:33 classes/Options/Typography.php:73
 msgctxt "Copse font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:34
 msgctxt "Garamond font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:35
 msgctxt "Georgia font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:36
 msgctxt "Helvitica Neue font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:37
 msgctxt "Tahoma font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:72
 msgctxt "Arvo font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:74
 msgctxt "Droid Sans font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:75
 msgctxt "Droid Serif font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:76
 msgctxt "Lato font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:77
 msgctxt "Lobster font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:78
 msgctxt "Nobile font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:79
 msgctxt "Open Sans font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:80
 msgctxt "Oswald font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:81
 msgctxt "Pacifico font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:82
 msgctxt "Rokkit font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:83
 msgctxt "PT Sans font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:84
 msgctxt "Quattrocento font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:85
 msgctxt "Raleway font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:86
 msgctxt "Ubuntu font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Options/Typography.php:87
 msgctxt "Yanone Kaffeesatz font: translate as 'on' or 'off'"
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: classes/Post/Post.php:171 classes/custom-post.php:171
 msgctxt "first placeholder is numeric, second should be a noun"
 msgid "%1$s %2$s by this author"
 msgid_plural "%1$s %2$s by this author"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$s %2$s by this author"
+msgstr[1] "%1$s %2$s by this author"
 
 #: classes/Post/Post.php:177 classes/custom-post.php:177
 msgctxt "placeholder is plural form"
 msgid "No %s found"
-msgstr ""
+msgstr "No %s found"
 
 #: classes/Post/Post.php:178 classes/custom-post.php:178
 msgctxt "placeheader is singular form"
 msgid "Add New %s"
-msgstr ""
+msgstr "Add New %s"
 
 #: classes/Post/Post.php:179 classes/custom-post.php:179
 msgctxt "placeholder is plural form"
 msgid "Add or remove $s"
-msgstr ""
+msgstr "Add or remove $s"
 
 #: classes/Post/Post.php:180 classes/custom-post.php:180
 msgctxt "placeholder is plural form"
 msgid "All %s"
-msgstr ""
+msgstr "All %s"
 
 #: classes/Post/Post.php:181 classes/custom-post.php:181
 msgctxt "placeholder is singular form"
 msgid "%s Archive"
-msgstr ""
+msgstr "%s Archive"
 
 #: classes/Post/Post.php:182 classes/custom-post.php:182
 msgctxt "placeholder is singular form"
 msgid "%s Attributes"
-msgstr ""
+msgstr "%s Attributes"
 
 #: classes/Post/Post.php:183 classes/custom-post.php:183
 msgctxt "placeholder is plural form"
 msgid "Separate %s with commas"
-msgstr ""
+msgstr "Separate %s with commas"
 
 #: classes/Post/Post.php:184 classes/custom-post.php:184
 msgctxt "placeholder is plural form"
 msgid "Edit %s"
-msgstr ""
+msgstr "Edit %s"
 
 #: classes/Post/Post.php:185 classes/custom-post.php:185
 msgctxt "placeholder is singular form"
 msgid "Edit %s"
-msgstr ""
+msgstr "Edit %s"
 
 #: classes/Post/Post.php:186 classes/custom-post.php:186
 msgctxt "placeholder is singular form"
 msgid "%s Image"
-msgstr ""
+msgstr "%s Image"
 
 #: classes/Post/Post.php:187 classes/custom-post.php:187
 msgctxt "placeholder is singular form"
 msgid "Remove %s image"
-msgstr ""
+msgstr "Remove %s image"
 
 #: classes/Post/Post.php:188 classes/custom-post.php:188
 msgctxt "placeholder is singular form"
 msgid "Set %s image"
-msgstr ""
+msgstr "Set %s image"
 
 #: classes/Post/Post.php:189 classes/custom-post.php:189
 msgctxt "placeholder is singular form"
 msgid "Use as %s image"
-msgstr ""
+msgstr "Use as %s image"
 
 #: classes/Post/Post.php:190 classes/custom-post.php:190
 msgctxt "placeholder is plural form"
 msgid "Filter %s list"
-msgstr ""
+msgstr "Filter %s list"
 
 #: classes/Post/Post.php:191 classes/custom-post.php:191
 msgctxt "placeholder is singular form"
 msgid "Insert into %s"
-msgstr ""
+msgstr "Insert into %s"
 
 #: classes/Post/Post.php:192 classes/custom-post.php:192
 msgctxt "placeholder is singular form"
 msgid "%s list"
-msgstr ""
+msgstr "%s list"
 
 #: classes/Post/Post.php:193 classes/custom-post.php:193
 msgctxt "placeholder is plural form"
 msgid "%s list navigation"
-msgstr ""
+msgstr "%s list navigation"
 
 #: classes/Post/Post.php:194 classes/custom-post.php:194
 msgctxt "placeholder is singular form"
 msgid "New %s"
-msgstr ""
+msgstr "New %s"
 
 #: classes/Post/Post.php:195 classes/custom-post.php:195
 msgctxt "placeholder is plural form"
 msgid "No %s"
-msgstr ""
+msgstr "No %s"
 
 #: classes/Post/Post.php:196 classes/custom-post.php:196
 msgctxt "placeholder is singular form"
 msgid "Parent %s"
-msgstr ""
+msgstr "Parent %s"
 
 #: classes/Post/Post.php:197 classes/custom-post.php:197
 msgctxt "placeholder is plural form"
 msgid "Popular %s"
-msgstr ""
+msgstr "Popular %s"
 
 #: classes/Post/Post.php:198 classes/custom-post.php:198
 msgctxt "placeholder is plural form"
 msgid "Search %s"
-msgstr ""
+msgstr "Search %s"
 
 #: classes/Post/Post.php:199 classes/custom-post.php:199
 msgctxt "placeholder is plural form"
 msgid "No %s found in trash"
-msgstr ""
+msgstr "No %s found in trash"
 
 #: classes/Post/Post.php:200 classes/custom-post.php:200
 msgctxt "placeholder is singular form"
 msgid "Update %s"
-msgstr ""
+msgstr "Update %s"
 
 #: classes/Post/Post.php:201 classes/custom-post.php:201
 msgctxt "placeholder is singular form"
 msgid "Uploaded to this %s"
-msgstr ""
+msgstr "Uploaded to this %s"
 
 #: classes/Post/Post.php:202 classes/custom-post.php:202
 msgctxt "placeholder is plural form"
 msgid "Choose from the most used %s"
-msgstr ""
+msgstr "Choose from the most used %s"
 
 #: classes/Post/Post.php:203 classes/custom-post.php:203
 msgctxt "placeholder is plural form"
 msgid "View %s"
-msgstr ""
+msgstr "View %s"
 
 #: classes/Post/Post.php:204 classes/custom-post.php:204
 msgctxt "placeholder is singular form"
 msgid "View %s"
-msgstr ""
+msgstr "View %s"
 
 #: classes/Post/Post.php:206 classes/custom-post.php:206
 msgid "Custom field updated."
-msgstr ""
+msgstr "Custom field updated."
 
 #: classes/Post/Post.php:207 classes/custom-post.php:207
 msgid "Custom field deleted."
-msgstr ""
+msgstr "Custom field deleted."
 
 #: classes/Post/Post.php:208 classes/custom-post.php:208
 msgctxt "placeholder is singular form"
 msgid "%s draft updated."
-msgstr ""
+msgstr "%s draft updated."
 
 #: classes/Post/Post.php:209 classes/custom-post.php:209
 msgctxt "placeholder is singular form"
 msgid "Preview %s"
-msgstr ""
+msgstr "Preview %s"
 
 #: classes/Post/Post.php:210 classes/custom-post.php:210
 msgctxt "placeholder is singular form"
 msgid "%s published."
-msgstr ""
+msgstr "%s published."
 
 #: classes/Post/Post.php:211 classes/custom-post.php:211
 msgctxt "1: label in singular form, 2: date and time of the revision"
 msgid "%1$s restored to revision from %2$s"
-msgstr ""
+msgstr "%1$s restored to revision from %2$s"
 
 #: classes/Post/Post.php:212 classes/custom-post.php:212
 msgctxt "placeholder is singular form"
 msgid "%s saved."
-msgstr ""
+msgstr "%s saved."
 
 #: classes/Post/Post.php:213 classes/custom-post.php:213
 msgctxt "1: label in singular form, 2: formatted date string"
 msgid "%1$s publication scheduled for %2$s"
-msgstr ""
+msgstr "%1$s publication scheduled for %2$s"
 
 #: classes/Post/Post.php:214 classes/custom-post.php:214
 msgctxt "placeholder is singular form"
 msgid "%s submitted."
-msgstr ""
+msgstr "%s submitted."
 
 #: classes/Post/Post.php:215 classes/custom-post.php:215
 msgctxt "placeholder is singular form"
 msgid "%s updated."
-msgstr ""
+msgstr "%s updated."
 
 #: classes/Register/Register.php:50
-msgid "&#151; You are running an unsupported version of PHP."
-msgstr ""
+msgid "You are running an unsupported version of PHP."
+msgstr "You are running an unsupported version of PHP."
 
 #: classes/Register/Register.php:57
 msgctxt "1: Plugin name   2: php version required  3: php version detected"
@@ -1241,10 +1259,12 @@ msgid ""
 "%1$s requires PHP version %2$s, version %3$s detected.  Please upgrade your "
 "PHP before attempting to use this plugin. "
 msgstr ""
+"%1$s requires PHP version %2$s, version %3$s detected.  Please upgrade your "
+"PHP before attempting to use this plugin. "
 
 #: classes/Register/Register.php:84
-msgid "&#151; You are running an unsupported version of WordPress."
-msgstr ""
+msgid "You are running an unsupported version of WordPress."
+msgstr "You are running an unsupported version of WordPress."
 
 #: classes/Register/Register.php:91
 msgctxt ""
@@ -1254,512 +1274,516 @@ msgid ""
 "%1$s requires WordPress %2$s or later and has detected you are running %3$s. "
 "Upgrade your WordPress install before using this plugin."
 msgstr ""
+"%1$s requires WordPress %2$s or later and has detected you are running %3$s. "
+"Upgrade your WordPress install before using this plugin."
 
 #: classes/Register/Register.php:109
 msgctxt "Plugin title"
 msgid "%s can not be activated."
-msgstr ""
+msgstr "%s can not be activated."
 
 #: classes/Role/Agent.php:29
 msgctxt "noun - user role, prefixed to login placeholder string"
 msgid "Agent"
-msgstr ""
+msgstr "Agent"
 
 #: classes/Role/Agent.php:30
 msgctxt "1 - noun serving as an adjective, 2 - primary noun"
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #: classes/Role/Agent.php:38
 msgid "Job Title"
-msgstr ""
+msgstr "Job Title"
 
 #: classes/Role/Agent.php:39
 msgid "Education One"
-msgstr ""
+msgstr "Education One"
 
 #: classes/Role/Agent.php:40
 msgid "Education Two"
-msgstr ""
+msgstr "Education Two"
 
 #: classes/Role/Agent.php:41
 msgid "Education Three"
-msgstr ""
+msgstr "Education Three"
 
 #: classes/Role/Agent.php:43
 msgid "Certifications / Affiliations"
-msgstr ""
+msgstr "Certifications / Affiliations"
 
 #: classes/Role/Agent.php:44
 msgid "Certs / Affiliations Two"
-msgstr ""
+msgstr "Certs / Affiliations Two"
 
 #: classes/Role/Agent.php:45
 msgid "Certs / Affiliations Three"
-msgstr ""
+msgstr "Certs / Affiliations Three"
 
 #: classes/Role/Agent.php:47
 msgid "Language One"
-msgstr ""
+msgstr "Language One"
 
 #: classes/Role/Agent.php:48
 msgid "Language Two"
-msgstr ""
+msgstr "Language Two"
 
 #: classes/Role/Agent.php:49
 msgid "Language Three"
-msgstr ""
+msgstr "Language Three"
 
 #: classes/Role/Agent.php:50
 msgid "Telephone"
-msgstr ""
+msgstr "Telephone"
 
 #: classes/Role/Agent.php:51
 msgid "Facebook username"
-msgstr ""
+msgstr "Facebook username"
 
 #: classes/Role/Agent.php:52
 msgid "Twitter handle"
-msgstr ""
+msgstr "Twitter handle"
 
 #: classes/Role/Agent.php:53
 msgid "LinkedIN Profile"
-msgstr ""
+msgstr "LinkedIN Profile"
 
 #: classes/Role/Agent.php:54
 msgid "Website Image"
-msgstr ""
+msgstr "Website Image"
 
 #: classes/Trait/Singleton.php:34
 msgid "This class can not be cloned."
-msgstr ""
+msgstr "This class can not be cloned."
 
 #: classes/Trait/Singleton.php:40
 msgid "This class can not be serialized."
-msgstr ""
+msgstr "This class can not be serialized."
 
 #: classes/Trait/Singleton.php:46
 msgid "This class can not be unserialized."
-msgstr ""
+msgstr "This class can not be unserialized."
 
 #: classes/Widget/Address.php:9
 msgid "Address"
-msgstr ""
+msgstr "Address"
 
 #: classes/Widget/Address.php:10
 msgid "Fluidity address widget"
-msgstr ""
+msgstr "Fluidity address widget"
 
 #: classes/Widget/Address.php:12
 msgid "Street Address"
-msgstr ""
+msgstr "Street Address"
 
 #: classes/Widget/Address.php:13
 msgid "City"
-msgstr ""
+msgstr "City"
 
 #: classes/Widget/Address.php:14
 msgid "State"
-msgstr ""
+msgstr "State"
 
 #: classes/Widget/Address.php:15
 msgid "Zipcode"
-msgstr ""
+msgstr "Zipcode"
 
 #: classes/Widget/Address.php:16
 msgid "Contact Number"
-msgstr ""
+msgstr "Contact Number"
 
 #: classes/Widget/Address.php:17
 msgid "Email Address"
-msgstr ""
+msgstr "Email Address"
 
 #: classes/Widget/Address.php:39
 msgid "Office: "
-msgstr ""
+msgstr "Office: "
 
 #: classes/Widget/Address.php:44
 msgid "Email: "
-msgstr ""
+msgstr "Email: "
 
 #: classes/Widget/Address.php:70
 msgid "Display Google map"
-msgstr ""
+msgstr "Display Google map"
 
 #: classes/Widget/Login.php:6
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: classes/Widget/Login.php:7
 msgid "Fluidity Login form"
-msgstr ""
+msgstr "Fluidity Login form"
 
 #: classes/Widget/Logo.php:6
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: classes/Widget/Logo.php:7
 msgid "Fluidity - Displays your site logo"
-msgstr ""
+msgstr "Fluidity - Displays your site logo"
 
 #: classes/Widget/Search.php:6 searchform.php:12
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 #: classes/Widget/Search.php:7
 msgid "Fluidity Search Form"
-msgstr ""
+msgstr "Fluidity Search Form"
 
 #: classes/Widget/Widget.php:35
 msgid "Title:"
-msgstr ""
+msgstr "Title:"
 
 #: classes/microdata.php:136
 msgid "Posts by %s"
-msgstr ""
+msgstr "Posts by %s"
 
 #: classes/microdata.php:240
 msgid "Archives"
-msgstr ""
+msgstr "Archives"
 
 #: comments.php:18
 msgid "Get a Trackback link"
-msgstr ""
+msgstr "Get a Trackback link"
 
 #: comments.php:25
 msgid "One thought on %2$s"
 msgid_plural "%1$s thoughts on %2$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "One thought on %2$s"
+msgstr[1] "%1$s thoughts on %2$s"
 
 #: comments.php:37
 msgid "Comments are closed."
-msgstr ""
+msgstr "Comments are closed."
 
 #: comments.php:41
 msgid "Leave a Comment"
-msgstr ""
+msgstr "Leave a Comment"
 
 #: header.php:27
 msgid "Skip to content"
-msgstr ""
+msgstr "Skip to content"
 
 #: includes/comments.php:13
 msgid "Comment navigation"
-msgstr ""
+msgstr "Comment navigation"
 
 #: includes/comments.php:16
 msgid "Older Comments"
-msgstr ""
+msgstr "Older Comments"
 
 #: includes/comments.php:19
 msgid "Newer Comments"
-msgstr ""
+msgstr "Newer Comments"
 
 #: includes/comments.php:32
 msgctxt ""
 "first placeholder is the comment type, second placeholder is an author link, "
 "third placeholder is a date"
 msgid "%1s: %2$s on %3$s"
-msgstr ""
+msgstr "%1s: %2$s on %3$s"
 
 #: includes/comments.php:33
 msgid "Comment"
-msgstr ""
+msgstr "Comment"
 
 #: includes/comments.php:33
 msgid "Trackback"
-msgstr ""
+msgstr "Trackback"
 
 #: includes/comments.php:33
 msgid "Pingback"
-msgstr ""
+msgstr "Pingback"
 
 #: includes/comments.php:52
 msgid "Your comment is awaiting moderation."
-msgstr ""
+msgstr "Your comment is awaiting moderation."
 
 #: includes/footer.php:57
 msgctxt "numeric year, site name"
 msgid "Copyright %1$s %2$s, All rights reserved."
-msgstr ""
+msgstr "Copyright %1$s %2$s, All rights reserved."
 
 #: includes/footer.php:67 includes/footer.php:68 includes/footer.php:69
 msgid "Terms & Conditions"
-msgstr ""
+msgstr "Terms & Conditions"
 
 #: includes/footer.php:70 includes/footer.php:71
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Privacy Policy"
 
 #: includes/footer.php:72 includes/footer.php:73
 msgid "Security Policy"
-msgstr ""
+msgstr "Security Policy"
 
 #: includes/footer.php:90
 msgid "Theme by The Creative Collective"
-msgstr ""
+msgstr "Theme by The Creative Collective"
 
 #: includes/in-the-loop.php:24
 msgctxt "Name of current post"
 msgid "Edit %s"
-msgstr ""
+msgstr "Edit %s"
 
 #: includes/in-the-loop.php:63
 msgctxt "the taxonomy name (plural)"
 msgid "Older Posts for %s"
-msgstr ""
+msgstr "Older Posts for %s"
 
 #: includes/in-the-loop.php:64
 msgctxt "the taxonomy name (plural)"
 msgid "Newer Posts for %s"
-msgstr ""
+msgstr "Newer Posts for %s"
 
 #: includes/in-the-loop.php:67
 msgid "Category Navigation"
-msgstr ""
+msgstr "Category Navigation"
 
 #: includes/in-the-loop.php:94
 msgid "Post Navigation"
-msgstr ""
+msgstr "Post Navigation"
 
 #: includes/in-the-loop.php:98
 msgid "Older Posts"
-msgstr ""
+msgstr "Older Posts"
 
 #: includes/in-the-loop.php:101
 msgid "Newer Posts"
-msgstr ""
+msgstr "Newer Posts"
 
 #: includes/in-the-loop.php:126
 msgctxt "1: formatted date string, 2: user name"
 msgid "Posted on %1$s by %2$s"
-msgstr ""
+msgstr "Posted on %1$s by %2$s"
 
 #: includes/in-the-loop.php:132
 msgctxt "1: formatted date string"
 msgid "Last modified on %1$s"
-msgstr ""
+msgstr "Last modified on %1$s"
 
 #: includes/in-the-loop.php:133
 msgctxt "1: formatted date string, 2: user name"
 msgid "Last modified on %1$s by %2$s"
-msgstr ""
+msgstr "Last modified on %1$s by %2$s"
 
 #: includes/in-the-loop.php:146
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: includes/in-the-loop.php:150
 msgctxt "string will be followed by a category or list of categories"
 msgid "Posted in "
-msgstr ""
+msgstr "Posted in "
 
 #: includes/in-the-loop.php:156
 msgid "No Comments"
-msgstr ""
+msgstr "No Comments"
 
 #: includes/in-the-loop.php:157
 msgid "1 Comment"
-msgstr ""
+msgstr "1 Comment"
 
 #: includes/in-the-loop.php:158
 msgctxt "number of comments"
 msgid "% Comments"
-msgstr ""
+msgstr "% Comments"
 
 #: includes/in-the-loop.php:231
 msgctxt "a post title"
 msgid "Read All About %s"
-msgstr ""
+msgstr "Read All About %s"
 
 #: includes/login.php:169
 msgctxt "text greeting, user name"
 msgid "%1$s, %2$s"
-msgstr ""
+msgstr "%1$s, %2$s"
 
 #: includes/login.php:176
 msgid "My Account"
-msgstr ""
+msgstr "My Account"
 
 #: includes/menus.php:13
 msgid "Site Menu"
-msgstr ""
+msgstr "Site Menu"
 
 #: includes/menus.php:17
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: includes/misc.php:13
 msgid "Read More"
-msgstr ""
+msgstr "Read More"
 
 #: includes/misc.php:63
 msgctxt "website name"
 msgid "See us on %s"
-msgstr ""
+msgstr "See us on %s"
 
 #: includes/misc.php:69
 msgid "Subscribe to our RSS feed"
-msgstr ""
+msgstr "Subscribe to our RSS feed"
 
 #: includes/misc.php:215
 msgid "Happy New Year"
-msgstr ""
+msgstr "Happy New Year"
 
 #: includes/misc.php:218
 msgid "Martin Luthor King Day"
-msgstr ""
+msgstr "Martin Luthor King Day"
 
 #: includes/misc.php:221
 msgid "Valentine's Day"
-msgstr ""
+msgstr "Valentine's Day"
 
 #: includes/misc.php:224
 msgid "Presidents' Day"
-msgstr ""
+msgstr "Presidents' Day"
 
 #: includes/misc.php:227
 msgid "Happy Easter"
-msgstr ""
+msgstr "Happy Easter"
 
 #: includes/misc.php:230
 msgid "Memorial Day"
-msgstr ""
+msgstr "Memorial Day"
 
 #: includes/misc.php:233
 msgid "Fourth of July"
-msgstr ""
+msgstr "Fourth of July"
 
 #: includes/misc.php:236
 msgid "Labor Day"
-msgstr ""
+msgstr "Labor Day"
 
 #: includes/misc.php:239
 msgid "Columbus Day"
-msgstr ""
+msgstr "Columbus Day"
 
 #: includes/misc.php:242
 msgid "Happy Thanksgiving"
-msgstr ""
+msgstr "Happy Thanksgiving"
 
 #: includes/misc.php:245
 msgid "Veteran's Day"
-msgstr ""
+msgstr "Veteran's Day"
 
 #: includes/misc.php:248
 msgid "Merry Christmas"
-msgstr ""
+msgstr "Merry Christmas"
 
 #: includes/misc.php:251
 msgid "Your Royal Highness"
-msgstr ""
+msgstr "Your Royal Highness"
 
 #: includes/misc.php:251
 msgid "Welcome"
-msgstr ""
+msgstr "Welcome"
 
 #: includes/pages.php:21
 msgid "Category: "
-msgstr ""
+msgstr "Category: "
 
 #: includes/pages.php:28
 msgid ""
 "Apologies, but no results were found for the requested Category. Perhaps "
 "searching will help find a related post."
 msgstr ""
+"Apologies, but no results were found for the requested Category. Perhaps "
+"searching will help find a related post."
 
 #: includes/pages.php:36
 msgid "Not Found"
-msgstr ""
+msgstr "Not Found"
 
 #: includes/pages.php:155
 msgid "Page navigation"
-msgstr ""
+msgstr "Page navigation"
 
 #: includes/pages.php:164 includes/pages.php:165
 msgid "First Page"
-msgstr ""
+msgstr "First Page"
 
 #: includes/pages.php:170 includes/pages.php:171
 msgid "Previous Page"
-msgstr ""
+msgstr "Previous Page"
 
 #: includes/pages.php:194 includes/pages.php:195
 msgid "Next Page"
-msgstr ""
+msgstr "Next Page"
 
 #: includes/pages.php:200 includes/pages.php:201
 msgid "Last Page"
-msgstr ""
+msgstr "Last Page"
 
 #: includes/sidebars.php:32
 msgid "Standard Page w/Panels"
-msgstr ""
+msgstr "Standard Page w/Panels"
 
 #: includes/sidebars.php:40
 msgid "Home Page w/Panels"
-msgstr ""
+msgstr "Home Page w/Panels"
 
 #: includes/sidebars.php:49
 msgid "Horizontal Panels (2 col)"
-msgstr ""
+msgstr "Horizontal Panels (2 col)"
 
 #: includes/sidebars.php:58
 msgid "Horizontal Panels (3 col)"
-msgstr ""
+msgstr "Horizontal Panels (3 col)"
 
 #: includes/sidebars.php:67
 msgid "Horizontal Panels (4 col)"
-msgstr ""
+msgstr "Horizontal Panels (4 col)"
 
 #: printer.php:21
 msgid "Fluidity Printer"
-msgstr ""
+msgstr "Fluidity Printer"
 
 #: searchform.php:10
 msgid "Search field"
-msgstr ""
+msgstr "Search field"
 
 #: searchform.php:17
 msgid "Submit search terms"
-msgstr ""
+msgstr "Submit search terms"
 
 #: template-parts/excerpt.php:14
 msgid "Permanent Link to %s"
-msgstr ""
+msgstr "Permanent Link to %s"
 
 #: template-parts/profile.php:11
 msgid "All posts by %s"
-msgstr ""
+msgstr "All posts by %s"
 
 #. Theme Name of the plugin/theme
 msgid "Creative Fluidity"
-msgstr ""
+msgstr "Creative Fluidity"
 
-#. #-#-#-#-#  fluidity.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
+#. #-#-#-#-#  tcc-fluid.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
 #. Theme URI of the plugin/theme
-#. #-#-#-#-#  fluidity.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
+#. #-#-#-#-#  tcc-fluid.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "http://the-creative-collective.com"
-msgstr ""
+msgstr "http://the-creative-collective.com"
 
 #. Description of the plugin/theme
 msgid "Wordpress Theme based on using a fluid design, with bootstrap"
-msgstr ""
+msgstr "Wordpress Theme based on using a fluid design, with bootstrap"
 
 #. Author of the plugin/theme
 msgid "The Creative Collective"
-msgstr ""
+msgstr "The Creative Collective"
 
 #. Template Name of the plugin/theme
 msgid "No Sidebar (theme)"
-msgstr ""
+msgstr "No Sidebar (theme)"
 
 #. Template Name of the plugin/theme
 msgid "Sidebar on Left (theme)"
-msgstr ""
+msgstr "Sidebar on Left (theme)"
 
 #. Template Name of the plugin/theme
 msgid "Sidebar on Right (theme)"
-msgstr ""
+msgstr "Sidebar on Right (theme)"
