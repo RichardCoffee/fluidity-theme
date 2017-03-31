@@ -3,10 +3,6 @@
  *
  */
 
-if ( ! defined( WP_DEBUG ) ) {
-	define( 'WP_DEBUG', true );
-}
-
 if ( ! function_exists( 'debug_calling_function' ) ) {
 	/**
 	*	Get the calling function.
@@ -66,25 +62,17 @@ if ( ! function_exists( 'log_entry' ) ) {
 	function log_entry() {
 		if ( WP_DEBUG ) {
 			$args  = func_get_args();
-			$depth = 1;
-			if ( $args && is_int( $args[0] ) ) {
-				$depth = $args[0];
-				unset( $args[0] );
-			}
-#			if ( $depth ) { error_log( 'source:  ' . debug_calling_function( $depth ) ); }
-			if ( $depth ) { tcc_write_error_log( 'source:  ' . debug_calling_function( $depth ) ); }
-			foreach( $args as $message ) {
-/*				#	log an array or object
-				if ( is_array( $message ) || is_object( $message ) ) {
-					error_log( print_r( $message, true ) );
-				#	log the stack trace
-				} else if ( $message === 'stack' ) {
-					error_log( print_r( debug_backtrace(), true ) );
-				#	log everything else
-				} else {
-					error_log( $message );
-				} //*/
-				tcc_write_error_log( $message );
+			if ( $args ) {
+				$depth = 1;
+				if ( $args && is_int( $args[0] ) ) {
+					$depth = array_shift( $args );
+				}
+				if ( $depth ) {
+					tcc_write_error_log( 'source:  ' . debug_calling_function( $depth ) );
+				}
+				foreach( $args as $message ) {
+					tcc_write_error_log( $message );
+				}
 			}
 		}
 	}
