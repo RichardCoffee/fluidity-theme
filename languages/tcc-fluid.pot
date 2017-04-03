@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Creative Fluidity 2.2.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fluidity\n"
-"POT-Creation-Date: 2017-03-31 07:38:11+00:00\n"
+"POT-Creation-Date: 2017-04-03 03:22:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1737,7 +1737,10 @@ msgstr ""
 msgid "Creative Fluidity"
 msgstr ""
 
+#. #-#-#-#-#  tcc-fluid.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
 #. Theme URI of the plugin/theme
+#. #-#-#-#-#  tcc-fluid.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
+#. Author URI of the plugin/theme
 msgid "http://the-creative-collective.com"
 msgstr ""
 
@@ -1747,10 +1750,6 @@ msgstr ""
 
 #. Author of the plugin/theme
 msgid "Richard Coffee"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://rtcenterprises.net"
 msgstr ""
 
 #. Template Name of the plugin/theme

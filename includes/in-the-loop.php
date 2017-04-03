@@ -119,21 +119,18 @@ if (!function_exists('fluid_next_post_exists')) {
 }
 
 if ( ! function_exists( 'fluid_post_date' ) ) {
-	function fluid_post_date( $complete = false ) {
+	function fluid_post_date( $deprecated = false ) {
 		$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
 		$postdate = ( ! $postdate || ( $postdate === 'default' ) ) ? tcc_option( 'postdate' ) : $postdate;
 		if ( $postdate !== 'none' ) {
-			$default  = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: user name', 'tcc-fluid' );
-			$string   = apply_filters( 'fluid_post_date_sprintf', $default );
-			$date     = get_the_date();
-			$author   = microdata()->get_the_author();
-			$posted   = sprintf( $string, $date, $author );
+			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: user name', 'tcc-fluid' );
+			$date    = get_the_date();
+			$author  = microdata()->get_the_author();
 			if ( ( $postdate === 'modified' ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
-				$single = esc_html_x( 'Last modified on %1$s', '1: formatted date string', 'tcc-fluid' );
-				$double = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: user name', 'tcc-fluid' );
-				$string = ( $complete ) ? $single : $double;
-				$date   = get_the_modified_date();
+				$default = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
+				$date    = get_the_modified_date();
 			}
+			$string  = apply_filters( 'fluid_post_date_sprintf', $default );
 			echo sprintf( $string, $date, $author );
 		}
 	}
