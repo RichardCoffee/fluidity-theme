@@ -4,11 +4,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Creative Fluidity 2.2.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fluidity\n"
-"POT-Creation-Date: 2017-04-03 03:22:07+00:00\n"
+"POT-Creation-Date: 2017-04-03 16:22:23+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-04-03 03:22:07+00:00\n"
+"PO-Revision-Date: 2017-04-03 16:22:23+00:00\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1558,39 +1558,34 @@ msgctxt "1: formatted date string, 2: user name"
 msgid "Posted on %1$s by %2$s"
 msgstr "Posted on %1$s by %2$s"
 
-#: includes/in-the-loop.php:132
-msgctxt "1: formatted date string"
-msgid "Last modified on %1$s"
-msgstr "Last modified on %1$s"
-
-#: includes/in-the-loop.php:133
-msgctxt "1: formatted date string, 2: user name"
+#: includes/in-the-loop.php:130
+msgctxt "1: formatted date string, 2: author name"
 msgid "Last modified on %1$s by %2$s"
 msgstr "Last modified on %1$s by %2$s"
 
-#: includes/in-the-loop.php:146
+#: includes/in-the-loop.php:143
 msgid "Tags"
 msgstr "Tags"
 
-#: includes/in-the-loop.php:150
+#: includes/in-the-loop.php:147
 msgctxt "string will be followed by a category or list of categories"
 msgid "Posted in "
 msgstr "Posted in "
 
-#: includes/in-the-loop.php:156
+#: includes/in-the-loop.php:153
 msgid "No Comments"
 msgstr "No Comments"
 
-#: includes/in-the-loop.php:157
+#: includes/in-the-loop.php:154
 msgid "1 Comment"
 msgstr "1 Comment"
 
-#: includes/in-the-loop.php:158
+#: includes/in-the-loop.php:155
 msgctxt "number of comments"
 msgid "% Comments"
 msgstr "% Comments"
 
-#: includes/in-the-loop.php:231
+#: includes/in-the-loop.php:228
 msgctxt "a post title"
 msgid "Read All About %s"
 msgstr "Read All About %s"
@@ -1761,9 +1756,9 @@ msgstr "All posts by %s"
 msgid "Creative Fluidity"
 msgstr "Creative Fluidity"
 
-#. #-#-#-#-#  tcc-fluid.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
+#. #-#-#-#-#  fluidity.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
 #. Theme URI of the plugin/theme
-#. #-#-#-#-#  tcc-fluid.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
+#. #-#-#-#-#  fluidity.pot (Creative Fluidity 2.2.2)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "http://the-creative-collective.com"
 msgstr "http://the-creative-collective.com"
