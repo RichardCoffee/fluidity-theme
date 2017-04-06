@@ -36,9 +36,6 @@ abstract class TCC_Post_Post {
 
   protected $main_blog   =  true;       # ** set to false to not include the cpt in WP post queries
 
-  protected $debug       =  false;      #    used in conjunction with $this->logging - do not declare this property in child
-  protected $logging     = 'log_entry'; #    assign your own logging function here
-
   protected $caps        = 'post';      #    default is to not create custom capabilities
   protected $role        = 'normal';    #    value of 'admin' will cause only the administrator caps to be updated - TODO: allow array of roles
 
@@ -57,6 +54,7 @@ abstract class TCC_Post_Post {
   protected $supports    = array('title','editor','author','revisions');
   protected $thumbnail   = true;        # ** boolean:  indicates support for featured image
   protected $taxonomies  = array('post_tag','category'); # ** passed to register_post_type() TODO: possible auto call of $this->taxonomy_registration()
+  protected $trans_text  = array()      #    array: contains translation strings for labels and messages
   protected $js_path     = false;       #
   protected $slug_edit   = true;        # ** whether to allow editing of taxonomy slugs in admin screen
   protected $tax_list    = array();
@@ -71,6 +69,9 @@ abstract class TCC_Post_Post {
   //  FIXME:  this next line needs to be handled differently
   private $cpt_nodelete = false;       #    if true then implement no deletion policy on builtin taxonomies assigned to this cpt
   private $nodelete     = array();     #    used in $this->taxonomy_registration($args)
+
+	use TCC_Trait_Logging;
+	use TCC_Trait_Magic;
 
   protected function __construct($data) {
     $this->debug = WP_DEBUG;
@@ -143,18 +144,6 @@ abstract class TCC_Post_Post {
     unset(static::$types[$this->type]);
   }
 
-  #  http://php.net/manual/en/language.oop5.overloading.php#object.unset
-  public function __get($name) {
-    if (property_exists($this,$name)) {
-      return $this->$name; } #  Allow read access to private/protected variables
-    return null;
-  }
-
-  #  http://php.net/manual/en/language.oop5.overloading.php#object.unset
-  public function __isset($name) {
-    return isset($this->$name); #  Allow read access to private/protected variables
-  } //*/
-
 
   /**  Text functions  **/
 
@@ -167,56 +156,59 @@ abstract class TCC_Post_Post {
     return $contextual_help;
   }
 
-  protected function translate_post_count($count) {
-    return esc_html_nx('%1$s %2$s by this author','%1$s %2$s by this author',$count,'first placeholder is numeric, second should be a noun','tcc-custom-post');
-  }
+	protected function translate_post_count( $count ) {
+		return _nx( '%1$s %2$s by this author', '%1$s %2$s by this author', $count, 'first placeholder is numeric, second should be a noun', 'tcc-custom-post' );
+	}
 
-  protected function translated_text() {
-    static $text;
-    if (empty($text)) {
-      $text =  array('404'       => _x('No %s found',          'placeholder is plural form',  'tcc-custom-post'),
-                     'add'       => _x('Add New %s',           'placeheader is singular form','tcc-custom-post'),
-                     'add_rem'   => _x('Add or remove $s',     'placeholder is plural form',  'tcc-custom-post'),
-                     'all'       => _x('All %s',               'placeholder is plural form',  'tcc-custom-post'),
-                     'archive'   => _x('%s Archive',           'placeholder is singular form','tcc-custom-post'),
-                     'attributes'=> _x('%s Attributes',        'placeholder is singular form','tcc-custom-post'),
-                     'commas'    => _x('Separate %s with commas','placeholder is plural form','tcc-custom-post'),
-                     'edit_p'    => _x('Edit %s',              'placeholder is plural form',  'tcc-custom-post'),
-                     'edit_s'    => _x('Edit %s',              'placeholder is singular form','tcc-custom-post'),
-                     'feature'   => _x('%s Image',             'placeholder is singular form','tcc-custom-post'),
-                     'feat_rem'  => _x('Remove %s image',      'placeholder is singular form','tcc-custom-post'),
-                     'feat_set'  => _x('Set %s image',         'placeholder is singular form','tcc-custom-post'),
-                     'feat_use'  => _x('Use as %s image',      'placeholder is singular form','tcc-custom-post'),
-                     'filter'    => _x('Filter %s list',       'placeholder is plural form',  'tcc-custom-post'),
-                     'insert'    => _x('Insert into %s',       'placeholder is singular form','tcc-custom-post'),
-                     'list'      => _x('%s list',              'placeholder is singular form','tcc-custom-post'),
-                     'list_nav'  => _x('%s list navigation',   'placeholder is plural form',  'tcc-custom-post'),
-                     'new'       => _x('New %s',               'placeholder is singular form','tcc-custom-post'),
-                     'none'      => _x('No %s',                'placeholder is plural form',  'tcc-custom-post'),
-                     'parent'    => _x('Parent %s',            'placeholder is singular form','tcc-custom-post'),
-                     'popular'   => _x('Popular %s',           'placeholder is plural form',  'tcc-custom-post'),
-                     'search'    => _x('Search %s',            'placeholder is plural form',  'tcc-custom-post'),
-                     'trash'     => _x('No %s found in trash', 'placeholder is plural form',  'tcc-custom-post'),
-                     'update'    => _x('Update %s',            'placeholder is singular form','tcc-custom-post'),
-                     'upload'    => _x('Uploaded to this %s',  'placeholder is singular form','tcc-custom-post'),
-                     'used'      => _x('Choose from the most used %s','placeholder is plural form','tcc-custom-post'),
-                     'view_p'    => _x('View %s',              'placeholder is plural form',  'tcc-custom-post'),
-                     'view_s'    => _x('View %s',              'placeholder is singular form','tcc-custom-post'),
-                     'messages'  => array(
-                         'custom_u' => __('Custom field updated.', 'tcc-custom-post'),
-                         'custom_d' => __('Custom field deleted.', 'tcc-custom-post'),
-                         'draft'    => _x('%s draft updated.','placeholder is singular form', 'tcc-custom-post'),
-                         'preview'  => _x('Preview %s',       'placeholder is singular form', 'tcc-custom-post'),
-                         'publish'  => _x('%s published.',    'placeholder is singular form', 'tcc-custom-post'),
-                         'revision' => _x('%1$s restored to revision from %2$s', '1: label in singular form, 2: date and time of the revision','tcc-custom-post'),
-                         'saved'    => _x('%s saved.',        'placeholder is singular form', 'tcc-custom-post'),
-                         'schedule' => _x('%1$s publication scheduled for %2$s', '1: label in singular form, 2: formatted date string','tcc-custom-post'),
-                         'submit'   => _x('%s submitted.',    'placeholder is singular form', 'tcc-custom-post'),
-                         'update'   => _x('%s updated.',      'placeholder is singular form', 'tcc-custom-post')));
-      $text = apply_filters("tcc_translated_text_{$this->type}",$text);
-    }
-    return $text;
-  }
+	protected function translated_text() {
+		static $text;
+		if ( empty( $text ) ) {
+			$text =  array(
+				'404'       => _x( 'No %s found',          'placeholder is plural form',   'tcc-custom-post' ),
+				'add'       => _x( 'Add New %s',           'placeheader is singular form', 'tcc-custom-post' ),
+				'add_rem'   => _x( 'Add or remove $s',     'placeholder is plural form',   'tcc-custom-post' ),
+				'all'       => _x( 'All %s',               'placeholder is plural form',   'tcc-custom-post' ),
+				'archive'   => _x( '%s Archive',           'placeholder is singular form', 'tcc-custom-post' ),
+				'attributes'=> _x( '%s Attributes',        'placeholder is singular form', 'tcc-custom-post' ),
+				'commas'    => _x( 'Separate %s with commas', 'placeholder is plural form','tcc-custom-post' ),
+				'edit_p'    => _x( 'Edit %s',              'placeholder is plural form',   'tcc-custom-post' ),
+				'edit_s'    => _x( 'Edit %s',              'placeholder is singular form', 'tcc-custom-post' ),
+				'feature'   => _x( '%s Image',             'placeholder is singular form', 'tcc-custom-post' ),
+				'feat_rem'  => _x( 'Remove %s image',      'placeholder is singular form', 'tcc-custom-post' ),
+				'feat_set'  => _x( 'Set %s image',         'placeholder is singular form', 'tcc-custom-post' ),
+				'feat_use'  => _x( 'Use as %s image',      'placeholder is singular form', 'tcc-custom-post' ),
+				'filter'    => _x( 'Filter %s list',       'placeholder is plural form',   'tcc-custom-post' ),
+				'insert'    => _x( 'Insert into %s',       'placeholder is singular form', 'tcc-custom-post' ),
+				'list'      => _x( '%s list',              'placeholder is singular form', 'tcc-custom-post' ),
+				'list_nav'  => _x( '%s list navigation',   'placeholder is plural form',   'tcc-custom-post' ),
+				'new'       => _x( 'New %s',               'placeholder is singular form', 'tcc-custom-post' ),
+				'none'      => _x( 'No %s',                'placeholder is plural form',   'tcc-custom-post' ),
+				'parent'    => _x( 'Parent %s',            'placeholder is singular form', 'tcc-custom-post' ),
+				'popular'   => _x( 'Popular %s',           'placeholder is plural form',   'tcc-custom-post' ),
+				'search'    => _x( 'Search %s',            'placeholder is plural form',   'tcc-custom-post' ),
+				'trash'     => _x( 'No %s found in trash', 'placeholder is plural form',   'tcc-custom-post' ),
+				'update'    => _x( 'Update %s',            'placeholder is singular form', 'tcc-custom-post' ),
+				'upload'    => _x( 'Uploaded to this %s',  'placeholder is singular form', 'tcc-custom-post' ),
+				'used'      => _x( 'Choose from the most used %s', 'placeholder is plural form', 'tcc-custom-post' ),
+				'view_p'    => _x( 'View %s',              'placeholder is plural form',   'tcc-custom-post' ),
+				'view_s'    => _x( 'View %s',              'placeholder is singular form', 'tcc-custom-post' ),
+				'messages'  => array(
+					'custom_u' => __( 'Custom field updated.', 'tcc-custom-post'),
+					'custom_d' => __( 'Custom field deleted.', 'tcc-custom-post'),
+					'draft'    => _x( '%s draft updated.', 'placeholder is singular form', 'tcc-custom-post' ),
+					'preview'  => _x( 'Preview %s',        'placeholder is singular form', 'tcc-custom-post' ),
+					'publish'  => _x( '%s published.',     'placeholder is singular form', 'tcc-custom-post' ),
+					'revision' => _x( '%1$s restored to revision from %2$s', '1: label in singular form, 2: date and time of the revision', 'tcc-custom-post' ),
+					'saved'    => _x( '%s saved.',         'placeholder is singular form', 'tcc-custom-post' ),
+					'schedule' => _x( '%1$s publication scheduled for %2$s', '1: label in singular form, 2: formatted date string', 'tcc-custom-post' ),
+					'submit'   => _x( '%s submitted.',     'placeholder is singular form', 'tcc-custom-post' ),
+					'update'   => _x( '%s updated.',       'placeholder is singular form', 'tcc-custom-post' )
+				)
+			);
+			$text = apply_filters( "tcc_translated_text_{$this->type}", $text );
+		}
+		return $text;
+	}
 
 
   /* Create Post Type functions */
@@ -824,21 +816,23 @@ abstract class TCC_Post_Post {
 	/*  Query modifications  */
 
 	// https://wordpress.org/support/topic/custom-post-type-posts-not-displayed
-	public function pre_get_posts($query) {
-		if ((!is_admin() && $query->is_main_query() && !($query->is_page())) || $query->is_feed) {
-			$this->add_post_type($query);
+	public function pre_get_posts( $query ) {
+		if ( ( ( ! is_admin() ) && $query->is_main_query() && ( ! $query->is_page() ) ) || $query->is_feed ) {
+			$this->add_post_type( $query );
 		}
 	}
 
-	protected function add_post_type($query) {
-		$check = $query->get('post_type');
-		if (empty($check)) {
-			$query->set('post_type',array('post',$this->type));
-		} elseif (!((array)$check==$check)) {
-			if ($check!==$this->type) { $query->set('post_type',array($check,$this->type)); }
-		} elseif (!in_array($this->type,$check)) {
+	protected function add_post_type( $query ) {
+		$check = $query->get( 'post_type' );
+		if ( empty( $check ) ) {
+			$query->set( 'post_type', array( 'post', $this->type ) );
+		} elseif ( is_string( $check ) ) {
+			if ( $check !== $this->type ) {
+				$query->set( 'post_type', array( $check, $this->type ) );
+			}
+		} elseif ( ! in_array( $this->type, $check ) ) {
 			$check[] = $this->type;
-			$query->set('post_type',$check);
+			$query->set( 'post_type', $check );
 		}
 	}
 
@@ -883,14 +877,6 @@ abstract class TCC_Post_Post {
     }
   }
 
-
-  /*  Debugging  */
-
-	public function logging() {
-		if ( $this->debug && isset( $this->logging ) ) {
-			call_user_func_array( $this->logging, func_get_args() );
-		}
-	}
 
 }
 
