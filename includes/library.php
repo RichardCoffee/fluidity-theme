@@ -39,11 +39,16 @@ if ( ! function_exists( 'get_applied_attrs' ) ) {
 if ( ! function_exists( 'apply_attrs' ) ) {
 	function apply_attrs( $args, $echo = true ) {
 		$attrs = ' ';
+/*		if ( ! empty( $args['id'] ) ) {
+			$args = apply_filters( "fluidity_apply_attrs_{$args['id']}", $args );
+		} //*/
+/*		if ( ! empty( $args['name'] ) ) {
+			$args = apply_filters( "fluidity_apply_attrs_{$args['name']}", $args );
+		} //*/
 		foreach( $args as $attr => $value ) {
 			if ( empty( $value ) ) {
 				continue;
 			}
-			// FIXME: use assoc array?
 			$sanitize = 'esc_attr';
 			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : $sanitize;
 			$sanitize = ( $attr === 'src'   ) ? 'esc_url'  : $sanitize;

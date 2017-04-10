@@ -20,15 +20,13 @@ require_once('includes/theme-support.php');
 require_once('includes/bootstrap.php');
 require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-admin/includes/options.php gets loaded instead
 require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
-require_once('includes/comments.php');
-require_once('includes/footer.php');
 require_once('includes/library.php');
 require_once('includes/login.php');
 require_once('includes/menus.php');
 require_once(FLUIDITY_HOME.'includes/misc.php');
 require_once('includes/parallax.php');
-require_once('includes/privacy.php');
 require_once('includes/sidebars.php');
+require_once('includes/wp-rest-api.php');
 require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
 
 require_once( 'classes/autocomplete.php' );
@@ -38,6 +36,8 @@ if (is_admin()) {
 	TCC_Options_Fluidity::instance();
 	new TCC_MetaBox_PostDate(    array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
 } else {
+require_once('includes/comments.php');
+require_once('includes/footer.php');
 	require_once('includes/header.php');
 	require_once('includes/in-the-loop.php');
 	require_once('includes/pages.php');
