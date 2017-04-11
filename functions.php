@@ -127,10 +127,10 @@ if (!function_exists('fluidity_admin_enqueue')) {
   add_action('admin_enqueue_scripts','fluidity_admin_enqueue');
 }
 
-if (!function_exists('fluidity_register_fontawesome')) {
-  function fluidity_register_fontawesome() {
-    wp_register_style('tcc-fawe', get_theme_file_uri('css/font-awesome.min.css'),false,'4.6.3');
-  }
+if ( ! function_exists( 'fluidity_register_fontawesome' ) ) {
+	function fluidity_register_fontawesome() {
+		wp_register_style( 'tcc-fawe', get_theme_file_uri( 'css/font-awesome.min.css' ), false, '4.7.0' );
+	}
 }
 
 if (!function_exists('fluidity_register_color_scheme')) {

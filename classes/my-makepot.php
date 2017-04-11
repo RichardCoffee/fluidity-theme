@@ -29,7 +29,6 @@ class Fluid_StringExtractor extends StringExtractor {
 		$dir_excludes = array(
 			'.git',
 			'.sass-cache',
-			'assets',
 			'css',
 			'docs',
 			'fonts',
@@ -38,7 +37,7 @@ class Fluid_StringExtractor extends StringExtractor {
 			'languages',
 			'scss',
 			'tests',
-			'vendor',
+			'vendors',
 		);
 		if ( in_array( $dir, $dir_excludes, true ) ) {
 			$translations = new Translations;

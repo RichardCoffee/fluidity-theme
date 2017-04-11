@@ -1,6 +1,6 @@
 <?php
 
-require_once( FLUIDITY_HOME . 'assets/class-tgm-plugin-activation.php' );
+require_once( FLUIDITY_HOME . 'vendors/class-tgm-plugin-activation.php' );
 
 add_action( 'tgmpa_register', 'fluidity_plugins' );
 
@@ -29,7 +29,7 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 		$plugins = apply_filters( 'fluidity_tgmpa_plugins', $plugins );
 		$config  = array(
 			'id'           => 'tcc-fluid-' . uniqid(), // Unique ID for hashing notices for multiple instances of TGMPA.
-			'default_path' => FLUIDITY_HOME . 'assets/plugins', // Default absolute path to bundled plugins.
+			'default_path' => FLUIDITY_HOME . 'vendors/plugins', // Default absolute path to bundled plugins.
 			'menu'         => 'tgmpa-install-plugins', // Menu slug.
 			'parent_slug'  => 'themes.php',            // Parent menu slug.
 			'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.

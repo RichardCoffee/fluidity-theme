@@ -18,9 +18,10 @@ class TCC_Options_Social {
     return $form;
   }
 
-  public function describe_social() {
-    _e('Fluidity Social Icons (powered by Font Awesome)','tcc-fluid');
-  }
+	public function describe_social() {
+		$text = _x( 'Fluidity Social Icons (powered by %1$sFont Awesome%2$s)', '1: start of anchor tag,  2: anchor tag end', 'tcc-fluid' );
+		printf( $text, '<a href="http://fontawesome.io/" target="fontawesome.io">', '</a>' );
+	}
 
   public function social_layout() {
     $layout = array('default'=>true);

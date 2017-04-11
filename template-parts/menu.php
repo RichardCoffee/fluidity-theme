@@ -24,7 +24,7 @@ if (has_nav_menu($menu)) {
 			<div class="collapse navbar-collapse navbar-<?php echo $menu; ?>-collapse"><?php
 				// FIXME: add filter for wp_nav_menu($args)
 #				wp_nav_menu( array('menu'=>$menu,'container'=>false,'menu_class'=>'nav navbar-nav','walker'=> new TCC_NavWalker_Bootstrap(), 'fallback_cb' => '' ) );
-				require_once( FLUIDITY_HOME . 'assets/wp-bootstrap-navwalker.php');
+				require_once( FLUIDITY_HOME . 'vendors/wp-bootstrap-navwalker.php');
 				wp_nav_menu( array(
 					'menu'           => $menu,
 					'theme_location' => $menu,
