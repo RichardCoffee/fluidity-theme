@@ -221,9 +221,6 @@ a.tcc-footer-menu-item {
 a.tcc-footer-menu-item:visited {
   border-bottom: 1px wavy #FFFFFF;
 }
-a.tcc-footer-menu-item:hover, a.tcc-footer-menu-item:focus {
-  border-bottom: 2px solid #FFFFFF;
-}
 
 .article a {
   border-bottom: 1px solid #F0AD4E;
@@ -271,7 +268,7 @@ hr {
 }
 
 .page-title {
-  color: #FFFFFF;
+  color: #F0AD4E;
   text-shadow: #EEA236 1px 1px 2px;
 }
 
