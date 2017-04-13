@@ -37,11 +37,12 @@ class Fluid_StringExtractor extends StringExtractor {
 			'languages',
 			'scss',
 			'tests',
-			'vendors',
+			'vendor',
 		);
 		if ( in_array( $dir, $dir_excludes, true ) ) {
 			$translations = new Translations;
 		} else {
+echo "entering directory: $dir\n";
 			$translations = parent::extract_from_directory( $dir, $excludes, $includes, $prefix );
 		}
 		return $translations;
