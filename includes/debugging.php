@@ -83,9 +83,9 @@ if ( ! function_exists( 'tcc_write_error_log' ) ) {
 		static $destination = '';
 		if ( empty( $destination ) ) {
 			$destination = $log_file;
-			if ( defined( 'ABSPATH' ) ) {
-				$destination = ABSPATH . 'wp-content/debug.log';
-			} else if ( file_exists( '../logs' ) ) {
+			if ( defined( 'WP_CONTENT_DIR' ) ) {
+				$destination = WP_CONTENT_DIR . '/debug.log';
+			} else if ( is_writable( '../logs' ) && ( is_dir( '../logs' ) ) ) {
 				$destination = '../logs/pbl-' . date( 'Ymd' ) . '.log';
 			} else if ( function_exists( 'pbl_raw_path' ) ) {
 				$destination = pbl_raw_path() . '/error_log';

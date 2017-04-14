@@ -63,7 +63,7 @@ add_theme_support('custom-logo',$defaults); //*/
 add_editor_style();
 
 if (!function_exists('tcc_editor_styles')) {
-  if (file_exists(get_stylesheet_directory().'tcc-editor-style.css')) {
+  if (is_readable(get_stylesheet_directory().'tcc-editor-style.css')) {
     function tcc_editor_styles() {
       add_editor_style('tcc-editor-style.css');
     }

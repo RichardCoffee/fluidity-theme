@@ -1,23 +1,27 @@
 <?php
 
-if (!function_exists('fluid_color_body_class')) {
-	function fluid_color_body_class(array $classes) {
+if ( ! function_exists( 'fluid_color_body_class' ) ) {
+	function fluid_color_body_class( array $classes ) {
 		$color = fluid_color_scheme();
-		if ($color) {
+		if ( $color ) {
 			$classes[] = "fluid-color-$color";
 		}
 		return $classes;
 	}
-	add_filter('body_class','fluid_color_body_class');
+	add_filter( 'body_class', 'fluid_color_body_class' );
 }
 
-if (!function_exists('fluid_color_scheme')) {
-  function fluid_color_scheme() {
-    $color = tcc_color_scheme();
-    if (file_exists(get_template_directory() . "/css/colors/$color.css")) { return $color; }
-    if (file_exists(get_stylesheet_directory()."/css/colors/$color.css")) { return $color; }
-    return '';
-  }
+if ( ! function_exists( 'fluid_color_scheme' ) ) {
+	function fluid_color_scheme() {
+		$color = tcc_color_scheme();
+		$base  = "/css/colors/$color.css";
+		if ( is_readable( get_stylesheet_directory() . $base ) ) {
+			return $color;
+		} else if ( is_readable( get_template_directory() . $base ) ) {
+			return $color;
+		}
+		return '';
+	}
 }
 
 if (!function_exists('tcc_color_scheme')) {
