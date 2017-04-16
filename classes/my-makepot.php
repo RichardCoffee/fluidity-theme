@@ -8,16 +8,18 @@ date_default_timezone_set('UTC');
 class Fluid_MakePOT extends MakePOT {
 
 	public $new_rules = array(
-		'esc_attr_ex' => array('string', 'context'),
-		'esc_html_ex' => array('string', 'context'),
-		'esc_attr_nx' => array('singular', 'plural', null, 'context'),
-		'esc_html_nx' => array('singular', 'plural', null, 'context'),
+		'esc_attr_ex'  => array( 'string',   'context' ),
+		'esc_html_ex'  => array( 'string',   'context' ),
+		'esc_html_n'   => array( 'singular', 'plural'  ),
+		'esc_attr_nx'  => array( 'singular', 'plural', null, 'context' ),
+		'esc_html_nx'  => array( 'singular', 'plural', null, 'context' ),
+		'esc_html_enx' => array( 'singular', 'plural', null, 'context' ),
 	);
 
 	public function __construct() {
 		$this->rules = array_merge( $this->rules, $this->new_rules );
+		parent::__construct();
 		$this->extractor = new Fluid_StringExtractor( $this->rules );
-#		parent::__construct();
 	}
 
 

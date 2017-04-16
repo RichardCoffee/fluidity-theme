@@ -160,11 +160,25 @@ if ( ! function_exists( 'esc_html_ex' ) ) {
 	}
 }
 
+if ( ! function_exists( 'esc_html_n' ) ) {
+	function esc_html_n( $single, $plural, $number, $domain = 'default' ) {
+		$translations = get_translations_for_domain( $domain );
+		$translation  = $translations->translate_plural( $single, $plural, $number );
+		return esc_html( apply_filters( 'ngettext', $translation, $single, $plural, $number, $domain ) );
+	}
+}
+
 if ( ! function_exists( 'esc_html_nx' ) ) {
 	function esc_html_nx( $single, $plural, $number, $context, $domain = 'default' ) {
 		$translations = get_translations_for_domain( $domain );
 		$translation  = $translations->translate_plural( $single, $plural, $number, $context );
 		return esc_html( apply_filters( 'ngettext_with_context', $translation, $single, $plural, $number, $context, $domain ) );
+	}
+}
+
+if ( ! function_exists( 'esc_html_enx' ) ) {
+	function esc_html_enx( $single, $plural, $number, $context, $domain = 'default' ) {
+		echo esc_html_nx( $single, $plural, $number, $context, $domain ) {
 	}
 }
 
