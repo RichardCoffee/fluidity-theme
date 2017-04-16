@@ -25,7 +25,7 @@ who_am_i(); ?>
 	if (have_comments()) { ?>
 		<h2 class="comments-title"><?php
 			$number = get_comments_number();
-			$format = esc_html_n( 'One thought on %2$s', '%1$s thoughts on %2$s', $number, 'tcc-fluid' ) );
+			$format = esc_html_n( 'One thought on %2$s', '%1$s thoughts on %2$s', $number, 'tcc-fluid' );
 			$number = '<span itemprop="commentCount">' . $number . '</span>';
 			$title  = '&ldquo;' . get_the_title() . '&rdquo;';
 			printf( $format, $number, $title ); ?>

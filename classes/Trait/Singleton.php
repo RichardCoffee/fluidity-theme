@@ -1,5 +1,5 @@
 <?php
-echo "included " . __FILE__ . "\n";
+#echo "included " . __FILE__ . "\n";
 /*
  *  https://secure.php.net/manual/en/language.oop5.magic.php
  *  https://lornajane.net/posts/2012/9-magic-methods-in-php
