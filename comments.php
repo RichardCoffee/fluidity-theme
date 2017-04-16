@@ -47,40 +47,5 @@ who_am_i(); ?>
 			</p><?php
 		}
 	}
-
-	$args = array(
-		'title_reply' => esc_html__( 'Leave a Comment', 'tcc-fluid' ),
-	);
-
-	$place_name    = __( 'Your Good Name - Required Field', 'tcc-fluid' );
-	$place_email   = __( 'Your Email Please - Required Field', 'tcc-fluid' );
-	$place_comment = __( 'Let us know what you have to say', 'tcc-fluid' );
-	$place_website = __( 'Your Website', 'tcc-fluid' );
-	$attrs_name = array(
-		'id' => 'author',
-		'name' => 'author',
-		'type' => 'text',
-		'value' => '',
-		'size' => '30',
-		'aria-required' => 'true',
-		'aria-label' => $place_name,
-		'placeholder' => $place_name,
-	);
-	$args = array(
-		'title_reply' => 'Got Something To Say:',
-		'fields'      => apply_filters( 'comment_form_default_fields', array(
-			'author' => '<p class="comment-form-author"><input ' . get_applied_attrs( $attrs_name ) . ' /></p>',
-			'email'  => '<p class="comment-form-email">' .
-				'<input id="email" name="email" type="text" value="" size="30" aria-required="true"',
-				' aria-label="' . esc_attr( $place_email ) . '" placeholder="' . esc_attr( $place_email ) . '" /></p>',
-			'url'    => '<p class="comment-form-url"><input id="url" name="url" type="url" value="" size="30" maxlength="200" /></p>',
-		) ),
-		'comment_field' => '<p><textarea id="comment" name="comment" cols="60" rows="6" aria-required="true"' .
-			' aria-label="' . esc_attr( $place_comment ) . '" placeholder="' . esc_attr( $place_comment ) . '"></textarea></p>',
-		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ),
-		'comment_notes_after' => '',
-		'class_submit' => 'btn btn-fluidity',
-	);
-
-	comment_form( $args ); ?>
+	fluid_comment()->comment_form(); ?>
 </div><!-- #comments -->
