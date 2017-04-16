@@ -67,7 +67,7 @@ who_am_i(); ?>
 			'url'    => '',
 			)
 		),
-		'comment_field' => '<p><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"' .
+		'comment_field' => '<p><textarea id="comment" name="comment" cols="60" rows="6" aria-required="true"' .
 			' aria-label="' . esc_attr( $place_comment ) . '" placeholder="' . esc_attr( $place_comment ) . '"></textarea></p>',
 		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ),
 		'comment_notes_after' => '',
