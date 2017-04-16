@@ -69,5 +69,5 @@ who_am_i(); ?>
 		'comment_notes_after' => '',
 	);
 
-	comment_form( ); //$args ); ?>
+	comment_form( $args ); ?>
 </div><!-- #comments -->
