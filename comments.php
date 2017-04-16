@@ -69,7 +69,7 @@ who_am_i(); ?>
 	$args = array(
 		'title_reply' => 'Got Something To Say:',
 		'fields'      => apply_filters( 'comment_form_default_fields', array(
-			'author' => '<p class="comment-form-author"><input ' . apply_attrs( $attrs_name ) . ' /></p>',
+			'author' => '<p class="comment-form-author"><input ' . get_applied_attrs( $attrs_name ) . ' /></p>',
 			'email'  => '<p class="comment-form-email">' .
 				'<input id="email" name="email" type="text" value="" size="30" aria-required="true"',
 				' aria-label="' . esc_attr( $place_email ) . '" placeholder="' . esc_attr( $place_email ) . '" /></p>',
