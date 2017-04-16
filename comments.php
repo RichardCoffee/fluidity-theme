@@ -71,6 +71,7 @@ who_am_i(); ?>
 			' aria-label="' . esc_attr( $place_comment ) . '" placeholder="' . esc_attr( $place_comment ) . '"></textarea></p>',
 		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ),
 		'comment_notes_after' => '',
+		'class_submit' => 'btn btn-fluidity',
 	);
 
 	comment_form( $args ); ?>

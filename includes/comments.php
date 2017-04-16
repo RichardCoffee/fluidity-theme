@@ -23,6 +23,17 @@ if (!function_exists('fluid_comment_navigation')) {
   }
 }
 
+if ( ! function_exists( 'disable_website_field' ) ) {
+	#	https://github.com/taniarascia/wp-functions
+	function fluid_disable_website_field( $fields ) {
+		if ( isset( $fields['url'] ) ) {
+			unset( $fields['url'] );
+		}
+		return $fields;
+	}
+	add_filter('comment_form_default_fields', 'fluid_disable_website_field');
+}
+
 if (!function_exists('fluid_list_comments')) {
   #  http://www.christianmontoya.com
   #  http://themeshaper.com/2012/11/04/the-wordpress-theme-comments-template/
