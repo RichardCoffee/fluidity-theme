@@ -178,7 +178,7 @@ if ( ! function_exists( 'esc_html_nx' ) ) {
 
 if ( ! function_exists( 'esc_html_enx' ) ) {
 	function esc_html_enx( $single, $plural, $number, $context, $domain = 'default' ) {
-		echo esc_html_nx( $single, $plural, $number, $context, $domain ) {
+		echo esc_html_nx( $single, $plural, $number, $context, $domain );
 	}
 }
 
