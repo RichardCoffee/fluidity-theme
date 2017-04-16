@@ -36,11 +36,11 @@ class TCC_Theme_Comment {
 
 	protected function strings() {
 		return array(
-			'author'  => __( 'Your Good Name - Required Field', 'tcc-fluid' ),
-			'comment' => __( 'Let us know what you have to say', 'tcc-fluid' ),
-			'email'   => __( 'Your Email Please - Required Field', 'tcc-fluid' ),
 			'before'  => __( 'Your email address will not be published.', 'tcc-fluid' ),
-			'website' => __( 'Your Website', 'tcc-fluid' ),
+			'comment' => __( 'Let us know what you have to say', 'tcc-fluid' ),
+			'author'  => __( 'Your Good Name - Required Field', 'tcc-fluid' ),
+			'email'   => __( 'Your Email Please - Required Field', 'tcc-fluid' ),
+			'url'     => __( 'Your Website', 'tcc-fluid' ),
 		);
 	}
 
@@ -64,7 +64,7 @@ class TCC_Theme_Comment {
 			'name'  => 'email',
 			'type'  => 'email',
 			'value' => '',
-			'size'  => $this->field_width,
+			'size'  => $this->input_width,
 			'maxlength'     => $this->max_email,
 			'aria-required' => 'true',
 			'aria-label'    => $this->strings['email'],
@@ -78,7 +78,7 @@ class TCC_Theme_Comment {
 			'name'  => 'url',
 			'type'  => 'url',
 			'value' => '',
-			'size'  => $this->field_width,
+			'size'  => $this->input_width,
 			'maxlength'   => $this->max_url,
 			'aria-label'  => $this->strings['url'],
 			'placeholder' => $this->strings['url'],
