@@ -6,7 +6,7 @@ class TCC_Theme_Library {
 	/**  attribute functions  **/
 
 	public function apply_attrs( $args ) {
-		echo tccf_get_apply_attrs( $args );
+		echo $this->get_apply_attrs( $args );
 	}
 
 	public function get_apply_attrs( $args ) {
