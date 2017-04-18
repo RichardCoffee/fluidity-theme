@@ -49,11 +49,18 @@ log_entry($user,$data);
 	}
 
 	protected function commenter() {
+		$author    = array();
 		$commenter = wp_get_current_commenter();
-		$name  = $commenter['comment_author'];
-		$email = $commenter['comment_author_email'];
-		$url   = $commenter['comment_author_url'];
-		return compact( 'name', 'email', 'url' );
+		if ( $commenter['comment_author'] ) {
+			$author['name'] = $commenter['comment_author'];
+		}
+		if ( $commenter['comment_author_email'] ) {
+			$author['email'] = $commenter['comment_author_email'];
+		}
+		if ( $commenter['comment_author_url'] ) {
+			$author['url'] = $commenter['comment_author_url'];
+		}
+		return $author;
 	}
 
 	protected function strings() {

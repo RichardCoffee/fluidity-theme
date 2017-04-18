@@ -58,14 +58,14 @@ form .form-control:hover, form .form-control:focus {
 
 .ui-autocomplete {
   background-color: #FFFFFF;
-  border: 1px solid #206296;
+  border: 2px solid #206296;
   color: #287BBC;
 }
 .ui-autocomplete li {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 .ui-autocomplete li:hover, .ui-autocomplete li:focus {
-  border: 1px solid #206296;
+  border: 2px solid #206296;
 }
 
 .searchform-input::-moz-placeholder {
@@ -96,7 +96,7 @@ form .form-control:hover, form .form-control:focus {
 }
 
 form .form-control {
-  border: 1px solid #287bbc;
+  border: 2px solid #287bbc;
 }
 form .form-control::-moz-placeholder {
   color: #287BBC;
@@ -112,8 +112,8 @@ form .form-control::-webkit-input-placeholder {
   color: #287BBC;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: inset 0 1px 2px rgba(40, 123, 188, 0.1);
-  box-shadow: inset 0 1px 2px rgba(40, 123, 188, 0.1);
+  -webkit-box-shadow: inset 0 2px 4px rgba(40, 123, 188, 0.1);
+  box-shadow: inset 0 2px 4px rgba(40, 123, 188, 0.1);
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
   color: #287BBC;
