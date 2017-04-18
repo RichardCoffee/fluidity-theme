@@ -26,7 +26,6 @@ class TCC_Theme_Comment {
 	protected function __construct() {
 		$this->set_post_id();
 		$this->author  = $this->author();
-log_entry($this->author);
 		$this->require = get_option( 'require_name_email' );
 		$this->strings = $this->strings();
 	}
@@ -145,7 +144,7 @@ log_entry($this->author);
 	protected function author_attrs() {
 		$attrs = array(
 			'id'    => 'author',
-			'class' => 'form-control',
+			'class' => 'form-control',  #  bootstrap css class
 			'name'  => 'author',
 			'type'  => 'text',
 			'value' => $this->author['name'],
@@ -168,7 +167,7 @@ log_entry($this->author);
 	protected function email_attrs() {
 		$attrs = array(
 			'id'    => 'email',
-			'class' => 'form-control',
+			'class' => 'form-control',  #  bootstrap css class
 			'name'  => 'email',
 			'type'  => 'email',
 			'value' => $this->author['email'],
@@ -191,7 +190,7 @@ log_entry($this->author);
 	protected function url_attrs() {
 		$attrs = array(
 			'id'    => 'url',
-			'class' => 'form-control',
+			'class' => 'form-control',  #  bootstrap css class
 			'name'  => 'url',
 			'type'  => 'url',
 			'value' => $this->author['url'],
@@ -207,7 +206,7 @@ log_entry($this->author);
 	protected function comment_attrs() {
 		$attrs = array(
 			'id'    => 'comment',
-			'class' => 'form-control',
+			'class' => 'form-control',  #  bootstrap css class
 			'name'  => 'comment',
 			'cols'  => $this->field_cols,
 			'rows'  => $this->field_rows,
@@ -224,8 +223,15 @@ log_entry($this->author);
 	/**  must_log_in  **/
 
 	protected function must_log_in() {
-		$link_html = '<a href="' . wp_login_url( $this->permalink ) . '">';
+		$link_html = '<a ' . get_applied_attrs( $this->must_log_in_link_attrs() ) . '">';
 		return sprintf( $this->strings['must_log_in'], $link_html, '</a>' );
+	}
+
+	protected function must_log_in_link_attrs() {
+		$attrs = array(
+			'href' = wp_login_url( $this->permalink ),
+		);
+		return apply_filters( "{$this->prefix}_comment_must_log_in_link_attrs", $attrs );
 	}
 
 

@@ -67,7 +67,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 						'rel'      => 'home',
 						'itemprop' => 'url', // 'relatedLink',
 					); ?>
-					<a <?php apply_attrs( $attrs ); ?>><?php
+					<a <?php library()->apply_attrs( $attrs ); ?>><?php
 						$logo_id = get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
 							$size  = apply_filters( 'tcc_header_logo_size', 'medium' );
@@ -86,7 +86,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 								'alt'      => get_bloginfo( 'name' ),
 								'itemprop' => 'image',
 							); ?>
-							<img <?php apply_attrs( $attrs ); ?>><?php
+							<img <?php library()->apply_attrs( $attrs ); ?>><?php
 						} else {
 							bloginfo( 'name' );
 						} ?>

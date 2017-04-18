@@ -1,5 +1,11 @@
 <?php
 
+if ( ! function_exists( 'library' ) ) {
+	function library() {
+		return new TCC_Theme_Library;
+	}
+}
+
 // Use bootstrap's clearfix
 if (!function_exists('tcc_apply_clearfix')) {
   function tcc_apply_clearfix( $args ) {
@@ -39,21 +45,24 @@ if ( ! function_exists( 'get_applied_attrs' ) ) {
 if ( ! function_exists( 'apply_attrs' ) ) {
 	function apply_attrs( $args, $echo = true ) {
 		$attrs = ' ';
-/*		if ( ! empty( $args['id'] ) ) {
-			$args = apply_filters( "fluidity_apply_attrs_{$args['id']}", $args );
-		} //*/
-/*		if ( ! empty( $args['name'] ) ) {
-			$args = apply_filters( "fluidity_apply_attrs_{$args['name']}", $args );
-		} //*/
 		foreach( $args as $attr => $value ) {
 			if ( empty( $value ) ) {
 				continue;
 			}
-			$sanitize = 'esc_attr';
-			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : $sanitize;
-			$sanitize = ( $attr === 'src'   ) ? 'esc_url'  : $sanitize;
-			$sanitize = ( $attr === 'value' ) ? 'esc_html' : $sanitize;
-			$attrs .= $attr . '="' . $sanitize( $value ) . '" ';
+			switch( $attr ) {
+				case 'href':
+				case 'src':
+					$value = esc_url( $value );
+					break;
+				case 'value':
+					$value = esc_html( $value );
+					break;
+				case 'title':
+					$value = wp_strip_all_tags( $value );
+				default:
+					$value = esc_attr( $value );
+			}
+			$attrs .= $attr . '="' . $value . '" ';
 		}
 		if ( $echo ) {
 			echo $attrs;
