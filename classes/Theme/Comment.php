@@ -100,7 +100,7 @@ log_entry($user,$data);
 			'comment_notes_after'  => '',
 			'class_submit'         => 'btn btn-fluidity',
 		);
-		if ( $this->required ) {
+		if ( $this->require ) {
 			$args['comment_notes_before'] = $this->strings['comment_notes_before_req'];
 		}
 		$args = apply_filters( "{$this->prefix}_comment_args", $args );
