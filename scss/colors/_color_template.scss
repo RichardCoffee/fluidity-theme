@@ -9,7 +9,8 @@ $headerBody: color(background) !default;
 
 .btn-fluidity,
 .color-fluidity,
-li.btn-fluidity > a {
+li.btn-fluidity > a,
+.searchform-input {
 	@extend %regular;
 }
 
@@ -45,6 +46,7 @@ li.btn-fluidity > a {
 }
 
 form .form-control {
+	@extend %textfield;
 	@include placeholder(color(background));
 	border: 2px solid rgba(color(background), 1);
 	&:hover, &:focus {

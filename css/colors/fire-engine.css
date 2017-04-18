@@ -5,16 +5,19 @@
  */
 .btn-fluidity,
 .color-fluidity,
-li.btn-fluidity > a {
+li.btn-fluidity > a,
+.searchform-input {
   background-color: #CE2029;
   border-color: #a51a21;
   color: #FFFFFF;
 }
 .btn-fluidity:hover,
 .color-fluidity:hover,
-li.btn-fluidity > a:hover, .btn-fluidity:focus,
+li.btn-fluidity > a:hover,
+.searchform-input:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
-li.btn-fluidity > a:focus {
+li.btn-fluidity > a:focus,
+.searchform-input:focus {
   background-color: #FFFFFF;
   border-color: #671015;
   color: #CE2029;
@@ -32,6 +35,17 @@ li.btn-fluidity > a:focus {
   background-color: #CE2029;
   border-color: #a51a21;
   color: #a51a21;
+}
+
+form .form-control {
+  background-color: #FFFFFF;
+  border-color: #671015;
+  color: #CE2029;
+}
+form .form-control:hover, form .form-control:focus {
+  background-color: #FFFFFF;
+  border-color: #671015;
+  color: #CE2029;
 }
 
 .back-fluidity {
