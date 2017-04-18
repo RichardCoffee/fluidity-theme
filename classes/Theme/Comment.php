@@ -191,7 +191,7 @@ log_entry($user,$data);
 			'aria-required' => 'true',
 			'required'      => 'required',
 			'aria-label'    => $this->strings['aria']['comment'],
-			'placeholder'   => $this->strings['comment'],
+			'placeholder'   => $this->strings['comment_field'],
 			'title'         => $this->strings['title']['comment'],
 		);
 		return apply_filters( "{$this->prefix}_comment_args", $attrs );
