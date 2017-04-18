@@ -6,7 +6,6 @@
  */
 .btn-fluidity,
 .color-fluidity,
-.form-control,
 li.btn-fluidity > a {
   background-color: #dff0d8;
   border-color: #d6e9c6;
@@ -14,10 +13,8 @@ li.btn-fluidity > a {
 }
 .btn-fluidity:hover,
 .color-fluidity:hover,
-.form-control:hover,
 li.btn-fluidity > a:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
-.form-control:focus,
 li.btn-fluidity > a:focus {
   background-color: #3c763d;
   border-color: #3c763d;
