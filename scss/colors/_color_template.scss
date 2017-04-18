@@ -26,6 +26,16 @@ li.btn-fluidity > a,
 
 // input fields
 
+form .form-control {
+	@extend %textfield;
+	@include placeholder(color(background));
+	border: 2px solid rgba(color(background), 1);
+	&:hover, &:focus {
+		@include placeholder(color(background));
+		@include box-shadow(inset 0 2px 4px rgba(color(background), .1));
+	}
+}
+
 .ui-autocomplete {
 	background-color: color(textcolor);
 	border: 2px solid color(bgHighlight);
@@ -42,16 +52,6 @@ li.btn-fluidity > a,
 	@include placeholder(color(textcolor));
 	&:hover, &:focus {
 		@include placeholder(color(background));
-	}
-}
-
-form .form-control {
-	@extend %textfield;
-	@include placeholder(color(background));
-	border: 2px solid rgba(color(background), 1);
-	&:hover, &:focus {
-		@include placeholder(color(background));
-		@include box-shadow(inset 0 2px 4px rgba(color(background), .1));
 	}
 }
 

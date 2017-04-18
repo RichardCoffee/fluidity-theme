@@ -60,6 +60,40 @@ form .form-control:hover, form .form-control:focus {
   color: #FFFFFF;
 }
 
+form .form-control {
+  border: 2px solid #ce2029;
+}
+form .form-control::-moz-placeholder {
+  color: #CE2029;
+  opacity: 1;
+}
+form .form-control:-moz-placeholder {
+  color: #CE2029;
+}
+form .form-control:-ms-input-placeholder {
+  color: #CE2029;
+}
+form .form-control::-webkit-input-placeholder {
+  color: #CE2029;
+}
+form .form-control:hover, form .form-control:focus {
+  -webkit-box-shadow: inset 0 2px 4px rgba(206, 32, 41, 0.1);
+  box-shadow: inset 0 2px 4px rgba(206, 32, 41, 0.1);
+}
+form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
+  color: #CE2029;
+  opacity: 1;
+}
+form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
+  color: #CE2029;
+}
+form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
+  color: #CE2029;
+}
+form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
+  color: #CE2029;
+}
+
 .ui-autocomplete {
   background-color: #FFFFFF;
   border: 2px solid #a51a21;
@@ -96,40 +130,6 @@ form .form-control:hover, form .form-control:focus {
   color: #CE2029;
 }
 .searchform-input:hover::-webkit-input-placeholder, .searchform-input:focus::-webkit-input-placeholder {
-  color: #CE2029;
-}
-
-form .form-control {
-  border: 2px solid #ce2029;
-}
-form .form-control::-moz-placeholder {
-  color: #CE2029;
-  opacity: 1;
-}
-form .form-control:-moz-placeholder {
-  color: #CE2029;
-}
-form .form-control:-ms-input-placeholder {
-  color: #CE2029;
-}
-form .form-control::-webkit-input-placeholder {
-  color: #CE2029;
-}
-form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: inset 0 2px 4px rgba(206, 32, 41, 0.1);
-  box-shadow: inset 0 2px 4px rgba(206, 32, 41, 0.1);
-}
-form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
-  color: #CE2029;
-  opacity: 1;
-}
-form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
-  color: #CE2029;
-}
-form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
-  color: #CE2029;
-}
-form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
   color: #CE2029;
 }
 
