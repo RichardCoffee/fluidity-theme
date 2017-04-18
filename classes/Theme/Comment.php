@@ -122,7 +122,7 @@ log_entry($user,$data);
 	protected function author_attrs() {
 		$attrs = array(
 			'id'    => 'author',
-			'class' => 'form-control',
+#			'class' => 'form-control',
 			'name'  => 'author',
 			'type'  => 'text',
 			'value' => $this->author['name'],
@@ -145,7 +145,7 @@ log_entry($user,$data);
 	protected function email_attrs() {
 		$attrs = array(
 			'id'    => 'email',
-			'class' => 'form-control',
+#			'class' => 'form-control',
 			'name'  => 'email',
 			'type'  => 'email',
 			'value' => $this->author['email'],
@@ -168,7 +168,7 @@ log_entry($user,$data);
 	protected function url_attrs() {
 		$attrs = array(
 			'id'    => 'url',
-			'class' => 'form-control',
+#			'class' => 'form-control',
 			'name'  => 'url',
 			'type'  => 'url',
 			'value' => $this->author['url'],
@@ -184,7 +184,7 @@ log_entry($user,$data);
 	protected function comment_attrs() {
 		$attrs = array(
 			'id'    => 'comment',
-			'class' => 'form-control',
+#			'class' => 'form-control',
 			'name'  => 'comment',
 			'cols'  => $this->field_cols,
 			'rows'  => $this->field_rows,
