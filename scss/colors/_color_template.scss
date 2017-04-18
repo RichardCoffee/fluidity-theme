@@ -38,7 +38,6 @@ li.btn-fluidity > a {
 }
 
 .searchform-input {
-	@extend %regular;
 	@include placeholder(color(textcolor));
 	&:hover, &:focus {
 		@include placeholder(color(background));
@@ -46,7 +45,6 @@ li.btn-fluidity > a {
 }
 
 form .form-control {
-	@extend %textfield;
 	@include placeholder(color(background));
 	border: 2px solid rgba(color(background), 1);
 	&:hover, &:focus {

@@ -15,7 +15,7 @@ class TCC_Theme_Comment {
 	protected $max_email   = '100';    #	WordPress default: 100
 	protected $max_url     = '200';    #	WordPress default: 200
 	protected $permalink;
-	public    $post_id;
+	protected $post_id     = 0;
 	protected $prefix      = 'fluid';  #	class filter/action prefix
 	protected $require     = false;
 	protected $strings     = array();
@@ -24,11 +24,19 @@ class TCC_Theme_Comment {
 
 
 	protected function __construct() {
+		$this->set_post_id();
 		$this->author  = $this->author();
 log_entry($this->author);
-		$this->post_id = get_the_ID();
 		$this->require = get_option( 'require_name_email' );
 		$this->strings = $this->strings();
+	}
+
+	public function set_post_id( $post_id = 0 ) {
+		$post_id = intval( $post_id, 10 );
+		if ( ! $post_id ) {
+			$post_id = get_the_ID();
+		}
+		$this->post_id = $post_id;
 	}
 
 	protected function author() {
@@ -39,11 +47,9 @@ log_entry($this->author);
 		$name = $email = $url = '';
 		$user = wp_get_current_user();
 		if ( $user->exists() ) {
-			$data  = get_userdata( $user->ID );
-log_entry($user,$data);
 			$name  = $user->display_name;
-			$email = $user->email;
-
+			$email = $user->user_email;
+			$url   = $user->user_url;
 		}
 		return compact( 'name', 'email', 'url' );
 	}
@@ -74,7 +80,9 @@ log_entry($user,$data);
 			'email_req'     => __( 'Your Email Please - Required Field', 'tcc-fluid' ),
 			'logged_in_as'  => _x( '%1$sLogged in as %2$s%3$s. %4$sLog out?%5$s',
 				'2: User name,  1,3: start and end of link to profile page,  4,5: start and end of link to log-out page', 'tcc-fluid' ),
+			'logout'        => _x( 'Logged in as %s. Log out?', 'User name', 'tcc-fluid' ),
 			'must_log_in'   => _x( 'You must be %slogged in%s to post a comment.', 'start and end of link to log-in page', 'tcc-fluid' ),
+			'profile'       => _x( 'Logged in as %s. Edit your profile.', 'User name', 'tcc-fluid' ),
 			'title_reply'   => __( 'Got Something To Say:',              'tcc-fluid' ),
 			'url'           => __( 'Your Website',                       'tcc-fluid' ),
 		);
@@ -84,8 +92,8 @@ log_entry($user,$data);
 			'comment'    => $strings['comment_field'],
 			'email'      => $strings['email'],
 			'email_req'  => $strings['email_req'],
-			'logout'     => _x( 'Logged in as %s. Log out?', 'User name', 'tcc-fluid' ),
-			'profile'    => _x( 'Logged in as %s. Edit your profile.', 'User name', 'tcc-fluid' ),
+			'logout'     => sprintf( $strings['logout'],  $this->author['name'] ),
+			'profile'    => sprintf( $strings['profile'], $this->author['name'] ),
 			'url'        => $strings['url'],
 		);
 		$strings['title'] = $strings['aria'];
@@ -111,6 +119,7 @@ log_entry($user,$data);
 			$args['comment_notes_before'] = $this->strings['comment_notes_before_req'];
 		}
 		$args = apply_filters( "{$this->prefix}_comment_args", $args );
+		add_filter( 'comment_form_fields', array( $this, 'move_comment_field_to_bottom' ) );
 		comment_form( $args );
 	}
 
@@ -121,6 +130,13 @@ log_entry($user,$data);
 			'url'    => '<p class="comment-form-url"><input '  .   get_applied_attrs( $this->url_attrs() ) . ' /></p>',
 		);
 		return apply_filters( 'comment_form_default_fields', $fields );
+	}
+
+	public function move_comment_field_to_bottom( $fields ) {
+		$comment_field = $fields['comment'];
+		unset( $fields['comment'] );
+		$fields['comment'] = $comment_field;
+		return $fields;
 	}
 
 
@@ -224,16 +240,16 @@ log_entry($user,$data);
 	protected function profile_link_attrs() {
 		$attrs = array(
 			'href'       => get_edit_user_link(),
-			'aria-label' => sprintf( $this->strings['aria']['profile'], $this->author['name'] ),
-			'target'     => 'site_profile',
+			'aria-label' => $this->strings['aria']['profile'],
+			'title'      => $this->strings['title']['profile'],
+			'target'     => 'user_profile',
 		);
-		$attrs['title'] = $attrs['aria-label'];
 		return apply_filters( "{$this->prefix}_comment_profile_link_attrs", $attrs );
 	}
 
 	protected function logout_link_attrs() {
 		$attrs = array(
-			'href' => wp_logout_url( $this->permalink ),
+			'href'       => wp_logout_url( $this->permalink ),
 			'aria-label' => $this->strings['aria']['logout'],
 			'title'      => $this->strings['title']['logout'],
 		);

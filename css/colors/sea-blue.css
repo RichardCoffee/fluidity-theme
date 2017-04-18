@@ -4,16 +4,16 @@
  */
 .btn-fluidity,
 .color-fluidity,
-li.btn-fluidity > a, .searchform-input {
+li.btn-fluidity > a {
   background-color: #287BBC;
   border-color: #206296;
   color: #FFFFFF;
 }
 .btn-fluidity:hover,
 .color-fluidity:hover,
-li.btn-fluidity > a:hover, .searchform-input:hover, .btn-fluidity:focus,
+li.btn-fluidity > a:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
-li.btn-fluidity > a:focus, .searchform-input:focus {
+li.btn-fluidity > a:focus {
   background-color: #FFFFFF;
   border-color: #FFFFFF;
   color: #287BBC;
@@ -31,17 +31,6 @@ li.btn-fluidity > a:focus, .searchform-input:focus {
   background-color: #287BBC;
   border-color: #206296;
   color: #206296;
-}
-
-form .form-control {
-  background-color: #FFFFFF;
-  border-color: #FFFFFF;
-  color: #287BBC;
-}
-form .form-control:hover, form .form-control:focus {
-  background-color: #FFFFFF;
-  border-color: #FFFFFF;
-  color: #287BBC;
 }
 
 .back-fluidity {
