@@ -1,88 +1,293 @@
 /*
-Error: Undefined mixin 'box-shadow'.
-        on line 52 of scss/colors/_color_template.scss, in `box-shadow'
-        from line 52 of scss/colors/_color_template.scss
-        from line 14 of scss/colors/danger-inverse.scss
+ *  css/colors/danger-inverse.css
+ *
+ *  based on bootstrap danger color scheme
+ *
+ */
+.btn-fluidity,
+.color-fluidity,
+.form-control,
+li.btn-fluidity > a {
+  background-color: #f2dede;
+  border-color: #f2dede;
+  color: #a94442;
+}
+.btn-fluidity:hover,
+.color-fluidity:hover,
+.form-control:hover,
+li.btn-fluidity > a:hover, .btn-fluidity:focus,
+.color-fluidity:focus,
+.form-control:focus,
+li.btn-fluidity > a:focus {
+  background-color: #a94442;
+  border-color: #a94442;
+  color: #f2dede;
+}
 
-Backtrace:
-scss/colors/_color_template.scss:52:in `box-shadow'
-scss/colors/_color_template.scss:52
-scss/colors/danger-inverse.scss:14
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:348:in `visit_mixin'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:98:in `with_mixin'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:98:in `with_mixin'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:346:in `visit_mixin'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:430:in `map'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:430:in `map'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:325:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:325:in `map'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:325:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:88:in `with_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:88:in `with_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:52:in `map'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:167:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:157:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:8:in `send'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/visitors/perform.rb:8:in `visit'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/root_node.rb:36:in `css_tree'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/tree/root_node.rb:20:in `render'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/engine.rb:268:in `render'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/sass_scss.rb:415:in `run'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/sass_scss.rb:63:in `process_result'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/base.rb:52:in `parse'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/../lib/sass/exec/base.rb:19:in `parse!'
-/usr/lib/ruby/gems/1.8/gems/sass-3.4.11/bin/sass:13
-/usr/bin/sass:19:in `load'
-/usr/bin/sass:19
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Undefined mixin 'box-shadow'.\A         on line 52 of scss/colors/_color_template.scss, in `box-shadow'\A         from line 52 of scss/colors/_color_template.scss\A         from line 14 of scss/colors/danger-inverse.scss"; }
+.btn-fluidity-inverse,
+.color-fluidity-inverse, .navbar-fluidity .btn-fluidity {
+  background-color: #a94442;
+  border-color: #a94442;
+  color: #f2dede;
+}
+.btn-fluidity-inverse:hover,
+.color-fluidity-inverse:hover, .navbar-fluidity .btn-fluidity:hover, .btn-fluidity-inverse:focus,
+.color-fluidity-inverse:focus, .navbar-fluidity .btn-fluidity:focus {
+  background-color: #f2dede;
+  border-color: #f2dede;
+  color: #f2dede;
+}
+
+.back-fluidity {
+  background-color: #f2dede;
+}
+
+.bord-fluidity {
+  border-color: #f2dede;
+}
+
+.fore-fluidity {
+  color: #a94442;
+}
+
+.ui-autocomplete {
+  background-color: #a94442;
+  border: 1px solid #f2dede;
+  color: #f2dede;
+}
+.ui-autocomplete li {
+  border: 1px solid transparent;
+}
+.ui-autocomplete li:hover, .ui-autocomplete li:focus {
+  border: 1px solid #f2dede;
+}
+
+.searchform-input::-moz-placeholder {
+  color: #a94442;
+  opacity: 1;
+}
+.searchform-input:-moz-placeholder {
+  color: #a94442;
+}
+.searchform-input:-ms-input-placeholder {
+  color: #a94442;
+}
+.searchform-input::-webkit-input-placeholder {
+  color: #a94442;
+}
+.searchform-input:hover::-moz-placeholder, .searchform-input:focus::-moz-placeholder {
+  color: #f2dede;
+  opacity: 1;
+}
+.searchform-input:hover:-moz-placeholder, .searchform-input:focus:-moz-placeholder {
+  color: #f2dede;
+}
+.searchform-input:hover:-ms-input-placeholder, .searchform-input:focus:-ms-input-placeholder {
+  color: #f2dede;
+}
+.searchform-input:hover::-webkit-input-placeholder, .searchform-input:focus::-webkit-input-placeholder {
+  color: #f2dede;
+}
+
+form .form-control::-moz-placeholder {
+  color: #a94442;
+  opacity: 1;
+}
+form .form-control:-moz-placeholder {
+  color: #a94442;
+}
+form .form-control:-ms-input-placeholder {
+  color: #a94442;
+}
+form .form-control::-webkit-input-placeholder {
+  color: #a94442;
+}
+form .form-control:hover, form .form-control:focus {
+  -webkit-box-shadow: inset 0 1px 2px rgba(242, 222, 222, 0.1);
+  box-shadow: inset 0 1px 2px rgba(242, 222, 222, 0.1);
+  border: 1px solid #f2dede;
+}
+form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
+  color: #f2dede;
+  opacity: 1;
+}
+form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
+  color: #f2dede;
+}
+form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
+  color: #f2dede;
+}
+form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
+  color: #f2dede;
+}
+
+[type="search"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+[type="search"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+.navbar-fluidity {
+  background-color: #f2dede;
+  color: #a94442;
+}
+.navbar-fluidity .navbar-brand {
+  background-color: #f2dede;
+  color: #a94442;
+}
+.navbar-fluidity .navbar-brand:hover, .navbar-fluidity .navbar-brand:focus {
+  background-color: #f2dede;
+}
+.navbar-fluidity .navbar-text {
+  background-color: #f2dede;
+  color: #a94442;
+}
+.navbar-fluidity .navbar-nav, .navbar-fluidity .dropdown-menu {
+  background-color: #f2dede;
+  opacity: 1.3;
+}
+.navbar-fluidity .navbar-nav > li > a, .navbar-fluidity .dropdown-menu > li > a {
+  background-color: #f2dede;
+  color: #a94442;
+}
+.navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus {
+  background-color: #f2dede;
+}
+.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus {
+  background-color: #f2dede;
+}
+.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus {
+  background-color: #f2dede;
+}
+.navbar-fluidity .navbar-toggle {
+  border-color: #f2dede;
+}
+.navbar-fluidity .navbar-toggle:hover, .navbar-fluidity .navbar-toggle:focus {
+  background-color: #f2dede;
+}
+.navbar-fluidity .navbar-toggle .icon-bar {
+  background-color: #a94442;
+}
+.navbar-fluidity .navbar-collapse,
+.navbar-fluidity .navbar-form {
+  border-color: #a94442;
+}
+.navbar-fluidity .navbar-link {
+  background-color: #f2dede;
+}
+
+@media (max-width: 767px) {
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a {
+    background-color: #f2dede;
+    color: #a94442;
+  }
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #a94442;
+  }
+  .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-fluidity .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #a94442;
+    background-color: #f2dede;
+  }
+}
+/* _s */
+ul.sub-menu {
+  background-color: white;
+}
+
+ul.pagination > li > a {
+  color: #a94442;
+  background: #f2dede;
+  border-color: #f2dede;
+}
+ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > span {
+  color: #f2dede;
+  background: #a94442;
+  border-color: #f2dede;
+}
+
+.panel-fluidity {
+  border-color: #f2dede;
+}
+.panel-fluidity > .panel-heading {
+  background-color: #f2dede;
+  border-color: #f2dede;
+  color: #a94442;
+}
+
+a.tcc-footer-menu-item {
+  color: #a94442;
+}
+a.tcc-footer-menu-item:visited {
+  border-bottom: 1px wavy #a94442;
+}
+
+.article a {
+  border-bottom: 1px solid #f2dede;
+  color: #f2dede;
+}
+.article a:visited {
+  border-bottom: 1px wavy #f2dede;
+  color: #f2dede;
+}
+.article a:hover, .article a:focus {
+  border-bottom: 2px solid #f2dede;
+  color: #f2dede;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+blockquote,
+.content-fluidity {
+  border-color: #f2dede;
+}
+
+code {
+  background-color: #a94442;
+  color: #f2dede;
+}
+
+#fluid-footer {
+  background-color: #f2dede;
+  color: #a94442;
+}
+#fluid-footer h4 {
+  color: #a94442;
+}
+
+#header-menubar {
+  background-color: #f2dede;
+}
+
+hr {
+  border-color: #f2dede;
+}
+
+.lost-password {
+  color: #a94442;
+}
+
+.page-title {
+  color: #a94442;
+  text-shadow: #f2dede 1px 1px 2px;
+}
+
+.port-opaque {
+  background-color: rgba(242, 222, 222, 0.7) !important;
+}
+
+.sticky {
+  color: #f2dede;
+}
+
+.tml {
+  color: #f2dede;
+}
+.tml input {
+  border-color: #f2dede;
+}
