@@ -9,6 +9,7 @@ if ( ! function_exists( 'tcc_login_form' ) ) {
 class TCC_Form_Login {
 
 	protected $in_navbar   = false;
+	protected $library     = null;
 	protected $pull_right  = true;
 	protected $redirect_to = null;
 
@@ -16,6 +17,7 @@ class TCC_Form_Login {
 	use TCC_Trait_Singleton;
 
 	protected function __construct( $args = array() ) {
+		$this->library = new TCC_Theme_Library;
 		$this->parse_args( $args );
 
 		add_action( 'admin_head',          array( $this, 'dashboard_logo' ) );
@@ -131,7 +133,7 @@ class TCC_Form_Login {
 			'action' => site_url( '/wp-login.php' ),
 			'method' => 'post',
 		); ?>
-		<form <?php apply_attrs( $attrs ); ?>>
+		<form <?php $this->library->apply_attrs( $attrs ); ?>>
 
 			<div class='form-group login-username'>
 				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr( $id_username ); ?>">
@@ -189,7 +191,7 @@ class TCC_Form_Login {
 					'title' =>  $signout,
 					'rel'   => 'nofollow',
 				); ?>
-				<a <?php apply_attrs( $attrs ); ?>>&nbsp;
+				<a <?php $this->library->apply_attrs( $attrs ); ?>>&nbsp;
 					<?php echo esc_html( $signout ); ?>
 					&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
 				</a>

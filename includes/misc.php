@@ -58,6 +58,7 @@ if (!function_exists('fluidity_social_icons')) {
         $layout = $insta->social_layout();
         #log_entry($icons,$social,$layout); ?>
 				<span class='fluidity-social-icons'><?php
+					$library = library();
 					foreach( $social as $key => $set ) {
 						if ( empty( $set['link'] ) ) continue;
 						$tool = sprintf( esc_html_x( 'See us on %s', 'website name', 'tcc-fluid' ), $layout[ $key ] ['label'] );
@@ -69,7 +70,7 @@ if (!function_exists('fluidity_social_icons')) {
 							'title' => ( $key === 'rss' ) ? esc_html__( 'Subscribe to our RSS feed', 'tcc-fluid' ) : $tool, // TODO: option to change this text
 							'target'=> ( $target === 'target' ) ? "fluidity_$key" : "_blank",
 							); ?>
-						<a <?php library()->apply_attrs( $attr ); ?>> </a>
+						<a <?php $library->apply_attrs( $attr ); ?>> </a>
 					<?php } ?>
 				</span><?php
 			}

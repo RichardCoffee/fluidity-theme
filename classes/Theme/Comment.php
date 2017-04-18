@@ -229,7 +229,7 @@ class TCC_Theme_Comment {
 
 	protected function must_log_in_link_attrs() {
 		$attrs = array(
-			'href' = wp_login_url( $this->permalink ),
+			'href' => wp_login_url( $this->permalink ),
 		);
 		return apply_filters( "{$this->prefix}_comment_must_log_in_link_attrs", $attrs );
 	}
