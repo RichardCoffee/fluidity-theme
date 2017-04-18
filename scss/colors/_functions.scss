@@ -14,6 +14,11 @@ $input-color-placeholder: #999;
 }
 
 //  bootstrap/mixins/_vendor-prefixes.scss
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+
 @mixin placeholder($color: $input-color-placeholder ) {
 	// Firefox 19+
 	&::-moz-placeholder {
