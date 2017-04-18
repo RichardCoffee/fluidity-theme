@@ -1,0 +1,27 @@
+#author { }
+#cancel-comment-reply-link { }
+#comment { }
+#commentform { }
+#email { }
+#email-notes { }
+#reply-title { }
+#respond {
+	& input[type=text]:focus,
+	& textarea:focus {
+		box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	}
+}
+#submit { }
+#url { }
+.comment-form-author { }
+.comment-form-email { }
+.comment-form-url { }
+.comment-form-comment { }
+.comment-notes { }
+.comment-reply-title { }
+.comment-respond { }
+.form-allowed-tags { }
+.form-submit { }
+.logged-in-as { }
+.must-log-in { }
+.required { }
