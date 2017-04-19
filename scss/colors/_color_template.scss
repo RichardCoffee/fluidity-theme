@@ -32,7 +32,7 @@ form .form-control {
 	border: 1px solid rgba(color(background), 1);
 	&:hover, &:focus {
 		@include placeholder(color(bgHighlight));
-		@include box-shadow(0 2px 4px rgba(color(bgHighlight), .5));
+		@include box-shadow(0 0 4px rgba(color(bgHighlight), .5));
 		border: 1px solid rgba(color(bgHighlight), 1);
 	}
 }
