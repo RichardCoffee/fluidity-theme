@@ -77,7 +77,7 @@ log_entry(
  ?>
 							</li><?php
 						}
-						if ( $next_tax !== $prev_all ) { ?>
+						if ( $next_tax !== $next_all ) { ?>
 							<li class="next btn-fluidity" title="<?php e_esc_attr( $newer_tooltip ); ?>">
 								<?php next_post_link( '%link', $right, true, $exclude, $taxonomy );
 #log_entry( '%link', $right, true, $exclude, $taxonomy );
