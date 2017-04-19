@@ -49,7 +49,7 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) {
 				$taxonomy = '';
 			}
-/*log_entry(
+log_entry(
 	"    taxonomy: $taxonomy",
 	"previous tax: $prev_tax",
 	"previous all: $prev_all",
