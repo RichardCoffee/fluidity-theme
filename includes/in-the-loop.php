@@ -40,7 +40,6 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 		$right = '%title <span aria-hidden="true">&raquo;</span>';
 		$exclude  = apply_filters( 'fluid_navigation_exclude',  array() );
 		$taxonomy = apply_filters( 'fluid_navigation_taxonomy', $taxonomy );
-#log_entry($taxonomy,$all_links,get_the_category() );
 		if ( $taxonomy && $all_links ) {
 			$prev_tax = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
 			$next_tax = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
@@ -49,7 +48,7 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) {
 				$taxonomy = '';
 			}
-log_entry(
+/*log_entry(
 	"    taxonomy: $taxonomy",
 	"previous tax: $prev_tax",
 	"previous all: $prev_all",
@@ -59,8 +58,6 @@ log_entry(
 		} ?>
 		<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
 		if ( $taxonomy ) {
-#log_entry(0,get_the_category());
-#log_entry(0,'taxonomy links');
 			$tax_obj = get_taxonomy( $taxonomy );
 			$older_tooltip = sprintf( _x( 'Older Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name );
 			$newer_tooltip = sprintf( _x( 'Newer Posts for %s', 'the taxonomy name (plural)', 'tcc-fluid' ), $tax_obj->labels->name ); ?>
@@ -72,16 +69,12 @@ log_entry(
 					<ul class="pager pager-category"><?php
 						if ( $prev_tax !== $prev_all ) { ?>
 							<li class="previous btn-fluidity" title="<?php e_esc_attr( $older_tooltip ); ?>">
-								<?php previous_post_link( '%link', $left, true, $exclude, $taxonomy );
-#log_entry( '%link', $left, true, $exclude, $taxonomy );
- ?>
+								<?php previous_post_link( '%link', $left, true, $exclude, $taxonomy ); ?>
 							</li><?php
 						}
 						if ( $next_tax !== $next_all ) { ?>
 							<li class="next btn-fluidity" title="<?php e_esc_attr( $newer_tooltip ); ?>">
-								<?php next_post_link( '%link', $right, true, $exclude, $taxonomy );
-#log_entry( '%link', $right, true, $exclude, $taxonomy );
- ?>
+								<?php next_post_link( '%link', $right, true, $exclude, $taxonomy ); ?>
 							</li><?php
 						} ?>
 					</ul>
@@ -91,10 +84,7 @@ log_entry(
 		if ( $taxonomy && $all_links ) { ?>
 			<div class="post-link-separator post-link-separator-middle"></div><?php
 		}
-		if ( ! $taxonomy || $all_links ) {
-#log_entry(0,get_the_category());
-#log_entry(0,'all links');
- ?>
+		if ( ! $taxonomy || $all_links ) { ?>
 			<nav class="noprint" aria-label="...">
 				<h2 class="screen-reader-text">
 					<?php esc_attr_e( 'Post Navigation', 'tcc-fluid' ); ?>
@@ -113,7 +103,6 @@ log_entry(
 		} ?>
 		<div class="post-link-separator post-link-separator-bottom"></div>
 		<p> </p><?php
-#log_entry('stack');
 	}
 }
 
@@ -212,19 +201,22 @@ if (!function_exists('fluid_title')) {
 }
 
 if (!function_exists('get_the_author_posts_link')) {
-  function get_the_author_posts_link( int $authorID=null ) {
-    $html = '';
-    $authorID = ($authorID) ? $authorID : get_the_author_meta('ID');
-    if ($authorID) {
-      $link = get_author_posts_url($agent->ID);
-      #$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem
-      $html = "<a href='$link'>".get_the_author_meta('display_name')."</a>";
-    }
-    return $html;
-  }
+	function get_the_author_posts_link( $authorID = null ) {
+		$html = '';
+		$authorID = ($authorID) ? $authorID : get_the_author_meta('ID');
+		if ($authorID) {
+			$title = __( 'Author posts archive', 'tcc-fluid' );
+			$attrs = array(
+				'href'  => get_author_posts_url( $authorID ),
+				'title' => $title,
+				'aria-label' => $title,
+			);
+			#$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem - 
+			$html = '<a ' . library()->get_apply_attrs( $attrs ) . '>' . get_the_author_meta('display_name') . '</a>';
+		}
+		return $html;
+	}
 }
-
-
 
 if (!function_exists('tcc_post_title')) {
 	function tcc_post_title( $max = 0, $anchor = true ) {

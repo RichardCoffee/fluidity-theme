@@ -2,7 +2,11 @@
 
 if ( ! function_exists( 'library' ) ) {
 	function library() {
-		return new TCC_Theme_Library;
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Library;
+		}
+		return $library;
 	}
 }
 
