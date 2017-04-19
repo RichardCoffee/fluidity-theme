@@ -32,7 +32,7 @@ form .form-control {
 	border: 1px solid rgba(color(background), 1);
 	&:hover, &:focus {
 		@include placeholder(color(bgHighlight));
-		@include box-shadow(inset 0 2px 4px rgba(color(bgHighlight), .1));
+		@include box-shadow(0 2px 4px rgba(color(bgHighlight), .1));
 		border: 1px solid rgba(color(bgHighlight), 1);
 	}
 }
@@ -49,7 +49,7 @@ form .form-control {
 	}
 }
 
-form input.searchform-input {
+form .searchform-input {
 	@extend %regular;
 	@include placeholder(color(textcolor));
 	&:hover, &:focus {
