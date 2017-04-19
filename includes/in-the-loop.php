@@ -42,10 +42,10 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 		$taxonomy = apply_filters( 'fluid_navigation_taxonomy', $taxonomy );
 #log_entry($taxonomy,$all_links,get_the_category() );
 		if ( $taxonomy && $all_links ) {
-			$prev_tax = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
-			$next_tax = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
-			$prev_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
-			$next_all = get_permalink( get_adjacent_post( false, $exclude, true ) );
+			$prev_tax = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
+			$next_tax = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
+			$prev_all = get_permalink( get_adjacent_post( false, $exclude, true ) );
+			$next_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
 			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) {
 				$taxonomy = '';
 			}
