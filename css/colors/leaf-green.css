@@ -5,7 +5,7 @@
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
-.searchform-input, form .searchform-input {
+.searchform-input, form input.searchform-input {
   background-color: #39b54a;
   border-color: #2e913b;
   color: #FFFFFF;
@@ -106,30 +106,30 @@ form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-
   border: 2px solid #2e913b;
 }
 
-form .searchform-input::-moz-placeholder {
+form input.searchform-input::-moz-placeholder {
   color: #FFFFFF;
   opacity: 1;
 }
-form .searchform-input:-moz-placeholder {
+form input.searchform-input:-moz-placeholder {
   color: #FFFFFF;
 }
-form .searchform-input:-ms-input-placeholder {
+form input.searchform-input:-ms-input-placeholder {
   color: #FFFFFF;
 }
-form .searchform-input::-webkit-input-placeholder {
+form input.searchform-input::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-form .searchform-input:hover::-moz-placeholder, form .searchform-input:focus::-moz-placeholder {
+form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder {
   color: #39b54a;
   opacity: 1;
 }
-form .searchform-input:hover:-moz-placeholder, form .searchform-input:focus:-moz-placeholder {
+form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder {
   color: #39b54a;
 }
-form .searchform-input:hover:-ms-input-placeholder, form .searchform-input:focus:-ms-input-placeholder {
+form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder {
   color: #39b54a;
 }
-form .searchform-input:hover::-webkit-input-placeholder, form .searchform-input:focus::-webkit-input-placeholder {
+form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder {
   color: #39b54a;
 }
 

@@ -49,7 +49,7 @@ form .form-control {
 	}
 }
 
-form .searchform-input {
+form input.searchform-input {
 	@extend %regular;
 	@include placeholder(color(textcolor));
 	&:hover, &:focus {
