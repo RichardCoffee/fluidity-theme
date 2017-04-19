@@ -76,8 +76,8 @@ form .form-control::-webkit-input-placeholder {
   color: #39b54a;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: 0 2px 4px rgba(46, 145, 59, 0.1);
-  box-shadow: 0 2px 4px rgba(46, 145, 59, 0.1);
+  -webkit-box-shadow: 0 2px 4px rgba(46, 145, 59, 0.5);
+  box-shadow: 0 2px 4px rgba(46, 145, 59, 0.5);
   border: 1px solid #2e913b;
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
