@@ -5,7 +5,7 @@
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
-.searchform-input {
+.searchform-input, form input.searchform-input {
   background-color: #287BBC;
   border-color: #206296;
   color: #FFFFFF;
@@ -76,22 +76,22 @@ form .form-control::-webkit-input-placeholder {
   color: #287BBC;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: inset 0 2px 4px rgba(40, 123, 188, 0.1);
-  box-shadow: inset 0 2px 4px rgba(40, 123, 188, 0.1);
-  border: 2px solid #287bbc;
+  -webkit-box-shadow: inset 0 2px 4px rgba(32, 98, 150, 0.1);
+  box-shadow: inset 0 2px 4px rgba(32, 98, 150, 0.1);
+  border: 1px solid #206296;
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
-  color: #287BBC;
+  color: #206296;
   opacity: 1;
 }
 form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
-  color: #287BBC;
+  color: #206296;
 }
 form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
-  color: #287BBC;
+  color: #206296;
 }
 form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
-  color: #287BBC;
+  color: #206296;
 }
 
 .ui-autocomplete {
@@ -106,37 +106,31 @@ form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-
   border: 2px solid #206296;
 }
 
-.searchform-input::-moz-placeholder {
+form input.searchform-input::-moz-placeholder {
   color: #FFFFFF;
   opacity: 1;
 }
-.searchform-input:-moz-placeholder {
+form input.searchform-input:-moz-placeholder {
   color: #FFFFFF;
 }
-.searchform-input:-ms-input-placeholder {
+form input.searchform-input:-ms-input-placeholder {
   color: #FFFFFF;
 }
-.searchform-input::-webkit-input-placeholder {
+form input.searchform-input::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-.searchform-input:hover::-moz-placeholder, .searchform-input:focus::-moz-placeholder {
+form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder {
   color: #287BBC;
   opacity: 1;
 }
-.searchform-input:hover:-moz-placeholder, .searchform-input:focus:-moz-placeholder {
+form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder {
   color: #287BBC;
 }
-.searchform-input:hover:-ms-input-placeholder, .searchform-input:focus:-ms-input-placeholder {
+form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder {
   color: #287BBC;
 }
-.searchform-input:hover::-webkit-input-placeholder, .searchform-input:focus::-webkit-input-placeholder {
+form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder {
   color: #287BBC;
-}
-
-[type="search"] {
-  -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-  appearance: textfield;
 }
 
 [type="search"] {
