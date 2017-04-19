@@ -46,7 +46,9 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 			$next_tax = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
 			$prev_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
 			$next_all = get_permalink( get_adjacent_post( false, $exclude, true ) );
-			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) { $taxonomy = ''; }
+			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) {
+				$taxonomy = '';
+			}
 /*log_entry(
 	"    taxonomy: $taxonomy",
 	"previous tax: $prev_tax",
@@ -67,17 +69,21 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 					<?php esc_attr_e( 'Category Navigation', 'tcc-fluid' ); ?>
 				</h2>
 				<div class="row">
-					<ul class="pager pager-category">
-						<li class="previous btn-fluidity" title="<?php e_esc_attr( $older_tooltip ); ?>">
-							<?php previous_post_link( '%link', $left, true, $exclude, $taxonomy );
+					<ul class="pager pager-category"><?php
+						if ( $prev_tax !== $prev_all ) { ?>
+							<li class="previous btn-fluidity" title="<?php e_esc_attr( $older_tooltip ); ?>">
+								<?php previous_post_link( '%link', $left, true, $exclude, $taxonomy );
 #log_entry( '%link', $left, true, $exclude, $taxonomy );
  ?>
-						</li>
-						<li class="next btn-fluidity" title="<?php e_esc_attr( $newer_tooltip ); ?>">
-							<?php next_post_link( '%link', $right, true, $exclude, $taxonomy );
+							</li><?php
+						}
+						if ( $next_tax !== $prev_all ) { ?>
+							<li class="next btn-fluidity" title="<?php e_esc_attr( $newer_tooltip ); ?>">
+								<?php next_post_link( '%link', $right, true, $exclude, $taxonomy );
 #log_entry( '%link', $right, true, $exclude, $taxonomy );
  ?>
-						</li>
+							</li><?php
+						} ?>
 					</ul>
 				</div>
 			</nav><?php
