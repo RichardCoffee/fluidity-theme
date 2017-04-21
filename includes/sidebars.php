@@ -15,10 +15,11 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 		$widget = tcc_layout('widget');
 		$before_widget = '<div class="panel panel-fluidity">';
 		$before_title  = '<div class="panel-heading"';
-		$before_title .= ($widget==='closed') ? ' data-collapse="1">' : '>';
-		$fa_sign       = ($widget==='open')   ? 'fa-minus' : 'fa-plus';
-		$before_title .= ($widget==='perm')   ? '' : "<i class='fa $fa_sign pull-right panel-sign'></i>";
-		$before_css    = ($widget==='perm')   ? '' : 'text-center scroll-this pointer';
+		$before_title .= ( $widget === 'perm' )   ? '' : ' role="button"';
+		$before_title .= ( $widget === 'closed' ) ? ' data-collapse="1">' : '>';
+		$fa_sign       = ( $widget === 'open' )   ? 'fa-minus' : 'fa-plus';
+		$before_title .= ( $widget === 'perm' )   ? '' : "<i class='fa $fa_sign pull-right panel-sign'></i>";
+		$before_css    = ( $widget === 'perm' )   ? '' : 'text-center scroll-this pointer';
 		$before_title .= "<div class='panel-title $before_css'><b>";
 		$after_title   = '</b></div></div><div class="panel-body">';
 		$after_widget  = '</div></div>';

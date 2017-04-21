@@ -21,9 +21,8 @@ if ( class_exists( 'BuddyPress' ) ) {
 			$new_url = home_url();
 		} else if ( ! is_object( $user ) ) {
 			log_entry( 'user var is not an object', $user, 'stack' );
-#			$new_url = $redirect_to;
 		} else if ( get_class( $user ) === 'WP_Error' ) {
-#			$new_url = $redirect_to;
+			log_entry( 'user var is a WP_Error object', $user );
 		} else {
 			$user_name = $user->data->user_nicename;
 			$new_url   = home_url( "members/$user_name/profile/" ) ;
@@ -56,11 +55,27 @@ if (!function_exists('fluidity_jetpack_site_logo_to_bootstrap')) {
 
 /**  MailChimp for WordPress **/
 
-if (!defined('FLUID_MC4WP_LOG_LEVEL')) { define('FLUID_MC4WP_LOG_LEVEL','info'); }
-add_filter( 'mc4wp_debug_log_level', function() { return FLUID_MC4WP_LOG_LEVEL; } );  # possible values are: debug, info, warning, error(default)
+if ( ! defined( 'FLUID_MC4WP_LOG_LEVEL' ) ) {
+	define( 'FLUID_MC4WP_LOG_LEVEL', 'info' );  # possible values are: debug, info, warning, error(default)
+}
+add_filter( 'mc4wp_debug_log_level', function() {
+	return FLUID_MC4WP_LOG_LEVEL;
+} );
 
-if (!defined('FLUID_MC4WP_LOG_FILE')) { define('FLUID_MC4WP_LOG_FILE', WP_CONTENT_DIR . '/debug.log'); }
-add_filter( 'mc4wp_debug_log_file', function( $file ) { return FLUID_MC4WP_LOG_FILE; } );  # default is the download directory (huh?)
+if ( ! defined( 'FLUID_MC4WP_LOG_FILE' ) ) {
+	define( 'FLUID_MC4WP_LOG_FILE', WP_CONTENT_DIR . '/debug.log' );  # default is the download directory (huh?)
+}
+add_filter( 'mc4wp_debug_log_file', function( $file ) {
+	return FLUID_MC4WP_LOG_FILE;
+} );
+
+/**  mobble  **/
+
+if ( ! function_exists( 'is_mobile' ) ) {
+	function is_mobile() {
+		return false;
+	}
+}
 
 
 /**  S2member  **/
