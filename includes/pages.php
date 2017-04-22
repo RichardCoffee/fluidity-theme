@@ -153,7 +153,7 @@ if ( ! function_exists( 'pagination' ) ) {
 		}
 		if ( $pages !== 1 ) { ?>
 			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
-				<ul class="pagination"><?php /*
+				<ul class="pagination"><?php
 log_entry("    pages:  $pages",
           "    paged:  $paged",
           "    range:  $range",
@@ -192,8 +192,10 @@ log_entry("    pages:  $pages",
 					if ( $showitems < $pages ) {
 						if ( $paged < $pages ) { ?>
 							<li title="<?php esc_html_e('Next Page','tcc-fluid'); ?>">
-								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_html_e( 'Next Page', 'tcc-fluid' ); ?>" rel="next">
-									<span aria-hidden="true">&gt;</span>
+								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_attr_e( 'Next Page', 'tcc-fluid' ); ?>" rel="next">
+									<span aria-hidden="true"><?php /* &gt; */ ?>
+										<?php esc_html_e( 'Next Page', 'tcc-fluid' ); ?>
+									</span>
 								</a>
 							</li><?php
 						} else if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
