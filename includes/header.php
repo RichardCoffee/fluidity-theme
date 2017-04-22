@@ -75,6 +75,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 							$attrs = array(
 								'class'     => implode( ' ', $class ),
 								'data-size' => $size,
+								'alt'       => get_bloginfo( 'name' ),
 								'itemprop'  => 'image',
 							);
 							echo wp_get_attachment_image( $logo_id, $size, false, $attrs );

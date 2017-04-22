@@ -16,6 +16,7 @@ class TCC_Theme_Library {
 				continue;
 			}
 			switch( $attr ) {
+				case 'action':
 				case 'href':
 				case 'src':
 					$value = esc_url( $value );
