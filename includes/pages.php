@@ -148,12 +148,13 @@ if ( ! function_exists( 'pagination' ) ) {
 			global $wp_query;
 			$pages = $wp_query->max_num_pages;
 			if ( ! $pages ) {
-			$pages = 1;
+				$pages = 1;
 			}
 		}
 		if ( $pages !== 1 ) { ?>
 			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
 				<ul class="pagination"><?php
+/*
 log_entry("    pages:  $pages",
           "    paged:  $paged",
           "    range:  $range",

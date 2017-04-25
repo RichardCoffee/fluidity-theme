@@ -18,20 +18,30 @@ if (!function_exists('fluid_content_slug')) {
   }
 }
 
-if (!function_exists('fluid_edit_post_link')) {
-  function fluid_edit_post_link() {
-    $title  = the_title( '<span class="sr-only">"', '"</span>', false );
-    $string = sprintf( esc_attr_x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), $title );
-    ##  This code replaces the edit_post_link call so that I could add the target attribute
-    $link = get_edit_post_link(get_the_ID());
-    if ($link) { ?>
-      <span class="edit-link small block">
-        <a class="post-edit-link" href="<?php echo $link; ?>" target="_blank">&nbsp;{ <?php
-          echo $string; ?>}
-        </a>
-      </span><?php
-    }
-  }
+if ( ! function_exists( 'fluid_edit_post_link' ) ) {
+	function fluid_edit_post_link() {
+		echo fluid_get_edit_post_link();
+	}
+}
+if ( ! function_exists( 'fluid_get_edit_post_link' ) ) {
+	function fluid_get_edit_post_link() {
+		$postID = get_the_ID();
+		##  This code replaces the edit_post_link call so that I could add the target attribute
+		if ( $link = get_edit_post_link( $postID ) ) {
+			$link = apply_filters( 'fluid_get_edit_post_link_link', $link, $postID );
+			if ( $link ) {
+				$attrs = array(
+					'class'  => 'post-edit-link',
+					'href'   => $link,
+					'target' => '_blank',
+					'title'  => sprintf( _x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), get_the_title() ),
+				); ?>
+				<span class="edit-link small block">
+					<a <?php library()->apply_attrs( $attrs ); ?>>&nbsp;{ <?php esc_html_ex( 'Edit', 'verb', 'tcc-fluid' ); ?> }</a>
+				</span><?php
+			}
+		}
+	}
 }
 
 if ( ! function_exists( 'fluid_navigation' ) ) {

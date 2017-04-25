@@ -67,7 +67,7 @@
 	==================================
 		fluid_comment_navigation()
 		fluid_get_post_terms( $post_id, $taxonomy, $args )
-		fluid_edit_post_link( $separator = ' ' )
+		fluid_edit_post_link()
 		fluid_list_comments( $comment, $args, $depth )
 		fluid_navigation( $taxonomy = '', $all_links = false )
 		fluid_next_post_exists()
