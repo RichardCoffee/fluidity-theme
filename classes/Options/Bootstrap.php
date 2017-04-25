@@ -5,22 +5,8 @@ class TCC_Options_Bootstrap {
 	private $base     = 'bootstrap';
 	private $priority = 600;
 
-	public function __construct() {
-		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->priority );
-	}
-
-	private function form_title() {
+	protected function form_title() {
 		return __( 'Bootstrap', 'tcc-fluid' );
-	}
-
-	public function form_layout( $form ) {
-		$form[ $this->base ] = array(
-			'describe' => array( $this, 'describe_options' ),
-			'title'    => $this->form_title(),
-			'option'   => 'tcc_options_' . $this->base,
-			'layout'   => $this->options_layout()
-		);
-		return $form;
 	}
 
 	public function describe_options() { ?>
