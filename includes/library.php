@@ -510,28 +510,24 @@ if (!function_exists('tellme')) {
 if ( ! function_exists( 'who_am_i' ) ) {
 	//  This function is for debugging purposes only
 	function who_am_i( $pos=0 ) {
-log_entry(
-	'   edit core: ' . current_user_can( 'edit_core' ),
-	'edit options: ' . current_user_can( 'edit_theme_options' ),
-	'  edit_posts: ' . current_user_can( 'edit_posts' )
-);
-		if ( WP_DEBUG && current_user_can( 'edit_core' ) ) {
-			static $status;
-			if ( empty( $status ) ) {
-				$status = ( file_exists( WP_CONTENT_DIR . '/who_am_i.flg' ) ) ? 'on' : tcc_settings( 'where' );
+		static $status;
+		if ( empty( $status ) ) {
+			$status = ( file_exists( WP_CONTENT_DIR . '/who_am_i.flg' ) ) ? 'on' : tcc_settings( 'where' );
+		}
+		if ( ( $status === 'on' ) && WP_DEBUG && current_user_can( 'edit_theme_options' ) ) {
+			$trace = debug_backtrace();
+			$show  = $trace[ $pos ]['file'];
+			if ( $pos = strpos( $show, 'wp-content' ) ) {
+				$show = substr( $show, $pos + 10 );
 			}
-			if ( $status === 'on' ) {
-				$trace = debug_backtrace();
-				$show  = $trace[ $pos ]['file'];
-				if ($pos=strpos( $show, 'wp-content' ) ) {
-					$show = substr( $show, $pos + 10 );
-				}
-				$slug = get_page_slug();
-				echo "<p>$slug : $show</p>";
-			}
+			$slug = get_page_slug();
+			echo "<p>$slug : $show</p>";
+		} else {
+			$static = 'off';
 		}
 	}
 }
+
 
 #$perm_struct = get_option('permalink_structure');
 #log_entry("permalink structure: $perm_struct");
