@@ -552,7 +552,8 @@ log_entry($controls);
 	private function render_radio($data) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
-		$uniq = uniqid();
+		$library     = library();
+		$uniq        = uniqid();
 		$tooltip     = ( isset( $layout['help'] ) )    ? $layout['help']    : '';
 		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
 		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
@@ -561,16 +562,25 @@ log_entry($controls);
 			<div id="<?php echo $uniq; ?>">
 				<?php echo esc_html( $before_text ); ?>
 			</div><?php
-			foreach( $layout['source'] as $key => $text ) { ?>
+			foreach( $layout['source'] as $key => $text ) {
+				$attrs = array(
+					'type' => 'radio',
+					'name' => $name,
+					'value' => $key,
+					'aria-describedby' => $uniq,
+				);
+				if ( $onchange ) {
+					$attrs['onchange'] = $onchange;
+				} ?>
 				<div>
 					<label>
-						<input type="radio"
-						       name="<?php echo esc_attr( $name ) ; ?>"
-						       value="<?php echo esc_html( $key ); ?>"
-						       <?php checked( $value, $key ); ?>
-						       onchange="<?php echo esc_attr( $onchange ); ?>"
-						       aria-describedby="<?php echo $uniq; ?>"><?php
-						echo esc_html( $text );
+						<input <?php $library->apply_attrs( $attrs ); ?> <?php checked( $value, $key ); ?>><?php
+						if ( isset( $layout['src_html'] ) ) {
+							// FIXME:  this is here so I can display font awesome icons - it needs to be done differently
+							echo $text;
+						} else {
+							echo esc_html( $text );
+						}
 						if ( isset( $layout['extra_html'][ $key ] ) ) {
 							echo $layout['extra_html'][ $key ];
 						} ?>

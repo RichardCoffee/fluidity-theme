@@ -116,8 +116,8 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'open'   => __( 'Open', 'tcc-fluid' ),
 				'closed' => __( 'Closed', 'tcc-fluid' ),
 			),
-			'change'  => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
-			'divcss'  => 'widget-icons-active',
+			'change' => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
+			'divcss' => 'widget-icons-active',
 		);
 		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
 		$layout['widget_icons'] = array(
@@ -135,7 +135,8 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'toggle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-toggle-down' ), $library->get_fawe( 'fa-toggle-up' ) ),
 				'level'   => sprintf( $fawe_format, $library->get_fawe( 'fa-level-down' ), $library->get_fawe( 'fa-level-up' ) ),
 			),
-			'divcss'  => 'fluid-widget-icons',
+			'src-html' => 'true',
+			'divcss'   => 'fluid-widget-icons',
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
