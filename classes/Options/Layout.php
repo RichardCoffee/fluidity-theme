@@ -18,6 +18,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 	}
 
 	protected function options_layout() {
+		$library = library();
 		$layout = array( 'default' => true );
 		$layout['width'] = array(
 			'default' => 'full',
@@ -115,9 +116,28 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'open'   => __( 'Open', 'tcc-fluid' ),
 				'closed' => __( 'Closed', 'tcc-fluid' ),
 			),
+			'change'  => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
+			'divcss'  => 'widget-icons-active',
 		);
-		$layout = apply_filters( "tcc_{$this->base}_options_layout", $layout );
-		return $layout;
+		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
+		$layout['widget_icons'] = array(
+			'default' => 'default',
+			'label'   => __( 'Widget Icons', 'tcc-fluid' ),
+			'text'    => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
+				'default' => sprintf( $fawe_format, $library->get_fawe( 'fa-plus' ), $library->get_fawe( 'fa-minus' )   ),
+				'square'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-square' ), $library->get_fawe( 'fa-minus-square' ) ),
+				'circle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-circle' ), $library->get_fawe( 'fa-minus-circle' ) ),
+				'sort'    => sprintf( $fawe_format, $library->get_fawe( 'fa-sort-down' ), $library->get_fawe( 'fa-sort-up' ) ),
+				'window'  => sprintf( $fawe_format, $library->get_fawe( 'fa-window-maximize' ), $library->get_fawe( 'fa-window-minimize' ) ),
+				'toggle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-toggle-down' ), $library->get_fawe( 'fa-toggle-up' ) ),
+				'level'   => sprintf( $fawe_format, $library->get_fawe( 'fa-level-down' ), $library->get_fawe( 'fa-level-up' ) ),
+			),
+			'divcss'  => 'fluid-widget-icons',
+		);
+		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
 
