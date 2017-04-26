@@ -510,7 +510,7 @@ if (!function_exists('tellme')) {
 if ( ! function_exists( 'who_am_i' ) ) {
 	//  This function is for debugging purposes only
 	function who_am_i( $pos=0 ) {
-		if ( WP_DEBUG ) {
+		if ( WP_DEBUG && current_user_can( 'edit_core' ) ) {
 			static $status;
 			if ( empty( $status ) ) {
 				$status = tcc_settings( 'where' );
