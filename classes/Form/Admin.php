@@ -562,6 +562,7 @@ log_entry($controls);
 			<div id="<?php echo $uniq; ?>">
 				<?php echo esc_html( $before_text ); ?>
 			</div><?php
+log_entry($layout);
 			foreach( $layout['source'] as $key => $text ) {
 				$attrs = array(
 					'type' => 'radio',
