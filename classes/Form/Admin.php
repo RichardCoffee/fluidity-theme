@@ -577,6 +577,7 @@ log_entry($controls);
 						<input <?php $library->apply_attrs( $attrs ); ?> <?php checked( $value, $key ); ?>><?php
 						if ( isset( $layout['src_html'] ) ) {
 							// FIXME:  this is here so I can display font awesome icons - it needs to be done differently
+log_entry($text);
 							echo $text;
 						} else {
 							echo esc_html( $text );
