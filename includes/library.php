@@ -510,13 +510,15 @@ if (!function_exists('tellme')) {
 if ( ! function_exists( 'who_am_i' ) ) {
 	//  This function is for debugging purposes only
 	function who_am_i( $pos=0 ) {
+log_entry(
+	'   edit core: ' . current_user_can( 'edit_core' ),
+	'edit options: ' . current_user_can( 'edit_theme_options' ),
+	'  edit_posts: ' . current_user_can( 'edit_posts' ),
+);
 		if ( WP_DEBUG && current_user_can( 'edit_core' ) ) {
 			static $status;
 			if ( empty( $status ) ) {
-				$status = tcc_settings( 'where' );
-				if ( file_exists( WP_CONTENT_DIR . '/who_am_i.flg' ) ) {
-					$status = 'on';
-				}
+				$status = ( file_exists( WP_CONTENT_DIR . '/who_am_i.flg' ) ) ? 'on' : tcc_settings( 'where' );
 			}
 			if ( $status === 'on' ) {
 				$trace = debug_backtrace();
