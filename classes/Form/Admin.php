@@ -562,7 +562,6 @@ log_entry($controls);
 			<div id="<?php echo $uniq; ?>">
 				<?php echo esc_html( $before_text ); ?>
 			</div><?php
-log_entry($layout);
 			foreach( $layout['source'] as $key => $text ) {
 				$attrs = array(
 					'type' => 'radio',
@@ -576,9 +575,8 @@ log_entry($layout);
 				<div>
 					<label>
 						<input <?php $library->apply_attrs( $attrs ); ?> <?php checked( $value, $key ); ?>><?php
-						if ( isset( $layout['src_html'] ) ) {
+						if ( isset( $layout['src-html'] ) ) {
 							// FIXME:  this is here so I can display font awesome icons - it needs to be done differently
-log_entry($text);
 							echo $text;
 						} else {
 							echo esc_html( $text );
