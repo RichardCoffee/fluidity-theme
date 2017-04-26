@@ -513,7 +513,7 @@ if ( ! function_exists( 'who_am_i' ) ) {
 log_entry(
 	'   edit core: ' . current_user_can( 'edit_core' ),
 	'edit options: ' . current_user_can( 'edit_theme_options' ),
-	'  edit_posts: ' . current_user_can( 'edit_posts' ),
+	'  edit_posts: ' . current_user_can( 'edit_posts' )
 );
 		if ( WP_DEBUG && current_user_can( 'edit_core' ) ) {
 			static $status;
