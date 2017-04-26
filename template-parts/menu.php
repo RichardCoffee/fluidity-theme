@@ -17,7 +17,7 @@ if (has_nav_menu($menu)) {
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-<?php echo $menu; ?>-collapse">
 					<span class="sr-only">Toggle navigation</span>
-					<i class="fa fa-bars"> </i>
+					<?php library()->fawe( 'fa-bars' ); ?>
 				</button>
 				<a class="navbar-brand " href="<?php echo esc_url( home_url() )?>"><?php bloginfo('name')?></a>
 			</div>
@@ -42,8 +42,7 @@ if (has_nav_menu($menu)) {
 		<nav id="site-navigation" class="<?php echo $main_css; ?>" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
-				<i class="fa fa-bars"> </i>
-				<?php #esc_html_e( 'Primary Menu', 'tcc_fluid' ); ?>
+				<?php library()->fawe( 'fa-bars' ); ?>
 			</button>
 			<?php wp_nav_menu( array( 'theme_location' => $menu, 'menu_id' => 'primary-menu', 'fallback_cb' => '' ) ); ?>
 		</nav><!-- #site-navigation --><?php

@@ -36,6 +36,17 @@ class TCC_Theme_Library {
 	}
 
 
+	/**  font awesome  **/
+
+	public function fawe( $icon = 'fa-question fa-border' ) {
+		echo $this->get_fawe( $icon );
+	}
+
+	public function get_fawe( $icon = 'fa-question fa-border' ) {
+		return '<i class="fa ' . $icon . ' aria-hidden="true"></i>';
+	}
+
+
 	/**  image functions  **/
 
 	public function get_image_attrs( $id ) {

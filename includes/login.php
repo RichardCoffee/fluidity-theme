@@ -40,99 +40,12 @@ if ( ! function_exists( 'tcc_authenticate_user' ) ) {
 	add_filter( 'authenticate', 'tcc_authenticate_user', 1, 3);
 }
 
-/*
-$redirect = home_url( add_query_arg( '_', false ) ); ?>
-Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
-Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
-Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
-Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
-
-/*
-if (!function_exists('tcc_get_login_form_defaults')) {
-	function tcc_get_login_form_defaults() {
-		$defaults = array();
-		add_filter('login_form_defaults', function($args) use (&$defaults) {
-			$defaults = $args;
-			return $args;
-		}, 9999 );
-		wp_login_form( array( 'echo' => false ) );
-		return $defaults;
-	}
-} //*/
-
 if (!function_exists('tcc_login_header_url')) {
   function tcc_login_header_url() {
     return home_url();
   }
 #  add_filter('login_headerurl','tcc_login_header_url' );
 }
-/*
-if (!function_exists('tcc_login_form')) {
-	function tcc_login_form( $args = array() ) {
-		if (is_user_logged_in()) {
-			$navbar  = false;
-			extract($args,EXTR_IF_EXISTS);
-			$signout = apply_filters('tcc_signout_text', __('Sign Out', 'tcc-fluid')); ?>
-			<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url(home_url()); ?>" method="post">
-				<div class="text-center"><?php
-#					do_action('tcc_signout');
-#					$action = ($navbar) ? 'navbar' : 'widget';
-#					do_action("tcc_{$action}_signout");
-					$out  = wp_logout_url(home_url()); ?>
-					<a class="btn btn-fluidity" href="<?php echo esc_url($out); ?>" title="<?php echo esc_attr($signout); ?>" rel="nofollow">&nbsp;
-						<?php echo esc_html($signout); ?>
-						&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
-					</a>
-				</div>
-			</form><?php
-		} else {
-			$navbar = false;
-			$right  = false;
-			extract($args,EXTR_IF_EXISTS);
-			$defaults = tcc_get_login_form_defaults();
-			$args = wp_parse_args( $args, $defaults );
-			extract($args);
-			$remember  = ($navbar)  ? false : $remember;
-			$formclass = (!$navbar) ? "login-form" : 'navbar-form navbar-login-form'.(($right) ? ' navbar-right' : ''); ?>
-			<form id="<?php echo esc_attr($form_id); ?>" class="<?php echo esc_attr($formclass); ?>"
-			      name="loginform" action="<?php echo site_url('/wp-login.php'); ?>" method="post">
-				<div class='form-group login-username'>
-					<label class="sr-only" for="<?php echo esc_attr($id_username); ?>"><?php echo esc_html($label_username); ?></label>
-					<input type="text" name="log" id="<?php echo esc_attr($id_username); ?>" class="form-control"
-						placeholder="<?php echo esc_html($label_username); ?>" required>
-				</div>
-				<div class='form-group login-password'>
-					<label class="sr-only" for="<?php echo esc_attr($id_password); ?>"><?php echo esc_html($label_password); ?></label>
-					<input type="password" name="pwd" id="<?php echo esc_attr($id_password); ?>"
-					       class="form-control" placeholder="<?php echo esc_attr($label_password); ?>" required>
-				</div><?php
-				if ($remember) { ?>
-					<div class="checkbox login-remember">
-						<label>
-							<input type="checkbox" id="<?php echo esc_attr($id_remember); ?>" name="rememberme" value="forever" <?php checked($value_remember,true); ?>>&nbsp;
-							<?php echo esc_html($label_remember); ?>
-						</label>
-					</div><?php
-				} ?>
-				<div class="form-group login-submit">
-					<button type="submit" id="<?php echo esc_attr($id_submit); ?>" class="btn btn-fluidity" name="wp-submit"><i class="fa fa-sign-in"></i>&nbsp;
-						<?php echo esc_html($label_log_in); ?>
-					</button>
-					<input type="hidden" name="redirect_to" value="<?php echo esc_url($redirect); ?>" />
-				</div><?php
-#				if (get_page_by_title('Lost Password')) {
-				if ( !empty( $label_lost ) && ( $lost_url=wp_lostpassword_url( home_url() ) ) ) {
-					$tooltip = __('You can request a new password via this link.','tcc-fluid'); ?>
-					<a class="lost-password pull-right" href="<?php echo esc_url($lost_url); ?>" title="<?php echo esc_attr($tooltip); ?>" rel="nofollow">
-						<small>
-							<?php echo esc_html($label_lost); ?>
-						</small>
-					</a><?php
-				} ?>
-			</form><?php
-		}
-	}
-} //*/
 
 if (!function_exists('tcc_logout_url')) {
   #  force redirect for logout url

@@ -101,17 +101,17 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 	add_filter( 'get_custom_logo', 'fluidity_header_logo', 20, 2 );
 }
 
-if (!function_exists('fluidity_menubar_print')) {
-  function fluidity_menubar_print_button() {
-    if (is_single() || is_page()) { ?>
-      <span class="hidden fluid-print-button">
-        <button class="btn btn-fluidity" onclick="print();">
-          <i class="fa fa-print" aria-hidden="true"></i>
-          <span class="hidden-xs"> <?php
-            esc_html_e('Print','tcc-fluid'); ?>
-          </span>
-        </button>
-      </span><?php
-    }
-  }
+if ( ! function_exists( 'fluidity_menubar_print_button' ) ) {
+	function fluidity_menubar_print_button() {
+		if ( is_single() || is_page() ) { ?>
+			<span class="hidden fluid-print-button">
+				<button class="btn btn-fluidity" onclick="print();">
+					<?php library()->fawe( 'fa-print' ); ?>
+					<span class="hidden-xs">&nbsp;
+						<?php esc_html_e('Print','tcc-fluid'); ?>
+					</span>
+				</button>
+			</span><?php
+		}
+	}
 }

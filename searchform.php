@@ -12,8 +12,8 @@ $field_id = 's-' . $uniqid; ?>
 		<input type="text" value="" name="s" id="<?php e_esc_attr( $field_id ); ?>" class="form-control searchform-input" placeholder="<?php esc_attr_e( 'Search', 'tcc-fluid' ); ?>" />
 		<span class="input-group-btn">
 			<button class="btn btn-fluidity" type="submit">
-				<i class="fa fa-search" aria-hidden="true"></i>
-				<span class="screen-reader-text">
+				<?php library()->fawe( 'fa-search' ); ?>
+				<span class="screen-reader-text">&nbsp;
 					<?php esc_html_e( 'Submit search terms', 'tcc-fluid' ); ?>
 				</span>
 			</button>

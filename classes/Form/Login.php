@@ -82,6 +82,13 @@ class TCC_Form_Login {
 		return array_merge( $defaults, $new );
 	}
 
+/*
+$redirect = home_url( add_query_arg( '_', false ) ); ?>
+Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
+Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
+Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
+Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
+
 	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	function login_redirect( $redirect_to, $request, $user ) {
 		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
@@ -163,7 +170,7 @@ class TCC_Form_Login {
 
 			<div class="form-group login-submit">
 				<button type="submit" id="<?php echo esc_attr( $id_submit ); ?>" class="btn btn-fluidity" name="wp-submit">
-					<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;
+					<?php library()->fawe( 'fa-sign-in' ); ?>&nbsp;
 					<?php echo esc_html( $label_log_in ); ?>
 				</button>
 				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect ); ?>" />
