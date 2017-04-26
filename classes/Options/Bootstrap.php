@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Options_Bootstrap {
+class TCC_Options_Bootstrap extends TCC_Options_Options {
 
 	private $base     = 'bootstrap';
 	private $priority = 600;
