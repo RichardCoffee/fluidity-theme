@@ -55,13 +55,13 @@ if (!function_exists('fluidity_social_icons')) {
           }
         }
         $insta  = new TCC_Options_Social;
-        $layout = $insta->social_layout();
+        $layout = $insta->options_layout();
         #log_entry($icons,$social,$layout); ?>
 				<span class='fluidity-social-icons'><?php
 					$library = library();
 					foreach( $social as $key => $set ) {
 						if ( empty( $set['link'] ) ) continue;
-						$tool = sprintf( esc_html_x( 'See us on %s', 'website name', 'tcc-fluid' ), $layout[ $key ] ['label'] );
+						$tool = sprintf( _x( 'See us on %s', '(social) website name', 'tcc-fluid' ), $layout[ $key ] ['label'] );
 						$attr = array(
 							'class' => "fa fa-fw fa-$key-square $size",
 							'href'  => $set['link'],
