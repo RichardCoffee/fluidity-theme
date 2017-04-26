@@ -1,26 +1,14 @@
 <?php
 
-class TCC_Options_Settings {
+class TCC_Options_Settings extends TCC_Options_Options {
 
-	private $base     = 'admin';
-	private $priority = 500;
 
-	public function __construct() {
-		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->priority );
-	}
+	protected $base     = 'admin';
+	protected $priority = 500;
 
-	private function form_title() {
-		return esc_html__( 'Settings', 'tcc-fluid' );
-	}
 
-	public function form_layout($form) {
-		$form[$this->base] = array(
-			'describe' => array( $this, 'describe_options' ),
-			'title'    => $this->form_title(),
-			'option'   => 'tcc_options_'.$this->base,
-			'layout'   => $this->options_layout(),
-		);
-		return $form;
+	protected function form_title() {
+		return __( 'Settings', 'tcc-fluid' );
 	}
 
 	public function describe_options() {
@@ -53,35 +41,13 @@ class TCC_Options_Settings {
 				),
 			);
 		}
-/*		$layout['coming'] = array(
-			'default' => 'off',
-			'label'   => esc_html__( 'Coming Soon', 'tcc-fluid' ),
-			'text'    => esc_html__( 'Show a Coming Soon page', 'tcc-fluid' ),
-			'help'    => esc_html__( 'Take your site down temporarily', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'off'  => esc_html__( 'Show site', 'tcc-fluid' ),
-				'on'   => esc_html__( 'Show Coming Soon page', 'tcc-fluid' ),
-			),
-		); //*/
-/*		$layout['autocore'] = array(
-			'default' => 'on',
-			'label'   => esc_html__( 'Core Update', 'tcc-fluid' ),
-			'text'    => esc_html__( 'Automatically update WordPress core files.', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'on'   => esc_html__( 'Automatically update for new versions. (recommended)', 'tcc-fluid' ),
-				'off'  => esc_html__( 'Manually update core files.', 'tcc-fluid' ),
-			),
-		); //*/
 		$wpd_status = ( WP_DEBUG ) ? __( 'ON', 'tcc-fluid' ) : __( 'OFF', 'tcc-fluid' );
 		$layout['wp_debug'] = array(
 			'label'  => __( 'WP Debug status', 'tcc-fluid' ),
 			'text'   => sprintf( __( 'WP Debug is %s', 'tcc-fluid' ), $wpd_status ),
 			'render' => 'display',
 		);
-		$layout = apply_filters( "tcc_{$this->base}_options_layout", $layout );
-		return $layout;
+		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
 
