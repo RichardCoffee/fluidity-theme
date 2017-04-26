@@ -2,28 +2,15 @@
 
 
 
-class TCC_Options_Layout {
+class TCC_Options_Layout extends TCC_Options_Options {
 
-	private $base     = 'layout';
-	private $priority = 35; # customizer priority
 
-	public function __construct() {
-		add_filter( 'fluidity_options_form_layout', array( $this, 'form_layout' ), $this->priority );
-		add_action( 'fluid-customizer', array( $this, 'options_customize_register' ), $this->priority, 2 );
-	}
+	protected $base     = 'layout';
+	protected $priority = 35; # customizer priority
 
-	private function form_title() {
+
+	protected function form_title() {
 		return __( 'Layout', 'tcc-fluid' );
-	}
-
-	public function form_layout( $form ) {
-		$form[ $this->base ] = array(
-			'describe' => array( $this, 'describe_options' ),
-			'title'    => $this->form_title(),
-			'option'   => 'tcc_options_'.$this->base,
-			'layout'   => $this->options_layout()
-		);
-		return $form;
 	}
 
 	public function describe_options() {
@@ -131,11 +118,6 @@ class TCC_Options_Layout {
 		);
 		$layout = apply_filters( "tcc_{$this->base}_options_layout", $layout );
 		return $layout;
-	}
-
-	public function options_customize_register($wp_customize, TCC_Options_Fluidity $form) {
-		$wp_customize->add_section( 'fluid_'.$this->base, array('title' => $this->form_title(), 'priority' => $this->priority));
-		$form->customizer_settings($wp_customize,$this->base);
 	}
 
 
