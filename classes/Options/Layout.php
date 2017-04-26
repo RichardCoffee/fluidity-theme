@@ -119,7 +119,8 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'change' => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
 			'divcss' => 'widget-icons-active',
 		);
-		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
+#		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
+		$fawe_format = _x( '%s / %s', 'display icons for use with the widgets', 'tcc-fluid' );
 		$layout['widget_icons'] = array(
 			'default' => 'default',
 			'label'   => __( 'Widget Icons', 'tcc-fluid' ),
@@ -127,13 +128,13 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'render'  => 'radio',
 			'source'  => array(
 				'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
-				'default' => sprintf( $fawe_format, $library->get_fawe( 'fa-plus' ), $library->get_fawe( 'fa-minus' )   ),
-				'square'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-square' ), $library->get_fawe( 'fa-minus-square' ) ),
-				'circle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-circle' ), $library->get_fawe( 'fa-minus-circle' ) ),
-				'sort'    => sprintf( $fawe_format, $library->get_fawe( 'fa-sort-down' ), $library->get_fawe( 'fa-sort-up' ) ),
-				'window'  => sprintf( $fawe_format, $library->get_fawe( 'fa-window-maximize' ), $library->get_fawe( 'fa-window-minimize' ) ),
-				'toggle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-toggle-down' ), $library->get_fawe( 'fa-toggle-up' ) ),
-				'level'   => sprintf( $fawe_format, $library->get_fawe( 'fa-level-down' ), $library->get_fawe( 'fa-level-up' ) ),
+				'default' => sprintf( $fawe_format, $library->get_fawe( 'fa-plus fa-fw' ), $library->get_fawe( 'fa-minus fa-fw' )   ),
+				'square'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-square fa-fw' ), $library->get_fawe( 'fa-minus-square fa-fw' ) ),
+				'circle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-circle fa-fw' ), $library->get_fawe( 'fa-minus-circle fa-fw' ) ),
+				'sort'    => sprintf( $fawe_format, $library->get_fawe( 'fa-sort-down fa-fw' ), $library->get_fawe( 'fa-sort-up fa-fw' ) ),
+				'window'  => sprintf( $fawe_format, $library->get_fawe( 'fa-window-maximize fa-fw' ), $library->get_fawe( 'fa-window-minimize fa-fw' ) ),
+				'toggle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-toggle-down fa-fw' ), $library->get_fawe( 'fa-toggle-up fa-fw' ) ),
+				'level'   => sprintf( $fawe_format, $library->get_fawe( 'fa-level-down fa-fw' ), $library->get_fawe( 'fa-level-up fa-fw' ) ),
 			),
 			'src-html' => 'true',
 			'divcss'   => 'fluid-widget-icons',
