@@ -61,13 +61,17 @@ if (!function_exists('tcc_font_size')) {
   add_action('tcc_custom_css','tcc_font_size');
 }
 
-if (!function_exists('tcc_layout')) {
-  function tcc_layout($option) {
-    static $data;
-    if (empty($data)) { $data = get_option('tcc_options_layout'); }
-    if (isset($data[$option])) { return $data[$option]; }
-    return 'excerpt';
-  }
+if ( ! function_exists( 'tcc_layout' ) ) {
+	function tcc_layout( $option, $value = 'excerpt' ) {
+		static $data;
+		if ( empty( $data ) ) {
+			$data = get_option( 'tcc_options_layout' );
+		}
+		if ( isset( $data[ $option ] ) ) {
+			$value = $data[ $option ];
+		}
+		return $value;
+	}
 }
 
 if (!function_exists('tcc_option')) {

@@ -18,7 +18,6 @@ class TCC_Options_Layout extends TCC_Options_Options {
 	}
 
 	protected function options_layout() {
-		$library = library();
 		$layout = array( 'default' => true );
 		$layout['width'] = array(
 			'default' => 'full',
@@ -119,28 +118,31 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'change' => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
 			'divcss' => 'widget-icons-active',
 		);
-#		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
-		$fawe_format = _x( '%s / %s', 'display icons for use with the widgets', 'tcc-fluid' );
 		$layout['widget_icons'] = array(
 			'default' => 'default',
 			'label'   => __( 'Widget Icons', 'tcc-fluid' ),
 			'text'    => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
 			'render'  => 'radio',
-			'source'  => array(
-				'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
-				'default' => sprintf( $fawe_format, $library->get_fawe( 'fa-plus fa-fw fa-2x' ), $library->get_fawe( 'fa-minus fa-fw fa-2x' )   ),
-				'square'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-square fa-fw fa-2x' ), $library->get_fawe( 'fa-minus-square fa-fw fa-2x' ) ),
-				'circle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-plus-circle fa-fw fa-2x' ), $library->get_fawe( 'fa-minus-circle fa-fw fa-2x' ) ),
-				'sort'    => sprintf( $fawe_format, $library->get_fawe( 'fa-sort-down fa-fw fa-2x' ), $library->get_fawe( 'fa-sort-up fa-fw fa-2x' ) ),
-				'window'  => sprintf( $fawe_format, $library->get_fawe( 'fa-window-maximize fa-fw fa-2x' ), $library->get_fawe( 'fa-window-minimize fa-fw fa-2x' ) ),
-				'toggle'  => sprintf( $fawe_format, $library->get_fawe( 'fa-toggle-down fa-fw fa-2x' ), $library->get_fawe( 'fa-toggle-up fa-fw fa-2x' ) ),
-				'level'   => sprintf( $fawe_format, $library->get_fawe( 'fa-level-down fa-fw fa-2x' ), $library->get_fawe( 'fa-level-up fa-fw fa-2x' ) ),
-			),
+			'source'  => $this->widget_icons(),
 			'src-html' => 'true',
 			'divcss'   => 'fluid-widget-icons',
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
+	public function widget_icons() {
+		$library = library();
+		$source  = array(
+			'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
+		);
+		$icons = $library->get_widget_fawe();
+#		$fawe_format = _x( '%s / %s', 'display icons for use with the widgets', 'tcc-fluid' );
+		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
+		foreach( $icons as $key => $set ) {
+			$plus  = $library->get_fawe( $set['plus']  . ' fa-fw fa-2x' );
+			$minus = $library->get_fawe( $set['minus'] . ' fa-fw fa-2x' );
+			$source[ $key ] = sprintf( $fawe_format, $plus, $minus );
+		}
+	}
 
 }
