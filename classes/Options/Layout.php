@@ -119,11 +119,11 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'divcss' => 'widget-icons-active',
 		);
 		$layout['widget_icons'] = array(
-			'default' => 'default',
-			'label'   => __( 'Widget Icons', 'tcc-fluid' ),
-			'text'    => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => $this->widget_icons(),
+			'default'  => 'default',
+			'label'    => __( 'Widget Icons', 'tcc-fluid' ),
+			'text'     => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
+			'render'   => 'radio',
+			'source'   => $this->widget_icons(),
 			'src-html' => 'true',
 			'divcss'   => 'fluid-widget-icons',
 		);
@@ -143,6 +143,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			$minus = $library->get_fawe( $set['minus'] . ' fa-fw fa-2x' );
 			$source[ $key ] = sprintf( $fawe_format, $plus, $minus );
 		}
+		return $source;
 	}
 
 }
