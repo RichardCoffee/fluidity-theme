@@ -141,6 +141,26 @@ if (!function_exists('fluidity_register_color_scheme')) {
   }
 }
 
+if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
+	function fluidity_theme_scandir_exclusions( $exclusions ) {
+		$exclusions = array_merge( $exclusions, array(
+			'classes',
+			'css',
+			'docs',
+			'fonts',
+			'icons',
+			'includes',
+			'js',
+			'languages',
+			'scss',
+			'template-parts',
+			'tests',
+			'vendor',
+		) );
+		return $exclusions;
+	}
+	add_filter( 'theme_scandir_exclusions', 'fluidity_theme_scandir_exclusions' );
+}
 
 /**  Test functions  **/
 /*

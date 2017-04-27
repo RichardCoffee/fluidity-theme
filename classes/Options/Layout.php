@@ -139,8 +139,8 @@ class TCC_Options_Layout extends TCC_Options_Options {
 #		$fawe_format = _x( '%s / %s', 'display icons for use with the widgets', 'tcc-fluid' );
 		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
 		foreach( $icons as $key => $set ) {
-			$plus  = $library->get_fawe( $set['plus']  . ' fa-fw fa-2x' );
-			$minus = $library->get_fawe( $set['minus'] . ' fa-fw fa-2x' );
+			$plus  = $library->get_fawe( $set['plus']  . ' fa-fw' );
+			$minus = $library->get_fawe( $set['minus'] . ' fa-fw' );
 			$source[ $key ] = sprintf( $fawe_format, $plus, $minus );
 		}
 		return $source;
