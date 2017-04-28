@@ -103,10 +103,10 @@ if (!function_exists('fluidity_load_sidebar')) {
     foreach($sidebars as $sidebar) {
       if ( is_active_sidebar( $sidebar ) ) {
         if ($dyn=dynamic_sidebar($sidebar)) {
-          if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
+          #if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
           return true;
-        } else if ( $status === 'on' ) { echo "<p>$sidebar non-dynamic</p>"; }
-      } else if ( $status === 'on' ) {   echo "<p>$sidebar not active</p>";  }
+        } #else if ( $status === 'on' ) { echo "<p>$sidebar non-dynamic</p>"; }
+      } #else if ( $status === 'on' ) {   echo "<p>$sidebar not active</p>";  }
     }
     return $force;
   }
