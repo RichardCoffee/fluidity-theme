@@ -7,7 +7,7 @@
 
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 	function fluid_rest_dispatch_request( $result, $request, $route_schema, $handler ) {
-		log_entry( $result, $request, $route_schema, $handler )
+		log_entry( $result, $request, $route_schema, $handler );
 	}
 	add_filter( 'rest_dispatch_request', 'fluid_rest_dispatch_request' ), 10, 4 );
 }
