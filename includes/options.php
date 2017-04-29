@@ -5,8 +5,15 @@
  *
  */
 
-if (!function_exists('stop_heartbeat')) {
-  function stop_heartbeat() {
+if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
+	function fluid_rest_dispatch_request( $result, $request, $route_schema, $handler ) {
+		log_entry( $result, $request, $route_schema, $handler )
+	}
+	add_filter( 'rest_dispatch_request', 'fluid_rest_dispatch_request' ), 10, 4 );
+}
+
+if (!function_exists('fluid_stop_heartbeat')) {
+  function fluid_stop_heartbeat() {
     $heart = tcc_settings('heart');
     if ($heart=='off') {
       global $pagenow;
@@ -17,11 +24,11 @@ if (!function_exists('stop_heartbeat')) {
         add_filter('heartbeat_settings', function ( $settings ) {
           $settings['minimalInterval'] = 600;
           $settings['autostart']       = false; // default is true
-          $settings['interval']        = 600; // 15 sec by default
+          $settings['interval']        = 600; // default is 15 sec
           return $settings; } );
     }
   }
-  add_action( 'init', 'stop_heartbeat', 1 );
+  add_action( 'init', 'fluid_stop_heartbeat', 1 );
 }
 
 if (!function_exists('tcc_bootstrap')) {
