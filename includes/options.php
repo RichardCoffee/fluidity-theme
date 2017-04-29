@@ -6,10 +6,16 @@
  */
 
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
-	function fluid_rest_dispatch_request( $result, $request, $route_schema, $handler ) {
+	function fluid_rest_dispatch_request( $result = null, $request = '', $route_schema = '', $handler = '' ) {
 		log_entry( $route_schema );
+		if ( ! is_user_logged_in() ) {
+			$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
+			return new WP_Error( 'rest_cannot_access', $message, array( 'status' => rest_authorization_required_code() ) );
+		}
+		return $result;
 	}
-	add_filter( 'rest_dispatch_request', 'fluid_rest_dispatch_request', 10, 4 );
+	add_filter( 'rest_dispatch_request',      'fluid_rest_dispatch_request', 10, 4 );
+	add_filter( 'rest_authentication_errors', 'fluid_rest_dispatch_request' );
 }
 
 if (!function_exists('fluid_stop_heartbeat')) {
