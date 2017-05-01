@@ -32,12 +32,12 @@ require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-a
 require_once( 'classes/autocomplete.php' );
 new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
 
-if (is_admin()) {
+if ( is_admin() ) {
 	TCC_Options_Fluidity::instance();
-	new TCC_MetaBox_PostDate(    array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
+	new TCC_MetaBox_PostDate( array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
 } else {
-require_once('includes/comments.php');
-require_once('includes/footer.php');
+	require_once('includes/comments.php');
+	require_once('includes/footer.php');
 	require_once('includes/header.php');
 	require_once('includes/in-the-loop.php');
 	require_once('includes/pages.php');
@@ -174,3 +174,7 @@ function tcc_template_test( $template, $stem ) {
 }
 add_action( 'get_template_part_template-parts/header', 'tcc_template_test',0,2);
 add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,2); //*/
+
+add_action( 'activate_rtc-budget/rtc-budget.php', function() {
+	log_entry('action: activate_rtc-budget/rtc-budget.php');
+} );
