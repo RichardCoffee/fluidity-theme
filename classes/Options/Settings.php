@@ -32,7 +32,7 @@ class TCC_Options_Settings extends TCC_Options_Options {
 			'default' => 'on',
 			'label'   => __( 'REST API', 'tcc-fluid' ),
 			'text'    => __( 'Control access to your site REST API', 'tcc-fluid' ),
-			'help'    => __( 'Careful with this option.  Any value other than ON runs the risk of breaking your site!', 'tcc-fluid' ),
+			'help'    => __( 'Be very careful with this option.  Any value other than ON runs the risk of breaking your site!', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
 				'on'    => __( 'On - the default value', 'tcc-fluid' ),
