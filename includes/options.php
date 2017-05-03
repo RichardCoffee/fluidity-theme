@@ -9,7 +9,7 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 	function fluid_rest_dispatch_request( $result = null, $request = '', $route_schema = '', $handler = '' ) {
 #		log_entry( func_get_args() );
 #		log_entry( 'stack' );
-		log_entry( 1 );
+		log_entry( $_SERVER );
 		if ( ! is_user_logged_in() ) {
 			$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
 			return new WP_Error( 'rest_cannot_access', $message, array( 'status' => rest_authorization_required_code() ) );
