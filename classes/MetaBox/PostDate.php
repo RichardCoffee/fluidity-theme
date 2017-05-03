@@ -10,6 +10,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	protected $slug     = 'postdate_meta_box';
 
 	public function __construct( $args = array() ) {
+		//  FIXME:  separate all text into filterable array
 		$this->title = __( 'Displayed Post Date', 'tcc-fluid' );
 		parent::__construct( $args );
 	}
@@ -20,6 +21,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$postdate = get_post_meta( $postID, 'postdate_display', true );
 		$default  = __( 'Use theme default: %s', 'tcc-fluid' );
 		$current  = tcc_option( 'postdate' );
+		//  FIXME:  option for other sources
 		$cur_text = TCC_Options_Fluidity::instance()->get_option_source_text( 'content', 'postdate', $current );
 		$args = array(
 			'field_default' => 'default',

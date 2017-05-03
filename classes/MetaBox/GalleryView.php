@@ -39,6 +39,16 @@ class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
 		}
 	}
 
+	protected function version() {
+		if ( defined( 'TCC_THEME_VERSION' ) ) {
+			return TCC_THEME_VERSION;
+		} else if ( $paths = TCC_Plugin_Paths::instance() ) {
+			return $paths->version;
+		}
+		return apply_filters( 'tcc_galleryview_custom_version', '0.0.0' );
+	}
+
+
 	/**  Front end display  **/
 
 	public function show_galleryview($postID=0) {
@@ -60,7 +70,7 @@ class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
 		}
 	}
 
-	private function show_galleryview_image( $imgID ) {
+	protected function show_galleryview_image( $imgID ) {
 		$info  = wp_get_attachment( $imgID );
 		$attrs = ( empty( $info['src'] ) )                ? '' :              ' src="' . esc_attr( $info['src'] ) . '"';
 		$attrs.= ( empty( $info['alt'] ) )                ? '' :              ' alt="' . esc_attr( $info['alt'] ) . '"';

@@ -845,33 +845,6 @@ log_entry($controls);
 }	#	end of TCC_Form_Admin class
 
 
-if ( ! function_exists( 'get_applied_attrs' ) ) {
-	function get_applied_attrs( $args ) {
-		return apply_attrs( $args, false );
-	}
-}
-
-if ( ! function_exists( 'apply_attrs' ) ) {
-	function apply_attrs( $args, $echo = true ) {
-		$attrs = ' ';
-		foreach( $args as $attr => $value ) {
-			if ( empty( $value ) ) {
-				continue;
-			}
-			// FIXME: use assoc array
-			$sanitize = ( $attr === 'href'  ) ? 'esc_url'  : 'esc_attr';
-			$sanitize = ( $attr === 'src'   ) ? 'esc_url'  : $sanitize;
-			$sanitize = ( $attr === 'value' ) ? 'esc_html' : $sanitize;
-			$attrs .= $attr . '="'. $sanitize( $value ) . '" ';
-		}
-		if ( $echo ) {
-			echo $attrs;
-		} else {
-			return $attrs;
-		}
-	}
-}
-
 if ( ! function_exists('e_esc_html') ) {
 	#   This is just a shorthand function
 	function e_esc_html( $string ) {

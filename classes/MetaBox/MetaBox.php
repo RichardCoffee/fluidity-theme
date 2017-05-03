@@ -36,21 +36,11 @@ abstract class TCC_MetaBox_MetaBox {
 		remove_action( $this->save_meta, array( $this, 'save_meta_box' ) ); # prevent recursion
 		if ( ! isset( $_POST[ $this->nonce ] ) )                  return false;
 		if ( ! wp_verify_nonce( $_POST[ $this->nonce ], $file ) ) return false;
-		if ( ! current_user_can( 'edit_posts', $postID ) )        return false;
+		if ( ! current_user_can( 'edit_post', $postID ) )         return false;
 		if ( wp_is_post_autosave( $postID ) )                     return false;
 		if ( wp_is_post_revision( $postID ) )                     return false;
 		return true;
 	}
 
-	protected function version() {
-		if ( defined( 'TCC_THEME_VERSION' ) ) {
-			return TCC_THEME_VERSION;
-		} else if ( function_exists( 'tcc_plugin_paths' ) ) {
-			return tcc_plugin_paths()->version;
-		} else if ( function_exists( 'tcp_plugin_paths' ) ) {
-			return tcp_plugin_paths()->version;
-		}
-		return '0.0.0';
-	}
 
 }
