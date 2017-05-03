@@ -178,7 +178,3 @@ function tcc_template_test( $template, $stem ) {
 }
 add_action( 'get_template_part_template-parts/header', 'tcc_template_test',0,2);
 add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,2); //*/
-
-add_action( 'activate_rtc-budget/rtc-budget.php', function() {
-	log_entry('action: activate_rtc-budget/rtc-budget.php');
-} );

@@ -28,6 +28,18 @@ class TCC_Options_Settings extends TCC_Options_Options {
 				'off'  => esc_html__( 'Off', 'tcc-fluid' ),
 			),
 		);
+		$layout['rest_api'] = array(
+			'default' => 'on',
+			'label'   => __( 'REST API', 'tcc-fluid' ),
+			'text'    => __( 'Control access to your site REST API', 'tcc-fluid' ),
+			'help'    => __( 'Careful with this option.  Any value other than ON runs the risk of breaking your site!', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'on'    => __( 'On - the default value', 'tcc-fluid' ),
+				'users' => __( 'Allow access to logged-in users only.', 'tcc-fluid' ),
+				'off'   => __( 'Off - this may break things.', 'tcc-fluid' ),
+			),
+		);
 		if ( WP_DEBUG ) {
 			$layout['where'] = array(
 				'default' => 'off',
