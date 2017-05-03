@@ -17,8 +17,8 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 		return $result;
 	}
 #	add_filter( 'rest_dispatch_request',      'fluid_rest_dispatch_request', 10, 4 );
-#	add_filter( 'rest_authentication_errors', 'fluid_rest_dispatch_request', 20 );
-#	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_authentication_errors', 'fluid_rest_dispatch_request', 20 );
+	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 }
 
 if (!function_exists('fluid_stop_heartbeat')) {
