@@ -32,9 +32,26 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 			),
 		);
 		$layout['namespaces'] = array(
-			'label' => __( 'Namespaces', 'tcc-fluid' ),
-			'text'  => __( 'Control your basic routes', 'tcc-fluid' ),
+			'label'  => __( 'Namespaces', 'tcc-fluid' ),
+			'text'   => __( 'Control established routes', 'tcc-fluid' ),
+			'render' => 'display',
 		);
+		if ( $endpoints ) {
+			$route_text = __( 'Control access to %s routes', 'tcc-fluid' );
+			foreach( $endpoints as $key => $routes ) {
+				$layout_key = 'ep/' . $key;
+				$source     = array();
+				foreach( $routes as $route ) {
+					$source[ $route ] = ucwords( $route );
+				}
+				$layout[ $layout_key ] = array(
+					'label'  => $key,
+					'text'   => sprintf( $route_text, $key ),
+					'render' => 'checkbox',
+					'source' => $source,
+				);
+			}
+		}
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
