@@ -5,22 +5,31 @@
  *
  */
 
+add_filter( 'rest_authentication_errors', function( $result ) {
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
+    if ( ! is_user_logged_in() ) {
+        return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => 401 ) );
+    }
+    return $result;
+});
+/*
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 	function fluid_rest_dispatch_request( $result ) {
 #		log_entry( func_get_args() );
 #		log_entry( 'stack' );
 #		log_entry( $_SERVER );
 #		log_entry( $result );
-		$origin = get_calling_function( 2 );
 		$filter = current_filter();
-/*
-		if ( ( $origin === 'check_authentication' ) && ! is_user_logged_in() ) {
+
+		if ( ( $filter === 'rest_authentication_errors' ) && ! is_user_logged_in() ) {
 			$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
 			return new WP_Error( 'rest_cannot_access', $message, array( 'status' => rest_authorization_required_code() ) );
 		} //*/
-
+/*
 		$status = tcc_option( 'status', 'apicontrol' );
-log_entry($status,$origin,$filter);
+log_entry($status,$filter);
 		if ( $status && ( $status === 'off' ) ) {
 #			$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
 #			return new WP_Error( 'rest_cannot_access', $message, array( 'status' => rest_authorization_required_code() ) );
@@ -48,7 +57,7 @@ log_entry($status,$origin,$filter);
 	add_filter( 'rest_route_data', 'fluid_rest_dispatch_request' );
 	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
-}
+} //*/
 
 if (!function_exists('fluid_stop_heartbeat')) {
   function fluid_stop_heartbeat() {
