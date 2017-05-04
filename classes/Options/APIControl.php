@@ -31,13 +31,24 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				'off'    => __( 'Off - this may break things.', 'tcc-fluid' ),
 			),
 		);
+		$layout['namespaces'] = array(
+			'label' => __( 'Namespaces', 'tcc-fluid' );
+			'text'  => __( 'Control your basic routes', 'tcc-fluid' );
+		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
 	private function get_endpoints() {
 		$request  = new WP_REST_Request( 'GET', '/' );
 		$response = rest_do_request( $request );
-		log_entry( $response->get_data() );
+		$data     = $response->get_data();
+		$namespace= $data['namespaces'];
+		$routes   = $data['routes'];
+		$linked   = array();
+		foreach( $routes as $key => $route ) {
+			$linked[ $key ] = $route['namespace'];
+		}
+		log_entry($linked);
 	}
 
 
