@@ -16,6 +16,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 	}
 
 	protected function options_layout( $all = false ) {
+		$endpoints = $this->get_endpoints();
 		$layout = array( 'default' => true );
 		$layout['status'] = array(
 			'default' => 'on',
@@ -31,6 +32,11 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 			),
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
+	}
+
+	private function get_endpoints() {
+		$request = new WP_REST_Request( 'GET', '/wp/v2' );
+		log_entry( $request );
 	}
 
 
