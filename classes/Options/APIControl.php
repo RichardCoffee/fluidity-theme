@@ -51,6 +51,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				if ( ! isset( $linked[ $namespace ] ) ) {
 					$linked[ $namespace ] = array();
 				}
+log_entry( explode( '/', $key ) );
 				$linked[ $namespace ][] = $key;
 			}
 		}
