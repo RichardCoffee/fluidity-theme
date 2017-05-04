@@ -21,6 +21,7 @@ if ( ! function_exists( 'debug_calling_function' ) ) {
 		$total_cnt  = count( $call_trace );
 		#	This is not an exhaustive list
 		$skip_list  = array(
+			'apply_filters',
 			'call_user_func',
 			'call_user_func_array',
 			'debug_calling_function',
