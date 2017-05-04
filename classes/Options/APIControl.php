@@ -24,9 +24,10 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 			'help'    => __( 'Be very careful with this option.  Any value other than ON runs the risk of breaking your site!', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'on'    => __( 'On - the default value', 'tcc-fluid' ),
-				'users' => __( 'Allow access to logged-in users only.', 'tcc-fluid' ),
-				'off'   => __( 'Off - this may break things.', 'tcc-fluid' ),
+				'on'     => __( 'On - the default value.', 'tcc-fluid' ),
+				'users'  => __( 'Allow access to logged-in users only.', 'tcc-fluid' ),
+				'filter' => __( 'Filter public access.', 'tcc-fluid' ),
+				'off'    => __( 'Off - this may break things.', 'tcc-fluid' ),
 			),
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
