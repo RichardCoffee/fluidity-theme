@@ -13,5 +13,5 @@ if ( ! function_exists( 'fluidity_rest_authentication' ) ) {
 		}
 		return $result;
 	}
-#	add_filter( 'rest_authentication_errors', 'fluidity_rest_authentication' );
+	add_filter( 'rest_authentication_errors', 'fluidity_rest_authentication' );
 }
