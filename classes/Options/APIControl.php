@@ -32,8 +32,8 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 			),
 		);
 		$layout['namespaces'] = array(
-			'label' => __( 'Namespaces', 'tcc-fluid' );
-			'text'  => __( 'Control your basic routes', 'tcc-fluid' );
+			'label' => __( 'Namespaces', 'tcc-fluid' ),
+			'text'  => __( 'Control your basic routes', 'tcc-fluid' ),
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
