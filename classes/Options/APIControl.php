@@ -26,6 +26,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 			'render'  => 'radio',
 			'source'  => array(
 				'on'     => __( 'On - the default value.', 'tcc-fluid' ),
+				'admin'  => __( 'Allow access to admin only.', 'tcc-fluid' ),
 				'users'  => __( 'Allow access to logged-in users only.', 'tcc-fluid' ),
 				'filter' => __( 'Filter public access.', 'tcc-fluid' ),
 				'off'    => __( 'Off - this may break things.', 'tcc-fluid' ),
@@ -52,6 +53,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				);
 			}
 		}
+$this->get_allowed_endpoints();
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
@@ -79,6 +81,10 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 		return $linked;
 	}
 
+	public function get_allowed_endpoints() {
+		$options = get_option( 'tcc_options_apicontrol' );
+		log_entry( $options );
+	}
 
 
 }

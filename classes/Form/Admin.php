@@ -492,7 +492,7 @@ log_entry($controls);
 				'type'  => 'checkbox',
 				'id'    => $ID . '-' . $key,
 				'name'  => $name . '[' . $key . ']',
-				'value' => 'yes',
+				'value' => $key,
 			); ?>
 			<div>
 				<label>
