@@ -6,7 +6,7 @@
  */
 
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
-	function fluid_rest_dispatch_request( $result = null, $request = '', $route_schema = '', $handler = '' ) {
+	function fluid_rest_dispatch_request() {
 #		log_entry( func_get_args() );
 #		log_entry( 'stack' );
 #		log_entry( $_SERVER );
@@ -29,6 +29,22 @@ log_entry($status,$origin);
 #	add_filter( 'rest_dispatch_request',      'fluid_rest_dispatch_request', 10, 4 );
 
 	add_filter( 'rest_authentication_errors', 'fluid_rest_dispatch_request', 20 );
+	add_filter( 'rest_send_nocache_headers', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_jsonp_enabled', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_post_dispatch', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_pre_serve_request', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_post_dispatch', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_envelope_response', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_pre_dispatch', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_request_before_callbacks', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_dispatch_request', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_request_after_callbacks', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_index', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_namespace_index', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_endpoints_description', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_route_data', 'fluid_rest_dispatch_request' );
+	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 }
 
