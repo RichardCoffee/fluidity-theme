@@ -76,7 +76,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				}
 			}
 		}
-		log_entry($linked);
+		return $linked;
 	}
 
 
