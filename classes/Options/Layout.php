@@ -6,7 +6,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 
 
 	protected $base     = 'layout';
-	protected $priority = 35; # customizer priority
+	protected $priority = 70; # customizer priority
 
 
 	protected function form_title() {
