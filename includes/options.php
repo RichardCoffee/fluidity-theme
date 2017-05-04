@@ -11,13 +11,14 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 #		log_entry( 'stack' );
 #		log_entry( $_SERVER );
 #		log_entry( $result );
-/*
-		if ( ! is_user_logged_in() ) {
+		$origin = get_calling_function( 2 );
+
+#		if ( ( $origin === 'check_authentication' ) ) {
+		if ( ( $origin === 'check_authentication' ) && ! is_user_logged_in() ) {
 			$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
 			return new WP_Error( 'rest_cannot_access', $message, array( 'status' => rest_authorization_required_code() ) );
 		} //*/
 
-		$origin = debug_calling_function( 2 );
 		$status = tcc_option( 'status', 'apicontrol' );
 		if ( $status && ( $status === 'off' ) ) {
 #		if ( $status ) {
