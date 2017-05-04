@@ -18,7 +18,7 @@ if ( ! function_exists( 'fluidity_rest_authentication' ) ) {
 }
 
 if ( ! function_exists( 'fluidity_disable_rest' ) ) {
-	function fluid_disable_rest( $endpoints ) {
+	function fluidity_disable_rest( $endpoints ) {
 		$status = tcc_option( 'status', 'apicontrol' );
 		if ( $status === 'off' ) {
 			$endpoints = array();
