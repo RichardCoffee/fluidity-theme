@@ -37,7 +37,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 	private function get_endpoints() {
 		$request  = new WP_REST_Request( 'GET', '/' );
 		$response = rest_do_request( $request );
-		log_entry( $response->get_date() );
+		log_entry( $response->get_data() );
 	}
 
 
