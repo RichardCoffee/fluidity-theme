@@ -481,6 +481,11 @@ log_entry($controls);
 	private function render_checkbox_multiple( $data ) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
+		if ( ! empty( $layout['text'] ) ) { ?>
+			<div>
+				<?php e_esc_html( $layout['text'] ); ?>
+			</div><?php
+		}
 		foreach( $layout['source'] as $key => $text ) {
 			$check = isset( $value[ $key ] ) ? true : false;
 			$attrs = array(

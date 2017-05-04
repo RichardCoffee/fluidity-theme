@@ -37,7 +37,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 			'render' => 'display',
 		);
 		if ( $endpoints ) {
-			$route_text = __( 'Control access to %s routes', 'tcc-fluid' );
+			$route_text = __( 'Control access to %s routes.  Check to block.', 'tcc-fluid' );
 			foreach( $endpoints as $key => $routes ) {
 				$layout_key = 'ep/' . $key;
 				$source     = array();
