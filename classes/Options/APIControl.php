@@ -37,7 +37,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 			'render' => 'display',
 		);
 		if ( $endpoints ) {
-			$route_text = __( 'Control access to %s routes.  Check to block.', 'tcc-fluid' );
+			$route_text = __( 'Check to block access to these routes.', 'tcc-fluid' );
 			foreach( $endpoints as $key => $routes ) {
 				$layout_key = 'ep/' . $key;
 				$source     = array();
@@ -46,7 +46,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				}
 				$layout[ $layout_key ] = array(
 					'label'  => $key,
-					'text'   => sprintf( $route_text, $key ),
+					'text'   => $route_text,
 					'render' => 'checkbox_multiple',
 					'source' => $source,
 				);
