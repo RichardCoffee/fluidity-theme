@@ -16,3 +16,14 @@ if ( ! function_exists( 'fluidity_rest_authentication' ) ) {
 	}
 	add_filter( 'rest_authentication_errors', 'fluidity_rest_authentication' );
 }
+
+if ( ! function_exists( 'fluidity_disable_rest' ) ) {
+	function fluid_disable_rest( $endpoints ) {
+		$status = tcc_option( 'status', 'apicontrol' );
+		if ( $status === 'off' ) {
+			$endpoints = array();
+		}
+		return $endpoints;
+	}
+#	add_filter( 'rest_endpoints', 'fluidity_disable_rest' );
+}
