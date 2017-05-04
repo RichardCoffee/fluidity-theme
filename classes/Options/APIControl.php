@@ -35,7 +35,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 	}
 
 	private function get_endpoints() {
-		$request = new WP_REST_Request( 'GET', '/wp/v2' );
+		$request = new WP_REST_Request( 'GET', '/' );
 		log_entry( $request );
 	}
 
