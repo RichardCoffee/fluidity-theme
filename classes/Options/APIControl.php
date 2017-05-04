@@ -53,7 +53,9 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 					if ( ! isset( $linked[ $namespace ] ) ) {
 						$linked[ $namespace ] = array();
 					}
-					$linked[ $namespace ][] = $parsed[3];
+					if ( ! in_array( $parsed[3], $linked[ $namespace ], true ) ) {
+						$linked[ $namespace ][] = $parsed[3];
+					}
 				}
 			}
 		}
