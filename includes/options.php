@@ -20,7 +20,7 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 		} //*/
 
 		$status = tcc_option( 'status', 'apicontrol' );
-log_entry($status,$origin);
+log_entry($status,$origin,$filter);
 		if ( $status && ( $status === 'off' ) ) {
 #			$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
 #			return new WP_Error( 'rest_cannot_access', $message, array( 'status' => rest_authorization_required_code() ) );
