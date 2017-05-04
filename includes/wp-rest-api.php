@@ -25,5 +25,5 @@ if ( ! function_exists( 'fluidity_disable_rest' ) ) {
 		}
 		return $endpoints;
 	}
-#	add_filter( 'rest_endpoints', 'fluidity_disable_rest' );
+	add_filter( 'rest_endpoints', 'fluidity_disable_rest' );
 }
