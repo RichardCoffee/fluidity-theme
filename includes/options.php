@@ -17,7 +17,8 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 			return new WP_Error( 'rest_cannot_access', $message, array( 'status' => rest_authorization_required_code() ) );
 		} //*/
 
-		$status = tcc_option( 'apicontrol', 'status' );
+		$status = tcc_option( 'status', 'apicontrol' );
+#		if ( $status && ( $status === 'off' ) ) {
 		if ( $status ) {
 log_entry($status);
 		}
