@@ -27,3 +27,14 @@ if ( ! function_exists( 'fluidity_disable_rest' ) ) {
 	}
 	add_filter( 'rest_endpoints', 'fluidity_disable_rest' );
 }
+
+if ( ! function_exists( 'fluidity_filter_rest_endpoints' ) ) {
+	function fluidity_filter_rest_endpoints( $endpoints ) {
+		$status = tcc_option( 'status', 'apicontrol' );
+		if ( $status === 'filter' ) {
+#			$endpoints = array();
+		}
+		return $endpoints;
+	}
+	add_filter( 'rest_endpoints', 'fluidity_filter_rest_endpoints' );
+}
