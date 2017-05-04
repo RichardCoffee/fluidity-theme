@@ -6,7 +6,7 @@
  */
 
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
-	function fluid_rest_dispatch_request() {
+	function fluid_rest_dispatch_request( $result ) {
 #		log_entry( func_get_args() );
 #		log_entry( 'stack' );
 #		log_entry( $_SERVER );
