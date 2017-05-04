@@ -5,15 +5,6 @@
  *
  */
 
-add_filter( 'rest_authentication_errors', function( $result ) {
-	$status = tcc_option( 'status', 'apicontrol' );
-	if ( ( $status === 'logged-in' ) && ! is_user_logged_in() ) {
-		$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
-		return new WP_Error( 'rest_not_logged_in', $message, array( 'status' => rest_authorization_required_code() ) );
-	}
-	return $result;
-}); //*/
-
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 	function fluid_rest_dispatch_request( $result ) {
 #		log_entry( func_get_args() );
