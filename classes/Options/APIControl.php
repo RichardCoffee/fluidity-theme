@@ -48,11 +48,13 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 		foreach( $routes as $key => $route ) {
 			$namespace = $route['namespace'];
 			if ( $namespace ) {
-				if ( ! isset( $linked[ $namespace ] ) ) {
-					$linked[ $namespace ] = array();
+				$parsed = explode( '/', $key );
+				if ( ! empty( $parsed[3] ) ) {
+					if ( ! isset( $linked[ $namespace ] ) ) {
+						$linked[ $namespace ] = array();
+					}
+					$linked[ $namespace ][] = $parsed[3];
 				}
-log_entry( explode( '/', $key ) );
-				$linked[ $namespace ][] = $key;
 			}
 		}
 		log_entry($linked);
