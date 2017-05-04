@@ -4,7 +4,7 @@
  *  File:  includes/options.php
  *
  */
-/*
+
 add_filter( 'rest_authentication_errors', function( $result ) {
 	$status = tcc_option( 'status', 'apicontrol' );
 	if ( ( $status === 'logged-in' ) && ! is_user_logged_in() ) {
