@@ -12,7 +12,7 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 #		log_entry( $_SERVER );
 #		log_entry( $result );
 		$origin = get_calling_function( 2 );
-		$filter = current_applied_filter();
+		$filter = current_filter();
 /*
 		if ( ( $origin === 'check_authentication' ) && ! is_user_logged_in() ) {
 			$message = __( 'Only authenticated users can access the REST API.', 'tcc-fluid' );
