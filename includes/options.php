@@ -12,7 +12,7 @@ add_filter( 'rest_authentication_errors', function( $result ) {
 		return new WP_Error( 'rest_not_logged_in', $message, array( 'status' => rest_authorization_required_code() ) );
 	}
 	return $result;
-)};
+});
 
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 	function fluid_rest_dispatch_request( $result ) {
