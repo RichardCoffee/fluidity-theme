@@ -23,6 +23,7 @@ if ( ! function_exists( 'fluidity_disable_rest' ) ) {
 		if ( $status === 'off' ) {
 			$endpoints = array();
 		}
+log_entry( $endpoints );
 		return $endpoints;
 	}
 	add_filter( 'rest_endpoints', 'fluidity_disable_rest' );
