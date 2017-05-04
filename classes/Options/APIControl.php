@@ -47,7 +47,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				$layout[ $layout_key ] = array(
 					'label'  => $key,
 					'text'   => sprintf( $route_text, $key ),
-					'render' => 'checkbox',
+					'render' => 'checkbox_multiple',
 					'source' => $source,
 				);
 			}
