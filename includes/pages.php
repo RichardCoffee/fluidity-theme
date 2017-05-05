@@ -186,8 +186,8 @@ foreach( $stats as $stat ) {
 $lnorm = $paged - $range - 1;
 $hnorm = $paged + $range + 1;
 
-$lrange = $paged - $range - 1 - ( ( $i === 1 ) ? $range : 0 );
-$hrange = $paged + $range + 1 + ( ( $i === $pages ) ? $range : 0 );
+$lrange = $paged - $range - 1 - ( ( $i === $pages ) ? $range : 0 );
+$hrange = $paged + $range + 1 + ( ( $i === 1 ) ? $range : 0 );
 
 echo "I:$i";
 echo "L:$lnorm/$lrange";
