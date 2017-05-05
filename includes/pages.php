@@ -186,7 +186,7 @@ foreach( $stats as $stat ) {
 $lnorm = $paged - $range - 1;
 $hnorm = $paged + $range + 1;
 
-$lrange = $paged - $range - 1 - ( ( $i === $paged ) ? $range : 0 );
+$lrange = $paged - $range - 1 - ( ( $i === $pages ) ? $range : 0 );
 $hrange = $paged + $range + 1 + ( ( $i === 1 ) ? $range : 0 );
 
 echo "I:$i";
@@ -212,11 +212,12 @@ echo "H:$hnorm/$hrange";
 ) { ?>
 							<li><?php
 								if ( $paged === $i ) { ?>
-									<span>
+									<span title="<?php esc_attr_e( 'Current Page', 'tcc-fluid' ); ?>">
 										<?php echo $i; ?>
 									</span><?php
-								} else { ?>
-									<a href="<?php echo get_pagenum_link( $i ); ?>">
+								} else {
+									$anchor_title = sprintf( _nx( 'Page %s', 'Page %s', $i, 'a number', 'tcc-fluid' ), $i ); ?>
+									<a href="<?php echo get_pagenum_link( $i ); ?>" title="<?php e_esc_attr( $anchor_title ); ?>">
 										&nbsp;<?php echo $i; ?>&nbsp;
 									</a><?php
 								} ?>
