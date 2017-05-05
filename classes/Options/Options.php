@@ -5,10 +5,10 @@ abstract class TCC_Options_Options {
 
 	protected $base     = 'options'; # change this in child
 	protected $priority = 1000;      # change this in child
-	protected $layout   = array();
+	protected $screen   = array();
 
 	abstract protected function form_title();
-	abstract protected function describe_options();
+	abstract public    function describe_options();
 	abstract protected function options_layout();
 
 
@@ -19,14 +19,20 @@ abstract class TCC_Options_Options {
 	}
 
 	public function form_layout( $form ) {
-		$this->layout = $this->options_layout();
-		$form[ $this->base ] = array(
+		if ( ! isset( $form[ $this->base ] ) ) {
+			$form[ $this->base ] = ( empty( $this->screen ) ) ? $this->default_form_layout() : $this->screen;
+		}
+		return $form;
+	}
+
+	public function default_form_layout() {
+		$this->screen = array(
 			'describe' => array( $this, 'describe_options' ),
 			'title'    => $this->form_title(),
-			'option'   => 'tcc_options_'.$this->base,
-			'layout'   => $this->layout,
+			'option'   => 'tcc_options_' . $this->base,
+			'layout'   => $this->options_layout(),
 		);
-		return $form;
+		return $this->screen;
 	}
 
 	public function options_localization( $data = array() ) {
@@ -39,11 +45,16 @@ log_entry($data);
 		return $data;
 	}
 
+	public function get_default_options() {
+		$form = $this->options_layout( true );
+		$opts = array();
+		foreach( $form as $key => $option ) {
+			if ( isset( $option['default'] ) ) {
+				$opts[ $key ] = $option['default'];
+			}
+		}
+		return $opts;
+	}
 
-/*
-	public function options_customize_register($wp_customize, TCC_Options_Fluidity $form) {
-		$wp_customize->add_section( 'fluid_'.$this->base, array('title' => $this->form_title(), 'priority' => $this->priority));
-		$form->customizer_settings($wp_customize,$this->base);
-	} //*/
 
 }
