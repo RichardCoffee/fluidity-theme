@@ -138,7 +138,7 @@ if (!function_exists('page_exists')) {
 
 if ( ! function_exists( 'pagination' ) ) {
 	#| http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
-	function pagination( $pages = '', $range = 2 ) {
+	function pagination( $pages = '', $range = 1 ) {
 		$showitems = ( $range * 2 ) + 1;
 		global $paged;
 		if ( empty( $paged ) ) {

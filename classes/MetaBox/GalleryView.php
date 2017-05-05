@@ -5,7 +5,6 @@ defined( 'ABSPATH' ) || exit;
 
 class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
 
-
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 		if ( ! is_admin() ) {
