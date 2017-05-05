@@ -90,6 +90,7 @@ class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
 		<p>
 			<?php echo sprintf( $text, '<span class="red">[galleryview]</span>' ); ?>
 		</p><?php
+log_entry('stack');
 	}
 
 
