@@ -177,7 +177,27 @@ log_entry("    pages:  $pages",
 						}
 					}
 					for ( $i = 1; $i <= $pages; $i++ ) {
-						if (1 != $pages &&( ! ( ( $i >= $paged+$range+1 ) || ( $i <= $paged-$range-1 ) ) || ( $pages <= $showitems ) ) ) { ?>
+
+$lrange = $paged + $range + ( ( $i === $pages ) ? $range : 1 );
+$hrange = $paged - $range - ( ( $i === 1 ) ? $range : 1 );
+
+						if ( ( $pages > 1 ) &&
+
+//1 != $pages &&
+
+( 
+
+! ( 
+
+( $i >= $lrange ) || ( $i <= $hrange )
+
+ )
+
+ || ( $pages <= $showitems )
+
+ )
+
+) { ?>
 							<li><?php
 								if ( $paged === $i ) { ?>
 									<span>
