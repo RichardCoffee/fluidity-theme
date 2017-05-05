@@ -83,7 +83,7 @@ $this->get_allowed_endpoints();
 
 	public function get_allowed_endpoints() {
 		$options = get_option( 'tcc_options_apicontrol' );
-		log_entry( $options );
+#		log_entry( $options );
 	}
 
 
