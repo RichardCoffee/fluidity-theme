@@ -178,8 +178,8 @@ log_entry("    pages:  $pages",
 					}
 					for ( $i = 1; $i <= $pages; $i++ ) {
 
-$lrange = $paged + $range + ( ( $i === $pages ) ? $range : 1 );
-$hrange = $paged - $range - ( ( $i === 1 ) ? $range : 1 );
+$lrange = $paged + $range + ( ( $i === 1 ) ? $range : 1 );
+$hrange = $paged - $range - ( ( $i === $pages ) ? $range : 1 );
 
 						if ( ( $pages > 1 ) &&
 
