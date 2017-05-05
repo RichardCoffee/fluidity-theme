@@ -11,12 +11,12 @@ jQuery(document).ready(function() {
 	showhideAdminElements( '.privacy-plugin-active', '.privacy-plugin-filter',  'filter');
 	showhideAdminElements( '.privacy-theme-active',  '.privacy-theme-filter',   'filter');
 
-	if ( tcc_admin_options.showhide ) {
-		var count = tcc_admin_options.showhide.length;
-		for ( var i = 0; i < count; i++ ) {
-			targetableElements( tcc_admin_options.showhide[i] );
-		}
-	}
+//	if ( tcc_admin_options.showhide ) {
+//		var count = tcc_admin_options.showhide.length;
+//		for ( var i = 0; i < count; i++ ) {
+//			targetableElements( tcc_admin_options.showhide[i] );
+//		}
+//	}
 
 	showhideElements( jQuery( '.showhide' ) );
 	jQuery( '.form-colorpicker'  ).wpColorPicker();
