@@ -5,6 +5,8 @@ defined( 'ABSPATH' ) || exit;
 
 class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
 
+	private $meta_box_pretext_shown = false;
+
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 		if ( ! is_admin() ) {
@@ -85,12 +87,16 @@ class TCC_MetaBox_GalleryView extends TCC_MetaBox_Gallery {
 	/**  Admin meta box  **/
 
 	public function meta_box_pretext() {
+		if ( $this->meta_box_pretext_shown ) {
+			return;
+		}
 		remove_action( 'tcc_gallery_meta_box_pre', array( $this, 'meta_box_pretext' ) );
 		$text = esc_html_x( 'Use the %s shortcode to place the gallery in your post.', 'a wordpress shortcode', 'tcc-fluid' ); ?>
 		<p>
 			<?php echo sprintf( $text, '<span class="red">[galleryview]</span>' ); ?>
 		</p><?php
 log_entry('stack');
+		$this->meta_box_pretext_shown = true;
 	}
 
 
