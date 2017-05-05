@@ -164,13 +164,14 @@ log_entry("    pages:  $pages",
 						if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) ) { ?>
 							<li title="<?php esc_html_e('First Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( 1 ); ?>" aria-label="<?php esc_html_e( 'First Page', 'tcc-fluid' ); ?>" rel="prev">
-									<span aria-hidden="true">&laquo;</span>
+									<span aria-hidden="true">&nbsp;&laquo;&nbsp;</span>
 								</a>
 							</li><?php
-						} else if ( $paged > 1 ) { ?>
+						}
+						if ( $paged > 1 ) { ?>
 							<li title="<?php esc_html_e('Previous Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $paged - 1 ); ?>" aria-label="<?php esc_html_e( 'Previous Page', 'tcc-fluid' ); ?>" rel="prev">
-									<span aria-hidden="true">&lt;</span>
+									<span aria-hidden="true">&nbsp;&lt;&nbsp;</span>
 								</a>
 							</li><?php
 						}
