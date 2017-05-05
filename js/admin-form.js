@@ -2,7 +2,7 @@
 
 jQuery(document).ready(function() {
 //	showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
-	showhideAdminElements( '.social-option-active',  '.social-option-icon',     'yes');
+//	showhideAdminElements( '.social-option-active',  '.social-option-icon',     'yes');
 	showhideAdminElements( '.agent-role-active',     '.agent-role-setting',     'agents');
 	showhideAdminElements( '.fluid-sidebar-active',  '.fluid-sidebar-setting',  'no');
 	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
@@ -10,25 +10,19 @@ jQuery(document).ready(function() {
 	showhideAdminElements( '.privacy-multi-active',  '.privacy-multi-option',   'filter');
 	showhideAdminElements( '.privacy-plugin-active', '.privacy-plugin-filter',  'filter');
 	showhideAdminElements( '.privacy-theme-active',  '.privacy-theme-filter',   'filter');
+
+	if ( tcc_admin_options.showhide ) {
+		var count = tcc_admin_options.showhide.length;
+		for ( var i = 0; i < count; i++ ) {
+			targetableElements( tcc_admin_options.showhide[i] );
+		}
+	}
+
 	showhideElements( jQuery( '.showhide' ) );
 	jQuery( '.form-colorpicker'  ).wpColorPicker();
 	jQuery( '.form-image'        ).click( function( e ) { imageUploader( this, e ); });
 	jQuery( '.form-image-delete' ).click( function( e ) { imageDelete( this ); });
 });
-
-function showhideElements( els ) {
-	jQuery( els ).each( function( el ) {
-		var target = jQuery( el ).attr( 'data-item' );
-		var show   = jQuery( el ).attr( 'data-show' );
-		if ( target && show ) {
-			if ( jQuery( el ).find( 'input:radio:checked' ).val() === show ) {
-				jQuery( target ).parent().parent().show(); //removeClass( 'hidden' );
-			} else {
-				jQuery( target ).parent().parent().hide(); //addClass( 'hidden' );
-			}
-		}
-	});
-}
 
 function imageDelete( el ) {
 	var ans = confirm( 'Remove this image?' ); // FIXME: localize this
@@ -67,6 +61,14 @@ console.log(attachment);
 	custom_uploader.open();
 }
 
+function showhideElements( els ) {
+	jQuery( els ).each( function( el ) {
+		var target = jQuery( el ).attr( 'data-item' );
+		var show   = jQuery( el ).attr( 'data-show' );
+		showhideAdminElements( el, target, show, null );
+	});
+}
+
 function showhidePosi( el, target, show, hide ) {
 	if ( el ) {
 		var eldiv = el.parentNode.parentNode.parentNode;
@@ -77,8 +79,12 @@ function showhidePosi( el, target, show, hide ) {
 	}
 }
 
+function targetableElements( item );
+	showhideAdminElements( item.origin, item.target, item.show, item.hide );
+}
+
 function showhideAdminElements( origin, target, show, hide ) {
-	if ( origin ) {
+	if ( origin && target ) {
 		var radio = jQuery( origin ).find( 'input:radio:checked' );
 		if ( radio ) {
 			var state = jQuery( radio ).val();

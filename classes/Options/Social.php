@@ -30,6 +30,11 @@ class TCC_Options_Social extends TCC_Options_Options {
 				'yes' => __( "Yes - you want to use the theme's internal social icons", 'tcc-fluid' ),
 				'no'  => __( "No -- you are using a plugin, or do not want social icons", 'tcc-fluid' ),
 			),
+			'showhide' => array(
+				'origin' => 'social-option-active',
+				'target' => 'social-option-icon',
+				'show'   => 'yes',
+			).
 			'change'  => 'showhidePosi(this,".social-option-icon","yes");',
 			'divcss'  => 'social-option-active',
 		);
