@@ -54,6 +54,7 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 
 	public function show_meta_box( $post ) {
 		wp_nonce_field( basename( __FILE__ ), $this->nonce );
+list_filter_hooks('tcc_gallery_meta_box_pre');
 		do_action( 'tcc_gallery_meta_box_pre' ); ?>
 		<div id="<?php echo $this->div_id; ?>" class="<?php echo $this->div_css; ?>"><?php
 			$images = $this->get_gallery_images( $post->ID, true );
