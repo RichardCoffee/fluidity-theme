@@ -22,7 +22,7 @@ abstract class TCC_Form_Admin {
 	protected $render;
 	protected $slug      = 'default_page_slug';
 	public    $tab       = 'about';
-	protected $type      = 'single'; # single / tabbed
+	protected $type      = 'single'; # two values: single, tabbed
 	protected $validate;
 
 	use TCC_Trait_Logging;
@@ -31,7 +31,9 @@ abstract class TCC_Form_Admin {
 	public function description() { return ''; }
 
 	protected function __construct() {
-		$this->library = library();
+		if ( empty( $this->library ) && function_exists( 'library' ) ) {
+			$this->library = library();
+		}
 		$this->screen_type();
 		add_action( 'admin_init', array( $this, 'load_form_page' ) );
 	}
@@ -81,25 +83,25 @@ abstract class TCC_Form_Admin {
   /**  Form text functions  **/
 
 	private function form_text() {
-		$text = array(
-			'error'  => array(
-				'render'    => _x( 'ERROR: Unable to locate function %s', 'string - a function name', 'tcc-fluid' ),
-				'subscript' => _x( 'ERROR: Not able to locate form data subscript:  %s', 'placeholder will be an ASCII character string', 'tcc-fluid' )
-			),
-			'submit' => array(
-				'save'      => __( 'Save Changes', 'tcc-fluid' ),
-				'object'    => __( 'Form', 'tcc-fluid' ),
-				'reset'     => _x( 'Reset %s', 'placeholder is a noun, may be plural', 'tcc-fluid' ),
-				'subject'   => __( 'Form', 'tcc-fluid' ),
-				'restore'   => _x( 'Default %s options restored.', 'placeholder is a noun, probably singular', 'tcc-fluid' )
-			),
-			'media'  => array(
-				'title'     => __( 'Assign/Upload Image', 'tcc-fluid' ),
-				'button'    => __( 'Assign Image', 'tcc-fluid' ),
-				'delete'    => __( 'Unassign Image', 'tcc-fluid' )
-			)
-		);
-		$this->form_text = apply_filters( 'form_text_' . $this->slug, $text, $text );
+	$text = array(
+		'error'  => array(
+			'render'    => _x( 'ERROR: Unable to locate function %s', 'string - a function name', 'tcc-fluid' ),
+			'subscript' => _x( 'ERROR: Not able to locate form data subscript:  %s', 'placeholder will be an ASCII character string', 'tcc-fluid' )
+		),
+		'submit' => array(
+			'save'      => __( 'Save Changes', 'tcc-fluid' ),
+			'object'    => __( 'Form', 'tcc-fluid' ),
+			'reset'     => _x( 'Reset %s', 'placeholder is a noun, may be plural', 'tcc-fluid' ),
+			'subject'   => __( 'Form', 'tcc-fluid' ),
+			'restore'   => _x( 'Default %s options restored.', 'placeholder is a noun, probably singular', 'tcc-fluid' )
+		),
+		'media'  => array(
+			'title'     => __( 'Assign/Upload Image', 'tcc-fluid' ),
+			'button'    => __( 'Assign Image', 'tcc-fluid' ),
+			'delete'    => __( 'Unassign Image', 'tcc-fluid' )
+		)
+	);
+	$this->form_text = apply_filters( 'form_text_' . $this->slug, $text, $text );
 	}
 
 
@@ -480,7 +482,9 @@ log_entry($controls);
 
 	private function render_checkbox_multiple( $data ) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
-		if ( empty( $layout['source'] ) ) return;
+		if ( empty( $layout['source'] ) ) {
+			return;
+		}
 		if ( ! empty( $layout['text'] ) ) { ?>
 			<div>
 				<?php e_esc_html( $layout['text'] ); ?>
