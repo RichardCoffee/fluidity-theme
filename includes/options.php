@@ -13,7 +13,6 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 #		log_entry( $result );
 		$filter = current_filter();
 #log_entry(0,$filter);
-		}
 
 		return $result;
 	}
