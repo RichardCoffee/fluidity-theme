@@ -389,7 +389,7 @@ log_entry($controls);
 		extract( $args );  #  array( 'key'=>$key, 'item'=>$item, 'num'=>$i);
 		$data   = $this->form_opts;
 		$layout = $this->form['layout'];
-		echo '<div ' . $this->render_attributes( $layout[ $item ] ) . '>';
+		echo '<div ' . $this->library->get_apply_attrs( $this->render_attributes( $layout[ $item ] ) ) . '>';
 		if ( empty( $layout[ $item ]['render'] ) ) {
 			echo $data[ $item ];
 		} else {
@@ -423,7 +423,7 @@ log_entry($controls);
     extract($args);  #  $args = array( 'key' => {group-slug}, 'item' => {item-slug})
     $data   = $this->form_opts;
     $layout = $this->form[$key]['layout'];
-    $attr   = $this->render_attributes($layout[$item]);
+    $attr   = $this->library->get_apply_attrs( $this->render_attributes( $layout[ $item ] ) );
     echo "<div $attr>";
     if (empty($layout[$item]['render'])) {
       echo $data[$item];
@@ -446,14 +446,15 @@ log_entry($controls);
   public function render_multi_options($args) {
   }
 
-	private function render_attributes($layout) {
-		$attr = ( ! empty( $layout['divcss'] ) )  ? ' class="' . esc_attr( $layout['divcss'] ).'"'   : '';
-		$attr.= ( isset( $layout['help'] ) )      ? ' title="' . esc_attr( $layout['help']   ).'"'   : '';
+	private function render_attributes( $layout ) {
+		$attrs = array();
+		$attrs['class'] = ( ! empty( $layout['divcss'] ) ) ? $layout['divcss'] : '';
+		$attrs['title'] = ( isset( $layout['help'] ) )     ? $layout['help']   : '';
 		if ( ! empty( $layout['showhide'] ) ) {
-			$attr.= ' data-item="' . esc_attr( $layout['showhide']['item'] ) . '"';
-			$attr.= ' data-show="' . esc_attr( $layout['showhide']['show'] ) . '"';
+			$attrs['data-item'] = ( isset( $layout['showhide']['item'] ) ) ? $layout['showhide']['item'] : $layout['showhide']['target'];
+			$attrs['data-show'] = $layout['showhide']['show'];
 		}
-		return $attr;
+		return $attrs;
 	}
 
 
