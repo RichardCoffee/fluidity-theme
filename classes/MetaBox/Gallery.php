@@ -54,8 +54,7 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 
 	public function show_meta_box( $post ) {
 		wp_nonce_field( basename( __FILE__ ), $this->nonce );
-list_filter_hooks('tcc_gallery_meta_box_pre');
-		do_action( 'tcc_gallery_meta_box_pre' ); ?>
+		$this->gallery_meta_box_pretext(); ?>
 		<div id="<?php echo $this->div_id; ?>" class="<?php echo $this->div_css; ?>"><?php
 			$images = $this->get_gallery_images( $post->ID, true );
 			foreach( $images as $imgID => $src ) { ?>
@@ -67,6 +66,8 @@ list_filter_hooks('tcc_gallery_meta_box_pre');
 		</div>
 		<button id="add-<?php echo $this->div_id; ?>" type="button"><?php echo $this->button; ?></button><?php
 	}
+
+	protected function gallery_meta_box_pretext() { }
 
 	#	http://www.wpbeginner.com/wp-themes/how-to-get-all-post-attachments-in-wordpress-except-for-featured-image/
 	public function get_gallery_images( $postID, $exclude = false ) {
