@@ -67,7 +67,7 @@ abstract class TCC_Form_Admin {
 		}
 	}
 
-	public function admin_enqueue_scripts() {
+	public function admin_enqueue_scripts( $hook_suffix ) {
 		wp_register_style(  'admin-form.css', get_theme_file_uri( 'css/admin-form.css' ), array( 'wp-color-picker' ) );
 		wp_register_script( 'admin-form.js',  get_theme_file_uri( 'js/admin-form.js' ), array( 'jquery', 'wp-color-picker' ), false, true );
 		wp_enqueue_media();
@@ -200,65 +200,6 @@ abstract class TCC_Form_Admin {
     }
     return $html;
   }
-
-
-  /**  Customizer  **/
-
-	public function customizer_settings( $wp_customize, $base ) {
-		log_entry($base,$wp_customize);
-	}
-/*  All this is either going to get moved or done away with altogether
-  public function customizer_settings($wp_customize,$base) {
-    if ($base && $this->form[$base]) {
-      $layout = $this->form[$base];
-#log_entry('customizer',"base: $base",$layout,$wp_customize); // too many recursion errors for this to be useful
-      foreach($layout as $key=>$option) {
-        if (!isset($option['default'])) { continue; }
-        if (!isset($option['render']))  { continue; }
-        if ($option['render']==='skip') { continue; }
-        $name = "tcc_options_{$base}[$key]";
-        $settings = array('default'    => $option['default'],
-                          'type'       => 'option',
-                          'capability' => 'edit_theme_options',
-                          'sanitize_callback' => $this->sanitize_callback($option));
-        $wp_customize->add_setting($name,$settings);
-        #  default WordPress sections
-        $wp_sections = array('title_tagline','colors','header_image','background_image','nav','static_front_page');
-        $section  = (in_array($base,$wp_sections)) ? $base : "fluid_$base";
-        $controls = array('label'    => $option['label'], // FIXME: use $this->field_label($ID,$option) instead, what would $ID be?
-                          'section'  => $section,
-                          'settings' => $name);
-        switch($option['render']) {
-          case "checkbox":
-            $controls['type'] = 'checkbox';
-            break;
-          case "colorpicker":
-            $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,$name,$controls));
-            $name = false;
-            break;
-          case "image": // FIXME: does not seem to work as advertised
-            //$controls['type'] = 'image';
-            if (isset($option['context'])) $controls['context'] = $option['context'];
-log_entry($controls);
-            $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,$name,$controls));
-            break;
-          case "radio":
-            $controls['type']    = 'radio';
-            $controls['choices'] = $option['source'];
-            break;
-          case "select":
-            if (!is_array($option['source'])) continue; // FIXME: this action leaves an orphaned setting with no control
-            $controls['type']    = 'select';
-            $controls['choices'] = $option['source'];
-            break;
-          default:
-            log_entry("WARNING:  switch case needed in customizer_settings for {$option['render']}");
-            $name = false;
-        }
-        if ($name) $wp_customize->add_control($name,$controls);
-      }
-    }
-  } //*/
 
   private function sanitize_callback($option) {
     $valid_func = "validate_{$option['render']}";

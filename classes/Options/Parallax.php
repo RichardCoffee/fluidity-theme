@@ -48,10 +48,5 @@ class TCC_Options_Parallax {
     return $layout;
   }
 
-  public function options_customize_register($wp_customize, TCC_Options_Fluidity $form) {
-    $wp_customize->add_section( 'fluid_'.$this->base, array('title' => $this->form_title(), 'priority' => $this->priority));
-    $form->customizer_settings($wp_customize,$this->base);
-  }
-
 
 }
