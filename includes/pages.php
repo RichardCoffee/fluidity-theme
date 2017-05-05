@@ -181,8 +181,8 @@ log_entry("    pages:  $pages",
 $hnorm = $paged + $range + 1;
 $lnorm = $paged - $range - 1;
 
-$hrange = $paged + $range + 1 + ( ( $i === 1 ) ? $range : 0 );
-$lrange = $paged - $range - 1 - ( ( $i === $pages ) ? $range : 0 );
+$hrange = $paged + $range + 1 + ( ( $i === $pages ) ? $range : 0 );
+$lrange = $paged - $range - 1 - ( ( $i === 1 ) ? $range : 0 );
 
 echo "I:$i";
 echo "L:$lnorm/$lrange";
