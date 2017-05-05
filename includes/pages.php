@@ -154,12 +154,17 @@ if ( ! function_exists( 'pagination' ) ) {
 		if ( $pages !== 1 ) { ?>
 			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
 				<ul class="pagination"><?php
-/*
-log_entry("    pages:  $pages",
-          "    paged:  $paged",
-          "    range:  $range",
-          "showitems:  $showitems"
-); //*/
+
+$stats = array(
+	"    pages:  $pages",
+	"    paged:  $paged",
+	"    range:  $range",
+	"showitems:  $showitems",
+);
+echo "\n";
+foreach( $stats as $stat ) {
+	echo "$stat</p>\n";
+} //*/
 					if ( $showitems < $pages ) {
 						if ( ( $paged > 2 ) && ( $paged > ( $range + 1 ) ) ) { ?>
 							<li title="<?php esc_html_e('First Page','tcc-fluid'); ?>">
@@ -178,11 +183,11 @@ log_entry("    pages:  $pages",
 					}
 					for ( $i = 1; $i <= $pages; $i++ ) {
 
-$hnorm = $paged + $range + 1;
 $lnorm = $paged - $range - 1;
+$hnorm = $paged + $range + 1;
 
-$hrange = $paged + $range + 1 + ( ( $i === $pages ) ? $range : 0 );
 $lrange = $paged - $range - 1 - ( ( $i === 1 ) ? $range : 0 );
+$hrange = $paged + $range + 1 + ( ( $i === $pages ) ? $range : 0 );
 
 echo "I:$i";
 echo "L:$lnorm/$lrange";
