@@ -202,7 +202,7 @@ log_entry("    pages:  $pages",
 						if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
 							<li title="<?php esc_html_e('Last Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last Page', 'tcc-fluid' ); ?>">
-									<span aria-hidden="true">&nbsp;&laquo;&nbsp;</span>
+									<span aria-hidden="true">&nbsp;&raquo;&nbsp;</span>
 								</a>
 							</li><?php
 						}
