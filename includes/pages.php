@@ -184,9 +184,9 @@ $hnorm = $paged - $range - 1;
 $lrange = $paged + $range + ( ( $i === 1 ) ? $range : 1 );
 $hrange = $paged - $range - ( ( $i === $pages ) ? $range : 1 );
 
-echo "I:$i";
-echo "L:$lnorm/$lrange";
-echo "H:$hnorm/$hrange";
+#echo "I:$i";
+#echo "L:$lnorm/$lrange";
+#echo "H:$hnorm/$hrange";
 
 						if ( ( $pages > 1 ) &&
 
