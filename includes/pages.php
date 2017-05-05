@@ -185,7 +185,7 @@ log_entry("    pages:  $pages",
 									</span><?php
 								} else { ?>
 									<a href="<?php echo get_pagenum_link( $i ); ?>">
-										<?php echo $i; ?>
+										&nbsp;<?php echo $i; ?>&nbsp;
 									</a><?php
 								} ?>
 							</li><?php
@@ -195,15 +195,14 @@ log_entry("    pages:  $pages",
 						if ( $paged < $pages ) { ?>
 							<li title="<?php esc_html_e('Next Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_attr_e( 'Next Page', 'tcc-fluid' ); ?>" rel="next">
-									<span aria-hidden="true"><?php /* &gt; */ ?>
-										<?php esc_html_e( 'Next Page', 'tcc-fluid' ); ?>
-									</span>
+									<span aria-hidden="true">&nbsp;&gt;&nbsp;</span>
 								</a>
 							</li><?php
-						} else if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
+						}
+						if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
 							<li title="<?php esc_html_e('Last Page','tcc-fluid'); ?>">
 								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last Page', 'tcc-fluid' ); ?>">
-									<span aria-hidden="true">&laquo;</span>
+									<span aria-hidden="true">&nbsp;&laquo;&nbsp;</span>
 								</a>
 							</li><?php
 						}
