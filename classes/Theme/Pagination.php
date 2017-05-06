@@ -44,8 +44,7 @@ class TCC_Theme_Pagination {
 	}
 
 	public function pagination() {
-
-
+/*
 $stats = array(
 	'    pages:  ' . $this->pages,
 	'    paged:  ' . $this->paged,
@@ -55,9 +54,7 @@ $stats = array(
 echo "\n";
 foreach( $stats as $stat ) {
 	echo "<p>$stat</p>\n";
-}
-
- ?>
+} //*/ ?>
 		<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
 			<ul class="pagination"><?php
 				if ( $this->show < $this->pages ) {
@@ -66,8 +63,8 @@ foreach( $stats as $stat ) {
 				for ( $i = 1; $i <= $this->pages; $i++ ) {
 					$lnorm = $this->paged - $this->range - 1;
 					$hnorm = $this->paged + $this->range + 1;
-#$d1 = ( ( $i < $this->show ) && ( $i+1 < ( $this->pages - $this->show ) ) ) ? $this->range : 0;
-$d1 = ( ( $i+1 < ( $this->pages - $this->show ) ) ) ? $this->range : 0;
+$d1 = ( ( $i < $this->show ) && ( $i+1 < ( $this->pages - $this->show ) ) ) ? 0 - $this->range : 0;
+#$d1 = ( ( $i+1 < ( $this->pages - $this->show ) ) ) ? $this->range : 0;
 $d2 = ( ( $i > ( $this->pages - $this->show ) ) && ( $i < $this->show+1 ) ) ? $this->range : 0 ;
 $lrange = $this->paged - $this->range - 1 - $d1;
 $hrange = $this->paged + $this->range + 1 + $d2;
