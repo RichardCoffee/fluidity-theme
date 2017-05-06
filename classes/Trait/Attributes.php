@@ -34,7 +34,7 @@ trait TCC_Trait_Attributes {
 	}
 
 	public function get_apply_attrs_nav( $args ) {
-		return '<nav ' . get_apply_attrs( $args ) . '>';
+		return '<nav ' . $this->get_apply_attrs( $args ) . '>';
 	}
 
 
