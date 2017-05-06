@@ -1,5 +1,7 @@
 <?php
 
+#	http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
+
 class TCC_Theme_Pagination {
 
 
@@ -41,7 +43,21 @@ class TCC_Theme_Pagination {
 		}
 	}
 
-	public function pagination() { ?>
+	public function pagination() {
+
+
+$stats = array(
+	"    pages:  $pages",
+	"    paged:  $paged",
+	"    range:  $range",
+	"showitems:  $showitems",
+);
+echo "\n";
+foreach( $stats as $stat ) {
+	echo "<p>$stat</p>\n";
+}
+
+ ?>
 		<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
 			<ul class="pagination"><?php
 				if ( $this->show < $this->pages ) {
@@ -52,9 +68,9 @@ class TCC_Theme_Pagination {
 					$hnorm = $this->paged + $this->range + 1;
 $lrange = $this->paged - $this->range - 1 - ( ( $i === $this->pages ) ? $this->range : 0 );
 $hrange = $this->paged + $this->range + 1 + ( ( $i === 1 ) ? $this->range : 0 );
-#echo "I:$i";
-#echo "L:$lnorm/$lrange";
-#echo "H:$hnorm/$hrange";
+echo "I:$i";
+echo "L:$lnorm/$lrange";
+echo "H:$hnorm/$hrange";
 					if ( ( $this->pages > 1 ) && ( ! ( ( $i >= $hrange ) || ( $i <= $lrange ) ) || ( $this->pages <= $this->show ) ) ) {
 						if ( $this->paged === $i ) {
 							$this->show_current_link( $i );
