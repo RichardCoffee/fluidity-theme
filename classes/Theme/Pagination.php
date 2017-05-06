@@ -57,7 +57,7 @@ $hrange = $this->paged + $this->range + 1 + ( ( $i === 1 ) ? $this->range : 0 );
 #echo "H:$hnorm/$hrange";
 					if ( ( $this->pages > 1 ) && ( ! ( ( $i >= $hrange ) || ( $i <= $lrange ) ) || ( $this->pages <= $this->show ) ) ) {
 						if ( $this->paged === $i ) {
-							$this->show_current_link();
+							$this->show_current_link( $i );
 						} else {
 							$this->show_page_link( $i );
 						}
