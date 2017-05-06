@@ -47,10 +47,10 @@ class TCC_Theme_Pagination {
 
 
 $stats = array(
-	"    pages:  $pages",
-	"    paged:  $paged",
-	"    range:  $range",
-	"showitems:  $showitems",
+	'    pages:  ' . $this->pages,
+	'    paged:  ' . $this->paged,
+	'    range:  ' . $this->range,
+	'showitems:  ' . $this->show,
 );
 echo "\n";
 foreach( $stats as $stat ) {
