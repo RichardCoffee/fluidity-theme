@@ -66,7 +66,7 @@ foreach( $stats as $stat ) {
 				for ( $i = 1; $i <= $this->pages; $i++ ) {
 					$lnorm = $this->paged - $this->range - 1;
 					$hnorm = $this->paged + $this->range + 1;
-$d1 = ( ( $i < $this->show ) && ( $i < ( $this->pages - $this->show ) ) ) ? $this->range : 0;
+$d1 = ( ( $i < $this->show ) && ( $i+1 < ( $this->pages - $this->show ) ) ) ? $this->range : 0;
 $d2 = ( ( $i > ( $this->pages - $this->show ) ) && ( $i < $this->show+1 ) )? $this->range : 0 ;
 $lrange = $this->paged - $this->range - 1 - $d1;
 $hrange = $this->paged + $this->range + 1 + $d2;
