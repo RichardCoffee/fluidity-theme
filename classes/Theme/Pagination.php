@@ -41,7 +41,7 @@ class TCC_Theme_Pagination {
 		}
 	}
 
-	protected function pagination() { ?>
+	public function pagination() { ?>
 		<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
 			<ul class="pagination"><?php
 				if ( $this->show < $this->pages ) {
