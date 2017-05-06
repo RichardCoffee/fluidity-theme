@@ -11,7 +11,7 @@ who_am_i(); ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
 
-		<div class="row"><?php
+		<div><?php
 
 			$link_css = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
 			if ( has_post_thumbnail() ) { // FIXME:  need option for image/title placement ?>
