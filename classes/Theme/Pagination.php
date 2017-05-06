@@ -69,9 +69,9 @@ $d1 = ( $i < ( $this->paged - $this->range -1 ) ) ? $this->range : 0;
 $d2 = ( ( $i > ( $this->pages - $this->show ) ) && ( $i < $this->show+1 ) ) ? $this->range : 0 ;
 $lrange = $this->paged - $this->range - 1 - $d1;
 $hrange = $this->paged + $this->range + 1 + $d2;
-echo "I:$i";
-echo "L:$lnorm/$lrange";
-echo "H:$hnorm/$hrange";
+#echo "I:$i";
+#echo "L:$lnorm/$lrange";
+#echo "H:$hnorm/$hrange";
 					if ( ( $this->pages > 1 ) && ( ! ( ( $i >= $hrange ) || ( $i <= $lrange ) ) || ( $this->pages <= $this->show ) ) ) {
 						if ( $this->paged === $i ) {
 							$this->show_current_link( $i );
