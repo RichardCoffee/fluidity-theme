@@ -56,7 +56,7 @@ TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what value
 				if ( ! is_singular() ) { ?>
 					<div class="row">
 						<div class="text-wide text-center">
-						<?php pagination(); ?>
+						<?php TCC_Theme_Pagination::instance()->pagination(); ?>
 					</div>
 					</div><?php
 				}

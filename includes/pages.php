@@ -151,7 +151,9 @@ if ( ! function_exists( 'pagination' ) ) {
 				$pages = 1;
 			}
 		}
-		if ( $pages !== 1 ) { ?>
+		if ( $pages !== 1 ) {
+			$library = new TCC_Theme_Library;
+ ?>
 			<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
 				<ul class="pagination"><?php
 
@@ -209,40 +211,66 @@ echo "H:$hnorm/$hrange";
 
  )
 
-) { ?>
-							<li><?php
-								if ( $paged === $i ) { ?>
+) {
+							if ( $paged === $i ) { ?>
+								<li>
 									<span title="<?php esc_attr_e( 'Current Page', 'tcc-fluid' ); ?>">
 										<?php echo $i; ?>
-									</span><?php
-								} else {
-									$anchor_title = sprintf( _nx( 'Page %s', 'Page %s', $i, 'a number', 'tcc-fluid' ), $i ); ?>
-									<a href="<?php echo get_pagenum_link( $i ); ?>" title="<?php e_esc_attr( $anchor_title ); ?>">
-										&nbsp;<?php echo $i; ?>&nbsp;
-									</a><?php
-								} ?>
-							</li><?php
+									</span>
+								</li><?php
+							} else {
+								$anchor_title = sprintf( _nx( 'Page %s', 'Page %s', $i, 'a number', 'tcc-fluid' ), $i );
+								$anchor_attrs = array(
+									'href' => get_pagenum_link( $i ),
+									'title' => $anchor_title,
+									'aria-label' => $anchor_title,
+								);
+								$anchor_text = '&nbsp;' . $i . '&nbsp;';
+								fluid_pagination_link( $anchor_attrs, $anchor_text );
+							}
 						}
 					}
 					if ( $showitems < $pages ) {
-						if ( $paged < $pages ) { ?>
-							<li title="<?php esc_html_e('Next Page','tcc-fluid'); ?>">
-								<a href="<?php echo get_pagenum_link( $paged + 1 ); ?>" aria-label="<?php esc_attr_e( 'Next Page', 'tcc-fluid' ); ?>" rel="next">
-									<span aria-hidden="true">&nbsp;&gt;&nbsp;</span>
-								</a>
-							</li><?php
+						if ( $paged < $pages ) {
+							$next_title = __('Next Page','tcc-fluid');
+							$next_attrs = array(
+								'href'  => get_pagenum_link( $paged + 1 ),
+								'title' => $next_title,
+								'aria-label' => $next_title,
+								'rel'   => 'next',
+							);
+							fluid_pagination_link( $next_attrs, '&nbsp;&gt;&nbsp;' );
 						}
-						if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) { ?>
-							<li title="<?php esc_html_e('Last Page','tcc-fluid'); ?>">
-								<a href="<?php echo get_pagenum_link( $pages ); ?>" aria-label="<?php esc_html_e( 'Last Page', 'tcc-fluid' ); ?>">
-									<span aria-hidden="true">&nbsp;&raquo;&nbsp;</span>
-								</a>
-							</li><?php
+						if ( ( $paged < ( $pages - 1 ) ) && ( ( $paged + $range - 1 ) < $pages ) ) {
+							$last_title = __('Last Page','tcc-fluid');
+							$last_attrs = array(
+								'href'  => get_pagenum_link( $pages ),
+								'title' => $last_title,
+								'aria-label' => $last_title,
+								'rel'   => 'last',
+							);
+							fluid_pagination_link( $last_attrs, '&nbsp;&raquo;&nbsp;' );
 						}
 					} ?>
 				</ul>
 			</nav><?php
 		}
+	}
+}
+
+if ( ! function_exists( 'fluid_pagination_link' ) ) {
+	function fluid_pagination_link( $attrs, $text ) {
+		static $library;
+		if ( ! $library ) {
+			$library = new TCC_Theme_Library;
+		} ?>
+		<li>
+			<a <?php $library->apply_attrs( $attrs ); ?>>
+				<span aria-hidden="true">
+					<?php e_esc_html( $text ); ?>
+				</span>
+			</a>
+		</li><?php
 	}
 }
 
