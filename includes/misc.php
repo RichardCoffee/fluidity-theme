@@ -248,6 +248,7 @@ function stupid_theme_checker () {
 	wp_link_pages();
 	posts_nav_link();
 	paginate_links();
+	#	TCC_Theme_Pagination
 	the_posts_pagination();
 	the_posts_navigation();
 	next_posts_link();

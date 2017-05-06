@@ -5,25 +5,27 @@
 class TCC_Theme_Pagination {
 
 
-	protected $first = '&nbsp;&laquo;&nbsp;';
-	protected $last  = '&nbsp;&raquo;&nbsp;';
-	protected $library;
-	protected $link  = '&nbsp;%s&nbsp;';
-	protected $next  = '&nbsp;&gt;&nbsp;';
-	protected $paged = 1;
-	protected $pages = 1;
-	protected $prev  = '&nbsp;&lt;&nbsp;';
-	protected $range = 1;
-	protected $show  = 3;
+	protected $first   = '&nbsp;&laquo;&nbsp;';
+	protected $last    = '&nbsp;&raquo;&nbsp;';
+	protected $link    = '&nbsp;%s&nbsp;';
+	protected $nav_css = 'posts-navigation';
+	protected $next    = '&nbsp;&gt;&nbsp;';
+	protected $paged   = 1;
+	protected $pages   = 1;
+	protected $prev    = '&nbsp;&lt;&nbsp;';
+	protected $range   = 1;
+	protected $show    = 3;
+	protected $sr_text = '';
 
+	use TCC_Trait_Attributes;
 	use TCC_Trait_ParseArgs;
 	use TCC_Trait_Singleton;
 
 
 	public function __construct( $args = array() ) {
-		$this->library = new TCC_Theme_Library;
 		$this->get_paged();
 		$this->get_pages();
+		$this->sr_text = __( 'Post navigation' ,' tcc-fluid' );
 		$this->parse_args( $args );
 		$this->show = ( $this->range * 2 ) + 1;
 	}
@@ -44,47 +46,62 @@ class TCC_Theme_Pagination {
 	}
 
 	public function pagination() {
-/*
-$stats = array(
-	'    pages:  ' . $this->pages,
-	'    paged:  ' . $this->paged,
-	'    range:  ' . $this->range,
-	'showitems:  ' . $this->show,
-);
-echo "\n";
-foreach( $stats as $stat ) {
-	echo "<p>$stat</p>\n";
-} //*/ ?>
-		<nav aria-label="<?php esc_html_e( 'Page navigation' ,' tcc-fluid' ); ?>" role="navigation">
-			<ul class="pagination"><?php
-				if ( $this->show < $this->pages ) {
-					$this->show_prefix_links();
-				}
-				for ( $i = 1; $i <= $this->pages; $i++ ) {
-					$lnorm = $this->paged - $this->range - 1;
-					$hnorm = $this->paged + $this->range + 1;
+		if ( $this->pages > 1 ) {
+			$links = $this->generate_links();
+			$template = apply_filters( 'navigation_markup_template', null, $this->nav_css );
+			if ( $template ) {
+				$html = sprintf( $template, sanitize_html_class( $this->nav_css ), esc_html( $$this->sr_text ), $links );
+			} else {
+				$template = $this->generate_markup();
+				$html = sprintf( $template, $links );
+			}
+			echo $html;
+		}
+	}
+
+	protected function generate_markup() {
+		$attrs = array(
+			'class' => 'navigation ' . $this->nav_css,
+			'title' => $this->sr_text,
+			'aria-label' => $this->sr_text,
+			'role' => 'navigation',
+		);
+		$html = $this->get_apply_attrs_nav( $attrs );
+		$html.= '<div class="nav-links">%s</div></nav>';
+		return $html;
+	}
+
+	protected function generate_links() {
+		ob_start(); ?>
+		<ul class="pagination"><?php
+			if ( $this->show < $this->pages ) {
+				$this->show_prefix_links();
+			}
+			for ( $i = 1; $i <= $this->pages; $i++ ) {
+				$lnorm = $this->paged - $this->range - 1;
+				$hnorm = $this->paged + $this->range + 1;
 $d1 = ( $i < ( $this->paged - $this->range -1 ) ) ? $this->range : 0;
 #$d1 = ( ( $i < ( $this->paged + $this->range ) ) && ( $i < ( $this->pages - $this->show - 1 ) ) ) ? $this->range : 0;
 #$d1 = ( ( $i < ( $this->pages - $this->show + 1 ) ) ) ? $this->range : 0;
-$d2 = ( ( $i > ( $this->pages - $this->show ) ) && ( $i < $this->show+1 ) ) ? $this->range : 0 ;
+$d2 = ( ( $i > ( $this->pages - $this->show ) ) && ( $i < $this->show + 1 ) ) ? $this->range : 0 ;
 $lrange = $this->paged - $this->range - 1 - $d1;
 $hrange = $this->paged + $this->range + 1 + $d2;
 #echo "I:$i";
 #echo "L:$lnorm/$lrange";
 #echo "H:$hnorm/$hrange";
-					if ( ( $this->pages > 1 ) && ( ! ( ( $i >= $hrange ) || ( $i <= $lrange ) ) || ( $this->pages <= $this->show ) ) ) {
-						if ( $this->paged === $i ) {
-							$this->show_current_link( $i );
-						} else {
-							$this->show_page_link( $i );
-						}
+				if ( ( $this->pages > 1 ) && ( ! ( ( $i >= $hrange ) || ( $i <= $lrange ) ) || ( $this->pages <= $this->show ) ) ) {
+					if ( $this->paged === $i ) {
+						$this->show_current_link( $i );
+					} else {
+						$this->show_page_link( $i );
 					}
 				}
-				if ( $this->show < $this->pages ) {
-					$this->show_suffix_links();
-				} ?>
-			</ul>
-		</nav><?php
+			}
+			if ( $this->show < $this->pages ) {
+				$this->show_suffix_links();
+			} ?>
+		</ul><?php
+		return ob_get_clean();
 	}
 
 	protected function show_prefix_links() {
@@ -121,7 +138,7 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 	protected function show_current_link( $text ) { ?>
 		<li>
 			<span title="<?php esc_attr_e( 'Current Page', 'tcc-fluid' ); ?>">
-				<?php e_esc_html( $text ); ?>
+				<?php printf( $this->link, esc_html( $text ) ); ?>
 			</span>
 		</li><?php
 	}
@@ -168,9 +185,10 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 		$this->show_link( $attrs, $this->last );
 	}
 
-	protected function show_link( $attrs, $text ) { ?>
+	protected function show_link( $attrs, $text ) {
+		$attrs['href'] = apply_filters( 'paginate_links', $attrs['href'], $attrs ); ?>
 		<li>
-			<a <?php $this->library->apply_attrs( $attrs ); ?>>
+			<a <?php $this->apply_attrs( $attrs ); ?>>
 				<span aria-hidden="true">
 					<?php e_esc_html( $text ); ?>
 				</span>
