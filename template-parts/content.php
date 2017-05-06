@@ -8,23 +8,13 @@
 
 who_am_i(); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
 
-	<?php fluid_thumbnail();
+	if ( ! is_page() ) {
+		fluid_content_header();
+	}
 
-	if ( ! is_page() ) { ?>
-
-		<h1 class="text-center">
-			<?php tcc_post_title(); ?>
-			<?php fluid_edit_post_link(); ?>
-		</h1>
-
-		<h3 class="post-date text-center">
-			<?php fluid_post_date( true ); ?>
-		</h3><?php
-
-	} ?>
-
+	fluid_thumbnail(); ?>
 
 	<div class="article" itemprop="articleBody">
 		<?php the_content(); ?>

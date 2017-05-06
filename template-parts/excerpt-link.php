@@ -23,11 +23,7 @@ who_am_i(); ?>
 
 			<div class="<?php echo $link_css; ?>">
 
-				<h1 class="text-center" itemprop="headline">
-					<?php tcc_post_title( 40 ); ?>
-				</h1>
-
-				<?php if ( tcc_option( 'exdate' ) === 'show' ) { fluid_post_date(); } ?>
+				<?php fluid_content_header(); ?>
 
 				<div class="article" itemprop="description">
 					<?php the_content(); ?>
