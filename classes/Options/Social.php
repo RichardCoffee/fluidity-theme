@@ -19,7 +19,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 
 	public function options_layout() {
 		$layout = array(
-			'default' => true
+			'default' => true,
 		);
 		$layout['active'] = array(
 			'default' => 'no',
