@@ -76,7 +76,6 @@ abstract class TCC_Form_Admin {
 		$options = apply_filters( 'tcc_form_admin_options_localization', array() );
 		if ( $options ) {
 			$options = array_map( array( $this, 'normalize_options' ), $options );
-log_entry($options);
 			wp_localize_script( 'admin-form.js', 'tcc_admin_options', $options );
 		}
 	}
