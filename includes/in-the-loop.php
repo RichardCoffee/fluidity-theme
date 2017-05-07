@@ -49,7 +49,7 @@ if ( ! function_exists( 'fluid_get_edit_post_link' ) ) {
 					'title'  => sprintf( _x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), get_the_title() ),
 				); ?>
 				<span class="edit-link small block">
-					<a <?php library()->apply_attrs( $attrs ); ?>>&nbsp;{ <?php esc_html_ex( 'Edit', 'verb', 'tcc-fluid' ); ?> }</a>
+					<a <?php fluid_library()->apply_attrs( $attrs ); ?>>&nbsp;{ <?php esc_html_ex( 'Edit', 'verb', 'tcc-fluid' ); ?> }</a>
 				</span><?php
 			}
 		}
@@ -256,7 +256,7 @@ if (!function_exists('get_the_author_posts_link')) {
 				'aria-label' => $title,
 			);
 			#$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem - 
-			$html = '<a ' . library()->get_apply_attrs( $attrs ) . '>' . get_the_author_meta('display_name') . '</a>';
+			$html = '<a ' . fluid_library()->get_apply_attrs( $attrs ) . '>' . get_the_author_meta('display_name') . '</a>';
 		}
 		return $html;
 	}

@@ -44,7 +44,7 @@ if (!function_exists('fluidity_social_icons')) {
         $layout = $insta->options_layout();
         #log_entry($icons,$social,$layout); ?>
 				<span class='fluidity-social-icons'><?php
-					$library = library();
+					$library = fluid_library();
 					foreach( $social as $key => $set ) {
 						if ( empty( $set['link'] ) ) continue;
 						$tool = sprintf( _x( 'See us on %s', '(social) website name', 'tcc-fluid' ), $layout[ $key ] ['label'] );

@@ -28,21 +28,21 @@ class TCC_Register_Sidebars {
 		$icon   = tcc_layout( 'widget_icon', 'default' ); // this value is fine
 
 
-   |  $before_title  = '<div class="panel-heading"';
-|  |  $before_title .= ( $widget === 'perm' )   ? '' : ' role="button"';
-|  |  $before_title .= ( $widget === 'closed' ) ? ' data-collapse="1">' : '>';
+		$before_title  = '<div class="panel-heading"';
+		$before_title .= ( $widget === 'perm' )   ? '' : ' role="button"';
+		$before_title .= ( $widget === 'closed' ) ? ' data-collapse="1">' : '>';
 
 
-|  |  $fa_sign       = ( $widget === 'open' )   ? 'fa-minus' : 'fa-plus';
+		$fa_sign       = ( $widget === 'open' )   ? 'fa-minus' : 'fa-plus';
 
 
-|  |  $before_title .= ( $widget === 'perm' )   ? '' : library()->get_fawe( "$fa_sign pull-right panel-sign" );
+		$before_title .= ( $widget === 'perm' )   ? '' : fluid_library()->get_fawe( "$fa_sign pull-right panel-sign" );
 
 
 
-|  |  $before_css    = ( $widget === 'perm' )   ? '' : 'text-center scroll-this pointer';
-|  |  $before_title .= "<div class='panel-title $before_css'><b>";
-|  |  $after_title   = '</b></div></div><div class="panel-body">';
+		$before_css    = ( $widget === 'perm' )   ? '' : 'text-center scroll-this pointer';
+		$before_title .= "<div class='panel-title $before_css'><b>";
+		$after_title   = '</b></div></div><div class="panel-body">';
 
 
 

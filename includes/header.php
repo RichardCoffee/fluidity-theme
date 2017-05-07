@@ -67,7 +67,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 						'rel'      => 'home',
 						'itemprop' => 'url', // 'relatedLink',
 					); ?>
-					<a <?php library()->apply_attrs( $attrs ); ?>><?php
+					<a <?php fluid_library()->apply_attrs( $attrs ); ?>><?php
 						$logo_id = get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
 							$size  = apply_filters( 'tcc_header_logo_size', 'medium' );
@@ -87,7 +87,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 								'alt'      => get_bloginfo( 'name' ),
 								'itemprop' => 'image',
 							); ?>
-							<img <?php library()->apply_attrs( $attrs ); ?>><?php
+							<img <?php fluid_library()->apply_attrs( $attrs ); ?>><?php
 						} else {
 							bloginfo( 'name' );
 						} ?>
@@ -106,7 +106,7 @@ if ( ! function_exists( 'fluidity_menubar_print_button' ) ) {
 		if ( is_single() || is_page() ) { ?>
 			<span class="hidden fluid-print-button">
 				<button class="btn btn-fluidity" onclick="print();">
-					<?php library()->fawe( 'fa-print' ); ?>
+					<?php fluid_library()->fawe( 'fa-print' ); ?>
 					<span class="hidden-xs">&nbsp;
 						<?php esc_html_e('Print','tcc-fluid'); ?>
 					</span>

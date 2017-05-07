@@ -131,7 +131,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 	}
 
 	public function widget_icons() {
-		$library = library();
+		$library = fluid_library();
 		$source  = array(
 			'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
 		);

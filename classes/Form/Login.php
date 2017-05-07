@@ -9,15 +9,14 @@ if ( ! function_exists( 'tcc_login_form' ) ) {
 class TCC_Form_Login {
 
 	protected $in_navbar   = false;
-	protected $library     = null;
 	protected $pull_right  = true;
 	protected $redirect_to = null;
 
+	use TCC_Trait_Attributes;
 	use TCC_Trait_ParseArgs;
 	use TCC_Trait_Singleton;
 
 	protected function __construct( $args = array() ) {
-		$this->library = new TCC_Theme_Library;
 		$this->parse_args( $args );
 
 		add_action( 'admin_head',          array( $this, 'dashboard_logo' ) );
@@ -140,7 +139,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 			'action' => site_url( '/wp-login.php' ),
 			'method' => 'post',
 		); ?>
-		<form <?php $this->library->apply_attrs( $attrs ); ?>>
+		<form <?php $this->apply_attrs( $attrs ); ?>>
 
 			<div class='form-group login-username'>
 				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr( $id_username ); ?>">
@@ -170,7 +169,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 
 			<div class="form-group login-submit">
 				<button type="submit" id="<?php echo esc_attr( $id_submit ); ?>" class="btn btn-fluidity" name="wp-submit">
-					<?php library()->fawe( 'fa-sign-in' ); ?>&nbsp;
+					<?php fluid_library()->fawe( 'fa-sign-in' ); ?>&nbsp;
 					<?php echo esc_html( $label_log_in ); ?>
 				</button>
 				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect ); ?>" />
@@ -198,7 +197,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 					'title' =>  $signout,
 					'rel'   => 'nofollow',
 				); ?>
-				<a <?php $this->library->apply_attrs( $attrs ); ?>>&nbsp;
+				<a <?php $this->apply_attrs( $attrs ); ?>>&nbsp;
 					<?php echo esc_html( $signout ); ?>
 					&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
 				</a>

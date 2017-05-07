@@ -1,7 +1,7 @@
 <?php
 
 if ( ! function_exists( 'library' ) ) {
-	function library() {
+	function fluid_library() {
 		static $library;
 		if ( empty( $library ) ) {
 			$library = new TCC_Theme_Library;

@@ -67,7 +67,7 @@ class TCC_Theme_Pagination {
 			'aria-label' => $this->sr_text,
 			'role' => 'navigation',
 		);
-		$html = $this->get_apply_attrs_nav( $attrs );
+		$html = $this->get_apply_attrs_tag( $attrs, 'nav' );
 		$html.= '<div class="nav-links">%s</div></nav>';
 		return $html;
 	}

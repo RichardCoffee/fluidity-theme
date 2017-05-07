@@ -12,10 +12,18 @@ if (has_nav_menu($menu)) {
 	if (tcc_layout('menu')==='bootstrap') {
 		/* bootstrap navigation */
 		$main_id  = "navbar-{$page}-$menu";
-		$main_css = "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu"; ?>
+		$main_css = "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu";
+		$button_attrs = array(
+			'type'  => 'button',
+			'class' => 'navbar-toggle',
+			'aria-controls' => $menu,
+			'aria-expanded' => 'false',
+			'data-toggle'   => 'collapse',
+			'data-target'   => ".navbar-$menu-collapse",
+		); ?>
 		<nav id="<?php echo $main_id; ?>" class="<?php echo $main_css; ?>" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-<?php echo $menu; ?>-collapse">
+				<button <?php fluid_library()->apply_attrs( $button_attrs ); ?>>
 					<span class="sr-only">Toggle navigation</span>
 					<?php library()->fawe( 'fa-bars' ); ?>
 				</button>
@@ -38,9 +46,14 @@ if (has_nav_menu($menu)) {
 		</nav><?php
 	} else {
 		/*	underscore navigation */
-		$main_css = "main-navigation {$menu}-navigation {$page}-{$menu}-navigation"; ?>
+		$main_css = "main-navigation {$menu}-navigation {$page}-{$menu}-navigation";
+		$button_attrs = array(
+			'class' => 'menu-toggle',
+			'aria-controls' => $menu,
+			'aria-expanded' => 'false',
+		); ?>
 		<nav id="site-navigation" class="<?php echo $main_css; ?>" <?php microdata()->SiteNavigationElement(); ?> role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+			<button <?php fluid_library()->apply_attrs( $button_attrs ); ?>>
 				<span class="sr-only">Toggle navigation</span>
 				<?php library()->fawe( 'fa-bars' ); ?>
 			</button>
