@@ -11,7 +11,9 @@ jQuery(document).ready(function() {
 	showhideAdminElements( '.privacy-plugin-active', '.privacy-plugin-filter',  'filter');
 	showhideAdminElements( '.privacy-theme-active',  '.privacy-theme-filter',   'filter');
 
+console.log(tcc_admin_options);
 	if ( tcc_admin_options.showhide ) {
+console.log(tcc_admin_options.showhide);
 		jQuery.each( tcc_admin_options.showhide, function( counter, item ) {
 console.log(item);
 			targetableElements( item );
