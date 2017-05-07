@@ -4,6 +4,7 @@
  * Helps with accessibility for keyboard only users.
  *
  * Learn more: https://git.io/vWdr2
+ *             http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/
  */
 ( function() {
 	var isWebkit = navigator.userAgent.toLowerCase().indexOf( 'webkit' ) > -1,

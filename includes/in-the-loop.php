@@ -190,14 +190,17 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 }
 
 if ( ! function_exists( 'fluid_read_more_link' ) ) {
-	#	derived from:  http://codex.wordpress.org/Excerpt
+	#	http://codex.wordpress.org/Excerpt
+	#	https://make.wordpress.org/themes/handbook/review/accessibility/required/
+	#	https://github.com/wpaccessibility/a11ythemepatterns
 	function fluid_read_more_link( $output ) {
-		$perm = get_permalink( get_the_ID() );
-		$read = apply_filters( 'tcc_read_more_text', __( 'Read More', 'tcc-fluid' ) );
-		$brac = apply_filters( 'tcc_read_more_brackets', true );
-		$css  = apply_filters( 'tcc_read_more_css', '' );
-		$link = '<a class="read-more" href="' . esc_url( $perm ) . '" itemprop="url">' . esc_html( $read ) . '</a>';
-		if ($brac) {
+		$permalink = get_permalink( get_the_ID() );
+		$read_more = apply_filters( 'tcc_read_more_text', __( 'Read More', 'tcc-fluid' ) );
+		$brackets  = apply_filters( 'tcc_read_more_brackets', true );
+		$css       = apply_filters( 'tcc_read_more_css', '' );
+		$sr_text   = '<span class="screen-reader-text"> ' . wp_strip_all_tags( get_the_title( get_the_ID() ) ) . '</span>';
+		$link = '<a class="read-more-link" href="' . esc_url( $perm ) . '" itemprop="url">' . esc_html( $read_more ) . $sr_text . '</a>';
+		if ($brackets) {
 			$link = ' [' . $link . ']';
 		}
 		if ($css)  {

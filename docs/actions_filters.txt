@@ -65,7 +65,7 @@ Note:  this list is probably not accurate, check source for more
 		tcc_mixed_fonts                 combined fonts list                                Typography::mixed_fonts
 		tcc_os_fonts                    user operating system fonts list                   Typography::os_fonts
 		tcc_read_more_brackets          boolean that determines if brackets are displayed  fluid_read_more_link
-		tcc_read_more_css               css applied to read more link                      fluid_read_more_link
+		tcc_read_more_css               css applied to span around read more link          fluid_read_more_link
 		tcc_read_more_text              text displayed in read more link                   fluid_read_more_link
 		tcc_register_sidebars           array of sidebars to be registered                 register_fluid_sidebars
 		tcc_register_widgets_list       fluidity registered widgets                        tcc_register_widgets
