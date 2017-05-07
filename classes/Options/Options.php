@@ -14,7 +14,7 @@ abstract class TCC_Options_Options {
 
 	public function __construct() {
 		add_filter( 'fluidity_options_form_layout',        array( $this, 'form_layout' ),          $this->priority );
-		add_filter( 'tcc_form_admin_options_localization', array( $this, 'options_localization' ), $this->priority );
+		add_filter( 'tcc_form_admin_options_localization', array( $this, 'showhide_localization' ), $this->priority );
 	}
 
 	public function form_layout( $form ) {
@@ -34,10 +34,13 @@ abstract class TCC_Options_Options {
 		return $this->screen;
 	}
 
-	public function options_localization( $data = array() ) {
+	public function showhide_localization( $data = array() ) {
+		if ( ! isset( $data['showhide'] ) ) {
+			$data['showhide'] = array();
+		}
 		foreach( $this->screen['layout'] as $key => $item ) {
 			if ( isset( $item['showhide'] ) ) {
-				$data[] = $item['showhide'];
+				$data['showhide'][] = $item['showhide'];
 			}
 		}
 		return $data;
