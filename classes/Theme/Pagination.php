@@ -5,14 +5,14 @@
 class TCC_Theme_Pagination {
 
 
-	protected $first   = '&nbsp;&laquo;&nbsp;';
-	protected $last    = '&nbsp;&raquo;&nbsp;';
+	protected $first   = '&laquo;';
+	protected $last    = '&raquo;';
 	protected $link    = '&nbsp;%s&nbsp;';
 	protected $nav_css = 'posts-navigation';
-	protected $next    = '&nbsp;&gt;&nbsp;';
+	protected $next    = '&gt;';
 	protected $paged   = 1;
 	protected $pages   = 1;
-	protected $prev    = '&nbsp;&lt;&nbsp;';
+	protected $prev    = '&lt;';
 	protected $range   = 1;
 	protected $show    = 3;
 	protected $sr_text = '';
@@ -73,7 +73,7 @@ class TCC_Theme_Pagination {
 
 	protected function generate_links() {
 		ob_start(); ?>
-		<ul class="pagination"><?php
+		<ul class="pagination page-numbers"><?php
 			if ( $this->show < $this->pages ) {
 				$this->show_prefix_links();
 			}
@@ -116,6 +116,7 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 	protected function show_first_link() {
 		$text = __( 'First Page', 'tcc-fluid' );
 		$attrs = array(
+			'class' => 'first page-numbers',
 			'href'  => get_pagenum_link( 1 ),
 			'title' => $text,
 			'aria-label' => $text,
@@ -127,6 +128,7 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 	protected function show_previous_link() {
 		$text = __( 'Previous Page', 'tcc-fluid' );
 		$attrs = array(
+			'class' => 'prev page-numbers',
 			'href'  => get_pagenum_link( $this->paged - 1 ),
 			'title' => $text,
 			'aria-label' => $text,
@@ -135,10 +137,16 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 		$this->show_link( $attrs, $this->prev );
 	}
 
-	protected function show_current_link( $text ) { ?>
+	protected function show_current_link( $int ) {
+		$text = __( 'Current Page', 'tcc-fluid' );
+		$attrs = array(
+			'class' => 'page-numbers current',
+			'title' => $text,
+			'aria-label' => $text,
+		); ?>
 		<li>
-			<span title="<?php esc_attr_e( 'Current Page', 'tcc-fluid' ); ?>">
-				<?php printf( $this->link, esc_html( $text ) ); ?>
+			<span <?php $this->apply_attrs( $attrs ); ?>>
+				<?php printf( $this->link, number_format_i18n( $int ) ); ?>
 			</span>
 		</li><?php
 	}
@@ -146,12 +154,12 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 	protected function show_page_link ( $int ) {
 		$text = sprintf( _nx( 'Page %s', 'Page %s', $int, 'a number', 'tcc-fluid' ), $int );
 		$attrs = array(
+			'class' => 'page-numbers',
 			'href'  => get_pagenum_link( $int ),
 			'title' => $text,
 			'aria-label' => $text,
 		);
-		$anchor = sprintf( $this->link, $int );
-		$this->show_link( $attrs, $anchor );
+		$this->show_link( $attrs, number_format_i18n( $int ) );
 	}
 
 	protected function show_suffix_links() {
@@ -166,6 +174,7 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 	protected function show_next_link() {
 		$text = __('Next Page','tcc-fluid');
 		$attrs = array(
+			'class' => 'next page-numbers',
 			'href'  => get_pagenum_link( $this->paged + 1 ),
 			'title' => $text,
 			'aria-label' => $text,
@@ -177,6 +186,7 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 	protected function show_last_link() {
 		$text = __('Last Page','tcc-fluid');
 		$attrs = array(
+			'class' => 'last page-numbers',
 			'href'  => get_pagenum_link( $this->pages ),
 			'title' => $text,
 			'aria-label' => $text,
@@ -190,7 +200,7 @@ $hrange = $this->paged + $this->range + 1 + $d2;
 		<li>
 			<a <?php $this->apply_attrs( $attrs ); ?>>
 				<span aria-hidden="true">
-					<?php e_esc_html( $text ); ?>
+					<?php printf( $this->link, esc_html( $text ) ); ?>
 				</span>
 			</a>
 		</li><?php
