@@ -82,15 +82,26 @@ function showhidePosi( el, target, show, hide ) {
 }
 
 function targetableElements( item ) {
+console.log(item);
 	showhideAdminElements( item.origin, item.target, item.show, item.hide );
 }
 
 function showhideAdminElements( origin, target, show, hide ) {
+console.log('origin');
+console.log(origin);
+console.log('target');
+console.log(target);
 	if ( origin && target ) {
 		var radio = jQuery( origin ).find( 'input:radio:checked' );
+console.log('radio');
+console.log(radio);
 		if ( radio ) {
 			var state = jQuery( radio ).val();
+console.log('state');
+console.log(state);
 			if ( show ) {
+console.log('show');
+console.log(show);
 				if ( state === show ) {
 					jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
 				} else {
