@@ -75,12 +75,19 @@ abstract class TCC_Form_Admin {
 		wp_enqueue_script( 'admin-form.js'  );
 		$options = apply_filters( 'tcc_form_admin_options_localization', array() );
 		if ( $options ) {
-			$options = array_map( array( $this, 'normalize_options' ), $options );
+			$options = $this->normalize_options( $options );
 			wp_localize_script( 'admin-form.js', 'tcc_admin_options', $options );
 		}
 	}
 
-	public function normalize_options( $item ) {
+	protected function normalize_options( $old ) {
+		$new = array(
+			'showhide' => array_map( array( $this, 'normalize_showhide' ), $old['showhide'] ),
+		);
+		return $new;
+	}
+
+	public function normalize_showhide( $item ) {
 		$default = array(
 			'origin' => null,
 			'target' => null,
