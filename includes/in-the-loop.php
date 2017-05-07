@@ -189,6 +189,25 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 	}
 }
 
+if ( ! function_exists( 'fluid_read_more_link' ) ) {
+	#	derived from:  http://codex.wordpress.org/Excerpt
+	function fluid_read_more_link( $output ) {
+		$perm = get_permalink( get_the_ID() );
+		$read = apply_filters( 'tcc_read_more_text', __( 'Read More', 'tcc-fluid' ) );
+		$brac = apply_filters( 'tcc_read_more_brackets', true );
+		$css  = apply_filters( 'tcc_read_more_css', '' );
+		$link = '<a class="read-more" href="' . esc_url( $perm ) . '" itemprop="url">' . esc_html( $read ) . '</a>';
+		if ($brac) {
+			$link = ' [' . $link . ']';
+		}
+		if ($css)  {
+			$link = '<span class="' . esc_attr( $css ) . '">' . $link . '</span>';
+		}
+		return $link;
+	}
+	add_filter( 'excerpt_more', 'fluid_read_more_link' );
+}
+
 if (!function_exists('fluid_thumbnail')) {
 	function fluid_thumbnail( $size=null, $class='img-responsive' ) {
 		if (!is_page() || tcc_design('paral')=='no') {

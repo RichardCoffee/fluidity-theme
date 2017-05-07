@@ -25,6 +25,7 @@ abstract class TCC_Form_Admin {
 	protected $type      = 'single'; # two values: single, tabbed
 	protected $validate;
 
+	use TCC_Trait_Attributes;
 	use TCC_Trait_Logging;
 
 	abstract protected function form_layout( $option );
@@ -528,7 +529,6 @@ abstract class TCC_Form_Admin {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
 		$uniq        = uniqid();
-		$tooltip     = ( isset( $layout['help'] ) )    ? $layout['help']    : '';
 		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
 		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
 		$radio_attrs = array(
@@ -537,7 +537,7 @@ abstract class TCC_Form_Admin {
 			'onchange' => ( isset( $layout['change'] ) ) ? $layout['change']  : '',
 			'aria-describedby' => $uniq,
 		); ?>
-		<div title="<?php echo esc_attr( $tooltip ); ?>">
+		<div>
 			<div id="<?php echo $uniq; ?>">
 				<?php echo esc_html( $before_text ); ?>
 			</div><?php
