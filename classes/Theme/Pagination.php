@@ -19,7 +19,6 @@ class TCC_Theme_Pagination {
 
 	use TCC_Trait_Attributes;
 	use TCC_Trait_ParseArgs;
-	use TCC_Trait_Singleton;
 
 
 	public function __construct( $args = array() ) {
