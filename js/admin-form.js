@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
 
 	if ( tcc_admin_options.showhide ) {
 		jQuery.each( tcc_admin_options.showhide, function( counter, item ) {
-consol.log(item);
+console.log(item);
 			targetableElements( item );
 		});
 	}
