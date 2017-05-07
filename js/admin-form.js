@@ -79,7 +79,7 @@ function showhidePosi( el, target, show, hide ) {
 	}
 }
 
-function targetableElements( item );
+function targetableElements( item ) {
 	showhideAdminElements( item.origin, item.target, item.show, item.hide );
 }
 
