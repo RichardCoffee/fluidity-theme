@@ -1,6 +1,8 @@
 <?php
 
 #	http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
+#	wp-includes/link-template.php
+#	wp-includes/general-template.php
 
 class TCC_Theme_Pagination {
 

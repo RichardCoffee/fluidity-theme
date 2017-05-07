@@ -30,17 +30,10 @@ require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-a
 add_action( 'rest_api_init', function() {
 	require_once('includes/wp-rest-api.php');
 });
-
 require_once( 'classes/autocomplete.php' );
 
-new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
-
 if ( is_admin() ) {
-
 	TCC_Options_Fluidity::instance();
-
-	new TCC_MetaBox_PostDate( array( 'type' => 'post' ) ); // TODO:  turn on/off in theme options
-
 } else {
 	require_once('includes/comments.php');
 	require_once('includes/footer.php');
@@ -54,15 +47,12 @@ if ( is_admin() ) {
 
 if ( ! function_exists( 'tcc_enqueue' ) ) {
 	function tcc_enqueue() {
-
 		do_action( 'tcc_pre_enqueue' );
-
 		#	Register scripts
 		fluidity_register_fontawesome();
 		fluidity_register_bootstrap();
 		fluidity_register_color_scheme();
 		fluidity_register_css_js();
-
 		#	Stylesheets
 		wp_enqueue_style('tcc-fawe');	#  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
 		if (tcc_option('active','social')==='yes') {
@@ -71,9 +61,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		fluidity_enqueue_bootstrap();
 #		wp_enqueue_style('fluidity');
 #		wp_enqueue_style('fluid-color');
-
 		do_action( 'tcc_during_enqueue' );
-
 		#	Javascript
 		if ( tcc_layout('menu') !== 'bootstrap' ) {
 			wp_enqueue_script( '_s-navigation', get_theme_file_uri('js/navigation.js'), array(), '20151215', true );
@@ -85,7 +73,6 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		if (is_singular() && comments_open() && get_option('thread_comments')) {
 			wp_enqueue_script('comment-reply');  #  enable threaded comments
 		}
-
 		// experimental
 		$hdr_state = tcc_layout('header');
 		if ($hdr_state==='fixed') {
@@ -96,10 +83,8 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		} else if ($hdr_state==='hide') {
 #			add_action('wp_footer','fluid_footer_autohide',99);
 		}
-
 		do_action('tcc_after_enqueue');
 		do_action('tcc_enqueue');  #  load child theme enqueues here
-
 	}
 	add_action('wp_enqueue_scripts','tcc_enqueue');
 }
@@ -160,7 +145,6 @@ if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
 			'languages',
 			'scss',
 			'template-parts',
-			'tests',
 			'vendor',
 		) );
 		return $exclusions;
