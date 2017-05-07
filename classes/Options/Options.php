@@ -43,7 +43,7 @@ abstract class TCC_Options_Options {
 				$data['showhide'][] = $item['showhide'];
 			}
 		}
-log_entry($data);
+log_entry($data,$this->screen);
 		return $data;
 	}
 
