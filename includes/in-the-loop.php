@@ -199,7 +199,7 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 		$brackets  = apply_filters( 'tcc_read_more_brackets', true );
 		$css       = apply_filters( 'tcc_read_more_css', '' );
 		$sr_text   = '<span class="screen-reader-text"> ' . wp_strip_all_tags( get_the_title( get_the_ID() ) ) . '</span>';
-		$link = '<a class="read-more-link" href="' . esc_url( $perm ) . '" itemprop="url">' . esc_html( $read_more ) . $sr_text . '</a>';
+		$link = '<a class="read-more-link" href="' . esc_url( $permalink ) . '" itemprop="url">' . esc_html( $read_more ) . $sr_text . '</a>';
 		if ($brackets) {
 			$link = ' [' . $link . ']';
 		}
