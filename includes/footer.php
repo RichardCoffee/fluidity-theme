@@ -91,7 +91,7 @@ if ( ! function_exists( 'tcc_site_link' ) ) {
 		$attrs = get_file_data( FLUIDITY_HOME . 'style.css', array( 'href' => 'Theme URI' ) );
 		$attrs['title'] = __( 'Theme by The Creative Collective', 'tcc-fluid' );
 		$attrs['target'] = 'the_creative_collective'; ?>
-		<a <?php fluid_library()->appy_attrs( $attrs ); ?>>
+		<a <?php fluid_library()->apply_attrs( $attrs ); ?>>
 			<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/icons/tcc-btn.png" class="tcc-icon">
 		</a><?php
 	}
