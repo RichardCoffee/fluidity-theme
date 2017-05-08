@@ -66,7 +66,8 @@ class TCC_Microdata {
   */
 
 	public function __call( $name, $args ) {
-		$this->microdata( $name, $args );
+log_entry($args);
+		$this->microdata( $name, $args[0] );
 	}
 
 	public function microdata( $type, $as_attr = false ) {

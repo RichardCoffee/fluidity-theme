@@ -30,7 +30,7 @@ log_entry( microdata()->SiteNavigationElement( true ) );
 			<div class="navbar-header">
 				<?php fluid_library()->apply_attrs_tag( $button_attrs, 'button' ); ?>
 					<span class="sr-only">Toggle navigation</span>
-					<?php library()->fawe( 'fa-bars' ); ?>
+					<?php fluid_library()->fawe( 'fa-bars' ); ?>
 				</button>
 				<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
 			</div>
