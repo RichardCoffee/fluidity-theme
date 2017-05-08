@@ -4,7 +4,7 @@
  *  File:  includes/options.php
  *
  */
-
+/*
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 	function fluid_rest_dispatch_request( $result ) {
 #		log_entry( func_get_args() );
@@ -12,7 +12,7 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 #		log_entry( $_SERVER );
 #		log_entry( $result );
 		$filter = current_filter();
-#log_entry(0,$filter);
+log_entry(0,$filter);
 
 		return $result;
 	}
@@ -127,27 +127,28 @@ if ( ! function_exists( 'tcc_layout' ) ) {
 	}
 }
 
-if (!function_exists('tcc_option')) {
-	function tcc_option($option='',$section='') {
-		if ($option) {
-			if ($section) {
-				$tcc_func = "tcc_$section";
-				if (function_exists($tcc_func)) {
-					$retval = $tcc_func($option);
-				} else {
-					$data = get_option("tcc_options_$section");
-					if (isset($data[$option])) return $data[$option];
-				}
+if ( ! function_exists( 'tcc_option' ) ) {
+	function tcc_option( $option, $section = '', $value = 'incompatible data' ) {
+		if ( $section ) {
+			$tcc_func = "tcc_$section";
+			if ( function_exists( $tcc_func ) ) {
+				$retval = $tcc_func( $option, $value );
 			} else {
-				$opts = TCC_Options_Fluidity::instance()->get_options();
-				foreach( $opts as $key => $options ) {
-					if ( isset( $options[ $option ] ) ) {
-						return $options[ $option ];
-					}
+				$data = get_option( "tcc_options_$section" );
+				if ( isset( $data[ $option ] ) ) {
+					$value = $data[ $option ];
+				}
+			}
+		} else {
+			$opts = TCC_Options_Fluidity::instance()->get_options();
+			foreach( $opts as $key => $options ) {
+				if ( isset( $options[ $option ] ) ) {
+					$value = $options[ $option ];
+					break;
 				}
 			}
 		}
-		return 'incompatible data';
+		return $value;
 	}
 }
 
