@@ -16,6 +16,7 @@ if ( has_nav_menu( $menu ) ) {
 			'class' => "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu",
 			'role'  => 'navigation',
 		);
+log_entry( microdata()->SiteNavigationElement( true ) );
 		$nav_attrs = array_merge( $nav_attrs, microdata()->SiteNavigationElement( true ) );
 		$button_attrs = array(
 			'type'  => 'button',
