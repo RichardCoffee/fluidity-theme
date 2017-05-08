@@ -88,8 +88,10 @@ if ( ! function_exists( 'tcc_footer_menu' ) ) {
 
 if ( ! function_exists( 'tcc_site_link' ) ) {
 	function tcc_site_link() {
-		$tooltip = __( 'Theme by The Creative Collective', 'tcc-fluid' ); ?>
-		<a href="http://the-creative-collective.com" target="the_creative_collective" title="<?php echo $tooltip; ?>">
+		$attrs = get_file_data( FLUIDITY_HOME . 'style.css', array( 'href' => 'Theme URI' ) );
+		$attrs['title'] = __( 'Theme by The Creative Collective', 'tcc-fluid' );
+		$attrs['target'] = 'the_creative_collective'; ?>
+		<a <?php fluid_library()->appy_attrs( $attrs ); ?>>
 			<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/icons/tcc-btn.png" class="tcc-icon">
 		</a><?php
 	}
