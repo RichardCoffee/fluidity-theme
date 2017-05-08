@@ -16,8 +16,7 @@ if ( has_nav_menu( $menu ) ) {
 			'class' => "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu",
 			'role'  => 'navigation',
 		);
-log_entry( microdata()->SiteNavigationElement( true ) );
-		$nav_attrs = array_merge( $nav_attrs, microdata()->SiteNavigationElement( true ) );
+		$nav_attrs = array_merge( $nav_attrs, microdata()->microdata_attrs( 'SiteNavigationElement' );
 		$button_attrs = array(
 			'type'  => 'button',
 			'class' => 'navbar-toggle',
@@ -56,7 +55,7 @@ log_entry( microdata()->SiteNavigationElement( true ) );
 			'class' => "main-navigation {$menu}-navigation {$page}-{$menu}-navigation",
 			'role'  => 'navigation',
 		);
-		$nav_attrs = array_merge( $nav_attrs, microdata()->SiteNavigationElement( true ) );
+		$nav_attrs = array_merge( $nav_attrs, microdata()->microdata_attrs( 'SiteNavigationElement' );
 		$button_attrs = array(
 			'class' => 'menu-toggle',
 			'aria-controls' => $menu,
