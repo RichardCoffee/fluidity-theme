@@ -17,7 +17,7 @@ class TCC_Theme_Support {
 		$this->custom_background();
 #		$this->custom_header();
 		$this->custom_logo();
-		$this->editor_styles();
+		$this->editor_style();
 		$this->html5();
 		$this->post_formats();
 		$this->post_thumbnails();
