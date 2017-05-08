@@ -14,8 +14,6 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 			wp_enqueue_style( 'fa-social' );
 		}
 		fluidity_enqueue_bootstrap();
-#		wp_enqueue_style( 'fluidity' );
-#		wp_enqueue_style( 'fluid-color' );
 		do_action( 'tcc_during_enqueue' );
 		#Javascript
 		if ( tcc_layout( 'menu' ) !== 'bootstrap' ) {
@@ -83,4 +81,12 @@ if ( ! function_exists( 'fluidity_register_color_scheme' ) ) {
 			wp_register_style( 'fluid-color',  get_theme_file_uri( "css/colors/$color.css" ), false, FLUIDITY_VERSION );
 		}
 	}
+}
+
+if ( ! function_exists( 'fluidity_enqueue_styles' ) ) {
+	function fluidity_enqueue_styles() {
+		wp_enqueue_style( 'fluidity' );
+		wp_enqueue_style( 'fluid-color' );
+	}
+	add_action( 'tcc_during_enqueue', 'fluidity_enqueue_styles', 1 );
 }
