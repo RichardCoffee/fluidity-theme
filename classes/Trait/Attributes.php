@@ -30,9 +30,9 @@ trait TCC_Trait_Attributes {
 				case 'value':
 					$value = esc_html( $value );
 					break;
-#				case 'class':
-#					$value = sanitize_html_class( $value );
-#					break;
+				case 'class':
+					$value = $this->sanitize_html_class( $value );
+					break;
 				case 'aria-label':
 				case 'placeholder':
 				case 'title':
@@ -54,6 +54,15 @@ trait TCC_Trait_Attributes {
 	private function is_self_closing( $tag ) {
 		$self_closing = array( 'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr' );
 		return in_array( $tag, $self_closing, true );
+	}
+
+	private function sanitize_html_class( $css ) {
+		$classes = explode( ' ', $css );
+		$result  = array();
+		foreach( $classes as $class ) {
+			$result[] = sanitize_html_class( $class );
+		}
+		return implode( ' ', $result );
 	}
 
 
