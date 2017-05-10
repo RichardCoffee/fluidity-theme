@@ -30,9 +30,9 @@ trait TCC_Trait_Attributes {
 				case 'value':
 					$value = esc_html( $value );
 					break;
-				case 'class':
-					$value = sanitize_html_class( $value );
-					break;
+#				case 'class':
+#					$value = sanitize_html_class( $value );
+#					break;
 				case 'aria-label':
 				case 'placeholder':
 				case 'title':
