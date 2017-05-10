@@ -30,10 +30,13 @@ trait TCC_Trait_Attributes {
 				case 'value':
 					$value = esc_html( $value );
 					break;
+				case 'class':
+					$value = sanitize_html_class( $value );
+					break;
 				case 'aria-label':
 				case 'placeholder':
 				case 'title':
-					$value = wp_strip_all_tags( $value );
+					$value = esc_attr( wp_strip_all_tags( $value ) );
 				default:
 					$value = esc_attr( $value );
 			}

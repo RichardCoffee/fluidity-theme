@@ -4,30 +4,24 @@
 #	wp-includes/link-template.php
 #	wp-includes/general-template.php
 
-class TCC_Theme_Pagination {
+class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 
 
 	protected $first   = '&laquo;';
 	protected $last    = '&raquo;';
 	protected $link    = '&nbsp;%s&nbsp;';
-	protected $nav_css = 'posts-navigation';
 	protected $next    = '&gt;';
 	protected $paged   = 1;
 	protected $pages   = 1;
 	protected $prev    = '&lt;';
 	protected $range   = 1;
 	protected $show    = 3;
-	protected $sr_text = '';
-
-	use TCC_Trait_Attributes;
-	use TCC_Trait_ParseArgs;
 
 
 	public function __construct( $args = array() ) {
 		$this->get_paged();
 		$this->get_pages();
-		$this->sr_text = __( 'Post navigation' ,' tcc-fluid' );
-		$this->parse_args( $args );
+		parent::__construct( $args );
 		$this->show = ( $this->range * 2 ) + 1;
 	}
 
@@ -40,36 +34,18 @@ class TCC_Theme_Pagination {
 
 	protected function get_pages() {
 		global $wp_query;
-		$pages = $wp_query->max_num_pages;
-		if ( $pages ) {
-			$this->pages = $pages;
+		if ( $wp_query ) {
+			$pages = $wp_query->max_num_pages;
+			if ( $pages ) {
+				$this->pages = $pages;
+			}
 		}
 	}
 
 	public function pagination() {
 		if ( $this->pages > 1 ) {
-			$links = $this->generate_links();
-			$template = apply_filters( 'navigation_markup_template', null, $this->nav_css );
-			if ( $template ) {
-				$html = sprintf( $template, sanitize_html_class( $this->nav_css ), esc_html( $$this->sr_text ), $links );
-			} else {
-				$template = $this->generate_markup();
-				$html = sprintf( $template, $links );
-			}
-			echo $html;
+			$this->generate_navigation();
 		}
-	}
-
-	protected function generate_markup() {
-		$attrs = array(
-			'class' => 'navigation ' . $this->nav_css,
-			'title' => $this->sr_text,
-			'aria-label' => $this->sr_text,
-			'role' => 'navigation',
-		);
-		$html = $this->get_apply_attrs_tag( $attrs, 'nav' );
-		$html.= '<div class="nav-links">%s</div></nav>';
-		return $html;
 	}
 
 	protected function generate_links() {
@@ -79,22 +55,10 @@ class TCC_Theme_Pagination {
 				$this->show_prefix_links();
 			}
 			for ( $i = 1; $i <= $this->pages; $i++ ) {
-				$lnorm = $this->paged - $this->range - 1;
-				$hnorm = $this->paged + $this->range + 1;
-
-$d1 = ( $i > ( $this->pages -$this->show ) ) ? $this->range : 0;
-
-#$d1 = ( $i < ( $this->paged - $this->range -1 ) ) ? $this->range : 0;
-#$d1 = ( ( $i < ( $this->paged + $this->range ) ) && ( $i < ( $this->pages - $this->show - 1 ) ) ) ? $this->range : 0;
-#$d1 = ( ( $i < ( $this->pages - $this->show + 1 ) ) ) ? $this->range : 0;
-
-$d2 = ( $i < ( $this->show + 1 ) ) ? $this->range : 0 ;
-
-$lrange = $this->paged - $this->range - 1 - $d1;
-$hrange = $this->paged + $this->range + 1 + $d2;
-#echo "I:$i";
-#echo "L:$lnorm/$lrange";
-#echo "H:$hnorm/$hrange";
+				$delta1 = ( $i > ( $this->pages -$this->show ) ) ? $this->range : 0;
+				$delta2 = ( $i < ( $this->show + 1 ) ) ? $this->range : 0 ;
+				$lrange = $this->paged - $this->range - 1 - $delta1;
+				$hrange = $this->paged + $this->range + 1 + $delta2;
 				if ( ( ! ( ( $i >= $hrange ) || ( $i <= $lrange ) ) || ( $this->pages <= $this->show ) ) ) {
 					if ( $this->paged === $i ) {
 						$this->show_current_link( $i );
