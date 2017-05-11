@@ -20,6 +20,8 @@ if ( ! function_exists( 'debug_calling_function' ) ) {
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
 		$depth   = max( min( $depth, $total_cnt ), 1 );
+		$file = $depth;
+		$func = $total_cnt;
 		#	This is not an exhaustive list
 		$skip_list  = array(
 			'apply_filters',
