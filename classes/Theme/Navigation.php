@@ -4,7 +4,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
 	protected $all_links      = true;
-	protected $excluded_terms = array();
+	protected $excluded_terms = '';
 	protected $left           = '<span aria-hidden="true">&laquo;</span> %title';
 	protected $li_css         = 'btn-fluidity';
 	protected $newer_all      = '';
@@ -23,10 +23,10 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
 	public function __construct( $args = array() ) {
-		$this->newer_all      = __( 'Newer Posts', 'tcc-fluid' );
-		$this->older_all      = __( 'Older Posts', 'tcc-fluid' );
-		$this->newer_taxonomy = _x( 'Newer %s posts', 'the taxonomy label (singular)', 'tcc-fluid' );
-		$this->older_taxonomy = _x( 'Older %s posts', 'the taxonomy label (singular)', 'tcc-fluid' );
+		$this->newer_all      = __( 'Newer Post', 'tcc-fluid' );
+		$this->newer_taxonomy = _x( 'Newer %s post', 'the taxonomy label (singular)', 'tcc-fluid' );
+		$this->older_all      = __( 'Older Post', 'tcc-fluid' );
+		$this->older_taxonomy = _x( 'Older %s post', 'the taxonomy label (singular)', 'tcc-fluid' );
 		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
 		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
 		parent::__construct( $args );
