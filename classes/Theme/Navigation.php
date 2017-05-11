@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Theme_Navigation {
+class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
 	protected $all_links      = true;
