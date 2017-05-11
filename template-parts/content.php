@@ -21,10 +21,10 @@ who_am_i(); ?>
 	</div><?php
 
 	if ( is_single() ) {
-		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
-#log_entry('before fluid_navigation');
-		new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
-#log_entry('after fluid_navigation');
+		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' ); ?>
+		<p>
+			<?php new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) ); ?>
+		</p><?php
 		fluid_postmetadata();
 	}
 
