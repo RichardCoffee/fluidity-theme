@@ -55,10 +55,10 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected function check_links() {
 		$this->excluded_terms = apply_filters( 'fluid_excluded_terms', $this->excluded_terms, $this->taxonomy );
 		if ( $this->taxonomy && $this->all_links ) {
-			$prev_tax = get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
-			$next_tax = get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
-			$prev_all = get_adjacent_post( false, $this->excluded_terms, true,  null );
-			$next_all = get_adjacent_post( false, $this->excluded_terms, false, null );
+			$prev_tax = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
+			$next_tax = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
+			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true,  null );
+			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false, null );
 			if ( ( $prev_tax->ID === $prev_all->ID ) && ( $next_tax->ID === $next_all->ID ) ) {
 				$this->taxonomy = null;
 			} else {
@@ -66,6 +66,15 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 				$this->show_older = ( $prev_tax->ID !== $prev_all->ID );
 			}
 		}
+	}
+
+	protected function get_adjacent_post( $same_tax, $excluded, $direction, $taxonomy ) {
+		$post = get_adjacent_post( $same_tax, $excluded, $direction, $taxonomy );
+		if ( empty( $post ) ) {
+			$post = new stdClass;
+			$post->ID = 0;
+		}
+		return $post;
 	}
 
 	protected function taxonomy_links() {
