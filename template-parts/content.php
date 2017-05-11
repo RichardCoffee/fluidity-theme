@@ -22,7 +22,8 @@ who_am_i(); ?>
 
 	if ( is_single() ) {
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
-		new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
+		#new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
+		fluid_navigation( $taxonomy, true );
 		fluid_postmetadata();
 	}
 
