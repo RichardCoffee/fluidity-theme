@@ -17,9 +17,9 @@ if ( ! function_exists( 'debug_calling_function' ) ) {
 	#	http://php.net/debug_backtrace
 	function debug_calling_function( $depth = 1 ) {
 		$default = $file = $func = $line = 'n/a';
-		$depth   = max( $depth, 1 );
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
+		$depth   = max( min( $depth, $total_cnt ), 1 );
 		#	This is not an exhaustive list
 		$skip_list  = array(
 			'apply_filters',
