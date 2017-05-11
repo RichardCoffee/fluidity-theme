@@ -78,7 +78,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	}
 
 	protected function taxonomy_links() {
-		$tax_obj = get_taxonomy( $taxonomy );
+		$tax_obj = get_taxonomy( $this->taxonomy );
 		$this->newer_link = sprintf( $this->newer_taxonomy, $tax_obj->labels->name );
 		$this->older_link = sprintf( $this->older_taxonomy, $tax_obj->labels->name );
 		$this->sr_text    = $this->sr_taxonomy;
