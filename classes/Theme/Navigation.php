@@ -75,7 +75,7 @@ log_entry($this);
 			$post = new stdClass;
 			$post->ID = 0;
 		}
-log_entry( $post, func_get_args() );
+log_entry( $post->ID, func_get_args() );
 		return $post;
 	}
 
