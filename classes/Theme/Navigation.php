@@ -102,6 +102,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected function generate_links() {
 		ob_start(); ?>
 			<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
+log_entry( $this );
 				$li_attrs = array(
 					'class' => 'previous '. $this->li_css,
 					'title' => $this->older_link,
