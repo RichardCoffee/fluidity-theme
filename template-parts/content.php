@@ -24,9 +24,9 @@ echo "Here I am!\n";
 
 	if ( is_single() ) {
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' ); ?>
-		<p><p>
+		<div>
 			<?php new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) ); ?>
-		</p><?php
+		</div><?php
 		fluid_postmetadata();
 	}
 
