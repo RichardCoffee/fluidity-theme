@@ -71,8 +71,8 @@ log_entry($this);
 		}
 	}
 
-	protected function get_adjacent_post( $same_tax, $excluded, $direction, $taxonomy ) {
-		$post = get_adjacent_post( $same_tax, $excluded, $direction, $taxonomy );
+	protected function get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy = 'category' ) {
+		$post = get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy );
 		if ( empty( $post ) ) {
 			$post = new stdClass;
 			$post->ID = 0;
@@ -104,7 +104,7 @@ log_entry( $post, func_get_args() );
 	protected function generate_links() {
 		ob_start(); ?>
 			<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
-log_entry( $this, get_post() );
+log_entry( $this );
 				$li_attrs = array(
 					'class' => 'previous '. $this->li_css,
 					'title' => $this->older_link,
