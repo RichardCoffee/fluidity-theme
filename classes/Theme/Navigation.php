@@ -76,6 +76,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 			$post = new stdClass;
 			$post->ID = 0;
 		}
+log_entry( $post );
 		return $post;
 	}
 
