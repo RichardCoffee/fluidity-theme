@@ -60,8 +60,8 @@ log_entry($this);
 		if ( $this->taxonomy && $this->all_links ) {
 			$prev_tax = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
 			$next_tax = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
-			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true,  null );
-			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false, null );
+			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true,  $this->taxonomy );#null );
+			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false, $this->taxonomy );#null );
 			if ( ( $prev_tax->ID === $prev_all->ID ) && ( $next_tax->ID === $next_all->ID ) ) {
 				$this->taxonomy = null;
 			} else {
