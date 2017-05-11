@@ -3,7 +3,7 @@
  *
  */
 
-if ( ! function_exists( 'debug_calling_function' ) ) {
+#if ( ! function_exists( 'debug_calling_function' ) ) {
 	/**
 	*	Get the calling function.
 	*
@@ -40,7 +40,7 @@ if ( ! function_exists( 'debug_calling_function' ) ) {
 		} while( in_array( $func, $skip_list ) && ( $total_cnt > $depth ) );
 		return "$file, $func, $line";
 	}
-}
+#}
 
 if ( ! function_exists( 'get_calling_function' ) ) {
 	function get_calling_function( $depth = 1 ) {
