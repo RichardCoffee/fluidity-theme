@@ -18,7 +18,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $show_older     = true;
 	protected $sr_all_links   = '';
 	protected $sr_taxonomy    = '';
-	protected $taxonomy       = null;
+	protected $taxonomy       = '';
 	protected $ul_css         = '';
 
 
@@ -35,7 +35,7 @@ log_entry($this);
 	}
 
 	protected function navigation() {
-		$this->check_links();
+		$this->get_posts();
 		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div>
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
@@ -53,7 +53,7 @@ log_entry($this);
 		}
 	}
 
-	protected function check_links() {
+	protected function get_posts() {
 		$this->excluded_terms = apply_filters( 'fluid_excluded_terms', $this->excluded_terms, $this->taxonomy );
 		if ( $this->taxonomy && $this->all_links ) {
 			$prev_tax = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
@@ -75,7 +75,7 @@ log_entry($this);
 			$post = new stdClass;
 			$post->ID = 0;
 		}
-#log_entry( $post, func_get_args() );
+log_entry( $post, func_get_args() );
 		return $post;
 	}
 
