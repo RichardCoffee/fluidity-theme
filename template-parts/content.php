@@ -20,6 +20,8 @@ who_am_i(); ?>
 		<?php the_content(); ?>
 	</div><?php
 
+echo "Here I am!\n";
+
 	if ( is_single() ) {
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' ); ?>
 		<p>
