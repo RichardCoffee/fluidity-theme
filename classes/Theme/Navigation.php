@@ -36,19 +36,21 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected function navigation() {
 		$this->check_links();
 		if ( $this->taxonomy || $this->all_links ) { ?>
-			<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
-				if ( $this->taxonomy ) {
-					$sr_saved = $this->sr_text;
-					$this->sr_text = $this->sr_taxonomy;
-					$this->taxonomy_links();
-				}
-				if ( $this->taxonomy && $this->all_links ) { ?>
-					<div id="post-link-separator-middle" class="post-link-separator post-link-separator-middle"></div><?php
-				}
-				if ( $this->all_links ) {
-					$this->all_links();
-				} ?>
-			<div id="post-link-separator-bottom" class="post-link-separator post-link-separator-bottom"></div><?php
+			<div>
+				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
+					if ( $this->taxonomy ) {
+						$sr_saved = $this->sr_text;
+						$this->sr_text = $this->sr_taxonomy;
+						$this->taxonomy_links();
+					}
+					if ( $this->taxonomy && $this->all_links ) { ?>
+						<div id="post-link-separator-middle" class="post-link-separator post-link-separator-middle"></div><?php
+					}
+					if ( $this->all_links ) {
+						$this->all_links();
+					} ?>
+				<div id="post-link-separator-bottom" class="post-link-separator post-link-separator-bottom"></div>
+			</div><?php
 		}
 	}
 
