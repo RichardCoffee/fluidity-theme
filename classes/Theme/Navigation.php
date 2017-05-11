@@ -58,10 +58,10 @@ log_entry($this);
 	protected function check_links() {
 		$this->excluded_terms = apply_filters( 'fluid_excluded_terms', $this->excluded_terms, $this->taxonomy );
 		if ( $this->taxonomy && $this->all_links ) {
-			$prev_tax = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
-			$next_tax = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
-			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true,  null );
-			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false, null );
+			$prev_tax = $this->get_previous_post( true,  $this->excluded_terms,  $this->taxonomy );
+			$next_tax = $this->get_next_post(     true,  $this->excluded_terms, $this->taxonomy );
+			$prev_all = $this->get_previous_post( false, $this->excluded_terms );
+			$next_all = $this->get_next_post(     false, $this->excluded_terms );
 			if ( ( $prev_tax->ID === $prev_all->ID ) && ( $next_tax->ID === $next_all->ID ) ) {
 				$this->taxonomy = null;
 			} else {
