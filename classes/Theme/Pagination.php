@@ -23,6 +23,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 		$this->get_pages();
 		parent::__construct( $args );
 		$this->show = ( $this->range * 2 ) + 1;
+		$this->pagination();
 	}
 
 	protected function get_paged() {
@@ -42,7 +43,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 		}
 	}
 
-	public function pagination() {
+	protected function pagination() {
 		if ( $this->pages > 1 ) {
 			$this->generate_navigation();
 		}
@@ -55,7 +56,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 				$this->show_prefix_links();
 			}
 			for ( $i = 1; $i <= $this->pages; $i++ ) {
-				$delta1 = ( $i > ( $this->pages -$this->show ) ) ? $this->range : 0;
+				$delta1 = ( $i > ( $this->pages - $this->show ) ) ? $this->range : 0;
 				$delta2 = ( $i < ( $this->show + 1 ) ) ? $this->range : 0 ;
 				$lrange = $this->paged - $this->range - 1 - $delta1;
 				$hrange = $this->paged + $this->range + 1 + $delta2;

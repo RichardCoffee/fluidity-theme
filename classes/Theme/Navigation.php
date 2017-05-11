@@ -30,6 +30,7 @@ class TCC_Theme_Navigation {
 		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
 		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
 		parent::__construct( $args );
+		$this->navigation();
 	}
 
 	protected function navigation() {
