@@ -25,8 +25,8 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	public function __construct( $args = array() ) {
 		$this->newer_all      = __( 'Newer Posts', 'tcc-fluid' );
 		$this->older_all      = __( 'Older Posts', 'tcc-fluid' );
-		$this->newer_taxonomy = _x( 'Newer Posts for %s', 'the taxonomy label (plural)', 'tcc-fluid' );
-		$this->older_taxonomy = _x( 'Older Posts for %s', 'the taxonomy label (plural)', 'tcc-fluid' );
+		$this->newer_taxonomy = _x( 'Newer %s posts', 'the taxonomy label (singular)', 'tcc-fluid' );
+		$this->older_taxonomy = _x( 'Older %s posts', 'the taxonomy label (singular)', 'tcc-fluid' );
 		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
 		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
 		parent::__construct( $args );
@@ -83,8 +83,8 @@ log_entry( $post, func_get_args() );
 
 	protected function taxonomy_links() {
 		$tax_obj = get_taxonomy( $this->taxonomy );
-		$this->newer_link = sprintf( $this->newer_taxonomy, $tax_obj->labels->name );
-		$this->older_link = sprintf( $this->older_taxonomy, $tax_obj->labels->name );
+		$this->newer_link = sprintf( $this->newer_taxonomy, $tax_obj->labels->singular_name );
+		$this->older_link = sprintf( $this->older_taxonomy, $tax_obj->labels->singular_name );
 		$this->sr_text    = $this->sr_taxonomy;
 		$this->ul_css     = 'pager pager-taxonomy';
 		$this->generate_navigation();
