@@ -89,7 +89,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected function all_links() {
 		$this->newer_link = $this->newer_all;
 		$this->older_link = $this->older_all;
-		$this->sr_text    = $this->sr_all_links();
+		$this->sr_text    = $this->sr_all_links;
 		$this->show_newer = true;
 		$this->show_older = true;
 		$this->taxonomy   = null;
