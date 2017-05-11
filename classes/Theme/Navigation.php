@@ -40,8 +40,6 @@ log_entry($this);
 			<div>
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
 					if ( $this->taxonomy ) {
-						$sr_saved = $this->sr_text;
-						$this->sr_text = $this->sr_taxonomy;
 						$this->taxonomy_links();
 					}
 					if ( $this->taxonomy && $this->all_links ) { ?>
@@ -63,7 +61,7 @@ log_entry($this);
 			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true,  $this->taxonomy );#null );
 			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false, $this->taxonomy );#null );
 			if ( ( $prev_tax->ID === $prev_all->ID ) && ( $next_tax->ID === $next_all->ID ) ) {
-				$this->taxonomy = null;
+				$this->taxonomy = '';
 			} else {
 				$this->show_newer = ( $next_tax->ID !== $next_all->ID );
 				$this->show_older = ( $prev_tax->ID !== $prev_all->ID );
@@ -77,7 +75,7 @@ log_entry($this);
 			$post = new stdClass;
 			$post->ID = 0;
 		}
-log_entry( $post, func_get_args() );
+#log_entry( $post, func_get_args() );
 		return $post;
 	}
 
