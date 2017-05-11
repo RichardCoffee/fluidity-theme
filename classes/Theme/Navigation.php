@@ -58,8 +58,8 @@ log_entry($this);
 		if ( $this->taxonomy && $this->all_links ) {
 			$prev_tax = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
 			$next_tax = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
-			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true,  $this->taxonomy );#null );
-			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false, $this->taxonomy );#null );
+			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true );
+			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false );
 			if ( ( $prev_tax->ID === $prev_all->ID ) && ( $next_tax->ID === $next_all->ID ) ) {
 				$this->taxonomy = '';
 			} else {
@@ -94,7 +94,7 @@ log_entry($this);
 		$this->sr_text    = $this->sr_all_links;
 		$this->show_newer = true;
 		$this->show_older = true;
-		$this->taxonomy   = null;
+		$this->taxonomy   = '';
 		$this->ul_css     = 'pager pager-all';
 		$this->generate_navigation();
 	}
