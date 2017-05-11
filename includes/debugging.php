@@ -17,6 +17,7 @@ if ( ! function_exists( 'debug_calling_function' ) ) {
 	#	http://php.net/debug_backtrace
 	function debug_calling_function( $depth = 1 ) {
 		$default = $file = $func = $line = 'n/a';
+		$depth   = max( $depth, 1 );
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
 		#	This is not an exhaustive list
