@@ -41,7 +41,7 @@ $this->logging_write_entry( 'in log' );
 		#	This is not intended to be an exhaustive list
 #		static $skip_list;
 #		if ( empty( $skip_list ) ) {
-			$skip_list = array(
+			static $skip_list = array(
 				'apply_filters',
 				'call_user_func',
 				'call_user_func_array',
