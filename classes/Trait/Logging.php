@@ -23,7 +23,6 @@ trait TCC_Trait_Logging {
 	}
 
 	protected function log() {
-$this->logging_write_entry( 'in log' );
 		if ( $this->logging_debug || $this->logging_force ) {
 			call_user_func_array( array( $this, 'logging_entry' ), func_get_args() );
 		}
@@ -39,18 +38,13 @@ $this->logging_write_entry( 'in log' );
 
 	protected function logging_calling_function( $depth = 1 ) {
 		#	This is not intended to be an exhaustive list
-#		static $skip_list;
-#		if ( empty( $skip_list ) ) {
-			static $skip_list = array(
-				'apply_filters',
-				'call_user_func',
-				'call_user_func_array',
-				'log',
-				'logging',
-			);
-#		}
-$this->logging_write_entry( 'skip_list' );
-$this->logging_write_entry( $skip_list );
+		static $skip_list = array(
+			'apply_filters',
+			'call_user_func',
+			'call_user_func_array',
+			'log',
+			'logging',
+		);
 		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
