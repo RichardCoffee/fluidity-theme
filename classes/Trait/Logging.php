@@ -93,6 +93,7 @@ $this->logging_write_entry( $skip_list );
 		} else if ( function_exists( 'pbl_raw_path' ) ) {
 			$destination = pbl_raw_path() . '/error_log';
 		}
+		return $destination;
 	}
 
 	protected function logging_write_entry( $log_me, $log_file = 'error_log' ) {
