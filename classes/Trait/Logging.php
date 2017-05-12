@@ -38,8 +38,8 @@ trait TCC_Trait_Logging {
 
 	protected function logging_calling_function( $depth = 1 ) {
 		#	This is not intended to be an exhaustive list
-		static $skip_list;
-		if ( empty( $skip_list ) ) {
+#		static $skip_list;
+#		if ( empty( $skip_list ) ) {
 			$skip_list = array(
 				'apply_filters',
 				'call_user_func',
@@ -47,7 +47,7 @@ trait TCC_Trait_Logging {
 				'log',
 				'logging',
 			);
-		}
+#		}
 		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
@@ -59,7 +59,7 @@ trait TCC_Trait_Logging {
 			$line = ( isset( $call_trace[ $depth ]['line'] ) )     ? $call_trace[ $depth ]['line']     : $default;
 			$depth++;
 			$func = ( isset( $call_trace[ $depth ]['function'] ) ) ? $call_trace[ $depth ]['function'] : $default;
-		} while( in_array( $func, $skip_list ) && ( $total_cnt > $depth ) );
+		} while( in_array( $func, $skip_list, true ) && ( $total_cnt > $depth ) );
 		return "$file, $func, $line";
 	}
 
