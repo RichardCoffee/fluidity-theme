@@ -42,6 +42,7 @@ trait TCC_Trait_Logging {
 			'apply_filters',
 			'call_user_func',
 			'call_user_func_array',
+			'log',
 			'logging',
 		);
 		$default = $file = $func = $line = 'n/a';
