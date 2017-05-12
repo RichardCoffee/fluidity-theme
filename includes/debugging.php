@@ -27,10 +27,8 @@
 			'apply_filters',
 			'call_user_func',
 			'call_user_func_array',
-			'debug_calling_function',
 			'log_entry',
 			'logging',
-			'tcc_write_error_log',
 		);
 		do {
 			$file = ( isset( $call_trace[ $depth ]['file'] ) )     ? $call_trace[ $depth ]['file']     : $default;

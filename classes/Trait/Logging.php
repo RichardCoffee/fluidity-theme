@@ -48,9 +48,6 @@ trait TCC_Trait_Logging {
 		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
-		$depth   = max( min( $depth, $total_cnt ), 1 );
-		$file = $depth;
-		$func = $total_cnt;
 		do {
 			$file = ( isset( $call_trace[ $depth ]['file'] ) )     ? $call_trace[ $depth ]['file']     : $default;
 			$line = ( isset( $call_trace[ $depth ]['line'] ) )     ? $call_trace[ $depth ]['line']     : $default;
