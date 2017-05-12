@@ -21,6 +21,8 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $taxonomy       = '';
 	protected $ul_css         = '';
 
+	use TCC_Trait_Logging;
+
 
 	public function __construct( $args = array() ) {
 		$this->newer_all      = __( 'Newer Post', 'tcc-fluid' );
@@ -30,7 +32,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
 		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
 		parent::__construct( $args );
-log_entry($this);
+$this->log($this);
 		$this->navigation();
 	}
 
