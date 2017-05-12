@@ -32,7 +32,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
 		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
 		parent::__construct( $args );
-$this->log($this, 'stack' );
+$this->log($this );
 		$this->navigation();
 	}
 
