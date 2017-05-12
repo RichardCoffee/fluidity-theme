@@ -24,8 +24,8 @@ trait TCC_Trait_Logging {
 
 	protected function log() {
 $this->logging_write_entry( 'in log' );
-		if ( $this->logging_func && ( $this->logging_debug || $this->logging_force ) ) {
-			call_user_func_array( $this->logging_func, func_get_args() );
+		if ( $this->logging_debug || $this->logging_force ) {
+			call_user_func_array( array( $this, 'logging_entry' ), func_get_args() );
 		}
 		$this->logging_force = false;
 	}
