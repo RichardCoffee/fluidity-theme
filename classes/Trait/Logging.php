@@ -38,13 +38,16 @@ trait TCC_Trait_Logging {
 
 	protected function logging_calling_function( $depth = 1 ) {
 		#	This is not intended to be an exhaustive list
-		static $skip_list  = array(
-			'apply_filters',
-			'call_user_func',
-			'call_user_func_array',
-			'log',
-			'logging',
-		);
+		static $skip_list;
+		if ( empty( $skip_list ) ) {
+			$skip_list = array(
+				'apply_filters',
+				'call_user_func',
+				'call_user_func_array',
+				'log',
+				'logging',
+			);
+		}
 		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
