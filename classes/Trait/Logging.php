@@ -48,6 +48,7 @@ trait TCC_Trait_Logging {
 				'logging',
 			);
 #		}
+$this->logging_write_entry( $skip_list );
 		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$total_cnt  = count( $call_trace );
