@@ -7,22 +7,7 @@ trait TCC_Trait_Logging {
 	protected $logging_func  = 'log_entry';  #  string/array - logging function: must be able to accept a variable number of parameters
 
 
-	protected function check_logging_option() {
-		#| check logging option
-		if ( is_string( $this->logging_func ) ) {
-			if ( ! function_exists( $this->logging_func ) ) {
-				$this->logging_func = $this->logging_debug = false;
-			}
-		} else if ( is_array( $this->logging_func ) ) {
-			if ( ! method_exists( $this->logging_func[0], $this->logging_func[1] ) ) {
-				$this->logging_func = $this->logging_debug = false;
-			}
-		} else {
-			$this->logging_func = $this->logging_debug = false;
-		}
-	}
-
-	protected function log() {
+	public function log() {
 		if ( $this->logging_debug || $this->logging_force ) {
 			call_user_func_array( array( $this, 'logging_entry' ), func_get_args() );
 		}
@@ -55,6 +40,15 @@ trait TCC_Trait_Logging {
 			$func = ( isset( $call_trace[ $depth ]['function'] ) ) ? $call_trace[ $depth ]['function'] : $default;
 		} while( in_array( $func, $skip_list, true ) && ( $total_cnt > $depth ) );
 		return "$file, $func, $line";
+	}
+
+	protected function logging_check_function() {
+		if ( is_string( $this->logging_func ) && function_exists( $this->logging_func ) ) {
+			return;
+		} else if ( is_array( $this->logging_func ) && method_exists( $this->logging_func[0], $this->logging_func[1] ) ) {
+			return;
+		}
+		$this->logging_func = array( $this, 'logging_entry' );
 	}
 
 	protected function logging_entry() {

@@ -4,26 +4,23 @@ abstract class TCC_Modal_Bootstrap {
 
 
 	protected $base   = 'modal';
-	protected $library;
 	protected $prefix = 'tcc';  #  used as filter prefix
 	protected $size   = 'modal-lg';
 	protected $title  = 'Modal Title';
+
+	use TCC_Trait_Attributes;
+
 
 #	abstract protected function modal_header();
 	abstract protected function modal_body();
 	abstract protected function modal_footer();
 
 
-	public function __construct() {
-		$this->library = new TCC_Theme_Library;
-	}
-
-
 	/**  Modal  **/
 
 	public function generate_modal() { ?>
-		<div <?php $this->library->apply_attrs( $this->get_modal_attrs() ); ?>>
-			<div <?php $this->library->apply_attrs( $this->get_modal_dialog_attrs() ); ?>>
+		<div <?php $this->apply_attrs( $this->get_modal_attrs() ); ?>>
+			<div <?php $this->apply_attrs( $this->get_modal_dialog_attrs() ); ?>>
 				<div class="modal-content"><?php
 					$this->generate_header();
 					$this->generate_body();
@@ -58,8 +55,8 @@ abstract class TCC_Modal_Bootstrap {
 	/**  Modal Header  **/
 
 	private function generate_header() { ?>
-		<div <?php $this->library->apply_attrs( $this->get_modal_header_attrs() ); ?>>
-			<button <?php $this->library->apply_attrs( $this->get_modal_header_button_close_attrs() ) ?>>
+		<div <?php $this->apply_attrs( $this->get_modal_header_attrs() ); ?>>
+			<button <?php $this->apply_attrs( $this->get_modal_header_button_close_attrs() ) ?>>
 				<span aria-hidden="true">&times;</span>
 			</button>
 			<h4 id="<?php echo $this->base; ?>-title" class="modal-title text-center">
@@ -90,7 +87,7 @@ abstract class TCC_Modal_Bootstrap {
 	/**  Modal Body  **/
 
 	private function generate_body() { ?>
-		<div <?php $this->library->apply_attrs( $this->get_modal_body_attrs() ); ?>>
+		<div <?php $this->apply_attrs( $this->get_modal_body_attrs() ); ?>>
 			<?php $this->modal_body(); ?>
 		</div><?php
 	}
@@ -107,7 +104,7 @@ abstract class TCC_Modal_Bootstrap {
 	/**  Modal Footer  **/
 
 	private function generate_footer() { ?>
-		<div <?php $this->library->apply_attrs( $this->get_modal_footer_attrs() ); ?>>
+		<div <?php $this->apply_attrs( $this->get_modal_footer_attrs() ); ?>>
 			<?php $this->modal_footer(); ?>
 		</div><?php
 	}

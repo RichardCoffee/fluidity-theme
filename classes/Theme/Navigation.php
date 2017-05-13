@@ -32,7 +32,6 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
 		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
 		parent::__construct( $args );
-$this->log($this );
 		$this->navigation();
 	}
 
@@ -77,7 +76,6 @@ $this->log($this );
 			$post = new stdClass;
 			$post->ID = 0;
 		}
-$this->log( 1, $post->ID, func_get_args() );
 		return $post;
 	}
 
@@ -104,7 +102,6 @@ $this->log( 1, $post->ID, func_get_args() );
 	protected function generate_links() {
 		ob_start(); ?>
 			<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
-log_entry( $this );
 				$li_attrs = array(
 					'class' => 'previous '. $this->li_css,
 					'title' => $this->older_link,
