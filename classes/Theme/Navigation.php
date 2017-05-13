@@ -4,7 +4,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
 	protected $all_links      = true;
-	protected $excluded_terms = '';
+	protected $excluded_terms = array();
 	protected $left           = '<span aria-hidden="true">&laquo;</span> %title';
 	protected $li_css         = 'btn-fluidity';
 	protected $newer_all      = '';
@@ -37,6 +37,8 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 	protected function navigation() {
 		$this->get_posts();
+
+/*
 		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div>
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
@@ -51,7 +53,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 					} ?>
 				<div id="post-link-separator-bottom" class="post-link-separator post-link-separator-bottom"></div>
 			</div><?php
-		}
+		} //*/
 	}
 
 	protected function get_posts() {
@@ -76,6 +78,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 			$post = new stdClass;
 			$post->ID = 0;
 		}
+echo "<p>{$post->title}</p>";
 		return $post;
 	}
 

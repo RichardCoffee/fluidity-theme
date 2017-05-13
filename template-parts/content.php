@@ -22,9 +22,11 @@ who_am_i(); ?>
 
 	if ( is_single() ) {
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
-		new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
-?><hr /><?php
-		fluid_navigation( $taxonomy, true );
+		if ( current_user_can( 'manage_options' ) ) {
+			new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
+		} else {
+			fluid_navigation( $taxonomy, true );
+		}
 		fluid_postmetadata();
 	}
 
