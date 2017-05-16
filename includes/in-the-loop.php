@@ -69,7 +69,7 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 			$next_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
 			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) {
 				$taxonomy = '';
-			}
+			} /*
 log_entry(
 	"    taxonomy: $taxonomy",
 	"previous tax: $prev_tax",
