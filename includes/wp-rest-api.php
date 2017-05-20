@@ -10,7 +10,9 @@ log_entry("status:  $status");
 		if ( $status === 'off' ) {
 			return new WP_Error( 'rest_forbidden_context', 'Unauthorized access.', array( 'status' => rest_authorization_required_code() ) );
 		}
-		if ( ! is_user_logged_in() && in_array( $status, array( 'admin', 'user' ) ) ) {
+$check = ( in_array( $status, array( 'admin', 'user' ), true ) ) ? 'true' : 'false';
+log_entry("check:  $check");
+		if ( ( ! is_user_logged_in() ) && in_array( $status, array( 'admin', 'user' ), true ) ) {
 			return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => rest_authorization_required_code() ) );
 		}
 		if ( ( $status === 'admin' ) && ! current_user_can( 'manage_options' ) ) {
