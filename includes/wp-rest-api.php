@@ -9,7 +9,8 @@ if ( ! function_exists( 'fluidity_rest_authentication' ) ) {
 		if ( $status === 'off' ) {
 			return new WP_Error( 'rest_forbidden_context', 'Unauthorized access.', array( 'status' => rest_authorization_required_code() ) );
 		}
-		if ( in_array( $status, array( 'admin', 'user' ) ) && ! is_user_logged_in() ) {
+		#if ( in_array( $status, array( 'admin', 'user' ) ) || ! is_user_logged_in() ) {
+		if ( ! is_user_logged_in() ) {
 			return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => rest_authorization_required_code() ) );
 		}
 		if ( ( $status === 'admin' ) && ! current_user_can( 'manage_options' ) ) {
