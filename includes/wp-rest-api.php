@@ -6,6 +6,7 @@
 if ( ! function_exists( 'fluidity_rest_authentication' ) ) {
 	function fluidity_rest_authentication( $result ) {
 		$status = tcc_option( 'status', 'apicontrol' );
+log_entry("status:  $status");
 		if ( $status === 'off' ) {
 			return new WP_Error( 'rest_forbidden_context', 'Unauthorized access.', array( 'status' => rest_authorization_required_code() ) );
 		}
