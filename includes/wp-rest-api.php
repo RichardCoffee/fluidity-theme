@@ -6,19 +6,19 @@
 if ( ! function_exists( 'fluidity_rest_authentication' ) ) {
 	function fluidity_rest_authentication( $result ) {
 		$status = tcc_option( 'status', 'apicontrol' );
-log_entry("status:  $status");
+#log_entry("status:  $status");
 		if ( $status === 'off' ) {
 			return new WP_Error( 'rest_forbidden_context', 'Unauthorized access.', array( 'status' => rest_authorization_required_code() ) );
 		}
-$check = ( in_array( $status, array( 'admin', 'users' ), true ) ) ? 'true' : 'false';
-log_entry("check:  $check");
+#$check = ( in_array( $status, array( 'admin', 'users' ), true ) ) ? 'true' : 'false';
+#log_entry("check:  $check");
 		if ( ( ! is_user_logged_in() ) && in_array( $status, array( 'admin', 'users' ), true ) ) {
 			return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => rest_authorization_required_code() ) );
 		}
 		if ( ( $status === 'admin' ) && ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error( 'rest_forbidden_context', 'Only admins have access to this endpoint.', array( 'status' => rest_authorization_required_code() ) );
 		}
-log_entry($result);
+#log_entry($result);
 		return $result;
 	}
 	add_filter( 'rest_authentication_errors', 'fluidity_rest_authentication' );

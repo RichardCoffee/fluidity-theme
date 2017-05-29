@@ -16,15 +16,40 @@ class TCC_Options_ColorScheme {
 	}
 
 	protected function options_layout() {
-		$layout = array( 'default' => true );
+		$layout  = array( 'default' => true );
 		$schemes = $this->get_available_color_schemes();
-		$active  = tcc_options( 'active', $this->base );
-		foreach( $schemes as $scheme => $data ) {
+		$active  = tcc_options( 'active',  $this->base, 'none' );
+		$data    = tcc_options( 'schemes', $this->base,  array() );
+		$layout['active'] = array(
+			'default' => 'none',
+			'label'   => __( 'Color Scheme', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => $schemes,
+		);
+		foreach( $schemes as $file => $name ) {
 			
 		}
 	}
 
 	private function get_available_color_schemes() {
+		$colors = array();
+		$path = FLUIDITY_HOME . 'css/colors';
+		$avail = scandir( $path );
+log_entry($avail);
+		foreach( $avail as $file ) {
+			if ( in_array( $file, array( '.', '..' ), true ) ) {
+				continue;
+			}
+			if ( strpos( $file, '.css', -4 ) === false ) {
+				continue;
+			}
+			$data = get_file_data( $path . '/' . $file, array( 'name' => 'Name' ) );
+			if ( $data && ! empty( $data['name'] ) ) {
+				$colors[ $file ] = $data['name'];
+			}
+		}
+log_entry($colors);
+		return $colors;
 	}
 
 
