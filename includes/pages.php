@@ -189,9 +189,9 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 			if ( $title ) { ?>
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
 					<div class="row">
-						<h2 class="text-center">
+						<h1 class="text-center">
 							<?php echo $title; ?>
-						</h2>
+						</h1>
 					</div>
 				</div><?php
 			}
