@@ -278,8 +278,8 @@ hr {
   color: #FFFFFF;
 }
 
-.page-title {
-  color: #FFFFFF;
+.page-title p {
+  color: #39b54a;
   text-shadow: #2e913b 1px 1px 2px;
 }
 
