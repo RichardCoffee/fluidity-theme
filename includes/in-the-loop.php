@@ -9,10 +9,10 @@
 
 if ( ! function_exists( 'fluid_content_header' ) ) {
 	function fluid_content_header() { ?>
-		<h1 class="text-center">
+		<h2 class="text-center">
 			<?php tcc_post_title(); ?>
 			<?php fluid_edit_post_link(); ?>
-		</h1>
+		</h2>
 		<h3 class="post-date text-center">
 			<?php fluid_post_date( true ); ?>
 		</h3><?php
