@@ -13,9 +13,9 @@ who_am_i(); ?>
 
 		$format  = esc_html__( 'Permanent Link to %s', 'tcc-fluid' );
 		$tooltip = sprintf( $format, get_the_title() ); ?>
-		<h1 class="text-center" itemprop="headline">
+		<h2 class="text-center" itemprop="headline">
 			<?php tcc_post_title( 40 ); ?>
-		</h1>
+		</h2>
 
 		<?php if ( tcc_option( 'exdate' ) === 'show' ) { ?>
 			<h3 class="text-center">
