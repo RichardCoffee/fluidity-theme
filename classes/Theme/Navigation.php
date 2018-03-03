@@ -60,10 +60,10 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->excluded_terms = apply_filters( 'fluid_navigation_excluded_terms', $this->excluded_terms, $this->taxonomy );
 
 
-$prev_tax = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
-$next_tax = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
-$prev_all = get_permalink( get_adjacent_post( false, $exclude, true ) );
-$next_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
+$prev_tax = get_permalink( get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy ) );
+$next_tax = get_permalink( get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy ) );
+$prev_all = get_permalink( get_adjacent_post( false, $this->excluded_terms, true ) );
+$next_all = get_permalink( get_adjacent_post( false, $this->excluded_terms, false ) );
 $this->log(
 "    taxonomy: $this->taxonomy",
 "previous tax: $prev_tax",
