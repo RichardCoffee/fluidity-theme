@@ -25,14 +25,18 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
 	public function __construct( $args = array() ) {
+		$this->navigation_text();
+		parent::__construct( $args );
+		$this->navigation();
+	}
+
+	protected function navigation_text() {
 		$this->newer_all      = __( 'Newer Post', 'tcc-fluid' );
 		$this->newer_taxonomy = _x( 'Newer %s post', 'the taxonomy label (singular)', 'tcc-fluid' );
 		$this->older_all      = __( 'Older Post', 'tcc-fluid' );
 		$this->older_taxonomy = _x( 'Older %s post', 'the taxonomy label (singular)', 'tcc-fluid' );
 		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
 		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
-		parent::__construct( $args );
-		$this->navigation();
 	}
 
 	protected function navigation() {
