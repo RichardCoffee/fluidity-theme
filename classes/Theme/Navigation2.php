@@ -94,9 +94,7 @@ $this->log(
 			$post = new stdClass;
 			$post->ID = 0;
 		}
-else {
-	echo "<p>{$post->title}</p>";
-}
+echo "<p>{$post->title}</p>";
 		return $post;
 	}
 

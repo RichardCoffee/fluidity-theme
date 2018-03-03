@@ -57,23 +57,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	}
 
 	protected function get_posts() {
-		$this->excluded_terms = apply_filters( 'fluid_navigation_excluded_terms', $this->excluded_terms, $this->taxonomy );
-
-
-$prev_tax = get_permalink( get_adjacent_post( true,  $exclude, true,  $taxonomy ) );
-$next_tax = get_permalink( get_adjacent_post( true,  $exclude, false, $taxonomy ) );
-$prev_all = get_permalink( get_adjacent_post( false, $exclude, true ) );
-$next_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
-$this->log(
-"    taxonomy: $this->taxonomy",
-"previous tax: $prev_tax",
-"previous all: $prev_all",
-"    next tax: $next_tax",
-"    next all: $next_all"
-);
-
-
-
+		$this->excluded_terms = apply_filters( 'fluid_excluded_terms', $this->excluded_terms, $this->taxonomy );
 		if ( $this->taxonomy && $this->all_links ) {
 			$prev_tax = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
 			$next_tax = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
@@ -94,9 +78,7 @@ $this->log(
 			$post = new stdClass;
 			$post->ID = 0;
 		}
-else {
-	echo "<p>{$post->title}</p>";
-}
+echo "<p>{$post->title}</p>";
 		return $post;
 	}
 
