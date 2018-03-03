@@ -13,6 +13,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $older_all      = '';
 	protected $older_link     = '';
 	protected $older_taxonomy = '';
+	protected $posts          = array();
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
 	protected $show_newer     = true;
 	protected $show_older     = true;
@@ -63,17 +64,16 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected function get_posts() {
 		$this->excluded_terms = apply_filters( 'fluid_navigation_excluded_terms', $this->excluded_terms, $this->taxonomy );
 
-
-$prev_tax = get_permalink( get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy ) );
-$next_tax = get_permalink( get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy ) );
-$prev_all = get_permalink( get_adjacent_post( false, $this->excluded_terms, true ) );
-$next_all = get_permalink( get_adjacent_post( false, $this->excluded_terms, false ) );
+$this->posts['prev_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
+$this->posts['next_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
+$this->posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
+$this->posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
 $this->log(
 "    taxonomy: $this->taxonomy",
-"previous tax: $prev_tax",
-"previous all: $prev_all",
-"    next tax: $next_tax",
-"    next all: $next_all"
+"previous tax: {$this->posts['prev_tax']->ID}",
+"previous all: {$this->posts['prev_all']->ID}",
+"    next tax: {$this->posts['next_tax']->ID}",
+"    next all: {$this->posts['next_all']->ID}"
 );
 
 
