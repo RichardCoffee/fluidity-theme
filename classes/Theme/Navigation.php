@@ -128,6 +128,7 @@ $this->log('before generate_navigation call');
 	}
 
 	protected function generate_links() {
+$this->log('in generate_links function');
 		ob_start(); ?>
 			<div class="row">
 				<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
