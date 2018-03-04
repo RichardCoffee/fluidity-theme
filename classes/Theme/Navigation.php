@@ -7,19 +7,14 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $excluded_terms = array();
 	protected $left           = '<span aria-hidden="true">&laquo;</span> %title';
 	protected $li_css         = 'btn-fluidity';
-	protected $newer_all      = '';
 	protected $newer_link     = '';
-	protected $newer_taxonomy = '';
-	protected $older_all      = '';
 	protected $older_link     = '';
-	protected $older_taxonomy = '';
 	protected $posts          = array();
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
 	protected $show_newer     = true;
 	protected $show_older     = true;
-	protected $sr_all_links   = '';
-	protected $sr_taxonomy    = '';
 	protected $taxonomy       = '';
+	protected $text           = array();
 	protected $ul_css         = '';
 
 	use TCC_Trait_Logging;
@@ -32,12 +27,14 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	}
 
 	protected function navigation_text() {
-		$this->newer_all      = __( 'Newer Post', 'tcc-fluid' );
-		$this->newer_taxonomy = _x( 'Newer %s post', 'the taxonomy label (singular)', 'tcc-fluid' );
-		$this->older_all      = __( 'Older Post', 'tcc-fluid' );
-		$this->older_taxonomy = _x( 'Older %s post', 'the taxonomy label (singular)', 'tcc-fluid' );
-		$this->sr_all_links   = __( 'Posts Navigation', 'tcc-fluid' );
-		$this->sr_taxonomy    = __( 'Category Navigation', 'tcc-fluid' );
+		$this->text = array(
+			'new_all' => __( 'Newer Post', 'tcc-fluid' ),
+			'new_tax' => _x( 'Newer %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
+			'old_all' => __( 'Older Post', 'tcc-fluid' ),
+			'old_tax' => _x( 'Older %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
+			'sr_all'  => __( 'Posts Navigation', 'tcc-fluid' ),
+			'sr_tax'  => __( 'Category Navigation', 'tcc-fluid' )
+		);
 	}
 
 	protected function navigation() {
@@ -51,7 +48,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 					if ( $this->taxonomy && $this->all_links ) { ?>
 						<div id="post-link-separator-middle" class="post-link-separator post-link-separator-middle"></div><?php
 					}
-$this->log('all_links: '.$this->all_links);
+#$this->log('all_links: '.$this->all_links);
 					if ( $this->all_links ) {
 $this->log('display all links');
 						$this->all_links();
@@ -78,18 +75,13 @@ $this->log(
 
 
 		if ( $this->taxonomy && $this->all_links ) {
-$this->log('all_links true');
 			if ( ( $this->posts['prev_tax']->ID === $this->posts['prev_all']->ID ) && ( $this->posts['next_tax']->ID === $this->posts['next_all']->ID ) ) {
 				$this->taxonomy = '';
 			} else {
 				$this->show_newer = ( $this->posts['next_tax']->ID !== $this->posts['next_all']->ID );
 				$this->show_older = ( $this->posts['prev_tax']->ID !== $this->posts['prev_all']->ID );
-$this->log( 'show_newer:'.$this->show_newer.'  show_older:'.$this->show_older );
 			}
 		}
-else {
-	$this->log('all_links false');
-}
 //*/
 	}
 
@@ -108,27 +100,27 @@ else {
 
 	protected function taxonomy_links() {
 		$tax_obj = get_taxonomy( $this->taxonomy );
-		$this->newer_link = sprintf( $this->newer_taxonomy, $tax_obj->labels->singular_name );
-		$this->older_link = sprintf( $this->older_taxonomy, $tax_obj->labels->singular_name );
-		$this->sr_text    = $this->sr_taxonomy;
+		$this->newer_link = sprintf( $this->text['new_tax'], $tax_obj->labels->singular_name );
+		$this->older_link = sprintf( $this->text['old_tax'], $tax_obj->labels->singular_name );
+		$this->sr_text    = $this->text['sr_tax'];
 		$this->ul_css     = 'pager pager-taxonomy';
 		$this->generate_navigation();
 	}
 
 	protected function all_links() {
-		$this->newer_link = $this->newer_all;
-		$this->older_link = $this->older_all;
-		$this->sr_text    = $this->sr_all_links;
+		$this->newer_link = $this->text['new_all'];
+		$this->older_link = $this->text['old_all'];
+		$this->sr_text    = $this->text['sr_all'];
 		$this->show_newer = true;
 		$this->show_older = true;
 		$this->taxonomy   = '';
 		$this->ul_css     = 'pager pager-all';
-$this->log('before generate_navigation call');
 		$this->generate_navigation();
 	}
 
 	protected function generate_links() {
-$this->log('in generate_links function');
+$this->log('in generate_links function - ul_css: '.$this->ul_css);
+$this->log(0,'taxonomy:  '.$this->taxonomy);
 		ob_start(); ?>
 			<div class="row">
 				<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
