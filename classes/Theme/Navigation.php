@@ -51,6 +51,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 					if ( $this->taxonomy && $this->all_links ) { ?>
 						<div id="post-link-separator-middle" class="post-link-separator post-link-separator-middle"></div><?php
 					}
+$this->log('all_links: '.$this->all_links);
 					if ( $this->all_links ) {
 						$this->all_links();
 					} ?>
