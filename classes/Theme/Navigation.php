@@ -85,6 +85,7 @@ $this->log('all_links true');
 			} else {
 				$this->show_newer = ( $this->posts['next_tax']->ID !== $this->posts['next_all']->ID );
 				$this->show_older = ( $this->posts['prev_tax']->ID !== $this->posts['prev_all']->ID );
+$this->log( 'show_newer:'.$this->show_newer.'  show_older:'.$this->show_older );
 			}
 		}
 else {
