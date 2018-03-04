@@ -70,10 +70,10 @@ $this->posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_term
 $this->posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
 $this->log(
 "    taxonomy: $this->taxonomy",
-"previous tax: {$this->posts['prev_tax']->ID}",
-"previous all: {$this->posts['prev_all']->ID}",
-"    next tax: {$this->posts['next_tax']->ID}",
-"    next all: {$this->posts['next_all']->ID}"
+"previous tax: {$this->posts['prev_tax']->ID} ".$this->posts['prev_tax']->post_title,
+"previous all: {$this->posts['prev_all']->ID} ".$this->posts['prev_all']->post_title,
+"    next tax: {$this->posts['next_tax']->ID} ".$this->posts['next_tax']->post_title,
+"    next all: {$this->posts['next_all']->ID} ".$this->posts['next_all']->post_title
 );
 
 
