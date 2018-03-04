@@ -26,8 +26,8 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
 	public function __construct( $args = array() ) {
-		$this->navigation_text();
 		parent::__construct( $args );
+		$this->navigation_text();
 		$this->navigation();
 	}
 
@@ -42,8 +42,6 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 	protected function navigation() {
 		$this->get_posts();
-
-/*
 		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div>
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
@@ -77,7 +75,6 @@ $this->log(
 );
 
 
-
 		if ( $this->taxonomy && $this->all_links ) {
 $this->log('all_links true');
 			if ( ( $this->posts['prev_tax']->ID === $this->posts['prev_all']->ID ) && ( $this->posts['next_tax']->ID === $this->posts['next_all']->ID ) ) {
@@ -91,6 +88,7 @@ $this->log( 'show_newer:'.$this->show_newer.'  show_older:'.$this->show_older );
 else {
 	$this->log('all_links false');
 }
+//*/
 	}
 
 	protected function get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy = 'category' ) {
@@ -98,9 +96,10 @@ else {
 		if ( empty( $post ) ) {
 			$post = new stdClass;
 			$post->ID = 0;
+			$post->post_title = '';
 		}
 else {
-	echo "<p>{$post->title}</p>";
+	echo "<p>{$post->post_title}</p>";
 }
 		return $post;
 	}

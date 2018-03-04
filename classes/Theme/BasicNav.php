@@ -34,10 +34,11 @@ abstract class TCC_Theme_BasicNav {
 			'class' => 'navigation no-print ' . $this->nav_css,
 			'title' => $this->sr_text,
 			'aria-label' => $this->sr_text,
-			'role' => 'navigation',
+			'role'  => 'navigation',
 		);
 		$html = $this->get_apply_attrs_tag( $attrs, 'nav' );
-		$html.= '<div class="nav-links">%s</div></nav>';
+		$html.= '<div class="nav-links">%s</div>';
+		$html.= '</nav>';
 		return $html;
 	}
 
