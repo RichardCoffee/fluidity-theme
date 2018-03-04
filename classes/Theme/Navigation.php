@@ -80,11 +80,11 @@ $this->log(
 
 		if ( $this->taxonomy && $this->all_links ) {
 $this->log('all_links true');
-			if ( ( $prev_tax->ID === $prev_all->ID ) && ( $next_tax->ID === $next_all->ID ) ) {
+			if ( ( $this->posts['prev_tax']->ID === $this->posts['prev_all']->ID ) && ( $this->posts['next_tax']->ID === $this->posts['next_all']->ID ) ) {
 				$this->taxonomy = '';
 			} else {
-				$this->show_newer = ( $next_tax->ID !== $next_all->ID );
-				$this->show_older = ( $prev_tax->ID !== $prev_all->ID );
+				$this->show_newer = ( $this->posts['next_tax']->ID !== $this->posts['next_all']->ID );
+				$this->show_older = ( $this->posts['prev_tax']->ID !== $this->posts['prev_all']->ID );
 			}
 		}
 else {
