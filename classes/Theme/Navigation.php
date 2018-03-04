@@ -123,6 +123,7 @@ else {
 		$this->show_older = true;
 		$this->taxonomy   = '';
 		$this->ul_css     = 'pager pager-all';
+$this->log('before generate_navigation call');
 		$this->generate_navigation();
 	}
 
