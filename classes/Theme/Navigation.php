@@ -126,26 +126,28 @@ else {
 
 	protected function generate_links() {
 		ob_start(); ?>
-			<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
-				$li_attrs = array(
-					'class' => 'previous '. $this->li_css,
-					'title' => $this->older_link,
-				);
-				if ( $this->show_older ) {
-					$this->apply_attrs_tag( $li_attrs, 'li' );
-						previous_post_link( '%link', $this->left, true, $this->excluded_terms, $this->taxonomy ); ?>
-					</li><?php
-				}
-				$li_attrs = array(
-					'class' => 'next '. $this->li_css,
-					'title' => $this->newer_link,
-				);
-				if ( $this->show_newer ) {
-					$this->apply_attrs_tag( $li_attrs, 'li' );
-						next_post_link( '%link', $this->right, true, $this->excluded_terms, $this->taxonomy ); ?>
-					</li><?php
-				} ?>
-			</ul><?php
+			<div class="row">
+				<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
+					$li_attrs = array(
+						'class' => 'previous '. $this->li_css,
+						'title' => $this->older_link,
+					);
+					if ( $this->show_older ) {
+						$this->apply_attrs_tag( $li_attrs, 'li' );
+							previous_post_link( '%link', $this->left, true, $this->excluded_terms, $this->taxonomy ); ?>
+						</li><?php
+					}
+					$li_attrs = array(
+						'class' => 'next '. $this->li_css,
+						'title' => $this->newer_link,
+					);
+					if ( $this->show_newer ) {
+						$this->apply_attrs_tag( $li_attrs, 'li' );
+							next_post_link( '%link', $this->right, true, $this->excluded_terms, $this->taxonomy ); ?>
+						</li><?php
+					} ?>
+				</ul>
+			</div><?php
 		return ob_get_clean();
 	}
 
