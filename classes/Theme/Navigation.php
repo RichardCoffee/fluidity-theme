@@ -79,10 +79,7 @@ $this->log(
 
 
 		if ( $this->taxonomy && $this->all_links ) {
-			$prev_tax = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
-			$next_tax = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
-			$prev_all = $this->get_adjacent_post( false, $this->excluded_terms, true );
-			$next_all = $this->get_adjacent_post( false, $this->excluded_terms, false );
+$this->log('all_links true');
 			if ( ( $prev_tax->ID === $prev_all->ID ) && ( $next_tax->ID === $next_all->ID ) ) {
 				$this->taxonomy = '';
 			} else {
@@ -90,6 +87,9 @@ $this->log(
 				$this->show_older = ( $prev_tax->ID !== $prev_all->ID );
 			}
 		}
+else {
+	$this->log('all_links false');
+}
 	}
 
 	protected function get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy = 'category' ) {
