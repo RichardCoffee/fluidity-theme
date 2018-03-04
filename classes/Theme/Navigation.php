@@ -53,6 +53,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 					}
 $this->log('all_links: '.$this->all_links);
 					if ( $this->all_links ) {
+$this->log('display all links');
 						$this->all_links();
 					} ?>
 				<div id="post-link-separator-bottom" class="post-link-separator post-link-separator-bottom"></div>
