@@ -11,6 +11,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $older_link     = '';
 	protected $posts          = array();
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
+	protected $same_term      = false;
 	protected $show_newer     = true;
 	protected $show_older     = true;
 	protected $taxonomy       = '';
@@ -104,6 +105,7 @@ else {
 		$this->older_link = sprintf( $this->text['old_tax'], $tax_obj->labels->singular_name );
 		$this->sr_text    = $this->text['sr_tax'];
 		$this->ul_css     = 'pager pager-taxonomy';
+		$this->same_term  = true;
 		$this->generate_navigation();
 	}
 
@@ -115,6 +117,7 @@ else {
 		$this->show_older = true;
 		$this->taxonomy   = '';
 		$this->ul_css     = 'pager pager-all';
+		$this->same_term  = false;
 		$this->generate_navigation();
 	}
 
@@ -130,7 +133,7 @@ $this->log(0,'taxonomy:  '.$this->taxonomy);
 					);
 					if ( $this->show_older ) {
 						$this->apply_attrs_tag( $li_attrs, 'li' );
-							previous_post_link( '%link', $this->left, true, $this->excluded_terms, $this->taxonomy ); ?>
+							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					}
 					$li_attrs = array(
@@ -139,7 +142,7 @@ $this->log(0,'taxonomy:  '.$this->taxonomy);
 					);
 					if ( $this->show_newer ) {
 						$this->apply_attrs_tag( $li_attrs, 'li' );
-							next_post_link( '%link', $this->right, true, $this->excluded_terms, $this->taxonomy ); ?>
+							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					} ?>
 				</ul>
