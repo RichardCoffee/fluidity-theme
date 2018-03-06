@@ -147,7 +147,10 @@ $this->log(0,'taxonomy:  '.$this->taxonomy);
 					} ?>
 				</ul>
 			</div><?php
-		return ob_get_clean();
+$buffer = ob_get_clean();
+$this->log($buffer);
+#		return ob_get_clean();
+		return$buffer;
 	}
 
 
