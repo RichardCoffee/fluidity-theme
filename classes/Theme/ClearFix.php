@@ -19,7 +19,8 @@ class TCC_Theme_ClearFix {
 
 	public function initialize( $args ) {
 		if ( ! $this->active ) {
-			$this->parse_args( $args );
+			$init = array_merge( array( 'lg' => 4, 'md' => 4, 'sm' => 6, 'xs' => 12 ), $args );
+			$this->parse_args( $init );
 			$this->count  = 0;
 			$this->active = true;
 		}
