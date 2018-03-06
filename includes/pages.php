@@ -15,14 +15,6 @@ if ( ! function_exists( 'get_page_id' ) ) {
 	}
 }
 
-if ( ! function_exists( 'fluid_category_page_title' ) ) {
-	function fluid_category_page_title() { ?>
-		<h1 class="text-center">
-			<?php single_cat_title( esc_html__( 'Category: ', 'tcc-fluid' ) ); ?>
-		</h1><?php
-	}
-}
-
 if (!function_exists('fluid_category_page_noposts')) {
   function fluid_category_page_noposts() {
     $text = esc_html__( 'Apologies, but no results were found for the requested Category. Perhaps searching will help find a related post.','tcc-fluid' );

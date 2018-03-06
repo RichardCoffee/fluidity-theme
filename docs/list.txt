@@ -57,7 +57,6 @@
 			Pages
 	==================================
 		author_role_template( $templates = '' )
-		fluid_category_page_title()
 		fluid_content_slug( $page = 'single' )
 		fluid_noposts_page( $text )
 		fluid_read_more_link( $output )
