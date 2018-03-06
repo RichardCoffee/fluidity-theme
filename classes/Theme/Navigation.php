@@ -42,6 +42,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	}
 
 	protected function navigation() {
+		$this->taxonomy = apply_filters( 'fluid_navigation_taxonomy', $this->taxonomy );
 		$this->check_posts();
 		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div>
