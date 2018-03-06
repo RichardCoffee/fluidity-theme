@@ -149,6 +149,12 @@ $this->log(0,'taxonomy:  '.$this->taxonomy);
 			</div><?php
 $buffer = ob_get_clean();
 $this->log($buffer);
+$link1 = get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
+$link2 = get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
+$this->log(0,
+"link 1:  $link1",
+"link 2:  $link2"
+);
 #		return ob_get_clean();
 		return$buffer;
 	}
