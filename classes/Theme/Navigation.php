@@ -1,5 +1,9 @@
 <?php
 
+/*
+ *    This class can only be used inside the Loop.
+ */
+
 class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
@@ -92,13 +96,24 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	}
 
 	protected function taxonomy_links() {
-		$tax_obj = get_taxonomy( $this->taxonomy );
-		$this->newer_link = sprintf( $this->text['new_tax'], $tax_obj->labels->singular_name );
-		$this->older_link = sprintf( $this->text['old_tax'], $tax_obj->labels->singular_name );
+		if ( $this->taxonomy === 'category' ) {
+			$category = $this->get_post_category();
+			$this->newer_link = sprintf( $this->text['new_tax'], $category );
+			$this->older_link = sprintf( $this->text['old_tax'], $category );
+		} else {
+			$tax_obj = get_taxonomy( $this->taxonomy );
+			$this->newer_link = sprintf( $this->text['new_tax'], $tax_obj->labels->singular_name );
+			$this->older_link = sprintf( $this->text['old_tax'], $tax_obj->labels->singular_name );
+		}
 		$this->sr_text    = $this->text['sr_tax'];
 		$this->ul_css     = 'pager pager-taxonomy';
 		$this->same_term  = true;
 		$this->generate_navigation();
+	}
+
+	protected function get_post_category() {
+		$terms = wp_get_post_terms( get_the_ID(), 'category' );
+		return ( ( ! $terms) || is_wp_error( $terms ) ) ? 'Category' : $terms[0]->name;
 	}
 
 	protected function all_links() {
