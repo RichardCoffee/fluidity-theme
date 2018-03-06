@@ -115,7 +115,6 @@ else {
 		$this->sr_text    = $this->text['sr_all'];
 		$this->show_newer = true;
 		$this->show_older = true;
-		$this->taxonomy   = '';
 		$this->ul_css     = 'pager pager-all';
 		$this->same_term  = false;
 		$this->generate_navigation();
@@ -148,7 +147,7 @@ $this->log(0,'taxonomy:  '.$this->taxonomy);
 				</ul>
 			</div><?php
 $buffer = ob_get_clean();
-$this->log($buffer);
+$this->log(0,$buffer);
 $link1 = get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
 $link2 = get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
 $this->log(0,
