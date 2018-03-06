@@ -9,7 +9,6 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $li_css         = 'btn-fluidity';
 	protected $newer_link     = '';
 	protected $older_link     = '';
-	protected $posts          = array();
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
 	protected $same_term      = false;
 	protected $show_newer     = true;
@@ -39,7 +38,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	}
 
 	protected function navigation() {
-		$this->get_posts();
+		$this->check_posts();
 		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div>
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
@@ -49,9 +48,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 					if ( $this->taxonomy && $this->all_links ) { ?>
 						<div id="post-link-separator-middle" class="post-link-separator post-link-separator-middle"></div><?php
 					}
-#$this->log('all_links: '.$this->all_links);
 					if ( $this->all_links ) {
-$this->log('display all links');
 						$this->all_links();
 					} ?>
 				<div id="post-link-separator-bottom" class="post-link-separator post-link-separator-bottom"></div>
@@ -59,31 +56,29 @@ $this->log('display all links');
 		} //*/
 	}
 
-	protected function get_posts() {
+	protected function check_posts() {
+		$posts = array();
 		$this->excluded_terms = apply_filters( 'fluid_navigation_excluded_terms', $this->excluded_terms, $this->taxonomy );
 
-$this->posts['prev_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
-$this->posts['next_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
-$this->posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
-$this->posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
-$this->log(
+		$posts['prev_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, true,  $this->taxonomy );
+		$posts['next_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
+		$posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
+		$posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
+/*$this->log(
 "    taxonomy: $this->taxonomy",
-"previous tax: {$this->posts['prev_tax']->ID} ".$this->posts['prev_tax']->post_title,
-"previous all: {$this->posts['prev_all']->ID} ".$this->posts['prev_all']->post_title,
-"    next tax: {$this->posts['next_tax']->ID} ".$this->posts['next_tax']->post_title,
-"    next all: {$this->posts['next_all']->ID} ".$this->posts['next_all']->post_title
-);
-
-
+"previous tax: {$posts['prev_tax']->ID} ".$posts['prev_tax']->post_title,
+"previous all: {$posts['prev_all']->ID} ".$posts['prev_all']->post_title,
+"    next tax: {$posts['next_tax']->ID} ".$posts['next_tax']->post_title,
+"    next all: {$posts['next_all']->ID} ".$posts['next_all']->post_title
+); //*/
 		if ( $this->taxonomy && $this->all_links ) {
-			if ( ( $this->posts['prev_tax']->ID === $this->posts['prev_all']->ID ) && ( $this->posts['next_tax']->ID === $this->posts['next_all']->ID ) ) {
+			if ( ( $posts['prev_tax']->ID === $posts['prev_all']->ID ) && ( $posts['next_tax']->ID === $posts['next_all']->ID ) ) {
 				$this->taxonomy = '';
 			} else {
-				$this->show_newer = ( $this->posts['next_tax']->ID !== $this->posts['next_all']->ID );
-				$this->show_older = ( $this->posts['prev_tax']->ID !== $this->posts['prev_all']->ID );
+				$this->show_newer = ( $posts['next_tax']->ID !== $posts['next_all']->ID );
+				$this->show_older = ( $posts['prev_tax']->ID !== $posts['prev_all']->ID );
 			}
-		}
-//*/
+		} //*/
 	}
 
 	protected function get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy = 'category' ) {
@@ -93,9 +88,6 @@ $this->log(
 			$post->ID = 0;
 			$post->post_title = '';
 		}
-else {
-	echo "<p>{$post->post_title}</p>";
-}
 		return $post;
 	}
 
@@ -121,8 +113,6 @@ else {
 	}
 
 	protected function generate_links() {
-$this->log('in generate_links function - ul_css: '.$this->ul_css);
-$this->log(0,'taxonomy:  '.$this->taxonomy);
 		ob_start(); ?>
 			<div class="row">
 				<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
@@ -146,16 +136,7 @@ $this->log(0,'taxonomy:  '.$this->taxonomy);
 					} ?>
 				</ul>
 			</div><?php
-$buffer = ob_get_clean();
-$this->log(0,$buffer);
-$link1 = get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
-$link2 = get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
-$this->log(0,
-"link 1:  $link1",
-"link 2:  $link2"
-);
-#		return ob_get_clean();
-		return$buffer;
+		return ob_get_clean();
 	}
 
 
