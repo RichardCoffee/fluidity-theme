@@ -27,6 +27,7 @@ who_am_i(); ?>
 		} else {
 			fluid_navigation( $taxonomy, true );
 		}
+		echo "<p> </p>";
 		fluid_postmetadata();
 	}
 

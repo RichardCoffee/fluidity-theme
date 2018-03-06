@@ -25,7 +25,6 @@ if (!function_exists('fluid_content_slug')) {
     $slug = ($slug==='page')            ? $page   : $slug;
     $slug = apply_filters("tcc_content_slug",         $slug, $page);
     $slug = apply_filters("tcc_{$page}_content_slug", $slug, $page);
-#log_entry(0,"fluid_content_slug: $slug    format:  $format    page:  $page");
     return $slug;
   }
 }
@@ -69,14 +68,7 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
 			$next_all = get_permalink( get_adjacent_post( false, $exclude, false ) );
 			if ( ( $prev_tax === $prev_all ) && ( $next_tax === $next_all ) ) {
 				$taxonomy = '';
-			} /*
-log_entry(
-	"    taxonomy: $taxonomy",
-	"previous tax: $prev_tax",
-	"previous all: $prev_all",
-	"    next tax: $next_tax",
-	"    next all: $next_all"
-); //*/
+			}
 		} ?>
 		<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
 		if ( $taxonomy ) {
@@ -123,8 +115,7 @@ log_entry(
 				</div>
 			</nav><?php
 		} ?>
-		<div class="post-link-separator post-link-separator-bottom"></div>
-		<p> </p><?php
+		<div class="post-link-separator post-link-separator-bottom"></div><?php
 	}
 }
 
