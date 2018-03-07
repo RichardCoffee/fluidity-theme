@@ -141,20 +141,21 @@ if ( ! function_exists( 'tcc_before_posts_filter' ) ) {
 	add_action( 'tcc_before_posts', 'tcc_before_posts_filter' );
 }
 
-if (!function_exists('tcc_get_page_id_by_slug')) {
-	function tcc_get_page_id_by_slug($slug,$prop='ID') {
+if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {
+	function tcc_get_page_id_by_slug( $slug, $prop = 'ID' ) {
 		static $curr;
-		if (!$curr || (!$slug===$curr->post_name)) {
-			$args   = array('post_type' => 'page', 'name' => $slug);
-			$pages  = new WP_Query($args);
-			if ($pages) {
-				foreach($pages->posts as $page) {
-					if ($page->post_name===$slug) {
+		if ( ( ! $curr ) || ( ! ( $slug === $curr->post_name ) ) ) {
+			$args   = array( 'post_type' => 'page', 'name' => $slug );
+			$pages  = new WP_Query( $args );
+			if ( $pages ) {
+log_entry($pages);
+				foreach( $pages->posts as $page ) {
+					if ( $page->post_name === $slug ) {
 						$curr = $page;
 						break;
 					}
 				}
-				if (!$curr) { return ''; }
+				if ( ! $curr ) { return ''; }
 			}
 		}
 		return $curr->$prop; // FIXME: check for existing property
