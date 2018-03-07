@@ -129,7 +129,7 @@ if (!function_exists('page_exists')) {
 } //*/
 
 if ( ! function_exists( 'tcc_before_posts_filter' ) ) {
-	function tcc_before_main_filter( $mypage ) {
+	function tcc_before_posts_filter( $mypage ) {
 		if ( tcc_layout( 'page_title' ) === 'main' ) {
 			tcc_show_page_title( $mypage );
 		}
