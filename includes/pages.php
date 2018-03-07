@@ -57,11 +57,6 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 			} else if ( defined( 'TCC_PAGE_SLUG' ) ) {
 				$slug = TCC_PAGE_SLUG;
 			} else if ( !is_admin() && $wp_query->is_main_query() ) {
-/*log_entry(
-	'is home:  '.is_home(),
-	'page id:  '.$wp_query->get( 'page_id' ),
-	'  front:  ' . get_option( 'page_on_front' ),
-); //*/
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'home';
 				#} else if ( ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
@@ -77,7 +72,6 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 					}
 				}
 			}
-#log_entry(0,$slug.' called by '.debug_calling_function());
 		}
 		return $slug;
 	}
@@ -91,13 +85,9 @@ if ( ! function_exists( 'get_page_title' ) ) {
 				$descrip = term_description();
 				if ( $descrip ) {
 					$title =  apply_filters( 'the_content', $descrip );
-log_entry( $title );
 				}
 			}
-else { log_entry( 'tax: '.is_tax(), 'cat: '.is_category(), 'tag: '.is_tag() ); }
 		}
-else { log_entry( 'arc: '.is_archive(), 'pag: '.get_query_var('paged') ); }
-log_entry( $title );
 		return $title;
 	}
 }
@@ -148,9 +138,7 @@ if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {
 			$args   = array( 'post_type' => 'page', 'name' => $slug );
 			$pages  = new WP_Query( $args );
 			if ( $pages ) {
-#log_entry($pages);
 				foreach( $pages->posts as $page ) {
-log_entry( $slug, $page->post_name, $page->$prop );
 					if ( $page->post_name === $slug ) {
 						$curr = $page;
 						break;
