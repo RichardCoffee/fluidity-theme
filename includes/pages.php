@@ -91,9 +91,11 @@ if ( ! function_exists( 'get_page_title' ) ) {
 				$descrip = term_description();
 				if ( $descrip ) {
 					$title =  apply_filters( 'the_content', $descrip );
+log_entry( $title );
 				}
 			}
 		}
+log_entry( $title );
 		return $title;
 	}
 }
@@ -189,11 +191,9 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 			$title = get_page_title( $slug );
 			if ( $title ) { ?>
 				<div id="tcc-page-title-banner" <?php title_class(); ?>>
-					<div class="row">
-						<h1 class="text-center">
-							<?php echo $title; ?>
-						</h1>
-					</div>
+					<h1 class="text-center">
+						<?php echo $title; ?>
+					</h1>
 				</div><?php
 			}
 		}
