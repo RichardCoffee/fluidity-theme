@@ -1,8 +1,8 @@
 Note:  this list is probably not accurate, check source for more
 
 
-		     Actions                       Purpose / Occurrance                              Function                      File
-	==========================         ==============================================    ========================   ============================
+		     Actions                       Purpose / Occurrance                              Function / File
+	==========================         ==============================================    ========================
 		fluid_post_separator              between post excerpts, overrides default
 		fluid_post_separator_{$page}      between excerpts on a specific page
 		fluidity_admin_enqueue            runs after fluidity admin enqueues
@@ -11,6 +11,8 @@ Note:  this list is probably not accurate, check source for more
                                 registered
 		tcc_pre_enqueue                   run before fluidity enqueues
 		tcc_after_enqueue                 run after fluidity enqueues
+		tcc_before_page                   occurs at the top of the page,                     stock.php, et. al.
+		                                    immediately after the header
 		tcc_enqueue                       load child enqueues here, runs last
 		tcc_excerpt_parallax              inline stylesheet for excerpts
  tcc_footer                   footer body

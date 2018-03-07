@@ -18,19 +18,12 @@ TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what value
 
 <div id="fluid-content" class="fluid-<?php e_esc_attr( $mypage); ?> <?php e_esc_attr( container_type( $mypage ) ); ?>" <?php microdata()->Blog(); ?>>
 
-<?php
-		if ( is_page() ) {
-			tcc_page_parallax( $mypage );
-		}
-		if ( is_page() || is_archive() ) {
-			#echo get_page_title( $mypage );
-			tcc_page_title( $mypage ); // FIXME
-		} ?>
+	<?php do_action( 'tcc_page_top', $mypage ); ?>
 
 	<div class="row">
 		<?php who_am_i(); ?>
 
-		<?php do_action( 'tcc_before_main' ); ?>
+		<?php do_action( 'tcc_before_main', $mypage ); ?>
 
 		<main id="content" class="<?php echo tcc_main_tag_css( '' ); ?>" role="main" tabindex="-1"><?php
 

@@ -67,6 +67,17 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
 			'divcss'  => 'no-sidebar-active',
 		);
+		$layout['page_title'] = array(
+			'default' => 'main',
+			'label'   => __( 'Title Width', 'tcc-fluid' ),
+			'text'    => __( 'Controls the positioning of the title whem using sidebars.', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'main'  => __( 'Over content area only.', 'tcc-fluid' ),
+				'page'  => __( 'Full width of page.', 'tcc-fluid' ),
+			),
+			'divcss'   => 'no-sidebar-setting',
+		);
 		$layout['fluid_sidebar'] = array(
 			'default' => 'no',
 			'label'   => __( 'Fluid Sidebar', 'tcc-fluid' ),

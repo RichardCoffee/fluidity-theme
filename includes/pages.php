@@ -128,6 +128,15 @@ if (!function_exists('page_exists')) {
 	}
 } //*/
 
+if ( ! function_exists( 'tcc_before_main_filter' ) ) {
+	function tcc_before_main_filter( $mypage ) {
+		if ( tcc_layout( 'page_title' ) === 'main' ) {
+			tcc_show_page_title( $mypage );
+		}
+	}
+	add_action( 'tcc_before_main', 'tcc_before_main_filter' );
+}
+
 if (!function_exists('tcc_get_page_id_by_slug')) {
 	function tcc_get_page_id_by_slug($slug,$prop='ID') {
 		static $curr;
@@ -187,6 +196,27 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 					</div>
 				</div><?php
 			}
+		}
+	}
+}
+
+if ( ! function_exists( 'tcc_page_top_filter' ) ) {
+	function tcc_page_top_filter( $mypage ) {
+		if ( is_page() ) {
+			tcc_page_parallax( $mypage );
+		}
+		if ( tcc_layout( 'page_title' ) === 'page' ) {
+			tcc_show_page_title( $mypage );
+		}
+	}
+	add_action( 'tcc_page_top', 'tcc_page_top_filter' );
+}
+
+if ( ! function_exists( 'tcc_show_page_title' ) ) {
+	function tcc_show_page_title( $mypage ) {
+		if ( is_page() || is_archive() ) {
+			#echo get_page_title( $mypage );
+			tcc_page_title( $mypage ); // FIXME
 		}
 	}
 }
