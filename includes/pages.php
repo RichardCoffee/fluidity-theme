@@ -128,13 +128,13 @@ if (!function_exists('page_exists')) {
 	}
 } //*/
 
-if ( ! function_exists( 'tcc_before_main_filter' ) ) {
+if ( ! function_exists( 'tcc_before_posts_filter' ) ) {
 	function tcc_before_main_filter( $mypage ) {
 		if ( tcc_layout( 'page_title' ) === 'main' ) {
 			tcc_show_page_title( $mypage );
 		}
 	}
-	add_action( 'tcc_before_main', 'tcc_before_main_filter' );
+	add_action( 'tcc_before_posts', 'tcc_before_posts_filter' );
 }
 
 if (!function_exists('tcc_get_page_id_by_slug')) {
