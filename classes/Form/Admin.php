@@ -755,7 +755,7 @@ abstract class TCC_Form_Admin {
 			$output = $func( $input );
 		} else { // FIXME:  test for data type?
 			$output = $this->validate_text( $input );
-			$this->logging( 'missing validation function: ' . $func, $item );
+			$this->logging( 'missing validation function: ' . $func, $item, $input );
 		}
 		return $output;
 	}
