@@ -94,9 +94,9 @@ if ( ! function_exists( 'get_page_title' ) ) {
 log_entry( $title );
 				}
 			}
-else { log_entry( is_tax(), is_category(), is_tag() ); }
+else { log_entry( 'tax: '.is_tax(), 'cat: '.is_category(), 'tag: '.is_tag() ); }
 		}
-else { log_entry( is_archive(), get_query_var('paged') ); }
+else { log_entry( 'arc: '.is_archive(), 'pag: '.get_query_var('paged') ); }
 log_entry( $title );
 		return $title;
 	}
