@@ -760,9 +760,17 @@ abstract class TCC_Form_Admin {
 		return $output;
 	}
 
-  private function validate_colorpicker($input) {
-    return (preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|',$input)) ? $input : '';
-  }
+	private function validate_checkbox( $input ) {
+		return sanitize_key( $input );
+	}
+
+	private function validate_checkbox_multiple( $input ) {
+		return $this->validate_checkbox( $input );
+	}
+
+	private function validate_colorpicker( $input ) {
+		return ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $input ) ) ? $input : '';
+	}
 
 	private function validate_font( $input ) {
 		$this->logging( $input );
