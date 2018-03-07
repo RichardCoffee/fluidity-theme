@@ -95,7 +95,7 @@ if ( ! function_exists( 'tcc_site_link' ) ) {
 			<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/icons/tcc-btn.png" class="tcc-icon">
 		</a><?php
 	}
-	add_action( 'tcc_copyright_left', 'tcc_site_link' );
+#	add_action( 'tcc_copyright_left', 'tcc_site_link' );
 }
 
 if (!function_exists('tcc_xfn_link')) {
@@ -104,5 +104,5 @@ if (!function_exists('tcc_xfn_link')) {
 			<img alt="XFN" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
 		</a><?php
 	}
-	add_action('tcc_copyright_right','tcc_xfn_link');
+#	add_action('tcc_copyright_right','tcc_xfn_link');
 }
