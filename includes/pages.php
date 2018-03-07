@@ -150,7 +150,7 @@ if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {
 			if ( $pages ) {
 #log_entry($pages);
 				foreach( $pages->posts as $page ) {
-log_entry( $page->$prop );
+log_entry( $slug, $page->post_name, $page->$prop );
 					if ( $page->post_name === $slug ) {
 						$curr = $page;
 						break;
