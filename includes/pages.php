@@ -148,8 +148,9 @@ if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {
 			$args   = array( 'post_type' => 'page', 'name' => $slug );
 			$pages  = new WP_Query( $args );
 			if ( $pages ) {
-log_entry($pages);
+#log_entry($pages);
 				foreach( $pages->posts as $page ) {
+log_entry( $page->$prop );
 					if ( $page->post_name === $slug ) {
 						$curr = $page;
 						break;
