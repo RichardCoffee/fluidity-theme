@@ -124,7 +124,8 @@ if (!function_exists('page_exists')) {
 
 if ( ! function_exists( 'tcc_before_posts_filter' ) ) {
 	function tcc_before_posts_filter( $mypage ) {
-		if ( tcc_layout( 'page_title' ) === 'main' ) {
+		# tcc_design( 'title' ) === 'main'
+		if ( ! in_array( tcc_design( 'title' ), array( 'no', 'page' ) ) ) {
 			tcc_show_page_title( $mypage );
 		}
 	}
@@ -197,7 +198,8 @@ if ( ! function_exists( 'tcc_page_top_filter' ) ) {
 		if ( is_page() ) {
 			tcc_page_parallax( $mypage );
 		}
-		if ( tcc_layout( 'page_title' ) === 'page' ) {
+		# tcc_design( 'title' ) === 'page'
+		if ( ! in_array( tcc_design( 'title' ), array( 'no', 'main' ) ) ) {
 			tcc_show_page_title( $mypage );
 		}
 	}

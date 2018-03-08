@@ -27,11 +27,11 @@ trait TCC_Trait_Attributes {
 				case 'src':
 					$value = esc_url( $value );
 					break;
-				case 'value':
-					$value = esc_html( $value );
-					break;
 				case 'class':
 					$value = $this->sanitize_html_class( $value );
+					break;
+				case 'value':
+					$value = esc_html( $value );
 					break;
 				case 'aria-label':
 				case 'placeholder':
