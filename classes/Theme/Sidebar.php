@@ -16,7 +16,6 @@ class TCC_Theme_Sidebar {
 			if ( ( $args['position'] !== 'none' ) && $args['action'] ) {
 				$this->sidebar = new TCC_Widget_Sidebar( $args );
 			}
-#log_entry($this, get_option('tcc_options_layout'));
 		}
 	}
 
@@ -30,8 +29,6 @@ class TCC_Theme_Sidebar {
 		);
 		$args = array_merge( $defaults, $args );
 		$args['action'] = $this->action_position( $args );
-#$available = $GLOBALS['wp_registered_sidebars'];
-#log_entry($available);
 		return $args;
 	}
 
