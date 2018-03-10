@@ -395,10 +395,17 @@ if (!function_exists('list_filter_hooks')) {
 	function list_filter_hooks( $hook = '' ) {
 		if (WP_DEBUG) {
 			global $wp_filter;
-			$hooks = isset( $wp_filter[$hook] ) ? $wp_filter[$hook] : array();
-log_entry($hook,$hooks);
-			$hooks = call_user_func_array( 'array_merge', (array)$hooks );
+			if ( isset( $wp_filter[$hook]->callbacks ) ) {
+				array_walk( $wp_filter[$hook]->callbacks, function( $callbacks, $priority ) use ( &$hooks ) {
+					foreach ( $callbacks as $id => $callback )
+						$hooks[] = array_merge( [ 'id' => $id, 'priority' => $priority ], $callback );
+				});
+			} else {
+				return [];
+			}
 			foreach( $hooks as &$item ) {
+				// skip if callback does not exist
+				if ( !is_callable( $item['function'] ) ) continue;
 				// function name as string or static class method eg. 'Foo::Bar'
 				if ( is_string( $item['function'] ) ) {
 					$ref = strpos( $item['function'], '::' )
@@ -413,7 +420,9 @@ log_entry($hook,$hooks);
 					$ref = new ReflectionClass( $item['function'][0] );
 					// $item['function'][0] is a reference to existing object
 					$item['function'] = array(
-						is_object($item['function'][0]) ? get_class($item['function'][0]) : $item['function'][0],
+						is_object( $item['function'][0] )
+							? get_class( $item['function'][0] )
+							: $item['function'][0],
 						$item['function'][1]
 					);
 					$item['file'] = $ref->getFileName();
@@ -421,17 +430,16 @@ log_entry($hook,$hooks);
 						? $ref->getParentClass()->getMethod( substr( $item['function'][1], strpos( $item['function'][1], '::' ) + 2 ) )->getStartLine()
 						: $ref->getMethod( $item['function'][1] )->getStartLine();
 				// closures
-				} elseif (is_callable( $item['function'])) {
-					$ref = new ReflectionFunction($item['function']);
-					$item['function'] = get_class($item['function']);
-					$item['file']     = $ref->getFileName();
-					$item['line']     = $ref->getStartLine();
+				} elseif ( is_callable( $item['function'] ) ) {
+					$ref = new ReflectionFunction( $item['function'] );
+					$item['function'] = get_class( $item['function'] );
+					$item['file'] = $ref->getFileName();
+					$item['line'] = $ref->getStartLine();
 				}
 			}
 			return $hooks;
 		}
 	}
-	#add_action('wp_footer','list_filter_hooks');
 }
 
 if (!function_exists('list_template_conditions')) {
