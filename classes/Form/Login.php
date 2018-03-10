@@ -13,6 +13,7 @@ class TCC_Form_Login {
 	protected $redirect_to = null;
 
 	use TCC_Trait_Attributes;
+	use TCC_Trait_Logging;
 	use TCC_Trait_ParseArgs;
 	use TCC_Trait_Singleton;
 
@@ -104,12 +105,13 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 					'       request:  ' . $request,
 					'wp_get_referer:  ' . wp_get_referer(),
 					'      location:  ' . $location,
-					$user  //  FIXME:  php complains when there is a comma on this line. wtf?
+					$user  //  FIXME:  php complains when a comma is at the end of this line. wtf?
 				);
 				wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
 				exit;
 			}
 		}
+else { $this->log( func_get_args(), $GET, $_POST ); }
 		return $redirect_to;
 	}
 

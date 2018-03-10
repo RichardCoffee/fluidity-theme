@@ -58,6 +58,7 @@ if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
 			'includes',
 			'js',
 			'languages',
+#			'page-templates', 	# Searched by WP_Theme::get_post_templates()
 			'scss',
 			'template-parts',
 			'vendor',

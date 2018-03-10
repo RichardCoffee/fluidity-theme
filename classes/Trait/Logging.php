@@ -73,6 +73,7 @@ trait TCC_Trait_Logging {
 		$destination = $log_file;
 		if ( defined( 'WP_CONTENT_DIR' ) ) {
 			$destination = WP_CONTENT_DIR . '/debug.log';
+		# External apps, 'pbl' prefix remnants of CreatomBuilder
 		} else if ( is_writable( '../logs' ) && ( is_dir( '../logs' ) ) ) {
 			$destination = '../logs/pbl-' . date( 'Ymd' ) . '.log';
 		} else if ( function_exists( 'pbl_raw_path' ) ) {
