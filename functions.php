@@ -80,7 +80,7 @@ function tcc_template_test( $template, $stem ) {
 }
 add_action( 'get_template_part_template-parts/header', 'tcc_template_test',0,2);
 add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,2); //*/
-add_action( 'wp_loaded', function () {
+/*add_action( 'wp_loaded', function () {
 		global $wp_filter;
 		log_entry( $wp_filter );
 		log_entry( list_filter_hooks( 'login_redirect' ) );
