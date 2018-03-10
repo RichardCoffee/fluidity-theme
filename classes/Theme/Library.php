@@ -13,7 +13,13 @@ class TCC_Theme_Library {
 	}
 
 	public function get_fawe( $icon = 'fa-question fa-border' ) {
-		return '<i class="fa ' . $icon . ' aria-hidden="true"></i>';
+		return $this->get_apply_attrs_tag(
+			array (
+				'class'       => 'fa ' . $icon,
+				'aria-hidden' => 'true',
+			),
+			'i'
+		);
 	}
 
 	public function get_widget_fawe() {
