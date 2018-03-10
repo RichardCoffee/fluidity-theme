@@ -396,7 +396,8 @@ if (!function_exists('list_filter_hooks')) {
 		if (WP_DEBUG) {
 			global $wp_filter;
 			$hooks = isset( $wp_filter[$hook] ) ? $wp_filter[$hook] : array();
-			$hooks = call_user_func_array( 'array_merge', $hooks );
+log_entry($hook,$hooks);
+			$hooks = call_user_func_array( 'array_merge', (array)$hooks );
 			foreach( $hooks as &$item ) {
 				// function name as string or static class method eg. 'Foo::Bar'
 				if ( is_string( $item['function'] ) ) {
