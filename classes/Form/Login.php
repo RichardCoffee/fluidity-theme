@@ -111,7 +111,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 				exit;
 			}
 		}
-else { $this->log( func_get_args(), $GET, $_POST ); }
+else { $this->log( func_get_args(), $_GET, $_POST ); }
 		return $redirect_to;
 	}
 
