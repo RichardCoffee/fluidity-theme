@@ -52,6 +52,7 @@ trait TCC_Trait_Logging {
 	}
 
 	protected function logging_entry() {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) { return; }
 		if ( WP_DEBUG ) {
 			$args  = func_get_args();
 			if ( $args ) {
