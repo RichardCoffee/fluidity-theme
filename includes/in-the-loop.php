@@ -9,6 +9,7 @@
 
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_content', 'wptexturize' );
+log_entry( 'filters removed');
 
 if ( ! function_exists( 'fluid_content_header' ) ) {
 	function fluid_content_header() { ?>
