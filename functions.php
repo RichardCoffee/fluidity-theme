@@ -83,6 +83,8 @@ add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,
 add_action( 'wp_loaded', function () {
 #		global $wp_filter;
 #		log_entry( $wp_filter );
-		log_entry( list_filter_hooks( 'logout_redirect' ) );
+#		$filter = 'logout_redirect';
+		$filter = 'the_content';
+		log_entry( list_filter_hooks( $filter ) );
 	}
 ); //*/
