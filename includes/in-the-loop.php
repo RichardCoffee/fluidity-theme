@@ -7,6 +7,8 @@
  *
  */
 
+remove_filter( 'the_content', 'wpautop' );
+
 if ( ! function_exists( 'fluid_content_header' ) ) {
 	function fluid_content_header() { ?>
 		<h2 class="text-center">
