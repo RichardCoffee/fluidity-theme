@@ -50,17 +50,17 @@ if ( is_admin() ) {
 if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
 	function fluidity_theme_scandir_exclusions( $exclusions ) {
 		$exclusions = array_merge( $exclusions, array(
-			'classes',
-			'css',
+#			'classes',
+#			'css',
 			'docs',
 			'fonts',
 			'icons',
-			'includes',
-			'js',
+#			'includes',
+#			'js',
 			'languages',
 #			'page-templates', 	# Searched by WP_Theme::get_post_templates()
 			'scss',
-			'template-parts',
+#			'template-parts',
 			'vendor',
 		) );
 		return $exclusions;
