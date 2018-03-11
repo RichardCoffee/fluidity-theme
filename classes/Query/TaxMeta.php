@@ -5,7 +5,9 @@
  * Add a support for (tax_query OR meta_query)
  *
  * @version 0.2
+ * @author https://stackoverflow.com/users/2078474/birgire
  * @link http://stackoverflow.com/a/22633399/2078474
+ * @link https://wordpress.stackexchange.com/questions/190011/wp-query-to-show-post-from-a-category-or-custom-field/190018#190018
  *
  */
 class TCC_Query_TaxMeta extends WP_Query {
