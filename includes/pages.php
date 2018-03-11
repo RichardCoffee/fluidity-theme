@@ -5,6 +5,14 @@
  *
  *		Custom Fields on Pages:		<?php echo get_post_meta(get_page_id($page), 'key string here', true); ?>
  */
+/*
+if ( ! function_exists( 'fluid_bbpress_forums' ) ) {
+	function fluid_bbpress_forums( $mypage ) {
+		remove_filter( 'the_content', 'wpautop' );
+		remove_filter( 'the_content', 'wptexturize' );
+	}
+	add_filter( 'tcc_top_forums', 'fluid_bbpress_forums' );
+} //*/
 
 if ( ! function_exists( 'get_page_id' ) ) {
 	# http://snipplr.com/view/39004/

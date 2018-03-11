@@ -13,8 +13,8 @@ $mypage = get_page_slug();
 #add_filter ( "tcc_main_tag_css_$mypage",       function ( $css ) { return "col-lg-9 col-md-9 col-sm-12 col-xs-12"; } );
 
 TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what values the array can have
-
-#do_action( "tcc_top_$mypage" ); ?>
+log_entry( "Page:  $mypage" );
+do_action( "tcc_top_$mypage", $mypage ); ?>
 
 <div id="fluid-content" class="fluid-<?php e_esc_attr( $mypage); ?> <?php e_esc_attr( container_type( $mypage ) ); ?>" <?php microdata()->Blog(); ?>>
 

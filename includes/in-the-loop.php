@@ -8,6 +8,7 @@
  */
 
 remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_content', 'wptexturize' );
 
 if ( ! function_exists( 'fluid_content_header' ) ) {
 	function fluid_content_header() { ?>
