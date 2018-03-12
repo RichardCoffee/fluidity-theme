@@ -8,7 +8,9 @@ if ( ! function_exists( 'tcc_login_form' ) ) {
 
 class TCC_Form_Login {
 
+	protected $in_modal    = false;
 	protected $in_navbar   = false;
+	protected $in_widget   = false;
 	protected $pull_right  = true;
 	protected $redirect_to = null;
 
@@ -43,6 +45,9 @@ class TCC_Form_Login {
 		}
 	}
 
+
+/***   Form Defaults   ***/
+
 	public function get_login_form_defaults() {
 		$defaults = array();
 		add_filter('login_form_defaults', function($args) use (&$defaults) {
@@ -53,16 +58,8 @@ class TCC_Form_Login {
 		return $defaults;
 	}
 
-	public function login_form( $args = array() ) {
-		if ( is_user_logged_in() ) {
-			$this->show_logout_form();
-		} else {
-			$this->show_login_form( $args );
-		}
-	}
-
 	public function login_form_defaults( $defaults = array() ) {
-#	array mainly taken from wp-includes/general-template.php
+		# array mainly taken from wp-includes/general-template.php
 		$new = array(
 			'redirect'       => apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) ),
 			'form_id'        => apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) ),
@@ -82,47 +79,15 @@ class TCC_Form_Login {
 		return array_merge( $defaults, $new );
 	}
 
-/*
-$redirect = home_url( add_query_arg( '_', false ) ); ?>
-Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
-Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
-Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
-Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
 
-	#	https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
-	function login_redirect( $redirect_to, $request, $user ) {
-		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
-			if ( ! $user ) {
-				$redirect_to = home_url();
-			} else if ( ! is_object( $user ) ) {
-				log_entry( 'user var is not an object', $user );
-			} else if ( get_class( $user ) === 'WP_Error' ) {
-				log_entry( 'user error', $user );
-			} else {
-				$location = ( isset( $_POST['login_location'] ) ) ? esc_url_raw( $_POST['login_location'] ) : esc_url_raw( $_SERVER['HTTP_REFERER'] );
-				log_entry(
-					'   redirect_to:  ' . $redirect_to,
-					'       request:  ' . $request,
-					'wp_get_referer:  ' . wp_get_referer(),
-					'      location:  ' . $location,
-					$user  //  FIXME:  php complains when a comma is at the end of this line. wtf?
-				);
-				wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
-				exit;
-			}
+/***   Login/Logout Forms   ***/
+
+	public function login_form( $args = array() ) {
+		if ( is_user_logged_in() ) {
+			$this->show_logout_form();
+		} else {
+			$this->show_login_form( $args );
 		}
-else { $this->log( func_get_args(), $_GET, $_POST ); }
-		return $redirect_to;
-	}
-
-	public function login_redirect_admin( $redirect_to, $request, $user ) {
-#		$from = wp_get_referer();
-##		if ( strpos( $from, 'wp-admin' ) !== false )       { return $from; }
-##		if ( ! in_array( 'administrator', $user->roles ) ) { return $redirect_to }
-#		$user_id = get_current_user_id();
-#		if ( $user_id === 1 ) { return $from; }
-#		return home_url();
-		return $redirect_to;
 	}
 
 	protected function show_login_form( $args ) {
@@ -190,7 +155,7 @@ else { $this->log( func_get_args(), $_GET, $_POST ); }
 	}
 
 	protected function show_logout_form() {
-		$signout = apply_filters( 'tcc_signout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
+		$signout = apply_filters( 'tcc_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
 		<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url( home_url() ); ?>" method="post">
 			<div class="text-center"><?php
 				$attrs = array(
@@ -205,6 +170,54 @@ else { $this->log( func_get_args(), $_GET, $_POST ); }
 				</a>
 			</div>
 		</form><?php
+	}
+
+
+/***   Redirects   ***/
+
+/*
+$redirect = home_url( add_query_arg( '_', false ) ); ?>
+Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
+Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
+Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
+Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
+
+	# https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
+	function login_redirect( $redirect_to, $request, $user ) {
+		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
+			if ( ! $user ) {
+				$redirect_to = home_url();
+			} else if ( ! is_object( $user ) ) {
+				log_entry( 'user var is not an object', $user );
+			} else if ( get_class( $user ) === 'WP_Error' ) {
+				log_entry( 'user error', $user );
+			} else {
+				$location = ( isset( $_POST['login_location'] ) )
+					? esc_url_raw( $_POST['login_location'] )
+					: esc_url_raw( $_SERVER['HTTP_REFERER'] );
+				log_entry(
+					'   redirect_to:  ' . $redirect_to,
+					'       request:  ' . $request,
+					'wp_get_referer:  ' . wp_get_referer(),
+					'      location:  ' . $location,
+					$user  //  FIXME:  php complains when a comma is at the end of this line. wtf?
+				);
+				wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
+				exit;
+			}
+		}
+else { $this->log( func_get_args(), $_GET, $_POST ); }
+		return $redirect_to;
+	}
+
+	public function login_redirect_admin( $redirect_to, $request, $user ) {
+#		$from = wp_get_referer();
+##		if ( strpos( $from, 'wp-admin' ) !== false )       { return $from; }
+##		if ( ! in_array( 'administrator', $user->roles ) ) { return $redirect_to }
+#		$user_id = get_current_user_id();
+#		if ( $user_id === 1 ) { return $from; }
+#		return home_url();
+		return $redirect_to;
 	}
 
 

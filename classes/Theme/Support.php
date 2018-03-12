@@ -117,6 +117,7 @@ class TCC_Theme_Support {
 		}
 	}
 
+	#	This runs later in the action sequence
 	public function post_type_support() {
 		$supports = array(
 			'title',

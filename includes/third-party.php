@@ -112,13 +112,8 @@ if ( class_exists( 'c_ws_plugin__s2member_login_redirects' ) ) {
 		}
 		add_filter("ws_plugin__s2member_login_redirect", "tcc_s2member_login_redirect", 10, 2);
 	}
-/* FIXME
-	#Do not use parent theme redirect
-	function tcc_login_redirect() { }
 
-	function tcc_xfn_link() { }
-
-	function tcc_s2member_security_badge() {
+/*	function tcc_s2member_security_badge() {
 		echo do_shortcode('[s2Member-Security-Badge v="3" /]');
 	}
 	add_action('tcc_copyright_right','tcc_s2member_security_badge'); //*/

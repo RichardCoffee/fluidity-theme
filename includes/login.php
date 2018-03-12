@@ -1,5 +1,5 @@
 <?php
-
+/*
 if ( ! function_exists( 'tcc_login_page_redirect' ) ) {
 	#	http://www.hongkiat.com/blog/wordpress-custom-loginpage/
 	function tcc_login_page_redirect() {
@@ -13,7 +13,7 @@ if ( ! function_exists( 'tcc_login_page_redirect' ) ) {
 		}
 	}
 #	add_action('init','tcc_login_page_redirect');
-}
+} //*/
 
 if ( ! function_exists( 'tcc_login_failed' ) ) {
 	function tcc_login_failed() {
