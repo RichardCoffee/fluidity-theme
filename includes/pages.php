@@ -62,22 +62,22 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 		if ( ! $slug ) {
 			if ( $set_slug ) {
 				$slug = $set_slug;
-log_entry("set_slug:  $slug");
 			} else if ( defined( 'TCC_PAGE_SLUG' ) ) {
 				$slug = TCC_PAGE_SLUG;
-log_entry("TCC_PAGE_SLUG:  $slug");
 			} else if ( !is_admin() && $wp_query->is_main_query() ) {
 				if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = 'home';
-log_entry("home:  $slug");
 				#} else if ( ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
 				} else if ( get_option('page_on_front') && ( $wp_query->get('page_id') === get_option('page_on_front') ) ) {
 					$slug = 'front';
-log_entry("front:  $slug");
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
-					if ( is_object( $page ) && isset( $page->post_type ) && ( $page->post_type === 'page' ) ) {
-						$slug = $page->post_name;
+					if ( is_object( $page ) ) {
+						if ( isset( $page->post_type ) && ( $page->post_type === 'page' ) ) {
+							$slug = $page->post_name;
+						} else {
+							$slug = $page->name;
+						}
 					} else {
 						global $fluidity_theme_template; // FIXME: this is not a reliable source
 						$slug = $fluidity_theme_template;
