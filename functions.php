@@ -59,7 +59,7 @@ if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
 		) );
 log_entry( debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ));
 		#	public function in WP_Theme class
-		if ( was_called_by( 'get_post_templates' ) ) {
+		if ( ! was_called_by( 'get_post_templates' ) ) {
 			$exclusions = array_merge( $exclusions, array(
 				'classes',
 				'css',
