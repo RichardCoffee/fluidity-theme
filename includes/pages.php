@@ -11,7 +11,7 @@ if ( ! function_exists( 'fluid_bbpress_forums' ) ) {
 		remove_filter( 'the_content', 'wpautop' );
 		remove_filter( 'the_content', 'wptexturize' );
 	}
-	add_filter( 'tcc_top_forums', 'fluid_bbpress_forums' );
+	add_filter( 'tcc_top_forum', 'fluid_bbpress_forums' );
 } //*/
 
 if ( ! function_exists( 'get_page_id' ) ) {
@@ -82,7 +82,6 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						global $fluidity_theme_template; // FIXME: this is not a reliable source
 						$slug = $fluidity_theme_template;
 					}
-log_entry("queried object:  $slug",$page);
 				}
 			}
 		}

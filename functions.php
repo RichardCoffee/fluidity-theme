@@ -50,19 +50,24 @@ if ( is_admin() ) {
 if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
 	function fluidity_theme_scandir_exclusions( $exclusions ) {
 		$exclusions = array_merge( $exclusions, array(
-#			'classes',
-#			'css',
 			'docs',
 			'fonts',
 			'icons',
-#			'includes',
-#			'js',
 			'languages',
 #			'page-templates', 	# Searched by WP_Theme::get_post_templates()
 			'scss',
-#			'template-parts',
-			'vendor',
 		) );
+log_entry( debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ));
+		#	public function in WP_Theme class
+		if ( was_called_by( 'get_post_templates' ) ) {
+			$exclusions = array_merge( $exclusions, array(
+				'classes',
+				'css',
+				'includes',
+				'js',
+				'template-parts',
+			) );
+		}
 		return $exclusions;
 	}
 	add_filter( 'theme_scandir_exclusions', 'fluidity_theme_scandir_exclusions' );

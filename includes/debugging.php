@@ -53,8 +53,9 @@ if ( ! function_exists( 'was_called_by' ) ) {
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		foreach( $call_trace as $current ) {
 			if ( ! empty( $current['function'] ) ) {
-				if ( $current['function'] === $func )
+				if ( $current['function'] === $func ) {
 					return true;
+				}
 			}
 		}
 		return false;
