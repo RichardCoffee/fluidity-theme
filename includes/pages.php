@@ -166,7 +166,7 @@ if ( ! function_exists( 'tcc_is_page' ) ) {
 				$return = true;
 			}
 		}
-		return $return;
+		return $return; # apply_filters( 'tcc_is_page', $return );
 	}
 }
 
@@ -177,17 +177,14 @@ if ( ! function_exists( 'tcc_is_page' ) ) {
  *  @return string css classes to be applied
  */
 if ( ! function_exists( 'tcc_main_tag_css' ) ) {
-	function tcc_main_tag_css( $css = '' ) {
-		$page = get_page_slug();
+	function tcc_main_tag_css( $css = '', $page = 'page' ) {
 		if ( ! $css && ( tcc_layout( 'fluid_sidebar' ) === 'no' ) ) {
 			$tcc  = tcc_layout( 'main_css' );
 			if ( $tcc ) {
 				$css = $tcc;
 			}
 		}
-		$css = apply_filters( 'tcc_main_tag_css', $css );
-		$css = apply_filters( "tcc_main_tag_css_$page", $css );
-		return $css;
+		return $css; #  apply_filters( 'tcc_main_tag_css', $css, $page );
 	}
 }
 
