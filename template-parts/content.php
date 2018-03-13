@@ -8,13 +8,9 @@
 
 who_am_i(); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
 
-	if ( ! tcc_is_page() ) {
-		fluid_content_header();
-	}
-
-	fluid_thumbnail(); ?>
+	<?php do_action( 'fluid_content_header' ); ?>
 
 	<div class="article" itemprop="articleBody">
 		<?php the_content(); ?>

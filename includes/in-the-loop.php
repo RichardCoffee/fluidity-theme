@@ -7,10 +7,6 @@
  *
  */
 
-remove_filter( 'the_content', 'wpautop' );
-remove_filter( 'the_content', 'wptexturize' );
-#log_entry( 'filters removed');
-
 if ( ! function_exists( 'fluid_content_header' ) ) {
 	function fluid_content_header() { ?>
 		<h2 class="text-center">
@@ -206,34 +202,48 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 	add_filter( 'excerpt_more', 'fluid_read_more_link' );
 }
 
-if (!function_exists('fluid_thumbnail')) {
-	function fluid_thumbnail( $size=null, $class='img-responsive' ) {
-		if (!is_page() || tcc_design('paral')=='no') {
+if ( ! function_exists( 'fluid_show_content_title' ) ) {
+	function fluid_show_content_title() { ?>
+		<h2 class="text-center">
+			<?php tcc_post_title(); ?>
+			<?php fluid_edit_post_link(); ?>
+		</h2>
+		<h3 class="post-date text-center">
+			<?php fluid_post_date( true ); ?>
+		</h3><?php
+	}
+	add_action( 'fluid_content_header', 'fluid_show_content_title' );
+}
+
+if ( ! function_exists( 'fluid_thumbnail' ) ) {
+	function fluid_thumbnail( $size = null, $class = 'img-responsive' ) {
+		if ( ! is_page() || ( tcc_design( 'paral' ) == 'no' ) ) {
 			if ( has_post_thumbnail() ) {
 				$attr = array( 'alt' => fluid_title(), 'class' => $class );
 				the_post_thumbnail( $size, $attr );
 			}
 		}
 	}
+	add_action( 'fluid_content_header', 'fluid_thumbnail', 20 );
 }
 
-if (!function_exists('fluid_title')) {
+if ( ! function_exists( 'fluid_title' ) ) {
 	function fluid_title( $length=0 ) {
-		$echo=false; $after='...'; $before=''; // FIXME
+		$echo = false; $after = '...'; $before = ''; // FIXME
 		#$postID = get_post()->ID;
 		$title  = get_the_title( get_the_ID() );
-		if (strlen($title)===0) {
+		if ( strlen( $title ) === 0 ) {
 			$title = "{No Title}";
 		} else {
-			if ($length && is_numeric($length)) {
-				$title = strip_tags($title);
-				if (strlen($title)>$length) {
-					$title = substr($title,0,$length);
-					$title = substr($title,0,strripos($title,' '));
-					$title = $before.$title.$after;
+			if ( $length && is_numeric( $length ) ) {
+				$title = strip_tags( $title );
+				if ( strlen( $title ) > $length ) {
+					$title = substr( $title, 0, $length );
+					$title = substr( $title, 0, strripos( $title, ' ' ) );
+					$title = $before . $title . $after;
 				}
 			}
-			$title = esc_html(apply_filters('the_title',$title,get_the_ID()));
+			$title = esc_html( apply_filters( 'the_title', $title, get_the_ID() ) );
 		}
 		if ($echo) { echo $title; } else { return $title; }
 	}

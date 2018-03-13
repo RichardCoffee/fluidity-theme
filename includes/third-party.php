@@ -13,6 +13,14 @@ if ( function_exists( 'is_bbpress' ) ) {
 	#  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
 	add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been fixed yet?
 
+	# remove normal content header
+	add_action( 'tcc_before_loop', function( $page_slug ) {
+		if ( is_bbpress() ) {
+			remove_filter( 'fluid_content_header', 'fluid_show_content_title' );
+			add_filter(    'fluid_content_header', 'fluid_show_forum_title' );
+		}
+	}, 10, 2);
+
 	#  do not show sidebar on forum pages
 	add_filter('tcc_theme_sidebar_args', function( $args ) {
 		if ( is_bbpress() ) {
@@ -67,6 +75,19 @@ if ( function_exists( 'is_bbpress' ) ) {
 		add_action( 'tcc_custom_css', 'fluidity_bbpress_font_size' );
 	}
 
+	if ( ! function_exists( 'fluid_show_forum_title' ) ) {
+		function fluid_show_forum_title() {
+			$title = __( 'Forum Title', 'tcc-fluid' );
+			if ( get_page_slug() === 'forum' ) {
+				$title = __( 'Welcome to the Forums!', 'tcc-fluid' );
+			} else {
+				$title = get_the_title( get_the_ID() );
+			} ?>
+				<h1 class="page-title text-center">
+					<?php echo $title; ?>
+				</h1><?php
+		}
+	}
 
 }
 
