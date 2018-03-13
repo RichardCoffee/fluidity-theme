@@ -161,7 +161,7 @@ if ( ! function_exists( 'tcc_is_page' ) ) {
 		$return = is_page();
 		if ( ! $return ) {
 			global $wp_query;
-log_entry($wp_query);
+log_entry(get_post_type(),$wp_query);
 		}
 		return $return;
 	}
