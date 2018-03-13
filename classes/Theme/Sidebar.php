@@ -28,6 +28,7 @@ class TCC_Theme_Sidebar {
 			'sidebar'    => get_page_slug(),
 		);
 		$args = array_merge( $defaults, $args );
+		$args = apply_filters( 'tcc_theme_sidebar_args', $args );
 		$args['action'] = $this->action_position( $args );
 		return $args;
 	}

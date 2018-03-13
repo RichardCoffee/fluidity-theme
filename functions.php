@@ -97,4 +97,9 @@ add_filter('tcc_template-parts_root', function( $rootslug, $pageslug ) {
 	}
 	return $rootslug;
 }, 10, 2);
-
+add_filter('tcc_theme_sidebar_args', function($args) {
+	if ( $args['sidebar'] === 'forum' ) {
+		$args['position'] = 'none';
+	}
+	return $args;
+});
