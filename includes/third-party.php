@@ -15,9 +15,7 @@ if ( function_exists( 'is_bbpress' ) ) {
 
 	#  do not show sidebar on forum pages
 	add_filter('tcc_theme_sidebar_args', function( $args ) {
-		if ( $args['sidebar'] === 'forum' ) {
-			$args['position'] = 'none';
-		} else if ( get_queried_object()->post_type === 'forum' ) {
+		if ( is_bbpress() ) {
 			$args['position'] = 'none';
 		}
 		return $args;
@@ -25,8 +23,8 @@ if ( function_exists( 'is_bbpress' ) ) {
 
 	#  force use of template-parts/content.php
 	add_filter('tcc_template-parts_root', function( $rootslug, $pageslug ) {
-		if ( $pageslug === 'forum' ) {
-			return 'content';
+		if ( is_bbpress() ) {
+			$rootslug = 'content';
 		}
 		return $rootslug;
 	}, 10, 2);
