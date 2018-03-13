@@ -67,6 +67,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 					if ( is_object( $page ) ) {
 						if ( isset( $page->post_type ) && ( $page->post_type === 'page' ) ) {
 							$slug = $page->post_name;
+						} else if ( isset( $page->post_name ) ) {
+							$slug = $page->post_name;
 						} else {
 log_entry($page);
 							$slug = $page->name;
