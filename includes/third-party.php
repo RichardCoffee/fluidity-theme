@@ -63,7 +63,7 @@ if ( function_exists( 'is_bbpress' ) ) {
 					echo "	font-size:  {$fontosize1}px;\n";
 					echo "}\n";
 				}
-				echo '#subscription-toggle { padding-left: 2em; }';
+				echo "#subscription-toggle \{ padding-left: 2em; \}\n";
 			}
 		}
 		add_action( 'tcc_custom_css', 'fluidity_bbpress_font_size' );
