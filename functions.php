@@ -91,3 +91,10 @@ add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,
 		log_entry( list_filter_hooks( $filter ) );
 	}
 ); //*/
+add_filter('tcc_template-parts_root', function( $rootslug, $pageslug ) {
+	if ( $pageslug === 'forum' ) {
+		return 'content';
+	}
+	return $rootslug;
+});
+
