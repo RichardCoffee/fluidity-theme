@@ -11,6 +11,18 @@
 #  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
 add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been fixed yet?
 
+if ( ! function_exists( 'fluidity_bbpress_font_size' ) ) {
+	function fluidity_bbpress_font_size() {
+		$font_size = tcc_design( 'bbpsize' );
+		if ( $font_size && ( ! ( $font_size === 12 ) ) ) {
+			echo "div#bbpress-forums {";
+			echo "	font-size:  {$font_size}px;";
+			echo "}";
+		}
+	}
+	add_action( 'tcc_custom_css', 'fluidity_bbpress_font_size' );
+}
+
 
 /**  BuddyPress  **/
 

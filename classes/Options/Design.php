@@ -63,6 +63,15 @@ class TCC_Options_Design extends TCC_Options_Options {
 			'render'  => 'text',
 			'divcss'  => 'tcc_text_3em',
 		);
+		if ( is_plugin_active( 'bbpress/bbpress.php' ) ) {
+			$layout['bbpsize'] = array(
+				'default' => 12,
+				'label'   => __('bbPress Font Size','tcc-fluid'),
+				'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
+				'render'  => 'text',
+				'divcss'  => 'tcc_text_3em',
+			);
+		}
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
