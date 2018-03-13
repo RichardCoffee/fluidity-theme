@@ -16,33 +16,34 @@ if ( function_exists( 'is_bbpress' ) ) {
 	#  Change font sizes
 	if ( ! function_exists( 'fluidity_bbpress_font_size' ) ) {
 		function fluidity_bbpress_font_size() {
-log_entry( 'is_bbpress:  ' . is_bbpress() );
-			$fontsize = tcc_design( 'bbpsize' );
-			if ( $fontsize && ( ! ( $fontsize === 12 ) ) ) {
-				$css = array(
-					'div#bbpress-forums',
-					'div#bbpress-forums div.bbp-breadcrumb',
-					'div#bbpress-forums ul.bbp-lead-topic',
-					'div#bbpress-forums ul.bbp-topics',
-					'div#bbpress-forums ul.bbp-forums',
-					'div#bbpress-forums ul.bbp-replies',
-					'div#bbpress-forums ul.bbp-search-results',
-				);
-				$css_tags = implode( ', ', $css );
-				echo "$css_tags {";
-				echo "	font-size:  {$fontsize}px;";
-				echo "}";
-			}
-			$fontosize1 = tcc_design( 'bbposize1' );
-			if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) {
-				$css1 = array(
-					'div#bbpress-forums .bbp-forum-info .bbp-forum-content',
-					'div#bbpress-forums p.bbp-topic-meta',
-				);
-				$css_tags1 = implode( ', ', $css1 );
-				echo "$css_tags1 {";
-				echo "	font-size:  {$fontosize1}px;";
-				echo "}";
+			if ( is_bbpress() ) {
+				$fontsize = tcc_design( 'bbpsize' );
+				if ( $fontsize && ( ! ( $fontsize === 12 ) ) ) {
+					$css = array(
+						'div#bbpress-forums',
+						'div#bbpress-forums div.bbp-breadcrumb',
+						'div#bbpress-forums ul.bbp-lead-topic',
+						'div#bbpress-forums ul.bbp-topics',
+						'div#bbpress-forums ul.bbp-forums',
+						'div#bbpress-forums ul.bbp-replies',
+						'div#bbpress-forums ul.bbp-search-results',
+					);
+					$css_tags = implode( ', ', $css );
+					echo "$css_tags {";
+					echo "	font-size:  {$fontsize}px;";
+					echo "}";
+				}
+				$fontosize1 = tcc_design( 'bbposize1' );
+				if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) {
+					$css1 = array(
+						'div#bbpress-forums .bbp-forum-info .bbp-forum-content',
+						'div#bbpress-forums p.bbp-topic-meta',
+					);
+					$css_tags1 = implode( ', ', $css1 );
+					echo "$css_tags1 {";
+					echo "	font-size:  {$fontosize1}px;";
+					echo "}";
+				}
 			}
 		}
 		add_action( 'tcc_custom_css', 'fluidity_bbpress_font_size' );
