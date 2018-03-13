@@ -81,7 +81,7 @@ if ( function_exists( 'is_bbpress' ) ) {
 			if ( get_page_slug() === 'forum' ) {
 				$title = __( 'Welcome to the Forums!', 'tcc-fluid' );
 			} else {
-				$title = get_the_title( get_the_ID() );
+				$title = sprintf( _x( '%s Forum', 'string is the forum/post title', 'tcc-fluid' ), get_the_title( get_the_ID() ) );
 			} ?>
 				<h1 class="page-title text-center">
 					<?php echo $title; ?>
