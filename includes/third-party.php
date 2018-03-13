@@ -13,6 +13,24 @@ if ( function_exists( 'is_bbpress' ) ) {
 	#  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
 	add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been fixed yet?
 
+	#  do not show sidebar on forum pages
+	add_filter('tcc_theme_sidebar_args', function( $args ) {
+		if ( $args['sidebar'] === 'forum' ) {
+			$args['position'] = 'none';
+		} else if ( get_queried_object()->post_type === 'forum' ) {
+			$args['position'] = 'none';
+		}
+		return $args;
+	});
+
+	#  force use of template-parts/content.php
+	add_filter('tcc_template-parts_root', function( $rootslug, $pageslug ) {
+		if ( $pageslug === 'forum' ) {
+			return 'content';
+		}
+		return $rootslug;
+	}, 10, 2);
+
 	#  Change font sizes
 	if ( ! function_exists( 'fluidity_bbpress_font_size' ) ) {
 		function fluidity_bbpress_font_size() {
@@ -45,11 +63,12 @@ if ( function_exists( 'is_bbpress' ) ) {
 					echo "	font-size:  {$fontosize1}px;\n";
 					echo "}\n";
 				}
-				echo '#subscription-toggle { pad-left: 2em; }';
+				echo '#subscription-toggle { padding-left: 2em; }';
 			}
 		}
 		add_action( 'tcc_custom_css', 'fluidity_bbpress_font_size' );
 	}
+
 
 }
 
