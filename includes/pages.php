@@ -156,6 +156,17 @@ if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {
 	}
 }
 
+if ( ! function_exists( 'tcc_is_page' ) ) {
+	function tcc_is_page() {
+		$return = is_page();
+		if ( ! $return ) {
+			global $wp_query;
+log_entry($wp_query);
+		}
+		return $return;
+	}
+}
+
 /**
  *  @brief Provides filters for css applied to main content tag.
  *
@@ -177,6 +188,19 @@ if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 	}
 }
 
+if ( ! function_exists( 'tcc_page_effects' ) ) {
+	function tcc_page_effects( $mypage ) {
+		if ( is_page() ) {
+			tcc_page_parallax( $mypage );
+		}
+		# tcc_design( 'title' ) === 'page'
+		if ( ! in_array( tcc_design( 'title' ), array( 'no', 'main' ) ) ) {
+			tcc_show_page_title( $mypage );
+		}
+	}
+	add_action( 'tcc_inside_page', 'tcc_page_effects' );
+}
+
 if ( ! function_exists( 'tcc_page_title' ) ) {
 	function tcc_page_title( $slug ) {
 		if ( has_action( "tcc_page_title_$slug" ) ) {
@@ -195,19 +219,6 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 			}
 		}
 	}
-}
-
-if ( ! function_exists( 'tcc_page_effects' ) ) {
-	function tcc_page_effects( $mypage ) {
-		if ( is_page() ) {
-			tcc_page_parallax( $mypage );
-		}
-		# tcc_design( 'title' ) === 'page'
-		if ( ! in_array( tcc_design( 'title' ), array( 'no', 'main' ) ) ) {
-			tcc_show_page_title( $mypage );
-		}
-	}
-	add_action( 'tcc_inside_page', 'tcc_page_effects' );
 }
 
 if ( ! function_exists( 'tcc_show_page_title' ) ) {

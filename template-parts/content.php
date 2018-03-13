@@ -10,7 +10,7 @@ who_am_i(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
 
-	if ( ! is_page() ) {
+	if ( ! tcc_is_page() ) {
 		fluid_content_header();
 	}
 
