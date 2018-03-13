@@ -28,10 +28,10 @@ if ( function_exists( 'is_bbpress' ) ) {
 						'div#bbpress-forums ul.bbp-replies',
 						'div#bbpress-forums ul.bbp-search-results',
 					);
-					$css_tags = implode( ', ', $css );
-					echo "$css_tags {";
-					echo "	font-size:  {$fontsize}px;";
-					echo "}";
+					$css_tags = implode( ",\n", $css );
+					echo "\n$css_tags {\n";
+					echo "	font-size:  {$fontsize}px;\n";
+					echo "}\n";
 				}
 				$fontosize1 = tcc_design( 'bbposize1' );
 				if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) {
@@ -39,10 +39,10 @@ if ( function_exists( 'is_bbpress' ) ) {
 						'div#bbpress-forums .bbp-forum-info .bbp-forum-content',
 						'div#bbpress-forums p.bbp-topic-meta',
 					);
-					$css_tags1 = implode( ', ', $css1 );
-					echo "$css_tags1 {";
-					echo "	font-size:  {$fontosize1}px;";
-					echo "}";
+					$css_tags1 = implode( ",\n", $css1 );
+					echo "\n$css_tags1 {\n";
+					echo "	font-size:  {$fontosize1}px;\n";
+					echo "}\n";
 				}
 			}
 		}

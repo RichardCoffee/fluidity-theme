@@ -38,23 +38,25 @@ log_entry(0,$filter);
 	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 } //*/
 
-if (!function_exists('fluid_stop_heartbeat')) {
-  function fluid_stop_heartbeat() {
-    $heart = tcc_settings('heart');
-    if ($heart=='off') {
-      global $pagenow;
-      $authorized = array('post.php','post-new.php','admin.php');
-      if (!in_array($pagenow,$authorized))
-        add_action('admin_enqueue_scripts', function() { wp_deregister_script('heartbeat'); }, 999);
-        add_action('wp_enqueue_scripts',    function() { wp_deregister_script('heartbeat'); }, 999);
-        add_filter('heartbeat_settings', function ( $settings ) {
-          $settings['minimalInterval'] = 600;
-          $settings['autostart']       = false; // default is true
-          $settings['interval']        = 600; // default is 15 sec
-          return $settings; } );
-    }
-  }
-  add_action( 'init', 'fluid_stop_heartbeat', 1 );
+if ( ! function_exists( 'fluid_stop_heartbeat' ) ) {
+	function fluid_stop_heartbeat() {
+		$heart = tcc_settings( 'heart' );
+		if ( $heart == 'off' ) {
+			global $pagenow;
+			$authorized = array( 'post.php', 'post-new.php', 'admin.php' );
+			if ( ! in_array( $pagenow, $authorized ) ) {
+				add_action( 'admin_enqueue_scripts', function() { wp_deregister_script( 'heartbeat' ); }, 999);
+				add_action( 'wp_enqueue_scripts',    function() { wp_deregister_script( 'heartbeat' ); }, 999);
+				add_filter( 'heartbeat_settings', function ( $settings ) {
+					$settings['minimalInterval'] = 600;
+					$settings['autostart']       = false; // default is true
+					$settings['interval']        = 600; // default is 15 sec
+					return $settings;
+				} );
+			}
+		}
+	}
+	add_action( 'init', 'fluid_stop_heartbeat', 1 );
 }
 
 if ( ! function_exists( 'fluid_load_post_classes_admin' ) ) {
