@@ -8,11 +8,7 @@
 
 /**  bbPress  **/
 
-log_entry( 'has is_bbpress:  ' . function_exists( 'is_bbpress' ));
 if ( function_exists( 'is_bbpress' ) ) {
-	log_entry( 'is_bbpress:  ' . is_bbpress() );
-}
-if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 
 	#  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
 	add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been fixed yet?
@@ -20,6 +16,7 @@ if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 	#  Change font sizes
 	if ( ! function_exists( 'fluidity_bbpress_font_size' ) ) {
 		function fluidity_bbpress_font_size() {
+log_entry( 'is_bbpress:  ' . is_bbpress() );
 			$fontsize = tcc_design( 'bbpsize' );
 			if ( $fontsize && ( ! ( $fontsize === 12 ) ) ) {
 				$css = array(
