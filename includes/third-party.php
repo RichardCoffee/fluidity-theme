@@ -22,6 +22,7 @@ if ( function_exists( 'is_bbpress' ) ) {
 					$css = array(
 						'div#bbpress-forums',
 						'div#bbpress-forums div.bbp-breadcrumb',
+						'div#bbpress-forums div.bbp-template-notice p',
 						'div#bbpress-forums ul.bbp-lead-topic',
 						'div#bbpress-forums ul.bbp-topics',
 						'div#bbpress-forums ul.bbp-forums',
