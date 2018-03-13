@@ -8,6 +8,10 @@
 
 /**  bbPress  **/
 
+log_entry( 'has is_bbpress:  ' . function_exists( 'is_bbpress' ));
+if ( function_exists( 'is_bbpress' ) ) {
+	log_entry( 'is_bbpress:  ' . is_bbpress() );
+}
 if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 
 	#  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
