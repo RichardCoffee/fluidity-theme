@@ -5,14 +5,6 @@
  *
  *		Custom Fields on Pages:		<?php echo get_post_meta(get_page_id($page), 'key string here', true); ?>
  */
-/*
-if ( ! function_exists( 'fluid_bbpress_forums' ) ) {
-	function fluid_bbpress_forums( $mypage ) {
-		remove_filter( 'the_content', 'wpautop' );
-		remove_filter( 'the_content', 'wptexturize' );
-	}
-	add_filter( 'tcc_top_forum', 'fluid_bbpress_forums' );
-} //*/
 
 if ( ! function_exists( 'get_page_id' ) ) {
 	# http://snipplr.com/view/39004/
@@ -190,7 +182,7 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 		if ( has_action( "tcc_page_title_$slug" ) ) {
 			do_action( "tcc_page_title_$slug" );
 		} else if ( has_action( 'tcc_page_title' ) ) {
-			do_action( 'tcc_page_title' );
+			do_action( 'tcc_page_title', $slug );
 		} else if ( tcc_design( 'title' ) === 'no' ) {
 		} else {
 			$title = get_page_title( $slug );
@@ -205,8 +197,8 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 	}
 }
 
-if ( ! function_exists( 'tcc_page_top_filter' ) ) {
-	function tcc_page_top_filter( $mypage ) {
+if ( ! function_exists( 'tcc_page_effects' ) ) {
+	function tcc_page_effects( $mypage ) {
 		if ( is_page() ) {
 			tcc_page_parallax( $mypage );
 		}
@@ -215,7 +207,7 @@ if ( ! function_exists( 'tcc_page_top_filter' ) ) {
 			tcc_show_page_title( $mypage );
 		}
 	}
-	add_action( 'tcc_page_top', 'tcc_page_top_filter' );
+	add_action( 'tcc_inside_page', 'tcc_page_effects' );
 }
 
 if ( ! function_exists( 'tcc_show_page_title' ) ) {
