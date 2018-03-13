@@ -15,7 +15,17 @@ if ( ! function_exists( 'fluidity_bbpress_font_size' ) ) {
 	function fluidity_bbpress_font_size() {
 		$font_size = tcc_design( 'bbpsize' );
 		if ( $font_size && ( ! ( $font_size === 12 ) ) ) {
-			echo "div#bbpress-forums {";
+			$css = array(
+				'div#bbpress-forums',
+				'div#bbpress-forums div.bbp-breadcrumb',
+				'div#bbpress-forums ul.bbp-lead-topic',
+				'div#bbpress-forums ul.bbp-topics',
+				'div#bbpress-forums ul.bbp-forums',
+				'div#bbpress-forums ul.bbp-replies',
+				'div#bbpress-forums ul.bbp-search-results',
+			);
+			$css_tags = implode( ', ', $css );
+			echo "$css_tags {";
 			echo "	font-size:  {$font_size}px;";
 			echo "}";
 		}
