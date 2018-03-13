@@ -96,5 +96,5 @@ add_filter('tcc_template-parts_root', function( $rootslug, $pageslug ) {
 		return 'content';
 	}
 	return $rootslug;
-});
+}, 10, 2);
 
