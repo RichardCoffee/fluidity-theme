@@ -70,7 +70,6 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						} else if ( isset( $page->post_name ) ) {
 							$slug = $page->post_name;
 						} else {
-log_entry($page);
 							$slug = $page->name;
 						}
 					} else {
