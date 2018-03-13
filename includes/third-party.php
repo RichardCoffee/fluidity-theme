@@ -13,8 +13,8 @@ add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been
 
 if ( ! function_exists( 'fluidity_bbpress_font_size' ) ) {
 	function fluidity_bbpress_font_size() {
-		$font_size = tcc_design( 'bbpsize' );
-		if ( $font_size && ( ! ( $font_size === 12 ) ) ) {
+		$fontsize = tcc_design( 'bbpsize' );
+		if ( $fontsize && ( ! ( $fontsize === 12 ) ) ) {
 			$css = array(
 				'div#bbpress-forums',
 				'div#bbpress-forums div.bbp-breadcrumb',
@@ -26,7 +26,18 @@ if ( ! function_exists( 'fluidity_bbpress_font_size' ) ) {
 			);
 			$css_tags = implode( ', ', $css );
 			echo "$css_tags {";
-			echo "	font-size:  {$font_size}px;";
+			echo "	font-size:  {$fontsize}px;";
+			echo "}";
+		}
+		$fontosize1 = tcc_design( 'bbposize1' );
+		if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) {
+			$css = array(
+				'div#bbpress-forums .bbp-forum-info .bbp-forum-content',
+				'div#bbpress-forums p.bbp-topic-meta',
+			);
+			$css_tags = implode( ', ', $css );
+			echo "$css_tags {";
+			echo "	font-size:  {$fontosize1}px;";
 			echo "}";
 		}
 	}
