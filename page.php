@@ -34,7 +34,7 @@ do_action( "tcc_top_$mypage", $mypage ); ?>
 
 				do_action( "tcc_before_loop_$mypage" );
 
-				$root = ( is_single() || is_page() ) ? 'content' : tcc_option( 'content' );
+				$root = ( is_single() || is_page() || is_singular() ) ? 'content' : tcc_option( 'content' );
 				while ( have_posts () ) { ?>
 					<div><?php
 						the_post();
