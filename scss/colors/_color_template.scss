@@ -160,6 +160,10 @@ hr {
 	text-shadow: color(bgHighlight) 1px 1px 2px;
 }
 
+.error404 .page-title {
+	color: color(textcolor);
+}
+
 .port-opaque {
 	background-color: rgba( $headerBody, .7 ) !important;
 }
