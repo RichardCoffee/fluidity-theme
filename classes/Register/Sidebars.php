@@ -10,8 +10,9 @@ class TCC_Register_Sidebars {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct() {
-		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 		$this->set_widget_icons();
+		add_action( 'widgets_init',       array( $this, 'register_sidebars' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_icons' ), 100 );
 	}
 
 	protected function default_sidebars( $sidebars = array() ) {
@@ -50,6 +51,9 @@ log_entry( $sidebar );
 		$fawe_set = fluid_library()->get_widget_fawe();
 		$current  = tcc_layout( 'widget_icons', 'default' );
 		$this->fawe = isset( $fawe_set[ $current ] ) ? $fawe_set[ $current ] : $fawe_set['default'];
+	}
+
+	public function enqueue_icons() {
 		if ( wp_script_is( 'tcc-collapse', 'enqueued' ) ) {
 			$icons = 'var col_icons = ' . json_encode( $this->fawe );
 			wp_add_inline_script( 'tcc-collapse', $icons, 'before' );
