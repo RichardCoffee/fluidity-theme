@@ -90,7 +90,7 @@ class TCC_Form_Login {
 		}
 	}
 
-	protected function show_login_form( $args ) {
+	public function show_login_form( $args ) {
 		$in_navbar  = $this->in_navbar;
 		$pull_right = $this->pull_right;
 		extract( $args, EXTR_IF_EXISTS );
@@ -154,7 +154,7 @@ class TCC_Form_Login {
 		</form><?php
 	}
 
-	protected function show_logout_form() {
+	public function show_logout_form() {
 		$signout = apply_filters( 'tcc_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
 		<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url( home_url() ); ?>" method="post">
 			<div class="text-center"><?php
@@ -183,7 +183,7 @@ Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '
 Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
 
 	# https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
-	function login_redirect( $redirect_to, $request, $user ) {
+	public function login_redirect( $redirect_to, $request, $user ) {
 		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
 			if ( ! $user ) {
 				$redirect_to = home_url();
