@@ -10,6 +10,7 @@
 
 /**
  */
+/*
 if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 	function fluidity_register_sidebars() {
 		$widget = tcc_layout('widget');
@@ -79,7 +80,7 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 		}
 	}
 	add_action('widgets_init','fluidity_register_sidebars');
-}
+} //*/
 
 function fluidity_the_widget($widget,$instance,$args) {
   log_entry('the widget',$widget,$instance,$args);

@@ -42,8 +42,7 @@ class TCC_Register_Sidebars {
 		$sidebars = $this->prepare_sidebars( $sidebars );
 #		$sidebars = apply_filters( 'tcc_register_sidebars', $sidebars );
 		foreach( $sidebars as $sidebar ) {
-log_entry( $sidebar );
-#			register_sidebar( $sidebar );
+			register_sidebar( $sidebar );
 		}
 	}
 
@@ -56,7 +55,6 @@ log_entry( $sidebar );
 	public function enqueue_icons() {
 		if ( wp_script_is( 'tcc-collapse', 'enqueued' ) ) {
 			$icons = 'var col_icons = ' . json_encode( $this->fawe );
-log_entry( $icons );
 			wp_add_inline_script( 'tcc-collapse', $icons, 'before' );
 		}
 	}
