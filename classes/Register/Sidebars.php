@@ -7,12 +7,10 @@ class TCC_Register_Sidebars {
 	protected $title;
 	protected $widget;
 
-	use TCC_Trait_ParseArgs;
-
 	public function __construct() {
 		$this->set_widget_icons();
 		add_action( 'widgets_init',       array( $this, 'register_sidebars' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_icons' ), 100 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_widget_icons' ), 100 );
 	}
 
 	protected function default_sidebars( $sidebars = array() ) {
@@ -52,7 +50,7 @@ class TCC_Register_Sidebars {
 		$this->fawe = isset( $fawe_set[ $current ] ) ? $fawe_set[ $current ] : $fawe_set['default'];
 	}
 
-	public function enqueue_icons() {
+	public function enqueue_widget_icons() {
 		if ( wp_script_is( 'tcc-collapse', 'enqueued' ) ) {
 			$icons = 'var col_icons = ' . json_encode( $this->fawe );
 			wp_add_inline_script( 'tcc-collapse', $icons, 'before' );
