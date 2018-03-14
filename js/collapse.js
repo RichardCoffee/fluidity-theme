@@ -7,6 +7,7 @@ var collapse = { scroll: false,
 jQuery(document).ready(function() {
   assignCollapse();
   collapse.scroll = jQuery('.scroll-auto')[0];
+console.log( col_icon );
 });
 
 function assignCollapse(elID) { // Attach toggle event to collapsible areas
