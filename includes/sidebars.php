@@ -63,7 +63,7 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 			'before_title'  => $before_title,
 			'after_title'   => $after_title,
 			'after_widget'  => "$after_widget</div>",
-		); //*/
+		);
 		#	Footer sidebar
 		$sidebars['four'] = array(
 			'name'          => esc_html__('Horizontal Panels (4 col)','tcc-fluid'),
