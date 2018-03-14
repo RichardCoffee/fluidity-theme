@@ -32,6 +32,7 @@ add_action( 'rest_api_init', function() {
 });
 require_once( 'classes/autocomplete.php' );
 
+new TCC_Register_Sidebars;
 new TCC_Theme_Support;
 
 if ( is_admin() ) {

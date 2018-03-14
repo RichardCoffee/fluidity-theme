@@ -3,57 +3,76 @@
 class TCC_Register_Sidebars {
 
 
-	protected $sidebars = array();
+	protected $fawe = array();
 	protected $title;
 	protected $widget;
 
+	use TCC_Trait_ParseArgs;
 
 	public function __construct() {
-		add_action( 'widgets_init', array( $this, 'register_sidebars' );
+		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
+		$this->set_widget_icons();
+	}
+
+	protected function default_sidebars( $sidebars = array() ) {
+		#	Standard Page
+		$sidebars['standard'] = array(
+			'name' => esc_html__('Standard Page w/Panels','tcc-fluid'),
+			'id'   => 'standard',
+		);
+		return $sidebars; # apply_filters( 'tcc_default_sidebars', $sidebars );
+	}
+
+	protected function prepare_sidebars( $sidebars = array() ) {
+		$title  = $this->title_html();
+		$widget = $this->widget_html();
+		foreach( $sidebars as $slug => &$base) {
+			$base['before_widget'] = $widget['before'];
+			$base['before_title']  = $title[ 'before'];
+			$base['after_title']   = $title[ 'after'];
+			$base['after_widget']  = $widget['after'];
+		}
+		return $sidebars; # apply_filters( 'tcc_prepare_sidebars', $sidebars );
 	}
 
 	public function register_sidebars() {
-		remove_action( 'widgets_init', array( $this, 'register_sidebars' );
-		$title  = $this->title_html();
-		$widget = $this->widget_html();
-		$sidebars = apply_filters( 'tcc_register_sidebars', $this->sidebars );
+		remove_action( 'widgets_init', array( $this, 'register_sidebars' ) ); // prevents possible recursion
+		$sidebars = $this->default_sidebars( array() );
+		$sidebars = $this->prepare_sidebars( $sidebars );
+#		$sidebars = apply_filters( 'tcc_register_sidebars', $sidebars );
 		foreach( $sidebars as $sidebar ) {
-			register_sidebar( $sidebar );
+log_entry( $sidebar );
+#			register_sidebar( $sidebar );
 		}
 	}
 
+	protected function set_widget_icons() {
+		$fawe_set = fluid_library()->get_widget_fawe();
+		$current  = tcc_layout( 'widget_icons', 'default' );
+		$this->fawe = isset( $fawe_set[ $current ] ) ? $fawe_set[ $current ] : $fawe_set['default'];
+	}
+
 	protected function title_html() {
-		$title  = new stdClass;
+		$title  = array();
 		$status = tcc_layout( 'widget', 'perm' ); // FIXME: get layout default value
 		$icon   = tcc_layout( 'widget_icon', 'default' ); // this value is fine
-
-
-		$before_title  = '<div class="panel-heading"';
-		$before_title .= ( $widget === 'perm' )   ? '' : ' role="button"';
-		$before_title .= ( $widget === 'closed' ) ? ' data-collapse="1">' : '>';
-
-
-		$fa_sign       = ( $widget === 'open' )   ? 'fa-minus' : 'fa-plus';
-
-
-		$before_title .= ( $widget === 'perm' )   ? '' : fluid_library()->get_fawe( "$fa_sign pull-right panel-sign" );
-
-
-
-		$before_css    = ( $widget === 'perm' )   ? '' : 'text-center scroll-this pointer';
-		$before_title .= "<div class='panel-title $before_css'><b>";
-		$after_title   = '</b></div></div><div class="panel-body">';
-
-
-
+		$title['before']  = '<div class="panel-heading"';
+		$title['before'] .= ( $status === 'perm' )   ? '' : ' role="button"';
+		$title['before'] .= ( $status === 'closed' ) ? ' data-collapse="1">' : '>';
+		$fa_sign          = ( $status === 'open' )   ? $this->fawe['minus'] : $this->fawe['plus'];
+		$title['before'] .= ( $status === 'perm' )   ? '' : fluid_library()->get_fawe( "$fa_sign pull-right panel-sign" );
+		$before_css       = ( $status === 'perm' )   ? '' : 'text-center scroll-this pointer';
+		$title['before'] .= "<div class='panel-title $before_css'><b>";
+		$title['after']   = '</b></div></div><div class="panel-body">';
+		return $title; # apply_filters( 'tcc_register_sidebar_title', $title );
 	}
 
 	protected function widget_html() {
-		$widget = new stdClass;
-		$widget->before = '<div class="panel panel-fluidity">';
+		$widget = array();
+		$widget['before'] = '<div class="panel panel-fluidity">';
 		#	Second /div closes "panel-body" div
-		$widget->after  = '</div></div>';
-		return apply_filters( 'tcc_register_sidebar_widget', $widget );
+		$widget['after']  = '</div></div>';
+		return $widget; # apply_filters( 'tcc_register_sidebar_widget', $widget );
 	}
 
 
