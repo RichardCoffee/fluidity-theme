@@ -66,7 +66,7 @@ class TCC_Options_Design extends TCC_Options_Options {
 		if ( is_plugin_active( 'bbpress/bbpress.php' ) ) {
 			$layout['bbpsize'] = array(
 				'default' => 12,
-				'label'   => __('bbPress Font Size','tcc-fluid'),
+				'label'   => __('bbPress Main Font Size','tcc-fluid'),
 				'text'    => __('Control the main font size on forum pages', 'tcc-fluid' ),
 				'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
 				'render'  => 'text',
@@ -74,7 +74,7 @@ class TCC_Options_Design extends TCC_Options_Options {
 			);
 			$layout['bbposize1'] = array(
 				'default' => 11,
-				'label'   => __('bbPress Font Size','tcc-fluid'),
+				'label'   => __('bbPress Secondary Font Size','tcc-fluid'),
 				'text'    => __('Control the other font size on forum pages', 'tcc-fluid' ),
 				'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
 				'render'  => 'text',
