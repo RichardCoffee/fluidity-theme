@@ -50,6 +50,10 @@ log_entry( $sidebar );
 		$fawe_set = fluid_library()->get_widget_fawe();
 		$current  = tcc_layout( 'widget_icons', 'default' );
 		$this->fawe = isset( $fawe_set[ $current ] ) ? $fawe_set[ $current ] : $fawe_set['default'];
+		if ( wp_script_is( 'tcc-collapse', 'enqueued' ) ) {
+			$icons = 'var col_icons = ' . json_encode( $this->fawe );
+			wp_add_inline_script( 'tcc-collapse', $icons, 'before' );
+		}
 	}
 
 	protected function title_html() {
