@@ -13,8 +13,7 @@ who_am_i(); ?>
 	<?php do_action( 'fluid_content_header' ); ?>
 
 	<div class="article" itemprop="articleBody">
-		<?php the_content(); ?>
-	</div><?php
+		<?php the_content();
 
 	if ( is_single() && ! tcc_is_page() ) {
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
@@ -24,5 +23,6 @@ who_am_i(); ?>
 	}
 
 #	tcc_show_comments(); ?>
+	</div>
 
 </article>
