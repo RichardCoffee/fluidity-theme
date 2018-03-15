@@ -13,17 +13,17 @@ who_am_i(); ?>
 	<?php do_action( 'fluid_content_header' ); ?>
 
 	<div class="article" itemprop="articleBody">
-		<?php the_content();
+		<?php the_content(); ?>
+	</div><?php
 
 	if ( is_single() && ! tcc_is_page() ) {
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
 		new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
-#		echo "<p> </p>";
-#		fluid_postmetadata();
+		echo "<p> </p>";
+		fluid_postmetadata();
 	}
 
-#	tcc_show_comments(); ?>
+	tcc_show_comments(); ?>
 
-	</div>
 
 </article>
