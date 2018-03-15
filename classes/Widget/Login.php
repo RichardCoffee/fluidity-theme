@@ -10,7 +10,7 @@ class TCC_Widget_Login extends TCC_Widget_Widget {
 	}
 
 	public function inner_widget( $args, $instance ) {
-		tcc_login_form();
+		fluid_login()->login_form();
 #		wp_login_form();
 	}
 

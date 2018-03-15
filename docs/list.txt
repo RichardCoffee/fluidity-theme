@@ -42,18 +42,6 @@
 		fluidity_social_icons()
 		tcc_custom_css()
 
-			Login
-	==================================
-		tcc_admin_login_redirect( $redirect_to, $request, $user )
-		tcc_dashboard_logo()
-		tcc_login_css()
-		tcc_login_form( $args ) 	#  See classes/Form/Login.php for $args array
-		tcc_login_header_url()
-		tcc_login_header_title()
-		tcc_logout_url( $url, $redirect )
-		tcc_remember_me()
-		tcc_remember_me_checked()
-
 			Pages
 	==================================
 		author_role_template( $templates = '' )

@@ -1,13 +1,9 @@
 <?php
 
-if ( ! function_exists( 'tcc_login_form' ) ) {
-	function tcc_login_form( $args = array() ) {
-		TCC_Form_Login::instance()->login_form( $args );
-	}
-}
 
 class TCC_Form_Login {
 
+	protected $show_mode   = 'modal';
 	protected $in_modal    = false;
 	protected $in_navbar   = false;
 	protected $in_widget   = false;
@@ -18,7 +14,7 @@ class TCC_Form_Login {
 	use TCC_Trait_Logging;
 	use TCC_Trait_ParseArgs;
 
-	protected function __construct( $args = array() ) {
+	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
 
 		add_action( 'admin_head',          array( $this, 'dashboard_logo' ) );

@@ -45,7 +45,7 @@ if ( is_admin() ) {
 	require_once('includes/pages.php');
 	require_once('includes/third-party.php');
 	require_once('classes/microdata.php');
-	TCC_Form_Login::instance();
+	fluid_login();
 }
 
 if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
