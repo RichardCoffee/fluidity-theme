@@ -404,7 +404,8 @@ ul.pagination > li {
   background-size: contain;
 }
 
-article.post .row {
+article.post .row::before,
+article.post .row::after {
   display: inline-block;
 }
 
