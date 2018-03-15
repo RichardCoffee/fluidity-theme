@@ -82,7 +82,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 
 if (!function_exists('fluid_postmetadata')) {
 	function fluid_postmetadata() { ?>
-		<div>
+		<div class="article">
 		<p class="postmetadata noprint"><?php
 			if (has_tag()) {
 				the_tags(esc_html__('Tags','tcc-fluid').': ', ', ', '<br>');
