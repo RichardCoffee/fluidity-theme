@@ -134,7 +134,6 @@ class TCC_Theme_Comment {
 		$comment_field = $fields['comment'];
 		unset( $fields['comment'] );
 		$fields['comment'] = $comment_field;
-log_entry($fields);
 		return $fields;
 	}
 
