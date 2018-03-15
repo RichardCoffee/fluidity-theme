@@ -44,7 +44,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected function navigation() {
 		$this->taxonomy = apply_filters( 'fluid_navigation_taxonomy', $this->taxonomy );
 		$this->check_posts();
-		if ( $this->taxonomy || $this->all_links ) { ?>
+/*		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div>
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
 					if ( $this->taxonomy ) {
