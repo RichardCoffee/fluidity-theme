@@ -21,10 +21,8 @@ class TCC_Theme_Comment {
 	protected $strings     = array();
 
 	use TCC_Trait_Attributes;
-	use TCC_Trait_Singleton;
 
-
-	protected function __construct() {
+	public function __construct() {
 		$this->set_post_id();
 		$this->author  = $this->author();
 		$this->require = get_option( 'require_name_email' );
@@ -136,6 +134,7 @@ class TCC_Theme_Comment {
 		$comment_field = $fields['comment'];
 		unset( $fields['comment'] );
 		$fields['comment'] = $comment_field;
+log_entry($fields);
 		return $fields;
 	}
 

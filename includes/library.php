@@ -159,6 +159,16 @@ if ( ! function_exists( 'fluid' ) ) {
 	}
 }
 
+if ( ! function_exists( 'fluid_comment' ) ) {
+	function fluid_comment() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Comment;
+		}
+		return $library;
+	}
+}
+
 if ( ! function_exists( 'fluid_library' ) ) {
 	function fluid_library() {
 		static $library;

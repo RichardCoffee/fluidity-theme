@@ -12,9 +12,3 @@ function fluidity_class_loader( $class ) {
 	}
 }
 spl_autoload_register( 'fluidity_class_loader' );
-
-if ( ! function_exists( 'fluid_comment' ) ) {
-	function fluid_comment() {
-		return TCC_Theme_Comment::instance();
-	}
-}
