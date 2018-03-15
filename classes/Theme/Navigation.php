@@ -69,7 +69,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$posts['next_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
 		$posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
 		$posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
-/*$this->log(
+$this->log(
 "    taxonomy: $this->taxonomy",
 "previous tax: {$posts['prev_tax']->ID} ".$posts['prev_tax']->post_title,
 "previous all: {$posts['prev_all']->ID} ".$posts['prev_all']->post_title,
