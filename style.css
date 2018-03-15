@@ -99,10 +99,6 @@
   width: 50%;
 }
 
-#upm-buttons.row {
-  display: inline-block;
-}
-
 .content {
   border: 1px solid;
   border-radius: 5px;
@@ -406,6 +402,10 @@ ul.pagination > li {
 .parallax-contain-bottom {
   background-position: center bottom;
   background-size: contain;
+}
+
+article.post .row {
+  display: inline-block;
 }
 
 .article {
