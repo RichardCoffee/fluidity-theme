@@ -20,7 +20,7 @@ who_am_i(); ?>
 		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
 		new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
 #		echo "<p> </p>";
-#		fluid_postmetadata();
+		fluid_postmetadata();
 	}
 
 #	tcc_show_comments(); ?>
