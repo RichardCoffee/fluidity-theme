@@ -1,15 +1,5 @@
 <?php
 
-if ( ! function_exists( 'library' ) ) {
-	function fluid_library() {
-		static $library;
-		if ( empty( $library ) ) {
-			$library = new TCC_Theme_Library;
-		}
-		return $library;
-	}
-}
-
 // Use bootstrap's clearfix
 if (!function_exists('tcc_apply_clearfix')) {
   function tcc_apply_clearfix( $args ) {
@@ -40,42 +30,6 @@ if (!function_exists('tcc_bootstrap_css')) {
 	}
 }
 
-if ( ! function_exists( 'get_applied_attrs' ) ) {
-	function get_applied_attrs( $args ) {
-		return apply_attrs( $args, false );
-	}
-}
-
-if ( ! function_exists( 'apply_attrs' ) ) {
-	function apply_attrs( $args, $echo = true ) {
-		$attrs = ' ';
-		foreach( $args as $attr => $value ) {
-			if ( empty( $value ) ) {
-				continue;
-			}
-			switch( $attr ) {
-				case 'href':
-				case 'src':
-					$value = esc_url( $value );
-					break;
-				case 'value':
-					$value = esc_html( $value );
-					break;
-				case 'title':
-					$value = wp_strip_all_tags( $value );
-				default:
-					$value = esc_attr( $value );
-			}
-			$attrs .= $attr . '="' . $value . '" ';
-		}
-		if ( $echo ) {
-			echo $attrs;
-		} else {
-			return $attrs;
-		}
-	}
-}
-
 if ( ! function_exists( 'array_remove_value' ) ) {
 	function array_remove_value( $needle, $haystack ) {
 		if ( $needle && is_string( $needle ) && $haystack && is_array( $haystack ) ) {
@@ -89,7 +43,11 @@ if ( ! function_exists( 'array_remove_value' ) ) {
 
 if ( ! function_exists( 'clearfix' ) ) {
 	function clearfix() {
-		return TCC_Theme_ClearFix::instance();
+		static $library;
+		if ( empty( $library ) ) {
+			$library = TCC_Theme_ClearFix::instance();
+		}
+		return $library;
 	}
 }
 
@@ -192,6 +150,42 @@ if ( ! function_exists( 'esc_html_nx' ) ) {
 if ( ! function_exists( 'esc_html_enx' ) ) {
 	function esc_html_enx( $single, $plural, $number, $context, $domain = 'default' ) {
 		echo esc_html_nx( $single, $plural, $number, $context, $domain );
+	}
+}
+
+if ( ! function_exists( 'fluid' ) ) {
+	function fluid() {
+		return fluid_library();
+	}
+}
+
+if ( ! function_exists( 'fluid_library' ) ) {
+	function fluid_library() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Library;
+		}
+		return $library;
+	}
+}
+
+if ( ! function_exists( 'fluid_login' ) ) {
+	function fluid_login() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Login;
+		}
+		return $library;
+	}
+}
+
+if ( ! function_exists( 'fluid_options' ) ) {
+	function fluid_options() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = TCC_Options_Fluidity::instance();
+		}
+		return $library;
 	}
 }
 

@@ -18,11 +18,11 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	public function admin_enqueue_scripts() { }
 
 	protected function initialize_radio( $postID ) {
-		$postdate = get_post_meta( $postID, 'postdate_display', true );
+		$postdate = get_post_meta( $postID, $this->field, true );
 		$default  = __( 'Use theme default: %s', 'tcc-fluid' );
 		$current  = tcc_option( 'postdate' );
 		//  FIXME:  option for other sources
-		$cur_text = TCC_Options_Fluidity::instance()->get_option_source_text( 'content', 'postdate', $current );
+		$cur_text = fluid_options()->get_option_source_text( 'content', 'postdate', $current );
 		$args = array(
 			'field_default' => 'default',
 			'field_name'    => $this->field,

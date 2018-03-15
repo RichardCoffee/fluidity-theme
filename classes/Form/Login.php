@@ -17,7 +17,6 @@ class TCC_Form_Login {
 	use TCC_Trait_Attributes;
 	use TCC_Trait_Logging;
 	use TCC_Trait_ParseArgs;
-	use TCC_Trait_Singleton;
 
 	protected function __construct( $args = array() ) {
 		$this->parse_args( $args );

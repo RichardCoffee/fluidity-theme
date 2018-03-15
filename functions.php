@@ -36,7 +36,7 @@ new TCC_Register_Sidebars;
 new TCC_Theme_Support;
 
 if ( is_admin() ) {
-	TCC_Options_Fluidity::instance();
+	fluid_options();
 } else {
 	require_once('includes/comments.php');
 	require_once('includes/footer.php');

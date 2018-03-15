@@ -20,6 +20,7 @@ class TCC_Theme_Comment {
 	protected $require     = false;
 	protected $strings     = array();
 
+	use TCC_Trait_Attributes;
 	use TCC_Trait_Singleton;
 
 
@@ -107,7 +108,7 @@ class TCC_Theme_Comment {
 		$args = array(
 			'title_reply'          => $this->strings['title_reply'],
 			'fields'               => $this->comment_fields(),
-			'comment_field'        => '<p><textarea ' . get_applied_attrs( $this->comment_attrs() ) . '></textarea></p>',
+			'comment_field'        => '<p><textarea ' . $this->get_apply_attrs( $this->comment_attrs() ) . '></textarea></p>',
 			'must_log_in'          => '<p class="must-log-in">' .  $this->must_log_in() .  '</p>',
 			'logged_in_as'         => '<p class="logged-in-as">' . $this->logged_in_as() . '</p>',
 			'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . esc_html( $this->strings['comment_notes_before'] ) . '</span></p>',
@@ -124,9 +125,9 @@ class TCC_Theme_Comment {
 
 	protected function comment_fields() {
 		$fields = array(
-			'author' => '<p class="comment-form-author"><input ' . get_applied_attrs( $this->author_attrs() ) . ' /></p>',
-			'email'  => '<p class="comment-form-email"><input ' .  get_applied_attrs( $this->email_attrs() ) . ' /></p>',
-			'url'    => '<p class="comment-form-url"><input '  .   get_applied_attrs( $this->url_attrs() ) . ' /></p>',
+			'author' => '<p class="comment-form-author"><input ' . $this->get_apply_attrs( $this->author_attrs() ) . ' /></p>',
+			'email'  => '<p class="comment-form-email"><input ' .  $this->get_apply_attrs( $this->email_attrs() ) .  ' /></p>',
+			'url'    => '<p class="comment-form-url"><input '  .   $this->get_apply_attrs( $this->url_attrs() ) .    ' /></p>',
 		);
 		return apply_filters( 'comment_form_default_fields', $fields );
 	}
@@ -223,7 +224,7 @@ class TCC_Theme_Comment {
 	/**  must_log_in  **/
 
 	protected function must_log_in() {
-		$link_html = '<a ' . get_applied_attrs( $this->must_log_in_link_attrs() ) . '">';
+		$link_html = $this->get_apply_attrs_tag( $this->must_log_in_link_attrs(), 'a' );
 		return sprintf( $this->strings['must_log_in'], $link_html, '</a>' );
 	}
 
@@ -238,8 +239,8 @@ class TCC_Theme_Comment {
 	/**  logged_in_as  **/
 
 	protected function logged_in_as() {
-		$profile_link = '<a ' . get_applied_attrs( $this->profile_link_attrs() ) . '>';
-		$logout_link  = '<a ' . get_applied_attrs( $this->logout_link_attrs() ) .  '>';
+		$profile_link = $this->get_apply_attrs_tag( $this->profile_link_attrs(), 'a' );
+		$logout_link  = $this->get_apply_attrs_tag( $this->logout_link_attrs(),  'a' );
 		return sprintf( $this->strings['logged_in_as'], $profile_link, $this->author['name'], '</a>', $logout_link, '</a>' );
 	}
 

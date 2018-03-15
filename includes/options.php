@@ -142,7 +142,7 @@ if ( ! function_exists( 'tcc_option' ) ) {
 				}
 			}
 		} else {
-			$opts = TCC_Options_Fluidity::instance()->get_options();
+			$opts = fluid_options()->get_options();
 			foreach( $opts as $key => $options ) {
 				if ( isset( $options[ $option ] ) ) {
 					$value = $options[ $option ];

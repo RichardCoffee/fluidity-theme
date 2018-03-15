@@ -24,6 +24,7 @@ abstract class TCC_Form_Field_Field {
 #	protected $post_id;                 # word press post id number
 	protected $sanitize   = 'esc_attr'; # default sanitize method
 
+	use TCC_Trait_Attributes;
 	use TCC_Trait_Magic;
 	use TCC_Trait_ParseArgs;
 
@@ -45,8 +46,8 @@ abstract class TCC_Form_Field_Field {
 			'name'        => $this->field_name,
 			'value'       => $this->field_value,
 			'placeholder' => $this->placeholder,
-		); ?>
-		<input <?php apply_attrs( $attrs ); ?> /><?php
+		);
+		$this->apply_attrs_tag( $attrs, 'input' );
 	}
 
 	protected function label() {
@@ -54,7 +55,7 @@ abstract class TCC_Form_Field_Field {
 			'class' => $this->label_css,
 			'for'   => $this->field_id,
 		);
-		$label  = '<label ' . apply_attrs( $attrs, false ) . '>';
+		$label  = $this->get_apply_attrs_tag( $attrs, 'label' );
 		$label .= esc_html( $this->label_text );
 		$label .= '</label>';
 		return $label;
