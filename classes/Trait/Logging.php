@@ -2,9 +2,10 @@
 
 trait TCC_Trait_Logging {
 
-	protected $logging_debug =  WP_DEBUG;    #  boolean - enable/disable logging
-	protected $logging_force =  false;       #  boolean - for debugging, can be used to force a single log entry
-	protected $logging_func  = 'log_entry';  #  string/array - logging function: must be able to accept a variable number of parameters
+	protected $logging_debug  =  WP_DEBUG;       #  boolean - enable/disable logging
+	protected $logging_force  =  false;          #  boolean - for debugging, can be used to force a single log entry
+	protected $logging_func   = 'logging_entry'; #  string/array - logging function: must be able to accept a variable number of parameters
+	protected $logging_prefix = 'rtc_';          #  string - log file prefix
 
 
 	public function log() {
@@ -74,7 +75,6 @@ trait TCC_Trait_Logging {
 		$destination = $log_file;
 		if ( defined( 'WP_CONTENT_DIR' ) ) {
 			$destination = WP_CONTENT_DIR . '/debug.log';
-		# External apps, 'pbl' prefix remnants of CreatomBuilder
 		} else if ( is_writable( '../logs' ) && ( is_dir( '../logs' ) ) ) {
 			$destination = '../logs/pbl-' . date( 'Ymd' ) . '.log';
 		} else if ( function_exists( 'pbl_raw_path' ) ) {
