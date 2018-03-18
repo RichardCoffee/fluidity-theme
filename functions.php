@@ -34,6 +34,7 @@ require_once( 'classes/autocomplete.php' );
 
 new TCC_Register_Sidebars;
 new TCC_Theme_Support;
+fluid_login(); # creates instance of TCC_Theme_Login class
 
 if ( is_admin() ) {
 	fluid_options();
@@ -45,7 +46,6 @@ if ( is_admin() ) {
 	require_once('includes/pages.php');
 	require_once('includes/third-party.php');
 	require_once('classes/microdata.php');
-	fluid_login();
 }
 
 if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {

@@ -183,8 +183,7 @@ if ( ! function_exists( 'fluid_login' ) ) {
 	function fluid_login() {
 		static $library;
 		if ( empty( $library ) ) {
-			$library = new TCC_Form_Login();
-#			$library = new TCC_Theme_Login;
+			$library = new TCC_Theme_Login();
 		}
 		return $library;
 	}

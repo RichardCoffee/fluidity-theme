@@ -16,28 +16,9 @@ class TCC_Form_Login {
 
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
-
-		add_action( 'admin_head',          array( $this, 'dashboard_logo' ) );
 		add_action( 'login_form_defaults', array( $this, 'login_form_defaults' ), 1 );	#	run early - make it easy to override values
-
-		add_filter( 'login_headertitle',   function( $args ) { return ''; } );
-		add_filter( 'login_redirect',      array( $this, 'login_redirect'), 10, 3);
-		add_filter( 'tcc_login_redirect',  array( $this, 'login_redirect_admin' ), 10, 3 );
-		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
-
 		#	Do not show login errors to users
 		if ( ! WP_DEBUG) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
-
-	}
-
-	#	http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
-	public function dashboard_logo() {
-		$logo = tcc_design('logo');
-		if ($logo) { ?>
-			<style type='text/css'>
-				#header-logo { background-image: url(<?php echo $logo; ?>) !important; }
-			</style><?php
-		}
 	}
 
 
@@ -45,10 +26,11 @@ class TCC_Form_Login {
 
 	public function get_login_form_defaults() {
 		$defaults = array();
-		add_filter('login_form_defaults', function($args) use (&$defaults) {
+		add_filter( 'login_form_defaults', function( $args ) use ( &$defaults ) {
 			$defaults = $args;
 			return $args;
 		}, 9999 );
+		# filter gets called here - was unable to find a better way to get the form values
 		$form = wp_login_form( array( 'echo' => false ) );
 		return $defaults;
 	}
