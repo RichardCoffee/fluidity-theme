@@ -5,16 +5,23 @@ class TCC_Theme_Login {
 
 
 	protected $login_form  = null;
+	protected $login_page  = '';
 	protected $redirect_to = null;
 
 
 	public function __construct() {
-		add_filter( 'login_redirect',      array( $this, 'login_redirect'), 10, 3);
+		if ( ( tcc_settings( 'login' ) === 'internal' ) && has_page( 'Login' ) ) {
+			$this->login_page = home_url( '/login/' );
+			add_action( 'wp_login_failed',  array( $this, 'wp_login_failed' ) );
+			add_filter( 'authenticate',     array( $this, 'authenticate' ), 1, 3 );
+		}
+		add_filter( 'login_redirect',      array( $this, 'login_redirect' ), 10, 3 );
 		add_filter( 'tcc_login_redirect',  array( $this, 'login_redirect_admin' ), 10, 3 );
 		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
-		if ( is_admin() ) {
-			add_action( 'admin_head',          array( $this, 'dashboard_logo' ) );
-			add_filter( 'login_headertitle',   function( $args ) { return ''; } );
+		if ( is_admin() && ( tcc_settings( 'wplogin' ) === 'internal' ) ) {
+			add_action( 'admin_head',        array( $this, 'dashboard_logo' ) );
+			add_filter( 'login_headertitle', array( $this, 'login_headertitle' ) );
+			add_filter( 'login_headerurl',   array( $this, 'login_headerurl' ) );
 		}
 	}
 
@@ -27,12 +34,20 @@ class TCC_Theme_Login {
 
 	# http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
 	public function dashboard_logo() {
-		$logo = tcc_design('logo');
-		if ($logo) {
+		$logo = tcc_design( 'logo' );
+		if ( $logo ) {
 			add_action( 'tcc_custom_css', function() use ($logo) {
 				echo "\n#header-logo {\n\tbackground-image: url( $logo ) !important;\n}\n";
 			});
 		}
+	}
+
+	public function login_headertitle( $args ) {
+		return '';
+	}
+
+	public function login_headerurl() {
+		return home_url();
 	}
 
 
@@ -83,6 +98,22 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 #		if ( $user_id === 1 ) { return $from; }
 #		return home_url();
 		return $redirect_to;
+	}
+
+
+/***   Login Issues   ***/
+
+	public function authenticate( $user, $username, $password ) {
+		if( $username === "" || $password === "" ) {
+			wp_safe_redirect( $this->login_page . "?login=empty" );
+			exit;
+		}
+		return $user;
+	}
+
+	public function wp_login_failed() {
+		wp_safe_redirect( $this->login_page . '?login=failed' );
+		exit;
 	}
 
 
