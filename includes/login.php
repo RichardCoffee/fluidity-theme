@@ -1,24 +1,5 @@
 <?php
 
-if (!function_exists('tcc_logout_url')) {
-  #  force redirect for logout url
-  function tcc_logout_url($url, $redirect) {
-    $site = get_option('siteurl');
-    $pos  = strpos($url,'?');
-    if ($pos===false) {
-      $url  .= "?redirect_to=".urlencode($site);
-    } else {
-      $base  = substr($url,0,$pos);
-      parse_str(htmlspecialchars_decode(substr($url,$pos+1)),$parms);
-      $parms['redirect_to'] = $site;
-      $opts  = http_build_query($parms,'tcc_');
-      $url   = $base.'?'.htmlspecialchars($opts);
-    }
-    return $url;
-  }
-#  add_filter('logout_url', 'tcc_logout_url', 10, 2);
-}
-
 if (!function_exists('tcc_admin_howdy')) {
 	#	http://www.wpbeginner.com/wp-tutorials/how-to-change-the-howdy-text-in-wordpress-3-3-admin-bar/
 	#	https://premium.wpmudev.org/forums/topic/change-howdy-manually

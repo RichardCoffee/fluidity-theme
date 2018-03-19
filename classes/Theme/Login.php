@@ -10,13 +10,18 @@ class TCC_Theme_Login {
 
 
 	public function __construct() {
-		if ( ( tcc_settings( 'login' ) === 'internal' ) && has_page( 'Login' ) ) {
-			$this->login_page = home_url( '/login/' );
-			add_action( 'wp_login_failed',  array( $this, 'wp_login_failed' ) );
-			add_filter( 'authenticate',     array( $this, 'authenticate' ), 1, 3 );
+		if ( tcc_settings( 'login' ) === 'internal' ) {
+			if ( has_page( 'Login' ) ) {
+				$this->login_page = home_url( '/login/' );
+				add_action( 'wp_login_failed',  array( $this, 'wp_login_failed' ) );
+				add_filter( 'authenticate',     array( $this, 'authenticate' ), 1, 3 );
+			}
+			if ( has_page( 'Logout' ) ) {
+				add_filter('logout_url', array( $this, 'logout_url' ), 10, 2);
+			}
 		}
-		add_filter( 'login_redirect',      array( $this, 'login_redirect' ), 10, 3 );
-		add_filter( 'tcc_login_redirect',  array( $this, 'login_redirect_admin' ), 10, 3 );
+		add_filter( 'login_redirect',     array( $this, 'login_redirect' ), 10, 3 );
+		add_filter( 'tcc_login_redirect', array( $this, 'login_redirect_admin' ), 10, 3 );
 		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
 		if ( is_admin() && ( tcc_settings( 'wplogin' ) === 'internal' ) ) {
 			add_action( 'admin_head',        array( $this, 'dashboard_logo' ) );
@@ -116,6 +121,23 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 		exit;
 	}
 
+
+/***   Logout   ***/
+
+	public function logout_url( $url, $redirect ) {
+		$site = get_option( 'siteurl' );
+		$pos  = strpos( $url, '?' );
+		if ( $pos === false ) {
+			$url.= "?redirect_to=" . urlencode( $site );
+		} else {
+			$base  = substr( $url, 0, $pos );
+			parse_str( htmlspecialchars_decode( substr( $url, $pos + 1 ) ), $parms );
+			$parms['redirect_to'] = $site;
+			$opts  = http_build_query( $parms, 'tcc_' );
+			$url   = $base . '?' . htmlspecialchars( $opts );
+		}
+		return $url;
+	}
 
 
 }
