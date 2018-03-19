@@ -2,18 +2,17 @@
 
 class TCC_Theme_ClearFix {
 
-	private $lg = 0;
-	private $md = 0;
-	private $sm = 0;
-	private $xs = 0;
+	protected $lg = 0;
+	protected $md = 0;
+	protected $sm = 0;
+	protected $xs = 0;
 
-	private $active = false;
-	private $count  = 0;
+	protected $active = false;
+	protected $count  = 0;
 
 	use TCC_Trait_ParseArgs;
-	use TCC_Trait_Singleton;
 
-	protected function __construct() {
+	public function __construct() {
 		$this->active = false;
 	}
 

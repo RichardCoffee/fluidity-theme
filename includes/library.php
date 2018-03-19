@@ -45,7 +45,7 @@ if ( ! function_exists( 'clearfix' ) ) {
 	function clearfix() {
 		static $library;
 		if ( empty( $library ) ) {
-			$library = TCC_Theme_ClearFix::instance();
+			$library = new TCC_Theme_ClearFix;
 		}
 		return $library;
 	}
