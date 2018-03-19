@@ -8,6 +8,8 @@ class TCC_Theme_Login {
 	protected $login_page  = '';
 	protected $redirect_to = null;
 
+	use TCC_Trait_Logging;
+
 
 	public function __construct() {
 		if ( tcc_settings( 'login' ) === 'internal' ) {
