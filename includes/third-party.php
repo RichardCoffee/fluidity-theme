@@ -10,6 +10,14 @@
 
 if ( function_exists( 'is_bbpress' ) ) {
 
+	#  change default (for topic subscription when posting) to true
+	add_filter( 'bbp_get_form_topic_subscribed', function( $checked, $topic_subscribed  ) {
+		if( $topic_subscribed == 0 ) {
+			$topic_subscribed = true;
+		}
+		return checked( $topic_subscribed, true, false );
+	}, 10, 2 );
+
 	#  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
 	add_filter('bbp_show_lead_topic', '__return_true'); // FIXME:  has this bug been fixed yet?
 
@@ -19,7 +27,7 @@ if ( function_exists( 'is_bbpress' ) ) {
 			remove_filter( 'fluid_content_header', 'fluid_show_content_title' );
 			add_filter(    'fluid_content_header', 'fluid_show_forum_title' );
 		}
-	}, 10, 2);
+	});
 
 	#  do not show sidebar on forum pages
 	add_filter('tcc_theme_sidebar_args', function( $args ) {
