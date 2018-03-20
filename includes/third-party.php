@@ -10,10 +10,32 @@
 
 if ( function_exists( 'is_bbpress' ) ) {
 
+	#	https://bbpress.org/forums/topic/default-bbp_topic_subscription/
 	#  change default (for topic subscription when posting) to true
 	add_filter( 'bbp_get_form_topic_subscribed', function( $checked, $topic_subscribed  ) {
-		if( $topic_subscribed == 0 ) {
-			$topic_subscribed = true;
+		#  Most of this is copied from plugins/bbpress/includes/topics/template.php,
+		#    but it allows 'true' as a =default= value, rather than just over-writing
+		#    the actual value, as suggested in the forum article.
+		// Get _POST data
+		if ( bbp_is_post_request() && isset( $_POST['bbp_topic_subscription'] ) ) {
+			$topic_subscribed = (bool) $_POST['bbp_topic_subscription'];
+		// Get edit data
+		} elseif ( bbp_is_topic_edit() || bbp_is_reply_edit() ) {
+			// Get current posts author
+			$post_author = bbp_get_global_post_field( 'post_author', 'raw' );
+			// Post author is not the current user
+			if ( bbp_get_current_user_id() !== $post_author ) {
+				$topic_subscribed = bbp_is_user_subscribed_to_topic( $post_author );
+			// Post author is the current user
+			} else {
+				$topic_subscribed = bbp_is_user_subscribed_to_topic( bbp_get_current_user_id() );
+			}
+		// Get current status
+		} elseif ( bbp_is_single_topic() ) {
+			$topic_subscribed = bbp_is_user_subscribed_to_topic( bbp_get_current_user_id() );
+		// No data
+		} else {
+			$topic_subscribed = apply_filters( 'fluid_bbpress_topic_subscribed_default', true );
 		}
 		return checked( $topic_subscribed, true, false );
 	}, 10, 2 );
