@@ -63,29 +63,6 @@ class TCC_Options_Design extends TCC_Options_Options {
 			'render'  => 'text',
 			'divcss'  => 'tcc_text_3em',
 		);
-		if ( is_plugin_active( 'bbpress/bbpress.php' ) ) {
-			$layout['bbp'] = array(
-				'label'   => __( 'bbPress', 'tcc-fluid' ),
-				'text'    => __( 'Compatibility options for bbPress', 'tcc-fluid' ),
-				'render'  => 'title',
-			);
-			$layout['bbpsize'] = array(
-				'default' => 12,
-				'label'   => __('Title','tcc-fluid'),
-				'text'    => __('Control the font size for titles and headers on forum pages', 'tcc-fluid' ),
-				'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
-				'render'  => 'text',
-				'divcss'  => 'tcc_text_3em',
-			);
-			$layout['bbposize1'] = array(
-				'default' => 11,
-				'label'   => __('Text','tcc-fluid'),
-				'text'    => __('Control the font size for normal text on forum pages', 'tcc-fluid' ),
-				'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
-				'render'  => 'text',
-				'divcss'  => 'tcc_text_3em',
-			);
-		}
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 

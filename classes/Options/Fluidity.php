@@ -120,10 +120,10 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
  *                               This must be an associative array.
  *                     -or-
  *                   (string)  Name of the function that returns the select options (render: select)
-	private $options = array(); *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
+ *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
  *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
  *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
- *           change: (string)  Required only if render is set to 'checkbox','font','radio','select', and 'text'.
+ *           change: (string)  Used only if render is set to 'checkbox','font','radio','select', or 'text'.
  *                             Will be applied as an 'onchange' html attribute (optional)
  *            media:           Required only if render is set to 'image'.
  *                   (array)     title:  (string) Title displayed in media uploader
@@ -131,8 +131,8 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
  *                               delete: (string) Delete text - used for admin button
  *             args: (array)   Required only if render is set to 'wp_dropdown'.
  *                               This array will be passed to the called function.
- *           divcss: (string)  A div is created to surround the rendered object.  If set, this string is assigned to the class attribute of that div (optional)
- *          require: (boolean) If set, then when saving (as currently implemented) a blank field will be set to the default value.
+ *           divcss: (string)  If set, a div is created to surround the rendered object, with the string assigned to the class attribute of that div (optional)
+ *          require: (boolean) If set, then when saving (as currently implemented) then a blank field will be set to the default value.
  *         (string): (mixed)   Any other key can be added to this array.
  *
  *                             The layout array is passed to the rendering function.

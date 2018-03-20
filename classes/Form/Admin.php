@@ -423,14 +423,19 @@ abstract class TCC_Form_Admin {
 
 	private function render_checkbox( $data ) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
-		$onchange = ( isset( $layout['change'] ) ) ? $layout['change'] : ''; ?>
-		<label>
-			<input type="checkbox"
-			       id="<?php echo esc_attr( $ID ); ?>"
-			       name="<?php echo esc_attr( $name ); ?>"
-			       value="yes"
-			       <?php checked( $value ); ?>
-			       onchange="<?php echo esc_attr( $onchange ); ?>" />&nbsp;
+		$cblabel = array(
+			'title' => ( isset( $layout['help'] ) ) ? $layout['help'] : $layout['text'],
+		);
+		$cbinput = array(
+			'type' => 'checkbox',
+			'id'   => $ID,
+			'name' => $name,
+			'value' => 'yes',
+			'onchange' => ( isset( $layout['change'] ) ) ? $layout['change'] : '',
+		); ?>
+		<label <?php $this->apply_attrs( $cblabel ); ?>>
+			<input <?php $this->apply_attrs( $cbinput ); ?>
+				<?php checked( $value ); ?> />&nbsp;
 			<span>
 				<?php echo esc_html( $layout['text'] ); ?>
 			</span>
