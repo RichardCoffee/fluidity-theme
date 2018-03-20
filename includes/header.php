@@ -43,18 +43,20 @@ if (!function_exists('fluid_browser_title')) {
   add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title to be deprecated
 }
 
-if (!function_exists('tcc_custom_css')) {
-  function tcc_custom_css() { ?>
-    <style id='tcc-custom-css' type='text/css'><?php
-      tcc_custom_colors();
-      do_action('tcc_custom_css'); ?>
-    </style><?php
-  }
+if ( ! function_exists( 'tcc_custom_css' ) ) {
+	function tcc_custom_css() { ?>
+		<style id="tcc-custom-css" type="text/css"><?php
+			tcc_custom_colors();
+			do_action( 'tcc_custom_css' ); ?>
+		</style><?php
+	}
 }
 
 if ( ! function_exists( 'tcc_custom_css_admin' ) ) {
-	function tcc_custom_css_admin() { ?>
-		<style id='tcc-custom-css-admin' type='text/css'>
+	function tcc_custom_css_admin() {
+log_entry('admin_head');
+ ?>
+		<style id="tcc-custom-css-admin" type="text/css">
 			<?php do_action('tcc_custom_css_admin'); ?>
 		</style><?php
 	}
