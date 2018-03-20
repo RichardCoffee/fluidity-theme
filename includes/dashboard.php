@@ -6,7 +6,7 @@ if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 log_entry('wp_dashboard_setup');
 ##		if ( is_blog_admin() ) {
 			remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
-#			wp_add_dashboard_widget( 'fluid_dashboard_activity', __( 'Activity' ), 'fluid_dashboard_site_activity' );
+			wp_add_dashboard_widget( 'fluid_dashboard_activity', __( 'Activity' ), 'fluid_dashboard_site_activity' );
 ##		}
 	});
 	#  pulled straight from wp-admin/includes/dashboard.php
