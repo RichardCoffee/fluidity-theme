@@ -13,7 +13,7 @@ if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 	#  pulled straight from wp-admin/includes/dashboard.php
 	function fluid_dashboard_site_activity() {
 		echo '<div id="activity-widget">';
-		$recent_comments = wp_dashboard_recent_comments();
+		$recent_comments = wp_dashboard_recent_comments();  #  id = 'latest-comments'
 		$future_posts = wp_dashboard_recent_posts( array(
 			'max'     => 5,
 			'status'  => 'future',
@@ -38,9 +38,9 @@ if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 	}
 
 	function fluid_site_activity_css() {
-		if ( is_admin() ) { # FIXME: check for dashboard screen
+		if ( get_current_screen() === 'dashboard' ) {
 			echo "\n#latest-comments {\n\tdisplay: grid;\n}\n";
-			echo "\n#latest-comments > ul.subsubsub {\n\twidth: 100%;\n}\n";
+#			echo "\n#latest-comments > ul.subsubsub {\n\twidth: 100%;\n}\n";
 		}
 	}
 	add_action('tcc_custom_css_admin', 'fluid_site_activity_css' );
