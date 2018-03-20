@@ -53,6 +53,7 @@ if ( ! function_exists( 'tcc_custom_css' ) ) {
 }
 
 if ( ! function_exists( 'tcc_custom_css_admin' ) ) {
+log_entry('tcc_custom_css_admin');
 	function tcc_custom_css_admin() {
 log_entry('admin_head');
  ?>
