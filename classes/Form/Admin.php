@@ -423,9 +423,6 @@ abstract class TCC_Form_Admin {
 
 	private function render_checkbox( $data ) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
-		$cblabel = array(
-			'title' => ( isset( $layout['help'] ) ) ? $layout['help'] : $layout['text'],
-		);
 		$cbinput = array(
 			'type' => 'checkbox',
 			'id'   => $ID,
@@ -433,7 +430,7 @@ abstract class TCC_Form_Admin {
 			'value' => 'yes',
 			'onchange' => ( isset( $layout['change'] ) ) ? $layout['change'] : '',
 		); ?>
-		<label <?php $this->apply_attrs( $cblabel ); ?>>
+		<label>
 			<input <?php $this->apply_attrs( $cbinput ); ?>
 				<?php checked( $value ); ?> />&nbsp;
 			<span>
@@ -766,6 +763,7 @@ abstract class TCC_Form_Admin {
 	}
 
 	private function validate_checkbox( $input ) {
+log_entry('checkbox',$input);
 		return sanitize_key( $input );
 	}
 
