@@ -38,11 +38,10 @@ if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 	}
 
 	function fluid_site_activity_css() {
-log_entry(get_current_screen());
-#		if ( get_current_screen() === 'dashboard' ) {
+		if ( get_current_screen()->base === 'dashboard' ) {
 			echo "\n#latest-comments {\n\tdisplay: grid;\n}\n";
 #			echo "\n#latest-comments > ul.subsubsub {\n\twidth: 100%;\n}\n";
-#		}
+		}
 	}
 	add_action('tcc_custom_css_admin', 'fluid_site_activity_css' );
 
