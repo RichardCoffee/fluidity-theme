@@ -74,7 +74,7 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 			$topic_subscribed = bbp_is_user_subscribed_to_topic( bbp_get_current_user_id() );
 		// No data
 		} else {
-			$default = tcc_content( 'bbp-subscribe', true );
+			$default = ( tcc_content( 'bbp-subscribe', 'yes' ) === 'yes' ) ? true : false;
 			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', $default );
 		}
 		return checked( $topic_subscribed, true, false );
@@ -87,9 +87,7 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 
 if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 	#  Add font sizes to Theme Options - Design page
-log_entry('fluid_bbp_options_font_size');
 	function fluid_bbp_options_font_size( $layout ) {
-log_entry('tcc_design_options_layout');
 		$layout['bbp'] = array(
 			'label'   => __( 'bbPress', 'tcc-fluid' ),
 			'text'    => __( 'Compatibility options for bbPress', 'tcc-fluid' ),

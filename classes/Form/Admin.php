@@ -432,7 +432,7 @@ abstract class TCC_Form_Admin {
 		); ?>
 		<label>
 			<input <?php $this->apply_attrs( $cbinput ); ?>
-				<?php checked( $value ); ?> />&nbsp;
+				<?php checked( $value, 'yes' ); ?> />&nbsp;
 			<span>
 				<?php echo esc_html( $layout['text'] ); ?>
 			</span>
