@@ -38,6 +38,7 @@ fluid_login(); # creates instance of TCC_Theme_Login class
 
 if ( is_admin() ) {
 	fluid_options();
+	require_once('includes/dashboard.php');
 } else {
 	require_once('includes/comments.php');
 	require_once('includes/footer.php');
