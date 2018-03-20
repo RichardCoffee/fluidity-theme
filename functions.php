@@ -26,6 +26,7 @@ require_once('includes/menus.php');
 require_once(FLUIDITY_HOME.'includes/misc.php');     #  Needs full path, or wp-admin/includes/misc.php gets loaded instead
 require_once('includes/parallax.php');
 require_once('includes/sidebars.php');
+require_once( 'includes/third-party.php' );
 require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-admin/includes/widgets.php gets loaded instead
 add_action( 'rest_api_init', function() {
 	require_once('includes/wp-rest-api.php');
@@ -46,7 +47,6 @@ if ( is_admin() ) {
 	require_once('includes/header.php');
 	require_once('includes/in-the-loop.php');
 	require_once('includes/pages.php');
-	require_once('includes/third-party.php');
 	require_once('classes/microdata.php');
 }
 

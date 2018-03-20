@@ -87,7 +87,9 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 
 if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 	#  Add font sizes to Theme Options - Design page
+log_entry('fluid_bbp_options_font_size');
 	function fluid_bbp_options_font_size( $layout ) {
+log_entry('tcc_design_options_layout');
 		$layout['bbp'] = array(
 			'label'   => __( 'bbPress', 'tcc-fluid' ),
 			'text'    => __( 'Compatibility options for bbPress', 'tcc-fluid' ),
