@@ -52,6 +52,15 @@ if (!function_exists('tcc_custom_css')) {
   }
 }
 
+if ( ! function_exists( 'tcc_custom_css_admin' ) ) {
+	function tcc_custom_css_admin() { ?>
+		<style id='tcc-custom-css-admin' type='text/css'>
+			<?php do_action('tcc_custom_css_admin'); ?>
+		</style><?php
+	}
+	add_action( 'admin_head', 'tcc_custom_css_admin' );
+}
+
 if ( ! function_exists( 'fluidity_header_logo' ) ) {
 	function fluidity_header_logo( $html = '', $blog_id = 1 ) {
 		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  for backward compatibility
