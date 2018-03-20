@@ -205,15 +205,15 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		); ?>
 		<p>
 			<?php esc_html_e( 'Support Site:', 'tcc-fluid' ); ?>
-			<a href='the-creative-collective.com' target='tcc'>
-				<?php esc_html_ex( 'The Creative Collective', 'company name', 'tcc-fluid' ); ?>
+			<a href="http://www.rtcenterprises.net" target="rtc">
+				<?php esc_html_ex( 'RTC Enterprises', 'company name', 'tcc-fluid' ); ?>
 			</a>
 		</p>
 		<p>
 			<?php esc_html_e( 'For help with this theme, or any other general support items, please contact us at any time', 'tcc-fluid' ); ?>
 		</p>
 		<p>
-			&copy; <?php esc_html_e( 'Copyright 2014-2017 TCC', 'tcc-fluid' ); ?>
+			&copy; <?php esc_html_e( 'Copyright 2014-2018 RTC', 'tcc-fluid' ); ?>
 		</p><?php
 	}
 
