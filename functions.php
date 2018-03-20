@@ -36,10 +36,9 @@ new TCC_Register_Sidebars;
 new TCC_Theme_Support;
 fluid_login(); # creates instance of TCC_Theme_Login class
 
-	require_once('includes/dashboard.php');
 if ( is_admin() ) {
 	fluid_options();
-	require_once('includes/dashboard.php');
+	require_once(FLUIDITY_HOME.'includes/dashboard.php');
 } else {
 	require_once('includes/comments.php');
 	require_once('includes/footer.php');
