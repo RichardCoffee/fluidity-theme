@@ -1,6 +1,7 @@
 <?php
 
 
+log_entry('includes/dashboard.php');
 if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 log_entry('fluid_dashboard_site_activity');
 	add_action( 'wp_dashboard_setup', function() {
