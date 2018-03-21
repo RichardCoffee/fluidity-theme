@@ -76,6 +76,7 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 		} else {
 			$default = ( tcc_content( 'bbp-subscribe', 'yes' ) === 'yes' ) ? true : false;
 			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', $default );
+log_entry(tcc_content( 'bbp-subscribe' ),$default,$topic_subscribed);
 		}
 		return checked( $topic_subscribed, true, false );
 	}
