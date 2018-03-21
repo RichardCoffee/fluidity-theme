@@ -74,9 +74,13 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 			$topic_subscribed = bbp_is_user_subscribed_to_topic( bbp_get_current_user_id() );
 		// No data
 		} else {
-			$default = ( tcc_content( 'bbp-subscribe', 'yes' ) === 'yes' ) ? true : false;
+			$default = ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : false;
 			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', $default );
-log_entry(tcc_content( 'bbp-subscribe' ),$default,$topic_subscribed);
+log_entry(
+	'   bbp-subscribe:  '.tcc_content('bbp-subscribe','no'),
+	'         default:  '.$default,
+	'topic_subscribed:  '.$topic_subscribed
+);
 		}
 		return checked( $topic_subscribed, true, false );
 	}
