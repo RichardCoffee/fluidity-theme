@@ -59,6 +59,38 @@ if ( ! function_exists( 'fluid_bbp_options_topic_subscription' ) ) {
 	add_filter( 'tcc_content_options_layout', 'fluid_bbp_options_topic_subscription' );
 }
 
+if ( ! function_exists( 'fluid_bbp_personal_options' ) ) {
+	function fluid_bbp_personal_options( $user ) {
+		$label = __( 'bbPress Topics', 'tcc-fluid' );
+		$value = get_user_meta( $user->ID, 'fluid_bbp_topic_subscribe', true );
+		$default = fluid_bbp_topic_subscribed_default(); ?>
+		<table class="form-table">
+			<tr class="fluid-bbp-topic-subscribe-wrap">
+				<th scope="row">
+					<?php echo $label; ?>
+				</th>
+				<td>
+					<fieldset>
+						<legend class="screen-reader-text">
+							<?php echo $label; ?>
+						</legend>
+						<label for="fluid_bbp_topic_subscribe">
+							<input
+								id="fluid_bbp_topic_subscribe"
+								type="checkbox"
+								name="fluid_bbp_topic_subscribe"
+								value="1"
+								<?php checked( $value ); ?>
+							/>
+							<?php _e( 'Automatically subscribe to a forum topic when posting to it.', 'tcc-fluid' ); ?>
+						</label>
+					</fieldset>
+				</td>
+			</tr>
+		</table><?php
+	}
+}
+
 #  https://bbpress.org/forums/topic/default-bbp_topic_subscription/
 #  change default (for topic subscription when posting) to true
 if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
@@ -74,12 +106,18 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 			$topic_subscribed = bbp_is_user_subscribed_to_topic( bbp_get_current_user_id() );
 		// No data
 		} else {
-			$default = ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : false;
 			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', $default );
 		}
 		return checked( $topic_subscribed, true, false );
 	}
 	add_filter( 'bbp_get_form_topic_subscribed', 'fluid_bbp_get_form_topic_subscribed', 10, 2 );
+}
+
+if ( ! function_exists( 'fluid_bbp_topic_subscribed_default' ) ) {
+	function fluid_bbp_topic_subscribed_default( $subscribe = false ) {
+		return ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : false;
+	}
+	add_filter( 'fluid_bbp_topic_subscribed_default', 'fluid_bbp_topic_subscribed_default' );
 }
 
 

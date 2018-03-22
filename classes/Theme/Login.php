@@ -94,7 +94,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 				exit;
 			}
 		} else if ( get_class( $user ) === 'WP_Error' ) {
-		} else { $this->log( func_get_args(), $_GET, $_POST, $_SERVER ); }
+		} #else { $this->log( func_get_args(), $_GET, $_POST, $_SERVER ); }
 		return $redirect_to;
 	}
 
