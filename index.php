@@ -33,7 +33,6 @@ do_action( 'tcc_page_top', $mypage ); ?>
 
 				$root = ( is_single() || is_page() || is_singular() ) ? 'content' : tcc_option( 'content' );
 				$root = apply_filters( 'tcc_template-parts_root', $root, $mypage );
-log_entry('root:  '.$root);
 				while ( have_posts () ) { ?>
 					<div><?php
 						the_post();

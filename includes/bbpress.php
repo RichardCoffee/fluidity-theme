@@ -30,6 +30,7 @@ add_filter( 'tcc_template-parts_root', function( $rootslug, $pageslug ) {
 	if ( is_bbpress() ) {
 		return 'content';
 	}
+	return $rootslug;
 }, 10, 2 );
 
 add_action( 'tcc_custom_css', function() {
