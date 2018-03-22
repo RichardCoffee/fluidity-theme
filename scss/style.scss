@@ -21,6 +21,10 @@
 
 // FIXME: everything below this line, except the import, needs to be moved to their respective proper file
 
+.excerpt-title-wrap {
+	display: inherit;
+}
+
 .content {
   border:1px solid;
   border-radius: 5px;
