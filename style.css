@@ -100,7 +100,7 @@
 }
 
 .excerpt-title-wrap {
-  display: inherit;
+  display: grid;
 }
 
 .content {
