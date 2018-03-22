@@ -50,13 +50,11 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	}
 
 	public function initialize_options() {
-#		$this->classes['RestMenu'] = new RMP_Options_RestMenu;  # 50
 		$this->classes['Layout']   = new TCC_Options_Layout;    # 70
 		$this->classes['Design']   = new TCC_Options_Design;    # 80
 		$this->classes['Content']  = new TCC_Options_Content;   # 90
 		$this->classes['Social']   = new TCC_Options_Social;    # 100
 		$this->classes['Settings'] = new TCC_Options_Settings;  # 500
-#		$this->classes['Privacy']  = new PMW_Options_Privacy;   # 550
 		$this->classes['APIControl'] = new TCC_Options_APIControl;  # 570
 /*		if ( tcc_design( 'paral' ) === 'yes' ) {
 			$this->classes['Parallax'] = new TCC_Options_Parallax; #
@@ -227,7 +225,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	}
 
 	protected function get_options_layout( $section ) {
-	return $this->form[ $section ]['layout'];
+		return $this->form[ $section ]['layout'];
 	}
 
 	public function get_options() {

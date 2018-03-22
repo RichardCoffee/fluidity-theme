@@ -62,7 +62,10 @@ abstract class TCC_Form_Field_Field {
 	}
 
 	public function sanitize( $input ) {
-		if ( $this->sanitize ) {
+		if ( $this->sanitize && ( is_array( $this->sanitize ) ) && method_exists( $this->sanitize[0], $this->sanitize[1] ) ) {
+			list( $obj, $method ) = $this->sanitize;
+			$output = $obj->$method( $input );
+		} else if ( $this->sanitize && ( is_string( $this->sanitize ) ) && function_exists( $this->sanitize ) ) {
 			$sanitize = $this->sanitize;
 			$output   = $sanitize( $input );
 		} else {

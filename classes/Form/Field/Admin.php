@@ -12,6 +12,7 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 	protected $callback = null;          #  display method
 	protected $default  = '';
 	protected $group;
+	protected $restapi = false;
 
 	public function __construct( $args ) {
 		parent::__construct( $args );
@@ -38,7 +39,7 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 				'group'             => $this->group,
 				'description'       => $this->label_text,
 				'sanitize_callback' => $this->sanitize,
-#				'show_in_rest'      => false,
+				'show_in_rest'      => $this->restapi,
 			);
 			register_setting( $this->group, $this->field_name, $args );
 			add_settings_field( $this->field_name, $this->label(), $this->callback, $this->group );
