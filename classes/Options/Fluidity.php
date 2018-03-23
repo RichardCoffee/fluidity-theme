@@ -23,7 +23,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		add_action( 'tcc_admin_menu_setup',     array( $this, 'initialize_options' ) );
 		add_filter( 'form_text_' . $this->slug, array( $this, 'form_trans_text' ), 10, 2 );
 		parent::__construct();
-		$this->add_currency_symbol();
+		$this->check_screen( 'general', 'add_currency_symbol' );
 	}
 
 	public function add_menu_option() {
@@ -299,6 +299,13 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		$select['render']  = 'select';
 		$select['source']  = $data;
 		return $select;
+	}
+
+	private function check_screen( $check, $method, $args = array() ) {
+log_entry( get_current_screen() );
+		if ( get_current_screen()->base === $check ) {
+			$this->$method( $args );
+		}
 	}
 
 	private function add_currency_symbol() {
