@@ -12,19 +12,18 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 	protected $callback = null;          #  display method
 	protected $default  = '';
 	protected $group;
-	protected $restapi = false;
+	protected $restapi = true;
 
 	public function __construct( $args ) {
 		parent::__construct( $args );
-		$sanitize = $this->sanitize;
 		if ( empty( $this->field_value ) ) {
 			$possible = get_option( $this->field_name );
 			if ( $possible ) {
-				$this->field_value = $sanitize( $possible );
+				$this->field_value = $this->sanitize( $possible );
 			}
 		}
 		if ( empty( $this->field_value) && ! empty( $this->field_default ) ) {
-			$this->field_value = $sanitize( $this->field_default );
+			$this->field_value = $this->sanitize( $this->field_default );
 		}
 		if ( empty( $this->callback ) ) {
 			$this->callback = array( $this, 'input' );
