@@ -763,7 +763,6 @@ abstract class TCC_Form_Admin {
 	}
 
 	private function validate_checkbox( $input ) {
-log_entry('checkbox',$input);
 		return sanitize_key( $input );
 	}
 

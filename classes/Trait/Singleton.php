@@ -74,7 +74,7 @@ trait TCC_Trait_Singleton {
 	}
 
 	public function __wakeup() {
-		#throw new Exception("Cannot unserialize singleton");
+		#throw new Exception( "Cannot unserialize singleton" );
 		$message = __( 'This class can not be unserialized.' , 'tcc-fluid' ) . ' * ' . debug_calling_function();
 		$version = ( isset( $this->version ) ) ? $this->version : '0.0.0';
 		_doing_it_wrong( __FUNCTION__, esc_html( $message ), esc_html( $version ) );
