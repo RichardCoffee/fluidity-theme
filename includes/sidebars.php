@@ -10,7 +10,7 @@
 
 
 add_filter( 'tcc_theme_sidebar_args', function( $args ) {
-	if ( in_array( get_page_slug(), array( 'log-in' ) ) ) {
+	if ( in_array( get_page_slug(), array( '404', 'login' ) ) ) {
 		$args['position'] = 'none';
 	}
 	return $args;
