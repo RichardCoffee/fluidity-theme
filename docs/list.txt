@@ -33,7 +33,6 @@
 		is_ajax()
 		page_exists( $search='' )
 		sanitize_array( $array, $method = 'title' )
-		tcc_bootstrap_css( $args )
 		tcc_browser_body_class( $classes )
 		wp_menu_id_by_name( $name )
 

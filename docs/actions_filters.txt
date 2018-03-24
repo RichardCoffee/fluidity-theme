@@ -3,6 +3,8 @@ Note:  this list is probably not accurate, check source for more
 
 		     Actions                       Purpose / Occurrance                              Function / File
 	==========================         ==============================================    ========================
+		fluid_content_header
+		fluid_content_footer
 		fluid_post_separator              between post excerpts, overrides default
 		fluid_post_separator_{$page}      between excerpts on a specific page
 		fluidity_admin_enqueue            runs after fluidity admin enqueues

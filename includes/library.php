@@ -1,34 +1,5 @@
 <?php
 
-// Use bootstrap's clearfix
-if (!function_exists('tcc_apply_clearfix')) {
-  function tcc_apply_clearfix( $args ) {
-    $defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0,'cnt'=>0);
-    $args = wp_parse_args($args,$defs);
-    if (empty($args['cnt'])) return;
-    extract($defs);
-    extract($args,EXTR_IF_EXISTS);
-    if ($lg && ($cnt%(intval((12/$lg)))==0)) echo "<div class='clearfix visible-lg-block'></div>";
-    if ($md && ($cnt%(intval((12/$md)))==0)) echo "<div class='clearfix visible-md-block'></div>";
-    if ($sm && ($cnt%(intval((12/$sm)))==0)) echo "<div class='clearfix visible-sm-block'></div>";
-    if ($xs && ($cnt%(intval((12/$xs)))==0)) echo "<div class='clearfix visible-xs-block'></div>";
-  }
-}
-
-
-if (!function_exists('tcc_bootstrap_css')) {
-	function tcc_bootstrap_css( $args ) {
-		$defs = array('lg'=>0,'md'=>0,'sm'=>0,'xs'=>0);
-		$args = wp_parse_args($args,$defs);
-		extract($defs);
-		extract($args,EXTR_IF_EXISTS);
-		$css = ($lg) ? " col-lg-$lg" : '';
-		$css.= ($md) ? " col-md-$md" : '';
-		$css.= ($sm) ? " col-sm-$sm" : '';
-		$css.= ($xs) ? " col-xs-$xs" : '';
-		return $css;
-	}
-}
 
 if ( ! function_exists( 'array_remove_value' ) ) {
 	function array_remove_value( $needle, $haystack ) {
@@ -91,7 +62,7 @@ if (!function_exists('fluid_get_post_terms')) {
     return $terms;
   }
 } //*/
-
+/*
 if (!function_exists('wp_menu_id_by_name')) {
   // http://wordpress.stackexchange.com/questions/104301/get-menu-id-using-its-name
   function wp_menu_id_by_name( $name ) {
@@ -103,7 +74,7 @@ if (!function_exists('wp_menu_id_by_name')) {
     }
     return false;
   }
-}
+} //*/
 
 if ( ! function_exists('e_esc_attr') ) {
 	function e_esc_attr( $string ) {
@@ -262,21 +233,6 @@ if (!function_exists('get_valid_gravatar')) {
   }
 }
 
-# use current_filter() instead
-if ( ! function_exists( 'in_action' ) ) {
-	#	Complement to WP's doing_action()
-	function in_action() {
-		$trace = debug_backTrace();
-		$type  = '';
-		foreach( $trace as $step ) {
-			if ( isset( $step['function'] ) && ( $step['function'] === 'do_action' ) && ( ! isset( $step['class'] ) ) ) {
-				return $step['args'][0];
-			}
-		}
-		return false;
-	}
-}
-
 #	http://stackoverflow.com/questions/14348470/is-ajax-in-wordpress
 if ( ! function_exists( 'is_ajax' ) ) {
 	function is_ajax() {
@@ -395,10 +351,11 @@ if ( ! function_exists( 'is_a_debugger' ) ) {
 }
 
 #  http://stackoverflow.com/questions/5224209/wordpress-how-do-i-get-all-the-registered-functions-for-the-content-filter
-if (!function_exists('list_filter_hooks')) {
+if ( ! function_exists( 'list_filter_hooks' ) ) {
 	function list_filter_hooks( $hook = '' ) {
-		if (WP_DEBUG) {
+		if ( WP_DEBUG ) {
 			global $wp_filter;
+			$hooks = array();
 			if ( isset( $wp_filter[$hook]->callbacks ) ) {
 				array_walk( $wp_filter[$hook]->callbacks, function( $callbacks, $priority ) use ( &$hooks ) {
 					foreach ( $callbacks as $id => $callback )
