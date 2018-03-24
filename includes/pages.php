@@ -158,18 +158,6 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
 	}
 }
 
-if ( ! function_exists( 'tcc_is_page' ) ) {
-	function tcc_is_page() {
-		$return = is_page();
-		if ( ! $return ) {
-			if ( get_post_type() === 'forum') {
-				$return = true;
-			}
-		}
-		return $return; # apply_filters( 'tcc_is_page', $return );
-	}
-}
-
 /**
  *  @brief Provides filters for css applied to main content tag.
  *
