@@ -1,5 +1,7 @@
 <?php
 
+#  Reference:  https://neliosoftware.com/blog/top-6-secrets-successful-internationalization/
+
 require_once( '/home/richard/work/svn/wpdev/tools/i18n/makepot.php' );
 require_once( '/home/richard/work/entechpc/fluidity/includes/debugging.php' );
 

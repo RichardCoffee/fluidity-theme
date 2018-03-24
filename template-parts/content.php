@@ -14,15 +14,8 @@ who_am_i(); ?>
 
 	<div class="article" itemprop="articleBody">
 		<?php the_content(); ?>
-	</div><?php
+	</div>
 
-	if ( is_single() && ! tcc_is_page() ) {
-		$taxonomy = apply_filters( 'fluid_content_taxonomy', 'category' );
-		new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
-		fluid_postmetadata();
-	}
-
-	tcc_show_comments(); ?>
-
+	<?php do_action( 'fluid_content_footer' ); ?>
 
 </article>

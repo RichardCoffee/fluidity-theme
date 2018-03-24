@@ -12,8 +12,8 @@ add_filter( 'bbp_show_lead_topic', '__return_true' ); // FIXME:  has this bug be
 # remove normal content header
 add_action( 'tcc_before_loop', function( $page_slug ) {
 	if ( is_bbpress() ) {
-		remove_filter( 'fluid_content_header', 'fluid_show_content_title' );
-		add_filter(    'fluid_content_header', 'fluid_show_forum_title' );
+		remove_action( 'fluid_content_header', 'fluid_show_content_title' );
+		add_action(    'fluid_content_header', 'fluid_show_forum_title' );
 	}
 } );
 
