@@ -4,6 +4,7 @@ class TCC_Theme_Library {
 
 
 	use TCC_Trait_Attributes;
+	use TCC_Trait_Logging;
 
 
 	/**  Font Awesome icons  **/

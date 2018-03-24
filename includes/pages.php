@@ -21,6 +21,17 @@ if (!function_exists('fluid_category_page_noposts')) {
     fluid_noposts_page($text);
   }
 }
+/*
+if ( ! function_exists( 'fluid_hide_content_title' ) ) {
+	function fluid_hide_content_title( $page ) {
+fluid()->log($page);
+		$exclude = array( 'log-in' );
+		if ( in_array( $page, $exclude ) ) {
+			remove_action( 'fluid_content_header', 'fluid_show_content_title' );
+		}
+	}
+	add_action( 'tcc_before_loop', 'fluid_hide_content_title' );
+} //*/
 
 if (!function_exists('fluid_noposts_page')) {
   function fluid_noposts_page($text) { ?>
