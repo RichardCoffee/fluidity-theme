@@ -21,7 +21,6 @@ require_once(FLUIDITY_HOME.'includes/options.php');  #  Needs full path, or wp-a
 require_once('includes/colors.php');                 #  options.php must be loaded before colors.php
 require_once( 'includes/enqueue.php' );
 require_once('includes/library.php');
-require_once('includes/login.php');
 require_once('includes/menus.php');
 require_once(FLUIDITY_HOME.'includes/misc.php');     #  Needs full path, or wp-admin/includes/misc.php gets loaded instead
 require_once('includes/parallax.php');
@@ -50,29 +49,6 @@ if ( is_admin() ) {
 	require_once('classes/microdata.php');
 }
 
-if ( ! function_exists( 'fluidity_theme_scandir_exclusions' ) ) {
-	function fluidity_theme_scandir_exclusions( $exclusions ) {
-		$exclusions = array_merge( $exclusions, array(
-			'docs',
-			'fonts',
-			'icons',
-			'languages',
-			'scss',
-		) );
-		#	add these exclusions when WP is checking for page templates
-		if ( was_called_by( 'page_attributes_meta_box' ) ) {
-			$exclusions = array_merge( $exclusions, array(
-				'classes',
-				'css',
-				'includes',
-				'js',
-				'template-parts',
-			) );
-		}
-		return $exclusions;
-	}
-	add_filter( 'theme_scandir_exclusions', 'fluidity_theme_scandir_exclusions' );
-}
 
 /**  Test functions  **/
 /*

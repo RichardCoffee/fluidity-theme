@@ -10,6 +10,7 @@ class TCC_Theme_Support {
 	public function __construct() {
 		add_action( 'after_setup_theme', array( $this, 'load_theme_support' ) );
 		add_action( 'init', array( $this, 'post_type_support' ) );
+		add_filter( 'theme_scandir_exclusions', array( $this, 'theme_scandir_exclusions' ) );
 	}
 
 	public function load_theme_support() {
@@ -151,6 +152,27 @@ class TCC_Theme_Support {
 			$supports[] = 'thumbnail';
 			return $supports;
 		});
+	}
+
+	public function theme_scandir_exclusions( $exclusions ) {
+		$exclusions = array_merge( $exclusions, array(
+			'docs',
+			'fonts',
+			'icons',
+			'languages',
+			'scss',
+		) );
+		# add these exclusions when WP is checking for page templates
+		if ( was_called_by( 'page_attributes_meta_box' ) ) {
+			$exclusions = array_merge( $exclusions, array(
+				'classes',
+				'css',
+				'includes',
+				'js',
+				'template-parts',
+			) );
+		}
+		return $exclusions;
 	}
 
 	protected function title_tag() {
