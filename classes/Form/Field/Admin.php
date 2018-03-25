@@ -45,7 +45,7 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 			register_setting( $this->group, $this->field_name, $args );
 			$opts = array();
 			if ( empty( $this->label_css ) ) {
-				$label = $description;
+				$label = $this->description;
 				$opts['label_for'] = $this->field_id;
 			} else {
 				$label = $this->label();
