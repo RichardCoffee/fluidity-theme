@@ -34,11 +34,11 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 	public function register_field() {
 		if ( ! empty( $this->group ) ) {
 			$args = array(
-				'type'              => $this->field_type,
+				'type'              => $this->type,
 				'group'             => $this->group,
 				'description'       => $this->description,
 				'sanitize_callback' => $this->sanitize,
-				'show_in_rest'      => $this->restapi,
+				'show_in_rest'      => $this->show_in_rest,
 			);
 			register_setting( $this->group, $this->field_name, $args );
 			add_settings_field( $this->field_name, $this->label(), $this->callback, $this->group );

@@ -15,12 +15,12 @@ abstract class TCC_Form_Field_Field {
 	protected $field_name;              # field name
 	protected $field_postext = '';      # text shown below input
 	protected $field_pretext = '';      # text shown above input
-	protected $field_type = 'text';     # input type
+	protected $type        = 'text';    # input type
 	protected $field_value;             # field value
-	protected $label_css  = '';         # label css
-	protected $description = '';         # label text
+	protected $label_css   = '';        # label css
+	protected $description = '';        # label text
 	protected $library;                 # plugin function library
-	protected $onchange = null;         # onchange attribute
+	protected $onchange    = null;      # onchange attribute
 	protected $placeholder = '';        # placeholder text
 #	protected $post_id;                 # wordpress post id number
 	protected $sanitize   = 'esc_attr'; # default sanitize method
@@ -42,7 +42,7 @@ abstract class TCC_Form_Field_Field {
 	public function input( $label = true ) {
 		$attrs = array(
 			'id'          => $this->field_id,
-			'type'        => $this->field_type,
+			'type'        => $this->type,
 			'class'       => $this->field_css,
 			'name'        => $this->field_name,
 			'value'       => $this->field_value,
