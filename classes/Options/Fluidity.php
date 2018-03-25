@@ -25,6 +25,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		parent::__construct();
 		# https://codex.wordpress.org/Plugin_API/Admin_Screen_Reference
 		add_action( 'wp_load', function() {
+fluid()->log('wp_load');
 			$this->check_screen( 'options-general', 'add_currency_symbol' );
 		} );
 	}
@@ -305,6 +306,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	}
 
 	private function check_screen( $check, $method, $args = array() ) {
+fluid()->log('check_screen');
 		if ( function_exists( 'get_current_screen' ) ) {
 log_entry( get_current_screen() );
 			if ( get_current_screen()->base === $check ) {
@@ -322,7 +324,8 @@ log_entry( get_current_screen() );
 			'description'   => __( 'Currency Symbol', 'tcc-fluid' ),
 			'sanitize'      => 'sanitize_text_field',
 		);
-		new TCC_Form_Field_Admin( $args );
+		$symbol = new TCC_Form_Field_Admin( $args );
+fluid()->log('add_currency_symbol',$symbol);
 	}
 
 
