@@ -63,13 +63,8 @@ abstract class TCC_Form_Field_Field {
 	}
 
 	public function sanitize( $input ) {
-		# FIXME:  pretty sure there is a better way to do this.
-		if ( $this->sanitize && ( is_array( $this->sanitize ) ) && method_exists( $this->sanitize[0], $this->sanitize[1] ) ) {
-			list( $object, $method ) = $this->sanitize;
-			$output = $object->$method( $input );
-		} else if ( $this->sanitize && ( is_string( $this->sanitize ) ) && function_exists( $this->sanitize ) ) {
-			$sanitize = $this->sanitize;
-			$output   = $sanitize( $input );
+		if ( $this->sanitize ) {
+			$output = call_user_func( $this->sanitize, $input );
 		} else {
 			$output = strip_tags( stripslashes( $input ) );
 		}
