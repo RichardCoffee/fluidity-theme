@@ -7,7 +7,7 @@
 
 class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 
-	protected $action   = 'admin_init';  #  when to register variable
+	protected $action   = 'admin_head';  #  when to register variable - must happen after current_screen hook
 	protected $callback = null;          #  display method
 	protected $default  = '';            #  field default value
 	protected $group;                    #  setting group/page
