@@ -23,6 +23,24 @@ if (!function_exists('tcc_browser_body_class')) {
   add_filter('body_class','tcc_browser_body_class');
 }
 
+if ( ! function_exists( 'tcc_custom_css' ) ) {
+	function tcc_custom_css() { ?>
+		<style id="tcc-custom-css" type="text/css"><?php
+			tcc_custom_colors();
+			do_action( 'tcc_custom_css' ); ?>
+		</style><?php
+	}
+}
+
+if ( ! function_exists( 'fluid_assign_default_header' ) ) {
+	function fluid_assign_default_header() {
+		if ( ! has_action( 'tcc_header_body_content' ) ) {
+			add_action( 'tcc_header_body_content', 'fluid_default_header' );
+		}
+	}
+	add_action( 'wp_loaded', 'fluid_assign_default_header' );
+}
+
 // Limit length of title string
 if (!function_exists('fluid_browser_title')) {
   function fluid_browser_title( string $title ) {
@@ -43,17 +61,20 @@ if (!function_exists('fluid_browser_title')) {
   add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title to be deprecated
 }
 
-if ( ! function_exists( 'tcc_custom_css' ) ) {
-	function tcc_custom_css() { ?>
-		<style id="tcc-custom-css" type="text/css"><?php
-			tcc_custom_colors();
-			do_action( 'tcc_custom_css' ); ?>
-		</style><?php
+if ( ! function_exists( 'fluid_default_header' ) ) {
+	function fluid_default_header() { ?>
+		<div class="row margint1e marginb1e">
+			<div class="col-lg-1  col-md-1  hidden-sm hidden-xs"></div>
+			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+				<?php get_template_part('template-parts/menu'); ?>
+			</div>
+			<div class="col-lg-1  col-md-1  hidden-sm hidden-xs"></div>
+		</div><?php
 	}
 }
 
-if ( ! function_exists( 'fluidity_header_logo' ) ) {
-	function fluidity_header_logo( $html = '', $blog_id = 1 ) {
+if ( ! function_exists( 'fluid_header_logo' ) ) {
+	function fluid_header_logo( $html = '', $blog_id = 1 ) {
 		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  for backward compatibility
 		if ( ! is_customize_preview() ) {
 			ob_start(); ?>
@@ -87,7 +108,7 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 								'alt'      => get_bloginfo( 'name' ),
 								'itemprop' => 'image',
 							); ?>
-							<img <?php fluid_library()->apply_attrs( $attrs ); ?>><?php
+							<img <?php fluid()->apply_attrs( $attrs ); ?>><?php
 						} else {
 							bloginfo( 'name' );
 						} ?>
@@ -98,15 +119,15 @@ if ( ! function_exists( 'fluidity_header_logo' ) ) {
 		}
 		if ( $echo ) { echo $html; } else { return $html; }
 	}
-	add_filter( 'get_custom_logo', 'fluidity_header_logo', 20, 2 );
+	add_filter( 'get_custom_logo', 'fluid_header_logo', 20, 2 );
 }
 
-if ( ! function_exists( 'fluidity_menubar_print_button' ) ) {
-	function fluidity_menubar_print_button() {
+if ( ! function_exists( 'fluid_menubar_print_button' ) ) {
+	function fluid_menubar_print_button() {
 		if ( is_single() || is_page() ) { ?>
 			<span class="hidden fluid-print-button">
 				<button class="btn btn-fluidity" onclick="print();">
-					<?php fluid_library()->fawe( 'fa-print' ); ?>
+					<?php fluid()->fawe( 'fa-print' ); ?>
 					<span class="hidden-xs">&nbsp;
 						<?php esc_html_e('Print','tcc-fluid'); ?>
 					</span>
