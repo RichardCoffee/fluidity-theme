@@ -170,6 +170,26 @@ if ( ! function_exists( 'fluid_options' ) ) {
 	}
 }
 
+if ( ! function_exists( 'fluid_register_sidebars' ) ) {
+	function fluid_register_sidebars() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Register_Sidebars;
+		}
+		return $library;
+	}
+}
+
+if ( ! function_exists( 'fluid_theme_support' ) ) {
+	function fluid_theme_support() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Support;
+		}
+		return $library;
+	}
+}
+
 #  https://developer.wordpress.org/themes/basics/template-hierarchy/
 if (!function_exists('author_role_template')) {
 // TODO: move this into an author base class re: Agents

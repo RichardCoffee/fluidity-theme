@@ -32,9 +32,10 @@ add_action( 'rest_api_init', function() {
 });
 require_once( 'classes/autocomplete.php' );
 
-new TCC_Register_Sidebars;
-new TCC_Theme_Support;
-fluid_login(); # creates instance of TCC_Theme_Login class
+#  prime classes
+fluid_register_sidebars(); # TCC_Register_Sidebars
+fluid_theme_support();     # TCC_Theme_Support
+fluid_login();             # TCC_Theme_Login class
 
 if ( is_admin() ) {
 	fluid_options();

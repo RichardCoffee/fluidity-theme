@@ -1,7 +1,7 @@
 <?php
-
-#echo 'including ' . __FILE__ . "\n";
-
+/*
+ * @brief Autoloads class files
+ */
 function fluidity_class_loader( $class ) {
 	if ( substr( $class, 0, 4 ) === 'TCC_' ) {
 		$load = str_replace( '_', '/', substr( $class, ( strpos( $class, '_' ) + 1 ) ) );
