@@ -24,8 +24,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		add_filter( 'form_text_' . $this->slug, array( $this, 'form_trans_text' ), 10, 2 );
 		parent::__construct();
 		# https://codex.wordpress.org/Plugin_API/Admin_Screen_Reference
-		add_action( 'wp_loaded', function() {
-fluid()->log('wp_load');
+		add_action( 'current_screen', function() {
 			$this->check_screen( 'options-general', 'add_currency_symbol' );
 		} );
 	}
