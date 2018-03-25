@@ -317,7 +317,7 @@ log_entry( get_current_screen() );
 			'field_default' => _x( '$', 'primary currency symbol', 'tcc-fluid' ),
 			'field_name'    => 'currency_symbol',
 			'group'         => 'general',
-			'label_text'    => __( 'Currency Symbol', 'tcc-fluid' ),
+			'description'   => __( 'Currency Symbol', 'tcc-fluid' ),
 			'sanitize'      => 'sanitize_text_field',
 		);
 		new TCC_Form_Field_Admin( $args );

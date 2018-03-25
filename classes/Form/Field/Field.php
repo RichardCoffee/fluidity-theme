@@ -18,7 +18,7 @@ abstract class TCC_Form_Field_Field {
 	protected $field_type = 'text';     # input type
 	protected $field_value;             # field value
 	protected $label_css  = '';         # label css
-	protected $label_text = '';         # label text
+	protected $description = '';         # label text
 	protected $library;                 # plugin function library
 	protected $onchange = null;         # onchange attribute
 	protected $placeholder = '';        # placeholder text
@@ -31,8 +31,8 @@ abstract class TCC_Form_Field_Field {
 	public function __construct( $args ) {
 		$this->library = new TCC_Plugin_Library;
 		$this->parse_args( $args );
-		if ( ( empty( $this->placeholder ) ) && ( ! empty( $this->label_text ) ) ) {
-			$this->placeholder = $this->label_text;
+		if ( ( empty( $this->placeholder ) ) && ( ! empty( $this->description ) ) ) {
+			$this->placeholder = $this->description;
 		}
 		if ( empty( $this->field_id ) ) {
 			$this->field_id = $this->field_name;
@@ -57,7 +57,7 @@ abstract class TCC_Form_Field_Field {
 			'for'   => $this->field_id,
 		);
 		$label  = '<label ' . $this->library->get_apply_attrs( $attrs ) . '>';
-		$label .= esc_html( $this->label_text );
+		$label .= esc_html( $this->description );
 		$label .= '</label>';
 		return $label;
 	}
