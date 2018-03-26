@@ -13,7 +13,7 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 	protected $group;                    #  setting group/page
 	protected $section  = 'default';     #  section on page
 	protected $show_in_rest = true;      #  allow access via rest api
-	protected $tr_css   = '';            #  <tr> css class
+	protected $tr_class = '';            #  <tr> css class
 
 	public function __construct( $args ) {
 		parent::__construct( $args );
@@ -45,13 +45,15 @@ class TCC_Form_Field_Admin extends TCC_Form_Field_Field {
 			register_setting( $this->group, $this->field_name, $args );
 			$opts = array();
 			if ( empty( $this->label_css ) ) {
+				#  use wordpress to create label
 				$label = $this->description;
 				$opts['label_for'] = $this->field_id;
 			} else {
+				#  create our own label
 				$label = $this->label();
 			}
-			if ( ! empty( $this->tr_css) ) {
-				$opts['class'] = $this->tr_css;
+			if ( ! empty( $this->tr_class) ) {
+				$opts['class'] = $this->tr_class;
 			}
 			add_settings_field( $this->field_name, $label, $this->callback, $this->group, $this->section, $opts );
 		}
