@@ -1,6 +1,21 @@
 <?php
 
+/**
+ * Fluidity function library
+ *
+ * @package Fluidity
+ * @subpackage Library
+ */
 
+/**
+ * Remove a key/value pair from an associative array, using the key.
+ *
+ * @since 2.3.0
+ *
+ * @param string $needle key to be deleted
+ * @param array $haystack associative array
+ * @return array
+ */
 if ( ! function_exists( 'array_remove_value' ) ) {
 	function array_remove_value( $needle, $haystack ) {
 		if ( $needle && is_string( $needle ) && $haystack && is_array( $haystack ) ) {
@@ -12,6 +27,15 @@ if ( ! function_exists( 'array_remove_value' ) ) {
 	}
 }
 
+/**
+ * Returns an instance of the ClearFix class
+ *
+ * @since 2.3.0
+ *
+ * @staticvar TCC_Theme_ClearFix $library
+ *
+ * @return TCC_Theme_ClearFix the instance
+ */
 if ( ! function_exists( 'clearfix' ) ) {
 	function clearfix() {
 		static $library;
@@ -22,30 +46,66 @@ if ( ! function_exists( 'clearfix' ) ) {
 	}
 }
 
-if (!function_exists('container_type')) {
-  function container_type( $location='post' ) {
-    $css = 'container-fluid';
-    if ($location=='header') {
-      $css.= " nopad";
-    } else if (tcc_layout('width')=='narrow') {
-      $css = 'container';
-    }
-    $css = apply_filters('fluid_container_type',$css,$location);
-    return apply_filters("fluid_{$location}_container_type",$css);
-  }
+/**
+ * Returns a css class to be added to the main div
+ *
+ * @todo re-examine the reasons why this function exists and see if it needs to be removed or changed
+ *
+ * @since 1.0.0
+ *
+ * @param string $location
+ * @return string css class
+ */
+if ( ! function_exists( 'container_type' ) ) {
+	function container_type( $location = 'post' ) {
+		$css = 'container-fluid';
+		if ( $location === 'header' ) {
+			$css .= " nopad";
+		} else if ( tcc_layout( 'width' ) === 'narrow' ) {
+			$css = 'container';
+		}
+		/**
+		 * Filters the container css class
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $css the css to be filtered
+		 * @param string $location
+		 */
+		$css = apply_filters( 'fluid_container_type', $css, $location );
+		/**
+		 * Filters the container css class for a specific location
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $css the css to be filtered
+		 */
+		return apply_filters( "fluid_{$location}_container_type", $css );
+	}
 }
 
-// convert user data to flat object
-if (!function_exists('convert_user_meta')) {
-  function convert_user_meta( $ID ) {
-    $wp_d = get_userdata($ID);
-    $out  = $_wp_d->data;
-    $data = get_user_meta($ID);
-    foreach($data as $key=>$meta) {
-      if (!isset($out->$key)) { $out->$key = $meta[0]; }
-    }
-    return $out;
-  }
+/**
+ * Convert user meta data into a flat object
+ *
+ * @todo find a wordpress function that does this, if it exists
+ *
+ * @since 1.0.0
+ *
+ * @param int $userID
+ * @return object $out
+ */
+if ( ! function_exists( 'convert_user_meta' ) ) {
+	function convert_user_meta( $userID ) {
+		$wp_d = get_userdata( $userID );
+		$out  = $_wp_d->data;
+		$data = get_user_meta( $userID );
+		foreach( $data as $key => $meta ) {
+			if ( ! isset( $out->$key ) ) {
+				$out->$key = $meta[0];
+			}
+		}
+		return $out;
+	}
 }
 /*
 if (!function_exists('fluid_get_post_terms')) {
@@ -76,18 +136,41 @@ if (!function_exists('wp_menu_id_by_name')) {
   }
 } //*/
 
+/**
+ * Echo an escaped attribute string
+ *
+ * @since 1.0.0
+ *
+ * @param string $string
+ */
 if ( ! function_exists('e_esc_attr') ) {
 	function e_esc_attr( $string ) {
 		echo esc_attr( $string );
 	}
 }
 
+/**
+ * Echo an escaped html string
+ *
+ * @since 1.0.0
+ *
+ * @param string $string
+ */
 if ( ! function_exists('e_esc_html') ) {
 	function e_esc_html( $string ) {
 		echo esc_html( $string );
 	}
 }
 
+/**
+ * Echo a translated escaped attribute string, with context string
+ *
+ * @since 1.0.0
+ *
+ * @param string $text
+ * @param string $context
+ * @param string $domain
+ */
 if ( ! function_exists( 'esc_attr_ex' ) ) {
 	function esc_attr_ex( $text, $context, $domain = 'default' ) {
 		$translation = translate_with_gettext_context( $text, $context, $domain );
@@ -95,6 +178,15 @@ if ( ! function_exists( 'esc_attr_ex' ) ) {
 	}
 }
 
+/**
+ * Echo a translated escaped html string, with context string
+ *
+ * @since 1.0.0
+ *
+ * @param string $text
+ * @param string $context
+ * @param string $domain
+ */
 if ( ! function_exists( 'esc_html_ex' ) ) {
 	function esc_html_ex( $text, $context, $domain = 'default' ) {
 		$translation = translate_with_gettext_context( $text, $context, $domain );
@@ -102,6 +194,17 @@ if ( ! function_exists( 'esc_html_ex' ) ) {
 	}
 }
 
+/**
+ * Return a translated escaped html string, with numeric context
+ *
+ * @since 1.0.0
+ *
+ * @param string $single
+ * @param string $plural
+ * @param int $number
+ * @param string $domain
+ * @return string
+ */
 if ( ! function_exists( 'esc_html_n' ) ) {
 	function esc_html_n( $single, $plural, $number, $domain = 'default' ) {
 		$translations = get_translations_for_domain( $domain );
@@ -110,6 +213,17 @@ if ( ! function_exists( 'esc_html_n' ) ) {
 	}
 }
 
+/**
+ * Return a translated escaped html string, with both numeric and conceptional context
+ *
+ * @since 1.0.0
+ *
+ * @param string $single
+ * @param string $plural
+ * @param int $number
+ * @param string $context
+ * @param string $domain
+ */
 if ( ! function_exists( 'esc_html_nx' ) ) {
 	function esc_html_nx( $single, $plural, $number, $context, $domain = 'default' ) {
 		$translations = get_translations_for_domain( $domain );
@@ -124,12 +238,28 @@ if ( ! function_exists( 'esc_html_enx' ) ) {
 	}
 }
 
+/**
+ * Returns an instance of the Theme Library
+ *
+ * @since 2.3.0
+ *
+ * @return TCC_Theme_Library
+ */
 if ( ! function_exists( 'fluid' ) ) {
 	function fluid() {
 		return fluid_library();
 	}
 }
 
+/**
+ * Returns an instance of the Comment class
+ *
+ * @since 2.3.0
+ *
+ * @staticvar TCC_Theme_Comment $library
+ *
+ * @return TCC_Theme_Comment the instance
+ */
 if ( ! function_exists( 'fluid_comment' ) ) {
 	function fluid_comment() {
 		static $library;
@@ -140,6 +270,15 @@ if ( ! function_exists( 'fluid_comment' ) ) {
 	}
 }
 
+/**
+ * Returns an instance of the Theme Library class
+ *
+ * @since 2.3.0
+ *
+ * @staticvar TCC_Theme_Library $library
+ *
+ * @return TCC_Theme_Library the instance
+ */
 if ( ! function_exists( 'fluid_library' ) ) {
 	function fluid_library() {
 		static $library;
@@ -150,6 +289,15 @@ if ( ! function_exists( 'fluid_library' ) ) {
 	}
 }
 
+/**
+ * Returns an instance of the Theme Login class
+ *
+ * @since 2.3.0
+ *
+ * @staticvar TCC_Theme_Login $library
+ *
+ * @return TCC_Theme_Login the instance
+ */
 if ( ! function_exists( 'fluid_login' ) ) {
 	function fluid_login() {
 		static $library;
@@ -160,6 +308,15 @@ if ( ! function_exists( 'fluid_login' ) ) {
 	}
 }
 
+/**
+ * Returns an instance of the Options class
+ *
+ * @since 2.3.0
+ *
+ * @staticvar TCC_Options_FLuidity $library
+ *
+ * @return TCC_Options_FLuidity the instance
+ */
 if ( ! function_exists( 'fluid_options' ) ) {
 	function fluid_options() {
 		static $library;
@@ -170,6 +327,15 @@ if ( ! function_exists( 'fluid_options' ) ) {
 	}
 }
 
+/**
+ * Returns an instance of the Register Sidebars class
+ *
+ * @since 2.3.0
+ *
+ * @staticvar TCC_Register_Sidebars $library
+ *
+ * @return TCC_Register_Sidebars the instance
+ */
 if ( ! function_exists( 'fluid_register_sidebars' ) ) {
 	function fluid_register_sidebars() {
 		static $library;
@@ -180,6 +346,15 @@ if ( ! function_exists( 'fluid_register_sidebars' ) ) {
 	}
 }
 
+/**
+ * Returns an instance of the Theme Support class
+ *
+ * @since 2.3.0
+ *
+ * @staticvar TCC_Theme_Support $library
+ *
+ * @return TCC_Theme_Support the instance
+ */
 if ( ! function_exists( 'fluid_theme_support' ) ) {
 	function fluid_theme_support() {
 		static $library;
