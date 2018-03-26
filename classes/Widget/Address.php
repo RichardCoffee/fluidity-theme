@@ -70,13 +70,12 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 		$this->form_checkbox($instance,'tcc-map',__('Display Google map','tcc-fluid'));
 	}
 
-	public function update($new,$old) {
-		$instance = parent::update($new,$old);
-		foreach($this->address as $slug=>$text) {
-			$instance[$slug] = (!empty($new[$slug])) ? strip_tags($new[$slug]) : '';
+	public function update( $new, $old ) {
+		$instance = parent::update( $new, $old );
+		foreach( $this->address as $slug => $text ) {
+			$instance[ $slug ] = ( ! empty( $new[ $slug ] ) ) ? wp_strip_all_tags( $new[ $slug ] ) : '';
 		}
-		$instance['tcc-map'] = (!empty($new['tcc-map'])) ? $new['tcc-map'] : 'off';
-#log_entry('old',$old,'new',$new,'returned',$instance);
+		$instance['tcc-map'] = ( ! empty( $new['tcc-map'] ) ) ? $new['tcc-map'] : 'off';
 		return $instance;
 	}
 

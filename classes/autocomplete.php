@@ -34,7 +34,7 @@ class TCC_AutoComplete {
 
 	static function autocomplete_suggestions() {
 
-		$args   = array( 's' => trim( esc_attr( strip_tags( $_REQUEST['term'] ) ) ) );
+		$args   = array( 's' => trim( esc_attr( wp_strip_all_tags( $_REQUEST['term'] ) ) ) );
 		$args   = apply_filters( 'autocomplete_args', $args );
 		$posts  = new WP_Query( $args );
 

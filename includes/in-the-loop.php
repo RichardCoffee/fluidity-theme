@@ -170,20 +170,18 @@ if ( ! function_exists( 'fluid_thumbnail' ) ) {
 if ( ! function_exists( 'fluid_title' ) ) {
 	function fluid_title( $length=0 ) {
 		$echo = false; $after = '...'; $before = ''; // FIXME
-		#$postID = get_post()->ID;
-		$title  = get_the_title( get_the_ID() );
+		$title  = wp_strip_all_tags( get_the_title( get_the_ID() ) );
 		if ( strlen( $title ) === 0 ) {
 			$title = "{No Title}";
 		} else {
 			if ( $length && is_numeric( $length ) ) {
-				$title = strip_tags( $title );
 				if ( strlen( $title ) > $length ) {
 					$title = substr( $title, 0, $length );
 					$title = substr( $title, 0, strripos( $title, ' ' ) );
 					$title = $before . $title . $after;
 				}
 			}
-			$title = esc_html( apply_filters( 'the_title', $title, get_the_ID() ) );
+			$title = apply_filters( 'the_title', $title, get_the_ID() );
 		}
 		if ($echo) { echo $title; } else { return $title; }
 	}
@@ -200,8 +198,8 @@ if (!function_exists('get_the_author_posts_link')) {
 				'title' => $title,
 				'aria-label' => $title,
 			);
-			#$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem - 
-			$html = '<a ' . fluid_library()->get_apply_attrs( $attrs ) . '>' . get_the_author_meta('display_name') . '</a>';
+			#$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem -
+			$html = '<a ' . fluid()->get_apply_attrs( $attrs ) . '>' . get_the_author_meta('display_name') . '</a>';
 		}
 		return $html;
 	}

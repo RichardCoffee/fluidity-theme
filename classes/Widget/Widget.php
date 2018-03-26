@@ -62,7 +62,7 @@ class TCC_Widget_Widget extends WP_Widget {
 
 	public function update( $new, $old ) {
 		$instance = $old;
-		$instance['title'] = ( ! empty( $new['title'] ) ) ? strip_tags( $new['title'] ) : '';
+		$instance['title'] = ( ! empty( $new['title'] ) ) ? wp_strip__all_tags( $new['title'] ) : '';
 		return $instance;
 	}
 
