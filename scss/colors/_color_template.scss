@@ -108,8 +108,9 @@ a.tcc-footer-menu-item {
 	}
 }
 
-.article {
-	& a {
+//.article {
+//	& a {
+a {
 		border-bottom: 1px solid color(background);
 		color: color(background);
 		&:visited {
@@ -123,7 +124,7 @@ a.tcc-footer-menu-item {
 			text-decoration: none;
 		}
 	}
-}
+//}
 
 blockquote,
 .content-fluidity {
