@@ -233,15 +233,15 @@ a.tcc-footer-menu-item:visited {
   border-bottom: 1px wavy #FFFFFF;
 }
 
-a {
+.article a {
   border-bottom: 1px solid #fff200;
   color: #fff200;
 }
-a:visited {
+.article a:visited {
   border-bottom: 1px wavy #fff200;
   color: #ccc200;
 }
-a:hover, a:focus {
+.article a:hover, .article a:focus {
   border-bottom: 2px solid #ccc200;
   color: #ccc200;
   font-weight: bold;
