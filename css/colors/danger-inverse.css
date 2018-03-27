@@ -6,16 +6,19 @@
  */
 .btn-fluidity,
 .color-fluidity,
-li.btn-fluidity > a {
+li.btn-fluidity > a,
+.searchform-input, form input.searchform-input {
   background-color: #f2dede;
   border-color: #f2dede;
   color: #a94442;
 }
 .btn-fluidity:hover,
 .color-fluidity:hover,
-li.btn-fluidity > a:hover, .btn-fluidity:focus,
+li.btn-fluidity > a:hover,
+.searchform-input:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
-li.btn-fluidity > a:focus {
+li.btn-fluidity > a:focus,
+.searchform-input:focus {
   background-color: #a94442;
   border-color: #a94442;
   color: #f2dede;
@@ -35,6 +38,17 @@ li.btn-fluidity > a:focus {
   color: #f2dede;
 }
 
+form .form-control {
+  background-color: #a94442;
+  border-color: #f2dede;
+  color: #f2dede;
+}
+form .form-control:hover, form .form-control:focus {
+  background-color: #a94442;
+  border-color: #f2dede;
+  color: #f2dede;
+}
+
 .back-fluidity {
   background-color: #f2dede;
 }
@@ -47,61 +61,25 @@ li.btn-fluidity > a:focus {
   color: #a94442;
 }
 
-.ui-autocomplete {
-  background-color: #a94442;
-  border: 1px solid #f2dede;
-  color: #f2dede;
-}
-.ui-autocomplete li {
-  border: 1px solid transparent;
-}
-.ui-autocomplete li:hover, .ui-autocomplete li:focus {
+form .form-control {
   border: 1px solid #f2dede;
 }
-
-.searchform-input::-moz-placeholder {
-  color: #a94442;
-  opacity: 1;
-}
-.searchform-input:-moz-placeholder {
-  color: #a94442;
-}
-.searchform-input:-ms-input-placeholder {
-  color: #a94442;
-}
-.searchform-input::-webkit-input-placeholder {
-  color: #a94442;
-}
-.searchform-input:hover::-moz-placeholder, .searchform-input:focus::-moz-placeholder {
-  color: #f2dede;
-  opacity: 1;
-}
-.searchform-input:hover:-moz-placeholder, .searchform-input:focus:-moz-placeholder {
-  color: #f2dede;
-}
-.searchform-input:hover:-ms-input-placeholder, .searchform-input:focus:-ms-input-placeholder {
-  color: #f2dede;
-}
-.searchform-input:hover::-webkit-input-placeholder, .searchform-input:focus::-webkit-input-placeholder {
-  color: #f2dede;
-}
-
 form .form-control::-moz-placeholder {
-  color: #a94442;
+  color: #f2dede;
   opacity: 1;
 }
 form .form-control:-moz-placeholder {
-  color: #a94442;
+  color: #f2dede;
 }
 form .form-control:-ms-input-placeholder {
-  color: #a94442;
+  color: #f2dede;
 }
 form .form-control::-webkit-input-placeholder {
-  color: #a94442;
+  color: #f2dede;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: inset 0 1px 2px rgba(242, 222, 222, 0.1);
-  box-shadow: inset 0 1px 2px rgba(242, 222, 222, 0.1);
+  -webkit-box-shadow: 0 0 4px rgba(242, 222, 222, 0.5);
+  box-shadow: 0 0 4px rgba(242, 222, 222, 0.5);
   border: 1px solid #f2dede;
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
@@ -118,10 +96,43 @@ form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-
   color: #f2dede;
 }
 
-[type="search"] {
-  -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-  appearance: textfield;
+.ui-autocomplete {
+  background-color: #a94442;
+  border: 2px solid #f2dede;
+  color: #f2dede;
+}
+.ui-autocomplete li {
+  border: 2px solid transparent;
+}
+.ui-autocomplete li:hover, .ui-autocomplete li:focus {
+  border: 2px solid #f2dede;
+}
+
+form input.searchform-input::-moz-placeholder {
+  color: #a94442;
+  opacity: 1;
+}
+form input.searchform-input:-moz-placeholder {
+  color: #a94442;
+}
+form input.searchform-input:-ms-input-placeholder {
+  color: #a94442;
+}
+form input.searchform-input::-webkit-input-placeholder {
+  color: #a94442;
+}
+form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder {
+  color: #f2dede;
+  opacity: 1;
+}
+form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder {
+  color: #f2dede;
+}
+form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder {
+  color: #f2dede;
+}
+form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder {
+  color: #f2dede;
 }
 
 [type="search"] {
@@ -224,15 +235,15 @@ a.tcc-footer-menu-item:visited {
   border-bottom: 1px wavy #a94442;
 }
 
-.article a {
+a {
   border-bottom: 1px solid #f2dede;
   color: #f2dede;
 }
-.article a:visited {
+a:visited {
   border-bottom: 1px wavy #f2dede;
   color: #f2dede;
 }
-.article a:hover, .article a:focus {
+a:hover, a:focus {
   border-bottom: 2px solid #f2dede;
   color: #f2dede;
   font-weight: bold;
@@ -270,8 +281,12 @@ hr {
 }
 
 .page-title {
-  color: #a94442;
+  color: #f2dede;
   text-shadow: #f2dede 1px 1px 2px;
+}
+
+.error404 .page-title {
+  color: #a94442;
 }
 
 .port-opaque {
