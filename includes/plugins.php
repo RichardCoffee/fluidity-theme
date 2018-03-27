@@ -22,7 +22,7 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 			array(
 				'name'        => 'WordPress SEO by Yoast',
 				'slug'        => 'wordpress-seo',
-				'required'    =>  false,
+				'require'     =>  false,
 				'is_callable' => 'wpseo_init',
 			),
 		);
