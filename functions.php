@@ -72,5 +72,5 @@ add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,
 	}
 ); //*/
 add_action( 'tcc_inside_page', function( $slug ) {
-	tell_me( fluid_color_scheme() );
+	tellme( fluid_color_scheme() );
 } );
