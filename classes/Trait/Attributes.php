@@ -39,7 +39,7 @@ trait TCC_Trait_Attributes {
 		foreach( $attrs as $attr => $value ) {
 			if ( empty( $value ) ) {
 				if ( in_array( $attr, array( 'itemscope', 'value' ), true ) ) {
-					$attrs .= $attr . '="" ';
+					$html .= $attr . '="" ';
 				}
 				continue;
 			}
