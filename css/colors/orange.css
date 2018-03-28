@@ -2,6 +2,8 @@
  *  css/colors/orange.css
  *
  */
+/* functions */
+/* mixins */
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
@@ -233,17 +235,17 @@ a.tcc-footer-menu-item:visited {
   border-bottom: 1px wavy #FFFFFF;
 }
 
-.article a {
-  border-bottom: 1px solid #f7941d;
-  color: #f7941d;
+a {
+  border-bottom: 1px solid #FFFFFF;
+  color: #FFFFFF;
 }
-.article a:visited {
-  border-bottom: 1px wavy #f7941d;
-  color: #d57808;
+a:visited {
+  border-bottom: 1px wavy #FFFFFF;
+  color: #FFFFFF;
 }
-.article a:hover, .article a:focus {
-  border-bottom: 2px solid #d57808;
-  color: #d57808;
+a:hover, a:focus {
+  border-bottom: 2px solid #FFFFFF;
+  color: #FFFFFF;
   font-weight: bold;
   text-decoration: none;
 }

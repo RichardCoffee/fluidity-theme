@@ -4,6 +4,8 @@
  *  based on bootstrap danger color scheme
  *
  */
+/* functions */
+/* mixins */
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
@@ -235,15 +237,15 @@ a.tcc-footer-menu-item:visited {
   border-bottom: 1px wavy #a94442;
 }
 
-.article a {
+a {
   border-bottom: 1px solid #f2dede;
   color: #f2dede;
 }
-.article a:visited {
+a:visited {
   border-bottom: 1px wavy #f2dede;
   color: #f2dede;
 }
-.article a:hover, .article a:focus {
+a:hover, a:focus {
   border-bottom: 2px solid #f2dede;
   color: #f2dede;
   font-weight: bold;

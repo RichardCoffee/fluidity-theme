@@ -4,6 +4,8 @@
  *  bootstrap success color scheme
  *
  */
+/* functions */
+/* mixins */
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
@@ -235,17 +237,17 @@ a.tcc-footer-menu-item:visited {
   border-bottom: 1px wavy #ffffff;
 }
 
-.article a {
-  border-bottom: 1px solid #5cb85c;
-  color: #5cb85c;
+a {
+  border-bottom: 1px solid #ffffff;
+  color: #ffffff;
 }
-.article a:visited {
-  border-bottom: 1px wavy #5cb85c;
-  color: #4cae4c;
+a:visited {
+  border-bottom: 1px wavy #ffffff;
+  color: #ffffff;
 }
-.article a:hover, .article a:focus {
-  border-bottom: 2px solid #4cae4c;
-  color: #4cae4c;
+a:hover, a:focus {
+  border-bottom: 2px solid #ffffff;
+  color: #ffffff;
   font-weight: bold;
   text-decoration: none;
 }

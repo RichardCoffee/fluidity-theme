@@ -2,6 +2,8 @@
  *  css/colors/blue.css
  *
  */
+/* functions */
+/* mixins */
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
@@ -233,17 +235,17 @@ a.tcc-footer-menu-item:visited {
   border-bottom: 1px wavy #FFFFFF;
 }
 
-.article a {
-  border-bottom: 1px solid #2e3192;
-  color: #2e3192;
+a {
+  border-bottom: 1px solid #FFFFFF;
+  color: #FFFFFF;
 }
-.article a:visited {
-  border-bottom: 1px wavy #2e3192;
-  color: #252775;
+a:visited {
+  border-bottom: 1px wavy #FFFFFF;
+  color: #FFFFFF;
 }
-.article a:hover, .article a:focus {
-  border-bottom: 2px solid #252775;
-  color: #252775;
+a:hover, a:focus {
+  border-bottom: 2px solid #FFFFFF;
+  color: #FFFFFF;
   font-weight: bold;
   text-decoration: none;
 }

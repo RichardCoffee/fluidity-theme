@@ -6,6 +6,8 @@
 @import "placeholders";
 
 $headerBody: color(background) !default;
+$maincomp: darkest(color(background), color(textcolor));
+$mainhigh: darkest(color(bgHighlight), color(textHighlight));
 
 .btn-fluidity,
 .color-fluidity,
@@ -108,22 +110,23 @@ a.tcc-footer-menu-item {
 	}
 }
 
-.article {
-	& a {
-		border-bottom: 1px solid color(background);
-		color: color(background);
+//.article {
+//	& a {
+a {
+		border-bottom: 1px solid $maincomp; //color(background);
+		color: $maincomp; //color(background);
 		&:visited {
-			border-bottom: 1px wavy color(background);
-			color: color(bgHighlight);
+			border-bottom: 1px wavy $maincomp; //color(background);
+			color: $mainhigh; //color(bgHighlight);
 		}
 		&:hover, &:focus {
-			border-bottom: 2px solid color(bgHighlight);
-			color: color(bgHighlight);
+			border-bottom: 2px solid $mainhigh; //color(bgHighlight);
+			color: $mainhigh; //color(bgHighlight);
 			font-weight: bold;
 			text-decoration: none;
 		}
 	}
-}
+//}
 
 blockquote,
 .content-fluidity {
