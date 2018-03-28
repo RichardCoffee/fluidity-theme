@@ -126,8 +126,12 @@ a {
 }
 
 .navbar a {
+	border: none;
+	&:visited {
+		border: none;
+	}
 	&:hover, &:focus {
-		border-bottom: 1px solid $mainhigh; //color(bgHighlight);
+		border: none;
 		font-weight: normal;
 	}
 }

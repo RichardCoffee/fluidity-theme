@@ -250,8 +250,14 @@ a:hover, a:focus {
   text-decoration: none;
 }
 
+.navbar a {
+  border: none;
+}
+.navbar a:visited {
+  border: none;
+}
 .navbar a:hover, .navbar a:focus {
-  border-bottom: 1px solid #206296;
+  border: none;
   font-weight: normal;
 }
 
