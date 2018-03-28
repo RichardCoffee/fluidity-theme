@@ -237,16 +237,16 @@ a.tcc-footer-menu-item:visited {
 }
 
 a {
-  border-bottom: 1px solid #FFFFFF;
-  color: #FFFFFF;
+  border-bottom: 1px solid #CE2029;
+  color: #CE2029;
 }
 a:visited {
-  border-bottom: 1px wavy #FFFFFF;
-  color: #a51a21;
+  border-bottom: 1px wavy #CE2029;
+  color: #671015;
 }
 a:hover, a:focus {
-  border-bottom: 2px solid #a51a21;
-  color: #a51a21;
+  border-bottom: 2px solid #671015;
+  color: #671015;
   font-weight: bold;
   text-decoration: none;
 }

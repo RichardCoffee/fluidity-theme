@@ -13,7 +13,7 @@ $input-color-placeholder: #999;
 @function darkest( $color1, $color2 ) {
 	$comp1: lightness( $color1 );
 	$comp2: lightness( $color2 );
-	@if ( $comp1 < $comp2 ) {
+	@if ( $comp1 > $comp2 ) {
 		@return $color2;
 	}
 	@return $color1;
