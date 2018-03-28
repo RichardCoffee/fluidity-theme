@@ -251,7 +251,7 @@ a:hover, a:focus {
   text-decoration: none;
 }
 
-.navbar > a:hover, .navbar > a:focus {
+.navbar a:hover, .navbar a:focus {
   font-weight: normal;
 }
 
