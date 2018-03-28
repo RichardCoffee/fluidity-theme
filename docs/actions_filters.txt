@@ -41,6 +41,7 @@ Note:  this list is probably not accurate, check source for more
 
 		Filters                             Description                                       Function
 	========================            ==============================================    ========================
+		fluid_color_scheme                name of color scheme file                          fluid_color_scheme
 		fluid_container_type              control bootstrap container class                  container_type
 		fluid_{$page}_container_type      as above, only on specified page/section           container_type
 		fluid_navigation_excluded_terms   control what terms are excluded from post links    fluid_navigation
@@ -50,11 +51,10 @@ Note:  this list is probably not accurate, check source for more
 		get_title_class                   div css for page title                             get_title_class, used in tcc_page_title
 		get_title_class_$page             div css for $page title                            get_title_class, used in tcc_page_title
 		tcc_author_posts_header           header title for list of author's posts            author.php
-		tcc_color_scheme                  name of color scheme file                          tcc_color_scheme
 		tcc_content_slug                  template-part slug                                 fluid_content_slug
 		tcc_{$page}_content_slug          template-part slug for $page                       fluid_content_slug
 		tcc_{$page}_content_css           clearfix css applied to div that surrounds         special template file
-		                                  	template-part, css has to be in url format
+		                                    template-part, css has to be in url format
 		tcc_copyright_name                site title displayed in copyright notice           tcc_copyright
 		tcc_google_fonts                  list of google fonts we want to use                Typography::google_fonts
 		tcc_header_logo_class             css applied to header logo image                   fluidity_header_logo

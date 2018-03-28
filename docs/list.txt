@@ -75,6 +75,7 @@
 
 			Settings
 	==================================
+		fluid_color_scheme()
 		tcc_currency_symbol()
 		tcc_design( $option )
 		tcc_font_size()
@@ -109,8 +110,6 @@ contextual_static_front_page_section( $wp_customize )
 single_search_result()
 fluidity_menubar_print_button()
 fluid_color_body_class( $classes )
-fluid_color_scheme()
-tcc_color_scheme( $location = '' )
 tcc_custom_colors()
 tcc_parallax()
 tcc_editor_styles()

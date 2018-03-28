@@ -13,35 +13,51 @@ if ( ! function_exists( 'fluid_color_body_class' ) ) {
 
 if ( ! function_exists( 'fluid_color_scheme' ) ) {
 	function fluid_color_scheme() {
-		$color = tcc_color_scheme();
-		$base  = "/css/colors/$color.css";
-		if ( is_readable( get_stylesheet_directory() . $base ) ) {
-			return $color;
-		} else if ( is_readable( get_template_directory() . $base ) ) {
-			return $color;
+		static $scheme = null;
+		if ( ! $scheme ) {
+			$color = tcc_design( 'color_scheme', null );
+			if ( ! $color || ( $color === 'random-color' ) ) {
+				$color = tcc_color_scheme(); # generates random color scheme
+			}
+			$base   = "/css/colors/$color.css";
+			if ( is_readable( get_stylesheet_directory() . $base ) ) {
+				$scheme = $color;
+			} else if ( is_readable( get_template_directory() . $base ) ) {
+				$scheme = $color;
+			}
 		}
-		return '';
+		return apply_filters( 'fluid_color_scheme', $scheme );
 	}
 }
 
-if (!function_exists('tcc_color_scheme')) {
-  function tcc_color_scheme( $location='' ) {
-/*
- *    blue: primary
- *   green: success
- * lt blue: info
- *  orange: warning
- *     red: danger
- *   white: default
- */
-    static $color; // = 'danger-inverse';
-    if (!$color) {
-      $colors = array('primary','success','success-inverse','info','info-inverse','warning','warning-inverse','danger','danger-inverse','fire-engine');
-      $index  = rand(0,count($colors)-1);
-      $color  = $colors[$index];
-    }
-    return apply_filters('tcc_color_scheme',$color);
-  }
+if ( ! function_exists( 'tcc_color_scheme' ) ) {
+	function tcc_color_scheme() {
+		static $color; // = 'danger-inverse';
+		if ( ! $color ) {
+			$colors = array(
+				'blue',
+				'danger',
+				'danger-inverse',
+				'fire-engine',
+				'green',
+				'info',
+				'info-inverse',
+				'leaf-green',
+				'orange',
+				'primary',
+				'red',
+				'sea-blue',
+				'success',
+				'success-inverse',
+				'warning',
+				'warning-inverse',
+				'yellow',
+			);
+			$index  = rand( 0, count( $colors ) - 1 );
+			$color  = $colors[ $index ];
+		}
+		return apply_filters( 'tcc_color_scheme', $color );
+	}
 }
 
 #  function assumes calling function is wrapping with css script tags
