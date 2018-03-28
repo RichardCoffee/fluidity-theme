@@ -51,7 +51,7 @@ if ( ! function_exists( 'tcc_color_scheme' ) ) {
 				'success-inverse',
 				'warning',
 				'warning-inverse',
-				'yellow',
+#				'yellow',
 			);
 			$index  = rand( 0, count( $colors ) - 1 );
 			$color  = $colors[ $index ];
