@@ -44,6 +44,7 @@ Note:  this list is probably not accurate, check source for more
 		fluid_color_scheme                name of color scheme file                          fluid_color_scheme
 		fluid_container_type              control bootstrap container class                  container_type
 		fluid_{$page}_container_type      as above, only on specified page/section           container_type
+		fluid_excerpt_link_tooltip        string used for post link tooltip in excerpts      fluid_excerpt_link_tooltip
 		fluid_navigation_excluded_terms   control what terms are excluded from post links    fluid_navigation
 		fluid_navigation_taxonomy         What taxonomy should be used for taxonomy links    fluid_navigation
 		fluid_post_date_sprintf           string used to format the post date                fluid_post_date
