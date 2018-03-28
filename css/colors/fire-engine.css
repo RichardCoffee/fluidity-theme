@@ -252,6 +252,7 @@ a:hover, a:focus {
 }
 
 .navbar a:hover, .navbar a:focus {
+  border-bottom: 1px solid #671015;
   font-weight: normal;
 }
 

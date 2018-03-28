@@ -127,6 +127,7 @@ a {
 
 .navbar a {
 	&:hover, &:focus {
+		border-bottom: 1px solid $mainhigh; //color(bgHighlight);
 		font-weight: normal;
 	}
 }
