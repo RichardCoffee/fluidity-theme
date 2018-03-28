@@ -110,23 +110,26 @@ a.tcc-footer-menu-item {
 	}
 }
 
-//.article {
-//	& a {
 a {
-		border-bottom: 1px solid $maincomp; //color(background);
-		color: $maincomp; //color(background);
-		&:visited {
-			border-bottom: 1px wavy $maincomp; //color(background);
-			color: $mainhigh; //color(bgHighlight);
-		}
-		&:hover, &:focus {
-			border-bottom: 2px solid $mainhigh; //color(bgHighlight);
-			color: $mainhigh; //color(bgHighlight);
-			font-weight: bold;
-			text-decoration: none;
-		}
+	border-bottom: 1px solid $maincomp; //color(background);
+	color: $maincomp; //color(background);
+	&:visited {
+		border-bottom: 1px wavy $maincomp; //color(background);
+		color: $mainhigh; //color(bgHighlight);
 	}
-//}
+	&:hover, &:focus {
+		border-bottom: 2px solid $mainhigh; //color(bgHighlight);
+		color: $mainhigh; //color(bgHighlight);
+		font-weight: bold;
+		text-decoration: none;
+	}
+}
+
+.navbar > a {
+	&:hover, &:focus {
+		font-weight: inherit;
+	}
+}
 
 blockquote,
 .content-fluidity {

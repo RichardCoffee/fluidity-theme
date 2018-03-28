@@ -250,6 +250,10 @@ a:hover, a:focus {
   text-decoration: none;
 }
 
+.navbar > a:hover, .navbar > a:focus {
+  font-weight: inherit;
+}
+
 blockquote,
 .content-fluidity {
   border-color: #252775;
