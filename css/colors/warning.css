@@ -253,7 +253,7 @@ a:hover, a:focus {
 }
 
 .navbar > a:hover, .navbar > a:focus {
-  font-weight: inherit;
+  font-weight: normal;
 }
 
 blockquote,
