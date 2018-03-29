@@ -13,6 +13,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $li_css         = 'btn-fluidity';
 	protected $newer_link     = '';
 	protected $older_link     = '';
+	protected $posts          = array();
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
 	protected $same_term      = false;
 	protected $show_newer     = true;
@@ -27,6 +28,8 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 		$this->navigation_text();
+		$this->taxonomy = apply_filters( 'fluid_navigation_taxonomy', $this->taxonomy );
+		$this->check_posts();
 		$this->navigation();
 	}
 
@@ -42,8 +45,6 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	}
 
 	protected function navigation() {
-		$this->taxonomy = apply_filters( 'fluid_navigation_taxonomy', $this->taxonomy );
-		$this->check_posts();
 		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div class="article">
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
@@ -69,6 +70,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$posts['next_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
 		$posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
 		$posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
+		$this->posts = $posts;
 $this->log(
 "    taxonomy: $this->taxonomy",
 "previous tax: {$posts['prev_tax']->ID} ".$posts['prev_tax']->post_title,
@@ -82,6 +84,10 @@ $this->log(
 			} else {
 				$this->show_newer = ( $posts['next_tax']->ID !== $posts['next_all']->ID );
 				$this->show_older = ( $posts['prev_tax']->ID !== $posts['prev_all']->ID );
+$this->log(
+'show newer:  ' . $this->show_newer,
+'show older:  ' . $this->show_older
+);
 			}
 		} //*/
 	}
