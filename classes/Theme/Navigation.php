@@ -133,8 +133,8 @@ $this->log(
 		$this->newer_link = $this->text['new_all'];
 		$this->older_link = $this->text['old_all'];
 		$this->sr_text    = $this->text['sr_all'];
-		$this->show_newer = true;
-		$this->show_older = true;
+		$this->show_newer = ( $this->posts['next_all']->ID > 0 );
+		$this->show_older = ( $this->posts['prev_all']->ID > 0 );
 		$this->ul_css     = 'pager pager-all';
 		$this->same_term  = false;
 		return $this->generate_navigation();
