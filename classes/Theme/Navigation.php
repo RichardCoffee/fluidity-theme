@@ -115,6 +115,12 @@ $this->log(
 		$this->sr_text    = $this->text['sr_tax'];
 		$this->ul_css     = 'pager pager-taxonomy';
 		$this->same_term  = true;
+		$this->show_older = ( $this->show_older && ( $this->posts['prev_tax']->ID > 0 ) );
+		$this->show_newer = ( $this->show_newer && ( $this->posts['next_tax']->ID > 0 ) );
+$this->log(
+'show newer:  ' . $this->show_newer,
+'show older:  ' . $this->show_older
+);
 		return $this->generate_navigation();
 	}
 
