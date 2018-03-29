@@ -5,7 +5,7 @@
  *
  */
 
-add_filter ( "fluid_footer_container_type", function ( $css ) { return "$css container-fluid port-opaque"; } );
+add_filter ( "fluid_footer_container_type", function ( $css ) { return "container-fluid port-opaque"; } );
 
 
 #  Uses earliest published post to generate copyright date
