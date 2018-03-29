@@ -60,7 +60,7 @@ if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 			'target' => '_blank',
 			'title'  => sprintf( _x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), get_the_title() ),
 		);
-		$link   = fluid_get_apply_attrs_tag( $attrs, 'a' );
+		$link   = fluid()->get_apply_attrs_tag( $attrs, 'a' );
 		$link  .= $text . '</a>';
 		return $link;
 	}
