@@ -52,6 +52,10 @@ logo {
   padding-right: 5%;
 }
 
+.pager {
+	margin: 0; // override bootstrap margin: 20px 0;
+}
+
 .pager::before,
 .pager::after {
 	display: block;

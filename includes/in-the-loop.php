@@ -31,28 +31,40 @@ if (!function_exists('fluid_content_slug')) {
 
 if ( ! function_exists( 'fluid_edit_post_link' ) ) {
 	function fluid_edit_post_link() {
-		echo fluid_get_edit_post_link();
+		$text   = '&nbsp;{ ' . esc_html_x( 'Edit', 'verb', 'tcc-fluid' ) . ' }';
+		$before = '<span class="edit-link small block">';
+		$after  = '</span>';
+		edit_post_link( $text, $before, $after );
 	}
 }
-if ( ! function_exists( 'fluid_get_edit_post_link' ) ) {
-	function fluid_get_edit_post_link() {
-		$postID = get_the_ID();
-		##  This code replaces the edit_post_link call so that I could add the target attribute
-		if ( $link = get_edit_post_link( $postID ) ) {
-			$link = apply_filters( 'fluid_get_edit_post_link_link', $link, $postID );
-			if ( $link ) {
-				$attrs = array(
-					'class'  => 'post-edit-link',
-					'href'   => $link,
-					'target' => '_blank',
-					'title'  => sprintf( _x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), get_the_title() ),
-				); ?>
-				<span class="edit-link small block">
-					<a <?php fluid_library()->apply_attrs( $attrs ); ?>>&nbsp;{ <?php esc_html_ex( 'Edit', 'verb', 'tcc-fluid' ); ?> }</a>
-				</span><?php
-			}
-		}
+
+/**
+ * Returns a string intended to be used for the title attribute for post links in excerpts
+ *
+ * @since 2.3.0
+ *
+ * @return string
+ */
+if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
+	function fluid_excerpt_link_tooltip() {
+		$tooltip = sprintf( esc_html_x('Read All About %s','a post title','tcc-fluid'), fluid_title() );
+		return $tooltip; # apply_filters( 'fluid_excerpt_link_tooltip', $tooltip );
 	}
+}
+
+if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
+	function fluid_edit_post_link_anchor( $anchor, $id, $text ) {
+		$attrs = array(
+			'class'  => 'post-edit-link',
+			'href'   => get_edit_post_link( $id ),
+			'target' => '_blank',
+			'title'  => sprintf( _x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), get_the_title() ),
+		);
+		$link   = fluid_get_apply_attrs_tag( $attrs, 'a' );
+		$link  .= $text . '</a>';
+		return $link;
+	}
+	add_filter( 'edit_post_link', 'fluid_edit_post_link_anchor', 10, 3 );
 }
 
 if (!function_exists('fluid_next_post_exists')) {
@@ -123,16 +135,21 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 	#	https://make.wordpress.org/themes/handbook/review/accessibility/required/
 	#	https://github.com/wpaccessibility/a11ythemepatterns
 	function fluid_read_more_link( $output ) {
-		$permalink = get_permalink( get_the_ID() );
-		$read_more = apply_filters( 'tcc_read_more_text', __( 'Read More', 'tcc-fluid' ) );
-		$brackets  = apply_filters( 'tcc_read_more_brackets', true );
-		$css       = apply_filters( 'tcc_read_more_css', '' );
-		$sr_text   = '<span class="screen-reader-text"> ' . wp_strip_all_tags( get_the_title( get_the_ID() ) ) . '</span>';
-		$link = '<a class="read-more-link" href="' . esc_url( $permalink ) . '" itemprop="url">' . esc_html( $read_more ) . $sr_text . '</a>';
-		if ($brackets) {
+		$attrs = array(
+			'class'    => 'read-more-link',
+			'href'     => get_permalink( get_the_ID() ),
+			'itemprop' => 'url',
+		);
+		$link  = fluid()->get_apply_attrs_tag( $attrs, 'a' );
+		$link .= esc_html( apply_filters( 'tcc_read_more_text', __( 'Read More', 'tcc-fluid' ) ) );
+		$link .= '<span class="screen-reader-text"> ';
+		$link .= wp_strip_all_tags( get_the_title( get_the_ID() ) );
+		$link .= '</span></a>';
+		if ( apply_filters( 'tcc_read_more_brackets', true ) ) {
 			$link = ' [' . $link . ']';
 		}
-		if ($css)  {
+		$css = apply_filters( 'tcc_read_more_css', '' );
+		if ( $css )  {
 			$link = '<span class="' . esc_attr( $css ) . '">' . $link . '</span>';
 		}
 		return $link;
@@ -210,7 +227,7 @@ if (!function_exists('tcc_post_title')) {
 		$anchor = ( is_single() || is_page() ) ? false : $anchor;
 		$title  = fluid_title( $max );
 		if ( $anchor ) {
-			$tooltip = sprintf( esc_html_x('Read All About %s','a post title','tcc-fluid'), fluid_title() );
+			$tooltip = fluid_excerpt_link_tooltip();
 			$string  = '<a href="%s" rel="bookmark" title="%s">%s</a>';
 			$title   = sprintf( $string, get_the_permalink(), esc_attr($tooltip), esc_html($title) );
 		}
