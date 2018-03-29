@@ -48,13 +48,13 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 			<div class="article">
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
 					if ( $this->taxonomy ) {
-						$this->taxonomy_links();
+						echo $this->taxonomy_links();
 					}
 					if ( $this->taxonomy && $this->all_links ) { ?>
 						<div id="post-link-separator-middle" class="post-link-separator post-link-separator-middle"></div><?php
 					}
 					if ( $this->all_links ) {
-						$this->all_links();
+						echo $this->all_links();
 					} ?>
 				<div id="post-link-separator-bottom" class="post-link-separator post-link-separator-bottom"></div>
 			</div><?php
@@ -69,7 +69,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$posts['next_tax'] = $this->get_adjacent_post( true,  $this->excluded_terms, false, $this->taxonomy );
 		$posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
 		$posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
-/*$this->log(
+$this->log(
 "    taxonomy: $this->taxonomy",
 "previous tax: {$posts['prev_tax']->ID} ".$posts['prev_tax']->post_title,
 "previous all: {$posts['prev_all']->ID} ".$posts['prev_all']->post_title,
@@ -109,7 +109,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->sr_text    = $this->text['sr_tax'];
 		$this->ul_css     = 'pager pager-taxonomy';
 		$this->same_term  = true;
-		$this->generate_navigation();
+		return $this->generate_navigation();
 	}
 
 	protected function get_post_category() {
@@ -125,10 +125,13 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->show_older = true;
 		$this->ul_css     = 'pager pager-all';
 		$this->same_term  = false;
-		$this->generate_navigation();
+		return $this->generate_navigation();
 	}
 
 	protected function generate_links() {
+		if ( ( ! $this->show_older ) && ( ! $this->show_newer ) ) {
+			return '';
+		}
 		ob_start(); ?>
 			<div class="row">
 				<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
