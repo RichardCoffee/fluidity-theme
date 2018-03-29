@@ -30,7 +30,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
 			),
 		);
-/*		$layout['header'] = array(
+		$layout['header'] = array(
 			'default' => 'static',
 			'label'   => __( 'Header', 'tcc-fluid' ),
 			'text'    => __( 'How do you want the header to behave?', 'tcc-fluid' ),
