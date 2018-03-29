@@ -351,6 +351,10 @@ header {
   margin-left: 1em;
 }
 
+.navbar-header {
+  border-radius: 4px;
+}
+
 .tcc-icon {
   height: 15px;
   width: auto;
