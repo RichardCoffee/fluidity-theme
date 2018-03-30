@@ -3,19 +3,18 @@
 if ( ! function_exists( 'tcc_enqueue' ) ) {
 	function tcc_enqueue() {
 		do_action( 'tcc_pre_enqueue' );
-		#	Register scripts
+		#  register scripts
 		fluidity_register_fontawesome();
-		fluidity_register_bootstrap();
 		fluidity_register_color_scheme();
 		fluidity_register_css_js();
-		#	Stylesheets
+		#  load stylesheets
 		wp_enqueue_style( 'tcc-fawe' );   #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
 		if ( tcc_option( 'active', 'social' ) === 'yes' ) {
 			wp_enqueue_style( 'fa-social' );
 		}
 		fluidity_enqueue_bootstrap();
 		do_action( 'tcc_during_enqueue' );
-		#Javascript
+		#  load javascript
 		if ( tcc_layout( 'menu' ) !== 'bootstrap' ) {
 			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), array(), '20151215', true );
 		}

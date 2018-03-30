@@ -57,13 +57,12 @@ abstract class TCC_Theme_BasicNav {
 	 * @return string
 	 */
 	protected function generate_navigation() {
-		$links = $this->generate_links();
 		$template = apply_filters( 'navigation_markup_template', null, $this->nav_css );
 		if ( $template ) {
-			$html = sprintf( $template, sanitize_html_class( $this->nav_css ), esc_html( $this->sr_text ), $links );
+			$html = sprintf( $template, sanitize_html_class( $this->nav_css ), esc_html( $this->sr_text ), $this->generate_links() );
 		} else {
 			if ( $template = $this->generate_markup() ) {
-				$html = sprintf( $template, $links );
+				$html = sprintf( $template, $this->generate_links() );
 			} else {
 				$html = '';
 			}
@@ -89,6 +88,36 @@ abstract class TCC_Theme_BasicNav {
 		$html.= '</nav>';
 		return $html;
 	}
+/*
+	protected function generate_links() {
+		if ( ( ! $this->show_older ) && ( ! $this->show_newer ) ) {
+			return '';
+		}
+		ob_start(); ?>
+		<div class="row">
+			<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
+				if ( $this->show_older ) {
+					$li_attrs = array(
+						'class' => 'previous '. $this->li_css,
+						'title' => $this->older_link,
+					);
+					$this->apply_attrs_tag( $li_attrs, 'li' );
+						previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
+					</li><?php
+				}
+				if ( $this->show_newer ) {
+					$li_attrs = array(
+						'class' => 'next '. $this->li_css,
+						'title' => $this->newer_link,
+					);
+					$this->apply_attrs_tag( $li_attrs, 'li' );
+						next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
+					</li><?php
+				} ?>
+			</ul>
+		</div><?php
+		return ob_get_clean();
+	} //*/
 
 
 }

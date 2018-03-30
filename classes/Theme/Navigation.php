@@ -1,9 +1,11 @@
 <?php
-
-/*
+/**
+ * classes/Theme/Navigation.php
+ *
+ */
+/**
  *    This class can only be used inside the Loop.
  */
-
 class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 
@@ -35,12 +37,12 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 	protected function navigation_text() {
 		$this->text = array(
-			'new_all' => __( 'Newer Post', 'tcc-fluid' ),
-			'new_tax' => _x( 'Newer %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
-			'old_all' => __( 'Older Post', 'tcc-fluid' ),
-			'old_tax' => _x( 'Older %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
-			'sr_all'  => __( 'Posts Navigation', 'tcc-fluid' ),
-			'sr_tax'  => __( 'Category Navigation', 'tcc-fluid' )
+			'next_all' => __( 'Newer Post', 'tcc-fluid' ),
+			'next_tax' => _x( 'Newer %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
+			'prev_all' => __( 'Older Post', 'tcc-fluid' ),
+			'prev_tax' => _x( 'Older %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
+			'sr_all'   => __( 'Posts Navigation', 'tcc-fluid' ),
+			'sr_tax'   => __( 'Category Navigation', 'tcc-fluid' )
 		);
 	}
 
@@ -105,12 +107,12 @@ $this->log(
 	protected function taxonomy_links() {
 		if ( $this->taxonomy === 'category' ) {
 			$category = $this->get_post_category();
-			$this->newer_link = sprintf( $this->text['new_tax'], $category );
-			$this->older_link = sprintf( $this->text['old_tax'], $category );
+			$this->newer_link = sprintf( $this->text['next_tax'], $category );
+			$this->older_link = sprintf( $this->text['prev_tax'], $category );
 		} else {
 			$tax_obj = get_taxonomy( $this->taxonomy );
-			$this->newer_link = sprintf( $this->text['new_tax'], $tax_obj->labels->singular_name );
-			$this->older_link = sprintf( $this->text['old_tax'], $tax_obj->labels->singular_name );
+			$this->newer_link = sprintf( $this->text['next_tax'], $tax_obj->labels->singular_name );
+			$this->older_link = sprintf( $this->text['prev_tax'], $tax_obj->labels->singular_name );
 		}
 		$this->sr_text    = $this->text['sr_tax'];
 		$this->ul_css     = 'pager pager-taxonomy';
@@ -130,8 +132,8 @@ $this->log(
 	}
 
 	protected function all_links() {
-		$this->newer_link = $this->text['new_all'];
-		$this->older_link = $this->text['old_all'];
+		$this->newer_link = $this->text['next_all'];
+		$this->older_link = $this->text['prev_all'];
 		$this->sr_text    = $this->text['sr_all'];
 		$this->show_newer = ( $this->posts['next_all']->ID > 0 );
 		$this->show_older = ( $this->posts['prev_all']->ID > 0 );
@@ -147,21 +149,21 @@ $this->log(
 		ob_start(); ?>
 			<div class="row">
 				<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
-					$li_attrs = array(
-						'class' => 'previous '. $this->li_css,
-						'title' => $this->older_link,
-					);
 					if ( $this->show_older ) {
-						$this->apply_attrs_tag( $li_attrs, 'li' );
+						$attrs = array(
+							'class' => 'previous '. $this->li_css,
+							'title' => $this->older_link,
+						);
+						$this->apply_attrs_tag( $attrs, 'li' );
 							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					}
-					$li_attrs = array(
-						'class' => 'next '. $this->li_css,
-						'title' => $this->newer_link,
-					);
 					if ( $this->show_newer ) {
-						$this->apply_attrs_tag( $li_attrs, 'li' );
+						$attrs = array(
+							'class' => 'next '. $this->li_css,
+							'title' => $this->newer_link,
+						);
+						$this->apply_attrs_tag( $attrs, 'li' );
 							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					} ?>
