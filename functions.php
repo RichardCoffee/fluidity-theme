@@ -74,3 +74,21 @@ add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,
 add_action( 'tcc_inside_page', function( $slug ) {
 	tellme( 'color scheme:  ' . fluid_color_scheme() );
 } );
+add_action( 'next_post_link', function( $output, $format, $link, $post, $adjacent ) {
+fluid()->log(
+		'  output: ' . $output,
+		'  format: ' . $format,
+		'    link: ' . $link,
+		' post id: ' . $post->ID,
+		'adjacent: ' . $adjacent
+	);
+} );
+add_action( 'previous_post_link', function( $output, $format, $link, $post, $adjacent ) {
+	fluid()->log(
+		'  output: ' . $output,
+		'  format: ' . $format,
+		'    link: ' . $link,
+		' post id: ' . $post->ID,
+		'adjacent: ' . $adjacent
+	);
+} );
