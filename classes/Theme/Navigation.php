@@ -95,7 +95,11 @@ $this->log(
 	}
 
 	protected function get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy = 'category' ) {
-		$post = get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy );
+		if ( $previous && is_attachment() ) {
+			$post = get_post( get_post()->post_parent );
+		} else {
+			$post = get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy );
+		}
 		if ( empty( $post ) ) {
 			$post = new stdClass;
 			$post->ID = 0;
@@ -155,7 +159,8 @@ $this->log(
 							'title' => $this->older_link,
 						);
 						$this->apply_attrs_tag( $attrs, 'li' );
-							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
+							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
+#							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					}
 					if ( $this->show_newer ) {
@@ -164,12 +169,35 @@ $this->log(
 							'title' => $this->newer_link,
 						);
 						$this->apply_attrs_tag( $attrs, 'li' );
-							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
+							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
+#							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					} ?>
 				</ul>
 			</div><?php //*/
 		return ob_get_clean();
+	}
+
+	protected function get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
+		$post = $this->get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
+		if ( $post->ID === 0 ) {
+			$output = '';
+		} else {
+			$title = $post->post_title;
+			if ( empty( $post->post_title ) ) {
+				$title = $previous ? __( 'Previous Post' ) : __( 'Next Post' );
+			}
+			$title  = apply_filters( 'the_title', $title, $post->ID );
+			$date   = mysql2date( get_option( 'date_format' ), $post->post_date );
+			$rel    = $previous ? 'prev' : 'next';
+			$string = '<a href="' . get_permalink( $post ) . '" rel="'.$rel.'">';
+			$inlink = str_replace( '%title', $title, $link );
+			$inlink = str_replace( '%date', $date, $inlink );
+			$inlink = $string . $inlink . '</a>';
+			$output = str_replace( '%link', $inlink, $format );
+		}
+		$adjacent = $previous ? 'previous' : 'next';
+		return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
 	}
 
 
