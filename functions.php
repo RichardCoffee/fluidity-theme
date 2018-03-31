@@ -82,7 +82,7 @@ fluid()->log(
 		' post id: ' . $post->ID,
 		'adjacent: ' . $adjacent
 	);
-} );
+}, 10, 5 );
 add_action( 'previous_post_link', function( $output, $format, $link, $post, $adjacent ) {
 	fluid()->log(
 		'  output: ' . $output,
@@ -91,4 +91,4 @@ add_action( 'previous_post_link', function( $output, $format, $link, $post, $adj
 		' post id: ' . $post->ID,
 		'adjacent: ' . $adjacent
 	);
-} );
+}, 10, 5 );
