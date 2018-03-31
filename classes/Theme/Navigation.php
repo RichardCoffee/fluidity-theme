@@ -159,8 +159,8 @@ $this->log(
 							'title' => $this->older_link,
 						);
 						$this->apply_attrs_tag( $attrs, 'li' );
-							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
-#							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
+#							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
+							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					}
 					if ( $this->show_newer ) {
@@ -169,8 +169,8 @@ $this->log(
 							'title' => $this->newer_link,
 						);
 						$this->apply_attrs_tag( $attrs, 'li' );
-							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
-#							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
+#							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
+							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					} ?>
 				</ul>
