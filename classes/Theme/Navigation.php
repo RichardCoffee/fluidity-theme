@@ -179,6 +179,7 @@ $this->log(
 	}
 
 	protected function get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
+fluid()->log(func_get_args());
 		$post = $this->get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
 		if ( $post->ID === 0 ) {
 			$output = '';
