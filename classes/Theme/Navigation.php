@@ -75,7 +75,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
 		$posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
 		$this->posts = $posts;
-$this->log(
+/*$this->log(
 "    taxonomy: $this->taxonomy",
 "previous tax: {$posts['prev_tax']->ID} ".$posts['prev_tax']->post_title,
 "previous all: {$posts['prev_all']->ID} ".$posts['prev_all']->post_title,
@@ -88,10 +88,10 @@ $this->log(
 			} else {
 				$this->show_newer = ( $posts['next_tax']->ID !== $posts['next_all']->ID );
 				$this->show_older = ( $posts['prev_tax']->ID !== $posts['prev_all']->ID );
-$this->log(
+/*$this->log(
 'show newer:  ' . $this->show_newer,
 'show older:  ' . $this->show_older
-);
+); //*/
 			}
 		} //*/
 	}
@@ -127,10 +127,10 @@ $this->log(
 		$this->previous   = $this->posts['prev_tax'];
 		$this->show_older = ( $this->show_older && ( $this->posts['prev_tax']->ID > 0 ) );
 		$this->show_newer = ( $this->show_newer && ( $this->posts['next_tax']->ID > 0 ) );
-$this->log(
+/*$this->log(
 'show newer:  ' . $this->show_newer,
 'show older:  ' . $this->show_older
-);
+); //*/
 		return $this->generate_navigation();
 	}
 
@@ -165,8 +165,8 @@ $this->log(
 							'title' => $this->older_link,
 						);
 						$this->apply_attrs_tag( $attrs, 'li' );
-#							echo $this->get_adjacent_post_link( '%link', $this->left, true, $this->previous );
-							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
+							echo $this->get_adjacent_post_link( '%link', $this->left, true, $this->previous );
+#							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
 #							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					}
@@ -176,8 +176,8 @@ $this->log(
 							'title' => $this->newer_link,
 						);
 						$this->apply_attrs_tag( $attrs, 'li' );
-#							echo $this->get_adjacent_post_link( '%link', $this->right, false, $this->next );
-							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
+							echo $this->get_adjacent_post_link( '%link', $this->right, false, $this->next );
+#							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
 #							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 						</li><?php
 					} ?>
@@ -186,10 +186,10 @@ $this->log(
 		return ob_get_clean();
 	}
 
-#	protected function get_adjacent_post_link( $format, $link, $previous, $post ) {
-	protected function get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
+	protected function get_adjacent_post_link( $format, $link, $previous, $post ) {
+#	protected function get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
 #fluid()->log(func_get_args());
-		$post = $this->get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
+#		$post = $this->get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
 		if ( $post->ID === 0 ) {
 			$output = '';
 		} else {
