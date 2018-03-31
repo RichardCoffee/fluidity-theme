@@ -95,7 +95,7 @@ $this->log(
 	}
 
 	protected function get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy = 'category' ) {
-		if ( $previous && is_attachment() ) {
+		if ( $direction && is_attachment() ) {
 			$post = get_post( get_post()->post_parent );
 		} else {
 			$post = get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy );
