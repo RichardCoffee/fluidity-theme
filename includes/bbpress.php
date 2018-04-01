@@ -117,14 +117,14 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 
 if ( ! function_exists( 'fluid_bbp_topic_subscribed_default' ) ) {
 	function fluid_bbp_topic_subscribed_default( $subscribe = false ) {
-fluid()->log(0,'default3: '.$subscribe);
+fluid()->log(0,'default1: '.$subscribe);
 		$subscribe = ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : $subscribe;
-fluid()->log(0,'default3: '.$subscribe);
-		if ( is_user_logged_in() ) {
+fluid()->log(0,'default2: '.$subscribe);
+/*		if ( is_user_logged_in() ) {
 			$user      = wp_get_current_user();
 			$subscribe = get_user_meta( $user->ID, 'fluid_bbp_topic_subscribe', $subscribe );
 fluid()->log(0,'default3: '.$subscribe);
-		}
+		} //*/
 		return $subscribe;
 	}
 	add_filter( 'fluid_bbp_topic_subscribed_default', 'fluid_bbp_topic_subscribed_default' );
