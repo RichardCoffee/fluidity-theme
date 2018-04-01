@@ -12,7 +12,7 @@ if ( post_password_required() ) {
 
 who_am_i(); ?>
 
-<div id="comments" class="comments-area" itemprop="comment" itemscope itemtype='http://schema.org/Comment'><?php
+<div id="comments" class="article comments-area" itemprop="comment" itemscope itemtype='http://schema.org/Comment'><?php
 	if ( pings_open() ) { ?>
 		<p id="respond">
 			<span id="trackback-link">

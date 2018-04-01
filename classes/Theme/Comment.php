@@ -77,7 +77,7 @@ class TCC_Theme_Comment {
 			'email'         => __( 'Your Email Please',                  'tcc-fluid' ),
 			'email_req'     => __( 'Your Email Please - Required Field', 'tcc-fluid' ),
 			'logged_in_as'  => _x( '%1$sLogged in as %2$s%3$s. %4$sLog out?%5$s',
-				'2: User name,  1,3: start and end of link to profile page,  4,5: start and end of link to log-out page', 'tcc-fluid' ),
+				'2: User name,  1,3: html start and end of link to profile page,  4,5: html start and end of link to log-out page', 'tcc-fluid' ),
 			'logout'        => _x( 'Logged in as %s. Log out?', 'User name', 'tcc-fluid' ),
 			'must_log_in'   => _x( 'You must be %slogged in%s to post a comment.', 'start and end of link to log-in page', 'tcc-fluid' ),
 			'profile'       => _x( 'Logged in as %s. Edit your profile.', 'User name', 'tcc-fluid' ),
@@ -103,19 +103,17 @@ class TCC_Theme_Comment {
 
 	public function comment_form() {
 		$this->permalink = apply_filters( 'the_permalink', get_permalink( $this->post_id ) );
+		$comment_notes_before = ( $this->require ) ? $this->strings['comment_notes_before_req'] : $this->strings['comment_notes_before'];
 		$args = array(
 			'title_reply'          => $this->strings['title_reply'],
 			'fields'               => $this->comment_fields(),
 			'comment_field'        => '<p><textarea ' . $this->get_apply_attrs( $this->comment_attrs() ) . '></textarea></p>',
 			'must_log_in'          => '<p class="must-log-in">' .  $this->must_log_in() .  '</p>',
 			'logged_in_as'         => '<p class="logged-in-as">' . $this->logged_in_as() . '</p>',
-			'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . esc_html( $this->strings['comment_notes_before'] ) . '</span></p>',
+			'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . esc_html( $comment_notes_before ) . '</span></p>',
 			'comment_notes_after'  => '',
 			'class_submit'         => 'btn btn-fluidity',
 		);
-		if ( $this->require ) {
-			$args['comment_notes_before'] = $this->strings['comment_notes_before_req'];
-		}
 		$args = apply_filters( "{$this->prefix}_comment_args", $args );
 		add_filter( 'comment_form_fields', array( $this, 'move_comment_field_to_bottom' ) );
 		comment_form( $args );
