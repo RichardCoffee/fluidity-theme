@@ -79,7 +79,7 @@ class TCC_Theme_Support {
 	}
 
 	protected function editor_style() {
-		if ( $this->editor_file ) {
+		if ( $this->editor_style ) {
 			$file = get_theme_file_path( $this->editor_style );
 			if ( is_readable( $file ) ) {
 				add_theme_support( 'editor_style' );
