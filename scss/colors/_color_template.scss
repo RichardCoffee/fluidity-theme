@@ -167,7 +167,7 @@ hr {
 }
 
 .page-title {
-	color: color(background);
+	color: $maincomp; //color(background);
 	text-shadow: color(bgHighlight) 1px 1px 2px;
 }
 
