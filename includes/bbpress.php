@@ -195,24 +195,10 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 
 /***   Forum Title   ***/
 
-# FIXME: look for an existing bbpress function
-if ( ! function_exists( 'fluid_get_forum_title' ) ) {
-	function fluid_get_forum_title() {
-		$title = __( 'Forum Title', 'tcc-fluid' );
-		if ( get_page_slug() === 'forum' ) {
-			$title = __( 'Welcome to the Forums!', 'tcc-fluid' );
-		} else {
-			$title = sprintf( _x( '%s Forum', 'string is the forum/post title', 'tcc-fluid' ), get_the_title( get_the_ID() ) );
-		}
-		return $title; # apply_filters( 'fluid_get_forum_title', $title );
-	}
-}
-
 if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 	function fluid_show_forum_title() { ?>
 		<h1 class="page-title text-center">
 			<?php bbp_forum_title(); ?>
-			<?php //echo fluid_get_forum_title(); ?>
 		</h1><?php
 	}
 }
