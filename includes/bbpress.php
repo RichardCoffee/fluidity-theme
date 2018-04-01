@@ -108,7 +108,7 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 			$topic_subscribed = bbp_is_user_subscribed_to_topic( bbp_get_current_user_id() );
 		// No data
 		} else {
-			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', $default );
+			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', false );
 		}
 		return checked( $topic_subscribed, true, false );
 	}
@@ -117,7 +117,12 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 
 if ( ! function_exists( 'fluid_bbp_topic_subscribed_default' ) ) {
 	function fluid_bbp_topic_subscribed_default( $subscribe = false ) {
-		return ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : false;
+		$subscribe = ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : $subscribe;
+		if ( is_user_logged_in() ) {
+			$user      = wp_get_current_user();
+			$subscribe = get_user_meta( $user->ID, 'fluid_bbp_topic_subscribe', $subscribe );
+		}
+		return $subscribe;
 	}
 	add_filter( 'fluid_bbp_topic_subscribed_default', 'fluid_bbp_topic_subscribed_default' );
 }
@@ -206,7 +211,8 @@ if ( ! function_exists( 'fluid_get_forum_title' ) ) {
 if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 	function fluid_show_forum_title() { ?>
 		<h1 class="page-title text-center">
-			<?php echo fluid_get_forum_title(); ?>
+			<?php bbp_forum_title(); ?>
+			<?php //echo fluid_get_forum_title(); ?>
 		</h1><?php
 	}
 }
