@@ -4,12 +4,12 @@ class TCC_Theme_Support {
 
 
 	protected $editor_style  = 'editor-style.css';
-	protected $filter_prefix = 'fluidity';
+	protected $filter_prefix = 'fluid';
 
 
 	public function __construct() {
-		add_action( 'after_setup_theme', array( $this, 'load_theme_support' ) );
-		add_action( 'init', array( $this, 'post_type_support' ) );
+		add_action( 'after_setup_theme', array( $this, 'load_theme_support' ), 100 );
+		add_action( 'init', array( $this, 'post_type_support' ), 9 );
 		add_filter( 'theme_scandir_exclusions', array( $this, 'theme_scandir_exclusions' ) );
 	}
 
@@ -43,6 +43,7 @@ class TCC_Theme_Support {
 #			'admin-head-callback'    => '',
 #			'admin-preview-callback' => '',
 		);
+		$background = apply_filters( $this->filter_prefix . '_support_custom_background', $background );
 		add_theme_support( 'custom-background', $background );
 	}
 
@@ -61,6 +62,7 @@ class TCC_Theme_Support {
 			'admin-head-callback'    => '',
 			'admin-preview-callback' => '',
 		);
+		$header = apply_filters( $this->filter_prefix . '_support_custom_header', $header );
 		add_theme_support( 'custom-header', $header );
 	}
 
@@ -72,14 +74,15 @@ class TCC_Theme_Support {
 			'flex-width'  => true,
 #			'header-text' => array( 'site-title', 'site-description' ),
 		);
+		$logo = apply_filters( $this->filter_prefix . '_support_custom_logo', $logo );
 		add_theme_support( 'custom-logo', $logo );
 	}
 
 	protected function editor_style() {
-		if ( ! empty( $this->editor_file ) ) {
-			add_theme_support('editor_style');
+		if ( $this->editor_file ) {
 			$file = get_theme_file_path( $this->editor_style );
 			if ( is_readable( $file ) ) {
+				add_theme_support( 'editor_style' );
 				add_editor_style( $this->editor_style );
 			}
 		}
@@ -93,6 +96,7 @@ class TCC_Theme_Support {
 			'gallery',
 			'search-form',
 		);
+		$html5 = apply_filters( $this->filter_prefix . '_support_html5', $html5 );
 		add_theme_support( 'html5', $html5 );
 	}
 
@@ -108,7 +112,7 @@ class TCC_Theme_Support {
 #			'status',
 #			'video',
 		);
-		$formats = apply_filters( $this->filter_prefix . '_post_formats', $formats );
+		$formats = apply_filters( $this->filter_prefix . '_support_post_formats', $formats );
 		if ( $formats ) {
 			add_theme_support( 'post-formats', $formats );
 			add_filter( $this->filter_prefix . '_theme_post_type_support', function( $supports ) {
@@ -163,6 +167,7 @@ class TCC_Theme_Support {
 			'scss',
 		) );
 		# add these exclusions when WP is checking for page templates
+		# FIXME: this will not work with gutenburg(!)
 		if ( was_called_by( 'page_attributes_meta_box' ) ) {
 			$exclusions = array_merge( $exclusions, array(
 				'classes',
@@ -172,6 +177,7 @@ class TCC_Theme_Support {
 				'template-parts',
 			) );
 		}
+#		$exclusions = apply_filters( $this->filter_prefix . '_theme_scandir_exclusions', $exclusions );
 		return $exclusions;
 	}
 

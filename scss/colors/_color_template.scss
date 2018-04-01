@@ -3,11 +3,13 @@
 // template for bootstrap color scheme
 
 @import "functions";
-@import "placeholders";
 
 $headerBody: color(background) !default;
 $maincomp: darkest(color(background), color(textcolor));
 $mainhigh: darkest(color(bgHighlight), color(textHighlight));
+$mainlite: lightest(color(background), color(textcolor));
+
+@import "placeholders";
 
 .btn-fluidity,
 .color-fluidity,

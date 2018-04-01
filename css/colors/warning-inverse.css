@@ -46,9 +46,9 @@ form .form-control {
   color: #FCF8E3;
 }
 form .form-control:hover, form .form-control:focus {
-  background-color: #8A6D3B;
-  border-color: #FAEBCC;
-  color: #FCF8E3;
+  background-color: #FCF8E3;
+  border-color: #8A6D3B;
+  color: #8A6D3B;
 }
 
 .back-fluidity {
