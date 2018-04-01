@@ -32,12 +32,12 @@ li.btn-fluidity > a,
 
 form .form-control {
 	@extend %textfield;
-	@include placeholder(color(background));
-	border: 1px solid rgba(color(background), 1);
+	@include placeholder($maincomp); //color(background));
+	border: 1px solid rgba($maincomp, 1); //color(background), 1);
 	&:hover, &:focus {
-		@include placeholder(color(bgHighlight));
-		@include box-shadow(0 0 4px rgba(color(bgHighlight), .5));
-		border: 1px solid rgba(color(bgHighlight), 1);
+		@include placeholder($mainhigh); //color(bgHighlight));
+		@include box-shadow(0 0 4px rgba($mainhigh, .5)); //color(bgHighlight), .5));
+		border: 1px solid rgba($mainhigh, 1); //color(bgHighlight), 1);
 	}
 }
 

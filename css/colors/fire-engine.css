@@ -79,22 +79,22 @@ form .form-control::-webkit-input-placeholder {
   color: #CE2029;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: 0 0 4px rgba(165, 26, 33, 0.5);
-  box-shadow: 0 0 4px rgba(165, 26, 33, 0.5);
-  border: 1px solid #a51a21;
+  -webkit-box-shadow: 0 0 4px rgba(103, 16, 21, 0.5);
+  box-shadow: 0 0 4px rgba(103, 16, 21, 0.5);
+  border: 1px solid #671015;
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
-  color: #a51a21;
+  color: #671015;
   opacity: 1;
 }
 form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
-  color: #a51a21;
+  color: #671015;
 }
 form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
-  color: #a51a21;
+  color: #671015;
 }
 form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
-  color: #a51a21;
+  color: #671015;
 }
 
 .ui-autocomplete {

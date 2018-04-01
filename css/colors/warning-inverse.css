@@ -64,38 +64,38 @@ form .form-control:hover, form .form-control:focus {
 }
 
 form .form-control {
-  border: 1px solid #fcf8e3;
+  border: 1px solid #8a6d3b;
 }
 form .form-control::-moz-placeholder {
-  color: #FCF8E3;
+  color: #8A6D3B;
   opacity: 1;
 }
 form .form-control:-moz-placeholder {
-  color: #FCF8E3;
+  color: #8A6D3B;
 }
 form .form-control:-ms-input-placeholder {
-  color: #FCF8E3;
+  color: #8A6D3B;
 }
 form .form-control::-webkit-input-placeholder {
-  color: #FCF8E3;
+  color: #8A6D3B;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: 0 0 4px rgba(250, 235, 204, 0.5);
-  box-shadow: 0 0 4px rgba(250, 235, 204, 0.5);
-  border: 1px solid #faebcc;
+  -webkit-box-shadow: 0 0 4px rgba(138, 109, 59, 0.5);
+  box-shadow: 0 0 4px rgba(138, 109, 59, 0.5);
+  border: 1px solid #8a6d3b;
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
-  color: #FAEBCC;
+  color: #8A6D3B;
   opacity: 1;
 }
 form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
-  color: #FAEBCC;
+  color: #8A6D3B;
 }
 form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
-  color: #FAEBCC;
+  color: #8A6D3B;
 }
 form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
-  color: #FAEBCC;
+  color: #8A6D3B;
 }
 
 .ui-autocomplete {
