@@ -12,14 +12,14 @@ class TCC_Options_ColorScheme {
 	}
 
 	public function describe_options() {
-		_e( 'Control the theme\'s color scheme.', 'tcc-fluid' );
+		_e( "Control the theme's color scheme.", 'tcc-fluid' );
 	}
 
 	protected function options_layout() {
 		$layout  = array( 'default' => true );
 		$schemes = $this->get_available_color_schemes();
-		$active  = tcc_options( 'active',  $this->base, 'none' );
-		$data    = tcc_options( 'schemes', $this->base,  array() );
+#		$active  = tcc_options( 'active',  $this->base, 'none' );
+#		$data    = tcc_options( 'schemes', $this->base, array() );
 		$layout['active'] = array(
 			'default' => 'none',
 			'label'   => __( 'Color Scheme', 'tcc-fluid' ),
@@ -27,15 +27,16 @@ class TCC_Options_ColorScheme {
 			'source'  => $schemes,
 		);
 		foreach( $schemes as $file => $name ) {
-			
+
 		}
 	}
 
-	private function get_available_color_schemes() {
+	public function get_available_color_schemes() {
+#	private function get_available_color_schemes() {
 		$colors = array();
-		$path = FLUIDITY_HOME . 'css/colors';
-		$avail = scandir( $path );
-log_entry($avail);
+		$path   = FLUIDITY_HOME . 'css/colors';
+		$avail  = scandir( $path );
+fluid()->log($avail);
 		foreach( $avail as $file ) {
 			if ( in_array( $file, array( '.', '..' ), true ) ) {
 				continue;
@@ -48,7 +49,6 @@ log_entry($avail);
 				$colors[ $file ] = $data['name'];
 			}
 		}
-log_entry($colors);
 		return $colors;
 	}
 

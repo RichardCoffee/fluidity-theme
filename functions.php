@@ -55,12 +55,6 @@ function themeslug_customize_register( $wp_customize ) {
   log_entry( $wp_customize );
 }
 add_action( 'customize_register', 'themeslug_customize_register' ); //*/
-/*
-function tcc_template_test( $template, $stem ) {
-	log_entry('slug: '.$template,'stem: '.$stem);
-}
-add_action( 'get_template_part_template-parts/header', 'tcc_template_test',0,2);
-add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,2); //*/
 /*add_action( 'wp_loaded', function () {
 #		global $wp_filter;
 #		log_entry( $wp_filter );
@@ -72,23 +66,9 @@ add_action( 'get_template_part_template-parts/header', 'tcc_template_test',1001,
 add_action( 'tcc_inside_page', function( $slug ) {
 	tellme( 'color scheme:  ' . fluid_color_scheme() );
 } );
-/*add_action( 'next_post_link', function( $output, $format, $link, $post, $adjacent ) {
-fluid()->log(
-		'  output: ' . $output,
-		'  format: ' . $format,
-		'    link: ' . $link,
-		' post id: ' . $post->ID,
-		'adjacent: ' . $adjacent
-	);
-	return $output;
-}, 10, 5 );
-add_action( 'previous_post_link', function( $output, $format, $link, $post, $adjacent ) {
-	fluid()->log(
-		'  output: ' . $output,
-		'  format: ' . $format,
-		'    link: ' . $link,
-		' post id: ' . $post->ID,
-		'adjacent: ' . $adjacent
-	);
-	return $output;
-}, 10, 5 ); //*/
+
+add_action( 'wp_loaded', function () {
+	$color = new TCC_Options_ColorScheme;
+	$schemes = $color->get_available_color_schemes();
+	fluid()->log($schemes);
+} );
