@@ -42,7 +42,7 @@ fluid()->log($file);
 			if ( in_array( $file, array( '.', '..' ), true ) ) {
 				continue;
 			}
-			if ( strpos( $file, '.css', -4 ) === false ) {
+			if ( strpos( $file, '.css' ) === false ) {
 				continue;
 			}
 			$data = get_file_data( $path . '/' . $file, array( 'name' => 'Name' ) );
