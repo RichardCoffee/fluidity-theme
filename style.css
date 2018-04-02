@@ -346,6 +346,9 @@ header {
   margin-top: auto;
   margin-bottom: auto;
 }
+.fluidity-social-icons a {
+  border: none;
+}
 
 .fluid-print-button {
   margin-top: 7px;

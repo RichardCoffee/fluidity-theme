@@ -1,8 +1,11 @@
 
 .fluidity-social-icons {
-  font-size: x-large;
-  margin-top:auto;
-  margin-bottom:auto;
+	font-size: x-large;
+	margin-top:auto;
+	margin-bottom:auto;
+	& a {
+		border: none;
+	}
 }
 
 .fluid-print-button {
