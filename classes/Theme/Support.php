@@ -3,6 +3,7 @@
  * classes/Theme/Support.php
  *
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/Support.php
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/support.php
  * @author Richard Coffee <richard.coffee@gmail.com>
  */
 
