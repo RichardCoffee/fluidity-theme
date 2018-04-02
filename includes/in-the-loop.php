@@ -92,26 +92,26 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 	}
 }
 
-if (!function_exists('fluid_postmetadata')) {
+if ( ! function_exists( 'fluid_postmetadata' ) ) {
 	function fluid_postmetadata() { ?>
-		<div class="article margint1e">
-		<p class="postmetadata noprint"><?php
-			if (has_tag()) {
-				the_tags(esc_html__('Tags','tcc-fluid').': ', ', ', '<br>');
-			}
-			$cat_list = get_the_category_list();
-			if (!empty($cat_list)) {  #  wordpress's has_category() does not always return a correct value - wtf?
-				esc_html_ex('Posted in ','string will be followed by a category or list of categories','tcc-fluid');
-				the_category(', ');
-			}
-			if (has_tag() || (!empty($cat_list))) {
-				echo ' | ';
-			}
-			$comm_0 = esc_html__('No Comments','tcc-fluid');
-			$comm_1 = esc_html__('1 Comment','tcc-fluid');
-			$comm_2 = esc_html_x('% Comments','number of comments','tcc-fluid');
-			comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
-		</p>
+		<div class="article margint1e noprint">
+			<p class="postmetadata"><?php
+				if ( has_tag() ) {
+					the_tags( esc_html__( 'Tags', 'tcc-fluid' ) . ': ', ', ', '<br>' );
+				}
+				$cat_list = get_the_category_list();
+				if ( ! empty( $cat_list ) ) {  #  wordpress's has_category() does not always return a correct value - wtf?
+					esc_html_ex( 'Posted in ', 'string will be followed by a category or list of categories', 'tcc-fluid' );
+					the_category(', ');
+				}
+				if ( has_tag() || ( ! empty( $cat_list ) ) ) {
+					echo ' | ';
+				}
+				$comm_0 = esc_html__( 'No Comments', 'tcc-fluid' );
+				$comm_1 = esc_html__( '1 Comment', 'tcc-fluid' );
+				$comm_2 = esc_html_x( '% Comments', 'number of comments', 'tcc-fluid' );
+				comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
+			</p>
 		</div><?php
 	}
 }

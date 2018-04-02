@@ -78,7 +78,7 @@ abstract class TCC_Theme_BasicNav {
 	 */
 	protected function generate_markup() {
 		$attrs = array(
-			'class' => 'navigation no-print ' . $this->nav_css,
+			'class' => 'navigation noprint ' . $this->nav_css,
 			'title' => $this->sr_text,
 			'aria-label' => $this->sr_text,
 			'role'  => 'navigation',

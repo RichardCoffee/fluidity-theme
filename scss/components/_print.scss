@@ -13,23 +13,15 @@
     line-height: 150%;
   }
 
-  #comments {
-    display: none;
-  }
-
   .container {
     width: auto;
   }
 
-  .edit-link {
-    display: none;
-  }
-
-  #fluid-header {
-    display: none;
-  }
-
-  #fluid-footer {
+  #comments,
+  .edit-link,
+  #fluid-footer,
+  #fluid-header,
+  #upm-buttons {
     display: none;
   }
 
