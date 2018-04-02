@@ -38,6 +38,7 @@ class TCC_Options_ColorScheme {
 		$avail  = scandir( $path );
 fluid()->log($avail);
 		foreach( $avail as $file ) {
+fluid()->log($file);
 			if ( in_array( $file, array( '.', '..' ), true ) ) {
 				continue;
 			}
