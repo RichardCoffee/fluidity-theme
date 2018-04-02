@@ -67,17 +67,17 @@ form .form-control {
   border: 1px solid #5cb85c;
 }
 form .form-control::-moz-placeholder {
-  color: #5cb85c;
+  color: #ffffff;
   opacity: 1;
 }
 form .form-control:-moz-placeholder {
-  color: #5cb85c;
+  color: #ffffff;
 }
 form .form-control:-ms-input-placeholder {
-  color: #5cb85c;
+  color: #ffffff;
 }
 form .form-control::-webkit-input-placeholder {
-  color: #5cb85c;
+  color: #ffffff;
 }
 form .form-control:hover, form .form-control:focus {
   -webkit-box-shadow: 0 0 4px rgba(76, 174, 76, 0.5);
