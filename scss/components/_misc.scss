@@ -5,6 +5,9 @@
 	margin-bottom:auto;
 	& a {
 		border: none;
+		&:hover, &:focus, &:visited {
+			border: none;
+		}
 	}
 }
 

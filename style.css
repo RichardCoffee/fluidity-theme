@@ -349,6 +349,9 @@ header {
 .fluidity-social-icons a {
   border: none;
 }
+.fluidity-social-icons a:hover, .fluidity-social-icons a:focus, .fluidity-social-icons a:visited {
+  border: none;
+}
 
 .fluid-print-button {
   margin-top: 7px;
