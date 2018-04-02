@@ -1,20 +1,31 @@
 <?php
+/**
+ * classes/Theme/Support.php
+ *
+ * @author Richard Coffee <richard.coffee@gmail.com>
+ */
 
+/**
+ * Sets up the wordpress theme support
+ *
+ */
 class TCC_Theme_Support {
 
 
+	protected $content_width = 1600;
 	protected $editor_style  = 'editor-style.css';
 	protected $filter_prefix = 'fluid';
 
 
 	public function __construct() {
-		add_action( 'after_setup_theme', array( $this, 'load_theme_support' ), 100 );
-		add_action( 'init', array( $this, 'post_type_support' ), 9 );
+		add_action( 'after_setup_theme',        array( $this, 'load_theme_support'       ), 100 );
+		add_action( 'init',                     array( $this, 'post_type_support'        ) );
 		add_filter( 'theme_scandir_exclusions', array( $this, 'theme_scandir_exclusions' ) );
 	}
 
 	public function load_theme_support() {
 		$this->automatic_feed_links();
+		$this->content_width();
 		$this->custom_background();
 #		$this->custom_header();
 		$this->custom_logo();
@@ -29,8 +40,15 @@ class TCC_Theme_Support {
 		add_theme_support( 'automatic-feed-links' );
 	}
 
+	protected function content_width() {
+		global $content_width;
+		$content_width = apply_filters( $this->filter_prefix . '_support_content_width', $this->content_width );
+	}
+
+	# https://codex.wordpress.org/Custom_Backgrounds
 	protected function custom_background() {
 		$background = array(
+#			'default-color'          => '',
 #			'default-image'          =>  get_theme_file_uri( 'screenshot.jpg' ),
 #			'default-preset'         => 'default',
 			'default-position-x'     => 'center',
@@ -38,7 +56,6 @@ class TCC_Theme_Support {
 			'default-size'           => 'cover',
 			'default-repeat'         => 'no-repeat',
 			'default-attachment'     => 'fixed',
-#			'default-color'          => '',
 #			'wp-head-callback'       => '_custom_background_cb',
 #			'admin-head-callback'    => '',
 #			'admin-preview-callback' => '',
@@ -148,8 +165,6 @@ class TCC_Theme_Support {
 		}
 	}
 
-
-
 	protected function post_thumbnails() {
 		add_theme_support( 'post-thumbnails' );  # thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
 		add_filter( $this->filter_prefix . '_theme_post_type_support', function( $supports ) {
@@ -167,7 +182,7 @@ class TCC_Theme_Support {
 			'scss',
 		) );
 		# add these exclusions when WP is checking for page templates
-		# FIXME: this will not work with gutenburg(!)
+		# FIXME: this function check will not work with gutenburg(!)
 		if ( was_called_by( 'page_attributes_meta_box' ) ) {
 			$exclusions = array_merge( $exclusions, array(
 				'classes',
@@ -177,7 +192,7 @@ class TCC_Theme_Support {
 				'template-parts',
 			) );
 		}
-#		$exclusions = apply_filters( $this->filter_prefix . '_theme_scandir_exclusions', $exclusions );
+		$exclusions = apply_filters( $this->filter_prefix . '_theme_scandir_exclusions', $exclusions );
 		return $exclusions;
 	}
 

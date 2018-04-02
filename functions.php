@@ -4,9 +4,6 @@
  *
  */
 
-//this is basically just a header body class that is required for some odd reason to make the theme complete in wordpress's theme authoring test thingy...jlg
-if ( ! isset( $content_width ) ) $content_width = 1600;
-
 define( 'FLUIDITY_HOME', trailingslashit( dirname( __FILE__ ) ) );  #  get current directory
 $data = get_file_data( FLUIDITY_HOME . 'style.css', array( 'ver' => 'Version' ) );
 define( 'FLUIDITY_VERSION', $data['ver'] );
