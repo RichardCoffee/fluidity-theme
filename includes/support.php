@@ -2,9 +2,8 @@
 
 if ( ! function_exists( 'fluid_load_theme_support' ) ) {
 	function fluid_load_theme_support( $args = array() ) {
-		$minus = array( 'custom_header' );
+		$minus = array( 'custom_header', 'editor_style' );
 		$args = array_diff( $args, $minus );
-fluid()->log($args);
 		return $args;
 	}
 	add_filter( 'fluid_load_theme_support', 'fluid_load_theme_support' );
