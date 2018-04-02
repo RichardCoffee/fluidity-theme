@@ -28,6 +28,16 @@ $input-color-placeholder: #999;
 	@return $color1;
 }
 
+// http://thesassway.com/intermediate/dynamically-change-text-color-based-on-its-background-with-sass
+@function set-color-contrast($colorbase, $colorlite, $colordark) {
+  @if (lightness($colorbase) > 50) {
+    @return $colordark; // Lighter backgorund, return dark color
+  } @else {
+    @return $colorlite; // Darker background, return light color
+  }
+}
+
+
 /* mixins */
 
 @mixin background-opacity($color, $opacity: 0.3) {
