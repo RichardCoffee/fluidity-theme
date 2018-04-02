@@ -8,7 +8,7 @@
 
 class TCC_AutoComplete {
 
-	static $action = 'tcc_autocomplete';
+	static $action = 'fluid_autocomplete';
 
 	static function load() {
 		add_action( 'init', array( __CLASS__, 'init' ) );
@@ -16,9 +16,9 @@ class TCC_AutoComplete {
 
 	static function init() {
 		if ( ! is_admin() ) {
-			wp_enqueue_style( 'tcc-autocomplete-css', get_theme_file_uri( 'css/ui-autocomplete.css' ), null, TCC_THEME_VERSION );
+			wp_enqueue_style( 'fluid-autocomplete-css', get_theme_file_uri( 'css/ui-autocomplete.css' ), null, FLUID_THEME_VERSION );
 		}
-		wp_register_script( 'tcc-autocomplete-js', get_theme_file_uri( 'js/autocomplete.js' ), array( 'jquery-ui-autocomplete' ), TCC_THEME_VERSION, true );
+		wp_register_script( 'fluid-autocomplete-js', get_theme_file_uri( 'js/autocomplete.js' ), array( 'jquery-ui-autocomplete' ), FLUID_THEME_VERSION, true );
 		add_action( 'get_search_form',               array( __CLASS__, 'get_search_form' ) );
 		add_action( 'wp_ajax_' . self::$action,      array( __CLASS__, 'autocomplete_suggestions' ) );
 		add_action( 'wp_ajax_nopriv_'.self::$action, array( __CLASS__, 'autocomplete_suggestions' ) );
@@ -27,8 +27,8 @@ class TCC_AutoComplete {
 	static function get_search_form( $form ) {
 		$args = array( 'url'    => admin_url( 'admin-ajax.php' ),
 		               'action' => self::$action );
-		wp_localize_script( 'tcc-autocomplete-js', 'TccAutocomplete', $args );
-		wp_enqueue_script( 'tcc-autocomplete-js' );
+		wp_localize_script( 'fluid-autocomplete-js', 'FluidAutocomplete', $args );
+		wp_enqueue_script( 'fluid-autocomplete-js' );
 		return $form;
 	}
 
@@ -38,7 +38,6 @@ class TCC_AutoComplete {
 		$args   = apply_filters( 'autocomplete_args', $args );
 		$posts  = new WP_Query( $args );
 
-#		$option = tcc_estate( 'search' );
 		$suggestions = array();
 		if ( $posts->have_posts() ) {
 			while ( $posts->have_posts() ) {
