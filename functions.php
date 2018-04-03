@@ -51,7 +51,7 @@ if ( is_admin() ) {
 
 /**  Test functions  **/
 
-function themeslug_customize_register( $wp_customize ) {
+/*function themeslug_customize_register( WP_Customize_Manager $wp_customize ) {
   fluid()->log( $wp_customize );
 }
 add_action( 'customize_register', 'themeslug_customize_register' ); //*/
@@ -59,7 +59,7 @@ add_action( 'customize_register', 'themeslug_customize_register' ); //*/
 add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid()->log( $resource, $data );
 	return $resource;
-}, 10, 2 );
+}, 10, 2 ); //*/
 
 /*add_action( 'wp_loaded', function () {
 #		global $wp_filter;
@@ -74,8 +74,8 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	tellme( 'color scheme:  ' . fluid_color_scheme() );
 } ); //*/
 
-add_action( 'wp_loaded', function () {
+/*add_action( 'wp_loaded', function () {
 	$color   = new TCC_Options_ColorScheme;
 	$schemes = $color->get_available_color_schemes( array( 'none' => __( 'Do not use internal color scheme', 'tcc-fluid' ) ) );
 	fluid()->log( $schemes );
-} );
+} ); //*/
