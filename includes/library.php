@@ -232,6 +232,15 @@ if ( ! function_exists( 'esc_html_nx' ) ) {
 	}
 }
 
+/**
+ * Echo a translated escaped html string, with both numeric and conceptional context
+ *
+ * @param string $single
+ * @param string $plural
+ * @param int $number
+ * @param string $context
+ * @param string $domain
+ */
 if ( ! function_exists( 'esc_html_enx' ) ) {
 	function esc_html_enx( $single, $plural, $number, $context, $domain = 'default' ) {
 		echo esc_html_nx( $single, $plural, $number, $context, $domain );
@@ -242,7 +251,6 @@ if ( ! function_exists( 'esc_html_enx' ) ) {
  * Returns an instance of the Theme Library
  *
  * @since 2.3.0
- *
  * @return TCC_Theme_Library
  */
 if ( ! function_exists( 'fluid' ) ) {
@@ -255,9 +263,7 @@ if ( ! function_exists( 'fluid' ) ) {
  * Returns an instance of the Comment class
  *
  * @since 2.3.0
- *
  * @staticvar TCC_Theme_Comment $library
- *
  * @return TCC_Theme_Comment the instance
  */
 if ( ! function_exists( 'fluid_comment' ) ) {
@@ -274,9 +280,7 @@ if ( ! function_exists( 'fluid_comment' ) ) {
  * Returns an instance of the Theme Library class
  *
  * @since 2.3.0
- *
  * @staticvar TCC_Theme_Library $library
- *
  * @return TCC_Theme_Library the instance
  */
 if ( ! function_exists( 'fluid_library' ) ) {
@@ -293,9 +297,7 @@ if ( ! function_exists( 'fluid_library' ) ) {
  * Returns an instance of the Theme Login class
  *
  * @since 2.3.0
- *
  * @staticvar TCC_Theme_Login $library
- *
  * @return TCC_Theme_Login the instance
  */
 if ( ! function_exists( 'fluid_login' ) ) {
@@ -312,9 +314,7 @@ if ( ! function_exists( 'fluid_login' ) ) {
  * Returns an instance of the Options class
  *
  * @since 2.3.0
- *
  * @staticvar TCC_Options_FLuidity $library
- *
  * @return TCC_Options_FLuidity the instance
  */
 if ( ! function_exists( 'fluid_options' ) ) {
@@ -331,9 +331,7 @@ if ( ! function_exists( 'fluid_options' ) ) {
  * Returns an instance of the Register Sidebars class
  *
  * @since 2.3.0
- *
  * @staticvar TCC_Register_Sidebars $library
- *
  * @return TCC_Register_Sidebars the instance
  */
 if ( ! function_exists( 'fluid_register_sidebars' ) ) {
@@ -350,9 +348,7 @@ if ( ! function_exists( 'fluid_register_sidebars' ) ) {
  * Returns an instance of the Theme Support class
  *
  * @since 2.3.0
- *
  * @staticvar TCC_Theme_Support $library
- *
  * @return TCC_Theme_Support the instance
  */
 if ( ! function_exists( 'fluid_theme_support' ) ) {
@@ -388,124 +384,185 @@ if (!function_exists('author_role_template')) {
   add_filter( 'author_template', 'author_role_template' );
 }
 
-#	get featured image url
-#	needs postID if used outside of loop
-if (!function_exists('get_featured_url')) {
+/**
+ * get featured image url, needs postID if used outside of loop
+ *
+ * @param numeric $postID
+ * @return string
+ */
+if ( ! function_exists( 'get_featured_url' ) ) {
 	function get_featured_url( $postID=null ) {
 		$imgURL = null; # 'invalid post ID passed to get_featured_url';
 		// FIXME: postID should be able to be the post object
-		$postID = (intval($postID,10)>0) ? intval($postID,10) : null;
-      if ($postID && has_post_thumbnail($postID)) {
-         $imgID  = get_post_thumbnail_id($postID);
-         $imgURL = wp_get_attachment_url($imgID);
-      }
+		$postID = ( intval( $postID, 10 ) > 0 ) ? intval( $postID, 10 ) : null;
+		if ( $postID && has_post_thumbnail( $postID ) ) {
+			$imgID  = get_post_thumbnail_id( $postID );
+			$imgURL = wp_get_attachment_url( $imgID );
+		}
 		return $imgURL;
 	}
 }
 
-#  get term name string
-if (!function_exists('get_term_name')) {
-  function get_term_name( $tax, $slug ) {
-    $term = get_term_by('slug',$slug,$tax);
-    if ($term) return $term->name;
-    return '';
-  }
+/**
+ * get term name
+ *
+ * @param string $tax
+ * @param string $slug
+ * @return string
+ */
+if ( ! function_exists( 'get_term_name' ) ) {
+	function get_term_name( $tax, $slug ) {
+		$term = get_term_by( 'slug', $slug, $tax );
+		if ( $term ) {
+			return $term->name;
+		}
+		return '';
+	}
 }
 
-if (!function_exists('get_valid_gravatar')) {
-  #  https://codex.wordpress.org/Using_Gravatars
-  function get_valid_gravatar( $email, $size=96 ) {
-    // Craft a potential url and test its headers
-    $hash = md5(strtolower(trim($email)));
-    $uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
-    $headers = @get_headers($uri);
-    if (!preg_match("|200|", $headers[0])) {
-      $avatar = FALSE;
-    } else {
-      $avatar = get_avatar($email,$size);
-    }
-    return $avatar;
-  }
+/**
+ * get user gravator
+ *
+ * @link https://codex.wordpress.org/Using_Gravatars
+ * @param string $email
+ * @param numeric $size
+ * @return string
+ */
+if ( ! function_exists( 'get_valid_gravatar' ) ) {
+	function get_valid_gravatar( $email, $size=96 ) {
+		// Craft a potential url and test its headers
+		$hash = md5( strtolower( trim( $email ) ) );
+		$uri  = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
+		$headers = @get_headers( $uri );
+		if ( ! preg_match( "|200|", $headers[0] ) ) {
+			$avatar = FALSE;
+		} else {
+			$avatar = get_avatar( $email, $size );
+		}
+		return $avatar;
+	}
 }
 
-#	http://stackoverflow.com/questions/14348470/is-ajax-in-wordpress
+/**
+ *  check for ajax
+ *
+ * @link http://stackoverflow.com/questions/14348470/is-ajax-in-wordpress
+ * @return bool
+ */
 if ( ! function_exists( 'is_ajax' ) ) {
 	function is_ajax() {
 		return ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ? true : false;
 	}
 }
 
-if (!function_exists('sanitize_array')) {
-  function sanitize_array( $array, $method='title' ) {
-    $output = array();
-    $func   = "sanitize_$method";
-    if ((array)$array==$array && function_exists($func)) {
-      foreach($array as $key=>$data) {
-        if ((array)$data==$data) {
-          $output[$key] = sanitize_array($data,$method); // recurse
-        } elseif ((string)$data==$data) {
-          $output[$key] = $func($data);
-        } else { $output[$key] = $data; }
-      }
-    } else { $output = $array; }
-    return $output;
-  }
+/**
+ * sanitize an array, using a sanitize_* function
+ *
+ * @param array $array
+ * @param string $method
+ * @return array
+ */
+if ( ! function_exists( 'sanitize_array' ) ) {
+	function sanitize_array( $array, $method = 'title' ) {
+		$output = array();
+		$func   = "sanitize_$method";
+		if ( (array)$array == $array && function_exists( $func ) ) {
+			foreach( $array as $key => $data ) {
+				if ( (array)$data == $data ) {
+					$output[ $key ] = sanitize_array( $data, $method ); // recurse
+				} elseif ( (string)$data == $data ) {
+					$output[ $key ] = $func( $data );
+				} else {
+					$output[ $key ] = $data;
+				}
+			}
+		} else {
+			$output = $array;
+		}
+		return $output;
+	}
 }
 
 
 /*  Non-WordPress specific */
 
-if (!function_exists('array_insert_after')) {
-  #  http://eosrei.net/comment/287
-  function array_insert_after( $array, $key, $new_key, $new_value) {
-    if (array_key_exists($key, $array)) {
-      $new = array();
-      foreach ($array as $k => $value) {
-        $new[$k] = $value;
-        if ($k === $key) {
-          $new[$new_key] = $new_value;
-        }
-      }
-      return $new;
-    }
-    return $array;
-  }
+/**
+ * insert a key/value pair into an array after a specific key
+ *
+ * @link http://eosrei.net/comment/287
+ * @param array $array
+ * @param string $key
+ * @param string $new_key
+ * @param mixed $new_value
+ * @return array
+ */
+if ( ! function_exists( 'array_insert_after' ) ) {
+	function array_insert_after( $array, $key, $new_key, $new_value ) {
+		if ( array_key_exists( $key, $array ) ) {
+			$new = array();
+			foreach ( $array as $k => $value ) {
+				$new[ $k ] = $value;
+				if ( $k === $key ) {
+					$new[ $new_key ] = $new_value;
+				}
+			}
+			return $new;
+		}
+		return $array;
+	}
 }
 
-function js_decode($incoming) {
-  $return = $incoming;
-  if (is_string($return)) {
-    $object = json_decode($incoming);
-    if (json_last_error() === 0) {
-      $return = $object;
-    } else {
-      $return = json_last_error_msg();
-    }
-  }
-  return $return;
+/**
+ * decode an incoming json string
+ *
+ * @param string $incoming
+ * @return mixed
+ */
+function js_decode( $incoming ) {
+	$return = $incoming;
+	if ( is_string( $return ) ) {
+		$object = json_decode( $incoming );
+		if ( json_last_error() === 0 ) {
+			$return = $object;
+		} else {
+			$return = json_last_error_msg();
+		}
+	}
+	return $return;
 }
 
-// http://php.net/manual/en/function.json-last-error-msg.php
-if (!function_exists('json_last_error_msg')) {
-  function json_last_error_msg() {
-    static $errors = array(
-      JSON_ERROR_NONE             => null,
-      JSON_ERROR_DEPTH            => 'Maximum stack depth exceeded',
-      JSON_ERROR_STATE_MISMATCH   => 'Underflow or the modes mismatch',
-      JSON_ERROR_CTRL_CHAR        => 'Unexpected control character found',
-      JSON_ERROR_SYNTAX           => 'Syntax error, malformed JSON',
-      JSON_ERROR_UTF8             => 'Malformed UTF-8 characters, possibly incorrectly encoded',
-      JSON_ERROR_RECURSION        => 'Contains recursion references that cannot be encoded',
-      JSON_ERROR_INF_OR_NAN       => 'Contains a value of NAN or INF, which cannot be encoded',
-      JSON_ERROR_UNSUPPORTED_TYPE => 'Contains a value of an unsupported type'
-    );
-    $error = json_last_error();
-    return array_key_exists($error, $errors) ? "JSON error: {$errors[$error]}" : "Unknown JSON error ({$error})";
-  }
+/**
+ * return an error message describing the most recent json error
+ *
+ * @link http://php.net/manual/en/function.json-last-error-msg.php
+ * @staticvar array $errors
+ * @return string
+ */
+if ( ! function_exists( 'json_last_error_msg' ) ) {
+	function json_last_error_msg() {
+		static $errors = array(
+			JSON_ERROR_NONE             => null,
+			JSON_ERROR_DEPTH            => 'Maximum stack depth exceeded',
+			JSON_ERROR_STATE_MISMATCH   => 'Underflow or the modes mismatch',
+			JSON_ERROR_CTRL_CHAR        => 'Unexpected control character found',
+			JSON_ERROR_SYNTAX           => 'Syntax error, malformed JSON',
+			JSON_ERROR_UTF8             => 'Malformed UTF-8 characters, possibly incorrectly encoded',
+			JSON_ERROR_RECURSION        => 'Contains recursion references that cannot be encoded',
+			JSON_ERROR_INF_OR_NAN       => 'Contains a value of NAN or INF, which cannot be encoded',
+			JSON_ERROR_UNSUPPORTED_TYPE => 'Contains a value of an unsupported type'
+		);
+		$error = json_last_error();
+		return array_key_exists( $error, $errors ) ? "JSON error: {$errors[$error]}" : "Unknown JSON error ({$error})";
+	}
 }
 
+/**
+ * return consistent settings for json encoding
+ *
+ * @return numeric
+ */
 function json_options() {
-  return JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE;
+	return JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE;
 }
 
 
