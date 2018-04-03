@@ -17,7 +17,7 @@ class TCC_Options_ColorScheme {
 
 	protected function options_layout() {
 		$layout  = array( 'default' => true );
-		$schemes = $this->get_available_color_schemes();
+		$schemes = $this->get_available_color_schemes( array( 'none' => __( 'Do not use internal color scheme', 'tcc-fluid' ) ) );
 #		$active  = tcc_options( 'active',  $this->base, 'none' );
 #		$data    = tcc_options( 'schemes', $this->base, array() );
 		$layout['active'] = array(
@@ -31,9 +31,8 @@ class TCC_Options_ColorScheme {
 		}
 	}
 
-	public function get_available_color_schemes() {
-#	private function get_available_color_schemes() {
-		$colors = array();
+	public function get_available_color_schemes( $colors = array() ) {
+#	private function get_available_color_schemes( $colors = array() ) {
 		$path   = FLUIDITY_HOME . 'css/colors';
 		$avail  = scandir( $path );
 fluid()->log($avail);
