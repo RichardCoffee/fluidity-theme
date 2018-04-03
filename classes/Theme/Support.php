@@ -25,7 +25,7 @@ class TCC_Theme_Support {
 	 *
 	 * @var string
 	 */
-	protected $editor_style  = 'editor-style.css';
+	protected $editor_style  = 'css/editor-style.css';
 	/**
 	 * used as prefix for apply_filter calls
 	 *

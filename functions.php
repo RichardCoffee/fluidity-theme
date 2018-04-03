@@ -56,6 +56,11 @@ function themeslug_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'themeslug_customize_register' ); //*/
 
+add_filter( 'heartbeat_received', function ( $resource, $data ) {
+	fluid()->log( $resource, $data );
+	return $resource;
+}, 10, 2 );
+
 /*add_action( 'wp_loaded', function () {
 #		global $wp_filter;
 #		log_entry( $wp_filter );
