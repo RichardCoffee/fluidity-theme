@@ -35,7 +35,7 @@ class TCC_Options_ColorScheme {
 #	private function get_available_color_schemes( $colors = array() ) {
 		$path   = FLUIDITY_HOME . 'css/colors';
 		$avail  = scandir( $path );
-fluid()->log($avail);
+fluid()->log($colors,$avail);
 		foreach( $avail as $file ) {
 			if ( in_array( $file, array( '.', '..' ), true ) ) {
 				continue;

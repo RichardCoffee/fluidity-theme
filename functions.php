@@ -63,12 +63,12 @@ add_action( 'customize_register', 'themeslug_customize_register' ); //*/
 		log_entry( list_filter_hooks( $filter ) );
 	}
 ); //*/
-add_action( 'tcc_inside_page', function( $slug ) {
+/*add_action( 'tcc_inside_page', function( $slug ) {
 	tellme( 'color scheme:  ' . fluid_color_scheme() );
-} );
+} ); //*/
 
 add_action( 'wp_loaded', function () {
-	$color = new TCC_Options_ColorScheme;
-	$schemes = $color->get_available_color_schemes();
+	$color   = new TCC_Options_ColorScheme;
+	$schemes = $color->get_available_color_schemes( array( 'none' => __( 'Do not use internal color scheme', 'tcc-fluid' ) ) );
 	fluid()->log($schemes);
 } );
