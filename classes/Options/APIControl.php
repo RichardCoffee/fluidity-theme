@@ -86,5 +86,13 @@ $this->get_allowed_endpoints();
 #		log_entry( $options );
 	}
 
+	protected function customizer_data() {
+		$data = array(
+			array(
+			),
+		);
+		return apply_filters( "fluid_{$this->base}_customizer_data", $data );
+	}
+
 
 }

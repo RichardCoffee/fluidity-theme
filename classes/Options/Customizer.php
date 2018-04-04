@@ -35,7 +35,7 @@ log_entry($logo);
 #			'transport'            => 'refresh', // or postMessage
 			'sanitize_callback'    => 'sanitize_text_field',
 #			'sanitize_js_callback' => '', // Basically to_json.
-		) );
+		);
 
 	}
 

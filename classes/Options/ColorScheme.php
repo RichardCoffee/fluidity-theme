@@ -51,5 +51,13 @@ fluid()->log($colors,$avail);
 		return $colors;
 	}
 
+	protected function customizer_data() {
+		$data = array(
+			array(
+			),
+		);
+		return apply_filters( "fluid_{$this->base}_customizer_data", $data );
+	}
+
 
 }

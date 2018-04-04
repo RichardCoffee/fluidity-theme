@@ -55,5 +55,13 @@ class TCC_Options_Content extends TCC_Options_Options {
 		return $layout;
 	}
 
+	protected function customizer_data() {
+		$data = array(
+			array(
+			),
+		);
+		return apply_filters( "fluid_{$this->base}_customizer_data", $data );
+	}
+
 
 }
