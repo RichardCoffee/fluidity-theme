@@ -7,9 +7,9 @@ class TCC_Options_Design extends TCC_Options_Options {
 	protected $priority = 80;
 
 
-  protected function form_title() {
-    return __('Design','tcc-fluid');
-  }
+	protected function form_title() {
+		return __( 'Design', 'tcc-fluid' );
+	}
 
 	public function describe_options() { ?>
 		<span title="No they don't.  This doesn't work.  yet">
@@ -46,9 +46,11 @@ class TCC_Options_Design extends TCC_Options_Options {
 			$layout['title']['source']['main'] = __( 'Over content area only, when showing sidebar.', 'tcc-fluid' );
 		}
 		$layout['type'] = array(
-			'label'   => __( 'Typography', 'tcc-fluid' ),
-			'text'    => __( 'Site typography options', 'tcc-fluid' ),
-			'render'  => 'title',
+			'label'    => __( 'Typography', 'tcc-fluid' ),
+			'text'     => __( 'Site typography options', 'tcc-fluid' ),
+			'render'   => 'title',
+			// customizer settings
+			'priority' => 30,
 		);
 		$layout['font'] = array(
 			'default' => 'Helvitica Neue',
@@ -64,6 +66,20 @@ class TCC_Options_Design extends TCC_Options_Options {
 			'divcss'  => 'tcc_text_3em',
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
+	}
+
+	protected function customizer_data() {
+		$data = array(
+			array(
+				'id'       => 'typography',
+				'section'  => 'type',
+				'controls' => array(
+					'font',
+					'size',
+				),
+			)
+		);
+		return apply_filters( "fluid_{$this->base}_customizer_data", $data );
 	}
 
 

@@ -2,25 +2,28 @@
 
 class TCC_Options_Customizer {
 
-	use TCC_Trait_Singleton;
 
-	protected function __construct( $args = array() ) {
+	public function __construct( $args = array() ) {
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 	}
 
-	public function customize_register( WP_Customize_Manager $customizer ) {
+	public function customize_register( WP_Customize_Manager $customize ) {
+		$this->typography( $customize );
+	}
 
-		
-		$logo = get_theme_mod('custom-logo');
+	protected function typography( WP_Customize_Manager $customize ) {
+		$design = new TCC_Options_Design;
+		$design->customizer( $customize );
+	}
+
+
+/*		$logo = get_theme_mod('custom-logo');
 log_entry($logo);
 		if ( ! $logo ) { $logo = tcc_design('logo'); }
 
-		#$wp_customize->add_setting( 'setting_id', $this->setting_defaults() );
+		#$customize->add_setting( 'setting_id', $this->setting_defaults() );
 
-
-
-
-	}
+//*/
 
 
 	private function setting_defaults() {
