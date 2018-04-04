@@ -25,11 +25,11 @@ if ( has_nav_menu( $menu ) ) {
 			'data-toggle'   => 'collapse',
 			'data-target'   => ".navbar-$menu-collapse",
 		);
-		fluid_library()->apply_attrs_tag( $nav_attrs, 'nav' ); ?>
+		fluid()->apply_attrs_tag( $nav_attrs, 'nav' ); ?>
 			<div class="navbar-header">
-				<?php fluid_library()->apply_attrs_tag( $button_attrs, 'button' ); ?>
+				<?php fluid()->apply_attrs_tag( $button_attrs, 'button' ); ?>
 					<span class="sr-only">Toggle navigation</span>
-					<?php fluid_library()->fawe( 'fa-bars' ); ?>
+					<?php fluid()->fawe( 'fa-bars' ); ?>
 				</button>
 				<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
 			</div>
@@ -61,10 +61,10 @@ if ( has_nav_menu( $menu ) ) {
 			'aria-controls' => $menu,
 			'aria-expanded' => 'false',
 		);
-		fluid_library()->apply_attrs_tag( $nav_attrs, 'nav' );
-			fluid_library()->apply_attrs_tag( $button_attrs, 'button' ); ?>
+		fluid()->apply_attrs_tag( $nav_attrs, 'nav' );
+			fluid()->apply_attrs_tag( $button_attrs, 'button' ); ?>
 				<span class="sr-only">Toggle navigation</span>
-				<?php library()->fawe( 'fa-bars' ); ?>
+				<?php fluid()->fawe( 'fa-bars' ); ?>
 			</button><?php
 			wp_nav_menu( array(
 				'theme_location' => $menu,
