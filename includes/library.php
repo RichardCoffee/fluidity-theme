@@ -277,6 +277,23 @@ if ( ! function_exists( 'fluid_comment' ) ) {
 }
 
 /**
+ * Returns an instance of the Customizer class
+ *
+ * @since 3.0.0
+ * @staticvar TCC_Options_Customizer $library
+ * @return TCC_Options_Customizer
+ */
+if ( ! function_exists( 'fluid_customizer' ) ) {
+	function fluid_customizer() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Options_Customizer;
+		}
+		return $library;
+	}
+}
+
+/**
  * Returns an instance of the Theme Library class
  *
  * @since 2.3.0

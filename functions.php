@@ -34,6 +34,7 @@ require_once( 'classes/autocomplete.php' );
 fluid_register_sidebars(); # TCC_Register_Sidebars
 fluid_theme_support();     # TCC_Theme_Support
 fluid_login();             # TCC_Theme_Login class
+fluid_customizer();        # TCC_Options_Customizer
 
 if ( is_admin() ) {
 	fluid_options();
