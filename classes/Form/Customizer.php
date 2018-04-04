@@ -15,7 +15,7 @@ class TCC_Form_Customizer {
 	protected $section_id;
 	protected $setting_id;
 
-	use TCC_Traits_ParseArgs;
+	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
 		$this->parse_args( $args );
