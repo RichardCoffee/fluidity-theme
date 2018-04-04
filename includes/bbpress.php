@@ -161,6 +161,14 @@ if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 	}
 	add_filter( 'tcc_design_options_layout', 'fluid_bbp_options_font_size' );
 }
+/*
+if ( ! function_exists( 'fluid_bbp_customizer_data' ) ) {
+	function fluid_bbp_customizer_data( $data ) {
+		$data['type'][] = 'bbpsize';
+		$data['type'][] = 'bbposize1';
+	}
+	add_filter( 'fluid_design_customizer_data', 'fluid_bbp_customizer_data' );
+} //*/
 
 if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 	#  Add font sizes to custom css

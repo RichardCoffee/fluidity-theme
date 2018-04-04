@@ -345,6 +345,23 @@ if ( ! function_exists( 'fluid_register_sidebars' ) ) {
 }
 
 /**
+ * Returns an instance of the Form Sanitize class
+ *
+ * @since 3.0.0
+ * @staticvar TCC_Form_Sanitize $library
+ * @return TCC_Form_Sanitize
+ */
+if ( ! function_exists( 'fluid_sanitize' ) ) {
+	function fluid_sanitize() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Form_Sanitize;
+		}
+		return $library;
+	}
+}
+
+/**
  * Returns an instance of the Theme Support class
  *
  * @since 2.3.0
