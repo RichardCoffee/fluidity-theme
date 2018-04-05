@@ -13,13 +13,6 @@ if ( ! function_exists( 'fluidity_check_update' ) ) {
 	}
 }
 
-if ( ! function_exists( 'fluidity_update_future_version_number' ) ) {
-	function fluidity_update_future_version_number( $version ) {
-		if ( version_compare( $version, '2.2.2', '<' ) ) { fluidity_update_2_2_2( $version ); }
-		//  future update code here
-	}
-}
-
 if ( ! function_exists( 'fluidity_update_2_2_2' ) ) {
 	function fluidity_update_2_2_2( $version ) {
 		$content  = get_option( 'tcc_options_content', array() );
@@ -37,5 +30,3 @@ if ( ! function_exists( 'fluidity_update_2_2_2' ) ) {
 		update_option( 'tcc_options_content', $content );
 	}
 }
-
-fluidity_check_update();

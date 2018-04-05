@@ -28,9 +28,11 @@ require_once(FLUIDITY_HOME.'includes/widgets.php');  #  Needs full path, or wp-a
 add_action( 'rest_api_init', function() {
 	require_once( 'includes/wp-rest-api.php' );
 });
-require_once( 'classes/autocomplete.php' );
+
+fluidity_check_update();
 
 #  prime classes
+require_once( 'classes/autocomplete.php' );
 fluid_register_sidebars(); # TCC_Register_Sidebars
 fluid_theme_support();     # TCC_Theme_Support
 fluid_login();             # TCC_Theme_Login class
