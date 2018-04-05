@@ -36,7 +36,7 @@ class TCC_Options_Bootstrap extends TCC_Options_Options {
 			'source'  => $this->get_bootstrap_list( 'components' ),
 		); //*/
 		$layout['javascript'] = array(
-			'default' => $this->get_bootstrap_defaults( 'javascript', 'no' ),
+			'default' => $this->get_bootstrap_defaults( 'javascript' ),
 			'label'   => __( 'Javascript', 'tcc-fluid' ),
 			'text'    => __( 'Components with Javascript', 'tcc-fluid' ),
 			'render'  => 'radio_multiple',
