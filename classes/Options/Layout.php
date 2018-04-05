@@ -20,13 +20,13 @@ class TCC_Options_Layout extends TCC_Options_Options {
 	protected function options_layout() {
 		$layout = array( 'default' => true );
 		$layout['width'] = array(
-			'default' => 'full',
+			'default' => 'narrow',
 			'label'   => __( 'Width', 'tcc-fluid' ),
 			'text'    => __( 'How much screen real estate do you want the theme to use?', 'tcc-fluid' ),
 			'help'    => __( 'This determines the margins for the main body of the website', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'fluid'  => __( 'Full Width (small margins)', 'tcc-fluid' ),
+				'full'   => __( 'Full Width (small margins)', 'tcc-fluid' ),
 				'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
 			),
 		);
@@ -44,7 +44,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 		); //*/
 		if ( WP_DEBUG ) {
 			$layout['menu']    = array(
-				'default' => 'underscore',
+				'default' => 'bootstrap',
 				'label'   => __( 'Menu', 'tcc-fluid' ),
 				'text'    => __( 'Which menuing system do you want to use?', 'tcc-fluid' ),
 				'render'  => 'radio',

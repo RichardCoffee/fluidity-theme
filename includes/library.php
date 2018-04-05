@@ -61,7 +61,7 @@ if ( ! function_exists( 'container_type' ) ) {
 		$css = 'container-fluid';
 		if ( $location === 'header' ) {
 			$css .= " nopad";
-		} else if ( tcc_layout( 'width' ) === 'narrow' ) {
+		} else if ( tcc_layout( 'width', 'narrow' ) === 'narrow' ) {
 			$css = 'container';
 		}
 		/**
