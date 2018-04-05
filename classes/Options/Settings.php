@@ -19,16 +19,16 @@ class TCC_Options_Settings extends TCC_Options_Options {
 		$layout = array( 'default' => true );
 		$layout['heart'] = array(
 			'default' => 'on',
-			'label'   => esc_html__( 'WP Heartbeat', 'tcc-fluid' ),
-			'text'    => esc_html__( 'Control the status of the WordPress Heartbeat API', 'tcc-fluid' ),
-			'help'    => esc_html__( 'The Heartbeat API will always remain active on these pages: post.php, post-new.php, and admin.php', 'tcc-fluid' ),
+			'label'   => __( 'WP Heartbeat', 'tcc-fluid' ),
+			'text'    => __( 'Control the status of the WordPress Heartbeat API', 'tcc-fluid' ),
+			'help'    => __( 'The Heartbeat API will always remain active on these pages: post.php, post-new.php, and admin.php', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'on'   => esc_html__( 'On', 'tcc-fluid' ),
-				'off'  => esc_html__( 'Off', 'tcc-fluid' ),
+				'on'   => __( 'On', 'tcc-fluid' ),
+				'off'  => __( 'Off', 'tcc-fluid' ),
 			),
 		);
-		$layout['rest_api'] = array(
+/*		$layout['rest_api'] = array(
 			'default' => 'on',
 			'label'   => __( 'REST API', 'tcc-fluid' ),
 			'text'    => __( 'Control access to your site REST API', 'tcc-fluid' ),
@@ -39,17 +39,17 @@ class TCC_Options_Settings extends TCC_Options_Options {
 				'users' => __( 'Allow access to logged-in users only.', 'tcc-fluid' ),
 				'off'   => __( 'Off - this may break things.', 'tcc-fluid' ),
 			),
-		);
+		); //*/
 		if ( WP_DEBUG ) {
 			$layout['where'] = array(
 				'default' => 'off',
-				'label'   => esc_html__( 'Where Am I?', 'tcc-fluid' ),
-				'text'    => esc_html__( 'Display template file names on site front end - for development only', 'tcc-fluid' ),
-				'help'    => esc_html__( 'Hi!', 'tcc-fluid' ),
+				'label'   => __( 'Where Am I?', 'tcc-fluid' ),
+				'text'    => __( 'Display template file names on site front end - for development only', 'tcc-fluid' ),
+				'help'    => __( 'Hi!', 'tcc-fluid' ),
 				'render'  => 'radio',
 				'source'  => array(
-					'on'   => esc_html__( 'On', 'tcc-fluid' ),
-					'off'  => esc_html__( 'Off', 'tcc-fluid' ),
+					'on'   => __( 'On', 'tcc-fluid' ),
+					'off'  => __( 'Off', 'tcc-fluid' ),
 				),
 			);
 		}

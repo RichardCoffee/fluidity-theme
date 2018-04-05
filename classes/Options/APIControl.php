@@ -31,11 +31,13 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				'filter' => __( 'Filter public access.', 'tcc-fluid' ),
 				'off'    => __( 'Off - this may break things.', 'tcc-fluid' ),
 			),
+			'change'    => 'showhidePosi( this, ".control-rest-api-namespace", "filter" );',
 		);
 		$layout['namespaces'] = array(
 			'label'  => __( 'Namespaces', 'tcc-fluid' ),
 			'text'   => __( 'Control established routes', 'tcc-fluid' ),
 			'render' => 'display',
+			'divcss' => 'control-rest-api-namespace',
 		);
 		if ( $endpoints ) {
 			$route_text = __( 'Check to block access to these routes.', 'tcc-fluid' );
@@ -50,6 +52,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 					'text'   => $route_text,
 					'render' => 'checkbox_multiple',
 					'source' => $source,
+					'divcss' => 'control-rest-api-namespace',
 				);
 			}
 		}

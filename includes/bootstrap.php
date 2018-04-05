@@ -66,6 +66,9 @@ if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
 				foreach( $bootstrap as $component ) {
 					wp_enqueue_style( "bootstrap-$component", get_theme_file_uri( "css/bootstrap/bootstrap-{$component}.min.css" ), null, $version );
 				}
+			} else {
+				wp_enqueue_style( 'bootstrap.css', get_theme_file_uri( 'css/bootstrap.min.css' ), null, $version );
+				$load_bootstrap = true;
 			}
 			# load javascript file
 			if ( $load_bootstrap || $load_javascript || $javascript ) {
