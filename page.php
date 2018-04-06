@@ -8,8 +8,6 @@ get_header();
 
 $mypage = get_page_slug();
 
-#add_filter ( "fluid_{$mypage}_container_type", function ( $css ) { return 'container'; } );
-
 TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what values the array can have
 
 do_action( 'tcc_page_top', $mypage ); ?>
@@ -31,7 +29,7 @@ do_action( 'tcc_page_top', $mypage ); ?>
 
 				do_action( 'tcc_before_loop', $mypage );
 
-				$root = ( is_single() || is_page() || is_singular() ) ? 'content' : tcc_option( 'content' );
+				$root = ( is_single() || is_page() || is_singular() ) ? 'content' : tcc_content( 'content', 'excerpt' );
 				$root = apply_filters( 'tcc_template-parts_root', $root, $mypage );
 				while ( have_posts () ) { ?>
 					<div><?php
