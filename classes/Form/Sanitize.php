@@ -10,6 +10,8 @@
 class TCC_Form_Sanitize {
 
 	public function checkbox( $input ) {
+
+
 		return sanitize_key( $input );
 	}
 
@@ -22,8 +24,7 @@ class TCC_Form_Sanitize {
 	}
 
 	public function font( $input ) {
-		fluid()->log( $input );
-		return $input; // FIXME NOW!
+		return $this->text( $input );
 	}
 
 	public function image( $input ) {
