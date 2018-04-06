@@ -90,5 +90,6 @@ fluid()->log( array(
 	'social_active'  => tcc_option( 'active', 'social', 'no' ),
 	'content_exlen'  => tcc_option( 'exlength', 'content', 55 ),
 	'content_exdate' => tcc_option( 'exdate', 'content', 'show' ),
-	'content_post'   => tcc_option( 'postdate', 'content', 'original' ),
+	'content_post1'  => tcc_option( 'postdate', 'content', 'original' ),
+	'content_post2'  => tcc_content( 'postdate', 'original' ),
 ) );
