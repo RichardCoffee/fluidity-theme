@@ -19,7 +19,6 @@ class TCC_Options_Customizer {
 
 /*		$logo = get_theme_mod('custom-logo');
 log_entry($logo);
-		if ( ! $logo ) { $logo = tcc_design('logo'); }
 
 		#$customize->add_setting( 'setting_id', $this->setting_defaults() );
 

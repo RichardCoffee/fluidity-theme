@@ -770,7 +770,7 @@ if ( ! function_exists( 'who_am_i' ) ) {
 	function who_am_i( $pos=0 ) {
 		static $status;
 		if ( empty( $status ) ) {
-			$status = ( file_exists( WP_CONTENT_DIR . '/who_am_i.flg' ) ) ? 'on' : tcc_settings( 'where' );
+			$status = ( file_exists( WP_CONTENT_DIR . '/who_am_i.flg' ) ) ? 'on' : tcc_settings( 'where', 'off' );
 		}
 		if ( ( $status === 'on' ) && WP_DEBUG && current_user_can( 'edit_theme_options' ) ) {
 			$trace = debug_backtrace();

@@ -12,9 +12,10 @@ class TCC_Theme_Login {
 
 
 	public function __construct() {
-		if ( tcc_settings( 'login' ) === 'internal' ) {
+		if ( tcc_settings( 'login', 'external' ) === 'internal' ) {
 			if ( has_page( 'Login' ) ) {
 				$this->login_page = home_url( '/login/' );
+				add_action( 'init',             array( $this, 'prevent_wp_login' ) );
 				add_action( 'wp_login_failed',  array( $this, 'wp_login_failed' ) );
 				add_filter( 'authenticate',     array( $this, 'authenticate' ), 1, 3 );
 			}
@@ -23,10 +24,11 @@ class TCC_Theme_Login {
 			}
 			add_shortcode( 'fluid_login', array( $this, 'login_form_shortcode' ) );
 		}
-		add_filter( 'login_redirect',     array( $this, 'login_redirect' ), 10, 3 );
-		add_filter( 'tcc_login_redirect', array( $this, 'login_redirect_admin' ), 10, 3 );
+		add_filter( 'login_redirect',           array( $this, 'login_redirect' ), 10, 3 );
+		add_filter( 'tcc_login_redirect',       array( $this, 'login_redirect_admin' ), 10, 3 );
+		add_filter( 'tcc_admin_options_layout', array( $this, 'admin_options_layout' ) );
 		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
-		if ( is_admin() && ( tcc_settings( 'wplogin' ) === 'internal' ) ) {
+		if ( is_admin() && ( tcc_settings( 'wplogin', 'external' ) === 'internal' ) ) {
 			add_action( 'admin_head',        array( $this, 'dashboard_logo' ) );
 			add_filter( 'login_headertitle', array( $this, 'login_headertitle' ) );
 			add_filter( 'login_headerurl',   array( $this, 'login_headerurl' ) );
@@ -120,6 +122,24 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 
 /***   Login Issues   ***/
 
+
+function prevent_wp_login() {
+    // WP tracks the current page - global the variable to access it
+    global $pagenow;
+    // Check if a $_GET['action'] is set, and if so, load it into $action variable
+    $action = (isset($_GET['action'])) ? $_GET['action'] : '';
+    // Check if we're on the login page, and ensure the action is not 'logout'
+    if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp', 'resetpass'))))) {
+        // Load the home page url
+        $page = get_bloginfo('url');
+        // Redirect to the home page
+        wp_redirect($page);
+        // Stop execution to prevent the page loading for any reason
+        exit();
+    }
+}
+
+
 	public function authenticate( $user, $username, $password ) {
 		if( $username === "" || $password === "" ) {
 			wp_safe_redirect( $this->login_page . "?login=empty" );
@@ -149,6 +169,24 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 			$url   = $base . '?' . htmlspecialchars( $opts );
 		}
 		return $url;
+	}
+
+
+/***   Options   ***/
+
+	public function admin_options_layout( $layout ) {
+		$opts = array(
+			'default' => 'external',
+			'label'   => __( 'Theme Login', 'tcc-fluid' ),
+			'text'    => __( 'Choose whether you use a plugthe theme login should be usedControl the status of the WordPress Heartbeat API', 'tcc-fluid' ),
+'help'    => __( 'The Heartbeat API will always remain active on these pages: post.php, post-new.php, and admin.php', 'tcc-fluid' ),
+'render'  => 'radio',
+'source'  => array(
+'on'   => __( 'On', 'tcc-fluid' ),
+'off'  => __( 'Off', 'tcc-fluid' ),
+),
+);
+
 	}
 
 

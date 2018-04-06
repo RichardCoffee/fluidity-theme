@@ -174,7 +174,7 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
 
 if ( ! function_exists( 'fluid_thumbnail' ) ) {
 	function fluid_thumbnail( $size = null, $class = 'img-responsive' ) {
-		if ( ! is_page() || ( tcc_design( 'paral' ) == 'no' ) ) {
+		if ( ! is_page() || ( tcc_design( 'paral', 'no' ) == 'no' ) ) {
 			if ( has_post_thumbnail() ) {
 				$attr = array( 'alt' => fluid_title(), 'class' => $class );
 				the_post_thumbnail( $size, $attr );

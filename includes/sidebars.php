@@ -108,7 +108,7 @@ if (!function_exists('fluidity_load_sidebar')) {
     $sidebars = ($force) ? (array)$args : array_merge((array)$args,array('standard','home'));
     $sidebars = apply_filters( 'fluidity_load_sidebar', $sidebars );
     $sidebars = apply_filters( 'fluidity_load_sidebar_' . get_page_slug(), $sidebars );
-    $status   = tcc_settings( 'where' );
+    $status   = tcc_settings( 'where', 'off' );
     foreach($sidebars as $sidebar) {
       if ( is_active_sidebar( $sidebar ) ) {
         if ($dyn=dynamic_sidebar($sidebar)) {

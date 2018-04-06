@@ -174,7 +174,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 	#  Add font sizes to custom css
 	function fluid_bbp_font_size() {
 		if ( is_bbpress() ) {
-			$fontsize = tcc_design( 'bbpsize' );
+			$fontsize = tcc_design( 'bbpsize', 12 );
 			if ( $fontsize && ( ! ( $fontsize === 12 ) ) ) { # 12 is the default
 				$css = array(
 					'div#bbpress-forums',
@@ -189,7 +189,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 				$css_tags = implode( ",\n", $css );
 				echo "\n$css_tags {\n\tfont-size:  {$fontsize}px;\n}\n";
 			}
-			$fontosize1 = tcc_design( 'bbposize1' );
+			$fontosize1 = tcc_design( 'bbposize1', 11 );
 			if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) { # 11 is the default
 				$css1 = array(
 					'div#bbpress-forums .bbp-forum-info .bbp-forum-content',

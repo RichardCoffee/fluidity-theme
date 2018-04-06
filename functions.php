@@ -54,6 +54,8 @@ if ( is_admin() ) {
 
 /**  Test functions  **/
 
+fluid()->log( get_theme_mod( 'custom-logo' ) );
+
 /*function themeslug_customize_register( WP_Customize_Manager $wp_customize ) {
   fluid()->log( $wp_customize );
 }

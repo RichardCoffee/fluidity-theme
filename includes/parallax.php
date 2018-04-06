@@ -11,7 +11,7 @@ log_entry('paras',$paras);
 |  |  |  }
 |  |  }
 |  }
-|  if (tcc_design('paral')==='yes') {
+|  if (tcc_design('paral', 'no' )==='yes') {
 |  |  add_action('tcc_custom_css','tcc_parallax');
 |  }
 } //*/
@@ -19,7 +19,7 @@ log_entry('paras',$paras);
 #  use inside loop only
 if (!function_exists('tcc_excerpt_parallax')) {
 	function tcc_excerpt_parallax() {
-		if (tcc_design('paral')==='yes') { ?>
+		if (tcc_design('paral', 'no' )==='yes') { ?>
 			<style>
 				.post-<?php the_ID(); ?> {
 					ackground-image: url('<?php echo get_featured_url( ); ?>');
@@ -32,7 +32,7 @@ if (!function_exists('tcc_excerpt_parallax')) {
 
 if (!function_exists('tcc_page_parallax')) {
 	function tcc_page_parallax( $div=true ) {
-		if (tcc_design('paral')==='yes') {
+		if (tcc_design('paral', 'no' )==='yes') {
 			global $post;
 			$pageID = $post->ID;
 			if ($pageID) {
@@ -63,7 +63,7 @@ if (!function_exists('tcc_page_parallax')) {
 #  use inside loop only
 if (!function_exists('tcc_post_parallax')) {
 	function tcc_post_parallax($css='single-parallax') {
-		if ((tcc_design('paral')==='yes') && has_post_thumbnail() ) { ?>
+		if ((tcc_design('paral', 'no' )==='yes') && has_post_thumbnail() ) { ?>
 			<style>
 				.single-parallax {
 					background-image: url('<?php echo get_featured_url( ); ?>');

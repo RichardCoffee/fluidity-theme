@@ -40,7 +40,7 @@ log_entry(0,$filter);
 
 if ( ! function_exists( 'fluid_stop_heartbeat' ) ) {
 	function fluid_stop_heartbeat() {
-		$heart = tcc_settings( 'heart' );
+		$heart = tcc_settings( 'heart', 'on' );
 		if ( $heart == 'off' ) {
 			global $pagenow;
 			$authorized = array( 'post.php', 'post-new.php', 'admin.php' );
@@ -97,13 +97,13 @@ if ( ! function_exists( 'tcc_content' ) ) {
 	}
 }
 
-if (!function_exists('tcc_design')) {
-  function tcc_design($option) {
-    static $data;
-    if (empty($data)) { $data = get_option('tcc_options_design'); }
-    if (isset($data[$option])) { return $data[$option]; }
-    return '';
-  }
+if ( ! function_exists( 'tcc_design' ) ) {
+	function tcc_design( $option, $default = '' ) {
+		static $data;
+		if ( empty( $data ) ) { $data = get_option( 'tcc_options_design' ); }
+		if ( isset( $data[ $option ] ) ) { return $data[ $option ]; }
+		return $default;
+	}
 }
 
 if ( ! function_exists( 'tcc_excerpt_length' ) ) {
@@ -115,18 +115,18 @@ if ( ! function_exists( 'tcc_excerpt_length' ) ) {
 }
 
 
-if (!function_exists('tcc_font_size')) {
-  function tcc_font_size() {
-    $size = intval(tcc_design('size'),10);
-    if (($size>0) || ($size=18)) { # set default value if needed
-      echo "\nbody { font-size: {$size}px }\n";
-    }
-  }
-  add_action('tcc_custom_css','tcc_font_size');
+if ( ! function_exists( 'tcc_font_size' ) ) {
+	function tcc_font_size() {
+		$size = intval( tcc_design( 'size', 18 ), 10 );
+		if ( ( $size > 0 ) || ( $size = 18 ) ) {
+			echo "\nbody { font-size: {$size}px }\n";
+		}
+	}
+	add_action( 'tcc_custom_css', 'tcc_font_size' );
 }
 
 if ( ! function_exists( 'tcc_layout' ) ) {
-	function tcc_layout( $option, $value = 'excerpt' ) {
+	function tcc_layout( $option, $value = '' ) {
 		static $data;
 		if ( empty( $data ) ) {
 			$data = get_option( 'tcc_options_layout' );
@@ -163,11 +163,11 @@ if ( ! function_exists( 'tcc_option' ) ) {
 	}
 }
 
-if (!function_exists('tcc_settings')) {
-  function tcc_settings($option) {
-    static $data;
-    if (empty($data)) { $data = get_option('tcc_options_admin'); }
-    if (isset($data[$option])) { return $data[$option]; }
-    return '';
-  }
+if ( ! function_exists( 'tcc_settings' ) ) {
+	function tcc_settings( $option, $default = '' ) {
+		static $data;
+		if ( empty( $data ) ) { $data = get_option( 'tcc_options_admin' ); }
+		if ( isset( $data[ $option ] ) ) { return $data[ $option ]; }
+		return $default;
+	}
 }
