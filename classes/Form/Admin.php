@@ -524,13 +524,13 @@ abstract class TCC_Form_Admin {
 	private function render_radio($data) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
-		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
-		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
 		$radio_attrs = array(
 			'type' => 'radio',
 			'name' => $name,
-			'onchange' => ( isset( $layout['change'] ) ) ? $layout['change']  : '',
-		); ?>
+		);
+		if ( isset( $layout['change'] ) ) {
+			$radio_attrs['onchange'] = $layout['change'];
+		} ?>
 		<div><?php
 			if ( isset( $layout['text'] ) ) {
 				$uniq = uniqid(); ?>
@@ -555,10 +555,12 @@ abstract class TCC_Form_Admin {
 						} ?>
 					</label>
 				</div><?php
+			}
+			if ( isset( $layout['postext'] ) ) { ?>
+				<div>
+					<?php echo esc_html( $layout['postext'] ) ; ?>
+				</div><?php
 			} ?>
-			<div>
-				<?php echo esc_html( $after_text ) ; ?>
-			</div>
 		</div><?php
 	} //*/
 
