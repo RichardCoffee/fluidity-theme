@@ -84,23 +84,25 @@ function showhideAdminElements( origin, target, show, hide ) {
 console.log('origin: '+origin);
 console.log('target: '+target);
 	if ( origin && target ) {
-		var radio = jQuery( origin ).find( 'input:radio:checked' );
+		var radio = jQuery( origin ).find( 'input:radio' );
 console.log(radio);
 		if ( radio ) {
 			var state = jQuery( radio ).val();
 console.log('state: '+state);
-			if ( show ) {
+			if ( state ) {
+				if ( show ) {
 console.log('show: '+show);
-				if ( state === show ) {
-					jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
-				} else {
-					jQuery( target ).parent().parent().hide( 2000 ); //addClass('hidden');
-				}
-			} else if ( hide ) {
-				if ( state === hide ) {
-					jQuery( target ).parent().parent().hide( 2000 ); //addClass('hidden');
-				} else {
-					jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
+					if ( state === show ) {
+						jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
+					} else {
+						jQuery( target ).parent().parent().hide( 2000 ); //addClass('hidden');
+					}
+				} else if ( hide ) {
+					if ( state === hide ) {
+						jQuery( target ).parent().parent().hide( 2000 ); //addClass('hidden');
+					} else {
+						jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
+					}
 				}
 			}
 		}
