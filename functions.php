@@ -84,3 +84,11 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	$schemes = $color->get_available_color_schemes( array( 'none' => __( 'Do not use internal color scheme', 'tcc-fluid' ) ) );
 	fluid()->log( $schemes );
 } ); //*/
+
+fluid()->log( array(
+	'api_status'     => tcc_option( 'status', 'apicontrol', 'on' ),
+	'social_active'  => tcc_option( 'active', 'social', 'no' ),
+	'content_exlen'  => tcc_option( 'exlength', 'content', 55 ),
+	'content_exdate' => tcc_option( 'exdate', 'content', 'show' )
+	'content_post'   => tcc_option( 'postdate', 'content', 'original' )
+) );
