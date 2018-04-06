@@ -2,7 +2,6 @@
 
 jQuery(document).ready(function() {
 //	showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
-	showhideAdminElements( '.fluid-sidebar-active',  '.fluid-sidebar-setting',  'no');
 	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
 	showhideAdminElements( '.privacy-blog-active',   '.privacy-blog-option',    'yes');
 	showhideAdminElements( '.privacy-multi-active',  '.privacy-multi-option',   'filter');
@@ -86,7 +85,7 @@ console.log('origin: '+origin);
 console.log('target: '+target);
 	if ( origin && target ) {
 		var radio = jQuery( origin ).find( 'input:radio:checked' );
-console.log('radio: '+radio);
+console.log(radio);
 		if ( radio ) {
 			var state = jQuery( radio ).val();
 console.log('state: '+state);

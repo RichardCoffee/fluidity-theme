@@ -76,8 +76,13 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'no'  => __( 'Static content', 'tcc-fluid' ),
 				'yes' => __( 'Fluid content', 'tcc-fluid' ),
 			),
-			'change'  => 'showhidePosi( this, ".fluid-sidebar-setting", "no" );',
-			'divcss'  => 'fluid-sidebar-active no-sidebar-setting',
+			'change'   => 'showhidePosi( this, ".fluid-sidebar-setting", "no" );',
+			'divcss'   => 'fluid-sidebar-active no-sidebar-setting',
+			'showhide' => array(
+				'origin' => 'fluid-sidebar-active',
+				'target' => 'fluid-sidebar-setting',
+				'show'   => 'no',
+			),
 		);
 		if ( WP_DEBUG ) {
 			$layout['main_css'] = array(
