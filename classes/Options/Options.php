@@ -36,6 +36,13 @@ abstract class TCC_Options_Options {
 		return $this->screen;
 	}
 
+	/**
+	 * add data to array passed to javascript
+	 *
+	 * @since 2.3.0
+	 * @param array $data
+	 * @return array
+	 */
 	public function options_localization( $data = array() ) {
 		if ( ! isset( $data['showhide'] ) ) {
 			$data['showhide'] = array();

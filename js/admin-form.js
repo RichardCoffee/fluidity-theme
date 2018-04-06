@@ -2,7 +2,6 @@
 
 jQuery(document).ready(function() {
 //	showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
-	showhideAdminElements( '.social-option-active',  '.social-option-icon',     'yes');
 	showhideAdminElements( '.agent-role-active',     '.agent-role-setting',     'agents');
 	showhideAdminElements( '.fluid-sidebar-active',  '.fluid-sidebar-setting',  'no');
 	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
@@ -12,11 +11,8 @@ jQuery(document).ready(function() {
 	showhideAdminElements( '.privacy-theme-active',  '.privacy-theme-filter',   'filter');
 	showhideAdminElements( '.master-rest-api-namespace', '.control-rest-api-namespace', 'filter');
 
-console.log(tcc_admin_options);
 	if ( tcc_admin_options.showhide ) {
-console.log(tcc_admin_options.showhide);
 		jQuery.each( tcc_admin_options.showhide, function( counter, item ) {
-console.log(item);
 			targetableElements( item );
 		});
 	}
@@ -83,15 +79,12 @@ function showhidePosi( el, target, show, hide ) {
 }
 
 function targetableElements( item ) {
-console.log(item);
 	showhideAdminElements( item.origin, item.target, item.show, item.hide );
 }
 
 function showhideAdminElements( origin, target, show, hide ) {
-console.log('origin');
-console.log(origin);
-console.log('target');
-console.log(target);
+console.log('origin: '+origin);
+console.log('target: '+target);
 	if ( origin && target ) {
 		var radio = jQuery( origin ).find( 'input:radio:checked' );
 console.log('radio');
