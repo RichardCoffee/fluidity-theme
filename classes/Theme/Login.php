@@ -166,7 +166,7 @@ function prevent_wp_login() {
 			parse_str( htmlspecialchars_decode( substr( $url, $pos + 1 ) ), $parms );
 			$parms['redirect_to'] = $site;
 			$opts  = http_build_query( $parms, 'tcc_' );
-			$url   = $base . '?' . htmlspecialchars( $opts );
+			$url   = $base . '?' . htmlspecialchars( $otpts );
 		}
 		return $url;
 	}
@@ -178,15 +178,16 @@ function prevent_wp_login() {
 		$opts = array(
 			'default' => 'external',
 			'label'   => __( 'Theme Login', 'tcc-fluid' ),
-			'text'    => __( 'Choose whether you use a plugthe theme login should be usedControl the status of the WordPress Heartbeat API', 'tcc-fluid' ),
-'help'    => __( 'The Heartbeat API will always remain active on these pages: post.php, post-new.php, and admin.php', 'tcc-fluid' ),
-'render'  => 'radio',
-'source'  => array(
-'on'   => __( 'On', 'tcc-fluid' ),
-'off'  => __( 'Off', 'tcc-fluid' ),
-),
-);
-
+			'text'    => __( 'Choose whether you use a plugin for logins, or whether the internal theme login should be used', 'tcc-fluid' ),
+			'help'    => __( '', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'internal' => __( 'Theme', 'tcc-fluid' ),
+				'external' => __( 'Plugin', 'tcc-fluid' ),
+			),
+		);
+		$layout['login'] = $opts
+		return $layout;
 	}
 
 
