@@ -84,7 +84,6 @@ abstract class TCC_Options_Options {
 				$setting_id   = $section_id . '_' . $control;
 				$setting_args = $this->customizer_setting( $item );
 				$customize->add_setting( $setting_id, $setting_args );
-fluid()->log($item);
 				new TCC_Form_Customizer( compact( 'customize', 'section_id', 'setting_id', 'item', 'priority' ) );
 			}
 		}
