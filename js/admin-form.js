@@ -2,7 +2,6 @@
 
 jQuery(document).ready(function() {
 //	showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
-	showhideAdminElements( '.agent-role-active',     '.agent-role-setting',     'agents');
 	showhideAdminElements( '.fluid-sidebar-active',  '.fluid-sidebar-setting',  'no');
 	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
 	showhideAdminElements( '.privacy-blog-active',   '.privacy-blog-option',    'yes');

@@ -119,7 +119,7 @@ class TCC_Options_Typography {
 						'subset' => urlencode( 'latin,latin-ext' ) // FIXME: when would subset be something different?
 					);
 					$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-					wp_enqueue_style( 'typography_font', $fonts_url, false, null, 'all' );
+					wp_enqueue_style( 'typography_font', $fonts_url, null, null, 'all' );
 				}
 			}
 		}
