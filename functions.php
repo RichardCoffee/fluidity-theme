@@ -54,7 +54,7 @@ if ( is_admin() ) {
 
 /**  Test functions  **/
 
-fluid()->log( get_theme_mod( 'custom-logo' ) );
+#fluid()->log( get_theme_mod( 'custom-logo' ) );
 
 /*function themeslug_customize_register( WP_Customize_Manager $wp_customize ) {
   fluid()->log( $wp_customize );
@@ -88,8 +88,10 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 fluid()->log( array(
 	'api_status'     => tcc_option( 'status', 'apicontrol', 'on' ),
 	'social_active'  => tcc_option( 'active', 'social', 'no' ),
-	'content_exlen'  => tcc_option( 'exlength', 'content', 55 ),
-	'content_exdate' => tcc_option( 'exdate', 'content', 'show' ),
+	'content_exlen1'  => tcc_option( 'exlength', 'content', 55 ),
+	'content_exlen2'  => tcc_content( 'exlength', 55 ),
+	'content_exdate1' => tcc_option( 'exdate', 'content', 'show' ),
+	'content_exdate2' => tcc_content( 'exdate', 'show' ),
 	'content_post1'  => tcc_option( 'postdate', 'content', 'original' ),
 	'content_post2'  => tcc_content( 'postdate', 'original' ),
 ) );
