@@ -186,7 +186,7 @@ function prevent_wp_login() {
 				'external' => __( 'Plugin', 'tcc-fluid' ),
 			),
 		);
-		$layout['login'] = $opts
+		$layout['login'] = $opts;
 		return $layout;
 	}
 
