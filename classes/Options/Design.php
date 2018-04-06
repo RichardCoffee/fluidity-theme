@@ -65,7 +65,7 @@ class TCC_Options_Design extends TCC_Options_Options {
 			'render'  => 'text',
 			'divcss'  => 'tcc_text_3em',
 			'attrs'   => array(
-				'size' => '3',
+				'maxlength' => '3',
 			),
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
