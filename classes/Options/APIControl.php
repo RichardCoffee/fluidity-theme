@@ -32,6 +32,7 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				'off'    => __( 'Off - this may break things.', 'tcc-fluid' ),
 			),
 			'change'    => 'showhidePosi( this, ".control-rest-api-namespace", "filter" );',
+			'divcss' => 'master-rest-api-namespace',
 		);
 		$layout['namespaces'] = array(
 			'label'  => __( 'Namespaces', 'tcc-fluid' ),

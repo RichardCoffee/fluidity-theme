@@ -2,7 +2,7 @@
 
 jQuery(document).ready(function() {
 //	showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
-//	showhideAdminElements( '.social-option-active',  '.social-option-icon',     'yes');
+	showhideAdminElements( '.social-option-active',  '.social-option-icon',     'yes');
 	showhideAdminElements( '.agent-role-active',     '.agent-role-setting',     'agents');
 	showhideAdminElements( '.fluid-sidebar-active',  '.fluid-sidebar-setting',  'no');
 	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
@@ -10,6 +10,7 @@ jQuery(document).ready(function() {
 	showhideAdminElements( '.privacy-multi-active',  '.privacy-multi-option',   'filter');
 	showhideAdminElements( '.privacy-plugin-active', '.privacy-plugin-filter',  'filter');
 	showhideAdminElements( '.privacy-theme-active',  '.privacy-theme-filter',   'filter');
+	showhideAdminElements( '.master-rest-api-namespace', '.control-rest-api-namespace', 'filter');
 
 console.log(tcc_admin_options);
 	if ( tcc_admin_options.showhide ) {
