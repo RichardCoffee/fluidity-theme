@@ -17,26 +17,4 @@ class TCC_Options_Customizer {
 	}
 
 
-/*		$logo = get_theme_mod('custom-logo');
-log_entry($logo);
-
-		#$customize->add_setting( 'setting_id', $this->setting_defaults() );
-
-//*/
-
-
-	private function setting_defaults() {
-		return array(
-#			'default'              => '',
-			'type'                 => 'theme_mod', // or 'option'
-#			'capability'           => 'edit_theme_options',
-#			'theme_supports'       => '', // Rarely needed.
-#			'transport'            => 'refresh', // or postMessage
-			'sanitize_callback'    => 'sanitize_text_field',
-#			'sanitize_js_callback' => '', // Basically to_json.
-		);
-
-	}
-
-
 }

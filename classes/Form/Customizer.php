@@ -36,6 +36,7 @@ class TCC_Form_Customizer {
 			'label'       => $this->item['label'],
 #			'choices' - radio or select only
 			'type'        => $this->item['render'],
+			'input_attrs' => ( ! empty( $this->item['attrs'] ) ) ? $this->item['attrs'] : array(),
 /*			'input_attrs' => array(
 				'class' => 'my-custom-class-for-js',
 				'style' => 'border: 1px solid #900',

@@ -98,7 +98,7 @@ abstract class TCC_Options_Options {
 			'title'              => $item['label'],
 			'description'        => $item['text'],
 #			'type'               =>
-#			'active_callback'    => // does this determine if the section is displayed/hidden/disabled/what?
+#			'active_callback'    => // does this determine if the section is displayed/hidden/disabled or something completely different?
 			'description_hidden' => true,
 		);
 		return $args;
@@ -106,11 +106,11 @@ abstract class TCC_Options_Options {
 
 	protected function customizer_setting( $item ) {
 		$args = array(
-			'type'                 => ( isset( $item['type'] ) )           ? $item['type']           : 'option',
+			'type'                 => ( isset( $item['type'] ) )           ? $item['type']           : 'theme_mod', // 'option',
 			'capability'           => ( isset( $item['capability'] ) )     ? $item['capability']     : $this->capability,
 #			'theme_supports'       => ( isset( $item['theme_supports'] ) ) ? $item['theme_supports'] : '', // plugins only
 			'default'              => ( isset( $item['default'] ) )        ? $item['default']        : '',
-			'transport'            => ( isset( $item['transport'] ) )      ? $item['transport']      : 'refresh', // 'postMessage'
+			'transport'            => ( isset( $item['transport'] ) )      ? $item['transport']      : 'refresh', // 'postMessage',
 			'validate_callback'    => ( isset( $item['validate'] ) )       ? $item['validate']       : '', // when is this called?
 			'sanitize_callback'    => ( isset( $item['sanitize'] ) )       ? $item['sanitize']       : array( fluid_sanitize(), $item['render'] ),
 			'sanitize_js_callback' => ( isset( $item['js_callback'] ) )    ? $item['js_callback']    : '',

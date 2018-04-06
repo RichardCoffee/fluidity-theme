@@ -57,6 +57,9 @@ class TCC_Options_Design extends TCC_Options_Options {
 			'label'   => __( 'Font Type', 'tcc-fluid' ),
 			'render'  => 'font',
 			'source'  => TCC_Options_Typography::mixed_fonts(),
+			'attrs'   => array(
+				'size' => '3',
+			),
 		);
 		$layout['size'] = array(
 			'default' => 18,
