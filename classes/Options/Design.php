@@ -62,10 +62,11 @@ class TCC_Options_Design extends TCC_Options_Options {
 			'default' => 18,
 			'label'   => __('Font Size','tcc-fluid'),
 			'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
-			'render'  => 'text',
+			'render'  => 'spinner',
 			'divcss'  => 'tcc_text_3em',
 			'attrs'   => array(
-				'maxlength' => '3',
+				'min'  => '1',
+				'step' => '1',
 			),
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );

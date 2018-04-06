@@ -58,7 +58,7 @@ class TCC_Form_Customizer {
 	}
 
 	protected function spinner() {
-		$args = $this->defaults()
+		$args = $this->defaults();
 		$args['type'] = 'number';
 		$this->add_control( $args );
 	}
