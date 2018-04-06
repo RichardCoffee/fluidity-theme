@@ -21,7 +21,7 @@ add_filter( 'tcc_theme_sidebar_args', function( $args ) {
 /*
 if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 	function fluidity_register_sidebars() {
-		$widget = tcc_layout('widget');
+		$widget = tcc_layout('widget', 'perm' );
 		$before_widget = '<div class="panel panel-fluidity">';
 		$before_title  = '<div class="panel-heading"';
 		$before_title .= ( $widget === 'perm' )   ? '' : ' role="button"';
@@ -139,7 +139,7 @@ if (!function_exists('fluidity_sidebar_layout')) {
 	#	DEPRECATED - do not use
   function fluidity_sidebar_layout($sidebar='standard',$side='') {
     if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
-    $side = ($side) ? $side : tcc_layout('sidebar');
+    $side = ($side) ? $side : tcc_layout('sidebar', 'left' );
     if ($side!=='none') {
       $posi = ($side=='right') ? 'pull-right' : '';
       $posi = (defined('TCC_LEFT_SIDEBAR')) ? '' : $posi;
@@ -162,7 +162,7 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 	#	DEPRECATED - do not use
 	function fluidity_sidebar( $css = '', $sidebar = 'standard' ) {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
-		$side = tcc_layout( 'sidebar' );
+		$side = tcc_layout( 'sidebar', 'left' );
 		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
 		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
 		if ( $side !== 'none' ) {
@@ -180,7 +180,7 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 
 if ( ! function_exists( 'tcc_sidebar' ) ) {
 	function tcc_sidebar( $sidebar = 'standard' ) {
-		$side = tcc_layout( 'sidebar' );
+		$side = tcc_layout( 'sidebar', 'left' );
 		$slug = get_page_slug();
 		$css  = array(
 			'widget-area',

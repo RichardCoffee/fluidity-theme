@@ -42,7 +42,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'hide'   => __( 'Hiding - Hidden when scrolling, show on hover', 'tcc-fluid' ),
 			),
 		); //*/
-		if ( WP_DEBUG ) {
+/*		if ( WP_DEBUG ) {
 			$layout['menu']    = array(
 				'default' => 'bootstrap',
 				'label'   => __( 'Menu', 'tcc-fluid' ),
@@ -53,7 +53,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 					'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
 				),
 			);
-		}
+		} //*/
 		$layout['sidebar'] = array(
 			'default' => 'left',
 			'label'   => __( 'Sidebar', 'tcc-fluid' ),
@@ -66,6 +66,11 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			),
 			'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
 			'divcss'  => 'no-sidebar-active',
+			'showhide' => array(
+				'origin' => 'no-sidebar-active',
+				'target' => 'no-sidebar-setting',
+				'hide'   => 'none',
+			),
 		);
 		$layout['fluid_sidebar'] = array(
 			'default' => 'no',

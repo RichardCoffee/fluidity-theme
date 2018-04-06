@@ -77,11 +77,11 @@
 	==================================
 		fluid_color_scheme()
 		tcc_currency_symbol()
-		tcc_design( $option )
+		tcc_design( $option, $default )
 		tcc_font_size()
-		tcc_layout( $option )
+		tcc_layout( $option, $default )
 		tcc_option( $option = '', $section = '' )
-		tcc_settings( $option )
+		tcc_settings( $option, $default )
 
 			Third Party
 	==================================

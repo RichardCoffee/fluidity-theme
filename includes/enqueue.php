@@ -15,18 +15,18 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		fluidity_enqueue_bootstrap();
 		do_action( 'tcc_during_enqueue' );
 		#  load javascript
-		if ( tcc_layout( 'menu' ) !== 'bootstrap' ) {
+		if ( tcc_layout( 'menu', 'bootstrap' ) !== 'bootstrap' ) {
 			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), array(), '20151215', true );
 		}
 		wp_enqueue_script( 'tcc-skiplink' );
-		if ( ( tcc_layout( 'widget' ) !== 'perm' ) || is_404() ) {
+		if ( ( tcc_layout( 'widget', 'perm' ) !== 'perm' ) || is_404() ) {
 			wp_enqueue_script( 'tcc-collapse' );
 		}
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );  #  enable threaded comments
 		}
 		// experimental
-		$hdr_state = tcc_layout( 'header' );
+		$hdr_state = tcc_layout( 'header', 'static' );
 		if ( $hdr_state === 'fixed' ) {
 			wp_enqueue_script( 'tcc-fixed' );
 		} else if ( $hdr_state === 'reduce' ) {

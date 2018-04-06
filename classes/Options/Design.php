@@ -42,7 +42,7 @@ class TCC_Options_Design extends TCC_Options_Options {
 				'page' => __( 'Show the page title after the header and before the content/sidebar.', 'tcc-fluid' ),
 			)
 		);
-		if ( ! ( tcc_layout( 'sidebar' ) === 'none' ) ) {
+		if ( ! ( tcc_layout( 'sidebar', 'left' ) === 'none' ) ) {
 			$layout['title']['source']['main'] = __( 'Over content area only, when showing sidebar.', 'tcc-fluid' );
 		}
 		$layout['type'] = array(

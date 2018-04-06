@@ -9,7 +9,7 @@ $page = get_page_slug();
 $menu = apply_filters( 'tcc_menu', 'primary', $page );	#	defaults: primary, header or footer
 if ( has_nav_menu( $menu ) ) {
 #	$main_css = get_menu_class($menu,$page);
-	if ( tcc_layout( 'menu' ) === 'bootstrap' ) {
+	if ( tcc_layout( 'menu', 'bootstrap' ) === 'bootstrap' ) {
 		/* bootstrap navigation */
 		$nav_attrs = array(
 			'id'    => "navbar-{$page}-$menu",

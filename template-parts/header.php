@@ -11,7 +11,7 @@ $page  = get_page_slug();
 #do_action('tcc_before_header_'.$page); ?>
 
 <header id="fluid-header" <?php microdata()->WPHeader(); ?> role="banner">
-	<div class="<?php echo 'header-'.tcc_layout('header'); ?> <?php echo container_type('header'); ?>"><?php
+	<div class="<?php echo 'header-' . tcc_layout( 'header', 'static' ); ?> <?php echo container_type( 'header' ); ?>"><?php
 
 		#do_action('tcc_pre_header');
 		#do_action("tcc_pre_header_$page");
