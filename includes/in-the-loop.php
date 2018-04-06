@@ -60,7 +60,7 @@ if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 			'target' => '_blank',
 			'title'  => sprintf( _x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), get_the_title() ),
 		);
-		$link   = fluid()->get_apply_attrs_tag( $attrs, 'a' );
+		$link   = fluid()->get_apply_attrs_tag( 'a', $attrs );
 		$link  .= $text . '</a>';
 		return $link;
 	}
@@ -140,7 +140,7 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 			'href'     => get_permalink( get_the_ID() ),
 			'itemprop' => 'url',
 		);
-		$link  = fluid()->get_apply_attrs_tag( $attrs, 'a' );
+		$link  = fluid()->get_apply_attrs_tag( 'a', $attrs );
 		$link .= esc_html( apply_filters( 'tcc_read_more_text', __( 'Read More', 'tcc-fluid' ) ) );
 		$link .= '<span class="screen-reader-text"> ';
 		$link .= wp_strip_all_tags( get_the_title( get_the_ID() ) );

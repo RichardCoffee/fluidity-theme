@@ -220,7 +220,7 @@ class TCC_Theme_Comment {
 	/**  must_log_in  **/
 
 	protected function must_log_in() {
-		$link_html = $this->get_apply_attrs_tag( $this->must_log_in_link_attrs(), 'a' );
+		$link_html = $this->get_apply_attrs_tag( 'a', $this->must_log_in_link_attrs() );
 		return sprintf( $this->strings['must_log_in'], $link_html, '</a>' );
 	}
 
@@ -235,8 +235,8 @@ class TCC_Theme_Comment {
 	/**  logged_in_as  **/
 
 	protected function logged_in_as() {
-		$profile_link = $this->get_apply_attrs_tag( $this->profile_link_attrs(), 'a' );
-		$logout_link  = $this->get_apply_attrs_tag( $this->logout_link_attrs(),  'a' );
+		$profile_link = $this->get_apply_attrs_tag( 'a', $this->profile_link_attrs() );
+		$logout_link  = $this->get_apply_attrs_tag( 'a', $this->logout_link_attrs() );
 		return sprintf( $this->strings['logged_in_as'], $profile_link, $this->author['name'], '</a>', $logout_link, '</a>' );
 	}
 

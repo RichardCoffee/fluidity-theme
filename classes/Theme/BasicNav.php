@@ -83,7 +83,7 @@ abstract class TCC_Theme_BasicNav {
 			'aria-label' => $this->sr_text,
 			'role'  => 'navigation',
 		);
-		$html = $this->get_apply_attrs_tag( $attrs, 'nav' );
+		$html = $this->get_apply_attrs_tag( 'nav', $attrs );
 		$html.= '<div class="nav-links">%s</div>';
 		$html.= '</nav>';
 		return $html;
@@ -101,7 +101,7 @@ abstract class TCC_Theme_BasicNav {
 						'class' => 'previous '. $this->li_css,
 						'title' => $this->older_link,
 					);
-					$this->apply_attrs_tag( $li_attrs, 'li' );
+					$this->apply_attrs_tag( 'li', $li_attrs );
 						previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 					</li><?php
 				}
@@ -110,7 +110,7 @@ abstract class TCC_Theme_BasicNav {
 						'class' => 'next '. $this->li_css,
 						'title' => $this->newer_link,
 					);
-					$this->apply_attrs_tag( $li_attrs, 'li' );
+					$this->apply_attrs_tag( 'li', $li_attrs );
 						next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
 					</li><?php
 				} ?>

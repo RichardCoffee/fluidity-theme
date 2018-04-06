@@ -25,9 +25,9 @@ if ( has_nav_menu( $menu ) ) {
 			'data-toggle'   => 'collapse',
 			'data-target'   => ".navbar-$menu-collapse",
 		);
-		fluid()->apply_attrs_tag( $nav_attrs, 'nav' ); ?>
+		fluid()->apply_attrs_tag( 'nav', $nav_attrs ); ?>
 			<div class="navbar-header">
-				<?php fluid()->apply_attrs_tag( $button_attrs, 'button' ); ?>
+				<?php fluid()->apply_attrs_tag( 'button', $button_attrs ); ?>
 					<span class="sr-only">Toggle navigation</span>
 					<?php fluid()->fawe( 'fa-bars' ); ?>
 				</button>
@@ -49,7 +49,7 @@ if ( has_nav_menu( $menu ) ) {
 			</div>
 		</nav><?php
 	} else {
-		/*	underscore navigation */
+		/* underscore navigation */
 		$nav_attrs = array(
 			'id'    => 'site-navigation',
 			'class' => "main-navigation {$menu}-navigation {$page}-{$menu}-navigation",
@@ -61,8 +61,8 @@ if ( has_nav_menu( $menu ) ) {
 			'aria-controls' => $menu,
 			'aria-expanded' => 'false',
 		);
-		fluid()->apply_attrs_tag( $nav_attrs, 'nav' );
-			fluid()->apply_attrs_tag( $button_attrs, 'button' ); ?>
+		fluid()->apply_attrs_tag( 'nav', $nav_attrs );
+			fluid()->apply_attrs_tag( 'button', $button_attrs ); ?>
 				<span class="sr-only">Toggle navigation</span>
 				<?php fluid()->fawe( 'fa-bars' ); ?>
 			</button><?php

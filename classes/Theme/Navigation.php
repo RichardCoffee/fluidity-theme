@@ -164,7 +164,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 							'class' => 'previous '. $this->li_css,
 							'title' => $this->older_link,
 						);
-						$this->apply_attrs_tag( $attrs, 'li' );
+						$this->apply_attrs_tag( 'li', $attrs );
 							echo $this->get_adjacent_post_link( '%link', $this->left, true, $this->previous );
 #							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
 #							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
@@ -175,7 +175,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 							'class' => 'next '. $this->li_css,
 							'title' => $this->newer_link,
 						);
-						$this->apply_attrs_tag( $attrs, 'li' );
+						$this->apply_attrs_tag( 'li', $attrs );
 							echo $this->get_adjacent_post_link( '%link', $this->right, false, $this->next );
 #							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
 #							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>

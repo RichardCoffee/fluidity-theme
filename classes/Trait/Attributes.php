@@ -7,8 +7,8 @@ trait TCC_Trait_Attributes {
 		echo $this->get_apply_attrs( $args );
 	}
 
-	public function apply_attrs_tag( $attrs, $html_tag ) {
-		echo $this->get_apply_attrs_tag( $attrs, $html_tag );
+	public function apply_attrs_tag( $html_tag, $attrs ) {
+		echo $this->get_apply_attrs_tag( $html_tag, $attrs );
 	}
 
 	public function get_apply_attrs( $args ) {
@@ -45,7 +45,7 @@ trait TCC_Trait_Attributes {
 		return $attrs;
 	}
 
-	public function get_apply_attrs_tag( $attrs, $html_tag ) {
+	public function get_apply_attrs_tag( $html_tag, $attrs ) {
 		$html = '<' . $html_tag . $this->get_apply_attrs( $attrs );
 		$html .= ( $this->is_self_closing( $html_tag ) ) ? ' />' : '>';
 		return $html;

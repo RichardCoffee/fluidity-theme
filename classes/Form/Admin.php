@@ -627,16 +627,16 @@ abstract class TCC_Form_Admin {
 
 	private function render_spinner( $data ) {
 		extract($data);  #  array('ID'=>$item, 'value'=>$data[$item], 'layout'=>$layout[$item], 'name'=>$name)
-/*		$attrs = array(
+		$attrs = array(
+			'type'  => 'number',
+			'class' => 'small-text',
 			'id'    => $ID,
 			'name'  => $name,
-			'value' => $value, */
-
- ?>
-		<input type="number" class="small-text" min="1" step="1"
-		       id="<?php e_esc_attr( $ID ); ?>"
-		       name="<?php e_esc_attr( $name ); ?>"
-		       value="<?php e_esc_attr( sanitize_text_field( $value ) ); ?>" /> <?php
+			'min'   => '1',
+			'step'  => '1',
+			'value' => $value,
+		);
+		fluid()->apply_attrs_tag( 'input', $attrs );
 		if ( ! empty( $layout['stext'] ) ) { e_esc_attr( $layout['stext'] ); }
 	}
 
