@@ -146,7 +146,7 @@ if ( ! function_exists( 'tcc_option' ) ) {
 		if ( $section ) {
 			$tcc_func = "tcc_$section";
 			if ( function_exists( $tcc_func ) ) {
-				$retval = $tcc_func( $option, $value );
+				$value = $tcc_func( $option, $value );
 			} else {
 				$data = get_option( "tcc_options_$section" );
 				if ( isset( $data[ $option ] ) ) {
