@@ -27,12 +27,14 @@ abstract class TCC_Options_Options {
 	}
 
 	public function default_form_layout() {
-		$this->screen = array(
-			'describe' => array( $this, 'describe_options' ),
-			'title'    => $this->form_title(),
-			'option'   => 'tcc_options_' . $this->base,
-			'layout'   => $this->options_layout(),
-		);
+		if ( empty( $this->screen ) ) {
+			$this->screen = array(
+				'describe' => array( $this, 'describe_options' ),
+				'title'    => $this->form_title(),
+				'option'   => 'tcc_options_' . $this->base,
+				'layout'   => $this->options_layout(),
+			);
+		}
 		return $this->screen;
 	}
 
@@ -65,6 +67,11 @@ abstract class TCC_Options_Options {
 			}
 		}
 		return $opts;
+	}
+
+	public function get_item( $item ) {
+		$layout = ( empty( $this->screen ) ) ? $this->options_layout() : $this->screen['layout'];
+		return ( isset( $layout[ $item ] ) ) ? $layout[ $item ] : array();
 	}
 
 

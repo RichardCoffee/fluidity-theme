@@ -19,21 +19,22 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 
 	protected function initialize_radio( $postID ) {
 		$postdate = get_post_meta( $postID, $this->field, true );
-		$default  = __( 'Use theme default: %s', 'tcc-fluid' );
 		$current  = tcc_content( 'postdate', 'default' );
-		//  FIXME:  option for other sources
-		$cur_text = fluid_options()->get_option_source_text( 'content', 'postdate', $current );
+		$content  = new TCC_Options_Content;
+		$layout   = $content->get_item( 'postdate' );
 		$args = array(
 			'field_default' => 'default',
 			'field_name'    => $this->field,
 			'field_value'   => ( $postdate ) ? $postdate : 'default',
-			'field_radio'   => array(
-				'default'  => sprintf( $default, $cur_text ),
-				'original' => __( 'Always show published date', 'tcc-fluid' ),
-				'modified' => __( 'Show modified date, when applicable', 'tcc-fluid' ),
-				'none'     => __( 'Never show a date for this post.', 'tcc-fluid' ),
-			),
+			'field_radio'   => array_merge( array(
+				'default'  => sprintf(
+					__( 'Use theme default: %s', 'tcc-fluid' ),
+					$layout['source'][ $current ]
+				),
+				$layout['source'],
+			) ),
 		);
+fluid()->log($args);
 		$this->radio = new TCC_Form_Field_Radio( $args );
 	}
 
