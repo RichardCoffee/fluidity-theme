@@ -47,7 +47,7 @@ abstract class TCC_Options_Options {
 		if ( ! isset( $data['showhide'] ) ) {
 			$data['showhide'] = array();
 		}
-		$options = ( isset( $this->screen['layout'] ) ) ? $this->screen['layout'] : $this->options_layout();
+		$options = ( ! empty( $this->screen['layout'] ) ) ? $this->screen['layout'] : $this->options_layout();
 fluid()->log( $this, $options );
 		foreach( $options as $key => $item ) {
 			if ( isset( $item['showhide'] ) ) {
