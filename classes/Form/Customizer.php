@@ -59,6 +59,7 @@ class TCC_Form_Customizer {
 
 	protected function text() {
 		$args = $this->defaults();
+fluid()->log($item);
 		$this->add_control( $args );
 	}
 
