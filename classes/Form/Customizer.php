@@ -10,7 +10,7 @@
 class TCC_Form_Customizer {
 
 	protected $customize; // WP_Customize_Manager
-	protected $item;
+	protected $item; # taken from Options_Class->options_layout()
 	protected $priority = 10;
 	protected $section_id;
 	protected $setting_id;
