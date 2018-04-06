@@ -87,15 +87,12 @@ console.log('origin: '+origin);
 console.log('target: '+target);
 	if ( origin && target ) {
 		var radio = jQuery( origin ).find( 'input:radio:checked' );
-console.log('radio');
-console.log(radio);
+console.log('radio: '+radio);
 		if ( radio ) {
 			var state = jQuery( radio ).val();
-console.log('state');
-console.log(state);
+console.log('state: '+state);
 			if ( show ) {
-console.log('show');
-console.log(show);
+console.log('show: '+show);
 				if ( state === show ) {
 					jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
 				} else {
