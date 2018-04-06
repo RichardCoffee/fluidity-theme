@@ -524,19 +524,21 @@ abstract class TCC_Form_Admin {
 	private function render_radio($data) {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
-		$uniq        = uniqid();
 		$before_text = ( isset( $layout['text'] ) )    ? $layout['text']    : '';
 		$after_text  = ( isset( $layout['postext'] ) ) ? $layout['postext'] : '';
 		$radio_attrs = array(
 			'type' => 'radio',
 			'name' => $name,
 			'onchange' => ( isset( $layout['change'] ) ) ? $layout['change']  : '',
-			'aria-describedby' => $uniq,
 		); ?>
-		<div>
-			<div id="<?php echo $uniq; ?>">
-				<?php echo esc_html( $before_text ); ?>
-			</div><?php
+		<div><?php
+			if ( isset( $layout['text'] ) ) {
+				$uniq = uniqid(); ?>
+				<div id="<?php echo $uniq; ?>">
+					<?php e_esc_html( $before_text ); ?>
+				</div><?php
+				$radio_attrs['aria-describedby'] = $uniq;
+			}
 			foreach( $layout['source'] as $key => $text ) {
 				$radio_attrs['value'] = $key; ?>
 				<div>
