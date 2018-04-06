@@ -120,8 +120,9 @@ if ( ! function_exists( 'tcc_font_size' ) ) {
 	function tcc_font_size() {
 		$size = intval( tcc_design( 'size', 18 ), 10 );
 		if ( ( $size > 0 ) || ( $size = 18 ) ) {
+			$panel = max( 1, $size - 2 );
 			echo "\nbody { font-size: {$size}px }\n";
-			echo "\npanel-title { font-size: {$size-2}px }\n";
+			echo "\npanel-title { font-size: {$panel}px }\n";
 		}
 	}
 	add_action( 'tcc_custom_css', 'tcc_font_size' );
