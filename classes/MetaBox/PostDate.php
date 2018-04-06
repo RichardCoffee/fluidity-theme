@@ -20,7 +20,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	protected function initialize_radio( $postID ) {
 		$postdate = get_post_meta( $postID, $this->field, true );
 		$default  = __( 'Use theme default: %s', 'tcc-fluid' );
-		$current  = tcc_option( 'postdate' );
+		$current  = tcc_option( 'postdate', 'content', 'default' );
 		//  FIXME:  option for other sources
 		$cur_text = fluid_options()->get_option_source_text( 'content', 'postdate', $current );
 		$args = array(

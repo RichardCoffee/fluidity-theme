@@ -108,8 +108,9 @@ if ( ! function_exists( 'tcc_design' ) ) {
 
 if ( ! function_exists( 'tcc_excerpt_length' ) ) {
 	function tcc_excerpt_length( $length ) {
-		$new = intval( tcc_option( 'exlength', 'content' ), 10 );
-		return ( $new ) ? $new : $length;
+		$stored  = tcc_option( 'exlength', 'content', 55 );
+		$calced  = intval( $stored, 10 );
+		return ( $calced ) ? $calced : $length;
 	}
 	add_filter( 'excerpt_length', 'tcc_excerpt_length', 999 );
 }

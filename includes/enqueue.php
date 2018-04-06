@@ -9,7 +9,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		fluidity_register_css_js();
 		#  load stylesheets
 		wp_enqueue_style( 'tcc-fawe' );   #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
-		if ( tcc_option( 'active', 'social' ) === 'yes' ) {
+		if ( tcc_option( 'active', 'social', 'no' ) === 'yes' ) {
 			wp_enqueue_style( 'fa-social' );
 		}
 		fluidity_enqueue_bootstrap();

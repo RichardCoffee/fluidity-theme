@@ -17,9 +17,9 @@ who_am_i(); ?>
 			$tooltip = sprintf( $format, get_the_title() ); ?>
 			<h2 class="text-center" itemprop="headline">
 				<?php tcc_post_title( 40 ); ?>
-			</h2>
+			</h2><?php
 
-			<?php if ( tcc_option( 'exdate' ) === 'show' ) { ?>
+			if ( tcc_option( 'exdate', 'content', 'show' ) === 'show' ) { ?>
 				<h3 class="text-center">
 					<?php fluid_post_date(); ?>
 				</h3><?php
