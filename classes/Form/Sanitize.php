@@ -44,6 +44,7 @@ class TCC_Form_Sanitize {
 		return wp_kses_post($input);
 	}
 
+	# See also: classes/Form/Field/Radio.php
 	public function radio( $input, $setting ) {
 		$input   = sanitize_key( $input );
 		$choices = $setting->manager->get_control( $setting->id )->choices;

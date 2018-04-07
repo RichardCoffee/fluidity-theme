@@ -23,18 +23,17 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$content  = new TCC_Options_Content;
 		$layout   = $content->get_item( 'postdate' );
 		$args = array(
-			'field_default' => 'default',
+			'field_default' => $layout['default'],
 			'field_name'    => $this->field,
-			'field_value'   => ( $postdate ) ? $postdate : 'default',
-			'field_radio'   => array_merge( array(
-				'default'  => sprintf(
+			'field_value'   => ( $postdate ) ? $postdate : $layout['default'],
+			'choices'       => array_merge( array(
+				'default' => sprintf(
 					__( 'Use theme default: %s', 'tcc-fluid' ),
 					$layout['source'][ $current ]
 				),
 				$layout['source'],
 			) ),
 		);
-fluid()->log($args);
 		$this->radio = new TCC_Form_Field_Radio( $args );
 	}
 
