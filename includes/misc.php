@@ -49,7 +49,7 @@ if (!function_exists('fluidity_social_icons')) {
 						if ( empty( $set['link'] ) ) continue;
 						$tool = sprintf( _x( 'See us on %s', '(social) website name', 'tcc-fluid' ), $layout[ $key ] ['label'] );
 						$attr = array(
-							'class' => "fa fab fa-fw fa-$key-square $size",
+							'class' => "fab fa-fw fa-$key-square $size",
 							'href'  => $set['link'],
 							'rel'   => 'nofollow',
 							'style' => "color:{$set['color']};",
