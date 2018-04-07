@@ -73,11 +73,11 @@
 }
 
 .fa-linkedin:hover:before {
-  content: "\f08c";
+  content: "\f0e1";
 }
 
 .fa-linkedin-in:hover:before {
-  content: "\f0e1";
+  content: "\f08c";
 }
 
 .fa-odnoklassniki:hover:before {
