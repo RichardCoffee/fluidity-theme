@@ -79,7 +79,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 		$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
 		$postdate = ( ! $postdate || ( $postdate === 'default' ) ) ? tcc_content( 'postdate', 'original' ) : $postdate;
 		if ( $postdate !== 'none' ) {
-			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: user name', 'tcc-fluid' );
+			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 			$date    = get_the_date();
 			$author  = microdata()->get_the_author();
 			if ( ( $postdate === 'modified' ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
