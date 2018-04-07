@@ -82,7 +82,7 @@ function targetableElements( item ) {
 
 function showhideAdminElements( origin, target, show, hide ) {
 console.log('origin: '+origin);
-console.log('target: '+target);
+//console.log('target: '+target);
 	if ( origin && target ) {
 		var radio = jQuery( origin ).find( 'input:radio:checked' );
 console.log(radio);

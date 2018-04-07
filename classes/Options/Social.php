@@ -13,7 +13,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 	}
 
 	public function describe_options() {
-		$text = _x( 'Fluidity Social Icons (powered by %sFont Awesome%s)', 'html <a></a> tag', 'tcc-fluid' );
+		$text = _x( 'Fluidity Social Icons (powered by %sFont Awesome%s)', 'html anchor/link tag', 'tcc-fluid' );
 		printf( $text, '<a href="http://fontawesome.io/" target="fontawesome.io">', '</a>' );
 	}
 
@@ -71,6 +71,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 		$icons = array(
 			'Behance'     => 'blue',
 			'Bitbucket'   => '#205081',
+			'Dribbble'    => '#ea4c89',
 			'Facebook'    => '#3B5998',
 			'GitHub'      => 'black',
 			'Google Plus' => '#DC4E41', # '#D74D2F',

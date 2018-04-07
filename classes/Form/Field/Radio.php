@@ -2,8 +2,8 @@
 
 class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 
-	protected $choices  = array();
-	protected $type     = 'radio';
+	protected $choices = array();
+	protected $type    = 'radio';
 
 	public function __construct( $args ) {
 		parent::__construct( $args );

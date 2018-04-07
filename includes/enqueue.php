@@ -4,11 +4,11 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 	function tcc_enqueue() {
 		do_action( 'tcc_pre_enqueue' );
 		#  register scripts
-		fluidity_register_fontawesome();
+#		fluidity_register_fontawesome();
 		fluidity_register_color_scheme();
 		fluidity_register_css_js();
 		#  load stylesheets
-		wp_enqueue_style( 'tcc-fawe' );   #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
+#		wp_enqueue_style( 'tcc-fawe' );   #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
 		if ( tcc_option( 'active', 'social', 'no' ) === 'yes' ) {
 			wp_enqueue_style( 'fa-social' );
 		}
@@ -67,12 +67,12 @@ if ( ! function_exists( 'fluidity_admin_enqueue' ) ) {
 	}
 	add_action( 'admin_enqueue_scripts', 'fluidity_admin_enqueue' );
 }
-
+/*
 if ( ! function_exists( 'fluidity_register_fontawesome' ) ) {
 	function fluidity_register_fontawesome() {
 		wp_register_style( 'tcc-fawe', get_theme_file_uri( 'vendor/css/font-awesome.min.css' ), false, '4.7.0' );
 	}
-}
+} */
 
 if ( ! function_exists( 'fluidity_register_color_scheme' ) ) {
 	function fluidity_register_color_scheme() {
