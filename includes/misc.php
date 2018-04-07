@@ -48,8 +48,9 @@ if (!function_exists('fluidity_social_icons')) {
 					foreach( $social as $key => $set ) {
 						if ( empty( $set['link'] ) ) continue;
 						$tool = sprintf( _x( 'See us on %s', '(social) website name', 'tcc-fluid' ), $layout[ $key ] ['label'] );
+						$fawe = ( $key === 'rss' ) ? 'fas' : 'fab';
 						$attr = array(
-							'class' => "fab fa-fw fa-$key-square $size",
+							'class' => "$fawe fa-fw fa-$key-square $size",
 							'href'  => $set['link'],
 							'rel'   => 'nofollow',
 							'style' => "color:{$set['color']};",
