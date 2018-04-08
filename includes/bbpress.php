@@ -14,6 +14,7 @@ add_action( 'tcc_before_loop', function( $page_slug ) {
 	if ( is_bbpress() ) {
 		remove_action( 'fluid_content_header', 'fluid_show_content_title' );
 		add_action(    'fluid_content_header', 'fluid_show_forum_title' );
+		remove_action( 'fluid_content_footer', 'fluid_show_content_footer' );
 	}
 } );
 
@@ -108,7 +109,7 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 			$topic_subscribed = bbp_is_user_subscribed_to_topic( bbp_get_current_user_id() );
 		// No data
 		} else {
-			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', false );
+			$topic_subscribed = apply_filters( 'fluid_bbp_topic_subscribed_default', true );
 		}
 		return checked( $topic_subscribed, true, false );
 	}
