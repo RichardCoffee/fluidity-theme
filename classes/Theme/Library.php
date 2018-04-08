@@ -15,9 +15,9 @@ class TCC_Theme_Library {
 
 	public function get_fawe( $icon = 'fa-question fa-border' ) {
 		$css = explode( ' ', $icon );
-		if ( ( ! in_array( 'fab', $css, true ) ) && ( ! in_array( 'fas', $css, true ) ) ) {
-			array_push( $css, 'fas' ); // default for 4.7.0 icons
-		}
+#		if ( ( ! in_array( 'fab', $css, true ) ) && ( ! in_array( 'fas', $css, true ) ) ) {
+#			array_push( $css, 'fas' ); // default for 4.7.0 icons
+#		}
 		array_push( $css, 'fa' ); // 4.7.0 crossover
 		$args = array (
 			'class'       => implode( ' ', $css ),
