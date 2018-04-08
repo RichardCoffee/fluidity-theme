@@ -71,7 +71,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 		$icons = array(
 			'Behance'     => 'blue',
 			'Bitbucket'   => '#205081',
-			'Dribbble'    => '#ea4c89',
+#			'Dribbble'    => '#ea4c89',
 			'Facebook'    => '#3B5998',
 			'GitHub'      => 'black',
 			'Google Plus' => '#DC4E41', # '#D74D2F',

@@ -1,36 +1,37 @@
 <?php
 
-$uniqid   =  uniqid();
-$form_id  = 'searchform-' . $uniqid;
-$field_id = 's-' . $uniqid;
-$form_attrs = array(
-	'id'     => $form_id,
-	'method' => 'get',
-	'action' => home_url( '/' ),
-	'role'   => 'search',
-);
-$input_attrs = array(
-	'type' => 'text',
-	'id' => $field_id,
-	'class' => 'form-control searchform-input',
-	'value' => '',
-	'name' => 's',
-	'placeholder' => __( 'Search', 'tcc-fluid' ),
-); ?>
+include_once( FLUIDITY_HOME . 'includes/search.php' );
 
-<form <?php fluid_library()->apply_attrs( $form_attrs ); ?>>
-	<div class="input-group">
-		<label class="screen-reader-text" for="s">
-			<?php esc_html_e( 'Search field', 'tcc-fluid' ); ?>
-		</label>
-		<input <?php fluid_library()->apply_attrs( $input_attrs ); ?> />
-		<span class="input-group-btn">
-			<button class="btn btn-fluidity" type="submit">
-				<?php fluid_library()->fawe( 'fa-search' ); ?>
-				<span class="screen-reader-text">&nbsp;
-					<?php esc_html_e( 'Submit search terms', 'tcc-fluid' ); ?>
-				</span>
-			</button>
-		</span>
-	</div>
-</form>
+$unique_id = uniqid();
+
+$theme_search = array(
+	'form' => array(
+		'id'     => 'searchform-' . $unique_id,
+		'method' => 'get',
+		'action' => home_url( '/' ),
+		'role'   => 'search',
+	),
+	'label' => array(
+		'class' => 'screen-reader-text',
+		'for'   => 's-' . $unique_id,
+	),
+	'search' => array(
+		'type'  => 'text',
+		'id'    => 's-' . $unique_id,
+		'class' => 'form-control searchform-input',
+		'value' => '',
+		'name'  => 's',
+		'placeholder' => __( 'Search', 'tcc-fluid' ),
+		),
+	'button' => array(
+		'type'  => 'submit',
+		'class' => 'btn btn-fluidity'
+	),
+	'text' => array(
+		'label'  => __( 'Search field', 'tcc-fluid' ),
+		'button' => __( 'Submit search terms', 'tcc-fluid' ),
+	),
+);
+
+fluid_show_search_form( $theme_search );
+
