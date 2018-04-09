@@ -535,7 +535,7 @@ abstract class TCC_Form_Admin {
 			if ( isset( $layout['text'] ) ) {
 				$uniq = uniqid(); ?>
 				<div id="<?php echo $uniq; ?>">
-					<?php e_esc_html( $before_text ); ?>
+					<?php e_esc_html( $layout['text'] ); ?>
 				</div><?php
 				$radio_attrs['aria-describedby'] = $uniq;
 			}
@@ -548,7 +548,7 @@ abstract class TCC_Form_Admin {
 							// FIXME:  this is here so I can display font awesome icons - it needs to be done differently
 							echo $text;
 						} else {
-							echo esc_html( $text );
+							e_esc_html( $text );
 						}
 						if ( isset( $layout['extra_html'][ $key ] ) ) {
 							echo $layout['extra_html'][ $key ];
@@ -558,7 +558,7 @@ abstract class TCC_Form_Admin {
 			}
 			if ( isset( $layout['postext'] ) ) { ?>
 				<div>
-					<?php echo esc_html( $layout['postext'] ) ; ?>
+					<?php e_esc_html( $layout['postext'] ) ; ?>
 				</div><?php
 			} ?>
 		</div><?php
