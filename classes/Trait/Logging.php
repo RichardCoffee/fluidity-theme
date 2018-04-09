@@ -8,6 +8,8 @@ trait TCC_Trait_Logging {
 	protected $logging_prefix = 'rtc';           #  string - log file prefix
 
 
+/***   Action functions   ***/
+
 	public function log() {
 		if ( $this->logging_debug || $this->logging_force ) {
 			call_user_func_array( array( $this, 'logging_entry' ), func_get_args() );
@@ -22,7 +24,10 @@ trait TCC_Trait_Logging {
 		$this->logging_force = false;
 	}
 
-	protected function logging_calling_function( $depth = 1 ) {
+
+/*** Discover functions   ***/
+
+	protected function logging_calling_location( $depth = 1 ) {
 		#	This is not intended to be an exhaustive list
 		static $skip_list = array(
 			'apply_filters',
@@ -52,6 +57,32 @@ trait TCC_Trait_Logging {
 		$this->logging_func = array( $this, 'logging_entry' );
 	}
 
+	public function logging_get_calling_function_name( $depth = 1 ) {
+		$result = logging_calling_location( $depth );
+		$trace  = array_map( 'trim', explode( ',', $result ) );
+		return $trace[1];
+	}
+
+	public function logging_was_called_by( $func ) {
+		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
+		foreach( $call_trace as $current ) {
+			if ( ! empty( $current['function'] ) ) {
+				if ( $current['function'] === $func ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public function logging_log_deprecated() {
+		$args = func_get_args();
+		$this->log( $args, 'stack' );
+	}
+
+
+/***  Task functions   ***/
+
 	protected function logging_entry() {
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) { return; }
 		if ( WP_DEBUG ) {
@@ -62,7 +93,7 @@ trait TCC_Trait_Logging {
 					$depth = array_shift( $args );
 				}
 				if ( $depth ) {
-					$this->logging_write_entry( 'source:  ' . $this->logging_calling_function( $depth ) );
+					$this->logging_write_entry( 'source:  ' . $this->logging_calling_location( $depth ) );
 				}
 				foreach( $args as $message ) {
 					$this->logging_write_entry( $message );
@@ -77,8 +108,8 @@ trait TCC_Trait_Logging {
 			$destination = WP_CONTENT_DIR . '/debug.log';
 		} else if ( is_writable( '../logs' ) && ( is_dir( '../logs' ) ) ) {
 			$destination = '../logs/' . $this->logging_prefix . '-' . date( 'Ymd' ) . '.log';
-#		} else if ( function_exists( 'pbl_raw_path' ) ) {
-#			$destination = pbl_raw_path() . '/error_log';
+		} else {
+			$destination = 'error_log';
 		}
 		return $destination;
 	}
