@@ -105,7 +105,7 @@ abstract class TCC_Options_Options {
 			'title'              => $item['label'],
 			'description'        => $item['text'],
 #			'type'               =>
-#			'active_callback'    => // does this determine if the section is displayed/hidden/disabled or something completely different?
+#			'active_callback'    =>
 			'description_hidden' => true,
 		);
 		return $args;

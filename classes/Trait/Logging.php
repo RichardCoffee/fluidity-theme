@@ -3,7 +3,7 @@
 trait TCC_Trait_Logging {
 
 	protected $logging_debug  =  WP_DEBUG;       #  boolean - enable/disable logging
-	protected $logging_force  =  false;          #  boolean - for debugging, can be used to force a single log entry
+	public    $logging_force  =  false;          #  boolean - for debugging, can be used to force a single log entry
 	protected $logging_func   = 'logging_entry'; #  string/array - logging function: must be able to accept a variable number of parameters
 	protected $logging_prefix = 'rtc';           #  string - log file prefix
 
@@ -17,8 +17,8 @@ trait TCC_Trait_Logging {
 		$this->logging_force = false;
 	}
 
-	protected function logging() {
-		if ( $this->logging_func && ( $this->logging_debug || $this->logging_force ) ) {
+	public function logg() {
+		if ( is_callable( $this->logging_func ) && ( $this->logging_debug || $this->logging_force ) ) {
 			call_user_func_array( $this->logging_func, func_get_args() );
 		}
 		$this->logging_force = false;
@@ -84,7 +84,7 @@ trait TCC_Trait_Logging {
 /***  Task functions   ***/
 
 	protected function logging_entry() {
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) { return; }
+		if ( ( ! $this->logging_force ) && defined( 'DOING_AJAX' ) && DOING_AJAX ) { return; }
 		if ( WP_DEBUG ) {
 			$args  = func_get_args();
 			if ( $args ) {
@@ -121,7 +121,7 @@ trait TCC_Trait_Logging {
 		}
 		$message = $log_me;
 		if ( is_array( $log_me ) || is_object( $log_me ) ) {
-			$message = print_r( $log_me, true );
+			$message = print_r( $log_me, true ); // PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 33226752 bytes)
 		} else if ( $log_me === 'stack' ) {
 			$message = print_r( debug_backtrace(), true );
 		}
