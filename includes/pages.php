@@ -178,9 +178,8 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
 if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 	function tcc_main_tag_css( $css = '', $page = 'page' ) {
 		if ( ! $css && ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ) {
-			$tcc  = tcc_layout( 'main_css', 'col-md-9' );
-			if ( $tcc ) {
-				$css = $tcc;
+			if ( ! defined( 'TCC_NO_SIDEBAR' ) ) {
+				$css = tcc_layout( 'main_css', 'col-md-9' );
 			}
 		}
 		return $css; #  apply_filters( 'tcc_main_tag_css', $css, $page );
