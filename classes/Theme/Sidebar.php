@@ -10,7 +10,7 @@ class TCC_Theme_Sidebar {
 	use TCC_Trait_Singleton;
 
 	private function __construct( $args = array() ) {
-		if ( ! $this->sidebar ) {
+		if ( ! $this->sidebar ) { // FIXME: wtf? this will always fail
 			$args = $this->check_args( $args );
 			if ( ( $args['position'] !== 'none' ) && $args['action'] ) {
 				$this->sidebar = new TCC_Widget_Sidebar( $args );
