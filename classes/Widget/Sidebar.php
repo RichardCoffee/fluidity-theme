@@ -38,17 +38,6 @@ class TCC_Widget_Sidebar {
 		} else {
 			$css = array_merge( $css, ( ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css ) ) );
 		}
-		$new = apply_filters( 'fluid_sidebar_css', '' );
-		if ( $this->slug ) {
-			$new = apply_filters( 'fluid_sidebar_css_' . $this->slug, $new, $this->sidebar );
-		}
-		if ( $this->slug !== $this->sidebar ) {
-			$new = apply_filters( 'fluid_sidebar_css_' . $this->sidebar, $new, $this->sidebar );
-		}
-		if ( $new ) {
-			$new = ( is_array( $new ) ) ? $new : explode( ' ', $new );
-			$css = array_merge( $css, $new );
-		}
 		$css = array_unique( $css ); ?>
 		<div class="<?php echo esc_attr( join( ' ', $css ) ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
 			<?php get_template_part( $this->root, $this->sidebar ); ?>

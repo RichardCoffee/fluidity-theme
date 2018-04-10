@@ -167,8 +167,6 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
 		if ( $side !== 'none' ) {
 			$slug = get_page_slug();
-			$css  = apply_filters( 'fluid_sidebar_css', $css );
-			$css  = apply_filters( "fluid_sidebar_css_$slug", $css );
 			$css .= ( $side === 'right' ) ? ' pull-right' : '';
 			$css .= ' widget-area fluid-sidebar fluid-sidebar-' . get_page_slug(); ?>
 			<div class="<?php echo esc_attr( $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
@@ -178,22 +176,3 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 	}
 }
 
-if ( ! function_exists( 'tcc_sidebar' ) ) {
-	function tcc_sidebar( $sidebar = 'standard' ) {
-		$side = tcc_layout( 'sidebar', 'left' );
-		$slug = get_page_slug();
-		$css  = array(
-			'widget-area',
-			'fluid-sidebar',
-			"fluid-sidebar-$side",
-			"fluid-sidebar-$slug",
-		);
-		$css = array_merge( $css, $extra_css );
-		$css = apply_filters( 'fluid_sidebar_css', $css );
-		$css = apply_filters( "fluid_sidebar_css_$slug", $css );
-		$css = array_map( 'esc_attr', array_unique( $css ) ); ?>
-		<div class="<?php echo join( ' ', $css ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary">
-			<?php get_template_part( 'sidebar', $sidebar ); ?>
-		</div><?php
-	}
-}
