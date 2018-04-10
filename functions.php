@@ -54,6 +54,13 @@ if ( is_admin() ) {
 
 /**  Test functions  **/
 
+#https://codex.wordpress.org/Plugin_API/Filter_Reference/show_admin_bar
+#add_filter( 'show_admin_bar', '__return_false' );
+function my_function_admin_bar($content) {
+	return ( current_user_can( 'administrator' ) ) ? $content : false;
+}
+add_filter( 'show_admin_bar' , 'my_function_admin_bar');
+
 #fluid()->log( get_theme_mod( 'custom-logo' ) );
 
 /*function themeslug_customize_register( WP_Customize_Manager $wp_customize ) {
