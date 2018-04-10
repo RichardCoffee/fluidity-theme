@@ -22,6 +22,7 @@ if (!$loaded) {
 log_entry(
 	'          called:  ' . $called,
 	'       post_type:  ' . $post_type,
+	'       page slug:  ' . get_page_slug(),
 	"slug for sidebar:  $slug"
 );
   if ($post_type) {
