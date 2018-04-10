@@ -3,7 +3,6 @@
 
 class TCC_Theme_Sidebar {
 
-
 	private $main_css    = '';
 	private $sidebar_css = '';
 	private $sidebar     = null;
@@ -59,33 +58,9 @@ class TCC_Theme_Sidebar {
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
 		return $side;
 	}
-/*
-	private function bootstrap_css( $bootstrap ) {
-		$defaults = array(
-			'lg' => 3,
-			'md' => 3,
-			'sm' => 12,
-			'xs' => 12,
-		);
-		$main    = array();
-		$sidebar = array();
-		$parsed  = wp_parse_args( $bootstrap, $defaults );
-		foreach( $parsed as $col => $num ) {
-			$sidebar[] = "col-$col-$num";
-			if ( $num < 12 ) {
-				$main[] = "col-$col-" . ( 12 - $num );
-			} else {
-				$main[] = "col-$col-12";
-			}
-		}
-		$this->main_css    = join( ' ', $main );
-		$this->sidebar_css = join( ' ', $sidebar );
-		add_filter( 'tcc_main_tag_css', function( $css ) { return $this->main_css; });
-		return $this->sidebar_css;
-	} //*/
 
 	private function is_mobile() {
-		#| Use mobble plugin if present
+		# Use mobble plugin if present
 		if ( class_exists( 'Mobile_Detect' ) ) {
 			$mobile = is_mobile();
 		} else {

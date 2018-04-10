@@ -5,11 +5,7 @@
  *
  */
 
-get_header();
-
-log_entry('in sidebar-right template');
-
 define('TCC_RIGHT_SIDEBAR');
-fluid_index_page(get_page_slug());
 
-get_footer(); ?>
+include( FLUIDITY_HOME . 'stock.php' );
+

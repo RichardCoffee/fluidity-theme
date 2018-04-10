@@ -5,10 +5,7 @@
  *
  */
 
-get_header();
-
 define('TCC_NO_SIDEBAR',true);
 
-fluid_index_page(get_page_slug());
+include( FLUIDITY_HOME . 'stock.php' );
 
-get_footer(); ?>
