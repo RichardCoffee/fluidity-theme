@@ -490,6 +490,24 @@ if ( ! function_exists( 'is_ajax' ) ) {
 }
 
 /**
+ *  check if an array is an assocative array
+ *
+ * @since 20180410
+ * @link https://stackoverflow.com/questions/5996749/determine-whether-an-array-is-associative-hash-or-not
+ * @param array $array
+ * @return bool
+ */
+if ( ! function_exists( 'is_assoc' ) ) {
+	function is_assoc( array $array ) {
+		// Keys of the array
+		$keys = array_keys($array);
+		// If the array keys of the keys match the keys, then the array must
+		// not be associative (e.g. the keys array looked like {0:0, 1:1...}).
+		return array_keys( $keys ) !== $keys;
+	}
+}
+
+/**
  * sanitize an array, using a sanitize_* function
  *
  * @param array $array
