@@ -5,6 +5,7 @@ class TCC_Theme_Library {
 
 	use TCC_Trait_Attributes;
 	use TCC_Trait_Logging;
+	use TCC_Trait_Magic;
 
 	public function __construct() {
 		$this->logging_check_function();
