@@ -148,9 +148,6 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
 			$link = ' [' . $link . ']';
 		}
-		if ( $css )  {
-			$link = fluid()->get_apply_attrs_tag( 'span', [ 'class' => $css ] ) . $link . '</span>';
-		}
 		return $link;
 	}
 	add_filter( 'excerpt_more', 'fluid_read_more_link' );
@@ -234,7 +231,7 @@ if (!function_exists('tcc_post_title')) {
 				'rel'   => 'bookmark',
 				'title' => fluid_excerpt_link_tooltip()
 			);
-			$html = fluid()->get_apply_attrs_element( 'a', $attrs, $title );
+			$html = fluid()->get_apply_attrs_element( 'a', $attrs, $html );
 		}
 		echo $html;
 	}
