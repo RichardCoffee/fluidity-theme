@@ -23,6 +23,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 		$this->get_pages();
 		parent::__construct( $args );
 		$this->show = ( $this->range * 2 ) + 1;
+fluid()->log($this);
 		$this->pagination();
 	}
 
