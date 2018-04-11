@@ -67,6 +67,7 @@ abstract class TCC_Theme_BasicNav {
 				$html = '';
 			}
 		}
+fluid()->log($html);
 		return $html;
 	}
 
