@@ -190,8 +190,8 @@ hr {
 }
 
 .tml {
-	color: color(background);
+	color: $maincomp;
 	& input {
-		border-color: color(bgHighlight);
+		border-color: $mainhigh;
 	}
 }
