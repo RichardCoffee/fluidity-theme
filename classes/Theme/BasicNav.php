@@ -86,6 +86,7 @@ abstract class TCC_Theme_BasicNav {
 		$html = $this->get_apply_attrs_tag( 'nav', $attrs );
 		$html.= '<div class="nav-links">%s</div>';
 		$html.= '</nav>';
+fluid()->log($html);
 		return $html;
 	}
 /*
