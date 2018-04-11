@@ -3,7 +3,7 @@
  *
  */
 
-if ( ! function_exists( 'debug_calling_function' ) ) {
+#if ( ! function_exists( 'debug_calling_function' ) ) {
 	/**
 	*	Get the calling function.
 	*
