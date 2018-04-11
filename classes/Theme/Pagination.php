@@ -74,6 +74,9 @@ fluid()->log('generate_links');
 				$this->show_suffix_links();
 			} ?>
 		</ul><?php
+$html = ob_get_clean();
+fluid()->log($html);
+return $html;
 		return ob_get_clean();
 	}
 
