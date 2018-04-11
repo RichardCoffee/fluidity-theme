@@ -46,12 +46,11 @@ fluid()->log($this);
 
 	protected function pagination() {
 		if ( $this->pages > 1 ) {
-			$this->generate_navigation();
+			echo $this->generate_navigation();
 		}
 	}
 
 	protected function generate_links() {
-fluid()->log('generate_links');
 		ob_start(); ?>
 		<ul class="pagination page-numbers"><?php
 			if ( $this->show < $this->pages ) {
