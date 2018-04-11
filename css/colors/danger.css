@@ -51,6 +51,20 @@ form .form-control:hover, form .form-control:focus {
   color: #d9534f;
 }
 
+.btn-fluidity,
+.color-fluidity,
+li.btn-fluidity > a,
+.searchform-input {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.btn-fluidity-inverse,
+.color-fluidity-inverse {
+  border-width: 1px;
+  border-style: solid;
+}
+
 .back-fluidity {
   background-color: #d9534f;
 }
