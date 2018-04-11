@@ -44,6 +44,7 @@ trait TCC_Trait_Logging {
 	protected function logging_calling_location( $depth = 1 ) {
 		#	This is not intended to be an exhaustive list
 		static $skip_list = array(
+			'__call',
 			'apply_filters',
 			'call_user_func',
 			'call_user_func_array',
