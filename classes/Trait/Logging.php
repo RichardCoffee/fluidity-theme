@@ -48,6 +48,7 @@ trait TCC_Trait_Logging {
 			'apply_filters',
 			'call_user_func',
 			'call_user_func_array',
+			'debug_calling_function',
 			'log_entry',
 			'log',
 			'logg',
