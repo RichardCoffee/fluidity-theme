@@ -136,21 +136,20 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 	#	https://github.com/wpaccessibility/a11ythemepatterns
 	function fluid_read_more_link( $output ) {
 		$attrs = array(
-			'class'    => 'read-more-link',
+			'class'    => apply_filters( 'fluid_read_more_css', 'read-more-link' ),
 			'href'     => get_permalink( get_the_ID() ),
 			'itemprop' => 'url',
 		);
 		$link  = fluid()->get_apply_attrs_tag( 'a', $attrs );
-		$link .= esc_html( apply_filters( 'tcc_read_more_text', __( 'Read More', 'tcc-fluid' ) ) );
+		$link .= esc_html( apply_filters( 'fluid_read_more_text', __( 'Read More', 'tcc-fluid' ) ) );
 		$link .= '<span class="screen-reader-text"> ';
 		$link .= wp_strip_all_tags( get_the_title( get_the_ID() ) );
 		$link .= '</span></a>';
-		if ( apply_filters( 'tcc_read_more_brackets', true ) ) {
+		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
 			$link = ' [' . $link . ']';
 		}
-		$css = apply_filters( 'tcc_read_more_css', '' );
 		if ( $css )  {
-			$link = '<span class="' . esc_attr( $css ) . '">' . $link . '</span>';
+			$link = fluid()->get_apply_attrs_tag( 'span', [ 'class' => $css ] ) . $link . '</span>';
 		}
 		return $link;
 	}
@@ -176,7 +175,10 @@ if ( ! function_exists( 'fluid_thumbnail' ) ) {
 	function fluid_thumbnail( $size = null, $class = 'img-responsive' ) {
 		if ( ! is_page() || ( tcc_design( 'paral', 'no' ) == 'no' ) ) {
 			if ( has_post_thumbnail() ) {
-				$attr = array( 'alt' => fluid_title(), 'class' => $class );
+				$attr = array(
+					'alt' => fluid_title(),
+					'class' => $class
+				);
 				the_post_thumbnail( $size, $attr );
 			}
 		}
@@ -211,12 +213,12 @@ if (!function_exists('get_the_author_posts_link')) {
 		if ($authorID) {
 			$title = __( 'Author posts archive', 'tcc-fluid' );
 			$attrs = array(
-				'href'  => get_author_posts_url( $authorID ),
-				'title' => $title,
+				'href'       => get_author_posts_url( $authorID ),
+				'title'      => $title,
 				'aria-label' => $title,
 			);
 			#$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem -
-			$html = '<a ' . fluid()->get_apply_attrs( $attrs ) . '>' . get_the_author_meta('display_name') . '</a>';
+			$html = fluid()->get_apply_attrs_element( 'a', $attrs, get_the_author_meta('display_name') );
 		}
 		return $html;
 	}
@@ -225,13 +227,16 @@ if (!function_exists('get_the_author_posts_link')) {
 if (!function_exists('tcc_post_title')) {
 	function tcc_post_title( $max = 0, $anchor = true ) {
 		$anchor = ( is_single() || is_page() ) ? false : $anchor;
-		$title  = fluid_title( $max );
+		$html   = fluid_title( $max );
 		if ( $anchor ) {
-			$tooltip = fluid_excerpt_link_tooltip();
-			$string  = '<a href="%s" rel="bookmark" title="%s">%s</a>';
-			$title   = sprintf( $string, get_the_permalink(), esc_attr($tooltip), esc_html($title) );
+			$attrs = array(
+				'href'  => get_the_permalink(),
+				'rel'   => 'bookmark',
+				'title' => fluid_excerpt_link_tooltip()
+			);
+			$html = fluid()->get_apply_attrs_element( 'a', $attrs, $title );
 		}
-		echo $title;
+		echo $html;
 	}
 }
 
