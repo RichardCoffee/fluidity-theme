@@ -51,6 +51,7 @@ fluid()->log($this);
 	}
 
 	protected function generate_links() {
+fluid()->log('generate_links');
 		ob_start(); ?>
 		<ul class="pagination page-numbers"><?php
 			if ( $this->show < $this->pages ) {
