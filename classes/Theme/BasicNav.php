@@ -67,7 +67,6 @@ abstract class TCC_Theme_BasicNav {
 				$html = '';
 			}
 		}
-fluid()->log($html);
 		return $html;
 	}
 
@@ -87,7 +86,6 @@ fluid()->log($html);
 		$html = $this->get_apply_attrs_tag( 'nav', $attrs );
 		$html.= '<div class="nav-links">%s</div>';
 		$html.= '</nav>';
-fluid()->log($html);
 		return $html;
 	}
 /*

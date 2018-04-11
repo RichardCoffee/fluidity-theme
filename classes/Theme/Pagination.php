@@ -23,7 +23,6 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 		$this->get_pages();
 		parent::__construct( $args );
 		$this->show = ( $this->range * 2 ) + 1;
-fluid()->log($this);
 		$this->pagination();
 	}
 
@@ -73,9 +72,6 @@ fluid()->log($this);
 				$this->show_suffix_links();
 			} ?>
 		</ul><?php
-$html = ob_get_clean();
-fluid()->log($html);
-return $html;
 		return ob_get_clean();
 	}
 
