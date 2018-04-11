@@ -3,7 +3,7 @@
  *
  */
 
-#if ( ! function_exists( 'debug_calling_function' ) ) {
+if ( ! function_exists( 'debug_calling_function' ) ) {
 	/**
 	*	Get the calling function.
 	*
@@ -42,7 +42,7 @@
 
 if ( ! function_exists( 'get_calling_function' ) ) {
 	function get_calling_function( $depth = 1 ) {
-		$result = debug_calling_function( $depth );
+		$result = fluid()->debug_calling_function( $depth );
 		$trace  = array_map( 'trim', explode( ',', $result ) );
 		return $trace[1];
 	}
@@ -73,7 +73,7 @@ if ( ! function_exists( 'log_entry' ) ) {
 					$depth = array_shift( $args );
 				}
 				if ( $depth ) {
-					tcc_write_error_log( 'source:  ' . debug_calling_function( $depth ) );
+					tcc_write_error_log( 'source:  ' . fluid()->debug_calling_function( $depth ) );
 				}
 				foreach( $args as $message ) {
 					tcc_write_error_log( $message );
