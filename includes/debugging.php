@@ -110,8 +110,14 @@ if ( ! function_exists( 'tcc_write_error_log' ) ) {
 if ( function_exists( 'add_action' ) ) {
 	if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {
 		function tcc_log_deprecated() {
+static $here = true;
 			$args = func_get_args();
+if ( $here ) {
+			log_entry( $args, 'stack' );
+	$here = false;
+} else {
 			log_entry( $args ); //, 'stack' );
+}
 		}
 		add_action( 'deprecated_function_run',    'tcc_log_deprecated', 10, 3 );
 		add_action( 'deprecated_constructor_run', 'tcc_log_deprecated', 10, 3 );
