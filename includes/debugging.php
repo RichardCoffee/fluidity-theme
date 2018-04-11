@@ -111,7 +111,7 @@ if ( function_exists( 'add_action' ) ) {
 	if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {
 		function tcc_log_deprecated() {
 			$args = func_get_args();
-			log_entry( $args, 'stack' );
+			log_entry( $args ); //, 'stack' );
 		}
 		add_action( 'deprecated_function_run',    'tcc_log_deprecated', 10, 3 );
 		add_action( 'deprecated_constructor_run', 'tcc_log_deprecated', 10, 3 );
