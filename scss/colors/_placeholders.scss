@@ -5,21 +5,27 @@
 	color: color(textcolor);
 	&:hover, &:focus {
 		background-color: color(textcolor);
-		border-color: color(textHighlight);
+		@if color(textcolor) == color(textHighlight)
+			{ border-color: color(background); }
+		@else
+			{ border-color: color(textHighlight); }
 		color: color(background);
 	}
 }
 
 
 %inverse {
-  background-color: color(textcolor);
-  border-color: color(textHighlight);
-  color: color(background);
-  &:hover, &:focus {
-    background-color: color(background);
-    border-color: color(bgHighlight);
-    color: color(bgHighlight);
-  }
+	background-color: color(textcolor);
+	@if color(textcolor) == color(textHighlight)
+		{ border-color: color(background); }
+	@else
+		{ border-color: color(textHighlight); }
+	color: color(background);
+	&:hover, &:focus {
+		background-color: color(background);
+		border-color: color(bgHighlight);
+		color: color(bgHighlight);
+	}
 }
 
 %textfield {

@@ -22,14 +22,14 @@ li.btn-fluidity > a:hover,
 li.btn-fluidity > a:focus,
 .searchform-input:focus {
   background-color: #3c763d;
-  border-color: #3c763d;
+  border-color: #dff0d8;
   color: #dff0d8;
 }
 
 .btn-fluidity-inverse,
 .color-fluidity-inverse, .navbar-fluidity .btn-fluidity {
   background-color: #3c763d;
-  border-color: #3c763d;
+  border-color: #dff0d8;
   color: #dff0d8;
 }
 .btn-fluidity-inverse:hover,
