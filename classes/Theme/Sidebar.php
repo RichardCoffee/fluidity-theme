@@ -13,7 +13,6 @@ class TCC_Theme_Sidebar {
 		if ( ! $this->sidebar ) { // FIXME: wtf? this will always fail
 			$args = $this->check_args( $args );
 			if ( ( $args['position'] !== 'none' ) && $args['action'] ) {
-fluid()->log($args);
 				$this->sidebar = new TCC_Widget_Sidebar( $args );
 			}
 		}
