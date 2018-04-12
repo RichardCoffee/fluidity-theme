@@ -443,7 +443,7 @@ article.post .row::after {
   max-width: 100%;
 }
 
-@media (min-width: 992px) {
+@media (max-width: 991px) {
   .article {
     margin: 0;
   }

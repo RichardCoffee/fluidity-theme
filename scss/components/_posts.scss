@@ -15,7 +15,7 @@ article.post .row::after {
   }
 }
 
-@media (min-width: 992px) { // sm
+@media (max-width: 991px) { // sm
 	.article {
 		margin: 0;
 	}
