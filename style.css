@@ -443,6 +443,11 @@ article.post .row::after {
   max-width: 100%;
 }
 
+@media (min-width: 992px) {
+  .article {
+    margin: 0;
+  }
+}
 table.posting-table {
   border-collapse: collapse;
   border: 1px solid #333;

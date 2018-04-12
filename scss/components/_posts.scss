@@ -14,3 +14,9 @@ article.post .row::after {
     max-width: 100%;
   }
 }
+
+@media (min-width: 992px) { // sm
+	.article {
+		margin: 0;
+	}
+}
