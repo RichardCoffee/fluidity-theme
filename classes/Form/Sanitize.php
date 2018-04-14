@@ -45,7 +45,7 @@ class TCC_Form_Sanitize {
 	}
 
 	# See also: classes/Form/Field/Radio.php
-	public function radio( $input, $setting ) {
+	public function radio( $input, $setting = null ) {
 		$input   = sanitize_key( $input );
 		$choices = $setting->manager->get_control( $setting->id )->choices;
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
