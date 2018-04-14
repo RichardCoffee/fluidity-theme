@@ -15,15 +15,16 @@ class TCC_Widget_Login extends TCC_Widget_Widget {
 #		wp_login_form();
 	}
 
-	public function fluid_login_title( $title, $widget, $id ) {
+	public function fluid_login_title( $instance, $widget, $args ) {
 fluid()->log(
-	'title:  ' . $title,
-	'   id:  ' . $id,
-	$widget
+	$instance,
+	$widget,
+	$args
 );
-		if ( ( $this->slug === $id ) && is_user_logged_in() ) {
-			$instance['title'] = esc_html__( 'Logout', 'tcc-fluid' );
-		}
+#		if ( ( $this->slug === $id ) && is_user_logged_in() ) {
+#			$instance['title'] = esc_html__( 'Logout', 'tcc-fluid' );
+#		}
+		return $instance;
 	}
 
 
