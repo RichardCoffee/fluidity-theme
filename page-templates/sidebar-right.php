@@ -5,7 +5,7 @@
  *
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 define('TCC_RIGHT_SIDEBAR');
 

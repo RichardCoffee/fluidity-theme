@@ -5,7 +5,7 @@
  *
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 if (!isset($post->ID)) {
   die('No $post variable set. Exiting.');

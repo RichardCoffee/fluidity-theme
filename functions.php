@@ -4,7 +4,7 @@
  *
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 define( 'FLUIDITY_HOME', trailingslashit( dirname( __FILE__ ) ) );  #  get current directory
 $data = get_file_data( FLUIDITY_HOME . 'style.css', array( 'ver' => 'Version' ) );

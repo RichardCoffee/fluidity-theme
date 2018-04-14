@@ -4,7 +4,7 @@
  *
  */
 
-define( 'ABSPATH' ) || exit; ?>
+defined( 'ABSPATH' ) || exit; ?>
 
 <header id="fluid-header" <?php microdata()->WPHeader(); ?> role="banner">
 

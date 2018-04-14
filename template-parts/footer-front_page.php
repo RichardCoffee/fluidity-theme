@@ -4,7 +4,7 @@
  *
  */
 
-define( 'ABSPATH' ) || exit; ?>
+defined( 'ABSPATH' ) || exit; ?>
 
 <div class="ribbon"></div>
 

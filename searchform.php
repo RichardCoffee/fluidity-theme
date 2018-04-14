@@ -1,6 +1,6 @@
 <?php
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 include_once( FLUIDITY_HOME . 'includes/search.php' );
 

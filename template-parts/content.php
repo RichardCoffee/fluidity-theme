@@ -5,7 +5,7 @@
  *  Notes:  can only be used within The Loop
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 who_am_i(); ?>
 

@@ -6,7 +6,7 @@
  * @param array $form
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'fluid_show_search_form' ) ) {
 	function fluid_show_search_form( $form ) {

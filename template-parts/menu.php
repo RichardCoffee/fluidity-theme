@@ -4,7 +4,7 @@
  *
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 $page = get_page_slug();
 $menu = apply_filters( 'tcc_menu', 'primary', $page );	#	defaults: primary, header or footer

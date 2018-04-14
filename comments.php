@@ -6,7 +6,7 @@
  *  http://themeshaper.com/2012/11/04/the-wordpress-theme-comments-template/
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 if ( post_password_required() ) {
 	return;

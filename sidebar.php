@@ -4,7 +4,7 @@
  *
  */
 
-define( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit;
 
 who_am_i();
 
