@@ -4,6 +4,8 @@
  *
  */
 
+define( 'ABSPATH' ) || exit;
+
 get_header();
 
 $mypage = get_page_slug();

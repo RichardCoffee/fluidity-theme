@@ -1,10 +1,11 @@
 <?php
-
 /*
  *  File: printer.php
  *  Description:  Print post information as pdf
  *
  */
+
+define( 'ABSPATH' ) || exit;
 
 if (!isset($post->ID)) {
   die('No $post variable set. Exiting.');

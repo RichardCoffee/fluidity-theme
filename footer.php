@@ -5,7 +5,7 @@
  *
  */
 
- ?>
+define( 'ABSPATH' ) || exit; ?>
 
 		<footer>
 

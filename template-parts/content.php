@@ -1,10 +1,11 @@
 <?php
-
 /*
  *  File Name: template-parts/content.php
  *
  *  Notes:  can only be used within The Loop
  */
+
+define( 'ABSPATH' ) || exit;
 
 who_am_i(); ?>
 

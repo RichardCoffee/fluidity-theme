@@ -1,9 +1,10 @@
 <?php
-
 /*
  *  Template Part:  excerpt-link.php
  *
  */
+
+define( 'ABSPATH' ) || exit;
 
 who_am_i(); ?>
 

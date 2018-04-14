@@ -1,5 +1,7 @@
 <?php
 
+define( 'ABSPATH' ) || exit;
+
 /*
  *  includes/bbpress.php
  *

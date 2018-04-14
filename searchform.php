@@ -1,5 +1,7 @@
 <?php
 
+define( 'ABSPATH' ) || exit;
+
 include_once( FLUIDITY_HOME . 'includes/search.php' );
 
 $unique_id = uniqid();

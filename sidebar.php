@@ -4,6 +4,8 @@
  *
  */
 
+define( 'ABSPATH' ) || exit;
+
 who_am_i();
 
 $loaded = false;

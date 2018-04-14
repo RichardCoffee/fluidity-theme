@@ -1,9 +1,10 @@
 <?php
-
 /*
  *  File Name:  excerpt.php
  *
  */
+
+define( 'ABSPATH' ) || exit;
 
 who_am_i(); ?>
 

@@ -1,3 +1,4 @@
+<?php define( 'ABSPATH' ) || exit; ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> <?php microdata()->WebPage(); ?>>
 <head>

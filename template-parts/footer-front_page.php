@@ -1,11 +1,10 @@
 <?php
-
 /*
  *  File Name:  template-parts/footer.php
  *
  */
 
- ?>
+define( 'ABSPATH' ) || exit; ?>
 
 <div class="ribbon"></div>
 
