@@ -4,7 +4,6 @@
  * @subpackage Debugging
  * @requires   PHP 5.3.6
  */
-
 trait TCC_Trait_Logging {
 
 	protected $logging_debug  =  WP_DEBUG; #  boolean  - enable/disable logging
@@ -40,7 +39,6 @@ trait TCC_Trait_Logging {
 	 * @param numeric $depth
 	 * @return string
 	 */
-
 	protected function logging_calling_location( $depth = 1 ) {
 		#	This is not intended to be an exhaustive list
 		static $skip_list = array(
