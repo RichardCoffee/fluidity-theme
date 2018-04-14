@@ -2,7 +2,7 @@
 
 class TCC_Widget_Login extends TCC_Widget_Widget {
 
-	public $id_base = 'fluid_login';
+	public $id_base = 'tcc_login';
 
 	public function __construct() {
 		$this->title = esc_html__( 'Login', 'tcc-fluid' );
