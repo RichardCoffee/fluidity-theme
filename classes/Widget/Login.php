@@ -10,7 +10,7 @@ fluid()->log(
 	'is admin:  ' . is_admin(),
 	' is ajax:  ' . is_ajax()
 );
-		if ( is_user_logged_in() && ( ! is_admin() || ( is_admin() && is_ajax() ) ) ) {
+		if ( is_user_logged_in() && ! ( ! is_admin() || ( is_admin() && is_ajax() ) ) ) {
 			$this->title = esc_html__( 'Logout', 'tcc-fluid' );
 		}
 
