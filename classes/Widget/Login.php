@@ -2,32 +2,29 @@
 
 class TCC_Widget_Login extends TCC_Widget_Widget {
 
-	function __construct() {
-
+	public function __construct() {
 		$this->title = esc_html__( 'Login', 'tcc-fluid' );
-fluid()->log(
-	'loggedin:  ' . is_user_logged_in(),
-	'is admin:  ' . is_admin(),
-	' is ajax:  ' . is_ajax()
-);
-#		if ( is_user_logged_in() ) {
-#			if ( ! is_admin() || ( is_admin() && is_ajax() ) ) {
-				$this->title = esc_html__( 'Logout', 'tcc-fluid' );
-#			}
-#		}
-
 		$this->desc  = esc_html__( 'Fluidity Login form', 'tcc-fluid' );
 		$this->slug  = 'tcc_login';
-
 		parent::__construct();
-
+		add_filter( 'widget_display_callback', array( $this, 'fluid_login_title', 10, 3 );
 	}
 
 	public function inner_widget( $args, $instance ) {
-
 		fluid_login()->login_form();
 #		wp_login_form();
-
 	}
+
+	public function fluid_login_title( $title, $widget, $id ) {
+fluid()->log(
+	'title:  ' . $title,
+	'   id:  ' . $id
+	$widget
+);
+		if ( ( $this->slug === $id ) && is_user_logged_in() ) {
+			$instance['title'] = esc_html__( 'Logout', 'tcc-fluid' );
+		}
+	}
+
 
 }

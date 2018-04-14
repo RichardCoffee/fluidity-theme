@@ -14,7 +14,7 @@ class TCC_Widget_Search extends TCC_Widget_Widget {
 		get_search_form();
 	}
 
-	protected function tcc_widget_title( $args, $instance ) {
+	protected function fluid_widget_title( $args, $instance ) {
 		if ( ! empty( $args['before_title'] ) ) {
 			echo "<div>";
 		}

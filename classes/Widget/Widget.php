@@ -7,7 +7,7 @@ class TCC_Widget_Widget extends WP_Widget {
 	protected $slug  = '';
 	protected static $micro = null;
 
-	function __construct( $slug = '', $title = '', $desc = array() ) {
+	public function __construct( $slug = '', $title = '', $desc = array() ) {
 		parent::__construct( $this->slug, $this->title, array( 'description' => $this->desc ) );
 		if ( ! self::$micro && class_exists( 'TCC_Microdata' ) ) {
 			self::$micro = microdata();
@@ -16,12 +16,12 @@ class TCC_Widget_Widget extends WP_Widget {
 
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
-		$this->tcc_widget_title( $args, $instance );
+		$this->fluid_widget_title( $args, $instance );
 		$this->inner_widget( $args, $instance );
 		echo $args['after_widget'];
 	}
 
-	protected function tcc_widget_title( $args, $instance ) {
+	protected function fluid_widget_title( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance['title'], $this->id_base );
 		echo $args['before_title'] . $title . $args['after_title'];
 	}
