@@ -10,6 +10,7 @@
 		@else
 			{ border-color: color(textHighlight); }
 		color: color(background);
+		@include box-shadow( 0 0 2px rgba( 30, 140, 190, 0.8 ) );
 	}
 }
 
@@ -25,16 +26,18 @@
 		background-color: color(background);
 		border-color: color(bgHighlight);
 		color: color(bgHighlight);
+		@include box-shadow( 0 0 2px rgba( 30, 140, 190, 0.8 ) );
 	}
 }
 
 %textfield {
-	background-color: color(textcolor);
-	border-color: color(bgHighlight);
-	color: color(background);
+	background-color: $mainlite;
+	border-color: $mainhigh;
+	color: $maincomp;
 	&:hover, &:focus {
 		background-color: $mainlite; //color(textcolor);
 		border-color: $mainhigh; //color(bgHighlight);
 		color: $maincomp; //color(background);
+		@include box-shadow( 0 0 2px rgba( 30, 140, 190, 0.8 ) );
 	}
 }

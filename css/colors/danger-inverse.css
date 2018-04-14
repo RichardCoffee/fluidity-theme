@@ -24,6 +24,8 @@ li.btn-fluidity > a:focus,
   background-color: #a94442;
   border-color: #f2dede;
   color: #f2dede;
+  -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+  box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
 .btn-fluidity-inverse,
@@ -38,17 +40,21 @@ li.btn-fluidity > a:focus,
   background-color: #f2dede;
   border-color: #f2dede;
   color: #f2dede;
+  -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+  box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
 form .form-control {
-  background-color: #a94442;
-  border-color: #f2dede;
-  color: #f2dede;
+  background-color: #f2dede;
+  border-color: #a94442;
+  color: #a94442;
 }
 form .form-control:hover, form .form-control:focus {
   background-color: #f2dede;
   border-color: #a94442;
   color: #a94442;
+  -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+  box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
 .btn-fluidity,
@@ -94,8 +100,6 @@ form .form-control::-webkit-input-placeholder {
   color: #f2dede;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: 0 0 4px rgba(169, 68, 66, 0.5);
-  box-shadow: 0 0 4px rgba(169, 68, 66, 0.5);
   border: 1px solid #a94442;
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {

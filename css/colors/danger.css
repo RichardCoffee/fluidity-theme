@@ -24,6 +24,8 @@ li.btn-fluidity > a:focus,
   background-color: #FFFFFF;
   border-color: #d9534f;
   color: #d9534f;
+  -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+  box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
 .btn-fluidity-inverse,
@@ -38,6 +40,8 @@ li.btn-fluidity > a:focus,
   background-color: #d9534f;
   border-color: #d43f3a;
   color: #d43f3a;
+  -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+  box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
 form .form-control {
@@ -49,6 +53,8 @@ form .form-control:hover, form .form-control:focus {
   background-color: #FFFFFF;
   border-color: #d43f3a;
   color: #d9534f;
+  -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+  box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
 .btn-fluidity,
@@ -94,8 +100,6 @@ form .form-control::-webkit-input-placeholder {
   color: #d9534f;
 }
 form .form-control:hover, form .form-control:focus {
-  -webkit-box-shadow: 0 0 4px rgba(212, 63, 58, 0.5);
-  box-shadow: 0 0 4px rgba(212, 63, 58, 0.5);
   border: 1px solid #d43f3a;
 }
 form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {

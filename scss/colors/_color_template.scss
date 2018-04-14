@@ -40,7 +40,7 @@ form .form-control {
 	border: 1px solid rgba($maincomp, 1); //color(background), 1);
 	&:hover, &:focus {
 		@include placeholder($mainhigh); //color(bgHighlight));
-		@include box-shadow(0 0 4px rgba($mainhigh, .5)); //color(bgHighlight), .5));
+//		@include box-shadow(0 0 4px rgba($mainhigh, .5)); //color(bgHighlight), .5));
 		border: 1px solid rgba($mainhigh, 1); //color(bgHighlight), 1);
 	}
 }
