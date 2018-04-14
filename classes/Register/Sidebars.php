@@ -44,7 +44,7 @@ class TCC_Register_Sidebars {
 	}
 
 	protected function set_widget_icons() {
-		$fawe_set = fluid_library()->get_widget_fawe();
+		$fawe_set = fluid()->get_widget_fawe();
 		$current  = tcc_layout( 'widget_icons', 'default' );
 		$this->fawe = isset( $fawe_set[ $current ] ) ? $fawe_set[ $current ] : $fawe_set['default'];
 	}
@@ -60,15 +60,13 @@ class TCC_Register_Sidebars {
 		$title  = array();
 		$status = tcc_layout( 'widget', 'perm' ); // FIXME: get layout default value
 		$icon   = tcc_layout( 'widget_icon', 'default' ); // this value is fine
-
 		$title['before']  = '<div class="panel-heading"';
 		$title['before'] .= ( $status === 'perm' )   ? '' : ' role="button"';
 		$title['before'] .= ( $status === 'closed' ) ? ' data-collapse="1">' : '>';
 		$fa_sign          = ( $status === 'open' )   ? $this->fawe['minus'] : $this->fawe['plus'];
-		$title['before'] .= ( $status === 'perm' )   ? '' : fluid_library()->get_fawe( "$fa_sign pull-right panel-sign" );
+		$title['before'] .= ( $status === 'perm' )   ? '' : fluid()->get_fawe( "$fa_sign pull-right panel-sign" );
 		$before_css       = ( $status === 'perm' )   ? '' : 'scroll-this pointer';
 		$title['before'] .= "<div class='panel-title text-center $before_css'><b>";
-
 		$title['after']   = '</b></div></div><div class="panel-body">';
 		return $title; # apply_filters( 'fluid_register_sidebar_title', $title );
 	}

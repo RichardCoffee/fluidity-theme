@@ -113,7 +113,7 @@ class TCC_Form_Login {
 
 			<div class="form-group login-submit">
 				<button type="submit" id="<?php echo esc_attr( $id_submit ); ?>" class="btn btn-fluidity" name="wp-submit">
-					<?php fluid_library()->fawe( 'fa-sign-in' ); ?>&nbsp;
+					<?php fluid()->fawe( 'fa-sign-in' ); ?>&nbsp;
 					<?php echo esc_html( $label_log_in ); ?>
 				</button>
 				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect ); ?>" />

@@ -88,7 +88,7 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 						'rel'      => 'home',
 						'itemprop' => 'url', // 'relatedLink',
 					); ?>
-					<a <?php fluid_library()->apply_attrs( $attrs ); ?>><?php
+					<a <?php fluid()->apply_attrs( $attrs ); ?>><?php
 						$logo_id = get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
 							$size  = apply_filters( 'tcc_header_logo_size', 'medium' );
