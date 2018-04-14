@@ -34,7 +34,9 @@ class TCC_Theme_Sidebar {
 
 	private function action_position( $args ) {
 		$action = $args['action'];
-		if ( ! $args['horizontal'] && ( $args['position'] !== 'none' ) ) {
+		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
+			$action = false;
+		} elseif ( ! $args['horizontal'] && ( $args['position'] !== 'none' ) ) {
 			if ( $this->is_mobile() ) {
 				$mobile = tcc_layout( 'mobile_sidebar', 'bottom' );
 				if ( $mobile === 'none' ) {
