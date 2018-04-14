@@ -36,7 +36,7 @@ li.btn-fluidity > a,
 
 form .form-control {
 	@extend %textfield;
-	@include placeholder(set-color-contrast(color(textcolor),$mainlite,$maincomp)); //color(background));
+	@include placeholder($maincomp); //color(background));
 	border: 1px solid rgba($maincomp, 1); //color(background), 1);
 	&:hover, &:focus {
 		@include placeholder($mainhigh); //color(bgHighlight));
