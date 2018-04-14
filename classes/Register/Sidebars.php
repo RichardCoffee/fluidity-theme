@@ -16,10 +16,10 @@ class TCC_Register_Sidebars {
 	protected function default_sidebars( $sidebars = array() ) {
 		#	Standard Page
 		$sidebars['standard'] = array(
-			'name' => esc_html__('Standard Page w/Panels','tcc-fluid'),
+			'name' => __('Standard Page w/Panels','tcc-fluid'),
 			'id'   => 'standard',
 		);
-		return $sidebars; # apply_filters( 'tcc_default_sidebars', $sidebars );
+		return apply_filters( 'fluid_default_sidebars', $sidebars );
 	}
 
 	protected function prepare_sidebars( $sidebars = array() ) {
@@ -31,14 +31,13 @@ class TCC_Register_Sidebars {
 			$base['after_title']   = $title[ 'after'];
 			$base['after_widget']  = $widget['after'];
 		}
-		return $sidebars; # apply_filters( 'tcc_prepare_sidebars', $sidebars );
+		return $sidebars; # apply_filters( 'fluid_prepare_sidebars', $sidebars );
 	}
 
 	public function register_sidebars() {
 		remove_action( 'widgets_init', array( $this, 'register_sidebars' ) ); // prevents possible recursion
 		$sidebars = $this->default_sidebars( array() );
 		$sidebars = $this->prepare_sidebars( $sidebars );
-#		$sidebars = apply_filters( 'tcc_register_sidebars', $sidebars );
 		foreach( $sidebars as $sidebar ) {
 			register_sidebar( $sidebar );
 		}
@@ -61,15 +60,17 @@ class TCC_Register_Sidebars {
 		$title  = array();
 		$status = tcc_layout( 'widget', 'perm' ); // FIXME: get layout default value
 		$icon   = tcc_layout( 'widget_icon', 'default' ); // this value is fine
+
 		$title['before']  = '<div class="panel-heading"';
 		$title['before'] .= ( $status === 'perm' )   ? '' : ' role="button"';
 		$title['before'] .= ( $status === 'closed' ) ? ' data-collapse="1">' : '>';
 		$fa_sign          = ( $status === 'open' )   ? $this->fawe['minus'] : $this->fawe['plus'];
 		$title['before'] .= ( $status === 'perm' )   ? '' : fluid_library()->get_fawe( "$fa_sign pull-right panel-sign" );
-		$before_css       = ( $status === 'perm' )   ? '' : 'text-center scroll-this pointer';
-		$title['before'] .= "<div class='panel-title $before_css'><b>";
+		$before_css       = ( $status === 'perm' )   ? '' : 'scroll-this pointer';
+		$title['before'] .= "<div class='panel-title text-center $before_css'><b>";
+
 		$title['after']   = '</b></div></div><div class="panel-body">';
-		return $title; # apply_filters( 'tcc_register_sidebar_title', $title );
+		return $title; # apply_filters( 'fluid_register_sidebar_title', $title );
 	}
 
 	protected function widget_html() {
@@ -77,7 +78,7 @@ class TCC_Register_Sidebars {
 		$widget['before'] = '<div class="panel panel-fluidity">';
 		#	Second /div closes "panel-body" div
 		$widget['after']  = '</div></div>';
-		return $widget; # apply_filters( 'tcc_register_sidebar_widget', $widget );
+		return $widget; # apply_filters( 'fluid_register_sidebar_widget', $widget );
 	}
 
 
