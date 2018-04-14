@@ -148,8 +148,8 @@ blockquote,
 }
 
 code {
-	background-color: color(textcolor);
-	color: color(background);
+	background-color: $mainlite;
+	color: $maincomp;
 }
 
 #fluid-footer {
