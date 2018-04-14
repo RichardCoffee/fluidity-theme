@@ -12,7 +12,7 @@
 trait TCC_Trait_Singleton {
 
 
-	protected static $abort__construct; /*
+	protected static $abort__construct;
 	private   static $instance;
 
 
@@ -41,8 +41,8 @@ trait TCC_Trait_Singleton {
 	} //*/
 
 	/**  An alternate methodology  **/
-
-	private static $instances = array();
+/*
+private static $instances = array();
 
 	public static function instance() {
 		return self::get_instance();
@@ -61,22 +61,21 @@ trait TCC_Trait_Singleton {
 		return ( isset( self::$instances[ $class ] ) ) ? self::$instances[ $class ] : null;
 	} //*/
 
-	protected function __clone() {
-		$message = __( 'This class can not be cloned.' , 'tcc-fluid' );
-		$version = ( isset( $this->version ) ) ? $this->version : '1.0.0';
+	private function __clone() {
+		$message = __( 'This class can not be cloned.' , 'tcc-fluid' ) . ' * ' . debug_calling_function();
+		$version = ( isset( $this->version ) ) ? $this->version : '0.0.0';
 		_doing_it_wrong( __FUNCTION__, esc_html( $message ), esc_html( $version ) );
 	}
 
-	protected function __sleep() {
-		$message = __( 'This class can not be serialized.' , 'tcc-fluid' );
-		$version = ( isset( $this->version ) ) ? $this->version : '1.0.0';
+	private function __sleep() {
+		$message = __( 'This class can not be serialized.' , 'tcc-fluid' ) . ' * ' . debug_calling_function();
+		$version = ( isset( $this->version ) ) ? $this->version : '0.0.0';
 		_doing_it_wrong( __FUNCTION__, esc_html( $message ), esc_html( $version ) );
 	}
 
-	public function __wakeup() {
-		#throw new Exception( "Cannot unserialize singleton" );
-		$message = __( 'This class can not be unserialized.' , 'tcc-fluid' );
-		$version = ( isset( $this->version ) ) ? $this->version : '1.0.0';
+	private function __wakeup() {
+		$message = __( 'This class can not be unserialized.' , 'tcc-fluid' ) . ' * ' . debug_calling_function();
+		$version = ( isset( $this->version ) ) ? $this->version : '0.0.0';
 		_doing_it_wrong( __FUNCTION__, esc_html( $message ), esc_html( $version ) );
 	}
 
