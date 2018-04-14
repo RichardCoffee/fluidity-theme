@@ -19,12 +19,12 @@ if (!$loaded) {
   global $wp_query;
   $post_type = $wp_query->get('post_type');
   $slug = ( $format=get_post_format() ) ? $format : get_post_type(); // inside loop only, which this is not
-log_entry(
+/*log_entry(
 	'          called:  ' . $called,
 	'       post_type:  ' . $post_type,
 	'       page slug:  ' . get_page_slug(),
 	"slug for sidebar:  $slug"
-);
+); //*/
   if ($post_type) {
     if (!is_string($post_type)) {
       $use_this = 'standard';
