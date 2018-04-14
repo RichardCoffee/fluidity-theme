@@ -18,7 +18,7 @@ class TCC_Widget_Login extends TCC_Widget_Widget {
 	public function fluid_login_title( $title, $widget, $id ) {
 fluid()->log(
 	'title:  ' . $title,
-	'   id:  ' . $id
+	'   id:  ' . $id,
 	$widget
 );
 		if ( ( $this->slug === $id ) && is_user_logged_in() ) {
