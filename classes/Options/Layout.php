@@ -42,7 +42,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'hide'   => __( 'Hiding - Hidden when scrolling, show on hover', 'tcc-fluid' ),
 			),
 		); //*/
-/*		if ( WP_DEBUG ) {
+		if ( WP_DEBUG ) {
 			$layout['menu']    = array(
 				'default' => 'bootstrap',
 				'label'   => __( 'Menu', 'tcc-fluid' ),
