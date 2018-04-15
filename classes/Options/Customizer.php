@@ -1,6 +1,6 @@
 <?php
 
-require_once( 'classes/Options/Typography.php' );
+require_once( 'Typography.php' );
 
 class TCC_Options_Customizer {
 
