@@ -57,7 +57,7 @@ fluid()->log($args['control']);
 
 	protected function font() {
 		$args = $this->defaults();
-		$args['choices'] = $this->control['source'];
+		$args['choices'] = $this->control['choices'];
 		$args['type']    = 'select';
 		$this->add_control( $args );
 	}
