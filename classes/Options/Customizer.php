@@ -16,7 +16,7 @@ class TCC_Options_Customizer {
 	public function customize_register( WP_Customize_Manager $customize ) {
 		wp_enqueue_style( 'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
 		$controls = $this->get_controls();
-		foreach( $data as $section ) {
+		foreach( $controls as $section ) {
 			$priority = 0;
 			$section_id = $section['id'];
 fluid()->log($section);
