@@ -23,10 +23,10 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$content  = new TCC_Options_Content;
 		$layout   = $content->get_item( 'postdate' );
 		$args = array(
-			'field_default' => $layout['default'],
-			'field_name'    => $this->field,
-			'field_value'   => ( $postdate ) ? $postdate : $layout['default'],
-			'choices'       => array_merge(
+			'default'     => $layout['default'],
+			'field_name'  => $this->field,
+			'field_value' => ( $postdate ) ? $postdate : $layout['default'],
+			'choices'     => array_merge(
 				array(
 					'default' => sprintf(
 						__( 'Use theme default: %s', 'tcc-fluid' ),
@@ -54,7 +54,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		if ( ! empty( $_POST[ $this->field ] ) ) {
 			$this->initialize_radio( $postID );
 			$value = $this->radio->sanitize( $_POST[ $this->field ] );
-			if ( array_key_exists( $value, $this->radio->field_radio ) ) {
+			if ( array_key_exists( $value, $this->radio->choices ) ) {
 				update_post_meta( $postID, $this->field, $value );
 			}
 		}
