@@ -66,19 +66,6 @@ if ( has_nav_menu( $menu ) ) {
 
 		/* underscore navigation */
 
-		$nav_attrs = array(
-			'id'    => 'site-navigation',
-			'class' => "main-navigation {$menu}-navigation {$page}-{$menu}-navigation",
-			'role'  => 'navigation',
-		);
-		$nav_attrs = array_merge( $nav_attrs, microdata()->microdata_attrs( 'SiteNavigationElement' ) );
-
-		$button_attrs = array(
-			'class' => 'menu-toggle',
-			'aria-controls' => $menu,
-			'aria-expanded' => 'false',
-		);
-
 		fluid()->apply_attrs_tag( 'nav', $nav_attrs );
 
 			fluid()->apply_attrs_tag( 'button', $button_attrs ); ?>
