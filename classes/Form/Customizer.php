@@ -9,8 +9,8 @@
  */
 class TCC_Form_Customizer {
 
+	protected $control;
 	protected $customize; // WP_Customize_Manager
-	protected $item; # taken from Options_Class->options_layout()
 	protected $priority = 10;
 	protected $section_id;
 	protected $setting_id;
@@ -19,7 +19,7 @@ class TCC_Form_Customizer {
 
 	public function __construct( $args ) {
 		$this->parse_args( $args );
-		$render = $this->item['render'];
+		$render = $this->control['render'];
 		$this->$render();
 	}
 
@@ -33,10 +33,9 @@ class TCC_Form_Customizer {
 #			'setting' FIXME
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
-			'label'       => $this->item['label'],
+			'label'       => $this->control['label'],
 #			'choices' - radio or select only
-			'type'        => $this->item['render'],
-			'input_attrs' => ( ! empty( $this->item['attrs'] ) ) ? $this->item['attrs'] : array(),
+			'type'        => $this->control['render'],
 /*			'input_attrs' => array(
 				'class' => 'my-custom-class-for-js',
 				'style' => 'border: 1px solid #900',
@@ -44,15 +43,18 @@ class TCC_Form_Customizer {
 			), */
 #			'active_callback' => 'is_front_page',
 		);
-		if ( isset( $this->item['text'] ) ) {
-			$defaults['description'] = $this->item['text'];
+		if ( isset( $this->control['attrs'] ) ) {
+			$defaults['input_attrs'] = $this->control['input_attrs'];
+		}
+		if ( isset( $this->control['text'] ) ) {
+			$defaults['description'] = $this->control['text'];
 		}
 		return $defaults;
 	}
 
 	protected function font() {
 		$args = $this->defaults();
-		$args['choices'] = $this->item['source'];
+		$args['choices'] = $this->control['source'];
 		$args['type']    = 'select';
 		$this->add_control( $args );
 	}

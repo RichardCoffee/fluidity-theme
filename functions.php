@@ -63,8 +63,6 @@ function my_function_admin_bar($content) {
 }
 add_filter( 'show_admin_bar' , 'my_function_admin_bar');
 
-#fluid()->log( get_theme_mod( 'custom-logo' ) );
-
 /*function themeslug_customize_register( WP_Customize_Manager $wp_customize ) {
   fluid()->log( $wp_customize );
 }
@@ -76,8 +74,6 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 }, 10, 2 ); //*/
 
 /*add_action( 'wp_loaded', function () {
-#		global $wp_filter;
-#		log_entry( $wp_filter );
 #		$filter = 'logout_redirect';
 		$filter = 'the_content';
 		log_entry( list_filter_hooks( $filter ) );
@@ -94,4 +90,9 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid()->log( $schemes );
 } ); //*/
 
-fluid()->log(get_theme_mods());
+add_action( 'customize_register', function( ) {
+	add_filter( 'fluid_customizer_controls', function( $controls ) {
+		fluid()->log( $controls );
+		return $controls;
+	} );
+} );

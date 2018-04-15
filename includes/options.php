@@ -1,5 +1,4 @@
 <?php
-
 /*
  *  File:  includes/options.php
  *
@@ -13,11 +12,9 @@ if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 #		log_entry( $result );
 		$filter = current_filter();
 log_entry(0,$filter);
-
 		return $result;
 	}
 #	add_filter( 'rest_dispatch_request',      'fluid_rest_dispatch_request', 10, 4 );
-
 	add_filter( 'rest_authentication_errors', 'fluid_rest_dispatch_request', 20 );
 	add_filter( 'rest_send_nocache_headers', 'fluid_rest_dispatch_request' );
 	add_filter( 'rest_jsonp_enabled', 'fluid_rest_dispatch_request' );
@@ -37,6 +34,9 @@ log_entry(0,$filter);
 	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 } //*/
+
+add_action( 'wp_enqueue_scripts', array( 'TCC_Options_Typography', 'load_google_font' ) );
+add_action( 'tcc_custom_css',     array( 'TCC_Options_Typography', 'typography_styles' ), 1 );
 
 if ( ! function_exists( 'fluid_stop_heartbeat' ) ) {
 	function fluid_stop_heartbeat() {
@@ -113,19 +113,6 @@ if ( ! function_exists( 'tcc_excerpt_length' ) ) {
 		return ( $calced ) ? $calced : $length;
 	}
 	add_filter( 'excerpt_length', 'tcc_excerpt_length', 999 );
-}
-
-
-if ( ! function_exists( 'tcc_font_size' ) ) {
-	function tcc_font_size() {
-		$size = intval( tcc_design( 'size', 18 ), 10 );
-		if ( ( $size > 0 ) || ( $size = 18 ) ) {
-			$panel = max( 1, $size - 2 );
-			echo "\nbody { font-size: {$size}px }\n";
-			echo "\npanel-title { font-size: {$panel}px }\n";
-		}
-	}
-	add_action( 'tcc_custom_css', 'tcc_font_size' );
 }
 
 if ( ! function_exists( 'tcc_layout' ) ) {

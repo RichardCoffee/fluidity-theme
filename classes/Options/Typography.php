@@ -12,6 +12,7 @@ class TCC_Options_Typography {
 
 	public static function os_fonts() {
 		// OS Font Defaults
+		// TODO: load browser fonts (via js(?))
 		$os_faces = array(
 			'Arial'          => 'Arial, sans-serif',
 			'Avant Garde'    => '"Avant Garde", sans-serif',
@@ -22,7 +23,7 @@ class TCC_Options_Typography {
 			'Helvitica Neue' => '"Helvetica Neue", Helvetica, sans-serif',
 			'Tahoma'         => 'Tahoma, Geneva, sans-serif'
 		);
-		return apply_filters( 'tcc_os_fonts', $os_faces );
+		return apply_filters( 'fluid_os_fonts', $os_faces );
 	}
 
 	public static function os_fonts_filter( $fonts ) {
@@ -41,7 +42,7 @@ class TCC_Options_Typography {
 				unset( $fonts[ $font ] );
 			}
 		}
-		return $fonts;
+		return $fonts; // apply_filters( 'fluid_os_fonts_filter', $fonts );
 	}
 
 	public static function google_fonts() {
@@ -64,10 +65,10 @@ class TCC_Options_Typography {
 			'Ubuntu'       => 'Ubuntu, sans-serif',
 			'Yanone Kaffeesatz' => 'Yanone Kaffeesatz, sans-serif'
 		);
-		return apply_filters( 'tcc_google_fonts', $google_faces );
+		return apply_filters( 'fluid_google_fonts', $google_faces );
 	}
 
-	public static function google_fonts_filter($fonts) {
+	public static function google_fonts_filter( $fonts ) {
 		$check = array(
 			'Arvo'         => _x( 'on', "Arvo font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Copse'        => _x( 'on', "Copse font: translate as 'on' or 'off'", 'tcc-fluid' ),
@@ -91,60 +92,90 @@ class TCC_Options_Typography {
 				unset( $fonts[ $font ] );
 			}
 		}
-		return $fonts;
+		return $fonts; // apply_filters( 'fluid_google_fonts_filter', $fonts );
 	}
 
 
-	public static function mixed_fonts() {
+	public static function mixed_fonts( $font = 'no-font' ) {
 		$mixed_fonts = array_unique( array_merge( self::os_fonts(), self::google_fonts() ) );
+		if ( func_num_args() > 0 ) {
+			return ( isset( $mixed_fonts [ $font ] ) ) ? $mixed_fonts [ $font ] : false;
+		}
 		asort( $mixed_fonts );
-		return apply_filters( 'tcc_mixed_fonts', $mixed_fonts );
+		return $mixed_fonts; // apply_filters( 'fluid_mixed_fonts', $mixed_fonts );
 	}
 
 	public static function load_google_font() {
-		$google_fonts = array_keys( self::google_fonts() );
-		$theme_opts   = get_option( self::$option );
-		if ( $theme_opts && isset( $theme_opts['font'] ) ) {
-			$current  = $theme_opts['font'];
-			$os_fonts = self::os_fonts();
-			if ( ! in_array( $current, $os_fonts ) ) { // Really?  Are we sure about this?
-				$google_fonts = self::google_fonts();
-				if ( in_array( $current, $google_fonts ) ) {
-					$myfont = explode( ',', $google_fonts[ $current ] );
-					if ( $myfont[0] === 'Raleway' ) {
-						$myfont[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?  what does this do anyway?
-					}
-					$query_args = array(
-						'family' => urlencode( implode( '|', $myfont ) ),
-						'subset' => urlencode( 'latin,latin-ext' ) // FIXME: when would subset be something different?
-					);
-					$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-					wp_enqueue_style( 'typography_font', $fonts_url, null, null, 'all' );
+#		$google_fonts = array_keys( self::google_fonts() );
+		$current  = get_theme_mod( 'font_typography', 'Helvitica Neue' );
+		$os_fonts = self::os_fonts();
+		if ( ! in_array( $current, $os_fonts ) ) { // Really?  Are we sure about this?
+			$google_fonts = self::google_fonts();
+			if ( in_array( $current, $google_fonts ) ) {
+				$myfont = explode( ',', $google_fonts[ $current ] );
+				if ( $myfont[0] === 'Raleway' ) {
+					$myfont[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?  what does this do anyway?
 				}
+				$query_args = array(
+					'family' => urlencode( implode( '|', $myfont ) ),
+					'subset' => urlencode( 'latin,latin-ext' ) // FIXME: when would subset be something different?
+				);
+				$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+				wp_enqueue_style( 'font_typography', $fonts_url, null, null, 'all' );
 			}
 		}
 	}
 
 	public static function typography_styles() {
-		$font_options = get_option( self::$option, array() );
-		if ( $font_options && isset( $font_options['font'] ) ) {
-			$current = $font_options['font'];
-			$mixed   = self::mixed_fonts();
-			$font    = $mixed[ $current ];
-			$size    = ( isset( $font_options['size'] ) ) ? intval( $font_options['size'] ) : 14;
-			$output  = 'html {';
-			$output .= " font-family:  $font;";
-#			$output .= " font-weight:  $weight;";
-			$output .= " font-size:    {$size}px;";
-			$output .= '}';
-			echo $output;
-		}
+		// font family
+		$font = self::mixed_fonts( get_theme_mod( 'font_typography', 'Helvitica Neue' ) );
+		echo "\nhtml {\n\tfont-family: $font;\n}\n";
+		// font size
+		$size = intval( get_theme_mod( 'font_size', 18 ), 10 );
+		echo "\nbody {\n\tfont-size: {$size}px;\n}\n";
+		// widget panel title
+		$panel = max( 1, $size - 2 );
+		echo "\npanel-title {\n\tfont-size: {$panel}px;\n}\n";
+	}
+
+	public static function customizer_controls( $options ) {
+		$section = array(
+			'priority'    => 30,
+			'title'       => __( 'Typography', 'tcc-fluid' ),
+			'description' => __( 'Site typography options', 'tcc-fluid' ),
+		);
+		$controls = array(
+			'typography' => array(
+				'default' => 'Helvitica Neue',
+				//'title''label'   => __( 'Font Type', 'tcc-fluid' ),
+				'render'  => 'font',
+				'choices' => TCC_Options_Typography::mixed_fonts(),
+			),
+			'size' => array(
+				'default' => 18,
+				//'title''label'   => __('Font Size','tcc-fluid'),
+				//'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
+				'render'  => 'spinner',
+				//'divcss'  => 'tcc_text_3em',
+				'input_attrs'   => array(
+					'css'  => 'text_3em_wide',
+					'min'  => '1',
+					'step' => '1',
+				),
+			),
+		);
+		$typography = array(
+			'id'       => 'font',
+			'section'  => $section,
+			'controls' => $controls
+		);
+		$options[] = $section;
+		return $options;
 	}
 
 
 }
 
-add_action( 'tcc_custom_css',     array( 'TCC_Options_Typography', 'typography_styles' ), 1 );
-add_action( 'wp_enqueue_scripts', array( 'TCC_Options_Typography', 'load_google_font' ) );
-add_filter( 'tcc_os_fonts',       array( 'TCC_Options_Typography', 'os_fonts_filter' ) );
-add_filter( 'tcc_google_fonts',   array( 'TCC_Options_Typography', 'google_fonts_filter' ) );
+add_filter( 'fluid_os_fonts',            array( 'TCC_Options_Typography', 'os_fonts_filter' ) );
+add_filter( 'fluid_google_fonts',        array( 'TCC_Options_Typography', 'google_fonts_filter' ) );
+add_filter( 'fluid_customizer_controls', array( 'TCC_Options_Typography', 'customizer_controls' ) );

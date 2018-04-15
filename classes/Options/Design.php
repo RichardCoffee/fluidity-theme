@@ -45,45 +45,7 @@ class TCC_Options_Design extends TCC_Options_Options {
 		if ( ! ( tcc_layout( 'sidebar', 'left' ) === 'none' ) ) {
 			$layout['title']['source']['main'] = __( 'Over content area only, when showing sidebar.', 'tcc-fluid' );
 		}
-		$layout['type'] = array(
-			'label'    => __( 'Typography', 'tcc-fluid' ),
-			'text'     => __( 'Site typography options', 'tcc-fluid' ),
-			'render'   => 'title',
-			// customizer settings
-			'priority' => 30,
-		);
-		$layout['font'] = array(
-			'default' => 'Helvitica Neue',
-			'label'   => __( 'Font Type', 'tcc-fluid' ),
-			'render'  => 'font',
-			'source'  => TCC_Options_Typography::mixed_fonts(),
-		);
-		$layout['size'] = array(
-			'default' => 18,
-			'label'   => __('Font Size','tcc-fluid'),
-			'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
-			'render'  => 'spinner',
-			'divcss'  => 'tcc_text_3em',
-			'attrs'   => array(
-				'min'  => '1',
-				'step' => '1',
-			),
-		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
-	}
-
-	protected function customizer_data() {
-		$data = array(
-			array(
-				'id'       => 'typography',
-				'section'  => 'type',
-				'controls' => array(
-					'font',
-					'size',
-				),
-			)
-		);
-		return apply_filters( "fluid_{$this->base}_customizer_data", $data );
 	}
 
 
