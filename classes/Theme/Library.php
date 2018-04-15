@@ -62,7 +62,7 @@ class TCC_Theme_Library {
 			),
 			'sortel'   => array(
 				'plus'  => 'fa-sort-down',
-				'minus' => 'fa-sort-up fa-rotate-90',
+				'minus' => 'fa-sort-up fa-rotate-270',
 			),
 			'window'   => array(
 				'plus'  => 'fa-window-maximize',
