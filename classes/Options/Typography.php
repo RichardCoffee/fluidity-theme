@@ -158,10 +158,10 @@ fluid()->log($url);
 				//'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
 				'render'  => 'spinner',
 				'input_attrs'   => array(
-					'class' => 'spinner',
+					'class' => 'text_3em_wide',
 					'min'   => '1',
 					'step'  => '1',
-					'value' => intval( get_theme_mod( 'font_size', 18 ), 10 ),
+#					'value' => intval( get_theme_mod( 'font_size', 18 ), 10 ),
 				),
 			),
 		);
