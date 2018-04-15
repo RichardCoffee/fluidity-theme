@@ -19,11 +19,6 @@ class TCC_Widget_Login extends TCC_Widget_Widget {
 
 	public function fluid_login_title( $instance, $widget, $args ) {
 		if ( ( $this->id_base === $widget->id_base ) && is_user_logged_in() ) {
-fluid()->log(
-	$instance,
-	$widget,
-	$args
-);
 			$instance['title'] = esc_html__( 'Logout', 'tcc-fluid' );
 		}
 		return $instance;
