@@ -60,9 +60,28 @@
   position: relative;
 }
 .main-navigation a {
+  border: outset;
   display: block;
   padding: 15px;
   text-decoration: none;
+}
+.main-navigation a:hover, .main-navigation a:focus {
+  border: outset;
+}
+.main-navigation .current_page_item > a,
+.main-navigation .current-menu-item > a,
+.main-navigation .current_page_ancestor > a,
+.main-navigation .current-menu-ancestor > a {
+  border: inset;
+}
+.main-navigation .current_page_item > a:hover, .main-navigation .current_page_item > a:focus,
+.main-navigation .current-menu-item > a:hover,
+.main-navigation .current-menu-item > a:focus,
+.main-navigation .current_page_ancestor > a:hover,
+.main-navigation .current_page_ancestor > a:focus,
+.main-navigation .current-menu-ancestor > a:hover,
+.main-navigation .current-menu-ancestor > a:focus {
+  border: inset;
 }
 
 /* Small menu. */

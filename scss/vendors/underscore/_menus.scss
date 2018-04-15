@@ -55,15 +55,23 @@
 	}
 
 	a {
+		border: outset;
 		display: block;
 		padding: 15px;
 		text-decoration: none;
+		&:hover, &:focus {
+			border: outset;
+		}
 	}
 
 	.current_page_item > a,
 	.current-menu-item > a,
 	.current_page_ancestor > a,
 	.current-menu-ancestor > a {
+		border: inset;
+		&:hover, &:focus {
+			border: inset;
+		}
 	}
 }
 

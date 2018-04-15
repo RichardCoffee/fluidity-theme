@@ -3,14 +3,17 @@
 
 .main-navigation {
 	background-color: color(background);
+	& .current-menu-item > a {
+		&:hover, &:focus {
+		}
+	}
 	& a {
 		background-color: color(background);
-		border: none;
 		color: color(textcolor);
 		&:hover, &:focus {
 			background-color: color(bgHighlight);
-			border: none;
 			color: color(textcolor);
+			font-weight: normal;
 		}
 	}
 }
