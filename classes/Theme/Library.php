@@ -44,31 +44,35 @@ class TCC_Theme_Library {
 
 	public function get_widget_fawe() {
 		return array(
-			'default' => array(
+			'default'  => array(
 				'plus'  => 'fa-plus',
 				'minus' => 'fa-minus',
 			),
-			'square'  => array(
+			'square'   => array(
 				'plus'  => 'fa-plus-square',
 				'minus' => 'fa-minus-square',
 			),
-			'circle'  => array(
+			'circle'   => array(
 				'plus'  => 'fa-plus-circle',
 				'minus' => 'fa-minus-circle',
 			),
-			'sort'    => array(
+			'sort'     => array(
 				'plus'  => 'fa-sort-down',
 				'minus' => 'fa-sort-up',
 			),
-			'window'  => array(
+			'sort'     => array(
+				'plus'  => 'fa-sort-down',
+				'minus' => 'fa-sort-left',
+			),
+			'window'   => array(
 				'plus'  => 'fa-window-maximize',
 				'minus' => 'fa-window-minimize',
 			),
-			'toggle'  => array(
+			'toggle'   => array(
 				'plus'  => 'fa-toggle-down',
 				'minus' => 'fa-toggle-up',
 			),
-			'level'   => array(
+			'level'    => array(
 				'plus'  => 'fa-level-down',
 				'minus' => 'fa-level-up',
 			),
