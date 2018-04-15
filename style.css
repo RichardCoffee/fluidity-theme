@@ -67,6 +67,7 @@
 }
 .main-navigation a:hover, .main-navigation a:focus {
   border: outset;
+  font-weight: normal;
 }
 .main-navigation .current_page_item > a,
 .main-navigation .current-menu-item > a,
