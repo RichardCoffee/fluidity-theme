@@ -98,12 +98,12 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 			<p class="postmetadata">
 				<hr><?php
 				if ( has_tag() ) {
-					the_tags( esc_html__( 'Tags', 'tcc-fluid' ) . ': ', ', ', '<br>' );
+					the_tags( esc_html__( 'Tags: ', 'tcc-fluid' ), ', ', '<br>' );
 					echo '<hr>';
 				}
 				$cat_list = get_the_category_list();
 				if ( ! empty( $cat_list ) ) {  #  wordpress's has_category() does not always return a correct value - wtf?
-					esc_html_ex( 'Posted in ', 'string will be followed by one or more categories', 'tcc-fluid' );
+					esc_html_ex( 'Categories: ', 'string will be followed by one or more categories', 'tcc-fluid' );
 					the_category(', ');
 					echo '<hr>';
 				}
