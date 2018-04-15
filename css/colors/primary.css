@@ -228,11 +228,14 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
   background-color: #337AB7;
 }
 .main-navigation a {
+  background-color: #337AB7;
   border: none;
   color: #ffffff;
 }
 .main-navigation a:hover, .main-navigation a:focus {
   background-color: #2E6DA4;
+  border: none;
+  color: #ffffff;
 }
 
 ul.sub-menu {

@@ -4,10 +4,13 @@
 .main-navigation {
 	background-color: color(background);
 	& a {
+		background-color: color(background);
 		border: none;
 		color: color(textcolor);
 		&:hover, &:focus {
 			background-color: color(bgHighlight);
+			border: none;
+			color: color(textcolor);
 		}
 	}
 }
