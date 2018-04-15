@@ -180,3 +180,4 @@ fluid()->log($url);
 add_filter( 'fluid_os_fonts',            array( 'TCC_Options_Typography', 'os_fonts_filter' ) );
 add_filter( 'fluid_google_fonts',        array( 'TCC_Options_Typography', 'google_fonts_filter' ) );
 add_filter( 'fluid_customizer_controls', array( 'TCC_Options_Typography', 'customizer_controls' ) );
+fluid()->log('classes/Options/Typography.php');
