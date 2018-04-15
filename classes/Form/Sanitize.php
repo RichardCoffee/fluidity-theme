@@ -11,8 +11,8 @@
 class TCC_Form_Sanitize {
 
 	public function checkbox( $input ) {
-#		return ( isset( $input ) ? true : false );
 		return sanitize_key( $input );
+#		return ( isset( $input ) ? true : false ); wtf?
 	}
 
 	public function checkbox_multiple( $input ) {
@@ -21,7 +21,7 @@ class TCC_Form_Sanitize {
 
 	public function colorpicker( $input ) {
 		return sanitize_hex_color( $input );
-		return ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $input ) ) ? $input : '';
+#		return ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $input ) ) ? $input : '';
 	}
 
 	public function email( $input ) {

@@ -31,9 +31,11 @@ class TCC_Form_Customizer {
 		$defaults = array(
 			'settings'    => $this->setting_id,
 #			'setting' FIXME
+			'capability'  => $this->control['capability'],
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
 			'label'       => $this->control['label'],
+#			'description' => __( 'Control description', 'tcc-fluid' );
 #			'choices' - radio or select only
 			'type'        => $this->control['render'],
 /*			'input_attrs' => array(
@@ -43,7 +45,7 @@ class TCC_Form_Customizer {
 			), */
 #			'active_callback' => 'is_front_page',
 		);
-		if ( isset( $this->control['attrs'] ) ) {
+		if ( isset( $this->control['input_attrs'] ) ) {
 			$defaults['input_attrs'] = $this->control['input_attrs'];
 		}
 		if ( isset( $this->control['text'] ) ) {
