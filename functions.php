@@ -90,9 +90,3 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid()->log( $schemes );
 } ); //*/
 
-add_action( 'customize_register', function( ) {
-	add_filter( 'fluid_customizer_controls', function( $controls ) {
-		fluid()->log( $controls );
-		return $controls;
-	} );
-} );
