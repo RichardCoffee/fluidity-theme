@@ -94,3 +94,4 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid()->log( $schemes );
 } ); //*/
 
+fluid()->log(get_theme_mods());
