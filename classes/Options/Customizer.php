@@ -42,7 +42,7 @@ class TCC_Options_Customizer {
 #			'active_callback'    => // determines whether the control is initially active
 			'description_hidden' => true,
 		);
-		return array_merge( $default, $section );
+		return array_merge( $defaults, $section );
 	}
 
 	protected function customizer_control( $control ) {
