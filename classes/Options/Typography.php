@@ -108,7 +108,6 @@ class TCC_Options_Typography {
 	public static function load_google_font() {
 #		$google_fonts = array_keys( self::google_fonts() );
 		$current  = get_theme_mod( 'font_typography', 'Helvitica Neue' );
-fluid()->log($current);
 		if ( ! in_array( $current, self::os_fonts() ) ) { // Really?  Are we sure about this?
 			$google = self::google_fonts();
 			if ( in_array( $current, $google ) ) {
