@@ -18,7 +18,7 @@ class TCC_Form_Customizer {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
-fluid()->log($args);
+fluid()->log($args['control']);
 		$this->parse_args( $args );
 		$render = $this->control['render'];
 		$this->$render();
@@ -30,7 +30,7 @@ fluid()->log($args);
 
 	protected function defaults() {
 		$defaults = array(
-			'settings'    => $this->setting_id,
+			'settings'    => array( $this->setting_id ),
 #			'setting' FIXME
 			'capability'  => $this->control['capability'],
 			'priority'    => $this->priority,
