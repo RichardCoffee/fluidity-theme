@@ -59,13 +59,13 @@
   float: left;
   position: relative;
 }
-.main-navigation a {
+.main-navigation li > a {
   border: outset;
   display: block;
   padding: 15px;
   text-decoration: none;
 }
-.main-navigation a:hover, .main-navigation a:focus {
+.main-navigation li > a:hover, .main-navigation li > a:focus {
   border: outset;
   font-weight: normal;
 }
