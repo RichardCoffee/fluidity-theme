@@ -1,6 +1,17 @@
 
 /* _s */
 
+.main-navigation {
+	background-color: color(background);
+	& a {
+		border: none;
+		color: color(textcolor);
+		&:hover, &:focus {
+			background-color: color(bgHighlight);
+		}
+	}
+}
+
 ul.sub-menu {
    background-color: lighten($headerBody,40%);
 }

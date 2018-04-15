@@ -224,6 +224,17 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
   }
 }
 /* _s */
+.main-navigation {
+  background-color: #F0AD4E;
+}
+.main-navigation a {
+  border: none;
+  color: #FFFFFF;
+}
+.main-navigation a:hover, .main-navigation a:focus {
+  background-color: #EEA236;
+}
+
 ul.sub-menu {
   background-color: white;
 }
