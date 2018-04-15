@@ -60,9 +60,9 @@ class TCC_Theme_Library {
 				'plus'  => 'fa-sort-down',
 				'minus' => 'fa-sort-up',
 			),
-			'sort'     => array(
+			'sortel'   => array(
 				'plus'  => 'fa-sort-down',
-				'minus' => 'fa-sort-left',
+				'minus' => 'fa-sort-up fa-rotate-90',
 			),
 			'window'   => array(
 				'plus'  => 'fa-window-maximize',
