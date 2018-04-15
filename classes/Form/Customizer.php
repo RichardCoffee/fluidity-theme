@@ -18,6 +18,7 @@ class TCC_Form_Customizer {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
+fluid()->log($args);
 		$this->parse_args( $args );
 		$render = $this->control['render'];
 		$this->$render();
