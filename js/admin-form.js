@@ -62,7 +62,13 @@ function showhideElements( els ) {
 	jQuery( els ).each( function( el ) {
 		var target = jQuery( el ).attr( 'data-item' );
 		var show   = jQuery( el ).attr( 'data-show' );
-		showhideAdminElements( el, target, show, null );
+		if ( show ) {
+			showhideAdminElements( el, target, show, null );
+		}
+		var hide = jQuery( el ).attr( 'data-hide' );
+		if ( hide ) {
+			showhideAdminElements( el, target, null, hide );
+		}
 	});
 }
 

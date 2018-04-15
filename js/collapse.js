@@ -24,7 +24,6 @@ function assignCollapse(elID) { // Attach toggle event to collapsible areas
 function clickCollapse(el) {
   var icon   = jQuery(el).find('.panel-sign');
   if (jQuery(el).next().is(":hidden")) {
-//    if (icon) { jQuery(icon).removeClass('fa-plus').addClass('fa-minus'); }
     if (icon) { jQuery(icon).removeClass(col_icons.plus).addClass(col_icons.minus); }
     jQuery(el).siblings().show('slow');
     if (collapse.scroll || jQuery(el).find('.scroll-this')[0]) {
@@ -32,7 +31,6 @@ function clickCollapse(el) {
        if (collapse.fixed) { vert -= jQuery('.header-fixed').height(); } // fixed header
       scrollToElement(el,null,vert); }
   } else {
-//    if (icon) { jQuery(icon).removeClass('fa-minus').addClass('fa-plus'); }
     if (icon) { jQuery(icon).removeClass(col_icons.minus).addClass(col_icons.plus); }
     jQuery(el).siblings().hide('slow');
   }
