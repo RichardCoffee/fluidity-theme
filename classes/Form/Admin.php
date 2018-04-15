@@ -395,7 +395,6 @@ abstract class TCC_Form_Admin {
 		$attrs['title'] = ( isset( $layout['help'] ) )     ? $layout['help']   : '';
 		if ( ! empty( $layout['showhide'] ) ) {
 			$state = array_merge( array( 'show' => null, 'hide' => null ), $layout['showhide'] );
-fluid()->log($layout);
 			$attrs['data-item'] = ( isset( $state['item'] ) ) ? $state['item'] : $state['target'];
 			$attrs['data-show'] = $state['show'];
 			$attrs['data-hide'] = $state['hide'];
