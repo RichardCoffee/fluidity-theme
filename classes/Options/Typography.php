@@ -161,6 +161,7 @@ fluid()->log($url);
 					'class' => 'spinner',
 					'min'   => '1',
 					'step'  => '1',
+					'value' => intval( get_theme_mod( 'font_size', 18 ), 10 ),
 				),
 			),
 		);

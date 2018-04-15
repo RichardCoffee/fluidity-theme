@@ -1,4 +1,4 @@
 
-input[type="number"].spinner {
+input.spinner[type="number"] {
 	width: 4em;
 }
