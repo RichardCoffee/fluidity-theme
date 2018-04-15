@@ -13,25 +13,27 @@ if ( has_nav_menu( $menu ) ) {
 
 #	$main_css = get_menu_class($menu,$page);
 
+	$nav_attrs = array(
+		'id'    => 'site-navigation',
+		'class' => "main-navigation {$menu}-navigation {$page}-{$menu}-navigation",
+		'role'  => 'navigation',
+	);
+	$nav_attrs = array_merge( $nav_attrs, microdata()->microdata_attrs( 'SiteNavigationElement' ) );
+
+	$button_attrs = array(
+		'class'         => 'menu-toggle navbar-toggle', // underscore and bootstrap
+		'aria-controls' => $menu,
+		'aria-expanded' => 'false',
+		'data-toggle'   => 'collapse',               // bootstrap
+		'data-target'   => ".navbar-$menu-collapse", // bootstrap
+	);
+
 	if ( tcc_layout( 'menu', 'bootstrap' ) === 'bootstrap' ) {
 
 		/* bootstrap navigation */
 
-		$nav_attrs = array(
-			'id'    => "navbar-{$page}-$menu",
-			'class' => "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu",
-			'role'  => 'navigation',
-		);
-		$nav_attrs = array_merge( $nav_attrs, microdata()->microdata_attrs( 'SiteNavigationElement' ) ) ;
-
-		$button_attrs = array(
-			'type'  => 'button',
-			'class' => 'navbar-toggle',
-			'aria-controls' => $menu,
-			'aria-expanded' => 'false',
-			'data-toggle'   => 'collapse',
-			'data-target'   => ".navbar-$menu-collapse",
-		);
+		$nav_attrs['class']   = "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu";
+		$button_attrs['type'] = 'button';
 
 		fluid()->apply_attrs_tag( 'nav', $nav_attrs ); ?>
 
