@@ -19,12 +19,18 @@ class TCC_Options_Customizer {
 		foreach( $controls as $section ) {
 			$priority = 0;
 			$section_id = $section['id'];
-			$customize->add_section( $section['id'], $this->customizer_section( $section['section'] ) );
+ $temp = $this->customizer_section( $section['section'] );
+fluid()->log($temp);
+ 			$customize->add_section( $section['id'], $temp );
+#			$customize->add_section( $section['id'], $this->customizer_section( $section['section'] ) );
 			$controls = apply_filters( "fluid_customizer_controls_{$section['id']}", $section['controls'] );
 			foreach( $section['controls'] as $key => $control ) {
 				$priority  += 10;
 				$setting_id = $section_id . '_' . $key;
-				$customize->add_setting( $setting_id, $this->customizer_control( $control ) );
+$temp=$this->customizer_control( $control );
+fluid()->log($temp);
+				$customize->add_setting( $setting_id, $temp );
+#				$customize->add_setting( $setting_id, $this->customizer_control( $control ) );
 				new TCC_Form_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
