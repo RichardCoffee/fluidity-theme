@@ -148,16 +148,15 @@ fluid()->log($url);
 		$controls = array(
 			'typography' => array(
 				'default' => 'Helvitica Neue',
-				//'title''label'   => __( 'Font Type', 'tcc-fluid' ),
+				'label'   => __( 'Font Type', 'tcc-fluid' ),
 				'render'  => 'font',
 				'choices' => TCC_Options_Typography::mixed_fonts(),
 			),
 			'size' => array(
 				'default' => 18,
-				//'title''label'   => __('Font Size','tcc-fluid'),
+				'label'   => __('Font Size','tcc-fluid'),
 				//'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
 				'render'  => 'spinner',
-				//'divcss'  => 'tcc_text_3em',
 				'input_attrs'   => array(
 					'css'  => 'text_3em_wide',
 					'min'  => '1',
@@ -170,7 +169,7 @@ fluid()->log($url);
 			'section'  => $section,
 			'controls' => $controls
 		);
-		$options[] = $section;
+		$options[] = $typography;
 		return $options;
 	}
 
