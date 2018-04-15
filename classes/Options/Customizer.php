@@ -4,7 +4,7 @@ class TCC_Options_Customizer {
 
 
 	public function __construct( $args = array() ) {
-#		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
+		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
 	}
 
 	protected function get_controls() {
@@ -13,7 +13,8 @@ class TCC_Options_Customizer {
 
 	public function customize_register( WP_Customize_Manager $customize ) {
 		wp_enqueue_style( 'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
-#		$controls = $this->get_controls();
+		$controls = $this->get_controls();
+fluid()->log($controls);
 #		foreach( $data as $section ) {
 #			$priority = 0;
 #			$section_id = $section['id'];
