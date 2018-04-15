@@ -108,20 +108,21 @@ class TCC_Options_Typography {
 	public static function load_google_font() {
 #		$google_fonts = array_keys( self::google_fonts() );
 		$current  = get_theme_mod( 'font_typography', 'Helvitica Neue' );
-		$os_fonts = self::os_fonts();
-		if ( ! in_array( $current, $os_fonts ) ) { // Really?  Are we sure about this?
-			$google_fonts = self::google_fonts();
-			if ( in_array( $current, $google_fonts ) ) {
-				$myfont = explode( ',', $google_fonts[ $current ] );
-				if ( $myfont[0] === 'Raleway' ) {
-					$myfont[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?  what does this do anyway?
+fluid()->log($current);
+		if ( ! in_array( $current, self::os_fonts() ) ) { // Really?  Are we sure about this?
+			$google = self::google_fonts();
+			if ( in_array( $current, $google ) ) {
+				$font = explode( ',', $google[ $current ] );
+				if ( $font[0] === 'Raleway' ) {
+					$font[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?  what does this do anyway?
 				}
-				$query_args = array(
-					'family' => urlencode( implode( '|', $myfont ) ),
+				$args = array(
+					'family' => urlencode( implode( '|', $font ) ),
 					'subset' => urlencode( 'latin,latin-ext' ) // FIXME: when would subset be something different?
 				);
-				$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-				wp_enqueue_style( 'font_typography', $fonts_url, null, null, 'all' );
+				$url = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
+fluid()->log($url);
+				wp_enqueue_style( 'font_typography', $url, null, null, 'all' );
 			}
 		}
 	}
