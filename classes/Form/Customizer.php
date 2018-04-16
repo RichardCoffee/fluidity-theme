@@ -39,7 +39,7 @@ class TCC_Form_Customizer {
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
 			'label'       => $this->control['label'],
-			'description' => $this->control['description'],
+#			'description' => $this->control['description'],
 #			'choices' - radio or select only
 			'type'        => $this->control['render'],
 /*			'input_attrs' => array(
@@ -54,7 +54,9 @@ class TCC_Form_Customizer {
 		if ( isset( $this->control['input_attrs'] ) ) {
 			$defaults['input_attrs'] = $this->control['input_attrs'];
 		}
-		if ( isset( $this->control['text'] ) ) {
+		if ( isset( $this->control['description'] ) ) {
+			$defaults['description'] = $this->control['description'];
+		} elseif ( isset( $this->control['text'] ) ) {
 			$defaults['description'] = $this->control['text'];
 		}
 		return $defaults;
