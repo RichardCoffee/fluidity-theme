@@ -27,6 +27,10 @@ class TCC_Form_Customizer {
 		$this->customize->add_control( $this->setting_id, $args );
 	}
 
+	protected function add_custom_control( $obj ) {
+		$this->customize->add_control( $obj );
+	}
+
 	protected function defaults() {
 		$defaults = array(
 			'settings'    => array( $this->setting_id ),
@@ -35,14 +39,16 @@ class TCC_Form_Customizer {
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
 			'label'       => $this->control['label'],
-#			'description' => __( 'Control description', 'tcc-fluid' );
+			'description' => $this->control['description'],
 #			'choices' - radio or select only
 			'type'        => $this->control['render'],
 /*			'input_attrs' => array(
 				'class' => 'my-custom-class-for-js',
 				'style' => 'border: 1px solid #900',
 				'placeholder' => __( 'mm/dd/yyyy' ),
-			), */
+			),
+#			'allow_addition' =>
+ */
 #			'active_callback' => 'is_front_page',
 		);
 		if ( isset( $this->control['input_attrs'] ) ) {
@@ -52,6 +58,12 @@ class TCC_Form_Customizer {
 			$defaults['description'] = $this->control['text'];
 		}
 		return $defaults;
+	}
+
+	protected function content() {
+		$args = $this->defaults();
+		$obj  = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
+		$this->add_custom_control( $obj );
 	}
 
 	protected function font() {

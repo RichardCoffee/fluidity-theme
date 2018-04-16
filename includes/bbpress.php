@@ -139,26 +139,28 @@ fluid()->log(0,'default3: '.$subscribe);
 if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 	#  Add font sizes to Theme Options - Design page
 	function fluid_bbp_options_font_size( $controls ) {
-/*		$controls['bbp'] = array(
-			'label'   => __( 'bbPress', 'tcc-fluid' ),
-			'text'    => __( 'Compatibility options for bbPress', 'tcc-fluid' ),
-			'render'  => 'title',
+		$controls['bbp_font_text'] = array(
+			'label'       => __( 'bbPress', 'tcc-fluid' ),
+			'description' => __( 'Compatibility options for bbPress', 'tcc-fluid' ),
+			'render'      => 'content',
 		); //*/
-/*		$controls['bbpsize'] = array(
-			'default' => 12,
-			'label'   => __('Title','tcc-fluid'),
-			'text'    => __('Control the font size for titles and headers on forum pages', 'tcc-fluid' ),
-			'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
-			'render'  => 'text',
-			'divcss'  => 'tcc_text_3em',
+		$controls['bbp_font_size'] = array(
+			'default'     => 12,
+			'label'       => __('Title','tcc-fluid'),
+			'description' => __('Control the font size for titles and headers on forum pages', 'tcc-fluid' ),
+			'render'      => 'spinner',
+			'input_attrs' => array(
+				'class' => 'tcc_text_3em',
+			)
 		); //*/
-/*		$controls['bbposize1'] = array(
-			'default' => 11,
-			'label'   => __('Text','tcc-fluid'),
-			'text'    => __('Control the font size for normal text on forum pages', 'tcc-fluid' ),
-			'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
-			'render'  => 'text',
-			'divcss'  => 'tcc_text_3em',
+		$controls['bbp_font_text_size'] = array(
+			'default'     => 11,
+			'label'       => __('Text','tcc-fluid'),
+			'description' => __('Control the font size for normal text on forum pages', 'tcc-fluid' ),
+			'render'      => 'spinner',
+			'input_attrs' => array(
+				'class' => 'tcc_text_3em',
+			)
 		); //*/
 		return $controls;
 	}
@@ -182,7 +184,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 					'div#bbpress-forums ul.bbp-search-results',
 				);
 				$css_tags = implode( ",\n", $css );
-				echo "\n$css_tags {\n\tfont-size:  {$fontsize}px;\n}\n";
+				echo "$css_tags { font-size:  {$fontsize}px; }";
 			}
 			$fontosize1 = tcc_design( 'bbposize1', 11 );
 			if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) { # 11 is the default
@@ -191,7 +193,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 					'div#bbpress-forums p.bbp-topic-meta',
 				);
 				$css_tags1 = implode( ",\n", $css1 );
-				echo "\n$css_tags1 {\n\tfont-size:  {$fontosize1}px;\n}\n";
+				echo "$css_tags1 { font-size:  {$fontosize1}px; }";
 			}
 		}
 	}
