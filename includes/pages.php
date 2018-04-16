@@ -159,10 +159,7 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
 		$title = tcc_get_page_id_by_slug( $slug, 'post_title' );
 		if ( is_archive() && ! get_query_var( 'paged' ) ) {
 			if ( is_tax() || is_category() || is_tag() ) {
-				$descrip = term_description();
-				if ( $descrip ) {
-					$title =  apply_filters( 'the_content', $descrip );
-				}
+				$title =  ( $descrip = term_description() ) ? $descrip : $title;
 			}
 		}
 		return $title; #  apply_filters( 'tcc_get_page_title', $title, $slug );
@@ -182,7 +179,7 @@ if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 				$css = tcc_layout( 'main_css', 'col-md-9' );
 			}
 		}
-		return $css; #  apply_filters( 'tcc_main_tag_css', $css, $page );
+		return $css; #  apply_filters( 'fluid_main_tag_css', $css, $page );
 	}
 }
 
@@ -209,7 +206,7 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 		} else {
 			$title = tcc_get_page_title( $slug );
 			if ( $title ) { ?>
-				<div id="tcc-page-title-banner" <?php title_class(); ?>>
+				<div id="fluid-page-title-banner" <?php title_class(); ?>>
 					<h1 class="text-center">
 						<?php echo $title; ?>
 					</h1>
