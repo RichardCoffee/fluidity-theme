@@ -27,7 +27,7 @@ class TCC_Form_Control_Content extends WP_Customize_Control {
 	 * @return  void
 	 */
 	public function render_content() {
-fluid()->log($this);
+fluid()->log(get_class_vars(__CLASS__));
 		switch ( $this->type ) {
 
 			case 'content' :
