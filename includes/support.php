@@ -36,7 +36,7 @@ if ( ! function_exists( 'fluid_change_custom_logo_class') ) {
 
 if ( ! function_exists( 'fluid_post_formats' ) ) {
 	function fluid_post_formats( $formats = array() ) {
-		return array( 'link' );
+		return array( 'link', 'quote' );
 	}
 	add_filter( 'fluid_support_post_formats', 'fluid_post_formats' );
 }
