@@ -103,6 +103,11 @@
   width: 50%;
 }
 
+@media (max-width: 767px) {
+  ul.wpfep-tabs li a {
+    fint-size: 13px;
+  }
+}
 .excerpt-title-wrap {
   display: grid;
 }
