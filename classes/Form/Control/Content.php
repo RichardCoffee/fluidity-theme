@@ -13,7 +13,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) ) {
 
 #class Customizer_Library_Content extends WP_Customize_Control {
 
-class TCC_Form_Control_Content extends WP_Customize_Control {
+class TCC_Form_Control_Content extends TCC_Form_Control_Control {
 
 	// Whitelist content parameter
 	public $content = '';
@@ -27,13 +27,15 @@ class TCC_Form_Control_Content extends WP_Customize_Control {
 	 * @return  void
 	 */
 	public function render_content() {
-fluid()->log(get_class_vars(__CLASS__));
+
+#		fluid()->log(get_class_vars(__CLASS__));
+
 		switch ( $this->type ) {
 
 			case 'content' :
 
 				if ( isset( $this->label ) ) {
-					echo '<span class="customize-control-title">' . $this->label . '</span>';
+					$this->apply_attrs_element( 'span', [ 'class' => 'customize-control-title' ], $this->label );
 				}
 
 				if ( isset( $this->content ) ) {
@@ -41,7 +43,7 @@ fluid()->log(get_class_vars(__CLASS__));
 				}
 
 				if ( isset( $this->description ) ) {
-					echo '<span class="description customize-control-description">' . $this->description . '</span>';
+					$this->apply_attrs_element( 'span', [ 'class' => 'description customize-control-description' ], $this->description );
 				}
 
 				break;

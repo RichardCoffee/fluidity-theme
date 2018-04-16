@@ -97,11 +97,14 @@ class TCC_Options_Typography {
 
 
 	public static function mixed_fonts( $font = 'no-font' ) {
-		$mixed_fonts = array_unique( array_merge( self::os_fonts(), self::google_fonts() ) );
+		static $mixed_fonts;
+		if ( empty( $mixed_fonts ) ) {
+			$mixed_fonts = array_unique( array_merge( self::os_fonts(), self::google_fonts() ) );
+			asort( $mixed_fonts );
+		}
 		if ( func_num_args() > 0 ) {
 			return ( isset( $mixed_fonts [ $font ] ) ) ? $mixed_fonts [ $font ] : false;
 		}
-		asort( $mixed_fonts );
 		return $mixed_fonts; // apply_filters( 'fluid_mixed_fonts', $mixed_fonts );
 	}
 
@@ -145,15 +148,21 @@ fluid()->log($url);
 			'description' => __( 'Site typography options', 'tcc-fluid' ),
 		);
 		$controls = array(
+			'head_typog' => array(
+				'default' => 'Open Sans',
+				'label'   => __( 'Header Font Type', 'tcc-fluid' ),
+				'render'  => 'font',
+				'choices' => TCC_Options_Typography::mixed_fonts(),
+			),
 			'typography' => array(
 				'default' => 'Helvitica Neue',
-				'label'   => __( 'Font Type', 'tcc-fluid' ),
+				'label'   => __( 'Content Font Type', 'tcc-fluid' ),
 				'render'  => 'font',
 				'choices' => TCC_Options_Typography::mixed_fonts(),
 			),
 			'size' => array(
 				'default' => 18,
-				'label'   => __('Font Size','tcc-fluid'),
+				'label'   => __('Content Font Size','tcc-fluid'),
 				//'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
 				'render'  => 'spinner',
 				'input_attrs'   => array(

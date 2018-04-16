@@ -6,6 +6,7 @@
 /**
  * A trait that provides methods to generate html for tag attributes
  *
+ * @link 4.9.5:wp-includes/general-template.php:2949
  */
 trait TCC_Trait_Attributes {
 

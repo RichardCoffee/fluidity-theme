@@ -208,7 +208,7 @@ if ( ! function_exists( 'tcc_page_title' ) ) {
 			if ( $title ) { ?>
 				<div id="fluid-page-title-banner" <?php title_class(); ?>>
 					<h1 class="text-center">
-						<?php echo $title; ?>
+						<?php echo wp_strip_all_tags( $title ); ?>
 					</h1>
 				</div><?php
 			}

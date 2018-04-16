@@ -14,7 +14,9 @@
 		background-color: color(background);
 		color: color(textcolor);
 	}
-	& .navbar-nav, & .dropdown-menu {
+	& .nav-menu, // underscore
+	& .navbar-nav,
+	& .dropdown-menu {
 		background-color: color(background);
 		opacity: 1.3;
 		& > li {
