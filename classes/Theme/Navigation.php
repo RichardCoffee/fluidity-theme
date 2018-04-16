@@ -40,9 +40,9 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected function navigation_text() {
 		$this->text = array(
 			'next_all' => __( 'Newer Post', 'tcc-fluid' ),
-			'next_tax' => _x( 'Newer %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
+			'next_tax' => _x( "Newer '%s' post", 'the taxonomy label (singular)', 'tcc-fluid' ),
 			'prev_all' => __( 'Older Post', 'tcc-fluid' ),
-			'prev_tax' => _x( 'Older %s post', 'the taxonomy label (singular)', 'tcc-fluid' ),
+			'prev_tax' => _x( "Older '%s' post", 'the taxonomy label (singular)', 'tcc-fluid' ),
 			'sr_all'   => __( 'Posts Navigation', 'tcc-fluid' ),
 			'sr_tax'   => __( 'Category Navigation', 'tcc-fluid' )
 		);
