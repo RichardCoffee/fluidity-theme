@@ -3,22 +3,22 @@
 .navbar-fluidity {
 	background-color: color(background);
 	color: color(textcolor);
-	.navbar-brand {
+	& .navbar-brand {
 		background-color: color(background);
 		color: color(textcolor);
 		&:hover, &:focus {
 			background-color: color(bgHighlight);
 		}
 	}
-	.navbar-text {
+	& .navbar-text {
 		background-color: color(background);
 		color: color(textcolor);
 	}
-	.navbar-nav, .dropdown-menu {
+	& .navbar-nav, & .dropdown-menu {
 		background-color: color(background);
 		opacity: 1.3;
-		> li {
-			> a {
+		& > li {
+			& > a {
 				background-color: color(background);
 				color: color(textcolor);
 				&:hover,  &:focus {
@@ -26,34 +26,31 @@
 				}
 			}
 		}
-		> .active {
-			> a, > a:hover, > a:focus {
-				background-color: color(bgHighlight);
-			}
-		}
-		> .open {
-			> a, > a:hover, > a:focus {
+		.current-menu-item, // underscore
+		& > .active,
+		& > .open {
+			& > a, & > a:hover, & > a:focus {
 				background-color: color(bgHighlight);
 			}
 		}
 	}
-	.navbar-toggle {
+	& .navbar-toggle {
 		border-color: color(bgHighlight);
 		&:hover, &:focus {
 			background-color: color(bgHighlight);
 		}
-		.icon-bar {
+		& .icon-bar {
 			background-color: color(textcolor);
 		}
 	}
-	.navbar-collapse,
-	.navbar-form {
+	& .navbar-collapse,
+	& .navbar-form {
 		border-color: color(textcolor);
 	}
-	.navbar-link {
+	& .navbar-link {
 		background-color: color(background);
 	}
-	.btn-fluidity {
+	& .btn-fluidity {
 		@extend %inverse;
 	}
 }
@@ -61,15 +58,15 @@
 
 @media (max-width: 767px) {
   .navbar-fluidity .navbar-nav .open .dropdown-menu {
-    > li > a {
+    & > li > a {
       background-color: color(background);
       color: color(textcolor);
       &:hover, &:focus {
         color: color(textHighlight);
       }
     }
-    > .active {
-      > a, > a:hover, > a:focus, {
+    & > .active {
+      & > a, & > a:hover, & > a:focus, {
         color: color(textHighlight);
         background-color: color(bgHighlight);
       }

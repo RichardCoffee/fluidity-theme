@@ -187,10 +187,7 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 .navbar-fluidity .navbar-nav > li > a:hover, .navbar-fluidity .navbar-nav > li > a:focus, .navbar-fluidity .dropdown-menu > li > a:hover, .navbar-fluidity .dropdown-menu > li > a:focus {
   background-color: #46B8DA;
 }
-.navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus {
-  background-color: #46B8DA;
-}
-.navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus {
+.navbar-fluidity .navbar-nav .current-menu-item > a, .navbar-fluidity .navbar-nav .current-menu-item > a:hover, .navbar-fluidity .navbar-nav .current-menu-item > a:focus, .navbar-fluidity .navbar-nav > .active > a, .navbar-fluidity .navbar-nav > .active > a:hover, .navbar-fluidity .navbar-nav > .active > a:focus, .navbar-fluidity .navbar-nav > .open > a, .navbar-fluidity .navbar-nav > .open > a:hover, .navbar-fluidity .navbar-nav > .open > a:focus, .navbar-fluidity .dropdown-menu .current-menu-item > a, .navbar-fluidity .dropdown-menu .current-menu-item > a:hover, .navbar-fluidity .dropdown-menu .current-menu-item > a:focus, .navbar-fluidity .dropdown-menu > .active > a, .navbar-fluidity .dropdown-menu > .active > a:hover, .navbar-fluidity .dropdown-menu > .active > a:focus, .navbar-fluidity .dropdown-menu > .open > a, .navbar-fluidity .dropdown-menu > .open > a:hover, .navbar-fluidity .dropdown-menu > .open > a:focus {
   background-color: #46B8DA;
 }
 .navbar-fluidity .navbar-toggle {
@@ -202,8 +199,7 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 .navbar-fluidity .navbar-toggle .icon-bar {
   background-color: #FFFFFF;
 }
-.navbar-fluidity .navbar-collapse,
-.navbar-fluidity .navbar-form {
+.navbar-fluidity .navbar-collapse, .navbar-fluidity .navbar-form {
   border-color: #FFFFFF;
 }
 .navbar-fluidity .navbar-link {
@@ -229,13 +225,12 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 }
 .main-navigation a {
   background-color: #5BC0DE;
-  border: none;
   color: #FFFFFF;
 }
 .main-navigation a:hover, .main-navigation a:focus {
   background-color: #46B8DA;
-  border: none;
   color: #FFFFFF;
+  font-weight: normal;
 }
 
 ul.sub-menu {
