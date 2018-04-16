@@ -106,6 +106,7 @@
 @media (max-width: 767px) {
   ul.wpfep-tabs li a {
     font-size: 13px;
+    padding: 4px 0;
   }
 }
 .excerpt-title-wrap {
