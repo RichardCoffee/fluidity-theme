@@ -129,13 +129,13 @@ fluid()->log($url);
 	public static function typography_styles() {
 		// font family
 		$font = self::mixed_fonts( get_theme_mod( 'font_typography', 'Helvitica Neue' ) );
-		echo "\nhtml {\n\tfont-family: $font;\n}\n";
+		echo "body { font-family: $font; }";
 		// font size
 		$size = intval( get_theme_mod( 'font_size', 18 ), 10 );
-		echo "\nbody {\n\tfont-size: {$size}px;\n}\n";
+		echo "body { font-size: {$size}px; }";
 		// widget panel title
 		$panel = max( 1, $size - 2 );
-		echo "\npanel-title {\n\tfont-size: {$panel}px;\n}\n";
+		echo "panel-title { font-size: {$panel}px; }";
 	}
 
 	public static function customizer_controls( $options ) {
