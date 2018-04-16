@@ -150,7 +150,7 @@ if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 			'description' => __('Control the font size for titles and headers on forum pages', 'tcc-fluid' ),
 			'render'      => 'spinner',
 			'input_attrs' => array(
-				'class' => 'tcc_text_3em',
+				'class' => 'text_3em_wide',
 			)
 		); //*/
 		$controls['bbp_font_text_size'] = array(
@@ -159,7 +159,7 @@ if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 			'description' => __('Control the font size for normal text on forum pages', 'tcc-fluid' ),
 			'render'      => 'spinner',
 			'input_attrs' => array(
-				'class' => 'tcc_text_3em',
+				'class' => 'text_3em_wide',
 			)
 		); //*/
 		return $controls;
