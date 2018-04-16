@@ -138,40 +138,32 @@ fluid()->log(0,'default3: '.$subscribe);
 
 if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 	#  Add font sizes to Theme Options - Design page
-	function fluid_bbp_options_font_size( $layout ) {
-		$layout['bbp'] = array(
+	function fluid_bbp_options_font_size( $controls ) {
+/*		$controls['bbp'] = array(
 			'label'   => __( 'bbPress', 'tcc-fluid' ),
 			'text'    => __( 'Compatibility options for bbPress', 'tcc-fluid' ),
 			'render'  => 'title',
-		);
-		$layout['bbpsize'] = array(
+		); //*/
+/*		$controls['bbpsize'] = array(
 			'default' => 12,
 			'label'   => __('Title','tcc-fluid'),
 			'text'    => __('Control the font size for titles and headers on forum pages', 'tcc-fluid' ),
 			'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
 			'render'  => 'text',
 			'divcss'  => 'tcc_text_3em',
-		);
-		$layout['bbposize1'] = array(
+		); //*/
+/*		$controls['bbposize1'] = array(
 			'default' => 11,
 			'label'   => __('Text','tcc-fluid'),
 			'text'    => __('Control the font size for normal text on forum pages', 'tcc-fluid' ),
 			'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
 			'render'  => 'text',
 			'divcss'  => 'tcc_text_3em',
-		);
-		return $layout;
+		); //*/
+		return $controls;
 	}
-	add_filter( 'tcc_design_options_layout', 'fluid_bbp_options_font_size' );
+	add_filter( 'fluid_customizer_controls_font', 'fluid_bbp_options_font_size' );
 }
-/*
-if ( ! function_exists( 'fluid_bbp_customizer_data' ) ) {
-	function fluid_bbp_customizer_data( $data ) {
-		$data['type'][] = 'bbpsize';
-		$data['type'][] = 'bbposize1';
-	}
-	add_filter( 'fluid_design_customizer_data', 'fluid_bbp_customizer_data' );
-} //*/
 
 if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 	#  Add font sizes to custom css
