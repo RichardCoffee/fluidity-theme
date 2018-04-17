@@ -165,13 +165,14 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 
 if ( ! function_exists( 'fluid_show_content_title' ) ) {
 	function fluid_show_content_title() {
-		if ( ! is_page() ) { ?>
+		if ( ! is_page() ) {
+			$show_orig = false; ?>
 			<h2 class="text-center">
 				<?php tcc_post_title(); ?>
 				<?php fluid_edit_post_link(); ?>
 			</h2>
 			<h3 class="post-date text-center">
-				<?php fluid_post_date(); ?>
+				<?php $show_orig = fluid_post_date(); ?>
 			</h3><?php
 			if ( $show_orig ) { ?>
 				<h3><?php
