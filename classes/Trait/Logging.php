@@ -16,14 +16,12 @@ trait TCC_Trait_Logging {
 
 	public function log() {
 		call_user_func_array( array( $this, 'logging_entry' ), func_get_args() );
-		$this->logging_force = false;
 	}
 
 	public function logg() {
-		if ( is_callable( $this->logging_func ) && ( $this->logging_debug || $this->logging_force ) ) {
+		if ( is_callable( $this->logging_func ) ) {
 			call_user_func_array( $this->logging_func, func_get_args() );
 		}
-		$this->logging_force = false;
 	}
 
 
@@ -103,17 +101,22 @@ trait TCC_Trait_Logging {
 		if ( $this->logging_debug || $this->logging_force ) {
 			$args  = func_get_args();
 			if ( $args ) {
-				$depth = 1;
-				if ( $args && is_int( $args[0] ) ) {
-					$depth = array_shift( $args );
-				}
-				if ( $depth ) {
-					$this->logging_write_entry( 'source:  ' . $this->logging_calling_location( $depth ) );
-				}
-				foreach( $args as $message ) {
-					$this->logging_write_entry( $message );
-				}
+				$this->logging_make_entry( $args );
+				$this->logging_force = false;
 			}
+		}
+	}
+
+	protected function logging_make_entry( $args ) {
+		$depth = 1;
+		if ( $args && is_int( $args[0] ) ) {
+			$depth = array_shift( $args );
+		}
+		if ( $depth ) {
+			$this->logging_write_entry( 'source:  ' . $this->logging_calling_location( $depth ) );
+		}
+		foreach( $args as $message ) {
+			$this->logging_write_entry( $message );
 		}
 	}
 
