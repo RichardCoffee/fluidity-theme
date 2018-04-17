@@ -178,7 +178,7 @@ if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 			if ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) {
 				$css = tcc_layout( 'main_css', 'col-md-9' );
 			} else {
-				$css = 'fluid-sidebar';
+				$css = 'has-fluid-sidebar';
 			}
 		}
 		return $css; #  apply_filters( 'fluid_main_tag_css', $css, $page );
