@@ -210,7 +210,7 @@ fluid()->log(
 	$attrs,
 	"format:  $format",
 	"string:  $string",
-	"output:  $output",
+	"output:  $output"
 );
 		}
 		$adjacent = $previous ? 'previous' : 'next';
