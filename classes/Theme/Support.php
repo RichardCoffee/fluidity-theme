@@ -110,7 +110,9 @@ class TCC_Theme_Support {
 			'admin-preview-callback' => '',
 		);
 		$background = apply_filters( $this->filter_prefix . '_support_custom_background', $background );
-		add_theme_support( 'custom-background', $background );
+		if ( $background ) {
+			add_theme_support( 'custom-background', $background );
+		}
 	}
 
 	/**

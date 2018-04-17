@@ -11,6 +11,9 @@ if ( ! function_exists( 'fluid_load_theme_support' ) ) {
 
 if ( ! function_exists( 'fluid_custom_background' ) ) {
 	function fluid_custom_background( $args = array() ) {
+		if ( fluid()->is_mobile() ) {
+			return false;
+		}
 		$background = array(
 #			'default-image'          => get_theme_file_uri( 'screenshot.jpg' ),
 			'default-position-x'     => 'center',    // 'left',
