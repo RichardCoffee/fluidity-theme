@@ -175,7 +175,7 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
 				<?php $show_orig = fluid_post_date(); ?>
 			</h3><?php
 			if ( $show_orig ) { ?>
-				<h3><?php
+				<h3 class="post-date text-center"><?php
 					fluid_post_date( 'original' ); ?>
 				</h3><?php
 			}
