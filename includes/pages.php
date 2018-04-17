@@ -174,15 +174,13 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
  */
 if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 	function tcc_main_tag_css( $css = '', $page = 'page' ) {
-fluid()->log( "css: $css", "page: $page" );
-		if ( ! $css && ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ) {
-fluid()->log( 'fluid_sidebar: '.tcc_layout( 'fluid_sidebar' ) );
-			if ( ! defined( 'TCC_NO_SIDEBAR' ) ) {
+		if ( empty( $css ) && ( ! defined( 'TCC_NO_SIDEBAR' ) ) ) {
+			if ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) {
 				$css = tcc_layout( 'main_css', 'col-md-9' );
-fluid()->log( "css: $css" );
+			} else {
+				$css = 'fluid-sidebar';
 			}
 		}
-fluid()->log( "css: $css" );
 		return $css; #  apply_filters( 'fluid_main_tag_css', $css, $page );
 	}
 }
