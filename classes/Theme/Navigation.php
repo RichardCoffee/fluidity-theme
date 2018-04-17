@@ -200,8 +200,18 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 				'class' => 'btn-fluidity',
 				'rel'   => $previous ? 'prev' : 'next',
 			);
-			$string = $this->get_apply_attrs_tag( 'a', $attrs, $inlink );
+			$string = $this->get_apply_attrs_element( 'a', $attrs, $inlink );
 			$output = str_replace( '%link', $string, $format );
+fluid()->log(
+	" title:  $title",
+	"  date:  $date",
+	"  link:  $link",
+	"inlink:  $inlink",
+	$attrs,
+	"format:  $format",
+	"string:  $string",
+	"output:  $output",
+);
 		}
 		$adjacent = $previous ? 'previous' : 'next';
 		return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
