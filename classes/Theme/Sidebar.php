@@ -74,7 +74,7 @@ class TCC_Theme_Sidebar {
 			'role'  => 'complementary',
 		);
 		$attrs = array_merge( $attrs, microdata()->microdata_attrs( 'WPSideBar' ) ); ?>
-		<div <?php $this->apply_attrs( $attrs ); ?>>
+		<div <?php fluid()->apply_attrs( $attrs ); ?>>
 			<?php get_template_part( $this->root, $this->sidebar ); ?>
 		</div><?php
 	}
