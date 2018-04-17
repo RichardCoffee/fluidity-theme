@@ -20,20 +20,16 @@ class TCC_Theme_Sidebar {
 
 	private function __construct( $args = array() ) {
 
-		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
-			static::$abort__construct = true;
-			return;
-		}
 		$this->position = $this->positioning();
-		$this->sidebar  = get_page_slug();
-		$this->slug     = $this->sidebar;
-		$this->css      = ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
-
-		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
-		if ( $this->position === 'none' ) {
+		if ( defined( 'TCC_NO_SIDEBAR' ) || ( $this->position === 'none' ) ) {
 			static::$abort__construct = true;
 			return;
 		}
+
+		$this->sidebar = get_page_slug();
+		$this->slug    = $this->sidebar;
+		$this->css     = ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
+		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 		$this->parse_args( $args );
 		if ( ! $this->horizontal ) {
 			$this->check_mobile();
@@ -54,14 +50,11 @@ class TCC_Theme_Sidebar {
 				$this->action = 'tcc_after_main';
 			}
 		} else if ( tcc_layout( 'sidebar', 'left' ) === 'right' ) {
-#			$this->action = 'tcc_after_main';
+			$this->action = 'tcc_after_main';
 		}
 	}
 
 	protected function positioning() {
-		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
-			return 'none';
-		}
 		$side = tcc_layout( 'sidebar', 'left' );
 		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
