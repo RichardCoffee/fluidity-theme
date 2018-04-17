@@ -10,7 +10,7 @@ get_header();
 
 $mypage = get_page_slug();
 
-TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what values the array can have
+TCC_Theme_Sidebar::get_instance( [ 'sidebar' => 'standard' ] );	#	See classes/Theme/Sidebar.php on what values the array can have
 
 do_action( 'fluid_page_top', $mypage ); ?>
 

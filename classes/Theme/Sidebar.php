@@ -13,6 +13,7 @@ class TCC_Theme_Sidebar {
 	protected $position   = 'none';
 	protected $root       = 'sidebar';
 	protected $sidebar    = 'standard';
+	protected $fluid      = 'no';
 	protected $slug;
 
 	use TCC_Trait_ParseArgs;
@@ -28,7 +29,8 @@ class TCC_Theme_Sidebar {
 
 		$this->sidebar = get_page_slug();
 		$this->slug    = $this->sidebar;
-		$this->css     = ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
+		$this->fluid   = tcc_layout( 'fluid_sidebar', 'no' );
+		$this->css     = ( $this->fluid === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
 		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 		$this->parse_args( $args );
 		if ( ! $this->horizontal ) {
@@ -74,12 +76,14 @@ class TCC_Theme_Sidebar {
 
 	protected function build_class() {
 		$css = array(
-			'fluid-sidebar',
-			'fluid-sidebar-' . $this->position,
 			'noprint',
-			'pull-' . $this->position,
 			'widget-area',
 		);
+		if ( $this->fluid === 'yes' ) {
+			$css[] = 'fluid-sidebar';
+			$css[] = 'fluid-sidebar-' . $this->position;
+			$css[] = 'pull-' . $this->position;
+		}
 		if ( $this->slug ) {
 			$css[] = 'fluid-sidebar-' . $this->slug;
 		}
