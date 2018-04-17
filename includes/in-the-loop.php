@@ -82,20 +82,24 @@ if (!function_exists('fluid_next_post_exists')) {
 
 if ( ! function_exists( 'fluid_post_date' ) ) {
 	function fluid_post_date( $postdate = false ) {
-		$showboth = (bool)$postdate;
+		$showboth = ! empty( $postdate );
+fluid()->log(0,"postdate1: $postdate");
 		if ( ! $postdate ) {
 			$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
 			$postdate = ( ! $postdate || ( $postdate === 'default' ) ) ? tcc_content( 'postdate', 'original' ) : $postdate;
 		}
+fluid()->log(0,"postdate2: $postdate");
 		if ( $postdate !== 'none' ) {
 			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 			$date    = get_the_date();
 			$author  = microdata()->get_the_author();
+fluid()->log(0,"postdate3: $postdate");
 			if ( in_array( $postdate, [ 'both', 'modified' ] ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
 				$default  = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 				$date     = get_the_modified_date();
 				$showboth = ( $postdate === 'both' );
 			}
+fluid()->log(0,"postdate4: $postdate");
 			$string  = apply_filters( 'fluid_post_date_sprintf', $default, $postdate, $showboth );
 			echo sprintf( $string, $date, $author );
 		}
