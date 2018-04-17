@@ -64,6 +64,10 @@ form .form-control:hover, form .form-control:focus {
   border-width: 1px;
 }
 
+li.btn-fluidity {
+  border: none;
+}
+
 .btn-fluidity-inverse,
 .color-fluidity-inverse {
   border-width: 1px;
