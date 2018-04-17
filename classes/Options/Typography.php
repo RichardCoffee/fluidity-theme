@@ -45,6 +45,7 @@ class TCC_Options_Typography {
 		return $fonts; // apply_filters( 'fluid_os_fonts_filter', $fonts );
 	}
 
+	# TODO: https://github.com/paulund/wordpress-theme-customizer-custom-controls/blob/master/select/google-font-dropdown-custom-control.php
 	public static function google_fonts() {
 		// Google Font Defaults
 		$google_faces = array(
