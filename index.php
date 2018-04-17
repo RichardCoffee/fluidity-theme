@@ -12,7 +12,7 @@ $mypage = get_page_slug();
 
 TCC_Theme_Sidebar::get_instance( array() );	#	See docs/sidebar.txt on what values the array can have
 
-do_action( 'tcc_page_top', $mypage ); ?>
+do_action( 'fluid_page_top', $mypage ); ?>
 
 <div id="fluid-content" class="fluid-<?php e_esc_attr( $mypage); ?> <?php e_esc_attr( container_type( $mypage ) ); ?>" <?php microdata()->Blog(); ?>>
 

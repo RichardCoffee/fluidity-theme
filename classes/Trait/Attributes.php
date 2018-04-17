@@ -91,11 +91,13 @@ trait TCC_Trait_Attributes {
 	/**
 	 * applys the wordpress function sanitize_html_class to a string containing multiple css classes
 	 *
-	 * @param string $css css classes to be sanitized
+	 * @param string|array $classes css classes to be sanitized
 	 * @return string
 	 */
-	private function sanitize_html_class( $css ) {
-		$classes = explode( ' ', $css );
+	private function sanitize_html_class( $classes ) {
+		if ( ! is_array( $classes ) ) {
+			$classes = explode( ' ', $classes );
+		}
 		$result  = array_map( 'sanitize_html_class', $classes );
 		return implode( ' ', $result );
 	}

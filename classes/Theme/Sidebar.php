@@ -4,61 +4,96 @@
 class TCC_Theme_Sidebar {
 
 	private $main_css    = '';
-	private $sidebar_css = '';
-	private $sidebar     = null;
+	private $sidebar_css = 'col-md-3';
 
+	protected $action     = 'tcc_before_main';
+	protected $mobile     = 'tcc_after_main';
+	protected $css        =  array();
+	protected $horizontal =  false;
+	protected $position   = 'none';
+	protected $root       = 'sidebar';
+	protected $sidebar    = 'standard';
+	protected $slug;
+
+	use TCC_Trait_ParseArgs;
 	use TCC_Trait_Singleton;
 
 	private function __construct( $args = array() ) {
-		if ( ! $this->sidebar ) { // FIXME: wtf? this will always fail
-			$args = $this->check_args( $args );
-			if ( ( $args['position'] !== 'none' ) && $args['action'] ) {
-				$this->sidebar = new TCC_Widget_Sidebar( $args );
-			}
-		}
-	}
 
-	private function check_args( $args ) {
-		$defaults = array(
-			'action'     => 'tcc_before_main',
-			'css'        => ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ? tcc_layout( 'sidebar_css', 'col-md-3' ) : '',
-			'horizontal' => false,
-			'position'   => $this->positioning(),
-			'sidebar'    => get_page_slug(),
-		);
-		$args = array_merge( $defaults, $args );
-		$args = apply_filters( 'tcc_theme_sidebar_args', $args );
-		$args['action'] = $this->action_position( $args );
-		return $args;
-	}
-
-	private function action_position( $args ) {
-		$action = $args['action'];
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
-			$action = false;
-		} elseif ( ! $args['horizontal'] && ( $args['position'] !== 'none' ) ) {
-			if ( fluid()->is_mobile() ) {
-				$mobile = tcc_layout( 'mobile_sidebar', 'bottom' );
-				if ( $mobile === 'none' ) {
-					$action = false;
-				} else if ( $mobile === 'bottom' ) {
-					$action = 'tcc_after_main';
-				}
-			} else if ( ( tcc_layout( 'sidebar', 'left' ) === 'right' ) && $args['css'] ) {
-				$action = 'tcc_after_main';
-			}
+			static::$abort__construct = true;
+			return;
 		}
-		return $action;
+		$this->position = $this->positioning();
+		$this->sidebar  = get_page_slug();
+		$this->slug     = $this->sidebar;
+		$this->css      = ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
+
+		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
+		if ( $args['position'] === 'none' ) {
+			static::$abort__construct = true;
+			return;
+		}
+		$this->parse_args( $args );
+		if ( ! $this->horizontal ) {
+			$this->check_mobile();
+		}
+		if ( empty( $this->action ) ) {
+			static::$abort__construct = true;
+			return;
+		}
+		add_action( $this->action, array( $this, 'show_sidebar' ) );
+	}
+
+	private function check_mobile( $args ) {
+		if ( fluid()->is_mobile() ) {
+			$mobile = tcc_layout( 'mobile_sidebar', 'bottom' );
+			if ( $mobile === 'none' ) {
+				$this->action = false;
+			} else if ( $mobile === 'bottom' ) {
+				$this->action = 'tcc_after_main';
+			}
+		} else if ( tcc_layout( 'sidebar', 'left' ) === 'right' ) {
+			$this->action = 'tcc_after_main';
+		}
 	}
 
 	protected function positioning() {
-		$side = 'none';
-		if ( ! defined( 'TCC_NO_SIDEBAR' ) ) {
-			$side = tcc_layout( 'sidebar', 'left' );
+		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
+			return 'none';
 		}
+		$side = tcc_layout( 'sidebar', 'left' );
 		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
 		return $side;
+	}
+
+	public function show_sidebar() {
+		$attrs = array(
+			'class' => $this->build_class(),
+			'role'  => 'complementary',
+		);
+		$attrs = array_merge( $attrs, microdata()->microdata_attrs( 'WPSideBar' ) ); ?>
+		<div <?php $this->apply_attrs( $attrs ); ?>>
+			<?php get_template_part( $this->root, $this->sidebar ); ?>
+		</div><?php
+	}
+
+	protected function build_class() {
+		$css = array(
+			'fluid-sidebar',
+			'fluid-sidebar-' . $this->position,
+			'noprint',
+			'pull-' . $this->position,
+			'widget-area',
+		);
+		if ( $this->slug ) {
+			$css[] = 'fluid-sidebar-' . $this->slug;
+		}
+		if ( $this->slug !== $this->sidebar ) {
+			$css[] = 'fluid-sidebar-' . $this->sidebar;
+		}
+		return array_unique( array_merge( $css, ( ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css ) ) ) );
 	}
 
 
