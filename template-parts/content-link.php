@@ -22,7 +22,7 @@ who_am_i(); ?>
 				$link_css = "col-lg-9 col-md-9 col-sm-12 col-xs-12";
 			} */ ?>
 
-			<?php fluid_content_header(); ?>
+			<?php do_action( 'fluid_content_header' ); ?>
 
 			<div class="article" itemprop="description">
 				<?php the_content(); ?>

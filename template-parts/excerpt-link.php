@@ -24,7 +24,7 @@ who_am_i(); ?>
 
 			<div class="<?php echo $link_css; ?>">
 
-				<?php fluid_content_header(); ?>
+				<?php do_action( 'fluid_content_header' ); ?>
 
 				<div class="article" itemprop="description">
 					<?php the_content(); ?>

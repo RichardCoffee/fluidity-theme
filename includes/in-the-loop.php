@@ -7,24 +7,6 @@
  *
  */
 
-if ( ! function_exists( 'fluid_content_header' ) ) {
-	function fluid_content_header() {
-		$show_orig = false; ?>
-		<h2 class="text-center"><?php
-			tcc_post_title();
-			fluid_edit_post_link(); ?>
-		</h2>
-		<h3 class="post-date text-center"><?php
-			$show_orig = fluid_post_date(); ?>
-		</h3><?php
-		if ( $show_orig ) { ?>
-			<h3><?php
-				fluid_post_date( 'original' ); ?>
-			</h3><?php
-		}
-	}
-}
-
 if (!function_exists('fluid_content_slug')) {
   function fluid_content_slug( $page='single' ) {
     $slug = ($format=get_post_format()) ? $format : get_post_type();
@@ -189,8 +171,13 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
 				<?php fluid_edit_post_link(); ?>
 			</h2>
 			<h3 class="post-date text-center">
-				<?php fluid_post_date( true ); ?>
+				<?php fluid_post_date(); ?>
 			</h3><?php
+			if ( $show_orig ) { ?>
+				<h3><?php
+					fluid_post_date( 'original' ); ?>
+				</h3><?php
+			}
 		}
 	}
 	add_action( 'fluid_content_header', 'fluid_show_content_title' );
