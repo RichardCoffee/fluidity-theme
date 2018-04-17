@@ -43,6 +43,7 @@ class TCC_Theme_Sidebar {
 			return;
 		}
 		add_action( $this->action, array( $this, 'show_sidebar' ) );
+fluid()->log($this);
 	}
 
 	private function check_mobile() {
