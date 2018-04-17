@@ -25,6 +25,11 @@ li.btn-fluidity > a,
 	border-width: 1px;
 }
 
+// solves display issue in Theme_Navigation links
+li.btn-fluidity {
+	border: none;
+}
+
 
 .btn-fluidity-inverse,
 .color-fluidity-inverse {

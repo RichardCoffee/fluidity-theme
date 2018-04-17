@@ -12,7 +12,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $all_links      = true;
 	protected $excluded_terms = array();
 	protected $left           = '<span aria-hidden="true">&laquo;</span> %title';
-	protected $li_css         = ''; //'btn-fluidity';
+	protected $li_css         = 'btn-fluidity';
 	protected $newer_link     = '';
 	protected $next           = null;
 	protected $older_link     = '';
@@ -197,21 +197,10 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 			$inlink = str_replace( [ '%title', '%date' ], [ $title, $date ], $link );
 			$attrs  = array(
 				'href'  =>  get_permalink( $post ),
-				'class' => 'btn-fluidity',
 				'rel'   => $previous ? 'prev' : 'next',
 			);
-			$string = $this->get_apply_attrs_tag( 'a', $attrs) . $inlink . '</a>';
+			$string = $this->get_apply_attrs_tag( 'a', $attrs ) . $inlink . '</a>';
 			$output = str_replace( '%link', $string, $format );
-fluid()->log(
-	" title:  $title",
-	"  date:  $date",
-	"  link:  $link",
-	"inlink:  $inlink",
-	$attrs,
-	"format:  $format",
-	"string:  $string",
-	"output:  $output"
-);
 		}
 		$adjacent = $previous ? 'previous' : 'next';
 		return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
