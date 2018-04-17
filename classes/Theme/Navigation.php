@@ -12,7 +12,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $all_links      = true;
 	protected $excluded_terms = array();
 	protected $left           = '<span aria-hidden="true">&laquo;</span> %title';
-	protected $li_css         = 'btn-fluidity';
+	protected $li_css         = ''; //'btn-fluidity';
 	protected $newer_link     = '';
 	protected $next           = null;
 	protected $older_link     = '';
@@ -127,10 +127,6 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->previous   = $this->posts['prev_tax'];
 		$this->show_older = ( $this->show_older && ( $this->posts['prev_tax']->ID > 0 ) );
 		$this->show_newer = ( $this->show_newer && ( $this->posts['next_tax']->ID > 0 ) );
-/*$this->log(
-'show newer:  ' . $this->show_newer,
-'show older:  ' . $this->show_older
-); //*/
 		return $this->generate_navigation();
 	}
 
@@ -188,23 +184,24 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 
 	protected function get_adjacent_post_link( $format, $link, $previous, $post ) {
 #	protected function get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
-#fluid()->log(func_get_args());
 #		$post = $this->get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
 		if ( $post->ID === 0 ) {
 			$output = '';
 		} else {
 			$title = $post->post_title;
 			if ( empty( $post->post_title ) ) {
-				$title = $previous ? __( 'Previous Post' ) : __( 'Next Post' );
+				$title = $previous ? $this->text['prev_all'] : $this->text['next_all'];
 			}
 			$title  = apply_filters( 'the_title', $title, $post->ID );
 			$date   = mysql2date( get_option( 'date_format' ), $post->post_date );
-			$rel    = $previous ? 'prev' : 'next';
-			$string = '<a href="' . get_permalink( $post ) . '" rel="'.$rel.'">';
-			$inlink = str_replace( '%title', $title, $link );
-			$inlink = str_replace( '%date', $date, $inlink );
-			$inlink = $string . $inlink . '</a>';
-			$output = str_replace( '%link', $inlink, $format );
+			$inlink = str_replace( [ '%title', '%date' ], [ $title, $date ], $link );
+			$attrs  = array(
+				'href'  =>  get_permalink( $post ),
+				'class' => 'btn-fluidity',
+				'rel'   => $previous ? 'prev' : 'next',
+			);
+			$string = $this->get_apply_attrs_tag( 'a', $attrs, $inlink );
+			$output = str_replace( '%link', $string, $format );
 		}
 		$adjacent = $previous ? 'previous' : 'next';
 		return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
