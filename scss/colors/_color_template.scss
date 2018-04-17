@@ -15,10 +15,16 @@ $mainlite: lightest(color(background), color(textcolor));
 .color-fluidity,
 li.btn-fluidity > a,
 .searchform-input {
-	border-width: 1px;
-	border-style: solid;
 	@extend %regular;
 }
+
+.btn-fluidity,
+.color-fluidity,
+.searchform-input {
+	border-style: solid;
+	border-width: 1px;
+}
+
 
 .btn-fluidity-inverse,
 .color-fluidity-inverse {
