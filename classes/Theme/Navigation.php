@@ -35,7 +35,6 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->taxonomy = apply_filters( 'fluid_navigation_taxonomy', $this->taxonomy );
 		$this->check_posts();
 		$this->navigation();
-$this->log($this);
 	}
 
 	protected function navigation_text() {
