@@ -205,7 +205,7 @@ class TCC_Theme_Comment {
 			'id'    => 'comment',
 			'class' => 'form-control',  #  bootstrap css class
 			'name'  => 'comment',
-			'cols'  => $this->field_cols,
+#			'cols'  => $this->field_cols,
 			'rows'  => $this->field_rows,
 			'aria-required' => 'true',
 			'required'      => 'required',
