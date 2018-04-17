@@ -20,7 +20,8 @@ class TCC_Options_Content extends TCC_Options_Options {
 			'label'    => __( 'Post Edit Date', 'tcc-fluid' ),
 			'render'   => 'radio',
 			'source'   => array(
-				'modified' => __( 'Use modified date, where applicable.', 'tcc-fluid' ),
+				'both'     => __( 'Show both modified and original post date when showing full post content', 'tcc-fluid' ),
+				'modified' => __( 'Use modified post date, where applicable.', 'tcc-fluid' ),
 				'original' => __( 'Always use published post date.', 'tcc-fluid' ),
 				'none'     => __( 'Never show the post date.', 'tcc-fluid' ),
 			),
