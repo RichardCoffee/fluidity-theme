@@ -108,6 +108,7 @@ if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
 fluid()->log(func_get_args());
 		if ( $showboth && ( $postdate === 'original' ) ) {
 			$format = esc_html_x( 'Originally posted on %s', 'wordpress formatted date string', 'tcc-fluid' );
+fluid()->log(0,'changed');
 		}
 		return $format;
 	}
