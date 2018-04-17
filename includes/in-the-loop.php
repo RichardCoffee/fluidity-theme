@@ -110,7 +110,7 @@ if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
 		}
 		return $format;
 	}
-	add_filter( 'fluid_post_date_sprintf', 'fluid_post_date_sprintf' );
+	add_filter( 'fluid_post_date_sprintf', 'fluid_post_date_sprintf', 10, 3 );
 }
 
 if ( ! function_exists( 'fluid_postmetadata' ) ) {
