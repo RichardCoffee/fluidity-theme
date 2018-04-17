@@ -80,6 +80,17 @@ class TCC_Theme_Library {
 	}
 
 
+	/***   Is_*   ***/
+
+	public function is_mobile() {
+		# Use mobble plugin if present
+		if ( class_exists( 'Mobile_Detect' ) && function_exists( 'is_mobile' ) ) {
+			$mobile = is_mobile();
+		} else {
+			$mobile = wp_is_mobile();
+		}
+		return $mobile;
+	}
 
 	/**  image functions  **/
 

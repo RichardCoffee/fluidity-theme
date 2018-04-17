@@ -37,7 +37,7 @@ class TCC_Theme_Sidebar {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
 			$action = false;
 		} elseif ( ! $args['horizontal'] && ( $args['position'] !== 'none' ) ) {
-			if ( $this->is_mobile() ) {
+			if ( fluid()->is_mobile() ) {
 				$mobile = tcc_layout( 'mobile_sidebar', 'bottom' );
 				if ( $mobile === 'none' ) {
 					$action = false;
@@ -61,14 +61,5 @@ class TCC_Theme_Sidebar {
 		return $side;
 	}
 
-	private function is_mobile() {
-		# Use mobble plugin if present
-		if ( class_exists( 'Mobile_Detect' ) ) {
-			$mobile = is_mobile();
-		} else {
-			$mobile = wp_is_mobile();
-		}
-		return $mobile;
-	}
 
 }

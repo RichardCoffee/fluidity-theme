@@ -70,14 +70,6 @@ add_filter( 'mc4wp_debug_log_file', function( $file ) {
 	return FLUID_MC4WP_LOG_FILE;
 } );
 
-/**  mobble  **/
-
-if ( ! function_exists( 'is_mobile' ) ) {
-	function is_mobile() {
-		return false;
-	}
-}
-
 
 /**  S2member  **/
 
