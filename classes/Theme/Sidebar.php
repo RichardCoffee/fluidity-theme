@@ -30,7 +30,7 @@ class TCC_Theme_Sidebar {
 		$this->css      = ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
 
 		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
-		if ( $args['position'] === 'none' ) {
+		if ( $this->position === 'none' ) {
 			static::$abort__construct = true;
 			return;
 		}
@@ -45,7 +45,7 @@ class TCC_Theme_Sidebar {
 		add_action( $this->action, array( $this, 'show_sidebar' ) );
 	}
 
-	private function check_mobile( $args ) {
+	private function check_mobile() {
 		if ( fluid()->is_mobile() ) {
 			$mobile = tcc_layout( 'mobile_sidebar', 'bottom' );
 			if ( $mobile === 'none' ) {
