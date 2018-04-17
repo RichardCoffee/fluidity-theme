@@ -51,7 +51,7 @@ class TCC_Theme_Sidebar {
 			} else if ( $mobile === 'bottom' ) {
 				$this->action = 'tcc_after_main';
 			}
-		} else if ( tcc_layout( 'sidebar', 'left' ) === 'right' ) {
+		} else if ( ( $this->fluid === 'no' ) && tcc_layout( 'sidebar', 'left' ) === 'right' ) {
 			$this->action = 'tcc_after_main';
 		}
 	}
