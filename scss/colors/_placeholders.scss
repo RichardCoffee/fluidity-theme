@@ -1,7 +1,10 @@
 
 %regular {
 	background-color: color(background);
-	border-color: color(bgHighlight);
+	@if color(background) == color(bgHighlight)
+		{ border-color: color(textcolor); }
+	@else
+		{ border-color: color(bgHighlight); }
 	color: color(textcolor);
 	&:hover, &:focus {
 		background-color: color(textcolor);
