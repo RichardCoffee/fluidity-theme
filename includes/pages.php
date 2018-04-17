@@ -179,7 +179,7 @@ fluid()->log( "css: $css", "page: $page" );
 fluid()->log( 'fluid_sidebar: '.tcc_layout( 'fluid_sidebar' ) );
 			if ( ! defined( 'TCC_NO_SIDEBAR' ) ) {
 				$css = tcc_layout( 'main_css', 'col-md-9' );
-fluid()->log( "css: $css" ) );
+fluid()->log( "css: $css" );
 			}
 		}
 fluid()->log( "css: $css" );
