@@ -10,16 +10,16 @@
 if ( ! function_exists( 'fluid_content_header' ) ) {
 	function fluid_content_header() {
 		$show_orig = false; ?>
-		<h2 class="text-center">
-			<?php tcc_post_title(); ?>
-			<?php fluid_edit_post_link(); ?>
+		<h2 class="text-center"><?php
+			tcc_post_title();
+			fluid_edit_post_link(); ?>
 		</h2>
-		<h3 class="post-date text-center">
-			<?php $show_orig = fluid_post_date(); ?>
+		<h3 class="post-date text-center"><?php
+			$show_orig = fluid_post_date(); ?>
 		</h3><?php
 		if ( $show_orig ) { ?>
-			<h3>
-				<?php fluid_post_date( 'original' ); ?>
+			<h3><?php
+				fluid_post_date( 'original' ); ?>
 			</h3><?php
 		}
 	}
@@ -105,6 +105,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 
 if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
 	function fluid_post_date_sprintf( $format, $postdate, $showboth = false ) {
+fluid()->log(func_get_args());
 		if ( $showboth && ( $postdate === 'original' ) ) {
 			$format = esc_html_x( 'Originally posted on %s', 'wordpress formatted date string', 'tcc-fluid' );
 		}
