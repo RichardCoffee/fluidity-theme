@@ -55,7 +55,7 @@ fluid()->log($this);
 				$this->action = 'tcc_after_main';
 			}
 		} else if ( tcc_layout( 'sidebar', 'left' ) === 'right' ) {
-			$this->action = 'tcc_after_main';
+#			$this->action = 'tcc_after_main';
 		}
 	}
 
