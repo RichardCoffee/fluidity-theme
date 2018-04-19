@@ -21,6 +21,15 @@
 
 // FIXME: everything below this line, except the import, needs to be moved to their respective proper file
 
+a:hover, a:focus {
+	border-bottom: 2px solid;
+}
+
+.btn a:hover,
+.btn a:focus {
+	border-width: 1px;
+}
+
 .excerpt-title-wrap {
 	display: grid;
 }

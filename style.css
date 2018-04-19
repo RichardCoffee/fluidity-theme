@@ -111,6 +111,15 @@
     padding: 0 4px;
   }
 }
+a:hover, a:focus {
+  border-bottom: 2px solid;
+}
+
+.btn a:hover,
+.btn a:focus {
+  border-width: 1px;
+}
+
 .excerpt-title-wrap {
   display: grid;
 }
