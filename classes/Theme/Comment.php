@@ -89,7 +89,7 @@ class TCC_Theme_Comment {
 			'comment'    => $strings['comment_field'],
 			'email'      => $strings['email'],
 			'email_req'  => $strings['email_req'],
-			'logout'     => sprintf( $strings['logged_in_as'],  $this->author['name'] ),
+			'logout'     => sprintf( $strings['logged_in_as'],  $this->author['name'], '', '' ),
 			'profile'    => $strings['profile'],
 			'url'        => $strings['url'],
 		);
