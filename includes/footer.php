@@ -101,11 +101,14 @@ if ( ! function_exists( 'tcc_site_link' ) ) {
 	add_action( 'tcc_copyright_left', 'tcc_site_link' );
 }//*/
 /*
-if (!function_exists('tcc_xfn_link')) {
+if ( ! function_exists( 'tcc_xfn_link' ) ) {
 	function tcc_xfn_link() { ?>
 		<a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
 			<img alt="XFN" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
 		</a><?php
 	}
-	add_action('tcc_copyright_right','tcc_xfn_link');
+	add_action( 'tcc_copyright_right', 'tcc_xfn_link' );
+	add_action( 'fluid_header_links', function() {
+		echo '<link rel="profile" href="http://gmpg.org/xfn/11" />';
+	} );
 } //*/

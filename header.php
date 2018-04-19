@@ -6,11 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon"       href="<?php echo get_theme_file_uri( 'favicon.ico' ); ?>" type="image/x-icon" />
-<?php #  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i' type='text/css'> ?>
-<?php #  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous"> ?>
-  <link rel="profile"    href="http://gmpg.org/xfn/11" />
-  <link rel="pingback"   href="<?php bloginfo( 'pingback_url' ); ?>" />
+	<?php do_action( 'fluid_header_links' ); ?>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

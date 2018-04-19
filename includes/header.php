@@ -73,6 +73,19 @@ if ( ! function_exists( 'fluid_default_header' ) ) {
 	}
 }
 
+if ( ! function_exists( 'fluid_header_links' ) ) {
+	function fluid_header_links() { ?>
+		<link rel="icon"       href="<?php echo get_theme_file_uri( 'favicon.ico' ); ?>" type="image/x-icon" />
+		<link rel="pingback"   href="<?php bloginfo( 'pingback_url' ); ?>" />
+<?php
+#		<link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i' type='text/css'>
+#		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+ ?>
+<?php
+	}
+	add_action( 'fluid_header_links', 'fluid_header_links' );
+}
+
 if ( ! function_exists( 'fluid_header_logo' ) ) {
 	function fluid_header_logo( $html = '', $blog_id = 1 ) {
 		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  for backward compatibility
