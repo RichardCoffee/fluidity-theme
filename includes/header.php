@@ -73,6 +73,11 @@ if ( ! function_exists( 'fluid_default_header' ) ) {
 	}
 }
 
+/**
+ * put in theme header links
+ *
+ * @since 20180418
+ */
 if ( ! function_exists( 'fluid_header_links' ) ) {
 	function fluid_header_links() { ?>
 		<link rel="icon"       href="<?php echo get_theme_file_uri( 'favicon.ico' ); ?>" type="image/x-icon" />
@@ -137,11 +142,18 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 
 if ( ! function_exists( 'fluid_menubar_print_button' ) ) {
 	function fluid_menubar_print_button() {
-		if ( is_single() || is_page() ) { ?>
+		if ( is_single() || is_page() ) {
+			$attrs = array(
+				'class'   => 'btn btn-fluidity',
+				'onclick' => 'print();',
+				'title'   => __( 'Print this page using your browser print function.', 'tcc-fluid' ),
+				'aria-labelledby' => 'print-button-text'
+			);
+#			$attrs = apply_filters( 'fluid_print_button_attrs', $attrs ); ?>
 			<span class="hidden fluid-print-button">
-				<button class="btn btn-fluidity" onclick="print();">
+				<button <?php fluid()->apply_attrs( $attrs ); ?>>
 					<?php fluid()->fawe( 'fa-print' ); ?>
-					<span class="hidden-xs">&nbsp;
+					<span id="print-button-text" class="hidden-xs">&nbsp;
 						<?php esc_html_e('Print','tcc-fluid'); ?>
 					</span>
 				</button>
