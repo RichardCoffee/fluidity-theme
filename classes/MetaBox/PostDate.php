@@ -23,7 +23,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$content  = new TCC_Options_Content;
 		$layout   = $content->get_item( 'postdate' );
 		$args = array(
-			'default'     => $layout['default'],
+			'default'     => 'default',
 			'field_name'  => $this->field,
 			'field_value' => ( $postdate ) ? $postdate : $layout['default'],
 			'choices'     => array_merge(
