@@ -27,14 +27,14 @@ class TCC_Form_Customizer {
 		$this->customize->add_control( $this->setting_id, $args );
 	}
 
-	protected function add_custom_control( $obj ) {
+	protected function add_object_control( $obj ) {
 		$this->customize->add_control( $obj );
 	}
 
 	protected function defaults() {
 		$defaults = array(
 			'settings'    => array( $this->setting_id ),
-#			'setting' FIXME
+#			'setting'
 			'capability'  => $this->control['capability'],
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
@@ -65,7 +65,7 @@ class TCC_Form_Customizer {
 	protected function content() {
 		$args = $this->defaults();
 		$obj  = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
-		$this->add_custom_control( $obj );
+		$this->add_object_control( $obj );
 	}
 
 	protected function font() {

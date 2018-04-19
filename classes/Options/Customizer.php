@@ -15,6 +15,7 @@ class TCC_Options_Customizer {
 
 	public function customize_register( WP_Customize_Manager $customize ) {
 		wp_enqueue_style( 'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
+#		wp_enqueue_style( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION);
 		$controls = $this->get_controls();
 		foreach( $controls as $section ) {
 			$priority = 0;

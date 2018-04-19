@@ -29,7 +29,7 @@ if (WP_DEBUG && is_user_logged_in() && current_user_can('update_core')) { ?>
 <div class="<?php container_type( $mypage ); ?>">
 	<div class="row text-center">
 		<div class="col-md-12">
-			<article>
+			<article class="error-404 not-found">
 
 				<h2  class="page-title">
 					<?php esc_html_e( "Ooops.....Well this is somewhat embarrassing, isn't it?", 'tcc-fluid' ); ?>
