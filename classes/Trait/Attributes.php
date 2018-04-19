@@ -52,7 +52,7 @@ trait TCC_Trait_Attributes {
 		$is_allowed_no_value = array( 'itemscope', 'value' );
 /*		static $is_allowed_no_value;
 		if ( ! $is_allowed_no_value ) {
-			$is_allowed_no_value = apply_filters( 'fluid_attr_is_allowed_no_value', array( 'itemscope', 'value' ) );
+			$is_allowed_no_value = apply_filters( 'fluid_attr_is_allowed_no_value', [ 'itemscope', 'value' ] );
 		} //*/
 
 		$html = ' ';
@@ -95,9 +95,12 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	private function sanitize_html_class( $classes ) {
+		// convert everything to an array
 		if ( ! is_array( $classes ) ) {
 			$classes = explode( ' ', $classes );
 		}
+		// pack it down then blow it up
+		$classes = array_unique( explode( ' ', implode( ' ', $classes ) ) );
 		$result  = array_map( 'sanitize_html_class', $classes );
 		return implode( ' ', $result );
 	}
@@ -110,7 +113,8 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	public function get_apply_attrs_tag( $html_tag, $attrs ) {
-		$html = '<' . $html_tag . $this->get_apply_attrs( $attrs );
+		$html  = "<$html_tag ";
+		$html .= $this->get_apply_attrs( $attrs );
 		$html .= ( $this->is_self_closing( $html_tag ) ) ? ' />' : '>';
 		return $html;
 	}
@@ -140,11 +144,12 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	public function get_apply_attrs_element( $element, $attrs, $text = '' ) {
-		$html = '<' . $element . $this->get_apply_attrs( $attrs );
+		$html  = "<$element ";
+		$html .= $this->get_apply_attrs( $attrs );
 		if ( $this->is_self_closing( $element ) ) {
 			$html .= ' />';
 		} else {
-			$html .= '>' . esc_html( $text ) . '</' . $element . '>';
+			$html .= '>' . esc_html( $text ) . "</$element>";
 		}
 		return $html;
 	}
