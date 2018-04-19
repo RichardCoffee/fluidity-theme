@@ -23,12 +23,15 @@
 
 a:hover, a:focus {
 	border-bottom: 2px solid;
+	&.btn {
+		border-width: 1px;
+	}
 }
-
-.btn a:hover,
-.btn a:focus {
-	border-width: 1px;
-}
+//
+//a.btn:hover,
+//a.btn:focus {
+//	border-width: 1px;
+//}
 
 .excerpt-title-wrap {
 	display: grid;

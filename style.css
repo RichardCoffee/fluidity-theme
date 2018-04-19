@@ -114,9 +114,7 @@
 a:hover, a:focus {
   border-bottom: 2px solid;
 }
-
-.btn a:hover,
-.btn a:focus {
+a:hover.btn, a:focus.btn {
   border-width: 1px;
 }
 
