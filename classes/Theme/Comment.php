@@ -38,7 +38,7 @@ class TCC_Theme_Comment {
 	}
 
 	protected function author() {
-		return array_merge( $this->user(), $this->commenter() );
+		return array_merge( $this->commenter(), $this->user() );
 	}
 
 	protected function user() {
@@ -55,14 +55,14 @@ class TCC_Theme_Comment {
 	protected function commenter() {
 		$author    = array();
 		$commenter = wp_get_current_commenter();
-		if ( $commenter['comment_author'] ) {
-			$author['name'] = $commenter['comment_author'];
+		if ( ! empty( $commenter['comment_author'] ) ) {
+			$author['name'] = sanitize_user( $commenter['comment_author'] );
 		}
-		if ( $commenter['comment_author_email'] ) {
-			$author['email'] = $commenter['comment_author_email'];
+		if ( ! empty( $commenter['comment_author_email'] ) && ( $email = is_email( $commenter['comment_author_email'] ) ) ) {
+			$author['email'] = $email;
 		}
-		if ( $commenter['comment_author_url'] ) {
-			$author['url'] = $commenter['comment_author_url'];
+		if ( ! empty( $commenter['comment_author_url'] ) ) {
+			$author['url'] = esc_url_raw( $commenter['comment_author_url'] );
 		}
 		return $author;
 	}
@@ -76,22 +76,21 @@ class TCC_Theme_Comment {
 			'comment_notes_before_req' => __( 'Your email address is required but will not be published.', 'tcc-fluid' ),
 			'email'         => __( 'Your Email Please',                  'tcc-fluid' ),
 			'email_req'     => __( 'Your Email Please - Required Field', 'tcc-fluid' ),
-			'logged_in_as'  => _x( '%1$sLogged in as %2$s%3$s. %4$sLog out?%5$s',
-				'2: User name,  1,3: html start and end of link to profile page,  4,5: html start and end of link to log-out page', 'tcc-fluid' ),
-			'logout'        => _x( 'Logged in as %s. Log out?', 'User name', 'tcc-fluid' ),
-			'must_log_in'   => _x( 'You must be %slogged in%s to post a comment.', 'start and end of link to log-in page', 'tcc-fluid' ),
-			'profile'       => _x( 'Logged in as %s. Edit your profile.', 'User name', 'tcc-fluid' ),
-			'title_reply'   => __( 'Got Something To Say:',              'tcc-fluid' ),
-			'url'           => __( 'Your Website',                       'tcc-fluid' ),
+			'logged_in_as'  => _x( 'Logged in as %1$s. %2$sLog out?%3$s', '1: User name,  2,3: html start and end of link to log-out page', 'tcc-fluid' ),
+			'must_log_in'   => _x( 'You must be %slogged in%s to post a comment.', 'start and end of html for link to log-in page', 'tcc-fluid' ),
+			'profile'       => __( 'Edit your profile.',    'tcc-fluid' ),
+			'title_reply'   => __( 'Got Something To Say:', 'tcc-fluid' ),
+			'url'           => __( 'Your Website',          'tcc-fluid' ),
 		);
+		$strings = apply_filters( "{$this->prefix}_comment_strings_base", $strings );
 		$strings['aria'] = array(
 			'author'     => $strings['author'],
 			'author_req' => $strings['author_req'],
 			'comment'    => $strings['comment_field'],
 			'email'      => $strings['email'],
 			'email_req'  => $strings['email_req'],
-			'logout'     => sprintf( $strings['logout'],  $this->author['name'] ),
-			'profile'    => sprintf( $strings['profile'], $this->author['name'] ),
+			'logout'     => sprintf( $strings['logged_in_as'],  $this->author['name'] ),
+			'profile'    => $strings['profile'],
 			'url'        => $strings['url'],
 		);
 		$strings['title'] = $strings['aria'];
@@ -121,9 +120,9 @@ class TCC_Theme_Comment {
 
 	protected function comment_fields() {
 		$fields = array(
-			'author' => '<p class="comment-form-author"><input ' . $this->get_apply_attrs( $this->author_attrs() ) . ' /></p>',
-			'email'  => '<p class="comment-form-email"><input ' .  $this->get_apply_attrs( $this->email_attrs() ) .  ' /></p>',
-			'url'    => '<p class="comment-form-url"><input '  .   $this->get_apply_attrs( $this->url_attrs() ) .    ' /></p>',
+			'author' => '<p class="comment-form-author">' . $this->get_apply_attrs_tag( 'input', $this->author_attrs() ) . '</p>',
+			'email'  => '<p class="comment-form-email">' .  $this->get_apply_attrs_tag( 'input', $this->email_attrs() ) .  '</p>',
+			'url'    => '<p class="comment-form-url">'  .   $this->get_apply_attrs_tag( 'input', $this->url_attrs() ) .    '</p>',
 		);
 		return apply_filters( 'comment_form_default_fields', $fields );
 	}
@@ -235,9 +234,9 @@ class TCC_Theme_Comment {
 	/**  logged_in_as  **/
 
 	protected function logged_in_as() {
-		$profile_link = $this->get_apply_attrs_tag( 'a', $this->profile_link_attrs() );
+		$profile_link = $this->get_apply_attrs_element( 'a', $this->profile_link_attrs(), $this->author['name'] );
 		$logout_link  = $this->get_apply_attrs_tag( 'a', $this->logout_link_attrs() );
-		return sprintf( $this->strings['logged_in_as'], $profile_link, $this->author['name'], '</a>', $logout_link, '</a>' );
+		return sprintf( $this->strings['logged_in_as'], $profile_link, $logout_link, '</a>' );
 	}
 
 	protected function profile_link_attrs() {
