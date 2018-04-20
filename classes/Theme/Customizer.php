@@ -12,11 +12,11 @@
  */
 class TCC_Theme_Customizer {
 
-	protected $base_cap = 'edit_theme_options';
+	public $base_cap = 'edit_theme_options';
 
 	public function __construct() { }
 
-	protected function section_defaults( $section ) {
+	public function section_defaults( $section ) {
 		$defaults = array(
 			'priority'           => 2,
 #			'panel'              =>
@@ -31,7 +31,7 @@ class TCC_Theme_Customizer {
 		return array_merge( $defaults, $section );
 	}
 
-	protected function setting_defaults( $setting ) {
+	public function setting_defaults( $setting ) {
 		$defaults = array(
 			'type'                 => 'theme_mod', // 'option',
 			'capability'           => $this->base_cap,
@@ -46,7 +46,7 @@ class TCC_Theme_Customizer {
 		return array_merge( $defaults, $setting );
 	}
 
-	protected function control_defaults( $control ) {
+	public function control_defaults( $control ) {
 		$defaults = array(
 #			'settings'    => array( $this->setting_id ),
 #			'setting'
