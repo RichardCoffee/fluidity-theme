@@ -55,6 +55,7 @@ class TCC_Theme_Support {
 			'custom_background',
 			'custom_header',
 			'custom_logo',
+			'customize_selective_refresh_widgets', // 'customize-selective-refresh-widgets'
 			'editor_style',
 			'html5',
 			'post_formats',
@@ -157,6 +158,10 @@ class TCC_Theme_Support {
 		);
 		$logo = apply_filters( $this->filter_prefix . '_support_custom_logo', $logo );
 		add_theme_support( 'custom-logo', $logo );
+	}
+
+	protected function customize_selective_refresh_widgets() {
+		add_theme_support( 'customize-selective-refresh-widgets' );
 	}
 
 	/**

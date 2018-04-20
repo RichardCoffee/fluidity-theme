@@ -68,6 +68,7 @@ trait TCC_Trait_Attributes {
 				case 'href':
 				case 'itemtype': # schema.org
 				case 'src':
+					# https://konstantin.blog/2012/esc_url-vs-esc_url_raw/
 					$value = esc_url( $value );
 					break;
 				case 'class':
