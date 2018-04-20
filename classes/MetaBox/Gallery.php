@@ -19,6 +19,7 @@ class TCC_MetaBox_Gallery extends TCC_MetaBox_MetaBox {
 	protected $m_button = 'Assign Image';
 	protected $m_title  = 'Assign/Upload Image';
 	protected $slug     = 'gallery_meta_box';
+	protected $title    = 'Image Gallery';
 
 
 	public function __construct( $args = array() ) {

@@ -15,9 +15,14 @@ class TCC_Form_Customizer {
 	protected $section_id;
 	protected $setting_id;
 
+#	protected static $theme; // TCC_Theme_Customizer
+
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
+/*		if ( empty( self::$theme ) ) {
+			self::$theme = new TCC_Theme_Customizer;
+		} //*/
 		$this->parse_args( $args );
 		$render = $this->control['render'];
 		$this->$render();
@@ -31,25 +36,14 @@ class TCC_Form_Customizer {
 		$this->customize->add_control( $obj );
 	}
 
-	protected function defaults() {
+	protected function control_settings() {
 		$defaults = array(
 			'settings'    => array( $this->setting_id ),
-#			'setting'
 			'capability'  => $this->control['capability'],
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
 			'label'       => $this->control['label'],
-#			'description' => $this->control['description'],
-#			'choices' - radio or select only
 			'type'        => $this->control['render'],
-/*			'input_attrs' => array(
-				'class' => 'my-custom-class-for-js',
-				'style' => 'border: 1px solid #900',
-				'placeholder' => __( 'mm/dd/yyyy' ),
-			),
-#			'allow_addition' =>
- */
-#			'active_callback' => 'is_front_page',
 		);
 		if ( isset( $this->control['input_attrs'] ) ) {
 			$defaults['input_attrs'] = $this->control['input_attrs'];
@@ -63,26 +57,26 @@ class TCC_Form_Customizer {
 	}
 
 	protected function content() {
-		$args = $this->defaults();
+		$args = $this->control_settings();
 		$obj  = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
 
 	protected function font() {
-		$args = $this->defaults();
+		$args = $this->control_settings();
 		$args['choices'] = $this->control['choices'];
 		$args['type']    = 'select';
 		$this->add_control( $args );
 	}
 
 	protected function spinner() {
-		$args = $this->defaults();
+		$args = $this->control_settings();
 		$args['type'] = 'number';
 		$this->add_control( $args );
 	}
 
 	protected function text() {
-		$args = $this->defaults();
+		$args = $this->control_settings();
 fluid()->log($args);
 		$this->add_control( $args );
 	}

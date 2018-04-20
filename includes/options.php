@@ -63,7 +63,7 @@ if ( ! function_exists( 'fluid_load_post_classes_admin' ) ) {
 	function fluid_load_post_classes_admin() {
 		global $pagenow;
 		if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ), true ) ) {
-			new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) );
+#			new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) );
 			new TCC_MetaBox_PostDate( array( 'type' => 'post' ) );
 		}
 	}
@@ -73,7 +73,7 @@ if ( ! function_exists( 'fluid_load_post_classes_admin' ) ) {
 if ( ! function_exists( 'fluid_load_post_classes' ) ) {
 	function fluid_load_post_classes() {
 		if ( is_page() || is_single() ) {
-			new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) );
+#			new TCC_MetaBox_GalleryView( array( 'type' => 'post' ) );
 		}
 	}
 	add_action( 'init', 'fluid_load_post_classes' );

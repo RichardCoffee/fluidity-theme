@@ -29,6 +29,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'full'   => __( 'Full Width (small margins)', 'tcc-fluid' ),
 				'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
 			),
+			'thememod' => 'fluid_width',
 		);
 /*		$layout['header'] = array(
 			'default' => 'static',
@@ -52,6 +53,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 					'underscore' => __( 'Underscores - WordPress starter theme', 'tcc-fluid' ),
 					'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
 				),
+				'thememod' => 'fluid_menu',
 			);
 		} //*/
 		$layout['sidebar'] = array(
@@ -71,6 +73,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'target' => 'no-sidebar-setting',
 				'hide'   => 'none',
 			),
+			'thememod' => 'sidebar_placement',
 		);
 		$layout['fluid_sidebar'] = array(
 			'default' => 'no',
@@ -88,6 +91,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'target' => 'fluid-sidebar-setting',
 				'show'   => 'no',
 			),
+			'thememod' => 'sidebar_fluid',
 		);
 		if ( WP_DEBUG ) {
 			$layout['main_css'] = array(
@@ -95,12 +99,14 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'label'   => __( 'Main CSS', 'tcc-fluid' ),
 				'render'  => 'text',
 				'divcss'  => 'no-sidebar-setting fluid-sidebar-setting',
+				'thememod' => 'sidebar_main_css',
 			);
 			$layout['sidebar_css'] = array(
 				'default' => 'col-lg-3 col-md-3 col-sm-12 col-xs-12',
 				'label'   => __( 'Sidebar CSS', 'tcc-fluid' ),
 				'render'  => 'text',
 				'divcss'  => 'no-sidebar-setting fluid-sidebar-setting',
+				'thememod' => 'sidebar_sidebar_css',
 			);
 		}
 		$layout['mobile_sidebar'] = array(
@@ -114,6 +120,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'bottom' => __( 'After post content', 'tcc-fluid' ),
 			),
 			'divcss'   => 'no-sidebar-setting',
+			'thememod' => 'sidebar_mobile',
 		);
 		$layout['widget'] = array(
 			'default' => 'perm',
@@ -127,6 +134,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			),
 			'change' => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
 			'divcss' => 'widget-icons-active',
+			'thememod' => 'widget_behavior',
 		);
 		$layout['widget_icons'] = array(
 			'default'  => 'default',
@@ -136,6 +144,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'source'   => $this->widget_icons(),
 			'src-html' => 'true',
 			'divcss'   => 'fluid-widget-icons',
+			'thememod' => 'widget_icons',
 		);
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
