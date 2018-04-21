@@ -13,7 +13,7 @@ class TCC_Options_Survey {
 	public $destination = 'richard.coffee@gmail.com';
 
 	public function __construct() {
-		$survey = tcc_options( 'survey', 'about', 'no' );
+		$survey = tcc_option( 'survey', 'about', 'no' );
 		if ( $survey === 'yes' ) {
 			add_action( 'take_fluid_survey', array( $this, 'take_fluid_survey' ) );
 			if ( wp_next_scheduled( 'take_fluid_survey' ) === false ) {
