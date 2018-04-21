@@ -354,43 +354,6 @@ hr {
   color: #5BC0DE;
 }
 
-.wpfep-wrapper .wpfep-field input {
-  border: 1px solid #5bc0de;
-}
-.wpfep-wrapper .wpfep-field input::-moz-placeholder {
-  color: #5BC0DE;
-  opacity: 1;
-}
-.wpfep-wrapper .wpfep-field input:-moz-placeholder {
-  color: #5BC0DE;
-}
-.wpfep-wrapper .wpfep-field input:-ms-input-placeholder {
-  color: #5BC0DE;
-}
-.wpfep-wrapper .wpfep-field input::-webkit-input-placeholder {
-  color: #5BC0DE;
-}
-.wpfep-wrapper .wpfep-field input:hover, .wpfep-wrapper .wpfep-field input:focus {
-  border: 1px solid #46b8da;
-}
-.wpfep-wrapper .wpfep-field input:hover::-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus::-moz-placeholder {
-  color: #46B8DA;
-  opacity: 1;
-}
-.wpfep-wrapper .wpfep-field input:hover:-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus:-moz-placeholder {
-  color: #46B8DA;
-}
-.wpfep-wrapper .wpfep-field input:hover:-ms-input-placeholder, .wpfep-wrapper .wpfep-field input:focus:-ms-input-placeholder {
-  color: #46B8DA;
-}
-.wpfep-wrapper .wpfep-field input:hover::-webkit-input-placeholder, .wpfep-wrapper .wpfep-field input:focus::-webkit-input-placeholder {
-  color: #46B8DA;
-}
-.wpfep-wrapper .wpfep-field p.description {
-  background: #5BC0DE;
-  /* The Fallback */
-  background: rgba(91, 192, 222, 0.8);
-}
 .wpfep-wrapper ul.wpfep-tabs {
   border-bottom-color: #5BC0DE;
 }
@@ -436,7 +399,5 @@ hr {
   color: #46B8DA;
 }
 .wpfep-wrapper .wpfep-field p.description {
-  background: #5BC0DE;
-  /* The Fallback */
-  background: rgba(91, 192, 222, 0.8);
+  color: rgba(91, 192, 222, 0.8);
 }

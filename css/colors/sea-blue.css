@@ -353,43 +353,6 @@ hr {
   color: #287BBC;
 }
 
-.wpfep-wrapper .wpfep-field input {
-  border: 1px solid #287bbc;
-}
-.wpfep-wrapper .wpfep-field input::-moz-placeholder {
-  color: #287BBC;
-  opacity: 1;
-}
-.wpfep-wrapper .wpfep-field input:-moz-placeholder {
-  color: #287BBC;
-}
-.wpfep-wrapper .wpfep-field input:-ms-input-placeholder {
-  color: #287BBC;
-}
-.wpfep-wrapper .wpfep-field input::-webkit-input-placeholder {
-  color: #287BBC;
-}
-.wpfep-wrapper .wpfep-field input:hover, .wpfep-wrapper .wpfep-field input:focus {
-  border: 1px solid #206296;
-}
-.wpfep-wrapper .wpfep-field input:hover::-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus::-moz-placeholder {
-  color: #206296;
-  opacity: 1;
-}
-.wpfep-wrapper .wpfep-field input:hover:-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus:-moz-placeholder {
-  color: #206296;
-}
-.wpfep-wrapper .wpfep-field input:hover:-ms-input-placeholder, .wpfep-wrapper .wpfep-field input:focus:-ms-input-placeholder {
-  color: #206296;
-}
-.wpfep-wrapper .wpfep-field input:hover::-webkit-input-placeholder, .wpfep-wrapper .wpfep-field input:focus::-webkit-input-placeholder {
-  color: #206296;
-}
-.wpfep-wrapper .wpfep-field p.description {
-  background: #287BBC;
-  /* The Fallback */
-  background: rgba(40, 123, 188, 0.8);
-}
 .wpfep-wrapper ul.wpfep-tabs {
   border-bottom-color: #287BBC;
 }
@@ -435,7 +398,5 @@ hr {
   color: #206296;
 }
 .wpfep-wrapper .wpfep-field p.description {
-  background: #287BBC;
-  /* The Fallback */
-  background: rgba(40, 123, 188, 0.8);
+  color: rgba(40, 123, 188, 0.8);
 }
