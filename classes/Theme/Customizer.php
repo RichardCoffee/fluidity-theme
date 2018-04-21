@@ -75,7 +75,7 @@ class TCC_Theme_Customizer {
 		return $control;
 	}
 
-	public function customizer_controls( $options ) {
+	public function customizer_controls( $options = array() ) {
 		$options = $this->theme_behavior( $options );
 		return $options;
 	}

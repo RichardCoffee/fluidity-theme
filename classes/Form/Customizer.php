@@ -69,6 +69,13 @@ class TCC_Form_Customizer {
 		$this->add_control( $args );
 	}
 
+	protected function radio() {
+		$args = $this->control_settings();
+		$args['choices'] = $this->control['choices'];
+		$args['type'] = 'radio';
+		$this->add_control( $args );
+	}
+
 	protected function spinner() {
 		$args = $this->control_settings();
 		$args['type'] = 'number';
@@ -77,7 +84,7 @@ class TCC_Form_Customizer {
 
 	protected function text() {
 		$args = $this->control_settings();
-fluid()->log($args);
+fluid(1)->log($args);
 		$this->add_control( $args );
 	}
 
