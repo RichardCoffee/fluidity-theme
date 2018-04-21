@@ -244,6 +244,12 @@ hr {
 		& p.description {
 			color: rgba($maincomp,0.8);
 		}
+		& .wp-editor-container {
+			border: 1px solid color(bgHighlight);
+			& .quicktags-toolbar {
+				background: color(background);
+			}
+		}
 	}
 	& .wpfep-save input[type="submit"] {
 		@extend %regular;

@@ -1,6 +1,9 @@
 
-.wpfep-fields input {
-	border-radius: 4px;
+.wpfep-fields {
+	& input,
+	& .wp-editor-container {
+		border-radius: 4px;
+	}
 }
 
 @media (max-width: 767px) {

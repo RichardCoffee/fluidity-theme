@@ -401,6 +401,12 @@ hr {
 .wpfep-wrapper .wpfep-field p.description {
   color: rgba(60, 118, 61, 0.8);
 }
+.wpfep-wrapper .wpfep-field .wp-editor-container {
+  border: 1px solid #d6e9c6;
+}
+.wpfep-wrapper .wpfep-field .wp-editor-container .quicktags-toolbar {
+  background: #dff0d8;
+}
 .wpfep-wrapper .wpfep-save input[type="submit"] {
   -webkit-box-shadow: none;
   box-shadow: none;
