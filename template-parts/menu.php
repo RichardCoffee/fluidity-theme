@@ -82,6 +82,10 @@ if ( has_nav_menu( $menu ) ) {
 				'fallback_cb' => '' )
 			); ?>
 
+			<span class="pull-right margint1e">
+				<?php echo fluid_color_scheme(); ?>
+			</span>
+
 		</nav><!-- #site-navigation --><?php
 
 	}
