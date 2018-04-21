@@ -7,7 +7,7 @@
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
-.searchform-input, form input.searchform-input {
+.searchform-input, form input.searchform-input, .wpfep-wrapper .wpfep-save input[type="submit"] {
   background-color: #5cb85c;
   border-color: #4cae4c;
   color: #ffffff;
@@ -15,10 +15,10 @@ li.btn-fluidity > a,
 .btn-fluidity:hover,
 .color-fluidity:hover,
 li.btn-fluidity > a:hover,
-.searchform-input:hover, .btn-fluidity:focus,
+.searchform-input:hover, .wpfep-wrapper .wpfep-save input[type="submit"]:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
 li.btn-fluidity > a:focus,
-.searchform-input:focus {
+.searchform-input:focus, .wpfep-wrapper .wpfep-save input[type="submit"]:focus {
   background-color: #ffffff;
   border-color: #5cb85c;
   color: #5cb85c;
@@ -42,12 +42,12 @@ li.btn-fluidity > a:focus,
   box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
-form .form-control {
+form .form-control, .wpfep-wrapper .wpfep-field input {
   background-color: #ffffff;
   border-color: #4cae4c;
   color: #5cb85c;
 }
-form .form-control:hover, form .form-control:focus {
+form .form-control:hover, .wpfep-wrapper .wpfep-field input:hover, form .form-control:focus, .wpfep-wrapper .wpfep-field input:focus {
   background-color: #ffffff;
   border-color: #4cae4c;
   color: #5cb85c;
@@ -354,15 +354,89 @@ hr {
   color: #5cb85c;
 }
 
+.wpfep-wrapper .wpfep-field input {
+  border: 1px solid #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input::-moz-placeholder {
+  color: #5cb85c;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:-moz-placeholder {
+  color: #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input:-ms-input-placeholder {
+  color: #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input::-webkit-input-placeholder {
+  color: #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input:hover, .wpfep-wrapper .wpfep-field input:focus {
+  border: 1px solid #4cae4c;
+}
+.wpfep-wrapper .wpfep-field input:hover::-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus::-moz-placeholder {
+  color: #4cae4c;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:hover:-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus:-moz-placeholder {
+  color: #4cae4c;
+}
+.wpfep-wrapper .wpfep-field input:hover:-ms-input-placeholder, .wpfep-wrapper .wpfep-field input:focus:-ms-input-placeholder {
+  color: #4cae4c;
+}
+.wpfep-wrapper .wpfep-field input:hover::-webkit-input-placeholder, .wpfep-wrapper .wpfep-field input:focus::-webkit-input-placeholder {
+  color: #4cae4c;
+}
+.wpfep-wrapper .wpfep-field p.description {
+  background: #5cb85c;
+  /* The Fallback */
+  background: rgba(92, 184, 92, 0.8);
+}
 .wpfep-wrapper ul.wpfep-tabs {
-  border-bottom-color: #4cae4c;
+  border-bottom-color: #5cb85c;
 }
 .wpfep-wrapper ul.wpfep-tabs li a {
-  background-color: #5cb85c;
+  background-color: #4cae4c;
   border-color: #4cae4c;
   color: #ffffff;
 }
 .wpfep-wrapper ul.wpfep-tabs li a.active {
-  background-color: #4cae4c;
-  border-bottom-color: #4cae4c;
+  background-color: #5cb85c;
+  border-bottom-color: #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input {
+  border: 1px solid #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input::-moz-placeholder {
+  color: #5cb85c;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:-moz-placeholder {
+  color: #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input:-ms-input-placeholder {
+  color: #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input::-webkit-input-placeholder {
+  color: #5cb85c;
+}
+.wpfep-wrapper .wpfep-field input:hover, .wpfep-wrapper .wpfep-field input:focus {
+  border: 1px solid #4cae4c;
+}
+.wpfep-wrapper .wpfep-field input:hover::-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus::-moz-placeholder {
+  color: #4cae4c;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:hover:-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus:-moz-placeholder {
+  color: #4cae4c;
+}
+.wpfep-wrapper .wpfep-field input:hover:-ms-input-placeholder, .wpfep-wrapper .wpfep-field input:focus:-ms-input-placeholder {
+  color: #4cae4c;
+}
+.wpfep-wrapper .wpfep-field input:hover::-webkit-input-placeholder, .wpfep-wrapper .wpfep-field input:focus::-webkit-input-placeholder {
+  color: #4cae4c;
+}
+.wpfep-wrapper .wpfep-field p.description {
+  background: #5cb85c;
+  /* The Fallback */
+  background: rgba(92, 184, 92, 0.8);
 }

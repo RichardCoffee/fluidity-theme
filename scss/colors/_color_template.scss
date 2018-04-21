@@ -218,15 +218,48 @@ hr {
 }
 
 // Front End Profile
-.wpfep-wrapper ul.wpfep-tabs {
-	border-bottom-color: color(bgHighlight);
-	& li a {
-		background-color: color(background);
-		border-color: color(bgHighlight);
-		color: color(textcolor);
-		&.active {
-			background-color: color(bgHighlight);
-			border-bottom-color: color(bgHighlight);
+.wpfep-wrapper {
+	& .wpfep-field {
+		& input {
+			@extend %textfield;
+			@include placeholder($maincomp); //color(background));
+			border: 1px solid rgba($maincomp, 1); //color(background), 1);
+			&:hover, &:focus {
+				@include placeholder($mainhigh); //color(bgHighlight));
+				border: 1px solid rgba($mainhigh, 1); //color(bgHighlight), 1);
+			}
 		}
+		& p.description {
+			@include background-opacity( $maincomp, 0.8 );
+		}
+	}
+	& ul.wpfep-tabs {
+		border-bottom-color: color(background);
+		& li a {
+			background-color: color(bgHighlight);
+			border-color: color(bgHighlight);
+			color: color(textcolor);
+			&.active {
+				background-color: color(background);
+				border-bottom-color: color(background);
+			}
+		}
+	}
+	& .wpfep-field {
+		& input {
+			@extend %textfield;
+			@include placeholder($maincomp); //color(background));
+			border: 1px solid rgba($maincomp, 1); //color(background), 1);
+			&:hover, &:focus {
+				@include placeholder($mainhigh); //color(bgHighlight));
+				border: 1px solid rgba($mainhigh, 1); //color(bgHighlight), 1);
+			}
+		}
+		& p.description {
+			@include background-opacity( $maincomp, 0.8 );
+		}
+	}
+	& .wpfep-save input[type="submit"] {
+		@extend %regular;
 	}
 }

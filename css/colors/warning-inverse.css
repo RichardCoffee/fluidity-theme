@@ -7,7 +7,7 @@
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
-.searchform-input, form input.searchform-input {
+.searchform-input, form input.searchform-input, .wpfep-wrapper .wpfep-save input[type="submit"] {
   background-color: #FCF8E3;
   border-color: #FAEBCC;
   color: #8A6D3B;
@@ -15,10 +15,10 @@ li.btn-fluidity > a,
 .btn-fluidity:hover,
 .color-fluidity:hover,
 li.btn-fluidity > a:hover,
-.searchform-input:hover, .btn-fluidity:focus,
+.searchform-input:hover, .wpfep-wrapper .wpfep-save input[type="submit"]:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
 li.btn-fluidity > a:focus,
-.searchform-input:focus {
+.searchform-input:focus, .wpfep-wrapper .wpfep-save input[type="submit"]:focus {
   background-color: #8A6D3B;
   border-color: #FCF8E3;
   color: #FCF8E3;
@@ -42,12 +42,12 @@ li.btn-fluidity > a:focus,
   box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
-form .form-control {
+form .form-control, .wpfep-wrapper .wpfep-field input {
   background-color: #FCF8E3;
   border-color: #8A6D3B;
   color: #8A6D3B;
 }
-form .form-control:hover, form .form-control:focus {
+form .form-control:hover, .wpfep-wrapper .wpfep-field input:hover, form .form-control:focus, .wpfep-wrapper .wpfep-field input:focus {
   background-color: #FCF8E3;
   border-color: #8A6D3B;
   color: #8A6D3B;
@@ -354,15 +354,89 @@ hr {
   color: #8A6D3B;
 }
 
+.wpfep-wrapper .wpfep-field input {
+  border: 1px solid #8a6d3b;
+}
+.wpfep-wrapper .wpfep-field input::-moz-placeholder {
+  color: #8A6D3B;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:-moz-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:-ms-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input::-webkit-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:hover, .wpfep-wrapper .wpfep-field input:focus {
+  border: 1px solid #8a6d3b;
+}
+.wpfep-wrapper .wpfep-field input:hover::-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus::-moz-placeholder {
+  color: #8A6D3B;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:hover:-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus:-moz-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:hover:-ms-input-placeholder, .wpfep-wrapper .wpfep-field input:focus:-ms-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:hover::-webkit-input-placeholder, .wpfep-wrapper .wpfep-field input:focus::-webkit-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field p.description {
+  background: #8A6D3B;
+  /* The Fallback */
+  background: rgba(138, 109, 59, 0.8);
+}
 .wpfep-wrapper ul.wpfep-tabs {
-  border-bottom-color: #FAEBCC;
+  border-bottom-color: #FCF8E3;
 }
 .wpfep-wrapper ul.wpfep-tabs li a {
-  background-color: #FCF8E3;
+  background-color: #FAEBCC;
   border-color: #FAEBCC;
   color: #8A6D3B;
 }
 .wpfep-wrapper ul.wpfep-tabs li a.active {
-  background-color: #FAEBCC;
-  border-bottom-color: #FAEBCC;
+  background-color: #FCF8E3;
+  border-bottom-color: #FCF8E3;
+}
+.wpfep-wrapper .wpfep-field input {
+  border: 1px solid #8a6d3b;
+}
+.wpfep-wrapper .wpfep-field input::-moz-placeholder {
+  color: #8A6D3B;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:-moz-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:-ms-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input::-webkit-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:hover, .wpfep-wrapper .wpfep-field input:focus {
+  border: 1px solid #8a6d3b;
+}
+.wpfep-wrapper .wpfep-field input:hover::-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus::-moz-placeholder {
+  color: #8A6D3B;
+  opacity: 1;
+}
+.wpfep-wrapper .wpfep-field input:hover:-moz-placeholder, .wpfep-wrapper .wpfep-field input:focus:-moz-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:hover:-ms-input-placeholder, .wpfep-wrapper .wpfep-field input:focus:-ms-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field input:hover::-webkit-input-placeholder, .wpfep-wrapper .wpfep-field input:focus::-webkit-input-placeholder {
+  color: #8A6D3B;
+}
+.wpfep-wrapper .wpfep-field p.description {
+  background: #8A6D3B;
+  /* The Fallback */
+  background: rgba(138, 109, 59, 0.8);
 }
