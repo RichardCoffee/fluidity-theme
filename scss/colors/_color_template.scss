@@ -11,6 +11,10 @@ $mainlite: lightest(color(background), color(textcolor));
 
 @import "placeholders";
 
+body {
+	color: $maincomp;
+}
+
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
@@ -200,6 +204,7 @@ hr {
 	color: $maincomp;
 }
 
+// Theme My Login
 .tml {
 	color: $maincomp;
 	& input {
@@ -209,5 +214,19 @@ hr {
 		background-color: $mainlite;
 		border: 1px solid $mainhigh;
 		color: $maincomp;
+	}
+}
+
+// Front End Profile
+.wpfep-wrapper ul.wpfep-tabs {
+	border-bottom-color: color(bgHighlight);
+	& li a {
+		background-color: color(background);
+		border-color: color(bgHighlight);
+		color: color(textcolor);
+		&.active {
+			background-color: color(bgHighlight);
+			border-bottom-color: color(bgHighlight);
+		}
 	}
 }

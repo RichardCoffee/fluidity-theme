@@ -4,8 +4,6 @@
  *  bootstrap info color scheme
  *
  */
-/* functions */
-/* mixins */
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
@@ -55,6 +53,10 @@ form .form-control:hover, form .form-control:focus {
   color: #5BC0DE;
   -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
   box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+}
+
+body {
+  color: #5BC0DE;
 }
 
 .btn-fluidity,
@@ -350,4 +352,17 @@ hr {
   background-color: #FFFFFF;
   border: 1px solid #46B8DA;
   color: #5BC0DE;
+}
+
+.wpfep-wrapper ul.wpfep-tabs {
+  border-bottom-color: #46B8DA;
+}
+.wpfep-wrapper ul.wpfep-tabs li a {
+  background-color: #5BC0DE;
+  border-color: #46B8DA;
+  color: #FFFFFF;
+}
+.wpfep-wrapper ul.wpfep-tabs li a.active {
+  background-color: #46B8DA;
+  border-bottom-color: #46B8DA;
 }
