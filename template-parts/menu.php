@@ -58,6 +58,9 @@ if ( has_nav_menu( $menu ) ) {
 					'walker'         => new TCC_NavWalker_Bootstrap(),
 					'fallback_cb'    => 'TCC_NavWalker_Bootstrap::fallback'
 				) ); ?>
+				<span class="pull-right">
+					<?php echo fluid_color_scheme(); ?>
+				</span>
 			</div>
 
 		</nav><?php
