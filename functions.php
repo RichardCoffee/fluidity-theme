@@ -80,7 +80,7 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	}
 ); //*/
 
-/*add_action( 'tcc_inside_page', function( $slug ) {
+add_action( 'tcc_inside_page', function( $slug ) {
 	tellme( 'color scheme:  ' . fluid_color_scheme() );
 } ); //*/
 

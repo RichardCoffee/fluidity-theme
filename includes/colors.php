@@ -15,7 +15,8 @@ if ( ! function_exists( 'fluid_color_scheme' ) ) {
 	function fluid_color_scheme() {
 		static $scheme = null;
 		if ( ! $scheme ) {
-			$color = tcc_design( 'color_scheme', null );
+			$color = get_theme_mod( 'color_scheme', null );
+			$color = ( $color ) ? $color : tcc_design( 'color_scheme', null );
 			if ( ! $color || ( $color === 'random-color' ) ) {
 				$color = tcc_color_scheme(); # generates random color scheme
 			}
@@ -25,8 +26,9 @@ if ( ! function_exists( 'fluid_color_scheme' ) ) {
 			} else if ( is_readable( get_template_directory() . $base ) ) {
 				$scheme = $color;
 			}
+			$scheme = apply_filters( 'fluid_color_scheme', $scheme );
 		}
-		return apply_filters( 'fluid_color_scheme', $scheme );
+		return $scheme;
 	}
 }
 

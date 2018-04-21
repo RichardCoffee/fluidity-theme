@@ -1,7 +1,7 @@
 
 $input-color-placeholder: #999;
 
-/* functions */
+///* functions */
 
 @function color($key) {
   @if not map-has-key($colors, $key) {
@@ -38,7 +38,7 @@ $input-color-placeholder: #999;
 }
 
 
-/* mixins */
+///* mixins */
 
 @mixin background-opacity($color, $opacity: 0.3) {
     background: $color; /* The Fallback */
