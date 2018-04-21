@@ -181,10 +181,22 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 				),
 				'divcss'  => 'tcc-wp_posi',
 			),
+			'survey' => array(
+				'default' => 'no',
+				'label'   => __( 'Plugin Survey', 'tcc-fluid' ),
+				'text'    => __( 'Can the theme author collect info on what plugins are installed?  It will help efforts to improve the theme.', 'tcc-fluid' ),
+				'help'    => __( "WordPress is already collecting this information, and they didn't even ask.", 'tcc-fluid' ),
+				'render'  => 'radio',
+				'source'  => array(
+					'no'  => __( 'No way, No how.', 'tcc-fluid' ),
+					'yes' => __( 'Yes, the theme author can collect info on what plugins are currently installed.', 'tcc-fluid' ),
+				),
+				'postext' => __( "Only information returned by the WordPress function 'get_plugins()' would be collected.", 'tcc-fluid' )
+			),
 			'themedata' => array(
-				'label'   => __( 'Theme Data', 'tcc-fluid' ),
-				'text'    => __( 'control when theme data is removed', 'tcc-fluid' ),
-				'render'  => 'title'
+				'label'  => __( 'Theme Data', 'tcc-fluid' ),
+				'text'   => __( 'control when theme data is removed', 'tcc-fluid' ),
+				'render' => 'title'
 			),
 			'deledata' => array(
 				'default' => 'uninstall',
