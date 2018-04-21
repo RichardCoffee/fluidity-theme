@@ -250,7 +250,7 @@ hr {
 				background: color(background);
 			}
 		}
-		& .quicktags-toolbar {
+		& .quicktags-toolbar .button {
 			@include box-shadow(none);
 		}
 		& .quicktags-toolbar,

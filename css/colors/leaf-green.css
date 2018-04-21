@@ -406,7 +406,7 @@ hr {
 .wpfep-wrapper .wpfep-field .wp-editor-container .quicktags-toolbar {
   background: #39b54a;
 }
-.wpfep-wrapper .wpfep-field .quicktags-toolbar {
+.wpfep-wrapper .wpfep-field .quicktags-toolbar .button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
