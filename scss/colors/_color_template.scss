@@ -247,5 +247,6 @@ hr {
 	}
 	& .wpfep-save input[type="submit"] {
 		@extend %regular;
+		@include box-shadow(none);
 	}
 }
