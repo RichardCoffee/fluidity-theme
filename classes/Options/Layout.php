@@ -29,7 +29,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'full'   => __( 'Full Width (small margins)', 'tcc-fluid' ),
 				'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
 			),
-			'thememod' => 'fluid_width',
+			'theme_mod' => 'behavior_screen_width',
 		);
 /*		$layout['header'] = array(
 			'default' => 'static',
