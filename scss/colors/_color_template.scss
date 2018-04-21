@@ -250,6 +250,13 @@ hr {
 				background: color(background);
 			}
 		}
+		& .quicktags-toolbar {
+			@include box-shadow(none);
+		}
+		& .quicktags-toolbar,
+		& textarea.wp-editor-area {
+			border-color: color(bgHighlight);
+		}
 	}
 	& .wpfep-save input[type="submit"] {
 		@extend %regular;

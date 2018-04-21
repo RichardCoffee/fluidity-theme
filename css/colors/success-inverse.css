@@ -407,6 +407,13 @@ hr {
 .wpfep-wrapper .wpfep-field .wp-editor-container .quicktags-toolbar {
   background: #dff0d8;
 }
+.wpfep-wrapper .wpfep-field .quicktags-toolbar {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.wpfep-wrapper .wpfep-field .quicktags-toolbar, .wpfep-wrapper .wpfep-field textarea.wp-editor-area {
+  border-color: #d6e9c6;
+}
 .wpfep-wrapper .wpfep-save input[type="submit"] {
   -webkit-box-shadow: none;
   box-shadow: none;
