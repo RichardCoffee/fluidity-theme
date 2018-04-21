@@ -59,7 +59,6 @@ class TCC_Register_Sidebars {
 	protected function title_html() {
 		$title  = array();
 		$status = tcc_layout( 'widget', 'perm' ); // FIXME: get layout default value
-		$icon   = tcc_layout( 'widget_icon', 'default' ); // this value is fine
 		$title['before']  = '<div class="panel-heading"';
 		$title['before'] .= ( $status === 'perm' )   ? '' : ' role="button"';
 		$title['before'] .= ( $status === 'closed' ) ? ' data-collapse="1">' : '>';
@@ -73,7 +72,8 @@ class TCC_Register_Sidebars {
 
 	protected function widget_html() {
 		$widget = array();
-		$widget['before'] = '<div class="panel panel-fluidity">';
+		// string placeholders required for customizer theme support
+		$widget['before'] = '<div id="%1$s" class="panel panel-fluidity %2$s">';
 		#	Second /div closes "panel-body" div
 		$widget['after']  = '</div></div>';
 		return $widget; # apply_filters( 'fluid_register_sidebar_widget', $widget );

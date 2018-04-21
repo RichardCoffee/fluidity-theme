@@ -8,11 +8,21 @@ class TCC_Widget_Widget extends WP_Widget {
 	protected static $micro = null;
 
 	public function __construct( $slug = '', $title = '', $desc = array() ) {
-		parent::__construct( $this->slug, $this->title, array( 'description' => $this->desc ) );
+		$args = array(
+			'description' => $this->desc,
+			'customize_selective_refresh' => true,
+		);
+		parent::__construct( $this->slug, $this->title, $args );
 		if ( ! self::$micro && class_exists( 'TCC_Microdata' ) ) {
 			self::$micro = microdata();
 		}
+		# https://developer.wordpress.org/themes/customize-api/tools-for-improved-user-experience/
+		if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+		}
 	}
+
+	public function wp_enqueue_scripts() { }
 
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];

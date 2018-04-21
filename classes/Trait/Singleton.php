@@ -34,7 +34,7 @@ trait TCC_Trait_Singleton {
 
 	/**  An alternate methodology  **/
 /*
-	private static $instances = array();
+private static $instances = array();
 
 	public static function get_instance( $args = array() ) {
 		$class = get_called_class();

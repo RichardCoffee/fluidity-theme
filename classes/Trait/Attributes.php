@@ -96,14 +96,14 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	private function sanitize_html_class( $classes ) {
-		// convert everything to an array
-		if ( ! is_array( $classes ) ) {
+		if ( is_array( $classes ) ) {
+			// pack it down then blow it up - insure each element is a single class
+			$classes = array_unique( explode( ' ', implode( ' ', $classes ) ) );
+		} else {
+			// convert string to an array
 			$classes = explode( ' ', $classes );
 		}
-		// pack it down then blow it up
-		$classes = array_unique( explode( ' ', implode( ' ', $classes ) ) );
-		$result  = array_map( 'sanitize_html_class', $classes );
-		return implode( ' ', $result );
+		return implode( ' ', array_map( 'sanitize_html_class', $classes ) );
 	}
 
 	/**

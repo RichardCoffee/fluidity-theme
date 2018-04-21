@@ -55,7 +55,7 @@ class TCC_Theme_Support {
 			'custom_background',
 			'custom_header',
 			'custom_logo',
-			'customize_selective_refresh_widgets', // 'customize-selective-refresh-widgets'
+			'customize_selective_refresh_widgets',
 			'editor_style',
 			'html5',
 			'post_formats',
