@@ -220,14 +220,14 @@ hr {
 // Front End Profile
 .wpfep-wrapper {
 	& ul.wpfep-tabs {
-		border-bottom-color: color(background);
+		border-bottom-color: color(bgHighlight);
 		& li a {
-			background-color: color(bgHighlight);
+			background-color: color(background);
 			border-color: color(bgHighlight);
 			color: color(textcolor);
 			&.active {
-				background-color: color(background);
-				border-bottom-color: color(background);
+				background-color: color(bgHighlight);
+				border-bottom-color: color(bgHighlight);
 			}
 		}
 	}

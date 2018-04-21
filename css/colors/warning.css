@@ -355,16 +355,16 @@ hr {
 }
 
 .wpfep-wrapper ul.wpfep-tabs {
-  border-bottom-color: #F0AD4E;
+  border-bottom-color: #EEA236;
 }
 .wpfep-wrapper ul.wpfep-tabs li a {
-  background-color: #EEA236;
+  background-color: #F0AD4E;
   border-color: #EEA236;
   color: #FFFFFF;
 }
 .wpfep-wrapper ul.wpfep-tabs li a.active {
-  background-color: #F0AD4E;
-  border-bottom-color: #F0AD4E;
+  background-color: #EEA236;
+  border-bottom-color: #EEA236;
 }
 .wpfep-wrapper .wpfep-field input {
   border: 1px solid #f0ad4e;
