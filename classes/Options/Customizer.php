@@ -9,7 +9,6 @@ class TCC_Options_Customizer {
 	public function __construct( $args = array() ) {
 		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
 		$this->theme = new TCC_Theme_Customizer;
-		add_action( 'customize_register', array( $this->theme, 'customize_register' ) );
 	}
 
 	protected function get_controls() {
