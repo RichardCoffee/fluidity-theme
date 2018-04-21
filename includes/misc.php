@@ -65,6 +65,16 @@ if (!function_exists('fluidity_social_icons')) {
 	} //*/
 }
 
+if ( ! function_exists( 'fluid_survey_cron_schedules' ) ) {
+	function fluid_survey_cron_schedules( $schedules = array() ) {
+		if ( ! isset( $schedules['monthly'] ) ) {
+			$schedules['monthly'] = array( 'interval' => MONTH_IN_SECONDS, 'display' => __( 'Once Monthly', 'tcc-fluid' ) );
+		}
+		return $schedules;
+	}
+	add_filter( 'cron_schedules', 'fluid_survey_cron_schedules' );
+}
+
 if (!function_exists('fluid_user_profile_link')) {
   function fluid_user_profile_link() {
     $user = wp_get_current_user();
@@ -230,7 +240,7 @@ if (!function_exists('tcc_holiday_greeting')) {
 		return $message;
 	}
 }
-
+/*
 function stupid_theme_checker () {
 	wp_link_pages();
 	posts_nav_link();
@@ -241,4 +251,4 @@ function stupid_theme_checker () {
 	next_posts_link();
 	previous_posts_link();
 	add_theme_support( "custom-header", $args );
-}
+} //*/

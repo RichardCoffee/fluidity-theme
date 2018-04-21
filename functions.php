@@ -39,6 +39,7 @@ fluid_register_sidebars(); # TCC_Register_Sidebars
 fluid_theme_support();     # TCC_Theme_Support
 fluid_login();             # TCC_Theme_Login class
 fluid_customizer();        # TCC_Options_Customizer
+new TCC_Options_Survey;    # check about sending plugin list for survey
 
 if ( is_admin() ) {
 	fluid_options();
