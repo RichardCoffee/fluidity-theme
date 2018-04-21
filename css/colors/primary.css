@@ -346,3 +346,8 @@ hr {
 .tml input {
   border-color: #2E6DA4;
 }
+.tml p.message {
+  background-color: #ffffff;
+  border: 1px solid #2E6DA4;
+  color: #337AB7;
+}

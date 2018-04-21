@@ -205,4 +205,9 @@ hr {
 	& input {
 		border-color: $mainhigh;
 	}
+	& p.message {
+		background-color: $mainlite;
+		border: 1px solid $mainhigh;
+		color: $maincomp;
+	}
 }
