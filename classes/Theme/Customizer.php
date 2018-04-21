@@ -75,7 +75,37 @@ class TCC_Theme_Customizer {
 		return $control;
 	}
 
-	public function customizer_controls() {
+	public function customize_register( $options ) {
+		$options = $this->theme_behavior( $options );
+		return $options;
+	}
+
+	public function theme_behavior( $options ) {
+		$section = array(
+			'priority'    => 10,
+			'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
+			'description' => __( 'This section controls the overall behavior of the theme.', 'tcc-fluid' )
+		);
+		$controls = array(
+			'screen_width' => array(
+				'default'     => 'narrow',
+				'label'       => __( 'Width', 'tcc-fluid' ),
+				'description' => __( 'How much screen real estate do you want the theme to use?', 'tcc-fluid' ),
+				'title'       => __( 'This determines the margins for the main body of the website', 'tcc-fluid' ),
+				'render'      => 'radio',
+				'choices'     => array(
+					'full'   => __( 'Full Width (small margins)', 'tcc-fluid' ),
+					'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
+				),
+			),
+		);
+		$behavior = array(
+			'id'       => 'behavior',
+			'section'  => $section,
+			'controls' => $controls
+		);
+		$options[] = $behavior;
+		return $options;
 	}
 
 
