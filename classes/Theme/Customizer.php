@@ -168,6 +168,7 @@ class TCC_Theme_Customizer {
 					'left'  => __( 'Left side', 'tcc-fluid' ),
 					'right' => __( 'Right side', 'tcc-fluid' ),
 				),
+				
 			),
 		);
 
@@ -183,6 +184,26 @@ class TCC_Theme_Customizer {
 );
 */
 
+		$controls['fluidity'] = array(
+			'default'     => 'no',
+			'label'       => __( 'Fluid Sidebar', 'tcc-fluid' ),
+			'description' => __( 'Let content flow around sidebar', 'tcc-fluid' ),
+			'render'      => 'radio',
+			'choices'     => array(
+				'no'  => __( 'Static content', 'tcc-fluid' ),
+				'yes' => __( 'Fluid content', 'tcc-fluid' ),
+			),
+/*
+'change'   => 'showhidePosi( this, ".fluid-sidebar-setting", "no" );',
+'divcss'   => 'fluid-sidebar-active no-sidebar-setting',
+'showhide' => array(
+'origin' => 'fluid-sidebar-active',
+'target' => 'fluid-sidebar-setting',
+'show'   => 'no',
+),
+'thememod' => 'sidebar_fluid',
+*/
+		);
 		$options[] = array(
 			'id'       => 'sidebar',
 			'section'  => $section,
