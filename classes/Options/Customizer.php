@@ -34,8 +34,8 @@ class TCC_Options_Customizer {
 	}
 
 	public function customize_preview_enqueue_scripts() {
-		wp_enqueue_style( 'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
-		wp_enqueue_style( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION);
+		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
+		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
