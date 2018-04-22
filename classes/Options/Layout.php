@@ -56,7 +56,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'thememod' => 'fluid_menu',
 			);
 		} //*/
-		$layout['sidebar'] = array(
+/*		$layout['sidebar'] = array(
 			'default' => 'right',
 			'label'   => __( 'Sidebar', 'tcc-fluid' ),
 			'text'    => __( 'Which side of the screen should the sidebar show up on?', 'tcc-fluid' ),
@@ -74,7 +74,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'hide'   => 'none',
 			),
 			'thememod' => 'sidebar_placement',
-		);
+		); //*/
 		$layout['fluid_sidebar'] = array(
 			'default' => 'no',
 			'label'   => __( 'Fluid Sidebar', 'tcc-fluid' ),
