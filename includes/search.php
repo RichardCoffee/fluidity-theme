@@ -14,7 +14,7 @@ if ( ! function_exists( 'fluid_show_search_form' ) ) {
 		<form <?php fluid()->apply_attrs( $form['form'] ); ?>>
 			<div class="input-group"><?php
 				fluid()->apply_attrs_element( 'label', $form['label'], $form['text']['label'] ); ?>
-				<span><?php
+				<span class="block"><?php
 					if ( isset( $form['hidden'] ) ) {
 						fluid()->apply_attrs_element( 'input', $form['hidden'] );
 					}
