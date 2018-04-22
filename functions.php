@@ -66,6 +66,7 @@ add_filter( 'show_admin_bar' , 'my_function_admin_bar');
 
 function themeslug_customize_register( $section_args, $section_id, $sidebar_id ) {
   fluid()->log( $section_args, $section_id, $sidebar_id );
+	return $section_args;
 }
 add_action( 'customizer_widgets_section_args', 'themeslug_customize_register', 10, 3 ); //*/
 
