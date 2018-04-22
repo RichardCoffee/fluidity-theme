@@ -1,4 +1,5 @@
 
-input.text_3em_wide[type="number"] {
+/*input.text_3em_wide[type="number"] {*/
+.text_3em_wide {
 	width: 4em;
 }
