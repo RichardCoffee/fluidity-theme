@@ -36,8 +36,8 @@ class TCC_Form_Control_Content extends TCC_Form_Control_Control {
 
 				if ( isset( $this->label ) ) {
 					$attrs = array(
-						'class' => 'customize-control-title',
-						'style' => 'font-size: 16px;'
+						'class' => 'customize-control-title centered',
+						'style' => 'font-size: 17px;'
 					);
 					$this->apply_attrs_element( 'span', $attrs, $this->label );
 				}
