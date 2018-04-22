@@ -151,26 +151,27 @@ class TCC_Theme_Customizer {
 	}
 
 	public function theme_sidebar( $options ) {
-/*		$section = array(
+		$section = array(
 			'priority'    => 40,
 			'panel'       => 'fluid_mods',
 			'title'       => __( 'Sidebar Behavior', 'tcc-fluid' ),
 			'description' => __( 'This section controls things dealing with the sidebar.  My, how informative that was...', 'tcc-fluid' )
 		);
-/*
 		$controls = array(
+			'sidebar' => array(
+				'default'     => 'right',
+				'label'       => __( 'Sidebar', 'tcc-fluid' ),
+				'description' => __( 'Which side of the screen should the sidebar show up on?', 'tcc-fluid' ),
+				'render'      => 'radio',
+				'choices'     => array(
+					'none'  => __( 'No Sidebar', 'tcc-fluid' ),
+					'left'  => __( 'Left side', 'tcc-fluid' ),
+					'right' => __( 'Right side', 'tcc-fluid' ),
+				),
+			),
+		);
 
-
-$layout['sidebar'] = array(
-'default' => 'right',
-'label'   => __( 'Sidebar', 'tcc-fluid' ),
-'text'    => __( 'Which side of the screen should the sidebar show up on?', 'tcc-fluid' ),
-'render'  => 'radio',
-'source'  => array(
-'none'  => __( 'No Sidebar', 'tcc-fluid' ),
-'left'  => __( 'Left side', 'tcc-fluid' ),
-'right' => __( 'Right side', 'tcc-fluid' ),
-),
+/*
 'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
 'divcss'  => 'no-sidebar-active',
 'showhide' => array(
@@ -180,16 +181,13 @@ $layout['sidebar'] = array(
 ),
 'thememod' => 'sidebar_placement',
 );
-
-
-$options[] = array(
-'id'       => 'sidebar',
-'section'  => $section,
-'controls' => $controls
-);
-
 */
 
+		$options[] = array(
+			'id'       => 'sidebar',
+			'section'  => $section,
+			'controls' => $controls
+		);
 		return $options;
 	}
 
