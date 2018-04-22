@@ -39,7 +39,6 @@ class TCC_Options_Customizer {
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
-		$this->
 		$panels = $this->get_panels();
 		if ( ! empty( $panels ) ) {
 			foreach( $panels as $panel ) {
