@@ -120,9 +120,9 @@ class TCC_Theme_Customizer {
 		);
 		return $options;
 	}
-/*
-	public function theme_sidebar( $options ) {
 
+	public function theme_sidebar( $options ) {
+/*
 $section = array(
 'priority'    => 10,
 'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
@@ -155,10 +155,11 @@ $options[] = array(
 'section'  => $section,
 'controls' => $controls
 );
-return $options;
-}
 
 */
+
+		return $options;
+	}
 
 
 }
