@@ -75,7 +75,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			),
 			'thememod' => 'sidebar_placement',
 		); //*/
-		$layout['fluid_sidebar'] = array(
+/*		$layout['fluid_sidebar'] = array(
 			'default' => 'no',
 			'label'   => __( 'Fluid Sidebar', 'tcc-fluid' ),
 			'text'    => __( 'Let content flow around sidebar', 'tcc-fluid' ),
@@ -92,7 +92,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'show'   => 'no',
 			),
 			'thememod' => 'sidebar_fluid',
-		);
+		); //*/
 		if ( WP_DEBUG ) {
 			$layout['main_css'] = array(
 				'default' => 'col-lg-9 col-md-9 col-sm-12 col-xs-12',

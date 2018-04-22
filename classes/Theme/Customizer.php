@@ -193,6 +193,9 @@ class TCC_Theme_Customizer {
 				'no'  => __( 'Static content', 'tcc-fluid' ),
 				'yes' => __( 'Fluid content', 'tcc-fluid' ),
 			),
+			'active_callback' => function() {
+				return ( ! ( get_theme_mod( 'sidebar_position' ) === 'none' ) );
+			}
 /*
 'change'   => 'showhidePosi( this, ".fluid-sidebar-setting", "no" );',
 'divcss'   => 'fluid-sidebar-active no-sidebar-setting',

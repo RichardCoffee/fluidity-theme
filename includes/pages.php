@@ -175,7 +175,7 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
 if ( ! function_exists( 'tcc_main_tag_css' ) ) {
 	function tcc_main_tag_css( $css = '', $page = 'page' ) {
 		if ( empty( $css ) && ( ! defined( 'TCC_NO_SIDEBAR' ) ) && ( get_theme_mod( 'sidebar_position', 'right' ) !== 'none' ) ) {
-			if ( tcc_layout( 'fluid_sidebar', 'no' ) === 'no' ) {
+			if ( get_theme_mod( 'sidebar_fluidity', 'no' ) === 'no' ) {
 				$css = tcc_layout( 'main_css', 'col-md-9' );
 			} else {
 				$css = 'has-fluid-sidebar';

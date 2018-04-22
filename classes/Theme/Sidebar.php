@@ -29,7 +29,7 @@ class TCC_Theme_Sidebar {
 
 		$this->sidebar = get_page_slug();
 		$this->slug    = $this->sidebar;
-		$this->fluid   = tcc_layout( 'fluid_sidebar', 'no' );
+		$this->fluid   = get_theme_mod( 'sidebar_fluidity', 'no' );
 		$this->css     = ( $this->fluid === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
 		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 		$this->parse_args( $args );

@@ -1,10 +1,11 @@
+// https://florianbrinkmann.com/en/3783/conditional-displaying-and-hiding-of-customizer-controls-via-javascript/
 ;(function () {
 	/**
 	 * Run function when customizer is ready.
 	 */
 	wp.customize.bind('ready', function () {
-		
-		wp.customize.control('slug_select_control', function (control) {
+
+		wp.customize.control('sidebar_position', function (control) {
 			/**
 			 * Run function on setting change of control.
 			 */
@@ -13,32 +14,33 @@
 					/**
 					 * The select was switched to the hide option.
 					 */
-					case 'hide':
+					case 'none':
 						/**
 						 * Deactivate the conditional control.
 						 */
-						wp.customize.control('slug_conditional_control').deactivate();
+						wp.customize.control('sidebar_fluidity').deactivate();
 						break;
 					/**
 					 * The select was switched to »show«.
 					 */
-					case 'show':
+//					case 'show':
+					default:
 						/**
 						 * Activate the conditional control.
 						 */
-						wp.customize.control('slug_conditional_control').activate();
+						wp.customize.control('sidebar_fluidity').activate();
 						break;
 				}
 			});
 		});
 	});
 })();
-
+/*
 // http://justintadlock.com/archives/2015/05/26/multiple-checkbox-customizer-control
 jQuery( document ).ready( function() {
 
     /* === Checkbox Multiple Control === */
-
+/*
     jQuery( '.customize-control-checkbox-multiple input[type="checkbox"]' ).on(
         'change',
         function() {
@@ -54,3 +56,4 @@ jQuery( document ).ready( function() {
     );
 
 } ); // jQuery( document ).ready
+*/
