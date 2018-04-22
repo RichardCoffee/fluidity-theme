@@ -9,15 +9,19 @@ class TCC_Options_Customizer {
 	public function __construct( $args = array() ) {
 		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
 		$this->theme = new TCC_Theme_Customizer;
+		add_action( 'customize_preview_init', array( $this, 'enqueue_scripts' ) );
 	}
 
 	protected function get_controls() {
 		return apply_filters( 'fluid_customizer_controls', $this->theme->customizer_controls() );
 	}
 
-	public function customize_register( WP_Customize_Manager $customize ) {
+	public function enqueue_scripts() {
 		wp_enqueue_style( 'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
 #		wp_enqueue_style( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION);
+	}
+
+	public function customize_register( WP_Customize_Manager $customize ) {
 		$controls = $this->get_controls();
 		foreach( $controls as $section ) {
 			$priority = 0;

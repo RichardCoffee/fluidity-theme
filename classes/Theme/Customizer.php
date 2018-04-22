@@ -95,10 +95,23 @@ class TCC_Theme_Customizer {
 				'render'      => 'radio',
 				'choices'     => array(
 					'full'   => __( 'Full Width (small margins)', 'tcc-fluid' ),
-					'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
+					'narrow' => __( 'Standard Margins (recommended)', 'tcc-fluid' ),
 				),
 			),
 		);
+		if ( WP_DEBUG ) {
+			$controls['menu']    = array(
+				'default'     => 'bootstrap',
+				'label'       => __( 'Menu', 'tcc-fluid' ),
+				'description' => __( 'Which menuing system do you want to use?', 'tcc-fluid' ),
+				'title'       => __( '', 'tcc-fluid' ),
+				'render'      => 'radio',
+				'choices'     => array(
+					'underscore' => __( 'Underscores - WordPress starter theme', 'tcc-fluid' ),
+					'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
+				),
+			);
+		}
 		$behavior = array(
 			'id'       => 'behavior',
 			'section'  => $section,
