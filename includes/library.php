@@ -42,7 +42,7 @@ if ( ! function_exists( 'container_type' ) ) {
 		$css = 'container-fluid';
 		if ( $location === 'header' ) {
 			$css .= " nopad";
-		} else if ( tcc_layout( 'width', 'narrow' ) === 'narrow' ) {
+		} else if ( get_theme_mod( 'behavior_screen_width', 'narrow' ) === 'narrow' ) {
 			$css = 'container';
 		}
 		/**

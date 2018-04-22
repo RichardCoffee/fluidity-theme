@@ -19,7 +19,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 
 	protected function options_layout() {
 		$layout = array( 'default' => true );
-		$layout['width'] = array(
+/*		$layout['width'] = array(
 			'default' => 'narrow',
 			'label'   => __( 'Width', 'tcc-fluid' ),
 			'text'    => __( 'How much screen real estate do you want the theme to use?', 'tcc-fluid' ),
@@ -30,7 +30,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'narrow' => __( 'Standard Margins', 'tcc-fluid' ),
 			),
 			'theme_mod' => 'behavior_screen_width',
-		);
+		); //*/
 /*		$layout['header'] = array(
 			'default' => 'static',
 			'label'   => __( 'Header', 'tcc-fluid' ),
