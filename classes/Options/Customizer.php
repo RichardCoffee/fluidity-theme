@@ -1,10 +1,21 @@
 <?php
-
+/**
+ * classes/Options/Customizer.php
+ *
+ */
 require_once( 'Typography.php' );
-
+/**
+ * handles hooks and initializing the theme controls
+ *
+ * @since 3.0.0
+ */
 class TCC_Options_Customizer {
 
+	/**
+	 * instance of helper class, TCC_Theme_Customizer
+	 */
 	protected $theme;
+
 
 	public function __construct( $args = array() ) {
 		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
@@ -12,8 +23,12 @@ class TCC_Options_Customizer {
 		add_action( 'customize_preview_enqueue_scripts', array( $this, 'customize_preview_enqueue_scripts' ) );
 	}
 
+	protected function get_panels() {
+		return apply_filters( 'fluid_customizer_panels', $this->theme->customizer_panels( array() ) );
+	}
+
 	protected function get_controls() {
-		return apply_filters( 'fluid_customizer_controls', $this->theme->customizer_controls() );
+		return apply_filters( 'fluid_customizer_controls', $this->theme->customizer_controls( array() ) );
 	}
 
 	public function customize_preview_enqueue_scripts() {
@@ -22,6 +37,14 @@ class TCC_Options_Customizer {
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
+		$panels = $this->get_panels();
+		if ( ! empty( $panels ) ) {
+			foreach( $panels as $panel ) {
+				$args = $this->theme->panel_defaults( $panel['args'] );
+				$args = apply_filters( "fluid_customizer_panels_{$panel['id']}", $args );
+				$customize->add_panel( $panel['id'], $args );
+			}
+		}
 		$controls = $this->get_controls();
 		foreach( $controls as $section ) {
 			$priority = 0;

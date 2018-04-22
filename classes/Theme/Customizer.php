@@ -16,6 +16,20 @@ class TCC_Theme_Customizer {
 
 	public function __construct() { }
 
+	public function panel_defaults( $panel ) {
+		$defaults = array(
+			'priority'        => 160,
+			'capability'      => $this->base_cap,
+#			'theme_supports'  =>
+			'title'           => __( 'Panel Title', 'tcc-fluid' ),
+			'description'     => __( 'Panel Description', 'tcc-fluid' ),
+#			'type'            => 'default',
+#			'active_callback' =>
+			'auto_expand_sole_section' => true
+		);
+		return array_merge( $defaults, $panel );
+	}
+
 	public function section_defaults( $section ) {
 		$defaults = array(
 			'priority'           => 2,
@@ -53,8 +67,8 @@ class TCC_Theme_Customizer {
 			'capability'  => $this->base_cap,
 			'priority'    => 2,
 #			'section'     => $this->section_id,
-#			'label'       => $this->control['label'],
-#			'description' => $this->control['description'],
+			'label'       => __( 'Control Label', 'tcc-fluid' ),
+#			'description' => __( 'Control Description', 'tcc-fluid' ),
 #			'choices'     => array(), // used only if type = 'radio' or 'select' only
 #			'type'        => $control['render'],
 /*			'input_attrs' => array(
@@ -75,16 +89,31 @@ class TCC_Theme_Customizer {
 		return $control;
 	}
 
+	public function customizer_panels() {
+		$panels = array(
+			array(
+				'id' => 'fluid_mods',
+				'args' => array(
+					'priority'    => 10,
+					'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
+					'description' => __( 'All of these options affect how various aspects of the theme will act at various times.', 'tcc-fluid' ),
+				),
+			),
+		);
+		return $panels;
+	}
+
 	public function customizer_controls( $options = array() ) {
-		$options = $this->theme_behavior( $options );
+		$options = $this->screen_width( $options );
 		$options = $this->theme_sidebar(  $options );
 		return $options;
 	}
 
-	public function theme_behavior( $options ) {
+	public function screen_width( $options ) {
 		$section = array(
-			'priority'    => 10,
-			'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
+			'priority'    => 20,
+			'panel'       => 'fluid_mods',
+			'title'       => __( 'Desktop Screen Width', 'tcc-fluid' ),
 			'description' => __( 'This section controls the overall behavior of the theme.', 'tcc-fluid' )
 		);
 		$controls = array(
@@ -100,7 +129,7 @@ class TCC_Theme_Customizer {
 				),
 			),
 		);
-		if ( WP_DEBUG ) {
+/*		if ( WP_DEBUG ) {
 			$controls['menu']    = array(
 				'default'     => 'bootstrap',
 				'label'       => __( 'Menu', 'tcc-fluid' ),
@@ -112,7 +141,7 @@ class TCC_Theme_Customizer {
 					'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
 				),
 			);
-		}
+		} //*/
 		$options[] = array(
 			'id'       => 'behavior',
 			'section'  => $section,
@@ -122,12 +151,15 @@ class TCC_Theme_Customizer {
 	}
 
 	public function theme_sidebar( $options ) {
+/*		$section = array(
+			'priority'    => 40,
+			'panel'       => 'fluid_mods',
+			'title'       => __( 'Sidebar Behavior', 'tcc-fluid' ),
+			'description' => __( 'This section controls things dealing with the sidebar.  My, how informative that was...', 'tcc-fluid' )
+		);
 /*
-$section = array(
-'priority'    => 10,
-'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
-'description' => __( 'This section controls the overall behavior of the theme.', 'tcc-fluid' )
-);
+		$controls = array(
+
 
 $layout['sidebar'] = array(
 'default' => 'right',
