@@ -51,6 +51,7 @@ if ( has_nav_menu( $menu ) ) {
 #				require_once( FLUIDITY_HOME . 'vendor/wp-bootstrap-navwalker.php' );
 				wp_nav_menu( array(
 					'menu'           => $menu,
+					'menu_id'        => 'primary-menu',
 					'theme_location' => $menu,
 					'depth'          => 3,
 					'container'      => false,
@@ -78,8 +79,8 @@ if ( has_nav_menu( $menu ) ) {
 
 			wp_nav_menu( array(
 				'theme_location' => $menu,
-				'menu_id' => 'primary-menu',
-				'fallback_cb' => '' )
+				'menu_id'        => 'primary-menu',
+				'fallback_cb'    => '' )
 			); ?>
 
 			<span class="pull-right margint1e">

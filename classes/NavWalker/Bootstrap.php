@@ -4,12 +4,14 @@
  * Original Class Name: wp_bootstrap_navwalker
  * GitHub URI: https://github.com/twittem/wp-bootstrap-navwalker
  * Description: A custom WordPress nav walker class to implement the Bootstrap 3 navigation style in a custom theme using the WordPress built in menu manager.
- * Version: 2.0.4
- * Author: Edward McIntyre - @twittem
+ * Version: 3.1.0
+ * Author: Edward McIntyre - @twittem, William Patton - @pattonwebz
  * License: GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  */
 class TCC_NavWalker_Bootstrap extends Walker_Nav_Menu {
+
+	use TCC_Trait_Attributes;
   /**
    * @see Walker::start_lvl()
    * @since 3.0.0
@@ -149,8 +151,7 @@ add_filter('nav_menu_link_attributes', function($atts, $item, $args) {
     0 === $args->depth and $args->link_after = ' <i class="caret"></i>';
   }
   if (strpos($item->attr_title, 'glyphicon-') !== false) {
-    $title = esc_attr($item->attr_title);
-    $args->link_before = '<i class="glyphicon '. $title .'"></i> ';
+    $args->link_before = $this->get_apply_attrs_element( 'i', [ 'class' => [ 'glyphicon', $item->attr_title ] ] ) . ' ';
   }
   return $atts;
 },10, 3); # $priority, $accepted_args
