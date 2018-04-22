@@ -63,7 +63,7 @@ function my_function_admin_bar($content) {
 	return ( current_user_can( 'administrator' ) ) ? $content : false;
 }
 add_filter( 'show_admin_bar' , 'my_function_admin_bar');
-
+/*
 function themeslug_customize_register( $section_args, $section_id, $sidebar_id ) {
   fluid()->log( $section_args, $section_id, $sidebar_id );
 	return $section_args;
