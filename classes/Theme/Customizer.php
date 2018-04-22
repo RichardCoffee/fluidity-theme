@@ -77,6 +77,7 @@ class TCC_Theme_Customizer {
 
 	public function customizer_controls( $options = array() ) {
 		$options = $this->theme_behavior( $options );
+		$options = $this->theme_sidebar(  $options );
 		return $options;
 	}
 
@@ -112,14 +113,52 @@ class TCC_Theme_Customizer {
 				),
 			);
 		}
-		$behavior = array(
+		$options[] = array(
 			'id'       => 'behavior',
 			'section'  => $section,
 			'controls' => $controls
 		);
-		$options[] = $behavior;
 		return $options;
 	}
+/*
+	public function theme_sidebar( $options ) {
+
+$section = array(
+'priority'    => 10,
+'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
+'description' => __( 'This section controls the overall behavior of the theme.', 'tcc-fluid' )
+);
+
+$layout['sidebar'] = array(
+'default' => 'right',
+'label'   => __( 'Sidebar', 'tcc-fluid' ),
+'text'    => __( 'Which side of the screen should the sidebar show up on?', 'tcc-fluid' ),
+'render'  => 'radio',
+'source'  => array(
+'none'  => __( 'No Sidebar', 'tcc-fluid' ),
+'left'  => __( 'Left side', 'tcc-fluid' ),
+'right' => __( 'Right side', 'tcc-fluid' ),
+),
+'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
+'divcss'  => 'no-sidebar-active',
+'showhide' => array(
+'origin' => 'no-sidebar-active',
+'target' => 'no-sidebar-setting',
+'hide'   => 'none',
+),
+'thememod' => 'sidebar_placement',
+);
+
+
+$options[] = array(
+'id'       => 'sidebar',
+'section'  => $section,
+'controls' => $controls
+);
+return $options;
+}
+
+*/
 
 
 }

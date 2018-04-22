@@ -64,10 +64,10 @@ function my_function_admin_bar($content) {
 }
 add_filter( 'show_admin_bar' , 'my_function_admin_bar');
 
-/*function themeslug_customize_register( WP_Customize_Manager $wp_customize ) {
-  fluid()->log( $wp_customize );
+function themeslug_customize_register( $section_args, $section_id, $sidebar_id ) {
+  fluid()->log( $section_args, $section_id, $sidebar_id );
 }
-add_action( 'customize_register', 'themeslug_customize_register' ); //*/
+add_action( 'customizer_widgets_section_args', 'themeslug_customize_register', 10, 3 ); //*/
 
 add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid()->log( $resource, $data );
@@ -80,10 +80,6 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 		log_entry( list_filter_hooks( $filter ) );
 	}
 ); //*/
-
-/*add_action( 'tcc_inside_page', function( $slug ) {
-	tellme( 'color scheme:  ' . fluid_color_scheme() );
-} ); //*/
 
 /*add_action( 'wp_loaded', function () {
 	$color   = new TCC_Options_ColorScheme;
