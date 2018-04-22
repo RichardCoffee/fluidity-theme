@@ -20,7 +20,9 @@ class TCC_Options_Customizer {
 	public function __construct( $args = array() ) {
 		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
 		$this->theme = new TCC_Theme_Customizer;
-		add_action( 'customize_preview_enqueue_scripts', array( $this, 'customize_preview_enqueue_scripts' ) );
+		// this action either no longer exists, or it didn't exist in the first place
+#		add_action( 'customize_preview_enqueue_scripts', array( $this, 'customize_preview_enqueue_scripts' ) );
+		add_action( 'customize_preview_init', array( $this, 'customize_preview_enqueue_scripts' ) );
 	}
 
 	protected function get_panels() {
@@ -37,6 +39,7 @@ class TCC_Options_Customizer {
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
+		$this->
 		$panels = $this->get_panels();
 		if ( ! empty( $panels ) ) {
 			foreach( $panels as $panel ) {
