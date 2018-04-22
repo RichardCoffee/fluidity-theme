@@ -30,7 +30,8 @@ class TCC_Options_Customizer {
 				$setting_id = $section_id . '_' . $key;
 				$control    = $this->theme->setting_defaults( $control );
 				$customize->add_setting( $setting_id, $control );
-				new TCC_Form_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
+				$mypriority = ( isset( $control['priority'] ) ) ? $control['priority'] : $priority;
+				new TCC_Form_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'mypriority' ) );
 			}
 		}
 	}
