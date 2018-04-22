@@ -139,7 +139,7 @@ if (!function_exists('fluidity_sidebar_layout')) {
 	#	DEPRECATED - do not use
   function fluidity_sidebar_layout($sidebar='standard',$side='') {
     if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
-    $side = ($side) ? $side : tcc_layout('sidebar', 'left' );
+    $side = ( $side ) ? $side : get_theme_mod( 'sidebar_position', 'right' );
     if ($side!=='none') {
       $posi = ($side=='right') ? 'pull-right' : '';
       $posi = (defined('TCC_LEFT_SIDEBAR')) ? '' : $posi;
@@ -162,7 +162,7 @@ if ( ! function_exists( 'fluidity_sidebar' ) ) {
 	#	DEPRECATED - do not use
 	function fluidity_sidebar( $css = '', $sidebar = 'standard' ) {
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
-		$side = tcc_layout( 'sidebar', 'left' );
+		$side = get_theme_mod( 'sidebar_position', 'right' );
 		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
 		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
 		if ( $side !== 'none' ) {

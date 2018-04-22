@@ -158,7 +158,7 @@ class TCC_Theme_Customizer {
 			'description' => __( 'This section controls things dealing with the sidebar.  My, how informative that was...', 'tcc-fluid' )
 		);
 		$controls = array(
-			'sidebar' => array(
+			'position' => array(
 				'default'     => 'right',
 				'label'       => __( 'Sidebar', 'tcc-fluid' ),
 				'description' => __( 'Which side of the screen should the sidebar show up on?', 'tcc-fluid' ),

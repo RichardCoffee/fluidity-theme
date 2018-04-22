@@ -51,13 +51,13 @@ class TCC_Theme_Sidebar {
 			} else if ( $mobile === 'bottom' ) {
 				$this->action = 'tcc_after_main';
 			}
-		} else if ( ( $this->fluid === 'no' ) && tcc_layout( 'sidebar', 'left' ) === 'right' ) {
+		} else if ( ( $this->fluid === 'no' ) && get_theme_mod( 'sidebar_position', 'right' ) === 'right' ) {
 			$this->action = 'tcc_after_main';
 		}
 	}
 
 	protected function positioning() {
-		$side = tcc_layout( 'sidebar', 'left' );
+		$side = get_theme_mod( 'sidebar_position', 'right' );
 		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
 		return $side;
