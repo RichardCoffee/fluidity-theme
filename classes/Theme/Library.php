@@ -16,6 +16,7 @@ class TCC_Theme_Library {
 		$this->register__call( array( $this, 'logging_get_calling_function_name' ), 'get_calling_function' );
 		$this->register__call( array( $this, 'logging_was_called_by' ),             'was_called_by' );
 		$this->register__call( array( $this, 'apply_attrs_element' ),               'element' );
+		$this->register__call( array( $this, 'apply_attrs_tag' ),                   'tag' );
 
 		// log the stack when one of these actions is run
 		if ( WP_DEBUG && function_exists( 'add_action' ) ) {

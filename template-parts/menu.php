@@ -35,10 +35,10 @@ if ( has_nav_menu( $menu ) ) {
 		$nav_attrs['class']   = "navbar navbar-fluidity navbar-$menu navbar-$page navbar-{$page}-$menu";
 		$button_attrs['type'] = 'button';
 
-		fluid()->apply_attrs_tag( 'nav', $nav_attrs ); ?>
+		fluid()->tag( 'nav', $nav_attrs ); ?>
 
 			<div class="navbar-header">
-				<?php fluid()->apply_attrs_tag( 'button', $button_attrs ); ?>
+				<?php fluid()->tag( 'button', $button_attrs ); ?>
 					<span class="sr-only">Toggle navigation</span>
 					<?php fluid()->fawe( 'fa-bars' ); ?>
 				</button>
@@ -70,9 +70,9 @@ if ( has_nav_menu( $menu ) ) {
 
 		/* underscore navigation */
 
-		fluid()->apply_attrs_tag( 'nav', $nav_attrs );
+		fluid()->tag( 'nav', $nav_attrs );
 
-			fluid()->apply_attrs_tag( 'button', $button_attrs ); ?>
+			fluid()->tag( 'button', $button_attrs ); ?>
 				<span class="sr-only">Toggle navigation</span>
 				<?php fluid()->fawe( 'fa-bars' ); ?>
 			</button><?php
