@@ -365,6 +365,10 @@ hr {
   background-color: #a51a21;
   border-bottom-color: #a51a21;
 }
+.wpfep-wrapper ul.wpfep-tabs li a:hover, .wpfep-wrapper ul.wpfep-tabs li a:focus {
+  background-color: #a51a21;
+  font-weight: normal;
+}
 .wpfep-wrapper .wpfep-field input {
   border: 1px solid #ce2029;
 }

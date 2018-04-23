@@ -229,6 +229,10 @@ hr {
 				background-color: color(bgHighlight);
 				border-bottom-color: color(bgHighlight);
 			}
+			&:hover, &:focus {
+				background-color: color(bgHighlight);
+				font-weight: normal;
+			}
 		}
 	}
 	& .wpfep-field {
