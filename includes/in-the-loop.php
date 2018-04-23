@@ -72,7 +72,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 		if ( $postdate !== 'none' ) {
 			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 			$date    = get_the_date();
-			$author  = microdata()->get_the_author();
+			$author  = get_the_author();
 			if ( in_array( $postdate, [ 'both', 'modified' ] ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
 				$default  = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 				$date     = get_the_modified_date();
@@ -161,7 +161,7 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
 	function fluid_show_content_title() {
 		if ( ! is_page() ) {
 			$show_orig = false; ?>
-			<h2 class="text-center">
+			<h2 class="text-center" itemprop="headline">
 				<?php tcc_post_title(); ?>
 				<?php fluid_edit_post_link(); ?>
 			</h2>
@@ -215,19 +215,20 @@ if ( ! function_exists( 'fluid_title' ) ) {
 
 if (!function_exists('get_the_author_posts_link')) {
 	function get_the_author_posts_link( $authorID = null ) {
-		$html = '';
-		$authorID = ($authorID) ? $authorID : get_the_author_meta('ID');
-		if ($authorID) {
+		$authorID = ( $authorID ) ? $authorID : get_the_author_meta( 'ID' );
+		if ( $authorID ) {
 			$title = __( 'Author posts archive', 'tcc-fluid' );
 			$attrs = array(
 				'href'       => get_author_posts_url( $authorID ),
 				'title'      => $title,
 				'aria-label' => $title,
+				'itemprop'   => 'url',
+				'rel'        => 'author'
 			);
 			#$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem -
-			$html = fluid()->get_apply_attrs_element( 'a', $attrs, get_the_author_meta('display_name') );
+			return fluid()->element( 'a', $attrs, get_the_author() );
 		}
-		return $html;
+		return '';
 	}
 }
 
