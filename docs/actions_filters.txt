@@ -93,5 +93,4 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		tcc_register_sidebars             array of sidebars to be registered                 register_fluid_sidebars
 		tcc_register_widgets_list         fluidity registered widgets                        tcc_register_widgets
 		tcc_signout_text                  text for log out button                            tcc_login_form_defaults
-		tcc_user_profile_link             html link to user profile page, with name          fluid_user_profile_link
 		widget_title                      widget title                                       TCC_Widget_Basic->widget

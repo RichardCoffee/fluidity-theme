@@ -75,17 +75,6 @@ if ( ! function_exists( 'fluid_survey_cron_schedules' ) ) {
 	add_filter( 'cron_schedules', 'fluid_survey_cron_schedules' );
 }
 
-if (!function_exists('fluid_user_profile_link')) {
-  function fluid_user_profile_link() {
-    $user = wp_get_current_user();
-    $html = "<a href='";
-    $html = get_option('siteurl');
-    $html = "/wp-admin/profile.php'>";
-    $html = $user->display_name;
-    $html = "</a>";
-    return apply_filters('tcc_user_profile_link',$html);
-  }
-}
 /* FIXME
 if (!function_exists('remove_post_revisions')) {
 

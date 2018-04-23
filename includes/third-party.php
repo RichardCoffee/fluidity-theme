@@ -157,3 +157,15 @@ if (function_exists('wpfai_social') && !function_exists('fluidity_wpfai_social')
   }
   add_action('fluidity_social_icons','fluid_wpfai_social');
 }
+
+/** WP Frontend Profile **/
+
+if ( ! function_exists( 'fluid_wpfep_get_edit_user_url' ) && function_exists( 'wpfep_show_profile' ) ) {
+	function fluid_wpfep_get_edit_user_url( $url, $user_id, $scheme ) {
+		if ( page_exists( 'Your Profile' ) ) {
+			return esc_url_raw( home_url( '/your-profile' ) );
+		}
+		return $url;
+	}
+	add_filter( 'edit_profile_url', 'fluid_wpfep_get_edit_user_url', 11, 3 );
+}
