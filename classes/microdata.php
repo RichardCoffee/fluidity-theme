@@ -160,7 +160,7 @@ class TCC_Microdata {
     add_filter('get_the_archive_description',        array($this,'get_the_archive_description'),        $pri);
     add_filter('get_the_archive_title',              array($this,'get_the_archive_title'),              $pri);
     add_filter('get_the_date',                       array($this,'get_the_date'),                       $pri, 3);
-    add_filter('get_the_modified_date',              array($this,'get_the_date'),                       $pri, 3);
+    add_filter('get_the_modified_date',              array($this,'get_the_modified_date'),              $pri, 3);
     add_filter('get_the_title',                      array($this,'get_the_title'),                      $pri, 2);
     add_filter('post_thumbnail_html',                array($this,'post_thumbnail_html'),                $pri);
     add_filter('post_type_archive_title',            array($this,'get_the_title'),                      $pri, 2);
@@ -246,6 +246,15 @@ fluid()->log('microdata filters assigned');
 		if ( ( strpos( $the_date, 'itemprop' ) === false ) && ( ! ( $format === 'U' ) ) ) {
 			$datetime = mysql2date( 'Y-m-d H:i:s', get_post( $postID )->post_date );
 			$string   = '<time itemprop="datePublished" datetime="%1$s">%2$s</time>';
+			return sprintf( $string, $datetime, esc_html( $the_date ) );
+		}
+		return $the_date;
+	}
+
+	public function get_the_modified_date( $the_date, $format, $postID ) {
+		if ( ( strpos( $the_date, 'itemprop' ) === false ) && ( ! ( $format === 'U' ) ) ) {
+			$datetime = mysql2date( 'Y-m-d H:i:s', get_post( $postID )->post_date );
+			$string   = '<time itemprop="dateModified" datetime="%1$s">%2$s</time>';
 			return sprintf( $string, $datetime, esc_html( $the_date ) );
 		}
 		return $the_date;
