@@ -180,7 +180,7 @@ code {
 }
 
 hr {
-	border-color: color(bgHighlight);
+	border-color: $mainhigh; //color(bgHighlight);
 }
 
 .lost-password {
