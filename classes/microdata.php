@@ -280,7 +280,8 @@ class TCC_Microdata {
 
 	public function the_author( $author ) {
 		if ( ! ( strpos( $author, 'itemprop' ) === false ) ) { return $author; }
-		if ( $this->called_by( 'the_author_posts_link' ) ) { return $author; }
+		if ( $this->called_by( [ 'the_author_posts_link' ] ) ) { return $author; }
+fluid()->log('stack');
 		return '<span itemprop="author">' . esc_html( $author ) . '</span>';
 	}
 
