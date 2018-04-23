@@ -172,7 +172,6 @@ class TCC_Microdata {
     add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              $pri);
     add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), $pri, 2);
     add_filter('wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             $pri);
-fluid()->log('microdata filters assigned');
   }
 
   public function comments_popup_link_attributes($attr) {
@@ -202,7 +201,7 @@ fluid()->log('microdata filters assigned');
 
   public function get_comment_author_link($link) {
     if (strpos($link,'itemprop')===false) {
-      $pats = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i');
+      $pats = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
       $reps = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
       $link = preg_replace($pats,$reps,$link);
     }

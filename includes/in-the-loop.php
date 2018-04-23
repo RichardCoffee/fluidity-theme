@@ -214,6 +214,7 @@ if ( ! function_exists( 'fluid_title' ) ) {
 }
 
 if (!function_exists('get_the_author_posts_link')) {
+	fluid()->log('get_the_author_posts_link defined');
 	function get_the_author_posts_link( $authorID = null ) {
 		$authorID = ( $authorID ) ? $authorID : get_the_author_meta( 'ID' );
 		if ( $authorID ) {
@@ -230,6 +231,8 @@ if (!function_exists('get_the_author_posts_link')) {
 		}
 		return '';
 	}
+} else {
+	fluid()->log('get_the_author_posts_link NOT defined');
 }
 
 if (!function_exists('tcc_post_title')) {
