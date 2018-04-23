@@ -1,10 +1,21 @@
+# KDE Dolphin
+.directory
+**/.directory
+# WordPress
 debug.log
+# PHP
 error_log
+**/error_log
+# vi editor
 *.swp
 **/*.swp
+# Sass files
+.sass-cache
+css/*.map
+**/*.css*.map
+# misc
 logs
 old
-old/*
-.sass-cache
-.sass-cache/*
-css/*.map
+
+
+
