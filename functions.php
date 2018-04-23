@@ -78,7 +78,7 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 /*add_action( 'wp_loaded', function () {
 #		$filter = 'logout_redirect';
 		$filter = 'the_content';
-		log_entry( list_filter_hooks( $filter ) );
+		fluid()->log( list_filter_hooks( $filter ) );
 	}
 ); //*/
 

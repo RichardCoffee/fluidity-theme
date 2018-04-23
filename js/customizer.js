@@ -1,15 +1,19 @@
 // https://florianbrinkmann.com/en/3783/conditional-displaying-and-hiding-of-customizer-controls-via-javascript/
-;(function () {
+//;(function () {
+jQuery( document ).ready( function() {
+console.log('doc ready');
 	/**
 	 * Run function when customizer is ready.
 	 */
 	wp.customize.bind('ready', function () {
-
+console.log('bind ready');
 		wp.customize.control('sidebar_position', function (control) {
+console.log('control');
 			/**
 			 * Run function on setting change of control.
 			 */
 			control.setting.bind(function (value) {
+//console.log(
 				switch (value) {
 					/**
 					 * The select was switched to the hide option.

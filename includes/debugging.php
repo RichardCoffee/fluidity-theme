@@ -27,7 +27,6 @@
 			'apply_filters',
 			'call_user_func',
 			'call_user_func_array',
-			'log_entry',
 			'logging',
 		);
 		do {
@@ -62,27 +61,6 @@ if ( ! function_exists( 'was_called_by' ) ) {
 	}
 }
 
-#  generate log entry, with comment
-if ( ! function_exists( 'log_entry' ) ) {
-	function log_entry() {
-		if ( WP_DEBUG ) {
-			$args  = func_get_args();
-			if ( $args ) {
-				$depth = 1;
-				if ( $args && is_int( $args[0] ) ) {
-					$depth = array_shift( $args );
-				}
-				if ( $depth ) {
-					tcc_write_error_log( 'source:  ' . fluid()->debug_calling_function( $depth ) );
-				}
-				foreach( $args as $message ) {
-					tcc_write_error_log( $message );
-				}
-			}
-		}
-	}
-}
-
 if ( ! function_exists( 'tcc_write_error_log' ) ) {
 	function tcc_write_error_log( $log_me, $log_file = 'error_log' ) {
 		static $destination = '';
@@ -107,23 +85,3 @@ if ( ! function_exists( 'tcc_write_error_log' ) ) {
 	}
 }
 
-if ( function_exists( 'add_action' ) ) {
-	if ( WP_DEBUG && ! function_exists( 'tcc_log_deprecated' ) ) {
-		function tcc_log_deprecated() {
-static $here = true;
-			$args = func_get_args();
-if ( $here ) {
-			log_entry( $args, 'stack' );
-	$here = false;
-} else {
-			log_entry( $args ); //, 'stack' );
-}
-		}
-		add_action( 'deprecated_function_run',    'tcc_log_deprecated', 10, 3 );
-		add_action( 'deprecated_constructor_run', 'tcc_log_deprecated', 10, 3 );
-		add_action( 'deprecated_file_included',   'tcc_log_deprecated', 10, 4 );
-		add_action( 'deprecated_argument_run',    'tcc_log_deprecated', 10, 3 );
-		add_action( 'deprecated_hook_run',        'tcc_log_deprecated', 10, 4 );
-		add_action( 'doing_it_wrong_run',         'tcc_log_deprecated', 10, 3 );
-	}
-}

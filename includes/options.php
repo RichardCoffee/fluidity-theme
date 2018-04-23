@@ -6,12 +6,12 @@
 /*
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
 	function fluid_rest_dispatch_request( $result ) {
-#		log_entry( func_get_args() );
-#		log_entry( 'stack' );
-#		log_entry( $_SERVER );
-#		log_entry( $result );
+#		fluid()->log( func_get_args() );
+#		fluid()->log( 'stack' );
+#		fluid()->log( $_SERVER );
+#		fluid()->log( $result );
 		$filter = current_filter();
-log_entry(0,$filter);
+fluid()->log(0,$filter);
 		return $result;
 	}
 #	add_filter( 'rest_dispatch_request',      'fluid_rest_dispatch_request', 10, 4 );

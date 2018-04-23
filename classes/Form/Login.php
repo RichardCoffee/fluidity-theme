@@ -165,14 +165,14 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 			if ( ! $user ) {
 				$redirect_to = home_url();
 			} else if ( ! is_object( $user ) ) {
-				log_entry( 'user var is not an object', $user );
+				$this->log( 'user var is not an object', $user );
 			} else if ( get_class( $user ) === 'WP_Error' ) {
-				log_entry( 'user error', $user );
+				$this->log( 'user error', $user );
 			} else {
 				$location = ( isset( $_POST['login_location'] ) )
 					? esc_url_raw( $_POST['login_location'] )
 					: esc_url_raw( $_SERVER['HTTP_REFERER'] );
-				log_entry(
+				$this->log(
 					'   redirect_to:  ' . $redirect_to,
 					'       request:  ' . $request,
 					'wp_get_referer:  ' . wp_get_referer(),

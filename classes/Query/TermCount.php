@@ -24,7 +24,7 @@ class TCC_Query_TermCount {
 
 	public function add_navmenu_catagory_count( $items ) {
 		foreach( $items as $item ) {
-			#      Operate on children only                       Check to see if the menu item is in our taxonomy
+			//     Operate on children only                       Check to see if the menu item is in our taxonomy
 			if ( ( intval( $item->menu_item_parent, 10 ) > 0 ) && array_key_exists( $item->object_id, $this->counts ) ) {
 				$css = ( $this->counts[ $item->object_id ] === 0 ) ? 'no-count' : 'count';
 				$css.= ' term-count term-count-' . $this->taxonomy;
@@ -38,7 +38,7 @@ class TCC_Query_TermCount {
 		$terms = get_terms( array( 'taxonomy' => $this->taxonomy, 'hide_empty' => false, ) );
 		if ( $terms ) {
 			if ( is_wp_error( $terms ) ) {
-				log_entry( $terms );
+				fluid()->log( $terms );
 			} else {
 				foreach( $terms as $term ) {
 					$this->counts[ $term->term_id ] = $term->count;

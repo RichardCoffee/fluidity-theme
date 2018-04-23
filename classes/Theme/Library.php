@@ -103,7 +103,9 @@ class TCC_Theme_Library {
 
 	public function get_image_attrs( $id ) {
 		$meta = wp_get_attachment_metadata( $id );
-log_entry($meta);
+
+$this->log($meta);
+
 	}
 
 

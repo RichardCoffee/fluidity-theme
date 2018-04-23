@@ -1,6 +1,6 @@
 <?php
 
-// Source? Purpose?
+// Only show the front page section when on the front page
 function contextual_static_front_page_section($wp_customize) {
   $wp_customize->get_section('static_front_page')->active_callback = 'is_front_page';
 }
@@ -42,7 +42,7 @@ if (!function_exists('fluidity_social_icons')) {
         }
         $insta  = new TCC_Options_Social;
         $layout = $insta->options_layout();
-        #log_entry($icons,$social,$layout); ?>
+        #fluid()->log($icons,$social,$layout); ?>
 				<span class='fluidity-social-icons'><?php
 					$library = fluid();
 					foreach( $social as $key => $set ) {

@@ -101,7 +101,6 @@
 		debug_rewrite_rules()
 		list_filter_hooks( $hook = '' )
 		list_template_conditions()
-		log_entry()
 		showme( $title, $data )
 		tellme( $string )
 		who_am_i( $pos=0 )

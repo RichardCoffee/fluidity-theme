@@ -21,7 +21,7 @@ if (!$loaded) {
   global $wp_query;
   $post_type = $wp_query->get('post_type');
   $slug = ( $format=get_post_format() ) ? $format : get_post_type(); // inside loop only, which this is not
-/*log_entry(
+/*fluid()->log(
 	'          called:  ' . $called,
 	'       post_type:  ' . $post_type,
 	'       page slug:  ' . get_page_slug(),
@@ -35,7 +35,7 @@ if (!$loaded) {
         $use_this = $type;
       }
       $post_type = $use_this;
-      #log_entry("FIXME: convert array to usable string",$post_type);
+      #fluid()->log("FIXME: convert array to usable string",$post_type);
     }
     $loaded = fluidity_load_sidebar(array($post_type,$post_type.'_sidebar'));
   }

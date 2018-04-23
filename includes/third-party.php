@@ -21,13 +21,13 @@ if ( class_exists( 'BuddyPress' ) ) {
 		if ( ! $user ) {
 			$new_url = home_url();
 		} else if ( ! is_object( $user ) ) {
-			log_entry( 'user var is not an object', $user, 'stack' );
+			fluid()->log( 'user var is not an object', $user, 'stack' );
 		} else if ( get_class( $user ) === 'WP_Error' ) {
-			log_entry( 'user var is a WP_Error object', $user );
+			fluid()->log( 'user var is a WP_Error object', $user );
 		} else {
 			$user_name = $user->data->user_nicename;
 			$new_url   = home_url( "members/$user_name/profile/" ) ;
-log_entry(
+fluid()->log(
 	'   redirect_to:  ' . $redirect_to,
 	'       request:  ' . $request,
 	'wp_get_referer:  ' . wp_get_referer(),
@@ -80,10 +80,10 @@ if ( class_exists( 'c_ws_plugin__s2member_login_redirects' ) ) {
 		if ( class_exists( 'BuddyPress' ) ) {
 
 			function tcc_s2member_login_redirect( $redirect, $vars = array() ) {
-				#log_entry( 's2member default redirect: ' . $redirect, $vars );
+				#fluid()->log( 's2member default redirect: ' . $redirect, $vars );
 				if ( ! empty( $vars['user'] ) && ( $vars['user'] instanceof WP_User ) ) {
 					$redirect = home_url( "members/{$vars['user']->data->user_nicename}/profile/" ); // FIXME:  this needs some sort of setting, source
-					#log_entry("redirect:  $redirect");
+					#fluid()->log("redirect:  $redirect");
 					#	We have to manually do the redirect since S2 does not seem to want to...
 					wp_safe_redirect($redirect);
 					exit;
@@ -94,7 +94,7 @@ if ( class_exists( 'c_ws_plugin__s2member_login_redirects' ) ) {
 		} else {
 
 			function tcc_s2member_login_redirect( $redirect, $vars = array() ) {
-				#log_entry( 's2member default redirect: ' . $redirect, $vars );
+				#fluid()->log( 's2member default redirect: ' . $redirect, $vars );
 				// If you want s2Member to perform the redirect, return true.
 				// Or, if you do NOT want s2Member to perform the redirect, return false.
 				$redirect = false;
