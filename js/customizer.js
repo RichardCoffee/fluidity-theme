@@ -1,6 +1,6 @@
 // https://florianbrinkmann.com/en/3783/conditional-displaying-and-hiding-of-customizer-controls-via-javascript/
-//;(function () {
-jQuery( document ).ready( function() {
+;(function () {
+//jQuery( document ).ready( function() {
 console.log('doc ready');
 	/**
 	 * Run function when customizer is ready.
