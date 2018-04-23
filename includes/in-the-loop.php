@@ -213,28 +213,6 @@ if ( ! function_exists( 'fluid_title' ) ) {
 	}
 }
 
-if (!function_exists('get_the_author_posts_link')) {
-	fluid()->log('get_the_author_posts_link defined');
-	function get_the_author_posts_link( $authorID = null ) {
-		$authorID = ( $authorID ) ? $authorID : get_the_author_meta( 'ID' );
-		if ( $authorID ) {
-			$title = __( 'Author posts archive', 'tcc-fluid' );
-			$attrs = array(
-				'href'       => get_author_posts_url( $authorID ),
-				'title'      => $title,
-				'aria-label' => $title,
-				'itemprop'   => 'url',
-				'rel'        => 'author'
-			);
-			#$link = str_replace('/author/','/agent/',$link);  // FIXME:  check for appropriate link stem -
-			return fluid()->element( 'a', $attrs, get_the_author() );
-		}
-		return '';
-	}
-} else {
-	fluid()->log('get_the_author_posts_link NOT defined');
-}
-
 if (!function_exists('tcc_post_title')) {
 	function tcc_post_title( $max = 0, $anchor = true ) {
 		$anchor = ( is_single() || is_page() ) ? false : $anchor;
