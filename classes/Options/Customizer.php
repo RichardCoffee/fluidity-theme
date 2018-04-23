@@ -20,26 +20,16 @@ class TCC_Options_Customizer {
 	public function __construct( $args = array() ) {
 		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
 		$this->theme = new TCC_Theme_Customizer;
-		// this action either no longer exists, or it didn't exist in the first place
-#		add_action( 'customize_preview_enqueue_scripts', array( $this, 'customize_preview_enqueue_scripts' ) );
-		add_action( 'customize_preview_init', array( $this, 'customize_preview_enqueue_scripts' ) );
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
 	}
 
-	protected function get_panels() {
-		return apply_filters( 'fluid_customizer_panels', $this->theme->customizer_panels( array() ) );
-	}
-
-	protected function get_controls() {
-		return apply_filters( 'fluid_customizer_controls', $this->theme->customizer_controls( array() ) );
-	}
-
-	public function customize_preview_enqueue_scripts() {
+	public function customize_controls_enqueue_scripts() {
 		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
 		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
-		$panels = $this->get_panels();
+		$panels = apply_filters( 'fluid_customizer_panels', $this->theme->customizer_panels( array() ) );
 		if ( ! empty( $panels ) ) {
 			foreach( $panels as $panel ) {
 				$args = $this->theme->panel_defaults( $panel['args'] );
@@ -47,7 +37,7 @@ class TCC_Options_Customizer {
 				$customize->add_panel( $panel['id'], $args );
 			}
 		}
-		$controls = $this->get_controls();
+		$controls = apply_filters( 'fluid_customizer_controls', $this->theme->customizer_controls( array() ) );
 		foreach( $controls as $section ) {
 			$priority = 0;
 			$section_id = $section['id'];
