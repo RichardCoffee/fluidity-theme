@@ -244,7 +244,6 @@ class TCC_Theme_Comment {
 			'href'       => get_edit_user_link(),
 			'aria-label' => $this->strings['aria']['profile'],
 			'title'      => $this->strings['title']['profile'],
-			'target'     => 'user_profile',
 		);
 		return apply_filters( "{$this->prefix}_comment_profile_link_attrs", $attrs );
 	}
