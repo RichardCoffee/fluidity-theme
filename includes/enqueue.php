@@ -89,3 +89,15 @@ if ( ! function_exists( 'fluidity_enqueue_styles' ) ) {
 	}
 	add_action( 'tcc_during_enqueue', 'fluidity_enqueue_styles', 1 );
 }
+
+/**
+ * Dequeue the Emoji script.  Hate those little fellas, like swarms of little pacmen running around...
+ *
+ * @link https://github.com/myersg86/WP_HTML5BP/blob/master/functions.php
+ */
+if ( ! function_exists( 'fluid_dequeue_emoji' ) ) {
+	function fluid_dequeue_emoji() {
+		wp_dequeue_script( 'emoji' );
+	}
+	add_action( 'wp_print_scripts', 'fluid_dequeue_emoji', 100 );
+}
