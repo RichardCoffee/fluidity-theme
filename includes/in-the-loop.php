@@ -138,17 +138,18 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 	#	http://codex.wordpress.org/Excerpt
 	#	https://make.wordpress.org/themes/handbook/review/accessibility/required/
 	#	https://github.com/wpaccessibility/a11ythemepatterns
+	#	https://make.wordpress.org/accessibility/handbook/best-practices/markup/post-excerpts-for-an-archive-template/
 	function fluid_read_more_link( $output ) {
 		$attrs = array(
-			'class'    => apply_filters( 'fluid_read_more_css', 'read-more-link' ),
-			'href'     => get_permalink( get_the_ID() ),
-			'itemprop' => 'url',
+			'class'       => apply_filters( 'fluid_read_more_css', 'read-more-link' ),
+			'href'        => get_permalink( get_the_ID() ),
+			'itemprop'    => 'url',
+			'aria-hidden' => 'true',
+			'tabindex'    => '-1',
+			'title'       => wp_strip_all_tags( get_the_title( get_the_ID() ) )
 		);
-		$link  = fluid()->get_apply_attrs_tag( 'a', $attrs );
-		$link .= esc_html( apply_filters( 'fluid_read_more_text', __( 'Read More', 'tcc-fluid' ) ) );
-		$link .= '<span class="screen-reader-text"> ';
-		$link .= wp_strip_all_tags( get_the_title( get_the_ID() ) );
-		$link .= '</span></a>';
+		$text = apply_filters( 'fluid_read_more_text', __( 'Read More', 'tcc-fluid' ) );
+		$link = fluid()->get_apply_attrs_element( 'a', $attrs, $text );
 		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
 			$link = ' [' . $link . ']';
 		}
