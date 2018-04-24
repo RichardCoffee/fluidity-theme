@@ -133,10 +133,13 @@ fluid()->log($url);
 	public static function typography_styles() {
 		// font family
 		$font = self::mixed_fonts( get_theme_mod( 'font_typography', 'Helvitica Neue' ) );
-		echo "body { font-family: $font; }";
+		echo "\nbody {\n\tfont-family: $font;\n}\n";
 		// font size
 		$size = intval( get_theme_mod( 'font_size', 18 ), 10 );
 		echo "body { font-size: {$size}px; }";
+		// font family for header
+		$header = self::mixed_fonts( get_theme_mod( 'font_head_typog', 'Open Sans' ) );
+		echo "header { font-family: $header; }";
 		// widget panel title
 		$panel = max( 1, $size - 2 );
 		echo "panel-title { font-size: {$panel}px; }";
