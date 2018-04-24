@@ -25,9 +25,18 @@ class TCC_Theme_Customizer {
 		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
 		$options = apply_filters( 'fluid_customize_controls_localization', array() );
 		if ( $options ) {
-			$options = $this->normalize_options( $options, $options );
+			$options = $this->normalize_options( $options );
 			wp_localize_script( 'fluid-customizer.js', 'fluid_customize', $options );
 		}
+	}
+
+	protected function normalize_options( $options ) {
+		return array_map(
+			function( $control ) {
+				return array_merge( [ 'hide' => null, 'show' => null ], $control );
+			},
+			$options
+		);
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
