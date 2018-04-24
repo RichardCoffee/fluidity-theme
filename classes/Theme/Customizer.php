@@ -3,7 +3,7 @@
  * classes/Theme/Customizer.php
  *
  */
-require_once( '../Options/Typography.php' );
+require_once( 'Typography.php' );
 /**
  * setup for customizer options
  *

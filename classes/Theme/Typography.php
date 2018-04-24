@@ -6,7 +6,7 @@
  */
 
 
-class TCC_Options_Typography {
+class TCC_Theme_Typography {
 
 	private static $option = 'tcc_options_design';
 
@@ -153,13 +153,13 @@ fluid()->log($url);
 				'default' => 'Open Sans',
 				'label'   => __( 'Header Font Type', 'tcc-fluid' ),
 				'render'  => 'font',
-				'choices' => TCC_Options_Typography::mixed_fonts(),
+				'choices' => TCC_Theme_Typography::mixed_fonts(),
 			),
 			'typography' => array(
 				'default' => 'Helvitica Neue',
 				'label'   => __( 'Content Font Type', 'tcc-fluid' ),
 				'render'  => 'font',
-				'choices' => TCC_Options_Typography::mixed_fonts(),
+				'choices' => TCC_Theme_Typography::mixed_fonts(),
 			),
 			'size' => array(
 				'default' => 18,
@@ -184,6 +184,6 @@ fluid()->log($url);
 
 }
 
-add_filter( 'fluid_os_fonts',            array( 'TCC_Options_Typography', 'os_fonts_filter' ) );
-add_filter( 'fluid_google_fonts',        array( 'TCC_Options_Typography', 'google_fonts_filter' ) );
-add_filter( 'fluid_customizer_controls', array( 'TCC_Options_Typography', 'customizer_controls' ) );
+add_filter( 'fluid_os_fonts',            array( 'TCC_Theme_Typography', 'os_fonts_filter' ) );
+add_filter( 'fluid_google_fonts',        array( 'TCC_Theme_Typography', 'google_fonts_filter' ) );
+add_filter( 'fluid_customizer_controls', array( 'TCC_Theme_Typography', 'customizer_controls' ) );
