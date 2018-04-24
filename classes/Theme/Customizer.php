@@ -256,8 +256,8 @@ class TCC_Theme_Customizer {
 
 	public function widget_collapse( $options ) {
 		$section = array(
-			'priority'    => 10,
-			'panel'       => 'widgets',
+			'priority'    => 60,
+			'panel'       => 'fluid_mods',
 			'title'       => __( 'Widget Collapse', 'tcc-fluid' ),
 			'description' => __( 'This section controls details concerning collapsible widgets.', 'tcc-fluid' )
 		);
