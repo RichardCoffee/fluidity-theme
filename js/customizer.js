@@ -5,20 +5,22 @@
 	 */
 	wp.customize.bind('ready', function () {
 
-		// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
-		wp.customize( 'sidebar_position', function( setting ) {
-			wp.customize.control( 'sidebar_fluidity', function( control ) {
-				var visibility = function() {
-					if ( 'none' === setting.get() ) {
-						control.container.slideUp( 180 );
-					} else {
-						control.container.slideDown( 180 );
-					}
-				};
-				visibility();
-				setting.bind( visibility );
+		for ( var key in fluid_customize ) {
+			// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
+			wp.customize( key, function( setting ) {
+				wp.customize.control( fluid_customize[ key ].control, function( control ) {
+					var visibility = function() {
+						if ( fluid_customize[ key ].hide === setting.get() ) {
+							control.container.slideUp( 180 );
+						} else {
+							control.container.slideDown( 180 );
+						}
+					};
+					visibility();
+					setting.bind( visibility );
+				} );
 			} );
-		} );
+		}
 /*
 		wp.customize.control('sidebar_position', function (control) {
 			/**
