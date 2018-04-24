@@ -4,10 +4,10 @@
  *
  */
 /**
- * helper class to set up customizer controls
+ * set up customizer controls
  *
  */
-class TCC_Form_Customizer {
+class TCC_Form_Control_Customizer {
 
 	protected $control;
 	protected $customize; // WP_Customize_Manager
@@ -20,12 +20,24 @@ class TCC_Form_Customizer {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
-/*		if ( empty( self::$theme ) ) {
-			self::$theme = new TCC_Theme_Customizer;
-		} //*/
 		$this->parse_args( $args );
+		if ( isset( $this->control['showhide'] ) ) {
+			add_filter( 'fluid_customize_controls_localization', array( $this, 'fluid_customize_controls_localization' ) );
+		}
 		$render = $this->control['render'];
 		$this->$render();
+	}
+
+	/**
+	 * data to be passed to javascript
+	 *
+	 * @since 201800424
+	 * @param array $data
+	 * @return array
+	 */
+	public function fluid_customize_controls_localization( $data = array() ) {
+		$data[ $this->setting_id ] = $this->control['showhide'];
+		return $data;
 	}
 
 	protected function add_control( $args ) {

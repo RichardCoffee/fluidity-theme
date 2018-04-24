@@ -8,7 +8,6 @@
 		// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
 		wp.customize( 'sidebar_position', function( setting ) {
 			wp.customize.control( 'sidebar_fluidity', function( control ) {
-console.log('setting: '+setting.get());
 				var visibility = function() {
 					if ( 'none' === setting.get() ) {
 						control.container.slideUp( 180 );

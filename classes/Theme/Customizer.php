@@ -16,13 +16,18 @@ class TCC_Theme_Customizer {
 	public $base_cap = 'edit_theme_options';
 
 	public function __construct( $args = array() ) {
-		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
+		add_action( 'customize_register',                 array( $this, 'customize_register' ), 11, 1 );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
 	}
 
 	public function customize_controls_enqueue_scripts() {
 		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
 		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
+		$options = apply_filters( 'fluid_customize_controls_localization', array() );
+		if ( $options ) {
+			$options = $this->normalize_options( $options, $options );
+			wp_localize_script( 'fluid-customizer.js', 'fluid_customize', $options );
+		}
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
@@ -46,7 +51,7 @@ class TCC_Theme_Customizer {
 				$control    = $this->get_setting_defaults( $control );
 				$customize->add_setting( $setting_id, $control );
 				$mypriority = ( isset( $control['priority'] ) ) ? $control['priority'] : $priority;
-				new TCC_Form_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'mypriority' ) );
+				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'mypriority' ) );
 			}
 		}
 	}
@@ -199,15 +204,16 @@ class TCC_Theme_Customizer {
 					'left'  => __( 'Left side', 'tcc-fluid' ),
 					'right' => __( 'Right side', 'tcc-fluid' ),
 				),
-				
+				'showhide' => array(
+					'control' => 'sidebar_fluidity',
+					'hide'    => 'none'
+				),
 			),
 		);
 
 /*
 'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
 'divcss'  => 'no-sidebar-active',
-'showhide' => array(
-'origin' => 'no-sidebar-active',
 'target' => 'no-sidebar-setting',
 'hide'   => 'none',
 ),

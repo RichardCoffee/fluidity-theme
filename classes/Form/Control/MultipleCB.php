@@ -44,11 +44,11 @@ class TCC_Form_Control_MultipleCB extends TCC_Form_Control_Control {
             return;
 
         if ( !empty( $this->label ) ) :
-            fluid()->apply_attrs_element( 'span', [ 'class' => 'customize-control-title' ], $this->label );
+            fluid()->element( 'span', [ 'class' => 'customize-control-title' ], $this->label );
         endif;
 
         if ( !empty( $this->description ) ) :
-            fluid()->apply_attrs_element( 'span', [ 'class' => 'description customize-control-description' ], $this->description );
+            fluid()->element( 'span', [ 'class' => 'description customize-control-description' ], $this->description );
         endif;
 
         $multi_values = !is_array( $this->value() ) ? explode( ',', $this->value() ) : $this->value(); ?>
