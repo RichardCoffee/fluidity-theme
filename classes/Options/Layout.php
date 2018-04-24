@@ -109,7 +109,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 				'thememod' => 'sidebar_sidebar_css',
 			);
 		}
-		$layout['mobile_sidebar'] = array(
+/*		$layout['mobile_sidebar'] = array(
 			'default' => 'bottom',
 			'label'   => __( 'Mobile Sidebar', 'tcc-fluid' ),
 			'text'    => __( 'Where should the sidebar show up on mobile devices?', 'tcc-fluid' ),
@@ -121,7 +121,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			),
 			'divcss'   => 'no-sidebar-setting',
 			'thememod' => 'sidebar_mobile',
-		);
+		); //*/
 		$layout['widget'] = array(
 			'default' => 'perm',
 			'label'   => __( 'Widgets', 'tcc-fluid' ),

@@ -214,7 +214,10 @@ class TCC_Theme_Customizer {
 					'right' => __( 'Right side', 'tcc-fluid' ),
 				),
 				'showhide' => array(
-					'control' => 'sidebar_fluidity',
+					'control' => array(
+						'sidebar_fluidity',
+						'sidebar_mobile'
+					),
 					'hide'    => 'none'
 				),
 			),
@@ -226,7 +229,6 @@ class TCC_Theme_Customizer {
 'target' => 'no-sidebar-setting',
 'hide'   => 'none',
 ),
-'thememod' => 'sidebar_placement',
 );
 */
 
@@ -250,8 +252,18 @@ class TCC_Theme_Customizer {
 'target' => 'fluid-sidebar-setting',
 'show'   => 'no',
 ),
-'thememod' => 'sidebar_fluid',
 */
+		);
+		$controls['mobile'] = array(
+			'default'     => 'bottom',
+			'label'       => __( 'Mobile Sidebar', 'tcc-fluid' ),
+			'description' => __( 'Where should the sidebar show up on mobile devices?', 'tcc-fluid' ),
+			'render'      =>'radio',
+			'choices'     => array(
+				'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
+				'top'    => __( 'Before post content', 'tcc-fluid' ),
+				'bottom' => __( 'After post content', 'tcc-fluid' ),
+			),
 		);
 		$options['sidebar'] = array(
 			'section'  => $section,
