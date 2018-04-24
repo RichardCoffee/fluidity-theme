@@ -53,6 +53,7 @@ wp.customize.control('sidebar_fluidity').active.validate = function() {
 				}
 			});
 		});
+*/
 	});
 })();
 /*
