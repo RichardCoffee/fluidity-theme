@@ -19,8 +19,8 @@
 						 * Deactivate the conditional control.
 						 */
 						wp.customize.control('sidebar_fluidity').deactivate();
-control.active.set( false );
-control.active.validate = function() {
+wp.customize.control('sidebar_fluidity').active.set( false );
+wp.customize.control('sidebar_fluidity').active.validate = function() {
 	return false; // Prevent preview from updating state.
 };
 						break;
