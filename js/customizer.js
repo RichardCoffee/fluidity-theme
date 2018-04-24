@@ -5,19 +5,34 @@
 	 */
 	wp.customize.bind('ready', function () {
 
+		// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
+		wp.customize( 'sidebar_position', function( setting ) {
+			wp.customize.control( 'sidebar_fluidity', function( control ) {
+				var visibility = function() {
+					if ( 'none' === setting.get() ) {
+						control.container.slideUp( 180 );
+					} else {
+						control.container.slideDown( 180 );
+					}
+				};
+				visibility();
+				setting.bind( visibility );
+			} );
+		} );
+/*
 		wp.customize.control('sidebar_position', function (control) {
 			/**
 			 * Run function on setting change of control.
-			 */
+			 * /
 			control.setting.bind(function (value) {
 				switch (value) {
 					/**
 					 * The select was switched to the hide option.
-					 */
+					 * /
 					case 'none':
 						/**
 						 * Deactivate the conditional control.
-						 */
+						 * /
 						wp.customize.control('sidebar_fluidity').deactivate();
 wp.customize.control('sidebar_fluidity').active.set( false );
 wp.customize.control('sidebar_fluidity').active.validate = function() {
@@ -26,12 +41,12 @@ wp.customize.control('sidebar_fluidity').active.validate = function() {
 						break;
 					/**
 					 * The select was switched to »show«.
-					 */
+					 * /
 //					case 'show':
 					default:
 						/**
 						 * Activate the conditional control.
-						 */
+						 * /
 						wp.customize.control('sidebar_fluidity').activate();
 						break;
 				}

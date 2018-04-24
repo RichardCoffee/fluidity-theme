@@ -174,12 +174,10 @@ fluid()->log($url);
 				),
 			),
 		);
-		$typography = array(
-			'id'       => 'font',
+		$options['font'] = array(
 			'section'  => $section,
 			'controls' => $controls
 		);
-		$options[] = $typography;
 		return $options;
 	}
 

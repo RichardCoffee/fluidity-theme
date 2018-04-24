@@ -1,6 +1,7 @@
 <?php
 /*
  * @brief Autoloads class files
+ * @since 20161209
  */
 if ( ! function_exists( 'fluidity_class_loader' ) ) {
 	function fluidity_class_loader( $class ) {
@@ -18,7 +19,7 @@ if ( ! function_exists( 'fluidity_class_loader' ) ) {
 /**
  * Returns an instance of the Theme Library class
  *
- * @since 2.3.0
+ * @since 20180314
  * @staticvar TCC_Theme_Library $library
  * @return TCC_Theme_Library the instance
  */
@@ -35,10 +36,8 @@ if ( ! function_exists( 'fluid' ) ) {
 /**
  * Returns an instance of the ClearFix class
  *
- * @since 2.3.0
- *
+ * @since 20170209
  * @staticvar TCC_Theme_ClearFix $library
- *
  * @return TCC_Theme_ClearFix the instance
  */
 if ( ! function_exists( 'clearfix' ) ) {
@@ -54,7 +53,7 @@ if ( ! function_exists( 'clearfix' ) ) {
 /**
  * Returns an instance of the Comment class
  *
- * @since 2.3.0
+ * @since 20160227
  * @staticvar TCC_Theme_Comment $library
  * @return TCC_Theme_Comment the instance
  */
@@ -71,7 +70,7 @@ if ( ! function_exists( 'fluid_comment' ) ) {
 /**
  * Returns an instance of the Customizer class
  *
- * @since 3.0.0
+ * @since 20180404
  * @staticvar TCC_Options_Customizer $library
  * @return TCC_Options_Customizer
  */
@@ -79,7 +78,7 @@ if ( ! function_exists( 'fluid_customizer' ) ) {
    function fluid_customizer() {
       static $library;
       if ( empty( $library ) ) {
-         $library = new TCC_Options_Customizer;
+         $library = new TCC_Theme_Customizer;
       }
       return $library;
    }
@@ -103,7 +102,7 @@ if ( ! function_exists( 'fluid_gallery' ) ) {
 /**
  * Returns an instance of the Theme Login class
  *
- * @since 2.3.0
+ * @since 20170121
  * @staticvar TCC_Theme_Login $library
  * @return TCC_Theme_Login the instance
  */
@@ -120,7 +119,7 @@ if ( ! function_exists( 'fluid_login' ) ) {
 /**
  * Returns an instance of the Options class
  *
- * @since 2.3.0
+ * @since 20180314
  * @staticvar TCC_Options_FLuidity $library
  * @return TCC_Options_FLuidity the instance
  */
@@ -137,7 +136,7 @@ if ( ! function_exists( 'fluid_options' ) ) {
 /**
  * Returns an instance of the Register Sidebars class
  *
- * @since 2.3.0
+ * @since 20180324
  * @staticvar TCC_Register_Sidebars $library
  * @return TCC_Register_Sidebars the instance
  */
@@ -154,7 +153,7 @@ if ( ! function_exists( 'fluid_register_sidebars' ) ) {
 /**
  * Returns an instance of the Form Sanitize class
  *
- * @since 3.0.0
+ * @since 20180403
  * @staticvar TCC_Form_Sanitize $library
  * @return TCC_Form_Sanitize
  */
@@ -171,7 +170,7 @@ if ( ! function_exists( 'fluid_sanitize' ) ) {
 /**
  * Returns an instance of the Theme Support class
  *
- * @since 2.3.0
+ * @since 20180324
  * @staticvar TCC_Theme_Support $library
  * @return TCC_Theme_Support the instance
  */

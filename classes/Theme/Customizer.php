@@ -3,6 +3,7 @@
  * classes/Theme/Customizer.php
  *
  */
+require_once( '../Options/Typography.php' );
 /**
  * setup for customizer options
  *
@@ -14,9 +15,43 @@ class TCC_Theme_Customizer {
 
 	public $base_cap = 'edit_theme_options';
 
-	public function __construct() { }
+	public function __construct( $args = array() ) {
+		add_action( 'customize_register', array( $this, 'customize_register' ), 11, 1 );
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
+	}
 
-	public function panel_defaults( $panel ) {
+	public function customize_controls_enqueue_scripts() {
+		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
+		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
+	}
+
+	public function customize_register( WP_Customize_Manager $customize ) {
+		$panels = apply_filters( 'fluid_customizer_panels', $this->get_customizer_panels( array() ) );
+		if ( ! empty( $panels ) ) {
+			foreach( $panels as $panel_id => $panel ) {
+				$args = $this->get_panel_defaults( $panel );
+				$args = apply_filters( "fluid_customizer_panels_$panel_id", $panel );
+				$customize->add_panel( $panel_id, $panel );
+			}
+		}
+		$sections = apply_filters( 'fluid_customizer_controls', $this->get_customizer_controls( array() ) );
+		foreach( $sections as $section_id => $section ) {
+			$priority = 0;
+			$section['section'] = $this->get_section_defaults( $section['section'] );
+			$customize->add_section( $section_id, $section['section'] );
+			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
+			foreach( $controls as $control_id => $control ) {
+				$priority  += 10;
+				$setting_id = $section_id . '_' . $control_id;
+				$control    = $this->get_setting_defaults( $control );
+				$customize->add_setting( $setting_id, $control );
+				$mypriority = ( isset( $control['priority'] ) ) ? $control['priority'] : $priority;
+				new TCC_Form_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'mypriority' ) );
+			}
+		}
+	}
+
+	public function get_panel_defaults( $panel ) {
 		$defaults = array(
 			'priority'        => 160,
 			'capability'      => $this->base_cap,
@@ -30,7 +65,7 @@ class TCC_Theme_Customizer {
 		return array_merge( $defaults, $panel );
 	}
 
-	public function section_defaults( $section ) {
+	public function get_section_defaults( $section ) {
 		$defaults = array(
 			'priority'           => 2,
 #			'panel'              =>
@@ -45,7 +80,7 @@ class TCC_Theme_Customizer {
 		return array_merge( $defaults, $section );
 	}
 
-	public function setting_defaults( $setting ) {
+	public function get_setting_defaults( $setting ) {
 		$defaults = array(
 			'type'                 => 'theme_mod', // 'option',
 			'capability'           => $this->base_cap,
@@ -89,21 +124,18 @@ class TCC_Theme_Customizer {
 		return $control;
 	}
 
-	public function customizer_panels() {
+	public function get_customizer_panels() {
 		$panels = array(
-			array(
-				'id' => 'fluid_mods',
-				'args' => array(
-					'priority'    => 10,
-					'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
-					'description' => __( 'All of these options affect how various aspects of the theme will act at various times.', 'tcc-fluid' ),
-				),
+			'fluid_mods' => array(
+				'priority'    => 10,
+				'title'       => __( 'Theme Behavior', 'tcc-fluid' ),
+				'description' => __( 'All of these options affect how various aspects of the theme will act at various times.', 'tcc-fluid' ),
 			),
 		);
 		return $panels;
 	}
 
-	public function customizer_controls( $options = array() ) {
+	public function get_customizer_controls( $options = array() ) {
 		$options = $this->screen_width( $options );
 		$options = $this->theme_sidebar(  $options );
 		return $options;
@@ -142,8 +174,7 @@ class TCC_Theme_Customizer {
 				),
 			);
 		} //*/
-		$options[] = array(
-			'id'       => 'behavior',
+		$options['behavior'] = array(
 			'section'  => $section,
 			'controls' => $controls
 		);
@@ -207,8 +238,7 @@ class TCC_Theme_Customizer {
 'thememod' => 'sidebar_fluid',
 */
 		);
-		$options[] = array(
-			'id'       => 'sidebar',
+		$options['sidebar'] = array(
 			'section'  => $section,
 			'controls' => $controls
 		);
