@@ -45,7 +45,7 @@ class TCC_Theme_Sidebar {
 
 	private function check_mobile() {
 		if ( fluid()->is_mobile() ) {
-			$mobile = tcc_layout( 'mobile_sidebar', 'bottom' );
+			$mobile = get_theme_mod( 'sidebar_mobile', 'bottom' );
 			if ( $mobile === 'none' ) {
 				$this->action = false;
 			} else if ( $mobile === 'bottom' ) {

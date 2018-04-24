@@ -43,7 +43,7 @@ class TCC_Form_Control_Content extends TCC_Form_Control_Control {
 				}
 
 				if ( isset( $this->content ) ) {
-					echo $this->content;
+					echo esc_html( $this->content );
 				}
 
 				if ( isset( $this->description ) ) {

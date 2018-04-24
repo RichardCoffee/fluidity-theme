@@ -284,7 +284,7 @@ class TCC_Theme_Customizer {
 			'default'     => 'default',
 			'label'       => __( 'Widget Icons', 'tcc-fluid' ),
 			'description' => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
-			'render'      => 'radio',
+			'render'      => 'htmlradio',
 			'choices'     => $this->widget_icons(),
 #'src-html' => 'true',
 #'divcss'   => 'fluid-widget-icons',

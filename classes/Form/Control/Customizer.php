@@ -81,6 +81,12 @@ class TCC_Form_Control_Customizer {
 		$this->add_control( $args );
 	}
 
+	protected function htmlradio() {
+		$args = $this->control_settings();
+		$obj  = new TCC_Form_Control_HTMLRadio( $this->customize, $this->setting_id, $args );
+		$this->add_object_control( $obj );
+	}
+
 	protected function radio() {
 		$args = $this->control_settings();
 		$args['choices'] = $this->control['choices'];

@@ -7,7 +7,6 @@
  * @link http://justintadlock.com/archives/2015/05/26/multiple-checkbox-customizer-control
  * @access public
  */
-#class JT_Customize_Control_Checkbox_Multiple extends WP_Customize_Control {
 
 class TCC_Form_Control_MultipleCB extends TCC_Form_Control_Control {
 
@@ -44,11 +43,11 @@ class TCC_Form_Control_MultipleCB extends TCC_Form_Control_Control {
             return;
 
         if ( !empty( $this->label ) ) :
-            fluid()->element( 'span', [ 'class' => 'customize-control-title' ], $this->label );
+            $this->element( 'span', [ 'class' => 'customize-control-title' ], $this->label );
         endif;
 
         if ( !empty( $this->description ) ) :
-            fluid()->element( 'span', [ 'class' => 'description customize-control-description' ], $this->description );
+            $this->element( 'span', [ 'class' => 'description customize-control-description' ], $this->description );
         endif;
 
         $multi_values = !is_array( $this->value() ) ? explode( ',', $this->value() ) : $this->value(); ?>
