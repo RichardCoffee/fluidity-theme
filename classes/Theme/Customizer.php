@@ -151,7 +151,8 @@ class TCC_Theme_Customizer {
 
 	public function get_customizer_controls( $options = array() ) {
 		$options = $this->screen_width( $options );
-		$options = $this->theme_sidebar(  $options );
+		$options = $this->theme_sidebar( $options );
+		$options = $this->widget_collapse( $options );
 		return $options;
 	}
 
@@ -222,16 +223,6 @@ class TCC_Theme_Customizer {
 				),
 			),
 		);
-
-/*
-'change'  => 'showhidePosi( this, ".no-sidebar-setting", null, "none" );',
-'divcss'  => 'no-sidebar-active',
-'target' => 'no-sidebar-setting',
-'hide'   => 'none',
-),
-);
-*/
-
 		$controls['fluidity'] = array(
 			'default'     => 'no',
 			'label'       => __( 'Fluid Sidebar', 'tcc-fluid' ),
@@ -241,18 +232,9 @@ class TCC_Theme_Customizer {
 				'no'  => __( 'Static content', 'tcc-fluid' ),
 				'yes' => __( 'Fluid content', 'tcc-fluid' ),
 			),
-			'active_callback' => function() {
-				return ( ! ( get_theme_mod( 'sidebar_position' ) === 'none' ) );
-			}
-/*
-'change'   => 'showhidePosi( this, ".fluid-sidebar-setting", "no" );',
-'divcss'   => 'fluid-sidebar-active no-sidebar-setting',
-'showhide' => array(
-'origin' => 'fluid-sidebar-active',
-'target' => 'fluid-sidebar-setting',
-'show'   => 'no',
-),
-*/
+#			'active_callback' => function() {
+#				return ( ! ( get_theme_mod( 'sidebar_position' ) === 'none' ) );
+#			},
 		);
 		$controls['mobile'] = array(
 			'default'     => 'bottom',
@@ -270,6 +252,63 @@ class TCC_Theme_Customizer {
 			'controls' => $controls
 		);
 		return $options;
+	}
+
+	public function widget_collapse( $options ) {
+		$section = array(
+			'priority'    => 10,
+			'panel'       => 'widgets',
+			'title'       => __( 'Widget Collapse', 'tcc-fluid' ),
+			'description' => __( 'This section controls details concerning collapsible widgets.', 'tcc-fluid' )
+		);
+		$controls['widget'] = array(
+			'default'     => 'perm',
+			'label'       => __( 'Widgets', 'tcc-fluid' ),
+			'description' => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
+			'render'      => 'radio',
+			'choices'     => array(
+				'perm'   => __( 'Do not provide option to users','tcc-fluid' ),
+				'open'   => __( 'Open', 'tcc-fluid' ),
+				'closed' => __( 'Closed', 'tcc-fluid' ),
+			),
+			'showhide' => array(
+				'control' => [ 'widget_icons' ],
+				'hide'    => 'perm'
+			),
+/*
+'change' => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
+'divcss' => 'widget-icons-active',
+*/
+		);
+		$controls['icons'] = array(
+			'default'     => 'default',
+			'label'       => __( 'Widget Icons', 'tcc-fluid' ),
+			'description' => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
+			'render'      => 'radio',
+			'choices'     => $this->widget_icons(),
+#'src-html' => 'true',
+#'divcss'   => 'fluid-widget-icons',
+		);
+		$options['widget'] = array(
+			'section'  => $section,
+			'controls' => $controls
+		);
+		return $options;
+	}
+
+	public function widget_icons() {
+		$library = fluid();
+		$choices = array(
+			'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
+		);
+		$icons = $library->get_widget_fawe();
+		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
+		foreach( $icons as $key => $set ) {
+			$plus  = $library->get_fawe( $set['plus']  . ' fa-fw' );
+			$minus = $library->get_fawe( $set['minus'] . ' fa-fw' );
+			$choices[ $key ] = sprintf( $fawe_format, $plus, $minus );
+		}
+		return $choices;
 	}
 
 

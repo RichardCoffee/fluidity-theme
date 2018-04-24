@@ -122,7 +122,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'divcss'   => 'no-sidebar-setting',
 			'thememod' => 'sidebar_mobile',
 		); //*/
-		$layout['widget'] = array(
+/*		$layout['widget'] = array(
 			'default' => 'perm',
 			'label'   => __( 'Widgets', 'tcc-fluid' ),
 			'text'    => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
@@ -145,7 +145,7 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'src-html' => 'true',
 			'divcss'   => 'fluid-widget-icons',
 			'thememod' => 'widget_icons',
-		);
+		); //*/
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
@@ -155,7 +155,6 @@ class TCC_Options_Layout extends TCC_Options_Options {
 			'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
 		);
 		$icons = $library->get_widget_fawe();
-#		$fawe_format = _x( '%s / %s', 'display icons for use with the widgets', 'tcc-fluid' );
 		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
 		foreach( $icons as $key => $set ) {
 			$plus  = $library->get_fawe( $set['plus']  . ' fa-fw' );
