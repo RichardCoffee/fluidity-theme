@@ -58,7 +58,6 @@ class TCC_Theme_Customizer {
 				$order     += 10;
 				$setting_id = $section_id . '_' . $control_id;
 				$args       = $this->get_setting_defaults( $control );
-fluid()->log($setting_id,$args);
 				$customize->add_setting( $setting_id, $args );
 				$priority = ( isset( $control['priority'] ) ) ? $control['priority'] : $order;
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
@@ -102,7 +101,7 @@ fluid()->log($setting_id,$args);
 			'theme_supports'       => '',// plugins only
 			'default'              => '',
 			'transport'            => 'refresh', // 'postMessage',
-			'validate_callback'    => array( fluid_sanitize(), $setting['render'] ),
+			'validate_callback'    => '',
 			'sanitize_callback'    => array( fluid_sanitize(), $setting['render'] ),
 			'sanitize_js_callback' => '',
 			'dirty'                => array(), // wtf?
