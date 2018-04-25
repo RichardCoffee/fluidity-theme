@@ -9,7 +9,7 @@
  */
 class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 
-	public $type = 'htmlradio';
+	public $type = 'radio';
 
 	public function render_content() {
 
@@ -17,7 +17,7 @@ class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 			return;
 		}
 
-		$description_id = 'description-' . $this->id;
+		$description_id = '_customize-description-' . $this->id;
 
 		if ( isset( $this->label ) ) {
 			$this->element( 'span', [ 'class' => 'customize-control-title', ], $this->label );
@@ -36,10 +36,10 @@ class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 			<span class="customize-inside-control-row"><?php
 
 				$attrs = array(
-					'id'    => $this->id . '-radio-' . $value,
+					'id'    => '_customize-input-' . $this->id . '-radio-' . $value,
 					'type'  => 'radio',
 					'value' => $value,
-					'name'  => $this->id,
+					'name'  => '_customize-radio-' . $this->id,
 				);
 				if ( ! empty( $this->description ) ) {
 					$attrs['aria-describedby'] = $description_id;

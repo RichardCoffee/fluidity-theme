@@ -77,6 +77,7 @@ protected function control_settings() {
 
 	protected function htmlradio() {
 		$args = $this->control_settings();
+		$args['type'] = 'radio';
 		$obj  = new TCC_Form_Control_HTMLRadio( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
@@ -85,7 +86,6 @@ protected function control_settings() {
 		$args = $this->control_settings();
 		$args['choices'] = $this->control['choices'];
 		$args['type'] = 'radio';
-#fluid()->log( $this->setting_id, $args );
 		$this->add_control( $args );
 	}
 
