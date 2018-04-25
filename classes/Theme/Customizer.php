@@ -51,15 +51,15 @@ class TCC_Theme_Customizer {
 		$sections = apply_filters( 'fluid_customizer_controls', $this->get_customizer_controls( array() ) );
 		foreach( $sections as $section_id => $section ) {
 			$order = 0;
-			$section['section'] = $this->get_section_defaults( $section['section'] );
-			$customize->add_section( $section_id, $section['section'] );
+			$args  = $this->get_section_defaults( $section['section'] );
+			$customize->add_section( $section_id, $args );
 			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
 			foreach( $controls as $control_id => $control ) {
 				$order     += 10;
 				$setting_id = $section_id . '_' . $control_id;
-				$control    = $this->get_setting_defaults( $control );
-fluid()->log($setting_id,$control);
-				$customize->add_setting( $setting_id, $control );
+				$args       = $this->get_setting_defaults( $control );
+fluid()->log($setting_id,$args);
+				$customize->add_setting( $setting_id, $args );
 				$priority = ( isset( $control['priority'] ) ) ? $control['priority'] : $order;
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
@@ -68,13 +68,13 @@ fluid()->log($setting_id,$control);
 
 	public function get_panel_defaults( $panel ) {
 		$defaults = array(
-#			'priority'        => 160,
+			'priority'        => 160,
 			'capability'      => $this->base_cap,
-#			'theme_supports'  =>
+			'theme_supports'  => '',
 			'title'           => __( 'Panel Title', 'tcc-fluid' ),
 			'description'     => __( 'Panel Description', 'tcc-fluid' ),
-#			'type'            => 'default',
-#			'active_callback' =>
+			'type'            => 'default',
+			'active_callback' => '',
 			'auto_expand_sole_section' => true
 		);
 		return array_merge( $defaults, $panel );
@@ -82,14 +82,14 @@ fluid()->log($setting_id,$control);
 
 	public function get_section_defaults( $section ) {
 		$defaults = array(
-#			'priority'           => 10,
-#			'panel'              =>
+			'priority'           => 10,
+			'panel'              => '',
 			'capability'         => $this->base_cap,
-#			'theme_supports'     => // plugins only - section will not display if unsupported
+			'theme_supports'     => '',// plugins only - section will not display if unsupported
 			'title'              => __( 'Section Title', 'tcc-fluid' ),
-#			'description'        => __( 'Section description text', 'tcc-fluid' ),
-#			'type'               => 'default', // determines js template used
-#			'active_callback'    => '',        // determines whether the control is initially active
+			'description'        => __( 'Section description text', 'tcc-fluid' ),
+			'type'               => 'default', // determines js template used
+			'active_callback'    => '',        // determines whether the control is initially active
 			'description_hidden' => true,      // will display button to show description
 		);
 		return array_merge( $defaults, $section );
@@ -99,44 +99,43 @@ fluid()->log($setting_id,$control);
 		$defaults = array(
 			'type'                 => 'theme_mod', // 'option',
 			'capability'           => $this->base_cap,
-#			'theme_supports'       => // plugins only
+			'theme_supports'       => '',// plugins only
 			'default'              => '',
 			'transport'            => 'refresh', // 'postMessage',
 			'validate_callback'    => array( fluid_sanitize(), $setting['render'] ),
 			'sanitize_callback'    => array( fluid_sanitize(), $setting['render'] ),
-#			'sanitize_js_callback' => '',
-#			'dirty'                => array(), // wtf?
+			'sanitize_js_callback' => '',
+			'dirty'                => array(), // wtf?
 		);
-		return array_merge( $defaults, $setting );
+		return array_merge( $defaults, array_intersect_key( $setting, $defaults ) );
 	}
 
 	public function control_defaults( $control ) {
 		$defaults = array(
 			'settings'    => array( $this->setting_id ),
-#			'setting'
+			'setting'     => '',
 			'capability'  => $this->base_cap,
-#			'priority'    => 10,
-#			'section'     => $this->section_id,
+			'priority'    => 10,
+			'section'     => '',
 			'label'       => __( 'Control Label', 'tcc-fluid' ),
-#			'description' => __( 'Control Description', 'tcc-fluid' ),
-#			'choices'     => array(), // used only if type = 'radio' or 'select' only
-#			'type'        => $control['render'],
-/*			'input_attrs' => array(
-				'class' => 'my-custom-class-for-js',
-				'style' => 'border: 1px solid #900',
-				'placeholder' => __( 'mm/dd/yyyy' ),
-			), //*/
-#			'allow_addition'  => '', // used only if type = 'dropdown-pages'
-#			'active_callback' => '', // 'is_front_page',
+			'description' => __( 'Control Description', 'tcc-fluid' ),
+			'choices'     => array(), // used only if type = 'radio' or 'select' only
+			'type'        => $control['render'],
+			'input_attrs' => array(),
+			'allow_addition'  => '', // used only if type = 'dropdown-pages'
+			'active_callback' => '', // 'is_front_page',
 		);
-		$control = array_merge( $defaults, $control );
-		if ( empty( $control['description'] ) && isset( $control['text'] ) ) {
-			$control['description'] = $control['text'];
+		return array_merge( $defaults, array_intersect_key( $control, $defaults ) );
+		$merge = array();
+		foreach( $control as $key => $value ) {
+			if ( isset( $defaults[ $key ] ) ) {
+				$merge[ $key ] = $value;
+			}
 		}
-		if ( empty( $control['type'] ) ) {
-			$control['type'] = $control['render'];
-		}
-		return $control;
+		return array_merge( $defaults, $merge );
+	}
+
+	protected function merge_keys( $base, $search ) {
 	}
 
 	public function get_customizer_panels() {

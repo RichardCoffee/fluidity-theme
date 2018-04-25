@@ -15,11 +15,14 @@ class TCC_Form_Control_Customizer {
 	protected $section_id;
 	protected $setting_id;
 
-#	protected static $theme; // TCC_Theme_Customizer
+	protected static $theme; // TCC_Theme_Customizer
 
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
+		if ( empty( self::$theme ) ) {
+			self::$theme = fluid_customizer();
+		}
 		$this->parse_args( $args );
 		if ( isset( $this->control['showhide'] ) ) {
 			add_filter( 'fluid_customize_controls_localization', array( $this, 'fluid_customize_controls_localization' ) );
@@ -48,24 +51,15 @@ class TCC_Form_Control_Customizer {
 		$this->customize->add_control( $obj );
 	}
 
-	protected function control_settings() {
+protected function control_settings() {
 		$defaults = array(
 			'settings'    => array( $this->setting_id ),
-			'capability'  => $this->control['capability'],
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
-			'label'       => $this->control['label'],
 			'type'        => $this->control['render'],
 		);
-		if ( isset( $this->control['input_attrs'] ) ) {
-			$defaults['input_attrs'] = $this->control['input_attrs'];
-		}
-		if ( isset( $this->control['description'] ) ) {
-			$defaults['description'] = $this->control['description'];
-		} elseif ( isset( $this->control['text'] ) ) {
-			$defaults['description'] = $this->control['text'];
-		}
-		return $defaults;
+		$args = array_merge( $defaults, $this->controls );
+		return self::$theme->control_defaults( $args );
 	}
 
 	protected function content() {
