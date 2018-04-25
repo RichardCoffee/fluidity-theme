@@ -62,6 +62,7 @@ trait TCC_Trait_Logging {
 			$line = ( isset( $call_trace[ $depth ]['line'] ) )     ? $call_trace[ $depth ]['line']     : $default;
 			$depth++;
 			$func = ( isset( $call_trace[ $depth ]['function'] ) ) ? $call_trace[ $depth ]['function'] : $default;
+$this->logging_write_entry( "$func: $total_cnt/$depth" );
 		} while( in_array( $func, $skip_list, true ) && ( $total_cnt > $depth ) );
 		return "$file, $func, $line : $total_cnt/$depth";
 	}
