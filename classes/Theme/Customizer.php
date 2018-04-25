@@ -60,7 +60,7 @@ class TCC_Theme_Customizer {
 				$control    = $this->get_setting_defaults( $control );
 				$customize->add_setting( $setting_id, $control );
 				$mypriority = ( isset( $control['priority'] ) ) ? $control['priority'] : $priority;
-fluid()->log( "priority: $priority");
+fluid()->log( "priority: $priority", "mypriority: $mypriority" );
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'mypriority' ) );
 			}
 		}
@@ -68,7 +68,7 @@ fluid()->log( "priority: $priority");
 
 	public function get_panel_defaults( $panel ) {
 		$defaults = array(
-			'priority'        => 160,
+#			'priority'        => 160,
 			'capability'      => $this->base_cap,
 #			'theme_supports'  =>
 			'title'           => __( 'Panel Title', 'tcc-fluid' ),
@@ -82,7 +82,7 @@ fluid()->log( "priority: $priority");
 
 	public function get_section_defaults( $section ) {
 		$defaults = array(
-			'priority'           => 2,
+#			'priority'           => 2,
 #			'panel'              =>
 			'capability'         => $this->base_cap,
 #			'theme_supports'     => // plugins only - section will not display if unsupported
@@ -115,7 +115,7 @@ fluid()->log( "priority: $priority");
 			'settings'    => array( $this->setting_id ),
 #			'setting'
 			'capability'  => $this->base_cap,
-			'priority'    => 2,
+#			'priority'    => 2,
 #			'section'     => $this->section_id,
 			'label'       => __( 'Control Label', 'tcc-fluid' ),
 #			'description' => __( 'Control Description', 'tcc-fluid' ),
