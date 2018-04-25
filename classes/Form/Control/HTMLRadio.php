@@ -33,25 +33,24 @@ class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 
 		foreach ( $this->choices as $value => $label ) { ?>
 
-			<span class="customize-inside-control-row">
-				<label><?php
+			<span class="customize-inside-control-row"><?php
 
-					$attrs = array(
-						'id'    => $this->id . '-radio-' . $value,
-						'type'  => 'radio',
-						'value' => $value,
-						'name'  => $this->id,
-					);
-					if ( ! empty( $this->description ) ) {
-						$attrs['aria-describedby'] = $description_id;
-					}
-					$attrs = $this->tcc_link( $attrs );
-					$attrs = $this->checked( $attrs, $this->value(), $value );
+				$attrs = array(
+					'id'    => $this->id . '-radio-' . $value,
+					'type'  => 'radio',
+					'value' => $value,
+					'name'  => $this->id,
+				);
+				if ( ! empty( $this->description ) ) {
+					$attrs['aria-describedby'] = $description_id;
+				}
+				$attrs = $this->tcc_link( $attrs );
+				$attrs = $this->checked( $attrs, $this->value(), $value );
+				$this->element( 'input', $attrs );
 
-					$this->element( 'input', $attrs );
-					echo $label; ?>
+				$this->tag( 'label', [ 'for' => $attrs['id'] ] );
+				echo $label . '</label>'; ?>
 
-				</label>
 			</span><?php
 
 		}
