@@ -276,7 +276,7 @@ class TCC_Theme_Customizer {
 				'type' => 'radio',
 			)
 		);
-fluid()->log( $section, $setting, $control );
+fluid()->log( clone $section, clone $setting, clone $control );
 	}
 
 	public function widget_collapse( $options ) { /*
