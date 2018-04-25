@@ -63,6 +63,7 @@ class TCC_Theme_Customizer {
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
+		$this->widget_test( $customize );
 	}
 
 	public function get_panel_defaults( $panel ) {
@@ -125,16 +126,6 @@ class TCC_Theme_Customizer {
 			'active_callback' => '', // 'is_front_page',
 		);
 		return array_merge( $defaults, array_intersect_key( $control, $defaults ) );
-		$merge = array();
-		foreach( $control as $key => $value ) {
-			if ( isset( $defaults[ $key ] ) ) {
-				$merge[ $key ] = $value;
-			}
-		}
-		return array_merge( $defaults, $merge );
-	}
-
-	protected function merge_keys( $base, $search ) {
 	}
 
 	public function get_customizer_panels() {
@@ -253,7 +244,41 @@ class TCC_Theme_Customizer {
 		return $options;
 	}
 
-	public function widget_collapse( $options ) {
+	private function widget_test( $man ) {
+		$section = $man->add_section(
+			'widget',
+			array(
+				'priority'    => 60,
+				'panel'       => 'fluid_mods',
+				'title'       => __( 'Widget Collapse', 'tcc-fluid' ),
+				'description' => __( 'This section controls the use and details concerning collapsible widgets.', 'tcc-fluid' )
+			)
+		);
+		$setting = $man->add_setting(
+			'widget_collapse_setting',
+			array(
+				'default'           => 'perm',
+				'sanitize_callback' => array( fluid_sanitize(), 'radio' ),
+			)
+		);
+		$man->add_control(
+			'widget_collapse_control',
+			array(
+				'setting'     => 'widget_collapse_setting',
+				'section'     => 'widget',
+				'label'       => __( 'Widgets', 'tcc-fluid' ),
+				'description' => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
+				'choices'     => array(
+					'perm'   => __( 'Do not provide option to users','tcc-fluid' ),
+					'open'   => __( 'Open', 'tcc-fluid' ),
+					'closed' => __( 'Closed', 'tcc-fluid' ),
+				),
+				'type' => 'radio',
+			)
+		);
+	}
+
+	public function widget_collapse( $options ) { /*
 		$section = array(
 			'priority'    => 60,
 			'panel'       => 'fluid_mods',
@@ -274,10 +299,6 @@ class TCC_Theme_Customizer {
 				'control' => [ 'widget_icons' ],
 				'hide'    => 'perm'
 			),
-/*
-'change' => 'showhidePosi( this, ".fluid-widget-icons", "perm" );',
-'divcss' => 'widget-icons-active',
-*/
 		);
 		$controls['icons'] = array(
 			'default'     => 'default',
@@ -285,13 +306,11 @@ class TCC_Theme_Customizer {
 			'description' => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
 			'render'      => 'htmlradio',
 			'choices'     => $this->widget_icons(),
-#'src-html' => 'true',
-#'divcss'   => 'fluid-widget-icons',
 		);
 		$options['widget'] = array(
 			'section'  => $section,
 			'controls' => $controls
-		);
+		); //*/
 		return $options;
 	}
 
