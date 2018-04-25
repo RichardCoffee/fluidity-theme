@@ -50,9 +50,9 @@ trait TCC_Trait_Logging {
 			'call_user_func_array',
 			'debug_calling_function',
 			'get_calling_function',
-			'log',
-			'logg',
-			'logging'
+#			'log',
+#			'logg',
+#			'logging'
 		);
 		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
