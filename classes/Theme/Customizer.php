@@ -112,7 +112,7 @@ fluid()->log($setting_id,$args);
 
 	public function control_defaults( $control ) {
 		$defaults = array(
-			'settings'    => array( $this->setting_id ),
+			'settings'    => array(),
 			'setting'     => '',
 			'capability'  => $this->base_cap,
 			'priority'    => 10,
