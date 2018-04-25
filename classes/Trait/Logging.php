@@ -45,9 +45,9 @@ trait TCC_Trait_Logging {
 		#	This is not intended to be an exhaustive list
 		static $skip_list = array(
 #			'__call',
-#			'apply_filters',
+			'apply_filters',
 #			'call_user_func',
-#			'call_user_func_array',
+			'call_user_func_array',
 #			'debug_calling_function',
 #			'get_calling_function',
 			'log',
@@ -63,7 +63,7 @@ trait TCC_Trait_Logging {
 			$depth++;
 			$func = ( isset( $call_trace[ $depth ]['function'] ) ) ? $call_trace[ $depth ]['function'] : $default;
 		} while( in_array( $func, $skip_list, true ) && ( $total_cnt > $depth ) );
-		return "$file, $func, $line";
+		return "$file, $func, $line : $total_cnt/$depth";
 	}
 
 	# generally only called in library classes
@@ -143,6 +143,8 @@ trait TCC_Trait_Logging {
 		if ( is_array( $log_me ) || is_object( $log_me ) ) {
 			$message = print_r( $log_me, true ); // PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 33226752 bytes)
 		} else if ( $log_me === 'stack' ) {
+			$message = print_r( debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ), true );
+		} else if ( $log_me === 'full-stack' ) {
 			$message = print_r( debug_backtrace(), true );
 		}
 		$message = date( '[d-M-Y H:i:s e] ' ) . $message . "\n";
