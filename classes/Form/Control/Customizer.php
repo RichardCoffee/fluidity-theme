@@ -58,7 +58,7 @@ protected function control_settings() {
 			'section'     => $this->section_id,
 			'type'        => $this->control['render'],
 		);
-		$args = array_merge( $defaults, $this->controls );
+		$args = array_merge( $defaults, $this->control );
 		return self::$theme->control_defaults( $args );
 	}
 
