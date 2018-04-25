@@ -60,7 +60,7 @@ class TCC_Theme_Customizer {
 				$control    = $this->get_setting_defaults( $control );
 				$customize->add_setting( $setting_id, $control );
 				$mypriority = ( isset( $control['priority'] ) ) ? $control['priority'] : $priority;
-fluid()->log( $priority, $control, 'stack');
+fluid()->log( $priority, $control);//, 'stack');
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'mypriority' ) );
 			}
 		}
@@ -260,7 +260,7 @@ fluid()->log( $priority, $control, 'stack');
 			'priority'    => 60,
 			'panel'       => 'fluid_mods',
 			'title'       => __( 'Widget Collapse', 'tcc-fluid' ),
-			'description' => __( 'This section controls details concerning collapsible widgets.', 'tcc-fluid' )
+			'description' => __( 'This section controls the use and details concerning collapsible widgets.', 'tcc-fluid' )
 		);
 		$controls['collapse'] = array(
 			'default'     => 'perm',
