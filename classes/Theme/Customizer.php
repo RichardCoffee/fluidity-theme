@@ -276,7 +276,7 @@ class TCC_Theme_Customizer {
 				'type' => 'radio',
 			)
 		);
-fluid()->log( $this->test_logging($section), $this->test_logging($setting), $this->test_logging($control) );
+fluid()->log( 'section', $this->test_logging($section), 'setting', $this->test_logging($setting), 'control', $this->test_logging($control) );
 	}
 
 private function test_logging( $object ) {
