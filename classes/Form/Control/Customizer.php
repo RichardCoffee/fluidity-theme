@@ -50,7 +50,7 @@ class TCC_Form_Control_Customizer {
 
 	protected function control_settings() {
 		$defaults = array(
-#			'settings'    => array( $this->setting_id ),
+			'settings'    => array( $this->setting_id ),
 			'capability'  => $this->control['capability'],
 			'priority'    => $this->priority,
 			'section'     => $this->section_id,
