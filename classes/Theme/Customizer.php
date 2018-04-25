@@ -261,7 +261,7 @@ class TCC_Theme_Customizer {
 			'title'       => __( 'Widget Collapse', 'tcc-fluid' ),
 			'description' => __( 'This section controls details concerning collapsible widgets.', 'tcc-fluid' )
 		);
-		$controls['widget'] = array(
+		$controls['collapse'] = array(
 			'default'     => 'perm',
 			'label'       => __( 'Widgets', 'tcc-fluid' ),
 			'description' => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
@@ -299,7 +299,7 @@ class TCC_Theme_Customizer {
 	public function widget_icons() {
 		$library = fluid();
 		$choices = array(
-			'none'    => __( 'Do not use an icon set - let the user figure it out for themselves...', 'tcc-fluid' ),
+			'none'    => __( 'Do not use an icon set - let the lusers figure it out for themselves...', 'tcc-fluid' ),
 		);
 		$icons = $library->get_widget_fawe();
 		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );

@@ -7,6 +7,8 @@ class TCC_Widget_Widget extends WP_Widget {
 	protected $slug  = '';
 	protected static $micro = null;
 
+	use TCC_Trait_Attributes;
+
 	public function __construct( $slug = '', $title = '', $desc = array() ) {
 		$args = array(
 			'description' => $this->desc,
@@ -46,28 +48,36 @@ class TCC_Widget_Widget extends WP_Widget {
 		$this->form_field( $instance, 'title', $text );
 	}
 
-	protected function form_field( $instance, $slug, $text ) {
-		$valu  = ( empty( $instance[ $slug ] ) ) ? '' : esc_attr( $instance[ $slug ] );
-		$html  = '<p><label for="' . esc_attr( $this->get_field_id( $slug ) ) . '">';
-		$html .= esc_html( $text ) . '</label>';
-		$html .= '<input type="text" class="widefat"';
-		$html .= ' id="' . esc_attr( $this->get_field_id( $slug ) ) . '"';
-		$html .= ' name="' . esc_attr( $this->get_field_name( $slug ) ) . '"';
-		$html .= ' value="' . esc_attr( $valu ) . '"';
-		$html .= ' /></p>';
-		echo $html;
+	protected function form_field( $instance, $slug, $text ) { ?>
+		<p><?php
+			$this->apply_attrs_element( 'label', [ 'for' => $this->get_field_id( $slug ) ], $text );
+			$attrs = array(
+				'type'  => 'text',
+				'class' => 'widefat',
+				'id'    => $this->get_field_id( $slug ),
+				'name'  => $this->get_field_name( $slug ),
+				'value' => ( empty( $instance[ $slug ] ) ) ? '' : esc_attr( $instance[ $slug ] )
+			);
+			$this->apply_attrs_element( 'input', $attrs ); ?>
+		</p><?php
 	}
 
 	protected function form_checkbox( $instance, $slug, $text ) {
-		$valu  = ( empty( $instance[ $slug ] ) ) ? 'off' : $instance[ $slug ];
-		$html  = '<p><label>';
-		$html .= '<input type="checkbox"';
-		$html .= ' id="' . esc_attr( $this->get_field_id( $slug ) ) . '"';
-		$html .= ' name="' . esc_attr( $this->get_field_name( $slug ) ) . '"';
-		$html .= checked( $valu, 'on', false );
-		$html .= '/> <span> ' . esc_html( $text ) . '</span></label>';
-		$html .= '</label></p>';
-		echo $html;
+		$value = ( empty( $instance[ $slug ] ) ) ? 'off' : $instance[ $slug ]; ?>
+		<p>
+			<label><?php
+				$attrs = array(
+					'type' => 'checkbox',
+					'id'   => $this->get_field_id( $slug ),
+					'name' => $this->get_field_name( $slug ),
+				);
+				$attrs = checked( $attrs, $value, 'on' );
+				$this->apply_attrs_element( 'input', $attrs ); ?>
+				&nbsp;<span>
+					 <?php esc_html( $text ); ?>
+				</span>
+			</label>
+		</p><?php
 	}
 
 	public function update( $new, $old ) {

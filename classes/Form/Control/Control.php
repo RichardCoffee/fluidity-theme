@@ -4,14 +4,7 @@ class TCC_Form_Control_Control extends WP_Customize_Control {
 
 	use TCC_Trait_Attributes;
 
-	protected function checked( $attrs, $checked, $current = true ) {
-		if ( (string) $checked === (string) $current ) {
-			$attrs[ $type ] = $type;
-		}
-		return $attrs;
-	}
-
-	protected function linked( $attrs, $setting_key = 'default' ) {
+	protected function tcc_link( $attrs, $setting_key = 'default' ) {
 		if ( isset( $this->settings[ $setting_key ] ) && $this->settings[ $setting_key ] instanceof WP_Customize_Setting ) {
 			$attrs['data-customize-setting-link'] = $this->settings[ $setting_key ]->id;
 		} else {

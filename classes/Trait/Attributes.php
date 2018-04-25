@@ -73,7 +73,7 @@ trait TCC_Trait_Attributes {
 	 * @param string|array $classes css classes to be sanitized
 	 * @return string
 	 */
-	private function sanitize_html_class( $classes ) {
+	protected function sanitize_html_class( $classes ) {
 		if ( is_array( $classes ) ) {
 			// pack it down then blow it up - insure each element is a single class
 			$classes = array_unique( explode( ' ', implode( ' ', $classes ) ) );
@@ -114,7 +114,7 @@ trait TCC_Trait_Attributes {
 	 * @param string $tag tag to check for
 	 * @return bool
 	 */
-	private function is_self_closing( $tag ) {
+	protected function is_self_closing( $tag ) {
 		static $self_closing;
 		if ( ! $self_closing ) {
 			$self_closing = array( 'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr' );
@@ -153,6 +153,34 @@ trait TCC_Trait_Attributes {
 			$html .= '>' . esc_html( $text ) . "</$element>";
 		}
 		return $html;
+	}
+
+	# @since 20180424
+	public function checked( $attrs, $checked, $current = true ) {
+		return $this->__checked_selected_helper( $attrs, $checked, $current, 'checked' );
+	}
+
+	# @since 20180424
+	public function disabled( $attrs, $disabled, $current = true ) {
+		return $this->__checked_selected_helper( $attrs, $disabled, $current, 'disabled' );
+	}
+
+	# @since 20180424
+	public function readonly( $attrs, $readonly, $current = true ) {
+		return $this->__checked_selected_helper( $attrs, $readonly, $current, 'readonly' );
+	}
+
+	# @since 20180424
+	public function selected( $attrs, $selected, $current = true ) {
+		return $this->__checked_selected_helper( $attrs, $selected, $current, 'selected' );
+	}
+
+	# @since 20180424
+	protected function __checked_selected_helper( $attrs, $helper, $current, $type ) {
+		if ( (string) $helper === (string) $current ) {
+			$attrs[ $type ] = $type;
+		}
+		return $attrs;
 	}
 
 
