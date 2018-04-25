@@ -50,17 +50,17 @@ class TCC_Theme_Customizer {
 		}
 		$sections = apply_filters( 'fluid_customizer_controls', $this->get_customizer_controls( array() ) );
 		foreach( $sections as $section_id => $section ) {
-			$priority = 0;
+			$order = 0;
 			$section['section'] = $this->get_section_defaults( $section['section'] );
 			$customize->add_section( $section_id, $section['section'] );
 			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
 			foreach( $controls as $control_id => $control ) {
-				$priority  += 10;
+				$order     += 10;
 				$setting_id = $section_id . '_' . $control_id;
 				$control    = $this->get_setting_defaults( $control );
 				$customize->add_setting( $setting_id, $control );
-				$mypriority = ( isset( $control['priority'] ) ) ? $control['priority'] : $priority;
-				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'mypriority' ) );
+				$priority = ( isset( $control['priority'] ) ) ? $control['priority'] : $order;
+				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
 	}
