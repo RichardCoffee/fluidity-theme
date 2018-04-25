@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 who_am_i(); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?> role="article">
 
 	<header>
 		<?php do_action( 'fluid_content_header' ); ?>
