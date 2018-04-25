@@ -276,8 +276,20 @@ class TCC_Theme_Customizer {
 				'type' => 'radio',
 			)
 		);
-fluid()->log( clone $section, clone $setting, clone $control );
+fluid()->log( $this->test_logging($section), $this->test_logging($setting), $this->test_logging($control) );
 	}
+
+private function test_logging( $object ) {
+	$logme = array();
+	foreach ( (array)$object as $key => $value ) {
+		if ( is_object( $value ) ) {
+			$logme[ $key ] = 'Object ' . get_class( $value );
+		} else {
+			$logme[ $key ] = $value;
+		}
+	}
+	return $logme;
+}
 
 	public function widget_collapse( $options ) { /*
 		$section = array(
