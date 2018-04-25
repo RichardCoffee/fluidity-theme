@@ -52,6 +52,7 @@ class TCC_Theme_Customizer {
 		foreach( $sections as $section_id => $section ) {
 			$order = 0;
 			$section['section'] = $this->get_section_defaults( $section['section'] );
+fluid()->log($section['section']);
 			$customize->add_section( $section_id, $section['section'] );
 			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
 			foreach( $controls as $control_id => $control ) {
