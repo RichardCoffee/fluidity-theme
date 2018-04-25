@@ -46,10 +46,10 @@ class TCC_Form_Sanitize {
 
 	# See also: classes/Form/Field/Radio.php
 	public function radio( $input, $setting = null ) {
-fluid()->log($input);
+#fluid()->log($input);
 		$input   = sanitize_key( $input );
 		$choices = $setting->manager->get_control( $setting->id )->choices;
-fluid()->log("input:  $input",$choices);
+#fluid()->log("input:  $input",$choices);
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
 

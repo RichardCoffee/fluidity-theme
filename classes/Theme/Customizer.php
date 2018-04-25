@@ -246,7 +246,7 @@ class TCC_Theme_Customizer {
 
 	private function widget_test( $man ) {
 		$section = $man->add_section(
-			'widget',
+			'theme_widget',
 			array(
 				'priority'    => 60,
 				'panel'       => 'fluid_mods',
@@ -255,17 +255,17 @@ class TCC_Theme_Customizer {
 			)
 		);
 		$setting = $man->add_setting(
-			'widget_collapse_setting',
+			'theme_widget_collapse_setting',
 			array(
 				'default'           => 'perm',
 				'sanitize_callback' => array( fluid_sanitize(), 'radio' ),
 			)
 		);
-		$man->add_control(
-			'widget_collapse_control',
+		$control = $man->add_control(
+			'theme_widget_collapse_control',
 			array(
-				'setting'     => 'widget_collapse_setting',
-				'section'     => 'widget',
+				'setting'     => 'theme_widget_collapse_setting',
+				'section'     => 'theme_widget',
 				'label'       => __( 'Widgets', 'tcc-fluid' ),
 				'description' => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
 				'choices'     => array(
@@ -276,6 +276,7 @@ class TCC_Theme_Customizer {
 				'type' => 'radio',
 			)
 		);
+fluid()->log( $section, $setting, $control );
 	}
 
 	public function widget_collapse( $options ) { /*
