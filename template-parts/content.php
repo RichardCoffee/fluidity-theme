@@ -11,12 +11,16 @@ who_am_i(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
 
-	<?php do_action( 'fluid_content_header' ); ?>
+	<header>
+		<?php do_action( 'fluid_content_header' ); ?>
+	</header>
 
-	<div class="article" itemprop="articleBody">
+	<section class="article" itemprop="articleBody">
 		<?php the_content(); ?>
-	</div>
+	</section>
 
-	<?php do_action( 'fluid_content_footer' ); ?>
+	<footer>
+		<?php do_action( 'fluid_content_footer' ); ?>
+	</footer>
 
 </article>
