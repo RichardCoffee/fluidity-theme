@@ -111,7 +111,7 @@ class TCC_Theme_Customizer {
 
 	public function control_defaults( $control ) {
 		$defaults = array(
-			'settings'    => array( 'default' => $this->setting_id ),
+			'settings'    => array( $this->setting_id ),
 #			'setting'
 			'capability'  => $this->base_cap,
 			'priority'    => 2,
