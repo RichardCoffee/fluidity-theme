@@ -115,6 +115,7 @@ trait TCC_Trait_Logging {
 				foreach( $args as $message ) {
 					$this->logging_write_entry( $message );
 				}
+				$this->logging_write_entry( 'stack' );
 				$this->logging_force = false;
 			}
 		}
