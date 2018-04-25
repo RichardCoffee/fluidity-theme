@@ -21,7 +21,7 @@ add_filter( 'fluid_theme_sidebar_args', function( $args ) {
 /*
 if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 	function fluidity_register_sidebars() {
-		$widget = tcc_layout('widget', 'perm' );
+		$widget = get_theme_mod( 'widget_collapse', 'perm' );
 		$before_widget = '<div class="panel panel-fluidity">';
 		$before_title  = '<div class="panel-heading"';
 		$before_title .= ( $widget === 'perm' )   ? '' : ' role="button"';

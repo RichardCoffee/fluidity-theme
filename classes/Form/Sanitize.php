@@ -48,6 +48,7 @@ class TCC_Form_Sanitize {
 	public function radio( $input, $setting = null ) {
 		$input   = sanitize_key( $input );
 		$choices = $setting->manager->get_control( $setting->id )->choices;
+fluid()->log("input:  $input",$choices);
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
 

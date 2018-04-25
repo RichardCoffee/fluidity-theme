@@ -19,7 +19,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), array(), '20151215', true );
 		}
 		wp_enqueue_script( 'tcc-skiplink' );
-		if ( ( tcc_layout( 'widget', 'perm' ) !== 'perm' ) || is_404() ) {
+		if ( ( get_theme_mod( 'widget_collapse', 'perm' ) !== 'perm' ) || is_404() ) {
 			wp_enqueue_script( 'tcc-collapse' );
 		}
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

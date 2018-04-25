@@ -20,7 +20,6 @@ class TCC_Form_Control_Customizer {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
-fluid()->log('priority:  '.$args['priority']);
 		$this->parse_args( $args );
 		if ( isset( $this->control['showhide'] ) ) {
 			add_filter( 'fluid_customize_controls_localization', array( $this, 'fluid_customize_controls_localization' ) );

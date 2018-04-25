@@ -58,7 +58,7 @@ class TCC_Register_Sidebars {
 
 	protected function title_html() {
 		$title  = array();
-		$status = tcc_layout( 'widget', 'perm' ); // FIXME: get layout default value
+		$status = get_theme_mod( 'widget_collapse', 'perm' );
 		$title['before']  = '<div class="panel-heading"';
 		$title['before'] .= ( $status === 'perm' )   ? '' : ' role="button"';
 		$title['before'] .= ( $status === 'closed' ) ? ' data-collapse="1">' : '>';
