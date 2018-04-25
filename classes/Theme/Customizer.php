@@ -52,13 +52,13 @@ class TCC_Theme_Customizer {
 		foreach( $sections as $section_id => $section ) {
 			$order = 0;
 			$section['section'] = $this->get_section_defaults( $section['section'] );
-fluid()->log($section['section']);
 			$customize->add_section( $section_id, $section['section'] );
 			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
 			foreach( $controls as $control_id => $control ) {
 				$order     += 10;
 				$setting_id = $section_id . '_' . $control_id;
 				$control    = $this->get_setting_defaults( $control );
+fluid()->log($setting_id,$control);
 				$customize->add_setting( $setting_id, $control );
 				$priority = ( isset( $control['priority'] ) ) ? $control['priority'] : $order;
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
