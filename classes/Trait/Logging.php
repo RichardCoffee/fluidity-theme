@@ -44,13 +44,13 @@ trait TCC_Trait_Logging {
 	public function logging_calling_location( $depth = 1 ) {
 		#	This is not intended to be an exhaustive list
 		static $skip_list = array(
-			'__call',
-			'apply_filters',
-			'call_user_func',
-			'call_user_func_array',
-			'debug_calling_function',
-			'get_calling_function',
-#			'log',
+#			'__call',
+#			'apply_filters',
+#			'call_user_func',
+#			'call_user_func_array',
+#			'debug_calling_function',
+#			'get_calling_function',
+			'log',
 #			'logg',
 #			'logging'
 		);
