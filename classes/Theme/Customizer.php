@@ -102,7 +102,7 @@ fluid()->log($setting_id,$control);
 #			'theme_supports'       => // plugins only
 			'default'              => '',
 			'transport'            => 'refresh', // 'postMessage',
-#			'validate_callback'    => '', // when is this called?
+			'validate_callback'    => array( fluid_sanitize(), $setting['render'] ),
 			'sanitize_callback'    => array( fluid_sanitize(), $setting['render'] ),
 #			'sanitize_js_callback' => '',
 #			'dirty'                => array(), // wtf?
