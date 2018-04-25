@@ -285,7 +285,7 @@ private function test_logging( $object ) {
 		if ( is_object( $value ) ) {
 			$logme[ $key ] = 'Object ' . get_class( $value );
 		} else {
-			if ( is_array( $value ) && is_object( $value[0] ) ) {
+			if ( is_array( $value ) && isset( $value[0] ) && is_object( $value[0] ) ) {
 				$value[0] = 'Object ' . get_class( $value[0] );
 			}
 			$logme[ $key ] = $value;
