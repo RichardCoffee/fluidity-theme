@@ -160,7 +160,8 @@ trait TCC_Trait_Attributes {
 
 	public function filter_attributes_by_tag( $html_tag, $attrs ) {
 		if ( ( $html_tag === 'a' ) && isset( $attrs[ 'target' ] ) ) {
-			$attrs['rel'] = 'nofollow noopener noreferrer ' . ( isset( $attrs['rel'] ) ) ? $attrs['rel'] : '';
+			# @link https://www.hongkiat.com/blog/wordpress-rel-noopener/
+			$attrs['rel'] = 'nofollow noopener ' . ( isset( $attrs['rel'] ) ) ? $attrs['rel'] : '';
 #			$attrs['rel'] = apply_filters( 'fluid_filter_attributes_by_a_rel', $attrs['rel'] );
 		}
 		return $attrs;
