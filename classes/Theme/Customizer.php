@@ -63,7 +63,7 @@ class TCC_Theme_Customizer {
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
-		$this->widget_test( $customize );
+#		$this->widget_test( $customize );
 	}
 
 	public function get_panel_defaults( $panel ) {
@@ -243,7 +243,7 @@ class TCC_Theme_Customizer {
 		);
 		return $options;
 	}
-
+/*
 	private function widget_test( $man ) {
 		$section = $man->add_section(
 			'theme_widget',
@@ -295,9 +295,9 @@ private function test_logging( $object ) {
 		}
 	}
 	return $logme;
-}
+} //*/
 
-	public function widget_collapse( $options ) { /*
+	public function widget_collapse( $options ) {
 		$section = array(
 			'priority'    => 60,
 			'panel'       => 'fluid_mods',
@@ -313,11 +313,11 @@ private function test_logging( $object ) {
 				'perm'   => __( 'Do not provide option to users','tcc-fluid' ),
 				'open'   => __( 'Open', 'tcc-fluid' ),
 				'closed' => __( 'Closed', 'tcc-fluid' ),
-			),
+			), /*
 			'showhide' => array(
 				'control' => [ 'widget_icons' ],
 				'hide'    => 'perm'
-			),
+			), */
 		);
 		$controls['icons'] = array(
 			'default'     => 'default',
