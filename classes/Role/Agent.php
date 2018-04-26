@@ -129,10 +129,10 @@ class TCC_Role_Agent {
         <table class="form-table">
           <tr>
             <th>
-              <label for="<?php echo $field; ?>"><?php echo $this->fields[$field]; ?></label>
+              <label for="<?php e_esc_attr( $field); ?>"><?php e_esc_html( $this->fields[$field] ); ?></label>
             </th>
             <td>
-              <input type="text" class="regular-text" name="<?php echo $field; ?>" value="<?php echo $value; ?>" />
+              <input type="text" class="regular-text" name="<?php e_esc_attr( $field ); ?>" value="<?php e_esc_attr( $value ); ?>" />
             </td>
           </tr>
         </table><?php
@@ -156,7 +156,7 @@ class TCC_Role_Agent {
       <table class="form-table">
         <tr>
           <th>
-            <label for="website_image"><?php echo $this->fields['website_image']; ?></label>
+            <label for="website_image"><?php e_esc_html( $this->fields['website_image'] ); ?></label>
           </th>
           <td>
             <div data-title='<?php echo esc_attr( $text['upload'] ); ?>' data-button='<?php echo esc_attr( $text['assign'] ); ?>'>

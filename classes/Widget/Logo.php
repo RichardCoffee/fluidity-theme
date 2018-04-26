@@ -12,7 +12,7 @@ class TCC_Widget_Logo extends TCC_Widget_Widget {
   public function inner_widget($args,$instance) {
     $logo = tcc_design('logo'); ?>
     <a href="<?php echo esc_url(home_url()); ?>/">
-      <img itemprop="logo" class="img-responsive" src='<?php echo $logo; ?>' alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
+      <img itemprop="logo" class="img-responsive" src='<?php echo esc_url( $logo ); ?>' alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
     </a><?php
   }
 

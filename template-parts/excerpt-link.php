@@ -22,7 +22,7 @@ who_am_i(); ?>
 				$link_css = "col-lg-9 col-md-9 col-sm-12 col-xs-12";
 			} ?>
 
-			<div class="<?php echo $link_css; ?>">
+			<div class="<?php e_esc_attr( $link_css ); ?>">
 
 				<?php do_action( 'fluid_content_header' ); ?>
 

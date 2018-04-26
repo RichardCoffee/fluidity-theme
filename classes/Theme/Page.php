@@ -23,7 +23,7 @@ class TCC_Theme_Page {
 
 	public function set_page_slug( $new_slug ) {
 		if ( is_string( $new_slug ) ) {
-			$this->slug = sanitize_title( $new_slug );
+			$this->slug = sanitize_key( $new_slug );
 		}
 	}
 

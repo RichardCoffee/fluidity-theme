@@ -83,7 +83,7 @@ abstract class TCC_Post_Post {
       }
 
       #  force value for cpt type
-      $this->type = (empty($this->type)) ? sanitize_title($this->label) : sanitize_title($this->type);
+      $this->type = sanitize_title( ( empty( $this->type ) ) ? $this->label : $this->type );
 
       #  Actions
       add_action( 'init',                  array( $this, 'create_post_type' ) );
@@ -315,8 +315,10 @@ abstract class TCC_Post_Post {
 	/*  Capabilities  */
 
 	protected function map_basic_caps() {
-		return array ( 'sing' => ( empty( $this->capability_type[0] ) ) ? sanitize_title( $this->label )  : $this->capability_type[0],
-		               'plur' => ( empty( $this->capability_type[1] ) ) ? sanitize_title( $this->plural ) : $this->capability_type[1] );
+		return array(
+			'sing' => ( empty( $this->capability_type[0] ) ) ? sanitize_key( $this->label )  : $this->capability_type[0],
+			'plur' => ( empty( $this->capability_type[1] ) ) ? sanitize_key( $this->plural ) : $this->capability_type[1]
+		);
 	}
 
 	#	http://justintadlock.com/archives/2010/07/10/meta-capabilities-for-custom-post-types
@@ -567,7 +569,7 @@ abstract class TCC_Post_Post {
   }
 
   private function get_term_id($term,$tax) {
-    if ($term===sanitize_title($term)) {
+    if ( $term === sanitize_key( $term ) ) {
       return get_term_by('slug',$term,$tax)->term_id;
     } else {
       return get_term_by('name',$term,$tax)->term_id;
@@ -649,20 +651,25 @@ abstract class TCC_Post_Post {
     }
   }
 
-  /*
-   *  See:  http://wordpress.stackexchange.com/questions/33885/style-custom-columns-in-admin-panels-especially-to-adjust-column-cell-widths
-   *
-   *  css class: .column-{$column}
-   *
-   */
-  public function display_custom_post_column($column,$post_id) {
-    if (array_key_exists($column,$this->columns['add'])) {
-      $term = get_post_meta($post_id,$column,true);
-      $tobj = get_term_by('slug',$term,$column);
-      if ($tobj) { echo $tobj->name; }
-      else { echo '--'; }
-    }
-  }
+	/**
+	 *
+	 *  css class: .column-{$column}
+	 *
+	 * @link http://wordpress.stackexchange.com/questions/33885/style-custom-columns-in-admin-panels-especially-to-adjust-column-cell-widths
+	 * @param string $column
+	 * @param integer $post_id
+	 */
+	public function display_custom_post_column( $column, $post_id ) {
+		if ( array_key_exists( $column, $this->columns['add'] ) ) {
+			$term = get_post_meta( $post_id, $column, true );
+			$tobj = get_term_by( 'slug', $term, $column );
+			if ( $tobj ) {
+				e_esc_html( $tobj->name );
+			} else {
+				e_esc_html( '--' );
+			}
+		}
+	}
 
 
   /**  Users screen  **/
@@ -875,7 +882,7 @@ abstract class TCC_Post_Post {
 
   public function check_meta_boxes() {
     if (!$this->caps==='post') {
-      $cap = "edit_others_".sanitize_title($this->plural);
+      $cap = 'edit_others_' . sanitize_key( $this->plural );
       if (!current_user_can($cap)) {
         remove_meta_box('authordiv',$this->type,'normal');
       }

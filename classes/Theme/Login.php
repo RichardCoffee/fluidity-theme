@@ -54,8 +54,8 @@ class TCC_Theme_Login {
 	public function dashboard_logo() {
 		$logo = tcc_design( 'logo' );
 		if ( $logo ) {
-			add_action( 'tcc_custom_css', function() use ($logo) {
-				echo "\n#header-logo {\n\tbackground-image: url( $logo ) !important;\n}\n";
+			add_action( 'tcc_custom_css', function() use ( $logo ) {
+				echo "\n#header-logo {\n\tbackground-image: url( " . esc_url_raw( $logo ) . " ) !important;\n}\n";
 			});
 		}
 	}
@@ -179,7 +179,7 @@ function prevent_wp_login() {
 			'default' => 'external',
 			'label'   => __( 'Theme Login', 'tcc-fluid' ),
 			'text'    => __( 'Choose whether you use a plugin for logins, or whether the internal theme login should be used', 'tcc-fluid' ),
-			'help'    => __( '', 'tcc-fluid' ),
+			'help'    => __( 'I recommend Theme My Login.  Fluidity plays nice with that plugin, also with WP Frontend Profile', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
 				'internal' => __( 'Theme', 'tcc-fluid' ),

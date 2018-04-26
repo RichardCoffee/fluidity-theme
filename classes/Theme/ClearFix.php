@@ -26,14 +26,19 @@ class TCC_Theme_ClearFix {
 	}
 
 	public function div_class( $css = '' ) {
+		e_esc_attr( $this->get_div_class( $css ) );
+	}
+
+	public function get_div_class( $css = '' ) {
 		if ( $this->active ) {
 			$css .= ( $this->lg ) ? ' col-lg-' . $this->lg : '';
 			$css .= ( $this->md ) ? ' col-md-' . $this->md : '';
 			$css .= ( $this->sm ) ? ' col-sm-' . $this->sm : '';
 			$css .= ( $this->xs ) ? ' col-xs-' . $this->xs : '';
 		}
-		echo $css;
+		return $css;
 	}
+
 
 	public function apply() {
 		if ( $this->active ) {

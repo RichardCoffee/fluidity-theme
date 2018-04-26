@@ -125,7 +125,7 @@ class TCC_Microdata {
 	 */
 
 	public function bloginfo( $show, $filter = 'raw' ) {
-		echo $this->get_bloginfo( $show, $filter );
+		echo esc_html( $this->get_bloginfo( $show, $filter ) );
 	}
 
 	public function get_bloginfo( $show, $filter = 'raw' ) {

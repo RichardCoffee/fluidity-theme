@@ -8,12 +8,12 @@ add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 
 ##  simple query template
 if (!function_exists('fluidity_show_query')) {
-	function fluidity_show_query( array $args, string $template, $slug='' ) {
-		$query = new WP_Query($args);
-		if ($query->have_posts()) {
-			while ($query->have_posts()) {
+	function fluidity_show_query( array $args, $template, $slug='' ) {
+		$query = new WP_Query( $args );
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
 				$query->the_post();
-				get_template_part($template,$slug);
+				get_template_part( $template, $slug );
 			}
 		}
 		wp_reset_postdata();
@@ -91,14 +91,15 @@ if (!function_exists('has_page')) {
 	}
 }
 
-if (!function_exists('page_exists')) {
+if ( ! function_exists( 'page_exists' ) ) {
 	#	http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 	function page_exists( $title ) {
 		$pages = get_pages();
-		$search = sanitize_title($title);
-		foreach ($pages as $page) {
-			if ($page->post_name===$search) {
-				return true; } // FIXME: return url? -> home_url("/$search/");
+		$search = sanitize_title( $title );
+		foreach ( $pages as $page ) {
+			if ( $page->post_name === $search ) {
+				return true; // FIXME: return url? -> home_url( "/$search/" );
+			}
 		}
 		return false;
 	}
@@ -149,9 +150,9 @@ if ( ! function_exists( 'attachment_sizes' ) ) {
 if ( ! function_exists( 'get_the_slug' ) ) {
 	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
 	function get_the_slug( $id = null ) {
-		if( empty( $id ) ) {
+		if ( empty( $id ) ) {
 			global $post;
-			if( empty($post) ) { return ''; } // No global $post var available.
+			if ( empty( $post ) ) { return ''; } // No global $post var available.
 			$id = $post->ID;
 		}
 		$slug = basename( get_permalink( $id ) );
@@ -162,7 +163,7 @@ if ( ! function_exists( 'get_the_slug' ) ) {
 if ( ! function_exists( 'the_slug' ) ) {
 	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
 	function the_slug( $id = null ) {
-		echo apply_filters( 'the_slug', get_the_slug( $id ) );
+		e_esc_html( apply_filters( 'the_slug', get_the_slug( $id ) ) );
 	}
 }
 

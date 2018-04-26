@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit; ?>
 
 <header id="fluid-header" <?php microdata()->WPHeader(); ?> role="banner">
 
-	<div class="<?php echo 'header-' . tcc_layout( 'header', 'static' ); ?> <?php echo container_type( 'header' ); ?>">
+	<div class="<?php e_esc_attr( 'header-' . tcc_layout( 'header', 'static' ) ); ?> <?php e_esc_attr( container_type( 'header' ) ); ?>">
 
 		<?php do_action('tcc_header_body_content', get_page_slug() ); ?>
 

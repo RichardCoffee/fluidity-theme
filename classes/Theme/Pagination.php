@@ -1,9 +1,15 @@
 <?php
-
-#	http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
-#	wp-includes/link-template.php
-#	wp-includes/general-template.php
-
+/**
+ * classes/Theme/Pagination.php
+ *
+ */
+/**
+ * Handles posts pagination, on archive pages
+ *
+ * @link http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
+ * @link wp-includes/link-template.php
+ * @link wp-includes/general-template.php
+ */
 class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 
 
@@ -11,9 +17,9 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	protected $last    = '&raquo;';
 	protected $link    = '&nbsp;%s&nbsp;';
 	protected $next    = '&gt;';
+	protected $prev    = '&lt;';
 	protected $paged   = 1;
 	protected $pages   = 1;
-	protected $prev    = '&lt;';
 	protected $range   = 1;
 	protected $show    = 3;
 
@@ -45,7 +51,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 
 	protected function pagination() {
 		if ( $this->pages > 1 ) {
-			echo $this->generate_navigation();
+			$this->generate_navigation();
 		}
 	}
 

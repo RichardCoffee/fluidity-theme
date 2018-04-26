@@ -50,7 +50,7 @@ class TCC_Widget_Widget extends WP_Widget {
 
 	protected function form_field( $instance, $slug, $text ) { ?>
 		<p><?php
-			$this->apply_attrs_element( 'label', [ 'for' => $this->get_field_id( $slug ) ], $text );
+			$this->element( 'label', [ 'for' => $this->get_field_id( $slug ) ], $text );
 			$attrs = array(
 				'type'  => 'text',
 				'class' => 'widefat',
@@ -58,7 +58,7 @@ class TCC_Widget_Widget extends WP_Widget {
 				'name'  => $this->get_field_name( $slug ),
 				'value' => ( empty( $instance[ $slug ] ) ) ? '' : esc_attr( $instance[ $slug ] )
 			);
-			$this->apply_attrs_element( 'input', $attrs ); ?>
+			$this->element( 'input', $attrs ); ?>
 		</p><?php
 	}
 
@@ -72,7 +72,7 @@ class TCC_Widget_Widget extends WP_Widget {
 					'name' => $this->get_field_name( $slug ),
 				);
 				$attrs = $this->checked( $attrs, $value, 'on' );
-				$this->apply_attrs_element( 'input', $attrs ); ?>
+				$this->element( 'input', $attrs ); ?>
 				&nbsp;<span>
 					 <?php esc_html( $text ); ?>
 				</span>

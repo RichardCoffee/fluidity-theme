@@ -40,6 +40,17 @@ class TCC_Options_Settings extends TCC_Options_Options {
 				'off'   => __( 'Off - this may break things.', 'tcc-fluid' ),
 			),
 		); //*/
+		$layout['login'] = array(
+			'default' => 'external',
+			'label'   => __( 'Log In Page', 'tcc-fluid' ),
+			'text'    => __( 'Use a plugin to handle the login page, or let the theme show the login page', 'tcc-fluid' ),
+			'help'    => __( 'I like using Theme My Login', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'external' => __( 'Use a plugin.  (recommended)', 'tcc-fluid' ),
+				'internal' => __( 'Use [fluid-login] shortcode.', 'tcc-fluid' ),
+			),
+		);
 		if ( WP_DEBUG ) {
 			$layout['where'] = array(
 				'default' => 'off',

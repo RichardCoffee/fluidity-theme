@@ -14,12 +14,20 @@ trait TCC_Trait_Attributes {
 	 * alias for apply_attrs_element
 	 *
 	 */
-	protected function element( $tag, $attrs, $text = '' ) {
+	public function element( $tag, $attrs, $text = '' ) {
 		$this->apply_attrs_element( $tag, $attrs, $text );
 	}
 
-	protected function tag( $tag, $attrs ) {
+	public function get_element( $tag, $attrs, $text = '' ) {
+		return $this->get_apply_attrs_element( $tag, $attrs, $text );
+}
+
+	public function tag( $tag, $attrs ) {
 		$this->apply_attrs_tag( $tag, $attrs );
+	}
+
+	public function get_tag( $tag, $attrs ) {
+		return $this->get_apply_attrs_tag( $tag, $attrs );
 	}
 
 	/**
@@ -89,12 +97,12 @@ trait TCC_Trait_Attributes {
 	protected function sanitize_html_class( $classes ) {
 		if ( is_array( $classes ) ) {
 			// pack it down then blow it up - insure each element is a single class
-			$classes = array_unique( explode( ' ', implode( ' ', $classes ) ) );
+			$classes = explode( ' ', implode( ' ', $classes ) );
 		} else {
 			// convert string to an array
 			$classes = explode( ' ', $classes );
 		}
-		return implode( ' ', array_map( 'sanitize_html_class', $classes ) );
+		return implode( ' ', array_map( 'sanitize_html_class', array_unique( $classes ) ) );
 	}
 
 	/**
@@ -118,7 +126,7 @@ trait TCC_Trait_Attributes {
 		$attrs = $this->filter_attributes_by_tag( $html_tag, $attrs );
 		$html  = "<$html_tag ";
 		$html .= $this->get_apply_attrs( $attrs );
-		$html .= ( $this->is_self_closing( $html_tag ) ) ? ' />' : '>';
+		$html .= ( $this->is_tag_self_closing( $html_tag ) ) ? ' />' : '>';
 		return $html;
 	}
 
@@ -128,11 +136,11 @@ trait TCC_Trait_Attributes {
 	 * @param string $tag tag to check for
 	 * @return bool
 	 */
-	protected function is_self_closing( $tag ) {
+	protected function is_tag_self_closing( $tag ) {
 		static $self_closing;
 		if ( ! $self_closing ) {
 			$self_closing = array( 'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr' );
-			$self_closing = apply_filters( 'fluid_tag_is_self_closing', $self_closing );
+			$self_closing = apply_filters( 'fluid_is_tag_self_closing', $self_closing );
 		}
 		return in_array( $tag, $self_closing, true );
 	}
@@ -162,7 +170,7 @@ trait TCC_Trait_Attributes {
 		$attrs = $this->filter_attributes_by_tag( $element, $attrs );
 		$html  = "<$element ";
 		$html .= $this->get_apply_attrs( $attrs );
-		if ( $this->is_self_closing( $element ) ) {
+		if ( $this->is_tag_self_closing( $element ) ) {
 			$html .= ' />';
 		} else {
 			$html .= '>' . esc_html( $text ) . "</$element>";

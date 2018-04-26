@@ -143,7 +143,7 @@ if (!function_exists('fluidity_sidebar_layout')) {
       $posi = (defined('TCC_LEFT_SIDEBAR')) ? '' : $posi;
       $posi = (defined('TCC_RIGHT_SIDEBAR')) ? 'pull-right' : $posi;
       $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e $posi"; ?>
-      <div class="<?php echo $sidebar_class; ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
+      <div class="<?php e_esc_attr( $sidebar_class ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
         get_template_part('sidebar',$sidebar); ?>
       </div><?php
     }

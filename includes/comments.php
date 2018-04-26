@@ -10,9 +10,9 @@ if (!function_exists('fluid_comment_navigation')) {
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
       <nav class="navigation comment-navigation" role="navigation">
         <h2 class="screen-reader-text"><?php
-          _e('Comment navigation','tcc-fluid'); ?>
+          esc_html_e('Comment navigation','tcc-fluid'); ?>
         </h2>
-        <div class="nav-previous"><?php // FIXME:  poor translation string
+        <div class="nav-previous"><?php
           previous_comments_link('&larr; '.esc_html__('Older Comments','tcc-fluid')); ?>
         </div>
         <div class="nav-next"><?php
@@ -40,27 +40,27 @@ if (!function_exists('fluid_list_comments')) {
   function fluid_list_comments( WP_Comment $comment, array $args, $depth) {
     static $striping = 'odd';
     $GLOBALS['comment'] = $comment;
-    $string    = _x('%1s: %2$s on %3$s','first placeholder is the comment type, second placeholder is an author link, third placeholder is a date','tcc-fluid');
-    $type_arr  = array('comment'=>__('Comment','tcc-fluid'),'trackback'=>esc_html__('Trackback','tcc-fluid'),'pingback'=>esc_html__('Pingback','tcc-fluid'));
+    $string    = _x('%1$s: %2$s on %3$s','first placeholder is the comment type, second placeholder is an author link, third placeholder is a date','tcc-fluid');
+    $type_arr  = array('comment'=>__('Comment','tcc-fluid'),'trackback'=>__('Trackback','tcc-fluid'),'pingback'=>__('Pingback','tcc-fluid'));
     $comm_type = $comment->comment_type;
     switch ( $comm_type ) {
       case 'pingback' :
       case 'trackback' :
         $comm_css = "post $comm_type $striping" ?>
-        <li id="comment-<?php echo $comment->comment_ID ?>" <?php comment_class($comm_css); ?>><?php
-          echo sprintf( $string, $type_arr[$comm_type], get_comment_author_link(), get_comment_date() );
-        #</li> - wordpress add closing tag
+        <li id="comment-<?php e_esc_attr( $comment->comment_ID ); ?>" <?php comment_class($comm_css); ?>><?php
+          printf( $string, $type_arr[$comm_type], get_comment_author_link(), get_comment_date() );
+        #</li> - wordpress adds closing tag
         break;
       default: # comment
         if (empty($comm_type)) $comm_type = 'comment';
         $css = ( get_the_author_meta('user_email') === get_comment_author_email() ) ? 'post-author' : $striping; ?>
-        <li id="comment-<?php echo $comment->comment_ID; ?>" <?php comment_class($css); ?>>
+        <li id="comment-<?php e_esc_attr( $comment->comment_ID ); ?>" <?php comment_class($css); ?>>
           <div class="comment-author vcard"><?php
             echo get_avatar( $comment, 34 );
             echo ' '.sprintf( $string, $type_arr[$comm_type], get_comment_author_link(), get_comment_date() ); ?>
           </div><!-- .comment-author .vcard --><?php
           if ( $comment->comment_approved == '0' ) { ?>
-            <em><?php _e( 'Your comment is awaiting moderation.', 'tcc-fluid' ); ?></em><br /><?php
+            <em><?php esc_html_e( 'Your comment is awaiting moderation.', 'tcc-fluid' ); ?></em><br /><?php
           } ?>
           <div class="comment-meta commentmetadata">
             <a href="<?php echo esc_url( get_comment_link() ); ?>"><?php

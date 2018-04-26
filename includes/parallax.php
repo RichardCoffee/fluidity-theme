@@ -22,8 +22,8 @@ if (!function_exists('tcc_excerpt_parallax')) {
 		if (tcc_design('paral', 'no' )==='yes') { ?>
 			<style>
 				.post-<?php the_ID(); ?> {
-					ackground-image: url('<?php echo get_featured_url( ); ?>');
-					<?php do_action('tcc_excerpt_parallax'); ?>
+					background-image: url('<?php echo esc_url_raw( get_featured_url( ) ); ?>');
+					<?php do_action( 'tcc_excerpt_parallax' ); ?>
 				}
 			</style><?php
 		}
@@ -41,14 +41,14 @@ if (!function_exists('tcc_page_parallax')) {
 					$slug = get_page_slug(); ?>
 					<style>
 						.parallax-image {
-							background-image: url("<?php echo $imgURL; ?>");
+							background-image: url("<?php echo esc_url_raw( $imgURL ); ?>");
 							<?php do_action('tcc_page_parallax'); ?>
 							<?php do_action("tcc_page_parallax_$slug"); ?>
 						}
 					</style><?php
 					$divcss = 'parallax parallax-image parallax-scroll parallax-page-'.get_page_slug();
 					if ($div) { ?>
-						<div class="<?php echo $divcss; ?>"></div><?php
+						<div class="<?php e_esc_attr( $divcss ); ?>"></div><?php
 					}
 					return $divcss;
 				}
@@ -66,11 +66,11 @@ if (!function_exists('tcc_post_parallax')) {
 		if ((tcc_design('paral', 'no' )==='yes') && has_post_thumbnail() ) { ?>
 			<style>
 				.single-parallax {
-					background-image: url('<?php echo get_featured_url( ); ?>');
+					background-image: url('<?php echo esc_url_raw( get_featured_url() ); ?>');
 					<?php do_action('tcc_post_parallax'); ?>
 				}
 			</style>
-			<div id="" class="parallax <?php echo $css; ?> parallax-scroll">
+			<div id="" class="parallax <?php e_esc_attr( $css ); ?> parallax-scroll">
 			</div><?php
 		}
 	}

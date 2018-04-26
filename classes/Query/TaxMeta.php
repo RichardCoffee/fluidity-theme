@@ -58,3 +58,6 @@ class TCC_Query_TaxMeta extends WP_Query {
 		}
 		return $where;
 	}
+
+
+}

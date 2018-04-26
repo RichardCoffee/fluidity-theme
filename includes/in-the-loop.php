@@ -79,7 +79,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 				$showboth = ( $postdate === 'both' );
 			}
 			$string = apply_filters( 'fluid_post_date_sprintf', $default, $postdate, $showboth );
-			echo sprintf( $string, $date, $author );
+			printf( $string, $date, $author );
 		}
 		return $showboth;
 	}
@@ -213,7 +213,7 @@ if ( ! function_exists( 'fluid_title' ) ) {
 			}
 			$title = apply_filters( 'the_title', $title, get_the_ID() );
 		}
-		if ($echo) { echo $title; } else { return $title; }
+		if ($echo) { echo esc_html( $title ); } else { return $title; }
 	}
 }
 

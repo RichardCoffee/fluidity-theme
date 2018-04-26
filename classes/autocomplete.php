@@ -47,7 +47,7 @@ class TCC_AutoComplete {
 		}
 
 		$suggestions = apply_filters( 'autocomplete_array', $suggestions );
-		echo $_GET["callback"] . "(" . json_encode($suggestions) . ")";
+		echo sanitize_key( $_GET["callback"] ) . "(" . json_encode($suggestions) . ")";
 		exit;
 
     }

@@ -72,12 +72,12 @@ if ( ! function_exists( 'fluid_bbp_personal_options' ) ) {
 		<table class="form-table">
 			<tr class="fluid-bbp-topic-subscribe-wrap">
 				<th scope="row">
-					<?php echo $label; ?>
+					<?php e_esc_html( $label ); ?>
 				</th>
 				<td>
 					<fieldset>
 						<legend class="screen-reader-text">
-							<?php echo $label; ?>
+							<?php e_esc_html( $label ); ?>
 						</legend>
 						<label for="fluid_bbp_topic_subscribe">
 							<input
@@ -87,7 +87,7 @@ if ( ! function_exists( 'fluid_bbp_personal_options' ) ) {
 								value="1"
 								<?php checked( $value ); ?>
 							/>
-							<?php _e( 'Automatically subscribe to a forum topic when posting to it.', 'tcc-fluid' ); ?>
+							<?php esc_html_e( 'Automatically subscribe to a forum topic when posting to it.', 'tcc-fluid' ); ?>
 						</label>
 					</fieldset>
 				</td>

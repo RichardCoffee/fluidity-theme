@@ -59,15 +59,12 @@ abstract class TCC_Theme_BasicNav {
 	protected function generate_navigation() {
 		$template = apply_filters( 'navigation_markup_template', null, $this->nav_css );
 		if ( $template ) {
-			$html = sprintf( $template, sanitize_html_class( $this->nav_css ), esc_html( $this->sr_text ), $this->generate_links() );
+			printf( $template, sanitize_html_class( $this->nav_css ), esc_html( $this->sr_text ), $this->generate_links() );
 		} else {
 			if ( $template = $this->generate_markup() ) {
-				$html = sprintf( $template, $this->generate_links() );
-			} else {
-				$html = '';
+				printf( $template, $this->generate_links() );
 			}
 		}
-		return $html;
 	}
 
 	/**
@@ -83,7 +80,7 @@ abstract class TCC_Theme_BasicNav {
 			'aria-label' => $this->sr_text,
 			'role'  => 'navigation',
 		);
-		$html = $this->get_apply_attrs_tag( 'nav', $attrs );
+		$html = $this->get_tag( 'nav', $attrs );
 		$html.= '<div class="nav-links">%s</div>';
 		$html.= '</nav>';
 		return $html;

@@ -47,7 +47,7 @@ class TCC_Theme_Library {
 			'class'       => implode( ' ', $css ),
 			'aria-hidden' => 'true',
 		);
-		return $this->get_apply_attrs_tag( 'i', $args ) . '</i>';
+		return $this->get_apply_attrs_element( 'i', $args );
 	}
 
 	public function get_widget_fawe() {

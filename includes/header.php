@@ -43,7 +43,7 @@ if ( ! function_exists( 'fluid_assign_default_header' ) ) {
 
 // Limit length of title string
 if (!function_exists('fluid_browser_title')) {
-  function fluid_browser_title( string $title ) {
+  function fluid_browser_title( $title ) {
     if (!is_feed()) {
       $test = get_bloginfo('name');
       if (empty($title)) {

@@ -53,13 +53,13 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 			<div class="article noprint">
 				<div id="post-link-separator-top" class="post-link-separator post-link-separator-top"></div><?php
 					if ( $this->taxonomy ) {
-						echo $this->taxonomy_links();
+						$this->taxonomy_links();
 					}
 					if ( $this->taxonomy && $this->all_links ) { ?>
 						<div id="post-link-separator-middle" class="post-link-separator post-link-separator-middle"></div><?php
 					}
 					if ( $this->all_links ) {
-						echo $this->all_links();
+						$this->all_links();
 					} ?>
 				<div id="post-link-separator-bottom" class="post-link-separator post-link-separator-bottom"></div>
 			</div><?php
@@ -127,7 +127,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->previous   = $this->posts['prev_tax'];
 		$this->show_older = ( $this->show_older && ( $this->posts['prev_tax']->ID > 0 ) );
 		$this->show_newer = ( $this->show_newer && ( $this->posts['next_tax']->ID > 0 ) );
-		return $this->generate_navigation();
+		$this->generate_navigation();
 	}
 
 	protected function get_post_category() {
@@ -145,7 +145,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->same_term  = false;
 		$this->next       = $this->posts['next_all'];
 		$this->previous   = $this->posts['prev_all'];
-		return $this->generate_navigation();
+		$this->generate_navigation();
 	}
 
 	protected function generate_links() {
@@ -160,7 +160,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 							'class' => 'previous '. $this->li_css,
 							'title' => $this->older_link,
 						);
-						$this->apply_attrs_tag( 'li', $attrs );
+						$this->tag( 'li', $attrs );
 							echo $this->get_adjacent_post_link( '%link', $this->left, true, $this->previous );
 #							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
 #							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
@@ -171,7 +171,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 							'class' => 'next '. $this->li_css,
 							'title' => $this->newer_link,
 						);
-						$this->apply_attrs_tag( 'li', $attrs );
+						$this->tag( 'li', $attrs );
 							echo $this->get_adjacent_post_link( '%link', $this->right, false, $this->next );
 #							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
 #							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
