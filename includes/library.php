@@ -28,6 +28,23 @@ if ( ! function_exists( 'array_remove_value' ) ) {
 }
 
 /**
+ * checks to see if a particular filter function has already been registered
+ *
+ * @since 20180425
+ * @param string $filter name of the filter
+ * @param string|array $function the callable to check for
+ * @param integer $priority priority to be assigned to the filter
+ * @param integer $number_of_arguments the number of arguments the callable expects to recieve
+ */
+if ( ! function_exists( 'check_filter' ) ) {
+	function check_filter( $filter, $function, $priority = 10, $number_of_arguments = 1 ) {
+		if ( has_filter( $filter, $function ) === false ) {
+			add_filter( $filter, $function, $priority, $number_of_arguments );
+		}
+	}
+}
+
+/**
  * Returns a css class to be added to the main div
  *
  * @todo re-examine the reasons why this function exists and see if it needs to be removed or changed
