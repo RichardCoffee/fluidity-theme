@@ -91,8 +91,8 @@ trait TCC_Trait_Attributes {
 	 * @param string $html_tag the tag to be generated
 	 * @param array $attrs an associative array containing the attribute keys and values
 	 */
-	public function apply_attrs_tag( $html_tag, $attrs ) {
-		echo $this->get_apply_attrs_tag( $html_tag, $attrs );
+	public function apply_attrs_tag( $tag, $attrs ) {
+		echo $this->get_apply_attrs_tag( $tag, $attrs );
 	}
 
 	/**
@@ -147,7 +147,7 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	public function get_apply_attrs_element( $element, $attrs, $text = '' ) {
-		$attrs = $this->filter_attributes_by_tag( $html_tag, $attrs );
+		$attrs = $this->filter_attributes_by_tag( $element, $attrs );
 		$html  = "<$element ";
 		$html .= $this->get_apply_attrs( $attrs );
 		if ( $this->is_self_closing( $element ) ) {
@@ -161,7 +161,12 @@ trait TCC_Trait_Attributes {
 	public function filter_attributes_by_tag( $html_tag, $attrs ) {
 		if ( ( $html_tag === 'a' ) && isset( $attrs[ 'target' ] ) ) {
 			# @link https://www.hongkiat.com/blog/wordpress-rel-noopener/
-			$attrs['rel'] = 'nofollow noopener ' . ( isset( $attrs['rel'] ) ) ? $attrs['rel'] : '';
+			$add_rel = ' nofollow noopener';
+			if ( isset( $attrs['rel'] ) ) {
+				$attrs['rel'] = $attrs['rel'] . $add_rel;
+			} else {
+				$attrs['rel'] = $add_rel;
+			}
 #			$attrs['rel'] = apply_filters( 'fluid_filter_attributes_by_a_rel', $attrs['rel'] );
 		}
 		return $attrs;
