@@ -24,6 +24,10 @@ class TCC_Form_Sanitize {
 #		return ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $input ) ) ? $input : '';
 	}
 
+	public function content( $input ) {
+		return $this->post_content( $input );
+	}
+
 	public function email( $input ) {
 		return sanitize_email( $input );
 	}
