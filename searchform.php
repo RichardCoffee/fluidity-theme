@@ -27,7 +27,7 @@ $theme_search = array(
 		),
 	'button' => array(
 		'type'  => 'submit',
-		'class' => 'btn btn-fluidity'
+		'class' => 'btn btn-fluidity btn-search'
 	),
 	'text' => array(
 		'label'  => __( 'Search field', 'tcc-fluid' ),

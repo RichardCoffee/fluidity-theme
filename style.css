@@ -384,6 +384,10 @@ header {
   margin-top: 7px;
 }
 
+.input-group .input-group-btn .btn-search {
+  margin-left: 0;
+}
+
 .navbar-form .lost-password {
   margin-left: 1em;
 }
