@@ -279,7 +279,7 @@ class TCC_Theme_Customizer {
 #fluid()->log( 'customizer', $this->test_logging($man) );
 #fluid()->log( 'section',    $this->test_logging($section) );
 #fluid()->log( 'setting',    $this->test_logging($setting) );
-fluid()->log( 'control',    $this->test_logging($control), get_class_methods($control),get_defined_constants(true) );
+fluid()->log( 'control',    $this->test_logging($control), get_class_methods($control),get_defined_constants(true)['user'] );
 	}
 
 private function test_logging( $object ) {
