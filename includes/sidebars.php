@@ -8,21 +8,14 @@
  *  @subpackage Sidebars
  */
 
-/*
-* Use shortcodes in text widgets.
-**/
+/**
+ * Use shortcodes in text widgets.
+ *
+ * @since 20180425
+ * @link https://github.com/drlogout/wordpress-bootstrap/blob/master/functions.php
+ */
 check_filter( 'widget_text', 'do_shortcode' );
 
-/*
-add_filter( 'fluid_theme_sidebar_args', function( $args ) {
-	if ( in_array( get_page_slug(), array( '404', 'login' ) ) ) {
-		$args['position'] = 'none';
-	}
-	return $args;
-} ); //*/
-
-/**
- */
 /*
 if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 	function fluidity_register_sidebars() {
