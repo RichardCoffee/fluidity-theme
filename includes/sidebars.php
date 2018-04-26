@@ -9,6 +9,11 @@
  */
 
 /*
+* Use shortcodes in text widgets.
+**/
+fluid_check_filter( 'widget_text', 'do_shortcode' );
+
+/*
 add_filter( 'fluid_theme_sidebar_args', function( $args ) {
 	if ( in_array( get_page_slug(), array( '404', 'login' ) ) ) {
 		$args['position'] = 'none';
@@ -94,6 +99,14 @@ function fluidity_the_widget(  $widget, $instance, $args ) {
 	fluid()->log( 'the_widget', $widget, $instance, $args );
 }
 add_action( 'the_widget', 'fluidity_the_widget', 999, 3 );
+
+if ( ! function_exists( 'fluid_check_filter' ) ) {
+	function fluid_check_filter( $filter, $function, $priority = 10, $number_of_arguments = 1 ) {
+		if ( has_filter( $filter, $function ) === false ) {
+			add_filter( $filter, $function, $priority, $number_of_arguments );
+		}
+	}
+}
 
 if (!function_exists('fluidity_get_sidebar')) {
   #  This function works in tandem with fluidity_sidebar_parameter()
