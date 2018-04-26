@@ -42,7 +42,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	public function show_meta_box( $post ) {
 		$this->initialize_radio( $post->ID );
 		wp_nonce_field( basename( __FILE__ ), $this->nonce ); ?>
-		<div id="<?php echo $this->slug; ?>">
+		<div id="<?php e_esc_attr( $this->slug ); ?>">
 			<?php $this->radio->radio(); ?>
 		</div><?php
 	}
@@ -54,9 +54,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		if ( ! empty( $_POST[ $this->field ] ) ) {
 			$this->initialize_radio( $postID );
 			$value = $this->radio->sanitize( $_POST[ $this->field ] );
-			if ( array_key_exists( $value, $this->radio->choices ) ) {
-				update_post_meta( $postID, $this->field, $value );
-			}
+			update_post_meta( $postID, $this->field, $value );
 		}
 	}
 

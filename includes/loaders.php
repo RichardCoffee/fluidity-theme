@@ -184,3 +184,14 @@ if ( ! function_exists( 'fluid_theme_support' ) ) {
    }
 }
 
+/**
+ * load the theme text domain
+ *
+ */
+if ( ! function_exists( 'fluid_load_textdomain' ) ) {
+	function fluid_load_textdomain(){
+		$data = get_file_data( FLUIDITY_HOME . 'style.css', array( 'textdomain' => 'Text Domain' ) );
+		load_theme_textdomain( $data['textdomain'], get_template_directory() . '/languages' );
+	}
+	add_action( 'after_setup_theme', 'fluid_load_textdomain' );
+}

@@ -52,7 +52,7 @@ if (WP_DEBUG && is_user_logged_in() && current_user_can('update_core')) { ?>
 					</div>
 
 					<h1>
-						<a href="<?php echo home_url() ; ?>">
+						<a href="<?php echo esc_html( home_url() ); ?>">
 							<?php esc_html_e( 'Home Page', 'tcc-fluid' ); ?>
 						</a>
 					</h1>

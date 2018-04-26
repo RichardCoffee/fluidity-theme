@@ -23,7 +23,7 @@ class TCC_Options_Images {
   }
 
   public function describe_options() {
-    _e('Design Options - these options also show up in the WordPress Customizer.','tcc-fluid');
+    esc_html_e('Design Options - these options also show up in the WordPress Customizer.','tcc-fluid');
   }
 
   protected function options_layout() {

@@ -10,7 +10,7 @@ class TCC_Options_Content extends TCC_Options_Options {
 	}
 
 	public function describe_options() {
-		_e( "Utilize these options to change the way content is displayed.  These options may one day show up in the WordPress Customizer.", 'tcc-fluid' );
+		esc_html_e( "Utilize these options to change the way content is displayed.  These options may one day show up in the WordPress Customizer.", 'tcc-fluid' );
 	}
 
 	protected function options_layout() {

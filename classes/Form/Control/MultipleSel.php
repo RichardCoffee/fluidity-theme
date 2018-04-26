@@ -8,31 +8,38 @@
 
 class TCC_Form_Control_MultipleSel extends TCC_Form_Control_Control {
 
-    /**
-     * The type of customize control being rendered.
-     */
-    public $type = 'multiple-select';
+	/**
+	 * The type of customize control being rendered.
+	 */
+	public $type = 'multiple-select';
 
-    /**
-     * Displays the multiple select on the customize screen.
-     */
-    public function render_content() {
+		/**
+		 * Displays the multiple select on the customize screen.
+		 */
+		public function render_content() {
 
-    if ( empty( $this->choices ) )
-        return;
-    ?>
-        <label>
-            <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-            <select <?php $this->link(); ?> multiple="multiple" style="height: 100%;">
-                <?php
-                    foreach ( $this->choices as $value => $label ) {
-                        $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
-                        echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . esc_html( $label ) . '</option>';
-                    }
-                ?>
-            </select>
-        </label>
-    <?php }
+		if ( empty( $this->choices ) ) {
+			return;
+		} ?>
+
+		<label>
+			<span class="customize-control-title">
+				<?php echo esc_html( $this->label ); ?>
+			</span><?php
+
+			$attrs = [ 'multiple' => 'multiple', 'style' => 'height: 100%;' ];
+			$attrs = $this->link( $attrs );
+			$this->tag( 'select', $attrs );
+				foreach ( $this->choices as $value => $label ) {
+					$attrs = [ 'value' => $value ];
+					$attrs = $this->selected( $attrs, in_array( $value, $this->value() ) );
+					$this->element( 'option', $attrs, $label );
+				} ?>
+			</select>
+		</label><?php
+	}
+
+
 }
 
 /* Example from above @link

@@ -11,6 +11,18 @@
 trait TCC_Trait_Attributes {
 
 	/**
+	 * alias for apply_attrs_element
+	 *
+	 */
+	protected function element( $tag, $attrs, $text = '' ) {
+		$this->apply_attrs_element( $tag, $attrs, $text );
+	}
+
+	protected function tag( $tag, $attrs ) {
+		$this->apply_attrs_tag( $tag, $attrs );
+	}
+
+	/**
 	 * echo the generated html attributes
 	 *
 	 * @param array $attrs an associative array containing the attribute keys and values
@@ -27,7 +39,7 @@ trait TCC_Trait_Attributes {
 	 */
 	public function get_apply_attrs( $attrs ) {
 
-		$is_allowed_no_value = array( 'itemscope', 'value' );
+		$is_allowed_no_value = array( 'itemscope', 'multiple', 'value' );
 /*		static $is_allowed_no_value;
 		if ( ! $is_allowed_no_value ) {
 			$is_allowed_no_value = apply_filters( 'fluid_attr_is_allowed_no_value', [ 'itemscope', 'value' ] );
@@ -171,6 +183,9 @@ trait TCC_Trait_Attributes {
 		}
 		return $attrs;
 	}
+
+
+/***   helper functions   ***/
 
 	# @since 20180424
 	public function checked( $attrs, $checked, $current = true ) {

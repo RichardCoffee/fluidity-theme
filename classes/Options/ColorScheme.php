@@ -12,7 +12,7 @@ class TCC_Options_ColorScheme {
 	}
 
 	public function describe_options() {
-		_e( "Control the theme's color scheme.", 'tcc-fluid' );
+		esc_html_e( "Control the theme's color scheme.", 'tcc-fluid' );
 	}
 
 	protected function options_layout() {

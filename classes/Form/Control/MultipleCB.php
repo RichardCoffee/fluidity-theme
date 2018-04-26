@@ -56,17 +56,22 @@ class TCC_Form_Control_MultipleCB extends TCC_Form_Control_Control {
             <?php foreach ( $this->choices as $value => $label ) : ?>
 
                 <li>
-                    <label>
-                        <input type="checkbox" value="<?php echo esc_attr( $value ); ?>" <?php checked( in_array( $value, $multi_values ) ); ?> />
+                    <label><?php
+                        $attrs = [ 'type' => 'checkbox', 'value' => $value ];
+                        $attrs = $this->checked( $attrs, in_array( $value, $multi_values ) );
+                        $this->element( 'input', $attrs ); ?>
+
                         <?php echo esc_html( $label ); ?>
                     </label>
                 </li>
 
             <?php endforeach; ?>
-        </ul>
+        </ul><?php
 
-        <input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( implode( ',', $multi_values ) ); ?>" />
-    <?php
+        $attrs = [ 'type' => 'hidden', 'value' => implode( ',', $multi_values ) ];
+        $attrs = $this->link ( $attrs );
+        $this->element( 'input', $attrs );
+
     }
 
 

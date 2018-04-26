@@ -86,7 +86,7 @@ class TCC_Form_Login {
 		<form <?php $this->apply_attrs( $attrs ); ?>>
 
 			<div class='form-group login-username'>
-				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr( $id_username ); ?>">
+				<label class="<?php e_esc_attr( $text_css ); ?>" for="<?php echo esc_attr( $id_username ); ?>">
 					<?php echo esc_html( $label_username ); ?>
 				</label>
 				<input type="text" name="log" id="<?php echo esc_attr( $id_username ); ?>" class="form-control"
@@ -94,7 +94,7 @@ class TCC_Form_Login {
 			</div>
 
 			<div class='form-group login-password'>
-				<label class="<?php echo $text_css; ?>" for="<?php echo esc_attr( $id_password ); ?>">
+				<label class="<?php e_esc_attr( $text_css ); ?>" for="<?php echo esc_attr( $id_password ); ?>">
 					<?php echo esc_html( $label_password ); ?>
 				</label>
 				<input type="password" name="pwd" id="<?php echo esc_attr( $id_password ); ?>"
