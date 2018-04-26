@@ -250,6 +250,7 @@ ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li >
   color: #ff0000;
   background: #FFFFFF;
   border-color: #cc0000;
+  font-weight: normal;
 }
 
 .panel-fluidity {
