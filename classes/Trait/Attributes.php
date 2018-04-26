@@ -49,6 +49,7 @@ trait TCC_Trait_Attributes {
 					# https://konstantin.blog/2012/esc_url-vs-esc_url_raw/
 					$value = esc_url( $value );
 					break;
+				case 'rel':
 				case 'class':
 					$value = $this->sanitize_html_class( $value );
 					break;
@@ -102,6 +103,7 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	public function get_apply_attrs_tag( $html_tag, $attrs ) {
+		$attrs = $this->filter_attributes_by_tag( $html_tag, $attrs );
 		$html  = "<$html_tag ";
 		$html .= $this->get_apply_attrs( $attrs );
 		$html .= ( $this->is_self_closing( $html_tag ) ) ? ' />' : '>';
@@ -145,6 +147,7 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	public function get_apply_attrs_element( $element, $attrs, $text = '' ) {
+		$attrs = $this->filter_attributes_by_tag( $html_tag, $attrs );
 		$html  = "<$element ";
 		$html .= $this->get_apply_attrs( $attrs );
 		if ( $this->is_self_closing( $element ) ) {
@@ -153,6 +156,14 @@ trait TCC_Trait_Attributes {
 			$html .= '>' . esc_html( $text ) . "</$element>";
 		}
 		return $html;
+	}
+
+	public function filter_attributes_by_tag( $html_tag, $attrs ) {
+		if ( ( $html_tag === 'a' ) && isset( $attrs[ 'target' ] ) ) {
+			$attrs['rel'] = 'nofollow noopener noreferrer ' . ( isset( $attrs['rel'] ) ) ? $attrs['rel'] : '';
+#			$attrs['rel'] = apply_filters( 'fluid_filter_attributes_by_a_rel', $attrs['rel'] );
+		}
+		return $attrs;
 	}
 
 	# @since 20180424

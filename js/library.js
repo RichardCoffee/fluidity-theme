@@ -21,15 +21,24 @@ function appendElement(elParent,elType,elId,elName,elClass,elIType) {
   return newEl;
 }
 
-function deleteRoutine(deleteNode,stopID,deletion) {
-  var thisNode = nextElementSibling(deleteNode);
-  while (thisNode && thisNode.id!=stopID) {
-    deletion(deleteNode,thisNode);
-    deleteNode = thisNode;
-    thisNode   = nextElementSibling(deleteNode);
-  }
-  thisNode = deleteNode.parentNode;
-  thisNode.removeChild(deleteNode);
+/**
+ * deletes an element from a list
+ *
+ * @param string deleteNode element to be deleted
+ * @param string stopID id of element to stop at - very important
+ * @param callable deletion function that handles whatever is inside the node
+ */
+function deleteRoutine( deleteNode, stopID, deletion ) {
+	var thisNode = nextElementSibling( deleteNode );
+	while ( thisNode && ( ! ( thisNode.id === stopID ) ) ) {
+		if ( deletion ) {
+			deletion( deleteNode, thisNode );
+		}
+		deleteNode = thisNode;
+		thisNode   = nextElementSibling( deleteNode );
+	}
+	thisNode = deleteNode.parentNode;
+	thisNode.removeChild( deleteNode );
 }
 
 function findData(myEle,findMe) {
