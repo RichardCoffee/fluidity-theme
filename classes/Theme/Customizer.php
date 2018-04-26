@@ -88,9 +88,9 @@ class TCC_Theme_Customizer {
 			'theme_supports'     => '',// plugins only - section will not display if unsupported
 			'title'              => __( 'Section Title', 'tcc-fluid' ),
 			'description'        => __( 'Section description text', 'tcc-fluid' ),
-			'type'               => 'default', // determines js template used
-			'active_callback'    => '',        // determines whether the control is initially active
-			'description_hidden' => true,      // will display button to show description
+			'type'               => 'default',       // determines js template used
+			'active_callback'    => '__return_true', // determines whether the control is initially active
+			'description_hidden' => true,            // will display button to show description
 		);
 		return array_merge( $defaults, $section );
 	}
@@ -123,7 +123,7 @@ class TCC_Theme_Customizer {
 			'type'        => $control['render'],
 			'input_attrs' => array(),
 			'allow_addition'  => '', // used only if type = 'dropdown-pages'
-			'active_callback' => '', // 'is_front_page',
+			'active_callback' => '__return_true',
 		);
 		return array_merge( $defaults, array_intersect_key( $control, $defaults ) );
 	}

@@ -56,6 +56,7 @@ if (!function_exists('fluidity_jetpack_site_logo_to_bootstrap')) {
 
 /**  MailChimp for WordPress **/
 
+# FIXME: check for active plugin
 if ( ! defined( 'FLUID_MC4WP_LOG_LEVEL' ) ) {
 	define( 'FLUID_MC4WP_LOG_LEVEL', 'info' );  # possible values are: debug, info, warning, error(default)
 }
