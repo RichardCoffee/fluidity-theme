@@ -276,10 +276,10 @@ class TCC_Theme_Customizer {
 				'type' => 'radio',
 			)
 		);
-#fluid()->log( 'customizer', $this->test_logging($man) );
-fluid()->log( 'section',    $this->test_logging($section) );
-fluid()->log( 'setting',    $this->test_logging($setting) );
-fluid()->log( 'control',    $this->test_logging($control) );
+fluid()->log( 'customizer', $this->test_logging($man) );
+#fluid()->log( 'section',    $this->test_logging($section) );
+#fluid()->log( 'setting',    $this->test_logging($setting) );
+#fluid()->log( 'control',    $this->test_logging($control) );
 	}
 
 private function test_logging( $object ) {
