@@ -91,7 +91,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	}
 
 	protected function show_first_link() {
-		$text = __( 'First Page', 'tcc-fluid' );
+		$text = __( 'Go to the first page', 'tcc-fluid' );
 		$attrs = array(
 			'class' => 'first page-numbers',
 			'href'  => get_pagenum_link( 1 ),
@@ -103,7 +103,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	}
 
 	protected function show_previous_link() {
-		$text = __( 'Previous Page', 'tcc-fluid' );
+		$text = __( 'Go to the previous page', 'tcc-fluid' );
 		$attrs = array(
 			'class' => 'prev page-numbers',
 			'href'  => get_pagenum_link( $this->paged - 1 ),
@@ -149,7 +149,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	}
 
 	protected function show_next_link() {
-		$text = __('Next Page','tcc-fluid');
+		$text = __('Go to next page','tcc-fluid');
 		$attrs = array(
 			'class' => 'next page-numbers',
 			'href'  => get_pagenum_link( $this->paged + 1 ),
@@ -161,7 +161,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	}
 
 	protected function show_last_link() {
-		$text = __('Last Page','tcc-fluid');
+		$text = __('Go to last page','tcc-fluid');
 		$attrs = array(
 			'class' => 'last page-numbers',
 			'href'  => get_pagenum_link( $this->pages ),
