@@ -69,7 +69,7 @@ class TCC_Form_Control_MultipleCB extends TCC_Form_Control_Control {
         </ul><?php
 
         $attrs = [ 'type' => 'hidden', 'value' => implode( ',', $multi_values ) ];
-        $attrs = $this->link ( $attrs );
+        $attrs = $this->setting_link ( $attrs );
         $this->element( 'input', $attrs );
 
     }

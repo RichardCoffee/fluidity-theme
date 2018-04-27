@@ -28,7 +28,7 @@ class TCC_Form_Control_MultipleSel extends TCC_Form_Control_Control {
 			</span><?php
 
 			$attrs = [ 'multiple' => 'multiple', 'style' => 'height: 100%;' ];
-			$attrs = $this->link( $attrs );
+			$attrs = $this->setting_link( $attrs );
 			$this->tag( 'select', $attrs );
 				foreach ( $this->choices as $value => $label ) {
 					$attrs = [ 'value' => $value ];
