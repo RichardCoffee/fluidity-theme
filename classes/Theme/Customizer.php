@@ -318,7 +318,7 @@ private function test_logging( $object ) {
 				'control' => [ 'widget_icons' ],
 				'hide'    => 'perm'
 			), */
-			'validate_callback' => '__return_true'
+			'sanitize_callback' => '__return_true'
 		);
 		$controls['icons'] = array(
 			'default'     => 'default',
