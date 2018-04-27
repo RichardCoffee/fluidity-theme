@@ -98,7 +98,7 @@ if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
 if ( ! function_exists( 'fluid_postmetadata' ) ) {
 	function fluid_postmetadata() { ?>
 		<div class="article margint1e noprint">
-			<p class="postmetadata">
+			<div class="postmetadata">
 				<hr><?php
 				if ( has_tag() ) {
 					the_tags( esc_html__( 'Tags: ', 'tcc-fluid' ), ', ', '<br>' );
@@ -115,7 +115,7 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 				$comm_1 = esc_html_x( '1 Comment', 'single comment', 'tcc-fluid' );
 				$comm_2 = esc_html_x( '% Comments', 'number of comments', 'tcc-fluid' );
 				comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
-			</p>
+			</div>
 		</div><?php
 	}
 }
