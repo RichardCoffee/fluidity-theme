@@ -45,13 +45,14 @@ class TCC_Form_Control_Customizer {
 
 	protected function add_control( $args ) {
 		$this->customize->add_control( $this->setting_id, $args );
+fluid()->logobj($this);
 	}
 
 	protected function add_object_control( $obj ) {
 		$this->customize->add_control( $obj );
 	}
 
-protected function control_settings() {
+	protected function control_settings() {
 		$defaults = array(
 			'settings'    => array( $this->setting_id ),
 			'priority'    => $this->priority,

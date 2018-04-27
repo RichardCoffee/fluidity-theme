@@ -28,6 +28,11 @@ trait TCC_Trait_Logging {
 		}
 	}
 
+	public function logobj( $object ) {
+		$reduced = $this->logging_reduce_object( $object );
+		call_user_func( array( $this, 'logging_entry' ), $reduced );
+	}
+
 
 /*** Discover functions   ***/
 
@@ -46,13 +51,14 @@ trait TCC_Trait_Logging {
 		static $skip_list = array(
 #			'__call',
 			'apply_filters',
-#			'call_user_func',
+			'call_user_func',
 			'call_user_func_array',
 #			'debug_calling_function',
 #			'get_calling_function',
 			'log',
-#			'logg',
-#			'logging'
+			'logg',
+#			'logging',
+			'logobj'
 		);
 		$default = $file = $func = $line = 'n/a';
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
@@ -149,6 +155,23 @@ trait TCC_Trait_Logging {
 		}
 		$message = date( '[d-M-Y H:i:s e] ' ) . $message . "\n";
 		error_log( $message, 3, $destination );
+	}
+
+/***   Helper functions   ***/
+
+	public function logging_reduce_object( $object ) {
+		$reduced = array();
+		foreach ( (array)$object as $key => $value ) {
+			if ( is_object( $value ) ) {
+				$reduced[ $key ] = 'object ' . get_class( $value );
+			} else {
+				if ( is_array( $value ) && is_callable( $value ) ) {
+					$value[0] = 'object ' . get_class( $value[0] );
+				}
+				$reduced[ $key ] = $value;
+			}
+		}
+		return $reduced;
 	}
 
 
