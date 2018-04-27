@@ -13,6 +13,7 @@ console.log(key);
 console.log(fluid_customize[ key ].control[ i ]);
 					wp.customize.control( fluid_customize[ key ].control[ i ], function( control ) {
 						var visibility = function( item, index ) {
+console.log(item+' / '+index);
 							if ( fluid_customize[ item ].hide === setting.get() ) {
 console.log('hide '+fluid_customize[ item ].control[ index ]);
 								control.container.slideUp( 180 );
