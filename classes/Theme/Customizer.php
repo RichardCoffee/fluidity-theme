@@ -318,7 +318,6 @@ private function test_logging( $object ) {
 				'control' => [ 'widget_icons' ],
 				'hide'    => 'perm'
 			), */
-			'sanitize_callback' => '__return_true'
 		);
 		$controls['icons'] = array(
 			'default'     => 'default',
@@ -327,7 +326,7 @@ private function test_logging( $object ) {
 			'render'      => 'htmlradio',
 			'choices'     => $this->widget_icons(),
 		);
-		$options['widget'] = array(
+		$options['widgyt'] = array(
 			'section'  => $section,
 			'controls' => $controls
 		); //*/
