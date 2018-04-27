@@ -6,14 +6,19 @@
 	wp.customize.bind('ready', function () {
 
 		for ( var key in fluid_customize ) {
+console.log(key);
 			// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
 			wp.customize( key, function( setting ) {
+console.log(fluid_customize[ key ]);
 				for ( var i in fluid_customize[ key ].control ) {
+console.log(fluid_customize[ key ].control[ i ]);
 					wp.customize.control( fluid_customize[ key ].control[ i ], function( control ) {
 						var visibility = function() {
 							if ( fluid_customize[ key ].hide === setting.get() ) {
+console.log('hide '+fluid_customize[ key ].control[ i ]);
 								control.container.slideUp( 180 );
 							} else {
+console.log('show '+fluid_customize[ key ].control[ i ]);
 								control.container.slideDown( 180 );
 							}
 						};
