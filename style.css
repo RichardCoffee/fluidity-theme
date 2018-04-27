@@ -123,6 +123,10 @@ a:hover.btn, a:focus.btn {
   border-width: 1px;
 }
 
+.article pre {
+  margin-bottom: 1em;
+}
+
 .excerpt-title-wrap {
   display: grid;
 }
