@@ -1,18 +1,36 @@
 <?php
-
+/**
+ * classes/Register/Sidebars.php
+ *
+ */
+/**
+ * register sidebars
+ *
+ */
 class TCC_Register_Sidebars {
 
-
+	/**
+	 * Font Awesome icons set
+	 *
+	 */
 	protected $fawe = array();
-	protected $title;
-	protected $widget;
 
+	/**
+	 * set up tasks for registering sidebars
+	 *
+	 */
 	public function __construct() {
 		$this->set_widget_icons();
 		add_action( 'widgets_init',       array( $this, 'register_sidebars' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_widget_icons' ), 100 );
 	}
 
+	/**
+	 * set up default theme sidebars
+	 *
+	 * @param array $sidebars
+	 * @return array
+	 */
 	protected function default_sidebars( $sidebars = array() ) {
 		#	Standard Page
 		$sidebars['standard'] = array(
@@ -22,6 +40,12 @@ class TCC_Register_Sidebars {
 		return apply_filters( 'fluid_default_sidebars', $sidebars );
 	}
 
+	/**
+	 * assign before/after strings for widget and title
+	 *
+	 * @param array $sidebars
+	 * @return array
+	 */
 	protected function prepare_sidebars( $sidebars = array() ) {
 		$title  = $this->title_html();
 		$widget = $this->widget_html();
@@ -34,6 +58,10 @@ class TCC_Register_Sidebars {
 		return $sidebars; # apply_filters( 'fluid_prepare_sidebars', $sidebars );
 	}
 
+	/**
+	 * get and register sidebars
+	 *
+	 */
 	public function register_sidebars() {
 		remove_action( 'widgets_init', array( $this, 'register_sidebars' ) ); // prevents possible recursion
 		$sidebars = $this->default_sidebars( array() );
@@ -43,12 +71,20 @@ class TCC_Register_Sidebars {
 		}
 	}
 
+	/**
+	 * retrieve and assign font awesome icon set
+	 *
+	 */
 	protected function set_widget_icons() {
 		$fawe_set = fluid()->get_widget_fawe();
-		$current  = tcc_layout( 'widget_icons', 'default' );
+		$current  = get_theme_mod( 'widgyt_icons', 'default' );
 		$this->fawe = isset( $fawe_set[ $current ] ) ? $fawe_set[ $current ] : $fawe_set['default'];
 	}
 
+	/**
+	 * pass icon set to javascript
+	 *
+	 */
 	public function enqueue_widget_icons() {
 		if ( wp_script_is( 'tcc-collapse', 'enqueued' ) ) {
 			$icons = 'var col_icons = ' . json_encode( $this->fawe );
@@ -56,6 +92,11 @@ class TCC_Register_Sidebars {
 		}
 	}
 
+	/**
+	 * generate before/after html for title
+	 *
+	 * @return array
+	 */
 	protected function title_html() {
 		$title  = array();
 		$status = get_theme_mod( 'widgyt_collapse', 'perm' );
@@ -70,6 +111,11 @@ class TCC_Register_Sidebars {
 		return $title; # apply_filters( 'fluid_register_sidebar_title', $title );
 	}
 
+	/**
+	 * generate before/after html for widgets
+	 *
+	 * @return array
+	 */
 	protected function widget_html() {
 		$widget = array();
 		// string placeholders required for customizer theme support

@@ -165,7 +165,7 @@ trait TCC_Trait_Logging {
 			if ( is_object( $value ) ) {
 				$reduced[ $key ] = 'object ' . get_class( $value );
 			} else {
-				if ( is_array( $value ) && is_callable( $value ) ) {
+				if ( is_array( $value ) && is_callable( $value ) && is_object( $value[0] ) ) {
 					$value[0] = 'object ' . get_class( $value[0] );
 				}
 				$reduced[ $key ] = $value;
