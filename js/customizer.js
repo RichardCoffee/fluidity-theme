@@ -12,18 +12,17 @@ console.log(key);
 				for ( var i in fluid_customize[ key ].control ) {
 console.log(fluid_customize[ key ].control[ i ]);
 					wp.customize.control( fluid_customize[ key ].control[ i ], function( control ) {
-						var visibility = function( item, index ) {
-console.log(item+' / '+index);
-							if ( fluid_customize[ item ].hide === setting.get() ) {
-console.log('hide '+fluid_customize[ item ].control[ index ]);
+						var visibility = function() {
+							if ( fluid_customize[ key ].hide === setting.get() ) {
+console.log('hide '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
 								control.container.slideUp( 180 );
 							} else {
-console.log('show '+fluid_customize[ item ].control[ index ]);
+console.log('show '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
 								control.container.slideDown( 180 );
 							}
 						};
-						visibility( key, i );
-						setting.bind( visibility, key, i );
+						visibility();
+						setting.bind( visibility );
 					} );
 				}
 			} );

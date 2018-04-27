@@ -39,7 +39,14 @@ class TCC_Form_Control_Customizer {
 	 * @return array
 	 */
 	public function fluid_customize_controls_localization( $data = array() ) {
-		$data[ $this->setting_id ] = $this->control['showhide'];
+		$current = $this->control['showhide'];
+fluid()->logobj($this);
+		if ( isset( $current['respond'] ) ) {
+			$data['respond'][ $this->setting_id ] = $current['respond'];
+		}
+		if ( isset( $current['control'] ) ) {
+			$data[ $this->setting_id ] = $current;
+		}
 		return $data;
 	}
 

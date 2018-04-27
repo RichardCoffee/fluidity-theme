@@ -23,8 +23,9 @@ class TCC_Theme_Customizer {
 	public function customize_controls_enqueue_scripts() {
 		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
 		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
-		$options = apply_filters( 'fluid_customize_controls_localization', array() );
+		$options = apply_filters( 'fluid_customize_controls_localization', [ 'respond' => array() ] );
 		if ( $options ) {
+fluid()->log($options);
 			$options = $this->normalize_options( $options );
 			wp_localize_script( 'fluid-customizer.js', 'fluid_customize', $options );
 		}
@@ -211,26 +212,32 @@ class TCC_Theme_Customizer {
 					'hide'    => 'none'
 				),
 			),
-		);
-		$controls['fluidity'] = array(
-			'default'     => 'no',
-			'label'       => __( 'Fluid Sidebar', 'tcc-fluid' ),
-			'description' => __( 'Let content flow around sidebar', 'tcc-fluid' ),
-			'render'      => 'radio',
-			'choices'     => array(
-				'no'  => __( 'Static content', 'tcc-fluid' ),
-				'yes' => __( 'Fluid content', 'tcc-fluid' ),
+			'fluidity' => array(
+				'default'     => 'no',
+				'label'       => __( 'Fluid Sidebar', 'tcc-fluid' ),
+				'description' => __( 'Let content flow around sidebar', 'tcc-fluid' ),
+				'render'      => 'radio',
+				'choices'     => array(
+					'no'  => __( 'Static content', 'tcc-fluid' ),
+					'yes' => __( 'Fluid content', 'tcc-fluid' ),
+				),
+				'showhide' => array(
+					'respond' => 'sidebar_position'
+				),
 			),
-		);
-		$controls['mobile'] = array(
-			'default'     => 'bottom',
-			'label'       => __( 'Mobile Sidebar', 'tcc-fluid' ),
-			'description' => __( 'Where should the sidebar show up on mobile devices?', 'tcc-fluid' ),
-			'render'      =>'radio',
-			'choices'     => array(
-				'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
-				'top'    => __( 'Before post content', 'tcc-fluid' ),
-				'bottom' => __( 'After post content', 'tcc-fluid' ),
+			'mobile' => array(
+				'default'     => 'bottom',
+				'label'       => __( 'Mobile Sidebar', 'tcc-fluid' ),
+				'description' => __( 'Where should the sidebar show up on mobile devices?', 'tcc-fluid' ),
+				'render'      =>'radio',
+				'choices'     => array(
+					'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
+					'top'    => __( 'Before post content', 'tcc-fluid' ),
+					'bottom' => __( 'After post content', 'tcc-fluid' ),
+				),
+				'showhide' => array(
+					'respond' => 'sidebar_position'
+				),
 			),
 		);
 		$options['sidebar'] = array(
