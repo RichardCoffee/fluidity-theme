@@ -19,7 +19,7 @@ check_filter( 'widget_text', 'do_shortcode' );
 /*
 if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 	function fluidity_register_sidebars() {
-		$widget = get_theme_mod( 'widget_collapse', 'perm' );
+		$widget = get_theme_mod( 'widgyt_collapse', 'perm' );
 		$before_widget = '<div class="panel panel-fluidity">';
 		$before_title  = '<div class="panel-heading"';
 		$before_title .= ( $widget === 'perm' )   ? '' : ' role="button"';

@@ -63,7 +63,6 @@ class TCC_Theme_Customizer {
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
-#		$this->widget_test( $customize );
 	}
 
 	public function get_panel_defaults( $panel ) {
@@ -222,9 +221,6 @@ class TCC_Theme_Customizer {
 				'no'  => __( 'Static content', 'tcc-fluid' ),
 				'yes' => __( 'Fluid content', 'tcc-fluid' ),
 			),
-#			'active_callback' => function() {
-#				return ( ! ( get_theme_mod( 'sidebar_position' ) === 'none' ) );
-#			},
 		);
 		$controls['mobile'] = array(
 			'default'     => 'bottom',
@@ -243,59 +239,6 @@ class TCC_Theme_Customizer {
 		);
 		return $options;
 	}
-/*
-	private function widget_test( $man ) {
-		$section = $man->add_section(
-			'theme_widget',
-			array(
-				'priority'    => 60,
-				'panel'       => 'fluid_mods',
-				'title'       => __( 'Widget Collapse', 'tcc-fluid' ),
-				'description' => __( 'This section controls the use and details concerning collapsible widgets.', 'tcc-fluid' )
-			)
-		);
-		$setting = $man->add_setting(
-			'theme_widget_collapse_setting',
-			array(
-				'default'           => 'perm',
-				'sanitize_callback' => array( fluid_sanitize(), 'radio' ),
-			)
-		);
-		$control = $man->add_control(
-			'theme_widget_collapse_control',
-			array(
-				'setting'     => 'theme_widget_collapse_setting',
-				'section'     => 'theme_widget',
-				'label'       => __( 'Widgets', 'tcc-fluid' ),
-				'description' => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
-				'choices'     => array(
-					'perm'   => __( 'Do not provide option to users','tcc-fluid' ),
-					'open'   => __( 'Open', 'tcc-fluid' ),
-					'closed' => __( 'Closed', 'tcc-fluid' ),
-				),
-				'type' => 'radio',
-			)
-		);
-#fluid()->log( 'customizer', $this->test_logging($man) );
-#fluid()->log( 'section',    $this->test_logging($section) );
-#fluid()->log( 'setting',    $this->test_logging($setting) );
-fluid()->log( 'control',    $this->test_logging($control), get_class_methods($control),get_defined_constants(true)['user'] );
-	}
-
-private function test_logging( $object ) {
-	$logme = array();
-	foreach ( (array)$object as $key => $value ) {
-		if ( is_object( $value ) ) {
-			$logme[ $key ] = 'Object ' . get_class( $value );
-		} else {
-			if ( is_array( $value ) && isset( $value[0] ) && is_object( $value[0] ) ) {
-				$value[0] = 'Object ' . get_class( $value[0] );
-			}
-			$logme[ $key ] = $value;
-		}
-	}
-	return $logme;
-} //*/
 
 	public function widget_collapse( $options ) {
 		$section = array(
@@ -313,11 +256,11 @@ private function test_logging( $object ) {
 				'perm'   => __( 'Do not provide option to users','tcc-fluid' ),
 				'open'   => __( 'Open', 'tcc-fluid' ),
 				'closed' => __( 'Closed', 'tcc-fluid' ),
-			), /*
+			),
 			'showhide' => array(
-				'control' => [ 'widget_icons' ],
+				'control' => [ 'widgyt_icons' ],
 				'hide'    => 'perm'
-			), */
+			),
 		);
 		$controls['icons'] = array(
 			'default'     => 'default',
