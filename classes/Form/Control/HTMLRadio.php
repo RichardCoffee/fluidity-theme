@@ -48,7 +48,9 @@ class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 				$attrs = $this->checked( $attrs, $this->value(), $value );
 				$this->element( 'input', $attrs );
 
-				$this->element( 'label', [ 'for' => $attrs['id'] ], $label ); ?>
+				$this->tag( 'label', [ 'for' => $attrs['id'] ] );
+					echo $label; // label contains html ?>
+				</label>
 
 			</span><?php
 
