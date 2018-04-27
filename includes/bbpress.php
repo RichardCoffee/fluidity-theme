@@ -143,6 +143,7 @@ if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 			'label'       => __( 'bbPress', 'tcc-fluid' ),
 			'description' => __( 'Compatibility options for bbPress', 'tcc-fluid' ),
 			'render'      => 'content',
+			'sanitize_callback' => '__return_true',
 		); //*/
 		$controls['bbp_font_size'] = array(
 			'default'     => 12,

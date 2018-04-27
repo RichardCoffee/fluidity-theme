@@ -325,6 +325,7 @@ private function test_logging( $object ) {
 			'description' => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
 			'render'      => 'htmlradio',
 			'choices'     => $this->widget_icons(),
+			'sanitize_callback' => [ fluid_sanitize(), 'radio' ],
 		);
 		$options['widgyt'] = array(
 			'section'  => $section,
