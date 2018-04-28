@@ -139,7 +139,7 @@ fluid()->log($url);
 		echo "body { font-size: {$size}px; }";
 		// font family for header
 		$header = self::mixed_fonts( get_theme_mod( 'font_head_typog', 'Open Sans' ) );
-		echo "header { font-family: $header; }";
+		echo "header#fluid-header { font-family: $header; }";
 		// widget panel title
 		$panel = max( 1, $size - 2 );
 		echo "panel-title { font-size: {$panel}px; }";
