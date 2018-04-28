@@ -23,7 +23,7 @@ class TCC_Theme_Customizer {
 	public function customize_controls_enqueue_scripts() {
 		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
 		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
-		$options = apply_filters( 'fluid_customize_controls_localization', [ 'respond' => array() ] );
+		$options = apply_filters( 'fluid_customize_controls_localization', array() );
 		if ( $options ) {
 fluid()->log($options);
 			$options = $this->normalize_options( $options );
@@ -32,12 +32,23 @@ fluid()->log($options);
 	}
 
 	protected function normalize_options( $options ) {
-		return array_map(
+		$options = array_map(
 			function( $control ) {
 				return array_merge( [ 'hide' => null, 'show' => null ], $control );
 			},
 			$options
 		);
+		$target = array();
+		foreach( $options as $origin => $showhide ) {
+			foreach( $showhide as $control ) {
+				$target[ $control ] = $origin;
+			}
+		}
+		if ( count( $target ) > 0 ) {
+			$options['target'] = $target;
+		}
+fluid()->log($options);
+		return $options;
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
@@ -230,9 +241,6 @@ fluid()->log($options);
 					'no'  => __( 'Static content', 'tcc-fluid' ),
 					'yes' => __( 'Fluid content', 'tcc-fluid' ),
 				),
-				'showhide' => array(
-					'respond' => 'sidebar_position'
-				),
 			),
 			'mobile' => array(
 				'default'     => 'bottom',
@@ -243,9 +251,6 @@ fluid()->log($options);
 					'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
 					'top'    => __( 'Before post content', 'tcc-fluid' ),
 					'bottom' => __( 'After post content', 'tcc-fluid' ),
-				),
-				'showhide' => array(
-					'respond' => 'sidebar_position'
 				),
 			),
 		);

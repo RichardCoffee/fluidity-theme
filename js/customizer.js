@@ -9,26 +9,23 @@
 	api.bind('ready', function () {
 
 		for ( var key in fluid_customize ) {
-console.log(key);
+//console.log(key);
 			// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
 			api( key, function( setting ) {
 				for ( var i in fluid_customize[ key ].control ) {
 console.log(fluid_customize[ key ].control[ i ]);
 					api.control( fluid_customize[ key ].control[ i ], function( control ) {
-
-// https://wordpress.stackexchange.com/questions/268173/get-a-default-value-of-the-customizer-setting-using-wp-customize-api-js
 console.log( "control: ", control );
-console.log( "setting: ", setting );
-
 						var visibility = function() {
-							var index = fluid_customize['respond'][ control.id ];
-console.log('index: '+index);
-							if ( fluid_customize[ index ].hide === setting.get() ) {
-//console.log('hide '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
-								control.container.slideUp( 180 );
-							} else {
-//console.log('show '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
-								control.container.slideDown( 180 );
+							var index = fluid_customize['target'][ control.id ];
+console.log('id: '+control.id,'index: '+index);
+							if ( index ) {
+console.log('check: '+fluid_customize[ index ].hide,'setting: '+setting.get());
+								if ( fluid_customize[ index ].hide === setting.get() ) {
+									control.container.slideUp( 180 );
+								} else {
+									control.container.slideDown( 180 );
+								}
 							}
 						};
 						visibility();
