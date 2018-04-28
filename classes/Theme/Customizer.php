@@ -25,8 +25,9 @@ class TCC_Theme_Customizer {
 		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
 		$options = apply_filters( 'fluid_customize_controls_localization', array() );
 		if ( $options ) {
-fluid()->log($options);
+#fluid()->log($options);
 			$options = $this->normalize_options( $options );
+#fluid()->log($options);
 			wp_localize_script( 'fluid-customizer.js', 'fluid_customize', $options );
 		}
 	}
@@ -47,7 +48,6 @@ fluid()->log($options);
 		if ( count( $target ) > 0 ) {
 			$options['target'] = $target;
 		}
-fluid()->log($options);
 		return $options;
 	}
 
@@ -284,7 +284,7 @@ fluid()->log($options);
 			),
 		);
 		$controls['icons'] = array(
-			'default'     => 'default',
+			'default'     => 'none',
 			'label'       => __( 'Widget Icons', 'tcc-fluid' ),
 			'description' => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
 			'render'      => 'htmlradio',

@@ -19,7 +19,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 
 	protected function initialize_radio( $postID ) {
 		$postdate = get_post_meta( $postID, $this->field, true );
-		$current  = tcc_content( 'postdate', 'default' );
+		$current  = tcc_content( 'postdate', 'defaultpd' );
 		$content  = new TCC_Options_Content;
 		$layout   = $content->get_item( 'postdate' );
 		$args = array(
