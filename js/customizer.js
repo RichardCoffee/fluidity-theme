@@ -1,19 +1,28 @@
 // https://florianbrinkmann.com/en/3783/conditional-displaying-and-hiding-of-customizer-controls-via-javascript/
 ;(function () {
+
+	var api = wp.customize;
+
 	/**
 	 * Run function when customizer is ready.
 	 */
-	wp.customize.bind('ready', function () {
+	api.bind('ready', function () {
 
 		for ( var key in fluid_customize ) {
 console.log(key);
 			// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
-			wp.customize( key, function( setting ) {
+			api( key, function( setting ) {
 				for ( var i in fluid_customize[ key ].control ) {
 console.log(fluid_customize[ key ].control[ i ]);
-					wp.customize.control( fluid_customize[ key ].control[ i ], function( control ) {
+					api.control( fluid_customize[ key ].control[ i ], function( control ) {
+
+// https://wordpress.stackexchange.com/questions/268173/get-a-default-value-of-the-customizer-setting-using-wp-customize-api-js
+console.log( "control: ", api.settings.values.control );
+console.log( "setting: ", api.settings.values.setting );
+
 						var visibility = function() {
 							var index = fluid_customize['respond'][ setting.id ];
+
 							if ( fluid_customize[ key ].hide === setting.get() ) {
 console.log('hide '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
 								control.container.slideUp( 180 );
@@ -28,6 +37,18 @@ console.log('show '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
 				}
 			} );
 		}
+
+
+	/***   handle postMessage tasks   ***/
+
+	// Site title.
+	api( 'blogname', function( value ) {
+		value.bind( function( to ) {
+			jQuery( 'a.navbar-brand' ).text( to );
+		} );
+	} );
+
+
 /*
 		wp.customize.control('sidebar_position', function (control) {
 			/**
