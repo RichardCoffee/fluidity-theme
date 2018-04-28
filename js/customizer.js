@@ -17,11 +17,11 @@ console.log(fluid_customize[ key ].control[ i ]);
 					api.control( fluid_customize[ key ].control[ i ], function( control ) {
 
 // https://wordpress.stackexchange.com/questions/268173/get-a-default-value-of-the-customizer-setting-using-wp-customize-api-js
-console.log( "control: ", api.settings.values.control );
-console.log( "setting: ", api.settings.values.setting );
+console.log( "control: ", control );
+console.log( "setting: ", setting );
 
 						var visibility = function() {
-							var index = fluid_customize['respond'][ setting.id ];
+//							var index = fluid_customize['respond'][ setting.id ];
 
 							if ( fluid_customize[ key ].hide === setting.get() ) {
 console.log('hide '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
