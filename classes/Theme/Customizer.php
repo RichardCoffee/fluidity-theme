@@ -41,6 +41,11 @@ fluid()->log($options);
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
+		$this->register_theme_controls( $customize );
+		$this->assign_postmessage( $customize );
+	}
+
+	public function register_theme_controls( WP_Customize_Manager $customize ) {
 		$panels = apply_filters( 'fluid_customizer_panels', $this->get_customizer_panels( array() ) );
 		if ( ! empty( $panels ) ) {
 			foreach( $panels as $panel_id => $panel ) {
@@ -64,6 +69,10 @@ fluid()->log($options);
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
+	}
+
+	public function assign_postmessage( WP_Customize_Manager $customize ) {
+		$customize->get_setting( 'blogname' )->transport = 'postMessage';
 	}
 
 	public function get_panel_defaults( $panel ) {
