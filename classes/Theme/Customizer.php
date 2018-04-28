@@ -40,7 +40,7 @@ fluid()->log($options);
 		);
 		$target = array();
 		foreach( $options as $origin => $showhide ) {
-			foreach( $showhide as $control ) {
+			foreach( $showhide['control'] as $control ) {
 				$target[ $control ] = $origin;
 			}
 		}
