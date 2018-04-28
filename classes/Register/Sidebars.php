@@ -77,8 +77,8 @@ class TCC_Register_Sidebars {
 	 */
 	protected function set_widget_icons() {
 		$fawe_set = fluid()->get_widget_fawe();
-		$current  = get_theme_mod( 'widgyt_icons', 'default' );
-		$this->fawe = isset( $fawe_set[ $current ] ) ? $fawe_set[ $current ] : $fawe_set['default'];
+		$current  = get_theme_mod( 'widgyt_icons', 'none' );
+		$this->fawe = ( isset( $fawe_set[ $current ] ) ) ? $fawe_set[ $current ] : $fawe_set['default'];
 	}
 
 	/**

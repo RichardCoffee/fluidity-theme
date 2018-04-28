@@ -304,7 +304,7 @@ class TCC_Theme_Customizer {
 			'none'    => __( 'Do not use an icon set - let the lusers figure it out for themselves...', 'tcc-fluid' ),
 		);
 		$icons = $library->get_widget_fawe();
-		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display icons for use with the widgets', 'tcc-fluid' );
+		$fawe_format = _x( 'Open %1$s / Close %2$s', 'display open and close icons for use with the sidebar widgets', 'tcc-fluid' );
 		foreach( $icons as $key => $set ) {
 			$plus  = $library->get_fawe( $set['plus']  . ' fa-fw' );
 			$minus = $library->get_fawe( $set['minus'] . ' fa-fw' );
