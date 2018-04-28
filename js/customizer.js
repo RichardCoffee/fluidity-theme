@@ -21,13 +21,13 @@ console.log( "control: ", control );
 console.log( "setting: ", setting );
 
 						var visibility = function() {
-//							var index = fluid_customize['respond'][ setting.id ];
-
-							if ( fluid_customize[ key ].hide === setting.get() ) {
-console.log('hide '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
+							var index = fluid_customize['respond'][ control.id ];
+console.log('index: '+index);
+							if ( fluid_customize[ index ].hide === setting.get() ) {
+//console.log('hide '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
 								control.container.slideUp( 180 );
 							} else {
-console.log('show '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
+//console.log('show '+fluid_customize[ key ].control[ i ]+' / '+setting.get());
 								control.container.slideDown( 180 );
 							}
 						};
