@@ -8,20 +8,19 @@
 	 */
 	api.bind('ready', function () {
 
-		for ( var key in fluid_customize ) {
-//console.log(key);
+		for ( var target in fluid_customize ) {
+			console.log(target);
 			// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
-			api( key, function( setting ) {
-				for ( var i in fluid_customize[ key ].control ) {
-console.log(fluid_customize[ key ].control[ i ]);
-					api.control( fluid_customize[ key ].control[ i ], function( control ) {
-console.log( "control: ", control );
+			api( fluid_customize[ target ].control, function( setting ) {
+					console.log(fluid_customize [ target ].control);
+					api.control( target, function( control ) {
+						console.log( "control: ", control );
 						var visibility = function() {
-							var index = fluid_customize['target'][ control.id ];
-console.log('id: '+control.id,'index: '+index);
+							var index = fluid_customize[ control.id ].control;
+							console.log('id: '+control.id,'index: '+index);
 							if ( index ) {
-console.log('check: '+fluid_customize[ index ].hide,'setting: '+setting.get());
-								if ( fluid_customize[ index ].hide === setting.get() ) {
+								console.log('check: '+fluid_customize[ index ].setting,'setting: '+setting.get());
+								if ( fluid_customize[ index ].setting === setting.get() ) {
 									control.container.slideUp( 180 );
 								} else {
 									control.container.slideDown( 180 );

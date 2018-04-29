@@ -26,19 +26,19 @@ class TCC_Theme_Customizer {
 		$options = apply_filters( 'fluid_customize_controls_localization', array() );
 		if ( $options ) {
 #fluid()->log($options);
-			$options = $this->normalize_options( $options );
+#			$options = $this->normalize_options( $options );
 #fluid()->log($options);
 			wp_localize_script( 'fluid-customizer.js', 'fluid_customize', $options );
 		}
 	}
 
 	protected function normalize_options( $options ) {
-		$options = array_map(
+/*		$options = array_map(
 			function( $control ) {
 				return array_merge( [ 'hide' => null, 'show' => null ], $control );
 			},
 			$options
-		);
+		); //*/
 		$target = array();
 		foreach( $options as $origin => $showhide ) {
 			foreach( $showhide['control'] as $control ) {
@@ -48,7 +48,7 @@ class TCC_Theme_Customizer {
 		if ( count( $target ) > 0 ) {
 			$options['target'] = $target;
 		}
-		return $options;
+		return array( 'origin' => $options, 'target' => $target );
 	}
 
 	public function customize_register( WP_Customize_Manager $customize ) {
@@ -224,13 +224,13 @@ class TCC_Theme_Customizer {
 					'left'  => __( 'Left side', 'tcc-fluid' ),
 					'right' => __( 'Right side', 'tcc-fluid' ),
 				),
-				'showhide' => array(
+/*				'showhide' => array(
 					'control' => array(
 						'sidebar_fluidity',
 						'sidebar_mobile'
 					),
 					'hide'    => 'none'
-				),
+				), */
 			),
 			'fluidity' => array(
 				'default'     => 'no',
@@ -240,6 +240,11 @@ class TCC_Theme_Customizer {
 				'choices'     => array(
 					'no'  => __( 'Static content', 'tcc-fluid' ),
 					'yes' => __( 'Fluid content', 'tcc-fluid' ),
+				),
+				'showhide' => array(
+					'control' => 'sidebar_position',
+					'action'  => 'hide',
+					'setting' => 'none'
 				),
 			),
 			'mobile' => array(
@@ -251,6 +256,11 @@ class TCC_Theme_Customizer {
 					'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
 					'top'    => __( 'Before post content', 'tcc-fluid' ),
 					'bottom' => __( 'After post content', 'tcc-fluid' ),
+				),
+				'showhide' => array(
+					'control' => 'sidebar_position',
+					'action'  => 'hide',
+					'setting' => 'none'
 				),
 			),
 		);
@@ -278,10 +288,10 @@ class TCC_Theme_Customizer {
 				'open'   => __( 'Open', 'tcc-fluid' ),
 				'closed' => __( 'Closed', 'tcc-fluid' ),
 			),
-			'showhide' => array(
+/*			'showhide' => array(
 				'control' => [ 'widgyt_icons' ],
 				'hide'    => 'perm'
-			),
+			), //*/
 		);
 		$controls['icons'] = array(
 			'default'     => 'none',
@@ -290,6 +300,11 @@ class TCC_Theme_Customizer {
 			'render'      => 'htmlradio',
 			'choices'     => $this->widget_icons(),
 			'sanitize_callback' => [ fluid_sanitize(), 'radio' ],
+			'showhide' => array(
+				'control' => 'widgyt_collapse',
+				'action'  => 'hide',
+				'setting' => 'perm'
+			),
 		);
 		$options['widgyt'] = array(
 			'section'  => $section,
