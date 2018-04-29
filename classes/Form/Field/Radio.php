@@ -34,6 +34,7 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 					<div>
 						<label><?php
 							$attrs = $this->checked( $attrs, $this->field_value, $key );
+fluid()->log($attrs);
 							$this->element( 'input', $attrs );
 							echo esc_html( $text ); ?>
 						</label>
