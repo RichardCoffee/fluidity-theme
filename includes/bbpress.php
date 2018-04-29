@@ -22,11 +22,11 @@ add_action( 'tcc_before_loop', function( $page_slug ) {
 
 #  do not show sidebar on forum pages
 # FIXME:  make this optional
-add_filter( 'fluid_theme_sidebar_positioning', function( $args ) {
+add_filter( 'fluid_theme_sidebar_positioning', function( $side ) {
 	if ( is_bbpress() ) {
-		$args['position'] = 'none';
+		$side = 'none';
 	}
-	return $args;
+	return $side;
 } );
 
 #  force use of template-parts/content.php
