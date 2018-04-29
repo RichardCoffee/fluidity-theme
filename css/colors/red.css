@@ -300,6 +300,7 @@ blockquote,
   border-color: #cc0000;
 }
 
+pre code,
 code {
   background-color: #FFFFFF;
   color: #ff0000;

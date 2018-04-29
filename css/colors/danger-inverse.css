@@ -301,6 +301,7 @@ blockquote,
   border-color: #f2dede;
 }
 
+pre code,
 code {
   background-color: #f2dede;
   color: #a94442;
