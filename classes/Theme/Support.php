@@ -19,19 +19,19 @@ class TCC_Theme_Support {
 	 *
 	 * @var numeric
 	 */
-	protected $content_width =  1600;
+	public $content_width =  1600;
 	/**
 	 * css file name for TinyMCE
 	 *
 	 * @var string
 	 */
-	protected $editor_style  = 'css/editor-style.css';
+	public $editor_style  = 'css/editor-style.css';
 	/**
 	 * used as prefix for apply_filter calls
 	 *
 	 * @var string
 	 */
-	protected $filter_prefix = 'fluid';
+	public $filter_prefix = 'fluid';
 
 	/**
 	 * initialize tasks for theme support
@@ -63,7 +63,7 @@ class TCC_Theme_Support {
 			'title_tag',
 		);
 		$funcs = apply_filters( $this->filter_prefix . '_load_theme_support', $funcs );
-		if ( $funcs ) {
+		if ( ! empty( $funcs ) ) {
 			foreach( $funcs as $func ) {
 				if ( method_exists( $this, $func ) ) {
 					$this->$func();
@@ -140,7 +140,9 @@ class TCC_Theme_Support {
 			'video-active-callback'  => 'is_front_page',
 		);
 		$header = apply_filters( $this->filter_prefix . '_support_custom_header', $header );
-		add_theme_support( 'custom-header', $header );
+		if ( $header ) {
+			add_theme_support( 'custom-header', $header );
+		}
 	}
 
 	/**
@@ -157,6 +159,7 @@ class TCC_Theme_Support {
 			'header-text' => '', // array( 'site-title', 'site-description' ),
 		);
 		$logo = apply_filters( $this->filter_prefix . '_support_custom_logo', $logo );
+		if ( $logo )
 		add_theme_support( 'custom-logo', $logo );
 	}
 
@@ -286,8 +289,7 @@ class TCC_Theme_Support {
 			'scss',
 		) );
 		# add these exclusions when WP is checking for page templates
-		# FIXME: this function check will not work with gutenburg(!)
-		if ( was_called_by( 'page_attributes_meta_box' ) ) {
+		if ( was_called_by( 'get_post_templates' ) ) {
 			$exclusions = array_merge( $exclusions, array(
 				'classes',
 				'css',
@@ -296,7 +298,6 @@ class TCC_Theme_Support {
 				'template-parts',
 			) );
 		}
-		$exclusions = apply_filters( $this->filter_prefix . '_theme_scandir_exclusions', $exclusions );
 		return $exclusions;
 	}
 
@@ -310,4 +311,16 @@ class TCC_Theme_Support {
 	}
 
 
+}
+
+if ( ! function_exists( 'was_called_by' ) ) {
+	function was_called_by( $func ) {
+		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
+		foreach( $call_trace as $current ) {
+			if ( ( ! empty( $current['function'] ) ) && ( $current['function'] === $func ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
