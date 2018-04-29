@@ -300,8 +300,9 @@ blockquote,
   border-color: #d57808;
 }
 
+code,
 pre code,
-code {
+pre {
   color: #f7941d;
 }
 

@@ -301,8 +301,9 @@ blockquote,
   border-color: #2E6DA4;
 }
 
+code,
 pre code,
-code {
+pre {
   color: #337AB7;
 }
 
