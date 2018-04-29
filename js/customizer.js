@@ -18,9 +18,9 @@
 					var visibility = function() {
 						var index = fluid_customize[ control.id ].control;
 						console.log('id: '+control.id,'index: '+index);
-						if ( index ) {
-							console.log('check: '+fluid_customize[ index ].setting,'setting: '+setting.get());
-							if ( fluid_customize[ index ].setting === setting.get() ) {
+						if ( fluid_customize[ control.id ].action === 'hide' ) {
+							console.log('check: '+fluid_customize[ control.id ].setting,'setting: '+setting.get());
+							if ( fluid_customize[ control.id ].setting === setting.get() ) {
 								control.container.slideUp( 180 );
 							} else {
 								control.container.slideDown( 180 );
