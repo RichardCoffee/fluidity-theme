@@ -22,10 +22,13 @@ add_action( 'tcc_before_loop', function( $page_slug ) {
 
 #  do not show sidebar on forum pages
 # FIXME:  make this optional
+fluid()->log('loading bbpress includes file');
 add_filter( 'fluid_theme_sidebar_args', function( $args ) {
 	if ( is_bbpress() ) {
 		$args['position'] = 'none';
+fluid()->log('assign no sidebar');
 	}
+fluid()->log($args);
 	return $args;
 } );
 
