@@ -679,7 +679,6 @@ abstract class TCC_Form_Admin {
 		if ( ! empty( $layout['text'] ) ) {
 			$this->element( 'p', [ ], ' ' . $layout['text'] );
 		}
-		$html.= '<input type="text"';
 		$attrs = array(
 			'type'  => 'text',
 			'id'    => $ID,
