@@ -12,25 +12,24 @@
 			console.log(target);
 			// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
 			api( fluid_customize[ target ].control, function( setting ) {
-					console.log(fluid_customize [ target ].control);
-					api.control( target, function( control ) {
-						console.log( "control: ", control );
-						var visibility = function() {
-							var index = fluid_customize[ control.id ].control;
-							console.log('id: '+control.id,'index: '+index);
-							if ( index ) {
-								console.log('check: '+fluid_customize[ index ].setting,'setting: '+setting.get());
-								if ( fluid_customize[ index ].setting === setting.get() ) {
-									control.container.slideUp( 180 );
-								} else {
-									control.container.slideDown( 180 );
-								}
+				console.log(fluid_customize [ target ].control);
+				api.control( target, function( control ) {
+					console.log( "control: ", control );
+					var visibility = function() {
+						var index = fluid_customize[ control.id ].control;
+						console.log('id: '+control.id,'index: '+index);
+						if ( index ) {
+							console.log('check: '+fluid_customize[ index ].setting,'setting: '+setting.get());
+							if ( fluid_customize[ index ].setting === setting.get() ) {
+								control.container.slideUp( 180 );
+							} else {
+								control.container.slideDown( 180 );
 							}
-						};
-						visibility();
-						setting.bind( visibility );
-					} );
-				}
+						}
+					};
+					visibility();
+					setting.bind( visibility );
+				} );
 			} );
 		}
 
