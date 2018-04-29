@@ -32,8 +32,9 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 				foreach( $this->choices as $key => $text ) {
 					$attrs['value'] = $key; ?>
 					<div>
-						<label>
-							<input <?php fluid()->apply_attrs( $attrs ); ?> <?php checked( $this->field_value, $key ); ?>><?php
+						<label><?php
+							$attrs = $this->checked( $attrs, $this->field_value, $key );
+							$this->element( 'input', $attrs );
 							echo esc_html( $text ); ?>
 						</label>
 					</div><?php
