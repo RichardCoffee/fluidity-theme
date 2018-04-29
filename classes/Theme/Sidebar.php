@@ -31,6 +31,7 @@ class TCC_Theme_Sidebar {
 		$this->slug    = $this->sidebar;
 		$this->fluid   = get_theme_mod( 'sidebar_fluidity', 'no' );
 		$this->css     = ( $this->fluid === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
+
 		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 		$this->parse_args( $args );
 		if ( ! $this->horizontal ) {
@@ -60,6 +61,7 @@ class TCC_Theme_Sidebar {
 		$side = get_theme_mod( 'sidebar_position', 'right' );
 		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
+		$side = apply_filters( 'fluid_theme_sidebar_positioning', $side );
 		return $side;
 	}
 
