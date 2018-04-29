@@ -45,22 +45,23 @@ class TCC_Theme_Customizer {
 		}
 		$sections = apply_filters( 'fluid_customizer_controls', $this->get_customizer_controls( array() ) );
 		foreach( $sections as $section_id => $section ) {
-			$order = 0;
-			$args  = $this->get_section_defaults( $section['section'] );
+			$args = $this->get_section_defaults( $section['section'] );
 			$customize->add_section( $section_id, $args );
 			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
+			$order    = 0;
 			foreach( $controls as $control_id => $control ) {
-				$order     += 10;
+#				$order     += 10;
 				$setting_id = $section_id . '_' . $control_id;
 				$args       = $this->get_setting_defaults( $control );
 				$customize->add_setting( $setting_id, $args );
-				$priority = ( isset( $control['priority'] ) ) ? $control['priority'] : $order;
+				$priority = ( isset( $control['priority'] ) ) ? $control['priority'] : ( $order += 10 );
 				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
 	}
 
 	public function assign_postmessage( WP_Customize_Manager $customize ) {
+		$customize->remove_control('background_color');
 		$customize->get_setting( 'blogname' )->transport = 'postMessage';
 	}
 
@@ -202,13 +203,6 @@ class TCC_Theme_Customizer {
 					'left'  => __( 'Left side', 'tcc-fluid' ),
 					'right' => __( 'Right side', 'tcc-fluid' ),
 				),
-/*				'showhide' => array(
-					'control' => array(
-						'sidebar_fluidity',
-						'sidebar_mobile'
-					),
-					'hide'    => 'none'
-				), */
 			),
 			'fluidity' => array(
 				'default'     => 'no',
@@ -266,10 +260,6 @@ class TCC_Theme_Customizer {
 				'open'   => __( 'Open', 'tcc-fluid' ),
 				'closed' => __( 'Closed', 'tcc-fluid' ),
 			),
-/*			'showhide' => array(
-				'control' => [ 'widgyt_icons' ],
-				'hide'    => 'perm'
-			), //*/
 		);
 		$controls['icons'] = array(
 			'default'     => 'none',
