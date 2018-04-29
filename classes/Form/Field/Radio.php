@@ -30,11 +30,11 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 					$attrs['aria-describedby'] = $uniq;
 				} //*/
 				foreach( $this->choices as $key => $text ) {
+					if ( isset( $attrs['checked'] ) ) { unset( $attrs['checked'] ); }
 					$attrs['value'] = $key; ?>
 					<div>
 						<label><?php
 							$attrs = $this->checked( $attrs, $this->field_value, $key );
-fluid()->log($this->field_value,$attrs);
 							$this->element( 'input', $attrs );
 							echo esc_html( $text ); ?>
 						</label>
