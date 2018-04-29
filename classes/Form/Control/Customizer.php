@@ -29,7 +29,7 @@ class TCC_Form_Control_Customizer {
 		}
 		$render = $this->control['render'];
 		$this->$render();
-fluid()->log($this);
+fluid()->logobj($this);
 	}
 
 	/**
