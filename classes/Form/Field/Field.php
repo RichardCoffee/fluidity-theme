@@ -44,7 +44,9 @@ abstract class TCC_Form_Field_Field {
 		if ( $this->form_control ) {
 			$this->add_form_control_css();
 		}
+fluid()->log($this->field_value);
 		$this->field_value = $this->sanitize( $this->field_value );
+fluid()->log(0,$this->field_value);
 	}
 
 	public function get_date_format() {
