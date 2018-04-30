@@ -2,37 +2,30 @@
 
 class TCC_Options_ColorScheme {
 
-
-	protected $base     = 'colorscheme';
-	protected $priority = 85;
-
-
-	protected function form_title() {
-		return __( 'Color Scheme', 'tcc-fluid' );
-	}
-
-	public function describe_options() {
-		esc_html_e( "Control the theme's color scheme.", 'tcc-fluid' );
-	}
-
-	protected function options_layout() {
-		$layout  = array( 'default' => true );
-		$schemes = $this->get_available_color_schemes( array( 'none' => __( 'Do not use internal color scheme', 'tcc-fluid' ) ) );
-#		$active  = tcc_options( 'active',  $this->base, 'none' );
-#		$data    = tcc_options( 'schemes', $this->base, array() );
-		$layout['active'] = array(
-			'default' => 'none',
-			'label'   => __( 'Color Scheme', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => $schemes,
+	public function color_scheme_controls( $options ) {
+		$controls = array(
+			'scheme' => array(
+				'default' => 'random',
+				'label'   => __( 'Color Scheme', 'tcc-fluid' ),
+				'description' => __( 'Choose the color scheme you wish to use', 'tcc-fluid' ),
+				'render'  => 'radio',
+				'choices' => array_merge(
+					array(
+						'none'   => __( 'Do not use a color scheme', 'tcc-fluid' ),
+						'random' => __( 'Random color scheme on each page load.', 'tcc-fluid' ),
+					),
+					$this->get_available_color_schemes()
+				),
+			),
 		);
-		foreach( $schemes as $file => $name ) {
-
-		}
+		$options['colors'] = array(
+			'section'  => null,
+			'controls' => $controls
+		); //*/
+		return $options;
 	}
 
 	public function get_available_color_schemes( $colors = array() ) {
-#	private function get_available_color_schemes( $colors = array() ) {
 		$path   = FLUIDITY_HOME . 'css/colors';
 		$avail  = scandir( $path );
 fluid()->log($colors,$avail);
@@ -40,23 +33,16 @@ fluid()->log($colors,$avail);
 			if ( in_array( $file, array( '.', '..' ), true ) ) {
 				continue;
 			}
-			if ( strpos( $file, '.css' ) === false ) {
+			if ( ! ( pathinfo( $file, PATHINFO_EXTENSION ) === 'css' ) ) {
 				continue;
 			}
 			$data = get_file_data( $path . '/' . $file, array( 'name' => 'Name' ) );
 			if ( $data && ! empty( $data['name'] ) ) {
-				$colors[ $file ] = $data['name'];
+				$index = pathinfo( $file, PATHINFO_FILENAME );
+				$colors[ $index ] = $data['name'];
 			}
 		}
-		return $colors;
-	}
-
-	protected function customizer_data() {
-		$data = array(
-			array(
-			),
-		);
-		return apply_filters( "fluid_{$this->base}_customizer_data", $data );
+		return $colors; // apply_filters( 'fluid_available_color_schemes', $colors );
 	}
 
 

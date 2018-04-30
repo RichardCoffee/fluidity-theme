@@ -45,12 +45,13 @@ class TCC_Theme_Customizer {
 		}
 		$sections = apply_filters( 'fluid_customizer_controls', $this->get_customizer_controls( array() ) );
 		foreach( $sections as $section_id => $section ) {
-			$args = $this->get_section_defaults( $section['section'] );
-			$customize->add_section( $section_id, $args );
-			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
+			if ( ! empty( $section['section'] ) ) {
+				$args = $this->get_section_defaults( $section['section'] );
+				$customize->add_section( $section_id, $args );
+			}
 			$order    = 0;
+			$controls = apply_filters( "fluid_customizer_controls_$section_id", $section['controls'] );
 			foreach( $controls as $control_id => $control ) {
-#				$order     += 10;
 				$setting_id = $section_id . '_' . $control_id;
 				$args       = $this->get_setting_defaults( $control );
 				$customize->add_setting( $setting_id, $args );
@@ -142,6 +143,7 @@ class TCC_Theme_Customizer {
 		$options = $this->screen_width( $options );
 		$options = $this->theme_sidebar( $options );
 		$options = $this->widget_collapse( $options );
+		$options = fluid_color()->color_scheme_controls( $options );
 		return $options;
 	}
 

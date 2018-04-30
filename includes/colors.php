@@ -12,12 +12,11 @@ if ( ! function_exists( 'fluid_color_body_class' ) ) {
 }
 
 if ( ! function_exists( 'fluid_color_scheme' ) ) {
-	function fluid_color_scheme() {
+	function fluid_color_scheme( $ext = false ) {
 		static $scheme = null;
 		if ( ! $scheme ) {
-			$color = get_theme_mod( 'color_scheme', null );
-			$color = ( $color ) ? $color : tcc_design( 'color_scheme', null );
-			if ( ! $color || ( $color === 'random-color' ) ) {
+			$color = get_theme_mod( 'colors_scheme', 'random' );
+			if ( $color === 'random' ) {
 				$color = tcc_color_scheme(); # generates random color scheme
 			}
 			$base   = "/css/colors/$color.css";

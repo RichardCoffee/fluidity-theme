@@ -68,6 +68,23 @@ if ( ! function_exists( 'fluid_comment' ) ) {
 }
 
 /**
+ * Returns an instance of TCC_Options_ColorScheme
+ *
+ * @since 20180430
+ * @staticvar TCC_Options_ColorScheme $library
+ * @return TCC_Options_ColorScheme
+ */
+if ( ! function_exists( 'fluid_color' ) ) {
+	function fluid_color() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Options_ColorScheme;
+		}
+		return $library;
+	}
+}
+
+/**
  * Returns an instance of the Customizer class
  *
  * @since 20180404
