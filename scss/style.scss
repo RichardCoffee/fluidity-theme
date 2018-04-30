@@ -24,6 +24,7 @@
 
 a:hover, a:focus {
 	border-bottom: 2px solid;
+	text-decoration: none;
 	&.btn {
 		border-width: 1px;
 	}
