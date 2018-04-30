@@ -71,7 +71,7 @@ function themeslug_customize_register( $section_args, $section_id, $sidebar_id )
 add_action( 'customizer_widgets_section_args', 'themeslug_customize_register', 10, 3 ); //*/
 
 add_filter( 'heartbeat_received', function ( $resource, $data ) {
-	fluid()->log( $resource, $data );
+	fluid(1)->log( $resource, $data );
 	return $resource;
 }, 10, 2 ); //*/
 
@@ -88,3 +88,4 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid()->log( $schemes );
 } ); //*/
 
+fluid()->log( get_option( 'sidebars_widgets', array() ) );

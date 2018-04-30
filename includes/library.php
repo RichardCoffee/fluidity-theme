@@ -328,6 +328,21 @@ if ( ! function_exists( 'get_valid_gravatar' ) ) {
 }
 
 /**
+ * get number of widgets in a sidebar
+ *
+ * @since 20180430
+ * @link https://halgatewood.com/wordpress-function-get-widget-count-of-a-sidebar
+ * @param string $sidebar_id
+ * @return integer
+ */
+if ( ! function_exists( 'get_widget_count' ) ) {
+	function get_widget_count( $sidebar_id ) {
+		$sidebars_widgets = wp_get_sidebars_widgets();
+		return (int) count( (array) $sidebars_widgets[ $sidebar_id ] );
+	}
+}
+
+/**
  *  check for ajax
  *
  * @link http://stackoverflow.com/questions/14348470/is-ajax-in-wordpress
