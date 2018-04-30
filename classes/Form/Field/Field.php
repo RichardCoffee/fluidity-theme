@@ -52,7 +52,7 @@ abstract class TCC_Form_Field_Field {
 	}
 
 	public function input() {
-		$this-element( 'input', $this->get_input_attributes() );
+		$this->element( 'input', $this->get_input_attributes() );
 	}
 
 	public function get_input() {
