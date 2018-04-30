@@ -169,13 +169,13 @@ if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 }
 
 if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
-fluid()->log('fluid_bbp_font_size defined');
 	#  Add font sizes to custom css
 	function fluid_bbp_font_size() {
 fluid()->log('fluid_bbp_font_size executing');
 		if ( is_bbpress() ) {
 fluid()->log('fluid_bbp_font_size is_bbpress');
 			$fontsize = tcc_design( 'bbpsize', 12 );
+fluid()->log("fluid_bbp_font_size defined $fontsize");
 			if ( $fontsize && ( ! ( $fontsize === 12 ) ) ) { # 12 is the default
 				$css = array(
 					'div#bbpress-forums',
