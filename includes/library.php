@@ -332,6 +332,7 @@ if ( ! function_exists( 'get_valid_gravatar' ) ) {
  *
  * @since 20180430
  * @link https://halgatewood.com/wordpress-function-get-widget-count-of-a-sidebar
+ * @link https://wordpress.stackexchange.com/questions/54162/get-number-of-widgets-in-sidebar
  * @param string $sidebar_id
  * @return integer
  */
