@@ -53,7 +53,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		}
 		if ( ! empty( $_POST[ $this->field ] ) ) {
 			$this->initialize_radio( $postID );
-			$value = $this->radio->sanitize( $_POST[ $this->field ] );
+			$value = $this->radio->sanitize( wp_unslash( $POST[ $this->field ] ) );
 			update_post_meta( $postID, $this->field, $value );
 		}
 	}

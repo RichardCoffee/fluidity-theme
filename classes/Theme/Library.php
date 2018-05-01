@@ -109,9 +109,10 @@ $this->log($meta);
 
 	}
 
+	# duplicated in TCC_Plugin_Library
 	public function kses() {
 		return array(
-			'a'    => [ 'class' => [ ], 'href' => [ ], 'itemprop' => [ ], 'rel' => [ ], 'target' => [ ] ],
+			'a'    => [ 'class' => [ ], 'href' => [ ], 'itemprop' => [ ], 'rel' => [ ], 'target' => [ ], 'title' => [ ], 'aria-label' => [ ] ],
 			'i'    => [ 'class' => [ ] ],
 			'span' => [ 'class' => [ ], 'itemprop' => [ ] ],
 		);
