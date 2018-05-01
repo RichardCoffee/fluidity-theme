@@ -24,7 +24,7 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 			<h2 itemprop="name"><?php bloginfo('name'); ?></h2>
 			<address <?php self::$micro->PostalAddress(); ?>><?php
 				if ( ! empty( $instance['tcc-street'] ) ) {
-					echo wp_kses( self::$micro->street( $instance['tcc-street'] ), [ 'span' => [ 'itemprop' => [ ] ] ] );
+					echo wp_kses( self::$micro->street( $instance['tcc-street'] ), fluid()->kses() );
 				} ?>
 				<span class="comma-after" itemprop="addressLocality">
 					<?php echo esc_html( $instance['tcc-local'] ); ?>
@@ -42,7 +42,7 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 				}
 				if ( ! empty( $instance['tcc-email'] ) ) {
 					esc_html_e( 'Email: ', 'tcc-fluid' );
-					echo wp_kses( self::$micro->email_format( $instance['tcc-email'] ), [ 'a' => [ 'href' => [ ], 'itemprop' => [ ] ] ] );
+					echo wp_kses( self::$micro->email_format( $instance['tcc-email'] ), fluid()->kses() );
 				} /*
  ?>
 				<a href="mailto:<?php echo esc_html( $instance['tcc-email'] ); ?>">

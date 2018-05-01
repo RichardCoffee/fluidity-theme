@@ -88,4 +88,4 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid()->log( $schemes );
 } ); //*/
 
-fluid()->log( wp_kses_allowed_html( 'strip' ) );
+fluid()->log( wp_kses_allowed_html( 'data' ) );

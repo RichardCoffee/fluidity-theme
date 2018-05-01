@@ -18,7 +18,7 @@ if ( ! function_exists( 'fluid_copyright_dates' ) ) {
 		if ( $copyright_dates ) {
 			$copyright = $copyright_dates[0];
 			$output = "&copy; <span itemprop='copyrightYear'>{$copyright->firstdate}</span>";
-			if ( $copyright->firstdate !== $copyright->lastdate ) {
+			if ( ! ( $copyright->firstdate === $copyright->lastdate ) ) {
 				$output .= '-' . $copyright->lastdate;
 			}
 		}
@@ -60,7 +60,7 @@ if ( ! function_exists( 'tcc_copyright' ) ) {
 		<p id="fluidity-copyright" class="text-center"><?php
 			$format = _x( 'Copyright %1$s %2$s, All rights reserved.', '1: numeric year  2: site name', 'tcc-fluid' );
 			$title  = apply_filters( 'tcc_copyright_name', microdata()->get_bloginfo( 'name' ) );
-			echo wp_kses ( sprintf( $format, fluid_copyright_dates(), $title ), [ 'span' => [ 'itemprop' => [ ] ] ] );
+			echo wp_kses ( sprintf( $format, fluid_copyright_dates(), $title ), fluid()->kses() );
 #			fluid()->fawe( 'fab fa-php' ); ?>
 		</p><?php
 	}
@@ -83,7 +83,7 @@ if ( ! function_exists( 'tcc_footer_menu' ) ) {
 				$menu[] = '<a class="tcc-footer-menu-item" href="/' . $index . '/">&nbsp;' . esc_html( $text ) . '&nbsp; </a>';
 			} ?>
 			<span class="tcc-footer-menu" <?php microdata()->SiteNavigationElement(); ?>>
-				<?php echo wp_kses( implode( '&nbsp;|&nbsp;', $menu ), [ 'a' => [ 'class' => [ ], 'href' => [ ] ] ] ); ?>
+				<?php echo wp_kses( implode( '&nbsp;|&nbsp;', $menu ), fluid()->kses() ); ?>
 			</span><?php
 		}
 	}

@@ -15,7 +15,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 	public function describe_options() {
 		$text = esc_html_x( 'Fluidity Social Icons (powered by %sFont Awesome%s)', 'html anchor/link tag', 'tcc-fluid' );
 		$desc = sprintf( $text, '<a href="http://fontawesome.io/" rel="nofollow noopener" target="fontawesome.io">', '</a>' );
-		echo wp_kses( $desc, [ 'a' => [ 'href' => [ ], 'rel' => [ ], 'target' => [ ] ] ] );
+		echo wp_kses( $desc, fluid()->kses() );
 	}
 
 	public function options_layout() {

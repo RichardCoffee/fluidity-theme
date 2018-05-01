@@ -34,7 +34,7 @@ class TCC_Theme_Library {
 	/**  Font Awesome icons  **/
 
 	public function fawe( $icon = 'fa-question fa-border' ) {
-		echo wp_kses( $this->get_fawe( $icon ), [ 'i' => [ 'class' => [ ] ] ] );
+		echo wp_kses( $this->get_fawe( $icon ), $this->kses() );
 	}
 
 	public function get_fawe( $icon = 'fa-question fa-border' ) {
@@ -107,6 +107,14 @@ class TCC_Theme_Library {
 
 $this->log($meta);
 
+	}
+
+	public function kses() {
+		return array(
+			'a'    => [ 'class' => [ ], 'href' => [ ], 'itemprop' => [ ], 'rel' => [ ], 'target' => [ ] ],
+			'i'    => [ 'class' => [ ] ],
+			'span' => [ 'class' => [ ], 'itemprop' => [ ] ],
+		);
 	}
 
 

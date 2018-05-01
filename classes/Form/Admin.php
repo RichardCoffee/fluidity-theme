@@ -562,12 +562,12 @@ abstract class TCC_Form_Admin {
 					<label>
 						<input <?php $this->apply_attrs( $radio_attrs ); ?> <?php checked( $value, $key ); ?>><?php
 						if ( isset( $layout['src-html'] ) ) {
-							echo wp_kses( $text, [ 'i' => [ 'class' => [ ] ] ] );
+							echo wp_kses( $text, fluid()->kses() );
 						} else {
 							e_esc_html( $text );
 						}
 						if ( isset( $layout['extra_html'][ $key ] ) ) {
-							echo wp_kses( $layout['extra_html'][ $key ], [ 'span' => [ 'class' => [ ] ] ] );
+							echo wp_kses( $layout['extra_html'][ $key ], fluid()->kses() );
 						} ?>
 					</label>
 				</div><?php
@@ -606,12 +606,8 @@ abstract class TCC_Form_Admin {
 						<input type="radio" value="no" class="radio-multiple-list radio-multiple-list-no"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       <?php checked( $check, 'no' ); ?> />
-						<span class="radio-multiple-list-text"><?php
-							$kses = array(
-								'a'    => array( 'href'  => [ ], 'target' => [ ], 'title' => [ ], 'aria-label' => [ ] ),
-								'span' => array( 'class' => [ ] )
-							);
-							echo wp_kses( $text, $kses ); ?>
+						<span class="radio-multiple-list-text">
+							<?php echo wp_kses( $text, fluid()->kses() ); ?>
 						</span>
 					</label>
 				</div><?php
