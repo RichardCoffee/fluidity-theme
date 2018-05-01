@@ -107,7 +107,7 @@ abstract class TCC_Form_Field_Field {
 		if ( $this->sanitize && is_callable( $this->sanitize ) ) {
 			$output = call_user_func( $this->sanitize, $input );
 		} else {
-			$output = wp_strip_all_tags( stripslashes( $input ) );
+			$output = wp_strip_all_tags( wp_unslash( $input ) );
 		}
 		return $output;
 	}

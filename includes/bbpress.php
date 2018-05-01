@@ -174,7 +174,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 fluid()->log('fluid_bbp_font_size executing');
 		if ( is_bbpress() ) {
 fluid()->log('fluid_bbp_font_size is_bbpress');
-			$fontsize = tcc_design( 'bbpsize', 12 );
+			$fontsize = get_theme_mod( 'font_bbp_font_size', 12 );
 fluid()->log("fluid_bbp_font_size defined $fontsize");
 			if ( $fontsize && ( ! ( $fontsize === 12 ) ) ) { # 12 is the default
 				$css = array(
@@ -190,7 +190,7 @@ fluid()->log("fluid_bbp_font_size defined $fontsize");
 				$css_tags = implode( ",\n", $css );
 				echo "$css_tags { font-size:  {$fontsize}px; }";
 			}
-			$fontosize1 = tcc_design( 'bbposize1', 11 );
+			$fontosize1 = get_theme_mod( 'font_bbp_font_text_size', 11 );
 			if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) { # 11 is the default
 				$css1 = array(
 					'div#bbpress-forums .bbp-forum-info .bbp-forum-content',
