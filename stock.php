@@ -10,7 +10,7 @@ get_header();
 
 $mypage = get_page_slug();
 
-TCC_Theme_Sidebar::get_instance( [ 'sidebar' => 'standard' ] );	#	See classes/Theme/Sidebar.php on what values the array can have
+$page_sidebar = fluid_sidebar();
 
 do_action( 'fluid_page_top', $mypage ); ?>
 
@@ -23,7 +23,7 @@ do_action( 'fluid_page_top', $mypage ); ?>
 
 		<?php do_action( 'tcc_before_main', $mypage ); ?>
 
-		<main id="content" class="<?php e_esc_attr( TCC_Theme_Sidebar::instance()->main_tag_css( $mypage ) ); ?>" role="main" tabindex="-1"><?php
+		<main id="content" class="<?php e_esc_attr( $page_sidebar->main_tag_css( $mypage ) ); ?>" role="main" tabindex="-1"><?php
 
 			do_action( 'tcc_before_posts', $mypage );
 

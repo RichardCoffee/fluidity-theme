@@ -3,8 +3,8 @@
 
 class TCC_Theme_Sidebar {
 
-	private $main_css    = '';
-	private $sidebar_css = 'col-md-3';
+	private $main_css    = 'col-lg-9 col-md-9 col-sm-12 col-xs-12';
+	private $sidebar_css = 'col-lg-3 col-md-3 col-sm-12 col-xs-12';
 
 	protected $action     = 'tcc_before_main';
 	protected $mobile     = 'tcc_after_main';
@@ -17,9 +17,8 @@ class TCC_Theme_Sidebar {
 	protected $slug;
 
 	use TCC_Trait_ParseArgs;
-	use TCC_Trait_Singleton;
 
-	private function __construct( $args = array() ) {
+	public function __construct( $args = array() ) {
 
 		$this->position = $this->positioning();
 
@@ -108,7 +107,7 @@ class TCC_Theme_Sidebar {
 			$css .= ' has-no-sidebar';
 		} else {
 			if ( ( $this->fluid === 'static' ) && empty( $css ) ) {
-				$css = tcc_layout( 'main_css', 'col-md-9' );
+				$css = tcc_layout( 'main_css', $this->main_css );
 			}
 			$css .= ' has-sidebar';
 		}

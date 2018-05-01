@@ -170,6 +170,19 @@ if ( ! function_exists( 'fluid_sanitize' ) ) {
 }
 
 /**
+ * Returns an instance of the Theme Sidebar class
+ *
+ * @since 20180501
+ * @param array $args
+ * @return TCC_Theme_Sidebar
+ */
+if ( ! function_exists( 'fluid_sidebar' ) ) {
+	function fluid_sidebar( $args = [ 'sidebar' => 'standard' ] ) {
+		return new TCC_Theme_Sidebar( $args );
+	}
+}
+
+/**
  * Returns an instance of the Theme Support class
  *
  * @since 20180324
