@@ -207,13 +207,13 @@ class TCC_Theme_Customizer {
 				),
 			),
 			'fluidity' => array(
-				'default'     => 'no',
+				'default'     => 'static',
 				'label'       => __( 'Fluid Sidebar', 'tcc-fluid' ),
 				'description' => __( 'Let content flow around sidebar', 'tcc-fluid' ),
 				'render'      => 'radio',
 				'choices'     => array(
-					'no'  => __( 'Static content', 'tcc-fluid' ),
-					'yes' => __( 'Fluid content', 'tcc-fluid' ),
+					'static' => __( 'Static content', 'tcc-fluid' ),
+					'fluid'  => __( 'Fluid content', 'tcc-fluid' ),
 				),
 				'showhide' => array(
 					'control' => 'sidebar_position',

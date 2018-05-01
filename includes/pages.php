@@ -166,25 +166,6 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
 	}
 }
 
-/**
- *  @brief Provides filters for css applied to main content tag.
- *
- *  @param string initial css class(es)
- *  @return string css classes to be applied
- */
-if ( ! function_exists( 'tcc_main_tag_css' ) ) {
-	function tcc_main_tag_css( $css = '', $page = 'page' ) {
-		if ( empty( $css ) && ( ! defined( 'TCC_NO_SIDEBAR' ) ) && ( get_theme_mod( 'sidebar_position', 'right' ) !== 'none' ) ) {
-			if ( get_theme_mod( 'sidebar_fluidity', 'no' ) === 'no' ) {
-				$css = tcc_layout( 'main_css', 'col-md-9' );
-			} else {
-				$css = 'has-fluid-sidebar';
-			}
-		}
-		return $css; #  apply_filters( 'fluid_main_tag_css', $css, $page );
-	}
-}
-
 if ( ! function_exists( 'tcc_page_effects' ) ) {
 	function tcc_page_effects( $mypage ) {
 		if ( is_page() ) {

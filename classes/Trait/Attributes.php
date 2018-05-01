@@ -94,9 +94,9 @@ trait TCC_Trait_Attributes {
 	 * @param string|array $classes css classes to be sanitized
 	 * @return string
 	 */
-	protected function sanitize_html_class( $classes ) {
+	public function sanitize_html_class( $classes ) {
 		if ( is_array( $classes ) ) {
-			// pack it down then blow it up - insure each element is a single class
+			// pack it down then blow it up - insure each item is a single class
 			$classes = explode( ' ', implode( ' ', $classes ) );
 		} else {
 			// convert string to an array

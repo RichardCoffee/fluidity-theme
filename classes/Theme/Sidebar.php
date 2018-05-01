@@ -13,7 +13,7 @@ class TCC_Theme_Sidebar {
 	protected $position   = 'none';
 	protected $root       = 'sidebar';
 	protected $sidebar    = 'standard';
-	protected $fluid      = 'no';
+	protected $fluid      = 'static';
 	protected $slug;
 
 	use TCC_Trait_ParseArgs;
@@ -22,26 +22,27 @@ class TCC_Theme_Sidebar {
 	private function __construct( $args = array() ) {
 
 		$this->position = $this->positioning();
-		if ( defined( 'TCC_NO_SIDEBAR' ) || ( $this->position === 'none' ) ) {
-			static::$abort__construct = true;
-			return;
+
+		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
+			$this->position = 'none';
 		}
 
-		$this->sidebar = get_page_slug();
-		$this->slug    = $this->sidebar;
-		$this->fluid   = get_theme_mod( 'sidebar_fluidity', 'no' );
-		$this->css     = ( $this->fluid === 'no' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
+		if ( ! ( $this->position === 'none' ) ) {
 
-		$args = apply_filters( 'fluid_theme_sidebar_args', $args );
-		$this->parse_args( $args );
-		if ( ! $this->horizontal ) {
-			$this->check_mobile();
+			$this->sidebar = get_page_slug();
+			$this->slug    = $this->sidebar;
+			$this->fluid   = get_theme_mod( 'sidebar_fluidity', 'static' );
+			$this->css     = ( $this->fluid === 'static' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
+
+			$args = apply_filters( 'fluid_theme_sidebar_args', $args );
+			$this->parse_args( $args );
+			if ( ! $this->horizontal ) {
+				$this->check_mobile();
+			}
+			if ( ! empty( $this->action ) ) {
+				add_action( $this->action, array( $this, 'show_sidebar' ) );
+			}
 		}
-		if ( empty( $this->action ) ) {
-			static::$abort__construct = true;
-			return;
-		}
-		add_action( $this->action, array( $this, 'show_sidebar' ) );
 	}
 
 	private function check_mobile() {
@@ -52,7 +53,7 @@ class TCC_Theme_Sidebar {
 			} else if ( $mobile === 'bottom' ) {
 				$this->action = 'tcc_after_main';
 			}
-		} else if ( ( $this->fluid === 'no' ) && get_theme_mod( 'sidebar_position', 'right' ) === 'right' ) {
+		} else if ( ( $this->fluid === 'static' ) && get_theme_mod( 'sidebar_position', 'right' ) === 'right' ) {
 			$this->action = 'tcc_after_main';
 		}
 	}
@@ -81,7 +82,7 @@ class TCC_Theme_Sidebar {
 			'noprint',
 			'widget-area',
 		);
-		if ( $this->fluid === 'yes' ) {
+		if ( $this->fluid === 'fluid' ) {
 			$css[] = 'fluid-sidebar';
 			$css[] = 'fluid-sidebar-' . $this->position;
 			$css[] = 'pull-' . $this->position;
@@ -94,6 +95,25 @@ class TCC_Theme_Sidebar {
 		}
 		return array_unique( array_merge( $css, ( ( is_array( $this->css ) ) ? $this->css : explode( ' ', $this->css ) ) ) );
 	}
+
+	/**
+	 * @brief Provides for css applied to main content tag.
+	 *
+	 * @param string $page
+	 * @param string $css initial css class(es)
+	 * @return string css classes to be applied
+	 */
+	public function main_tag_css( $page, $css = '' ) {
+		if ( $this->position === 'none' ) {
+			$css .= ' has-no-sidebar';
+		} else {
+			if ( ( $this->fluid === 'static' ) && empty( $css ) ) {
+				$css = tcc_layout( 'main_css', 'col-md-9' );
+			}
+			$css .= ' has-sidebar';
+		}
+		return fluid()->sanitize_html_class( $css ); #  apply_filters( 'fluid_main_tag_css', $css, $page ) );
+}
 
 
 }

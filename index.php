@@ -23,7 +23,7 @@ do_action( 'fluid_page_top', $mypage ); ?>
 
 		<?php do_action( 'tcc_before_main', $mypage ); ?>
 
-		<main id="content" class="<?php e_esc_attr( tcc_main_tag_css( '', $mypage ) ); ?>" role="main" tabindex="-1"><?php
+		<main id="content" class="<?php e_esc_attr( TCC_Theme_Sidebar::instance()->main_tag_css( $mypage ) ); ?>" role="main" tabindex="-1"><?php
 
 			do_action( 'tcc_before_posts', $mypage );
 
