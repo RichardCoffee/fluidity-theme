@@ -36,7 +36,7 @@ trait TCC_Trait_Attributes {
 	 * @param array $attrs an associative array containing the attribute keys and values
 	 */
 	public function apply_attrs( $attrs ) {
-		echo $this->get_apply_attrs( $attrs );
+		echo wp_kses( $this->get_apply_attrs( $attrs ) );
 	}
 
 	/**
@@ -181,12 +181,13 @@ trait TCC_Trait_Attributes {
 	public function filter_attributes_by_tag( $html_tag, $attrs ) {
 		if ( ( $html_tag === 'a' ) && isset( $attrs[ 'target' ] ) ) {
 			# @link https://www.hongkiat.com/blog/wordpress-rel-noopener/
-			$add_rel = ' nofollow noopener';
+			$attrs['rel'] = ( ( isset( $attrs['rel'] ) ) ? $attrs['rel'] : '' ) . ' nofollow noopener';
+/*			$add_rel = ' nofollow noopener';
 			if ( isset( $attrs['rel'] ) ) {
 				$attrs['rel'] = $attrs['rel'] . $add_rel;
 			} else {
 				$attrs['rel'] = $add_rel;
-			}
+			} //*/
 #			$attrs['rel'] = apply_filters( 'fluid_filter_attributes_by_a_rel', $attrs['rel'] );
 		}
 		return $attrs;
@@ -197,26 +198,26 @@ trait TCC_Trait_Attributes {
 
 	# @since 20180424
 	public function checked( $attrs, $checked, $current = true ) {
-		return $this->__checked_selected_helper( $attrs, $checked, $current, 'checked' );
+		return $this->checked_selected_helper( $attrs, $checked, $current, 'checked' );
 	}
 
 	# @since 20180424
 	public function disabled( $attrs, $disabled, $current = true ) {
-		return $this->__checked_selected_helper( $attrs, $disabled, $current, 'disabled' );
+		return $this->checked_selected_helper( $attrs, $disabled, $current, 'disabled' );
 	}
 
 	# @since 20180424
 	public function readonly( $attrs, $readonly, $current = true ) {
-		return $this->__checked_selected_helper( $attrs, $readonly, $current, 'readonly' );
+		return $this->checked_selected_helper( $attrs, $readonly, $current, 'readonly' );
 	}
 
 	# @since 20180424
 	public function selected( $attrs, $selected, $current = true ) {
-		return $this->__checked_selected_helper( $attrs, $selected, $current, 'selected' );
+		return $this->checked_selected_helper( $attrs, $selected, $current, 'selected' );
 	}
 
 	# @since 20180424
-	protected function __checked_selected_helper( $attrs, $helper, $current, $type ) {
+	protected function checked_selected_helper( $attrs, $helper, $current, $type ) {
 		if ( (string) $helper === (string) $current ) {
 			$attrs[ $type ] = $type;
 		}

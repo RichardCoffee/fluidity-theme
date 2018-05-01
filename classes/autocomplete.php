@@ -25,8 +25,10 @@ class TCC_AutoComplete {
 	}
 
 	static function get_search_form( $form ) {
-		$args = array( 'url'    => admin_url( 'admin-ajax.php' ),
-		               'action' => self::$action );
+		$args = array(
+			'url'    => admin_url( 'admin-ajax.php' ),
+			'action' => self::$action
+		);
 		wp_localize_script( 'fluid-autocomplete-js', 'FluidAutocomplete', $args );
 		wp_enqueue_script( 'fluid-autocomplete-js' );
 		return $form;
@@ -34,9 +36,9 @@ class TCC_AutoComplete {
 
 	static function autocomplete_suggestions() {
 
-		$args   = array( 's' => trim( esc_attr( wp_strip_all_tags( $_REQUEST['term'] ) ) ) );
-		$args   = apply_filters( 'autocomplete_args', $args );
-		$posts  = new WP_Query( $args );
+		$args  = array( 's' => trim( esc_attr( wp_strip_all_tags( wp_unslash( $_REQUEST['term'] ) ) ) ) );
+		$args  = apply_filters( 'autocomplete_args', $args );
+		$posts = new WP_Query( $args );
 
 		$suggestions = array();
 		if ( $posts->have_posts() ) {
@@ -49,8 +51,9 @@ class TCC_AutoComplete {
 		$suggestions = apply_filters( 'autocomplete_array', $suggestions );
 		echo sanitize_key( $_GET["callback"] ) . "(" . json_encode($suggestions) . ")";
 		exit;
+	}
 
-    }
+
 }
 
 TCC_AutoComplete::load();

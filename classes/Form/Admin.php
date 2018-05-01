@@ -507,15 +507,15 @@ abstract class TCC_Form_Admin {
 		if ( isset( $layout['change'] ) ) {
 			$attrs['onchange'] = $layout['change'];
 		}
-		$this->apply_attrs_tag( 'select', $attrs );
+		$this->tag( 'select', $attrs );
 			foreach( $layout['source'] as $key => $text ) {
 				$attrs = [ 'value' => $key ];
 				$attrs = $this->selected( $attrs, $key, $value );
-				$this->apply_attrs_element( 'option', $attrs, ' ' . $key . ' ' );
+				$this->element( 'option', $attrs, ' ' . $key . ' ' );
 			} ?>
 		</select><?php
 		if ( ! empty( $data['layout']['text'] ) ) {
-			$this->apply_attrs_element( 'span', [ ], ' ' . $data['layout']['text'] );
+			$this->element( 'span', [ ], ' ' . $data['layout']['text'] );
 		}
 	}
 
@@ -544,12 +544,10 @@ abstract class TCC_Form_Admin {
 		extract( $data );	#	associative array: keys are 'ID', 'value', 'layout', 'name'
 		if ( empty( $layout['source'] ) ) return;
 		$radio_attrs = array(
-			'type' => 'radio',
-			'name' => $name,
-		);
-		if ( isset( $layout['change'] ) ) {
-			$radio_attrs['onchange'] = $layout['change'];
-		} ?>
+			'type'     => 'radio',
+			'name'     => $name,
+			'onchange' => ( isset( $layout['change'] ) ) ? $layout['change'] : '',
+		); ?>
 		<div><?php
 			if ( isset( $layout['text'] ) ) {
 				$uniq = uniqid(); ?>
@@ -569,7 +567,7 @@ abstract class TCC_Form_Admin {
 							e_esc_html( $text );
 						}
 						if ( isset( $layout['extra_html'][ $key ] ) ) {
-							echo $layout['extra_html'][ $key ]; // FIXME: var contains html, trusted source(?) - classes/Options/*.php
+							echo wp_kses( $layout['extra_html'][ $key ], [ 'span' => [ 'class' => [ ] ] ] );
 						} ?>
 					</label>
 				</div><?php
@@ -608,8 +606,12 @@ abstract class TCC_Form_Admin {
 						<input type="radio" value="no" class="radio-multiple-list radio-multiple-list-no"
 						       name="<?php echo esc_attr( $name.'['.$key.']' ) ; ?>"
 						       <?php checked( $check, 'no' ); ?> />
-						<span class="radio-multiple-list-text">
-							<?php echo $text; // text contains html ?>
+						<span class="radio-multiple-list-text"><?php
+							$kses = array(
+								'a'    => array( 'href'  => [ ], 'target' => [ ], 'title' => [ ], 'aria-label' => [ ] ),
+								'span' => array( 'class' => [ ] )
+							);
+							echo wp_kses( $text, $kses ); ?>
 						</span>
 					</label>
 				</div><?php
@@ -626,7 +628,7 @@ abstract class TCC_Form_Admin {
 			return;
 		}
 		if ( ! empty( $layout['text'] ) ) {
-			$this->apply_attrs_element( 'div', [ 'class' => 'form-select-text' ], $layout['text'] );
+			$this->element( 'div', [ 'class' => 'form-select-text' ], $layout['text'] );
 		}
 		$attrs = array(
 			'id'   => $ID,
@@ -638,13 +640,13 @@ abstract class TCC_Form_Admin {
 		if ( isset( $layout['change'] ) ) {
 			$attrs['onchange'] = $layout['change'];
 		}
-		$this->apply_attrs_tag( 'select', $attrs );
+		$this->tag( 'select', $attrs );
 			$source_func = $layout['source'];
 			if ( is_array( $source_func ) ) {
 				foreach( $source_func as $key => $text ) {
 					$attrs = [ 'value' => $key ];
 					$attrs = $this->selected( $attrs, $key, $value );
-					$this->apply_attrs_element( 'option', $attrs, ' ' . $text . ' ' );
+					$this->element( 'option', $attrs, ' ' . $text . ' ' );
 				}
 			} elseif ( method_exists( $this, $source_func ) ) {
 				$this->$source_func( $value );
@@ -752,7 +754,7 @@ abstract class TCC_Form_Admin {
 	}
 
   public function validate_tabbed_form($input) {
-    $option = sanitize_key($_POST['tab']);
+    $option = sanitize_key( $_POST['tab'] );
     $output = $this->get_defaults($option);
     if (isset($_POST['reset'])) {
       $object = (isset($this->form[$option]['title'])) ? $this->form[$option]['title'] : $this->form_test['submit']['object'];

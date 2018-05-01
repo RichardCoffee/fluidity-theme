@@ -49,7 +49,7 @@ class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 				$this->element( 'input', $attrs );
 
 				$this->tag( 'label', [ 'for' => $attrs['id'] ] );
-					echo $label; // label contains html ?>
+					echo wp_kses( $label, [ 'i' => [ 'class' => [ ] ] ] ); ?>
 				</label>
 
 			</span><?php

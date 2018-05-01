@@ -35,6 +35,10 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$this->taxonomy = apply_filters( 'fluid_navigation_taxonomy', $this->taxonomy );
 		$this->check_posts();
 		$this->navigation();
+add_filter( 'previous_post_link', function() {
+	fluid()->log(func_get_args());
+	return func_get_arg(0);
+}, 11, 5 );
 	}
 
 	protected function navigation_text() {
@@ -75,27 +79,27 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		$posts['prev_all'] = $this->get_adjacent_post( false, $this->excluded_terms, true );
 		$posts['next_all'] = $this->get_adjacent_post( false, $this->excluded_terms, false );
 		$this->posts = $posts;
-/*$this->log(
-"    taxonomy: $this->taxonomy",
-"previous tax: {$posts['prev_tax']->ID} ".$posts['prev_tax']->post_title,
-"previous all: {$posts['prev_all']->ID} ".$posts['prev_all']->post_title,
-"    next tax: {$posts['next_tax']->ID} ".$posts['next_tax']->post_title,
-"    next all: {$posts['next_all']->ID} ".$posts['next_all']->post_title
-); //*/
 		if ( $this->taxonomy && $this->all_links ) {
 			if ( ( $posts['prev_tax']->ID === $posts['prev_all']->ID ) && ( $posts['next_tax']->ID === $posts['next_all']->ID ) ) {
 				$this->taxonomy = '';
 			} else {
 				$this->show_newer = ( $posts['next_tax']->ID !== $posts['next_all']->ID );
 				$this->show_older = ( $posts['prev_tax']->ID !== $posts['prev_all']->ID );
-/*$this->log(
-'show newer:  ' . $this->show_newer,
-'show older:  ' . $this->show_older
-); //*/
 			}
 		} //*/
 	}
 
+	/**
+	 * pre-processor for get_adjacent_post function
+	 *
+	 * @link https://codex.wordpress.org/Function_Reference/get_adjacent_post
+	 * @link https://developer.wordpress.org/reference/functions/get_adjacent_post/
+	 * @param bool $in_same_tax
+	 * @param array|string $excluded
+	 * @param bool $direction
+	 * @param string $taxonomy
+	 * @return WP_Post
+	 */
 	protected function get_adjacent_post( $in_same_tax, $excluded, $direction, $taxonomy = 'category' ) {
 		if ( $direction && is_attachment() ) {
 			$post = get_post( get_post()->post_parent );
@@ -182,8 +186,20 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 		return ob_get_clean();
 	}
 
+	/**
+	 * replaces the wordpress get_adjacent_post_link, so that I can make look like I want
+	 *
+	 * original: get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
+	 *
+	 * @link wp-includes/link-template.php
+	 * @link https://developer.wordpress.org/reference/functions/get_adjacent_post_link/
+	 * @param string $format
+	 * @param string $link
+	 * @param bool $previous
+	 * @param WP_Post $post
+	 * @return string
+	 */
 	protected function get_adjacent_post_link( $format, $link, $previous, $post ) {
-#	protected function get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
 #		$post = $this->get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
 		if ( $post->ID === 0 ) {
 			$output = '';
@@ -199,7 +215,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 				'href'  =>  get_permalink( $post ),
 				'rel'   => $previous ? 'prev' : 'next',
 			);
-			$string = $this->get_apply_attrs_tag( 'a', $attrs ) . $inlink . '</a>';
+			$string = $this->get_tag( 'a', $attrs ) . $inlink . '</a>';
 			$output = str_replace( '%link', $string, $format );
 		}
 		$adjacent = $previous ? 'previous' : 'next';

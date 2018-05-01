@@ -127,7 +127,7 @@ function prevent_wp_login() {
     // WP tracks the current page - global the variable to access it
     global $pagenow;
     // Check if a $_GET['action'] is set, and if so, load it into $action variable
-    $action = (isset($_GET['action'])) ? $_GET['action'] : '';
+    $action = ( isset( $_GET['action'] ) ) ? sanitize_title( $_GET['action'] ) : '';
     // Check if we're on the login page, and ensure the action is not 'logout'
     if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp', 'resetpass'))))) {
         // Load the home page url

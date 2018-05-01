@@ -46,12 +46,12 @@ if ( ! function_exists( 'disable_website_field' ) ) {
 if (!function_exists('fluid_list_comments')) {
 	function fluid_list_comments( WP_Comment $comment, array $args, $depth ) {
 		static $striping = 'odd';
-		fluid_reset_global_comment( $comment ); // instead of $GLOBALS['comment'] = $comment;
-		$string    = _x( '%1$s: %2$s on %3$s', 'first placeholder is the comment type, second placeholder is an author link, third placeholder is a date', 'tcc-fluid' );
+		$GLOBALS['comment'] = $comment;
+		$string    = esc_html_x( '%1$s: %2$s on %3$s', 'first placeholder is the comment type, second placeholder is an author link, third placeholder is a date', 'tcc-fluid' );
 		$type_arr  = array(
-			'comment'   => __( 'Comment', 'tcc-fluid' ),
-			'trackback' => __( 'Trackback', 'tcc-fluid' ),
-			'pingback'  => __( 'Pingback', 'tcc-fluid' )
+			'comment'   => esc_html__( 'Comment', 'tcc-fluid' ),
+			'trackback' => esc_html__( 'Trackback', 'tcc-fluid' ),
+			'pingback'  => esc_html__( 'Pingback', 'tcc-fluid' )
 		);
 		$comm_type = $comment->comment_type;
 		switch ( $comm_type ) {
@@ -70,7 +70,7 @@ if (!function_exists('fluid_list_comments')) {
 				<li id="comment-<?php e_esc_attr( $comment->comment_ID ); ?>" <?php comment_class( $css ); ?>>
 					<div class="comment-author vcard"><?php
 						echo get_avatar( $comment, 34 );
-						echo ' '.sprintf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
+						echo ' ' . sprintf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
 					</div><!-- .comment-author .vcard --><?php
 					if ( $comment->comment_approved === '0' ) { ?>
 						<em><?php
@@ -90,16 +90,9 @@ if (!function_exists('fluid_list_comments')) {
 					<div class="reply"><?php
 						comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</div><!-- .reply --><?php
-					$striping = ($striping==='odd') ? 'even' : 'odd';
+					$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
 //				</li> - wordpress puts in closing tag
 		}
 		$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
-	}
-}
-
-if ( ! function_exists( 'fluid_reset_global_comment' ) ) {
-	function fluid_reset_global_comment( $new ) {
-		global $comment;
-		$comment = $new;
 	}
 }

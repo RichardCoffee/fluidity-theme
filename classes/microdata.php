@@ -235,7 +235,7 @@ class TCC_Microdata {
     if (strpos($title,'itemprop')===false) {
       if (is_author()) {
         $title = preg_replace('/(<span.*?)(>)/i','$1 itemprop="author"$2',$title); }
-      else if ($title==__('Archives')) {  #  no need to add the text domain to this
+      else if ($title==__('Archives')) {  #  Translatable in core
         $title = '<span itemprop="headline">' . esc_html( $title ) . '</span>'; }
     }
     return $title;

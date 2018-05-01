@@ -123,7 +123,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 		); ?>
 		<li>
 			<span <?php $this->apply_attrs( $attrs ); ?>>
-				<?php printf( $this->link, number_format_i18n( $int ) ); ?>
+				<?php echo wp_kses( sprintf( $this->link, number_format_i18n( $int ) ) ); ?>
 			</span>
 		</li><?php
 	}
@@ -177,7 +177,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 		<li>
 			<a <?php $this->apply_attrs( $attrs ); ?>>
 				<span aria-hidden="true">
-					<?php printf( $this->link, esc_html( $text ) ); ?>
+					<?php e_esc_html( sprintf( $this->link, $text ) ); ?>
 				</span>
 			</a>
 		</li><?php

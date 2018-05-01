@@ -19,34 +19,34 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 		parent::__construct();
 	}
 
-	public function inner_widget($args,$instance) { ?>
+	public function inner_widget( $args, $instance ) { ?>
 		<div class="widget-address" <?php self::$micro->Organization(); ?>>
 			<h2 itemprop="name"><?php bloginfo('name'); ?></h2>
 			<address <?php self::$micro->PostalAddress(); ?>><?php
-				if (!empty($instance['tcc-street'])) {
-					echo self::$micro->street( $instance['tcc-street'] );
+				if ( ! empty( $instance['tcc-street'] ) ) {
+					echo wp_kses( self::$micro->street( $instance['tcc-street'] ), [ 'span' => [ 'itemprop' => [ ] ] ] );
 				} ?>
 				<span class="comma-after" itemprop="addressLocality">
-					<?php echo esc_html($instance['tcc-local']); ?>
+					<?php echo esc_html( $instance['tcc-local'] ); ?>
 				</span> <span itemprop="addressRegion">
-					<?php echo esc_html($instance['tcc-region']);
-					if (!empty($instance['tcc-code'])) { ?>
+					<?php echo esc_html( $instance['tcc-region'] );
+					if ( ! empty( $instance['tcc-code'] ) ) { ?>
 						</span> <span itemprop="postalCode">
-						<?php echo esc_html($instance['tcc-code']);
+						<?php echo esc_html( $instance['tcc-code'] );
 					} ?>
 				</span><br><?php
-				if (!empty($instance['tcc-phone'])) {
-					esc_html_e('Office: ','tcc-fluid'); ?> <span itemprop="telephone">
-					<?php echo esc_html($instance['tcc-phone']); ?>
+				if ( ! empty( $instance['tcc-phone'] ) ) {
+					esc_html_e( 'Office: ', 'tcc-fluid' ); ?> <span itemprop="telephone">
+					<?php echo esc_html( $instance['tcc-phone'] ); ?>
 					</span><br><?php
 				}
-				if (!empty($instance['tcc-email'])) {
-					esc_html_e('Email: ','tcc-fluid');
-					echo self::$micro->email_format( $instance['tcc-email'] );
+				if ( ! empty( $instance['tcc-email'] ) ) {
+					esc_html_e( 'Email: ', 'tcc-fluid' );
+					echo wp_kses( self::$micro->email_format( $instance['tcc-email'] ), [ 'a' => [ 'href' => [ ], 'itemprop' => [ ] ] ] );
 				} /*
  ?>
-				<a href="mailto:<?php echo esc_html($instance['tcc-email']); ?>">
-					<?php echo esc_html($instance['tcc-email']);?>
+				<a href="mailto:<?php echo esc_html( $instance['tcc-email'] ); ?>">
+					<?php echo esc_html( $instance['tcc-email'] );?>
 				</a>*/ ?>
 			</address>
 			<br>
@@ -54,7 +54,7 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 			if (!empty($instance['tcc-map']) && ($instance['tcc-map']==='on')) {
 				$add = urlencode($instance['tcc-street'].', '.$instance['tcc-local'].', '.$instance['tcc-region'].' '.$instance['tcc-code']); ?>
 				<div>
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s<?php echo $add; ?>!5e0!3m2!1sen!2sus!4v1481581752243" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen></iframe>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s<?php echo esc_attr( $add ); ?>!5e0!3m2!1sen!2sus!4v1481581752243" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen></iframe>
 				</div><?php
 			} ?>
 		</div><?php

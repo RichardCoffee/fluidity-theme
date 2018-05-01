@@ -39,10 +39,6 @@ class TCC_Widget_Widget extends WP_Widget {
 	}
 
 	public function form( $instance ) {
-		$this->form_title( $instance );
-	}
-
-	protected function form_title( $instance ) {
 		$instance['title'] = ( isset( $instance['title'] ) ) ? $instance['title'] : $this->title;
 		$text = esc_html__( 'Title:', 'tcc-fluid' );
 		$this->form_field( $instance, 'title', $text );

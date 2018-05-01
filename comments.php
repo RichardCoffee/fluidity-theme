@@ -24,13 +24,14 @@ who_am_i(); ?>
 			</span>
 		</p><?php
 	}
-	if (have_comments()) { ?>
+	if ( have_comments() ) { ?>
 		<h2 class="comments-title"><?php
 			$number = get_comments_number();
-			$format = esc_html_n( 'One thought on %2$s', '%1$s thoughts on %2$s', $number, 'tcc-fluid' );
+			$format = _n( 'One thought on %2$s', '%1$s thoughts on %2$s', $number, 'tcc-fluid' );
 			$number = '<span itemprop="commentCount">' . $number . '</span>';
-			$title  = '&ldquo;' . esc_html( get_the_title() ) . '&rdquo;';
-			printf( $format, $number, $title ); ?>
+			$title  = '&ldquo;' . get_the_title() . '&rdquo;';
+			echo wp_kses( sprintf( $format, $number, $title ), [ 'span' => [ 'itemprop' => [ ] ] ] );
+ ?>
 		</h2><?php
 		fluid_comment_navigation(); ?>
 		<ol class="commentlist"><?php

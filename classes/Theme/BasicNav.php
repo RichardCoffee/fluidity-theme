@@ -85,36 +85,6 @@ abstract class TCC_Theme_BasicNav {
 		$html.= '</nav>';
 		return $html;
 	}
-/*
-	protected function generate_links() {
-		if ( ( ! $this->show_older ) && ( ! $this->show_newer ) ) {
-			return '';
-		}
-		ob_start(); ?>
-		<div class="row">
-			<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
-				if ( $this->show_older ) {
-					$li_attrs = array(
-						'class' => 'previous '. $this->li_css,
-						'title' => $this->older_link,
-					);
-					$this->apply_attrs_tag( 'li', $li_attrs );
-						previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
-					</li><?php
-				}
-				if ( $this->show_newer ) {
-					$li_attrs = array(
-						'class' => 'next '. $this->li_css,
-						'title' => $this->newer_link,
-					);
-					$this->apply_attrs_tag( 'li', $li_attrs );
-						next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
-					</li><?php
-				} ?>
-			</ul>
-		</div><?php
-		return ob_get_clean();
-	} //*/
 
 
 }

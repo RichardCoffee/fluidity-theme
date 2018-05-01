@@ -34,7 +34,7 @@ class TCC_Theme_Library {
 	/**  Font Awesome icons  **/
 
 	public function fawe( $icon = 'fa-question fa-border' ) {
-		echo $this->get_fawe( $icon );
+		echo wp_kses( $this->get_fawe( $icon ), [ 'i' => [ 'class' => [ ] ] ] );
 	}
 
 	public function get_fawe( $icon = 'fa-question fa-border' ) {
@@ -47,7 +47,7 @@ class TCC_Theme_Library {
 			'class'       => implode( ' ', $css ),
 			'aria-hidden' => 'true',
 		);
-		return $this->get_apply_attrs_element( 'i', $args );
+		return $this->get_element( 'i', $args );
 	}
 
 	public function get_widget_fawe() {
