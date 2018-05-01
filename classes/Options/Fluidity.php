@@ -40,9 +40,11 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 			$menu = __( 'Theme Options', 'tcc-fluid' );
 			$func = array( $this, $this->render );
 			if ( $about['loca'] === 'appearance' ) {
-				$this->hook_suffix = add_theme_page( $page, $menu, $cap, $this->slug, $func );
+				$this->hook_suffix = add_submenu_page( 'themes.php', $page, $menu, $cap, $this->slug, $func );
+				#$this->hook_suffix = call_user_func( 'add_theme_page', $page, $menu, $cap, $this->slug, $func ); # FIXME: hack
 			} elseif ( $about['loca'] === 'settings' ) {
-				$this->hook_suffix = add_options_page( $page, $menu, $cap, $this->slug, $func );
+				$this->hook_suffix = add_submenu_page( 'options-general.php', $page, $menu, $cap, $this->slug, $func );
+				#$this->hook_suffix = call_user_func( 'add_options_page', $page, $menu, $cap, $this->slug, $func ); # FIXME: hack
 			} else {
 				$icon = 'dashicons-admin-settings';
 				$priority = ( $about['wp_posi'] === 'top' ) ? '1.01302014' : '99.98697986';

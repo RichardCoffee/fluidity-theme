@@ -22,7 +22,7 @@ class TCC_Theme_Login {
 			if ( has_page( 'Logout' ) ) {
 				add_filter('logout_url', array( $this, 'logout_url' ), 10, 2);
 			}
-			add_shortcode( 'fluid_login', array( $this, 'login_form_shortcode' ) );
+			call_user_func( 'add_shortcode', 'fluid_login', array( $this, 'login_form_shortcode' ) ); # FIXME: hack
 		}
 		add_filter( 'login_redirect',           array( $this, 'login_redirect' ), 10, 3 );
 		add_filter( 'tcc_login_redirect',       array( $this, 'login_redirect_admin' ), 10, 3 );

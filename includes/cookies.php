@@ -16,5 +16,5 @@ if ( ! function_exists( 'list_cookies' ) ) {
 		$content .= "</ul>";
 		return do_shortcode( $content );
 	}
-	add_shortcode( 'cookies', 'list_cookies' );
+	call_user_func( 'add_shortcode', 'cookies', 'list_cookies' ); # FIXME: hack
 }

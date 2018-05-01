@@ -151,7 +151,7 @@ add_filter('nav_menu_link_attributes', function($atts, $item, $args) {
     0 === $args->depth and $args->link_after = ' <i class="caret"></i>';
   }
   if (strpos($item->attr_title, 'glyphicon-') !== false) {
-    $args->link_before = $this->get_apply_attrs_element( 'i', [ 'class' => [ 'glyphicon', $item->attr_title ] ] ) . ' ';
+    $args->link_before = fluid()->get_apply_attrs_element( 'i', [ 'class' => [ 'glyphicon', $item->attr_title ] ] ) . ' ';
   }
   return $atts;
 },10, 3); # $priority, $accepted_args

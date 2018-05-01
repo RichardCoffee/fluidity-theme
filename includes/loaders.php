@@ -102,21 +102,6 @@ if ( ! function_exists( 'fluid_customizer' ) ) {
 }
 
 /**
- * Returns an instance of a metabox for an image gallery
- *
- * @since 20180420
- * @return object
- */
-if ( ! function_exists( 'fluid_gallery' ) ) {
-	function fluid_gallery( $args = array( 'type' => 'post' ) ) {
-		if ( get_theme_mod( 'theme_gallery', 'no' ) === 'yes' ) {
-			return new TCC_MetaBox_GalleryView( $args );
-		}
-		return null;
-	}
-}
-
-/**
  * Returns an instance of the Theme Login class
  *
  * @since 20170121
