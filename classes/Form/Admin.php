@@ -285,7 +285,7 @@ abstract class TCC_Form_Admin {
 	}
 
   public function render_tabbed_form() {
-    $active_page = sanitize_key($_GET['page']); ?>
+    $active_page = sanitize_key( $_GET['page'] ); ?>
     <div class="wrap">
       <div id="icon-themes" class="icon32"></div>
       <h1 class='centered'>
@@ -564,7 +564,7 @@ abstract class TCC_Form_Admin {
 					<label>
 						<input <?php $this->apply_attrs( $radio_attrs ); ?> <?php checked( $value, $key ); ?>><?php
 						if ( isset( $layout['src-html'] ) ) {
-							echo $text; // FIXME:  this is here so I can display font awesome icons - it needs to be done differently
+							echo wp_kses( $text, [ 'i' => [ 'class' => [ ] ] ] );
 						} else {
 							e_esc_html( $text );
 						}
