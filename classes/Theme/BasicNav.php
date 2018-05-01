@@ -46,7 +46,7 @@ abstract class TCC_Theme_BasicNav {
 	 * @param array $args
 	 */
 	public function __construct( $args = array() ) {
-		$this->sr_text = __( 'Post navigation' ,' tcc-fluid' );
+		$this->sr_text = __( 'Post navigation' , 'tcc-fluid' );
 		$this->parse_args( $args );
 	}
 
