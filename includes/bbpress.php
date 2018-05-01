@@ -39,7 +39,7 @@ add_filter( 'tcc_template-parts_root', function( $rootslug, $pageslug ) {
 
 add_action( 'tcc_custom_css', function() {
 	if ( is_bbpress() ) {
-		echo "\n#subscription-toggle {\n\tpadding-left: 2em; }\n";
+		echo "\n#subscription-toggle {\n\tfloat: right; }\n";
 	}
 } );
 

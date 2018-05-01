@@ -9,7 +9,7 @@
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
-.searchform-input, form input.searchform-input, .wpfep-wrapper .wpfep-save input[type="submit"] {
+.searchform-input, form input.searchform-input, .forum div.bbp-template-notice, .forum div.bbp-template-notice.info, .forum legend, .wpfep-wrapper .wpfep-save input[type="submit"] {
   background-color: #d9534f;
   border-color: #d43f3a;
   color: #FFFFFF;
@@ -17,10 +17,10 @@ li.btn-fluidity > a,
 .btn-fluidity:hover,
 .color-fluidity:hover,
 li.btn-fluidity > a:hover,
-.searchform-input:hover, .wpfep-wrapper .wpfep-save input[type="submit"]:hover, .btn-fluidity:focus,
+.searchform-input:hover, .forum div.bbp-template-notice:hover, .forum legend:hover, .wpfep-wrapper .wpfep-save input[type="submit"]:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
 li.btn-fluidity > a:focus,
-.searchform-input:focus, .wpfep-wrapper .wpfep-save input[type="submit"]:focus {
+.searchform-input:focus, .forum div.bbp-template-notice:focus, .forum legend:focus, .wpfep-wrapper .wpfep-save input[type="submit"]:focus {
   background-color: #FFFFFF;
   border-color: #d9534f;
   color: #d9534f;
@@ -44,12 +44,15 @@ li.btn-fluidity > a:focus,
   box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
+input,
 form .form-control, .wpfep-wrapper .wpfep-field input {
   background-color: #FFFFFF;
   border-color: #d43f3a;
   color: #d9534f;
 }
-form .form-control:hover, .wpfep-wrapper .wpfep-field input:hover, form .form-control:focus, .wpfep-wrapper .wpfep-field input:focus {
+input:hover,
+form .form-control:hover, .wpfep-wrapper .wpfep-field input:hover, input:focus,
+form .form-control:focus, .wpfep-wrapper .wpfep-field input:focus {
   background-color: #FFFFFF;
   border-color: #d43f3a;
   color: #d9534f;
@@ -90,36 +93,51 @@ li.btn-fluidity {
   color: #FFFFFF;
 }
 
+input,
 form .form-control {
   border: 1px solid #d9534f;
 }
+input::-moz-placeholder,
 form .form-control::-moz-placeholder {
   color: #d9534f;
   opacity: 1;
 }
+input:-moz-placeholder,
 form .form-control:-moz-placeholder {
   color: #d9534f;
 }
+input:-ms-input-placeholder,
 form .form-control:-ms-input-placeholder {
   color: #d9534f;
 }
+input::-webkit-input-placeholder,
 form .form-control::-webkit-input-placeholder {
   color: #d9534f;
 }
-form .form-control:hover, form .form-control:focus {
+input:hover, input:focus,
+form .form-control:hover,
+form .form-control:focus {
   border: 1px solid #d43f3a;
 }
-form .form-control:hover::-moz-placeholder, form .form-control:focus::-moz-placeholder {
+input:hover::-moz-placeholder, input:focus::-moz-placeholder,
+form .form-control:hover::-moz-placeholder,
+form .form-control:focus::-moz-placeholder {
   color: #d43f3a;
   opacity: 1;
 }
-form .form-control:hover:-moz-placeholder, form .form-control:focus:-moz-placeholder {
+input:hover:-moz-placeholder, input:focus:-moz-placeholder,
+form .form-control:hover:-moz-placeholder,
+form .form-control:focus:-moz-placeholder {
   color: #d43f3a;
 }
-form .form-control:hover:-ms-input-placeholder, form .form-control:focus:-ms-input-placeholder {
+input:hover:-ms-input-placeholder, input:focus:-ms-input-placeholder,
+form .form-control:hover:-ms-input-placeholder,
+form .form-control:focus:-ms-input-placeholder {
   color: #d43f3a;
 }
-form .form-control:hover::-webkit-input-placeholder, form .form-control:focus::-webkit-input-placeholder {
+input:hover::-webkit-input-placeholder, input:focus::-webkit-input-placeholder,
+form .form-control:hover::-webkit-input-placeholder,
+form .form-control:focus::-webkit-input-placeholder {
   color: #d43f3a;
 }
 
@@ -354,6 +372,20 @@ hr {
   color: #d9534f;
 }
 
+.wp-editor-container {
+  border: 1px solid #d43f3a;
+}
+.wp-editor-container .quicktags-toolbar {
+  background: #d9534f;
+}
+.wp-editor-container .quicktags-toolbar .button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.wp-editor-container .quicktags-toolbar, .wp-editor-container textarea.wp-editor-area {
+  border-color: #d43f3a;
+}
+
 .wpfep-wrapper ul.wpfep-tabs {
   border-bottom-color: #d43f3a;
 }
@@ -404,19 +436,6 @@ hr {
 }
 .wpfep-wrapper .wpfep-field p.description {
   color: rgba(217, 83, 79, 0.8);
-}
-.wpfep-wrapper .wpfep-field .wp-editor-container {
-  border: 1px solid #d43f3a;
-}
-.wpfep-wrapper .wpfep-field .wp-editor-container .quicktags-toolbar {
-  background: #d9534f;
-}
-.wpfep-wrapper .wpfep-field .quicktags-toolbar .button {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.wpfep-wrapper .wpfep-field .quicktags-toolbar, .wpfep-wrapper .wpfep-field textarea.wp-editor-area {
-  border-color: #d43f3a;
 }
 .wpfep-wrapper .wpfep-save input[type="submit"] {
   -webkit-box-shadow: none;

@@ -49,6 +49,7 @@ li.btn-fluidity {
 
 // input fields
 
+input,
 form .form-control {
 	@extend %textfield;
 	@include placeholder($maincomp); //color(background));
@@ -202,6 +203,15 @@ hr {
 	color: $maincomp;
 }
 
+// bbPress
+.forum {
+	& div.bbp-template-notice,
+	& div.bbp-template-notice.info,
+	& legend {
+		@extend %regular;
+	}
+}
+
 // Theme My Login
 .tml {
 	color: $maincomp;
@@ -212,6 +222,21 @@ hr {
 		background-color: $mainlite;
 		border: 1px solid $mainhigh;
 		color: $maincomp;
+	}
+}
+
+// Front End Editor
+.wp-editor-container {
+	border: 1px solid color(bgHighlight);
+	& .quicktags-toolbar {
+		background: color(background);
+		& .button {
+			@include box-shadow(none);
+		}
+	}
+	& .quicktags-toolbar,
+	& textarea.wp-editor-area {
+		border-color: color(bgHighlight);
 	}
 }
 
@@ -245,19 +270,6 @@ hr {
 		}
 		& p.description {
 			color: rgba($maincomp,0.8);
-		}
-		& .wp-editor-container {
-			border: 1px solid color(bgHighlight);
-			& .quicktags-toolbar {
-				background: color(background);
-			}
-		}
-		& .quicktags-toolbar .button {
-			@include box-shadow(none);
-		}
-		& .quicktags-toolbar,
-		& textarea.wp-editor-area {
-			border-color: color(bgHighlight);
 		}
 	}
 	& .wpfep-save input[type="submit"] {
