@@ -36,7 +36,7 @@ trait TCC_Trait_Attributes {
 	 * @param array $attrs an associative array containing the attribute keys and values
 	 */
 	public function apply_attrs( $attrs ) {
-		echo wp_kses( $this->get_apply_attrs( $attrs ), [ ] );
+		echo $this->get_apply_attrs( $attrs );
 	}
 
 	/**
