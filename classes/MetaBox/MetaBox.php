@@ -36,7 +36,7 @@ abstract class TCC_MetaBox_MetaBox {
 	protected function pre_save_meta_box( $postID, $file ) {
 		remove_action( $this->save_meta, array( $this, 'save_meta_box' ) ); # prevent recursion
 		if ( ! isset( $_POST[ $this->nonce ] ) )                  return false;
-		if ( ! wp_verify_nonce( $_POST[ $this->nonce ], $file ) ) return false;
+		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->nonce ] ), $file ) ) return false;
 		if ( ! current_user_can( 'edit_post', $postID ) )         return false;
 		if ( wp_is_post_autosave( $postID ) )                     return false;
 		if ( wp_is_post_revision( $postID ) )                     return false;
