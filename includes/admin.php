@@ -37,7 +37,7 @@ if ( ! function_exists( 'tcc_custom_css_admin' ) ) {
 
 if ( ! function_exists( 'fluid_plugin_information_footer' ) ) {
 	function fluid_plugin_information_footer() {
-		echo "\n#plugin-information-footer {\n\tright: 15px;\n}\n";
+		echo "\n#plugin-information-footer {\n\tleft: auto;\n\tright: 15px;\n}\n";
 	}
 	add_action( 'tcc_custom_css_admin', 'fluid_plugin_information_footer' );
 }
