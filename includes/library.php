@@ -120,19 +120,6 @@ if (!function_exists('fluid_get_post_terms')) {
     return $terms;
   }
 } //*/
-/*
-if (!function_exists('wp_menu_id_by_name')) {
-  // http://wordpress.stackexchange.com/questions/104301/get-menu-id-using-its-name
-  function wp_menu_id_by_name( $name ) {
-    $menus = get_terms('nav_menu');
-    foreach ($menus as $menu) {
-      if($name===$menu->name) {
-        return $menu->term_id;
-      }
-    }
-    return false;
-  }
-} //*/
 
 /**
  * Echo an escaped attribute string
