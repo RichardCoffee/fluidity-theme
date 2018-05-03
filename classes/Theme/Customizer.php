@@ -18,12 +18,13 @@ class TCC_Theme_Customizer {
 	public function __construct( $args = array() ) {
 		add_action( 'customize_register',                 array( $this, 'customize_register' ), 11, 1 );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
+		add_action( 'wp_ajax_fluid_postdate_display',     array( $this, 'fluid_postdate_display') );
 	}
 
 	public function customize_controls_enqueue_scripts() {
 		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
-		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ),   null, FLUIDITY_VERSION, true);
-		$options = apply_filters( 'fluid_customize_controls_localization', array() );
+		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ), [ 'customize-preview', 'customize-selective-refresh' ], FLUIDITY_VERSION, true);
+		$options = apply_filters( 'fluid_customize_controls_localization', [ ] );
 		if ( $options ) {
 			wp_localize_script( 'fluid-customizer.js', 'fluid_customize', $options );
 		}
@@ -64,6 +65,19 @@ class TCC_Theme_Customizer {
 	public function assign_postmessage( WP_Customize_Manager $customize ) {
 		$customize->remove_control('background_color');
 		$customize->get_setting( 'blogname' )->transport = 'postMessage';
+	}
+
+	public function assign_partials( WP_Customize_Manager $customize ) {
+		$customize->selective_refresh->add_partial(
+			'content_postdate',
+			array(
+				'selector' => '#fluid_content_post_dates',
+				'render_callback' => function() {
+					fluid_show_post_dates();
+				},
+				'container_inclusive' => false,
+			)
+		);
 	}
 
 	public function get_panel_defaults( $panel ) {
@@ -143,6 +157,7 @@ class TCC_Theme_Customizer {
 		$options = $this->screen_width( $options );
 		$options = $this->theme_sidebar( $options );
 		$options = $this->widget_collapse( $options );
+		$options = $this->content_controls( $options );
 		$options = fluid_color()->color_scheme_controls( $options );
 		return $options;
 	}
@@ -252,28 +267,30 @@ class TCC_Theme_Customizer {
 			'title'       => __( 'Widget Collapse', 'tcc-fluid' ),
 			'description' => __( 'This section controls the use and details concerning collapsible widgets.', 'tcc-fluid' )
 		);
-		$controls['collapse'] = array(
-			'default'     => 'perm',
-			'label'       => __( 'Widgets', 'tcc-fluid' ),
-			'description' => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
-			'render'      => 'radio',
-			'choices'     => array(
-				'perm'   => __( 'Do not provide option to users','tcc-fluid' ),
-				'open'   => __( 'Open', 'tcc-fluid' ),
-				'closed' => __( 'Closed', 'tcc-fluid' ),
+		$controls = array(
+			'collapse' => array(
+				'default'     => 'perm',
+				'label'       => __( 'Widgets', 'tcc-fluid' ),
+				'description' => __( 'Should the sidebar widgets start open or closed, where applicable', 'tcc-fluid' ),
+				'render'      => 'radio',
+				'choices'     => array(
+					'perm'   => __( 'Do not provide option to users','tcc-fluid' ),
+					'open'   => __( 'Open', 'tcc-fluid' ),
+					'closed' => __( 'Closed', 'tcc-fluid' ),
+				),
 			),
-		);
-		$controls['icons'] = array(
-			'default'     => 'none',
-			'label'       => __( 'Widget Icons', 'tcc-fluid' ),
-			'description' => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
-			'render'      => 'htmlradio',
-			'choices'     => $this->widget_icons(),
-			'sanitize_callback' => [ fluid_sanitize(), 'radio' ],
-			'showhide' => array(
-				'control' => 'widgyt_collapse',
-				'action'  => 'hide',
-				'setting' => 'perm'
+			'icons' => array(
+				'default'     => 'none',
+				'label'       => __( 'Widget Icons', 'tcc-fluid' ),
+				'description' => __( 'Choose the icon set used for the widgets', 'tcc-fluid' ),
+				'render'      => 'htmlradio',
+				'choices'     => $this->widget_icons(),
+				'sanitize_callback' => [ fluid_sanitize(), 'radio' ],
+				'showhide' => array(
+					'control' => 'widgyt_collapse',
+					'action'  => 'hide',
+					'setting' => 'perm'
+				),
 			),
 		);
 		$options['widgyt'] = array(
@@ -296,6 +313,53 @@ class TCC_Theme_Customizer {
 			$choices[ $key ] = sprintf( $fawe_format, $plus, $minus );
 		}
 		return $choices;
+	}
+
+	public function content_controls( $options ) {
+		$section = array(
+			'priority'    => 80,
+			'panel'       => 'fluid_mods',
+			'title'       => __( 'Content', 'tcc-fluid' ),
+			'description' => __( 'All settings dealing with the blog content`', 'tcc-fluid' )
+		);
+		$controls = array(
+			'postdate' => array(
+				'default'   => 'original',
+#				'transport' => 'postMessage',
+				'label'     => __( 'Displayed Publish/Edit Date', 'tcc-fluid' ),
+				'render'    => 'radio',
+				'choices'   => array(
+					'both'     => __( 'Show both modified and original post date when showing full post content', 'tcc-fluid' ),
+					'modified' => __( 'Use modified post date, where applicable.', 'tcc-fluid' ),
+					'original' => __( 'Always use published post date.', 'tcc-fluid' ),
+					'none'     => __( 'Never show the post date.', 'tcc-fluid' ),
+				),
+				'active_callback' => 'is_single',
+				'add_partial' => array(
+					'id' => 'content_postdate',
+					'args' => array(
+						'selector' => '#fluid_content_post_dates',
+						'render_callback' => function() {
+							fluid_show_post_dates();
+						},
+						'container_inclusive' => false,
+					),
+				),
+			),
+		);
+		$options['content'] = array(
+			'section'  => $section,
+			'controls' => $controls
+		);
+		return $options;
+	}
+
+
+/***   postMessage functions   ***/
+
+	public function fluid_postdate_display() {
+		fluid_show_post_dates();
+		wp_die();
 	}
 
 

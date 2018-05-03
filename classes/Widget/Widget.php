@@ -19,6 +19,7 @@ class TCC_Widget_Widget extends WP_Widget {
 			self::$micro = microdata();
 		}
 		# https://developer.wordpress.org/themes/customize-api/tools-for-improved-user-experience/
+		# https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
 		if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		}

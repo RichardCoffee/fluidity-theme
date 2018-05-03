@@ -62,14 +62,20 @@ if (!function_exists('fluid_next_post_exists')) {
   }
 }
 
+/**
+ * show the post publish and/or last edit date
+ *
+ * @param string $postdate
+ * @return bool
+ */
 if ( ! function_exists( 'fluid_post_date' ) ) {
-	function fluid_post_date( $postdate = false ) {
+	function fluid_post_date( $postdate = '' ) {
 		$showboth = ! empty( $postdate );
-		if ( ! $postdate ) {
+		if ( empty( $postdate ) ) {
 			$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
-			$postdate = ( ! $postdate || ( $postdate === 'default' ) ) ? tcc_content( 'postdate', 'original' ) : $postdate;
+			$postdate = ( empty( $postdate ) || ( in_array( $postdate, [ 'defaultpd', 'default' ] ) ) ) ? get_theme_mod( 'content_postdate', 'original' ) : $postdate;
 		}
-		if ( $postdate !== 'none' ) {
+		if ( ! ( $postdate === 'none' ) ) {
 			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 			$date    = get_the_date();
 			$author  = ( is_single() ) ? get_the_author_posts_link() : get_the_author();
@@ -169,17 +175,30 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
 				<?php tcc_post_title(); ?>
 				<?php fluid_edit_post_link(); ?>
 			</h2>
-			<h3 class="post-date text-center">
-				<?php $show_orig = fluid_post_date(); ?>
-			</h3><?php
-			if ( $show_orig ) { ?>
-				<h4 class="post-date text-center"><?php
-					fluid_post_date( 'original' ); ?>
-				</h4><?php
-			}
+			<div id="fluid_content_post_dates">
+				<?php fluid_show_post_dates(); ?>
+			</div><?php
 		}
 	}
 	add_action( 'fluid_content_header', 'fluid_show_content_title' );
+}
+
+/**
+ * wrapper for displaying the post dates
+ *
+ * @since 20180502
+ */
+if ( ! function_exist( 'fluid_show_post_dates' ) ) {
+	function fluid_show_post_dates() { ?>
+		<h3 class="post-date text-center">
+			<?php $show_orig = fluid_post_date(); ?>
+		</h3><?php
+		if ( $show_orig ) { ?>
+			<h4 class="post-date text-center"><?php
+				fluid_post_date( 'original' ); ?>
+			</h4><?php
+		}
+	}
 }
 
 if ( ! function_exists( 'fluid_thumbnail' ) ) {

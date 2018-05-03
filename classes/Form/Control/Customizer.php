@@ -29,6 +29,9 @@ class TCC_Form_Control_Customizer {
 		}
 		$render = $this->control['render'];
 		$this->$render();
+		if ( isset( $this->control['add_partial'] ) ) {
+			$this->add_partial();
+		}
 	}
 
 	/**
@@ -43,9 +46,19 @@ class TCC_Form_Control_Customizer {
 		return $data;
 	}
 
+	/**
+	 * add partial for a control
+	 *
+	 * @since 20180502
+	 */
+	protected function add_partial() {
+		extract( $this->control['add_partial'] ); // $id, $args
+		$this->customize->selective_refresh->add_partial( $id, $args );
+	}
+
 	protected function add_control( $args ) {
 		$this->customize->add_control( $this->setting_id, $args );
-#fluid()->logobj($this);
+fluid()->logobj($this);
 	}
 
 	protected function add_object_control( $obj ) {
