@@ -188,7 +188,7 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
  *
  * @since 20180502
  */
-if ( ! function_exist( 'fluid_show_post_dates' ) ) {
+if ( ! function_exists( 'fluid_show_post_dates' ) ) {
 	function fluid_show_post_dates() { ?>
 		<h3 class="post-date text-center">
 			<?php $show_orig = fluid_post_date(); ?>
