@@ -92,8 +92,8 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 				$this->log( 'user error', $user );
 			} else {
 				$location = ( isset( $_POST['login_location'] ) )
-					? esc_url_raw( $_POST['login_location'] )
-					: esc_url_raw( $_SERVER['HTTP_REFERER'] );
+					? esc_url_raw( wp_unslash( $_POST['login_location'] ) )
+					: esc_url_raw( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
 				$this->log(
 					'   redirect_to:  ' . $redirect_to,
 					'       request:  ' . $request,
