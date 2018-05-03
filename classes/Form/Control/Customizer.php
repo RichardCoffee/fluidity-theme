@@ -58,7 +58,6 @@ class TCC_Form_Control_Customizer {
 
 	protected function add_control( $args ) {
 		$this->customize->add_control( $this->setting_id, $args );
-fluid()->logobj($this);
 	}
 
 	protected function add_object_control( $obj ) {
