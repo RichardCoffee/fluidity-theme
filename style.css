@@ -250,6 +250,8 @@ pre {
 }
 
 body.archive.author .article {
+  border-radius: 6px;
+  border-width: 1px;
   margin: 0;
 }
 
