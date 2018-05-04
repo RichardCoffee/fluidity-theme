@@ -76,11 +76,12 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
 					if ( is_object( $page ) ) {
-fluid()->log($page);
 						if ( isset( $page->post_type ) && ( $page->post_type === 'page' ) ) {
 							$slug = $page->post_name;
 						} else if ( isset( $page->post_name ) ) {
 							$slug = $page->post_name;
+						} else if ( $page instanceof WP_User ) {
+							$slug = 'author';
 						} else {
 							$slug = $page->name;
 						}
