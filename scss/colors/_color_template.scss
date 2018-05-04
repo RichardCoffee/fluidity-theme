@@ -13,6 +13,9 @@ $mainlite: lightest(color(background), color(textcolor));
 
 body {
 	color: $maincomp;
+	&.archive.author article {
+		border: 1px solid $maincomp;
+	}
 }
 
 .btn-fluidity,
@@ -29,7 +32,7 @@ li.btn-fluidity > a,
 	border-width: 1px;
 }
 
-// solves display issue in Theme_Navigation links
+// solves display issue for Theme_Navigation links
 li.btn-fluidity {
 	border: none;
 }

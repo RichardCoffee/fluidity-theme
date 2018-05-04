@@ -63,6 +63,9 @@ form .form-control:focus, .wpfep-wrapper .wpfep-field input:focus {
 body {
   color: #d9534f;
 }
+body.archive.author article {
+  border: 1px solid #d9534f;
+}
 
 .btn-fluidity,
 .color-fluidity,
