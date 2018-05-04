@@ -5,8 +5,8 @@
  *
  */
 
-if ( ! function_exists( 'tcc_before_posts_author' ) ) {
-	function tcc_before_posts_author( $mypage ) {
+if ( ! function_exists( 'fluid_before_posts_author' ) ) {
+	function fluid_before_posts_author( $mypage ) {
 		if ( $mypage === 'author' ) {
 #			$current = ( isset( $_GET['author_name'] ) ) ? get_user_by( 'slug', $author_name ) : get_userdata( intval( $author ) ); wtf?
 			$current = get_userdata( get_query_var( 'author', null ) );
@@ -20,11 +20,11 @@ if ( ! function_exists( 'tcc_before_posts_author' ) ) {
 			</div><?php //*/
 		}
 	}
-	add_action( 'tcc_before_posts', 'tcc_before_posts_author' );
+	add_action( 'fluid_before_posts', 'fluid_before_posts_author' );
 }
 
-if ( ! function_exists( 'tcc_start_author_loop' ) ) {
-	function tcc_start_author_loop( $mypage ) {
+if ( ! function_exists( 'fluid_start_author_loop' ) ) {
+	function fluid_start_author_loop( $mypage ) {
 		if ( $mypage === 'author' ) {
 			clearfix()->initialize( array(
 				'lg' => 4,
@@ -34,5 +34,15 @@ if ( ! function_exists( 'tcc_start_author_loop' ) ) {
 			) );
 		}
 	}
-	add_action( 'tcc_before_posts', 'tcc_start_author_loop', 20 );
+	add_action( 'fluid_before_posts', 'fluid_start_author_loop', 20 );
+}
+
+if ( ! function_exists( 'fluid_post_separator_author' ) ) {
+	function fluid_post_separator_author() {
+		if ( get_page_slug() === 'author' ) {
+			// stop hr element from being displayed
+			add_action( 'fluid_post_separator_author', function() { } );
+		}
+	}
+	add_action( 'fluid_before_posts', 'fluid_post_separator_author' );
 }

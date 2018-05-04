@@ -25,7 +25,7 @@ do_action( 'fluid_page_top', $mypage ); ?>
 
 		<main id="content" class="<?php e_esc_attr( $page_sidebar->main_tag_css( $mypage ) ); ?>" role="main" tabindex="-1"><?php
 
-			do_action( 'tcc_before_posts', $mypage );
+			do_action( 'fluid_before_posts', $mypage );
 
 			if ( have_posts() ) {
 
