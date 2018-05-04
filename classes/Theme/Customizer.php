@@ -334,7 +334,7 @@ class TCC_Theme_Customizer {
 					'original' => __( 'Always use published post date.', 'tcc-fluid' ),
 					'none'     => __( 'Never show the post date.', 'tcc-fluid' ),
 				),
-				'active_callback' => 'is_single',
+#				'active_callback' => 'is_single',
 				'add_partial' => array(
 					'id' => 'content_postdate',
 					'args' => array(
