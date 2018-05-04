@@ -251,10 +251,10 @@ pre {
 
 body.archive.author article {
   border-radius: 6px;
+  padding: 0 1em;
 }
 body.archive.author .article {
   margin: 0;
-  padding: 1em 0;
 }
 
 button:active
