@@ -5,6 +5,8 @@
  *
  */
 
+
+
 if ( ! function_exists( 'fluid_before_posts_author' ) ) {
 	function fluid_before_posts_author( $mypage ) {
 		if ( $mypage === 'author' ) {
@@ -12,10 +14,10 @@ if ( ! function_exists( 'fluid_before_posts_author' ) ) {
 			$current = get_userdata( get_query_var( 'author', null ) );
 			$role    = ( $current ) ? $current->roles[0] : ''; // TODO: filter roles
 			get_template_part( 'template-parts/profile', $role );
-/* ?>
-			<div class='<?php echo esc_attr( $title_class ); ?>' itemprop='headline'>
+/* ? >
+			<div class='<?php echo esc_attr( $title_class ); ? >' itemprop='headline'>
 				<h3 class='text-center'>
-					<?php echo esc_html( $title_posts ); ?>
+					<?php echo esc_html( $title_posts ); ? >
 				</h3>
 			</div><?php //*/
 		}
@@ -45,4 +47,14 @@ if ( ! function_exists( 'fluid_post_separator_author' ) ) {
 		}
 	}
 	add_action( 'fluid_before_posts', 'fluid_post_separator_author' );
+}
+
+if ( ! function_exists( 'fluid_theme_sidebar_positioning_author' ) ) {
+	function fluid_theme_sidebar_positioning_author( $position ) {
+		if ( get_page_slug() === 'author' ) {
+			$position = 'none';
+		}
+		return $position;
+	}
+	add_filter( 'fluid_theme_sidebar_positioning', 'fluid_theme_sidebar_positioning_author' );
 }
