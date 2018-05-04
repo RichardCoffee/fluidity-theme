@@ -87,12 +87,18 @@ trait TCC_Trait_Logging {
 		return $trace[1];
 	}
 
+	/**
+	 * locates a function name in the stack
+	 *
+	 * @param string $func
+	 * @return bool|numeric false or stack level
+	 */
 	public function logging_was_called_by( $func ) {
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
-		foreach( $call_trace as $current ) {
+		foreach( $call_trace as $key => $current ) {
 			if ( ! empty( $current['function'] ) ) {
 				if ( $current['function'] === $func ) {
-					return true;
+					return $key;
 				}
 			}
 		}
