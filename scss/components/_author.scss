@@ -1,6 +1,10 @@
 
-body.archive.author .article {
-	border-radius: 6px;
-	border-width: 1px;
-	margin: 0;
+body.archive.author {
+	& article {
+		border-radius: 6px;
+		border-width: 1px;
+	}
+	& .article {
+		margin: 0;
+	}
 }

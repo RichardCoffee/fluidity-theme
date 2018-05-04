@@ -249,9 +249,11 @@ pre {
   border: 0;
 }
 
-body.archive.author .article {
+body.archive.author article {
   border-radius: 6px;
   border-width: 1px;
+}
+body.archive.author .article {
   margin: 0;
 }
 
