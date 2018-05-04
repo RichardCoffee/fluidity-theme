@@ -33,7 +33,7 @@ add_action( 'rest_api_init', function() {
 
 fluidity_check_update();
 
-#  prime classes
+#  prime the pump
 require_once( 'classes/autocomplete.php' );
 fluid_register_sidebars(); # TCC_Register_Sidebars
 fluid_theme_support();     # TCC_Theme_Support
@@ -46,6 +46,7 @@ if ( is_admin() ) {
 	require_once( FLUIDITY_HOME . 'includes/admin.php' );      #  Needs full path, or wp-admin/includes/admin.php gets loaded instead
 	require_once( FLUIDITY_HOME . 'includes/dashboard.php' );  #  Needs full path, or wp-admin/includes/dashboard.php gets loaded instead
 } else {
+	require_once( 'includes/author.php' );
 	require_once('includes/comments.php');
 	require_once('includes/footer.php');
 	require_once('includes/header.php');
