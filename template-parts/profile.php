@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit; ?>
 
 <div <?php microdata()->Person(); ?>>
-	<h1 >
+	<h1 class="text-center">
 		<?php printf( esc_html_x( 'All posts by %s', "post author's name", 'tcc-fluid' ), get_the_author() ); ?>
 	</h1><?php
 	if ( $descrip = get_the_author_meta( 'description' ) ) { ?>
