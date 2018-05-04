@@ -4,6 +4,7 @@
 @import "mixins";
 
 @import "wordpress"; // load required wordpress css first
+@import "author";
 @import "effects";
 @import "footer";
 @import "general";

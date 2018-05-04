@@ -249,6 +249,10 @@ pre {
   border: 0;
 }
 
+body.archive.author .article {
+  margin: 0;
+}
+
 button:active
 button:hover,
 .btn-fluidity:active,
