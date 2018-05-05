@@ -43,6 +43,24 @@ if ( ! function_exists( 'fluid_excerpt_length_author' ) ) {
 }
 
 /**
+ * hide the post author name when displaying on author archive page
+ *
+ * @param string $string
+ * @param string $postdate
+ * @param bool $showboth
+ * @return string
+ */
+if ( ! function_exists( 'fluid_post_date_sprintf_author' ) ) {
+	function fluid_post_date_sprintf_author( $string, $postdate, $showboth ) {
+		if ( get_page_slug() === 'author' ) {
+			$string = str_replace( ' by %2$s', '<span class="hidden"> by %2$s</span>', $string );
+		}
+		return $string;
+	}
+	add_filter( 'fluid_post_date_sprintf', 'fluid_post_date_sprintf_author' );
+}
+
+/**
  * prevents the hr element from being displayed on the author page
  *
  */
