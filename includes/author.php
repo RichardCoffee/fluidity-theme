@@ -27,6 +27,52 @@ if ( ! function_exists( 'fluid_before_posts_author' ) ) {
 }
 
 /**
+ * control excerpt length for author archive page
+ *
+ * @param numeric $length
+ * @return numeric
+ */
+if ( ! function_exists( 'fluid_excerpt_length_author' ) ) {
+	function fluid_excerpt_length_author( $length ) {
+		if ( get_page_slug() === 'author' ) {
+			return 45;
+		}
+		return $length;
+	}
+	add_filter( 'excerpt_length', 'fluid_excerpt_length_author', 12 );
+}
+
+/**
+ * prevents the hr element from being displayed on the author page
+ *
+ */
+if ( ! function_exists( 'fluid_post_separator_author' ) ) {
+	function fluid_post_separator_author() {
+		if ( get_page_slug() === 'author' ) {
+			// stop hr element from being displayed
+			add_action( 'fluid_post_separator_author', function() { } );
+		}
+	}
+	add_action( 'fluid_before_posts', 'fluid_post_separator_author' );
+}
+
+/**
+ * limit the posts per page for author archives
+ *
+ * @param WP_Query $query
+ * @return WP_Query
+ */
+if ( ! function_exists( 'fluid_posts_per_page_author' ) ) {
+	function fluid_posts_per_page_author( $query ) {
+		if ( ! is_admin() && $query->is_main_query() && $query->is_author() ) {
+			$query->set('posts_per_page', 9);
+		}
+		return $query;
+	}
+	add_filter('pre_get_posts', 'fluid_posts_per_page_author');
+}
+
+/**
  * initialize bootstrap clearfix
  *
  * @param string $mypage
@@ -45,19 +91,6 @@ if ( ! function_exists( 'fluid_start_author_loop' ) ) {
 	add_action( 'fluid_before_posts', 'fluid_start_author_loop', 20 );
 }
 
-/**
- * prevents the hr element from being displayed on the author page
- *
- */
-if ( ! function_exists( 'fluid_post_separator_author' ) ) {
-	function fluid_post_separator_author() {
-		if ( get_page_slug() === 'author' ) {
-			// stop hr element from being displayed
-			add_action( 'fluid_post_separator_author', function() { } );
-		}
-	}
-	add_action( 'fluid_before_posts', 'fluid_post_separator_author' );
-}
 
 /**
  * stops the sidebar from being shown on the author page

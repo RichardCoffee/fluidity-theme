@@ -111,7 +111,7 @@ if ( ! function_exists( 'tcc_excerpt_length' ) ) {
 		$calced  = intval( $stored, 10 );
 		return ( $calced ) ? $calced : $length;
 	}
-	add_filter( 'excerpt_length', 'tcc_excerpt_length', 999 );
+	add_filter( 'excerpt_length', 'tcc_excerpt_length', 11 );
 }
 
 if ( ! function_exists( 'tcc_layout' ) ) {
