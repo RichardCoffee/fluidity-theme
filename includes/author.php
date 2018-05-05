@@ -57,7 +57,7 @@ if ( ! function_exists( 'fluid_post_date_sprintf_author' ) ) {
 		}
 		return $string;
 	}
-	add_filter( 'fluid_post_date_sprintf', 'fluid_post_date_sprintf_author' );
+	add_filter( 'fluid_post_date_sprintf', 'fluid_post_date_sprintf_author', 10, 3 );
 }
 
 /**
