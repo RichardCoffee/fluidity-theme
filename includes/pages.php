@@ -133,7 +133,7 @@ if ( ! function_exists( 'tcc_before_posts_filter' ) ) {
 			tcc_show_page_title( $mypage );
 		}
 	}
-	add_action( 'tcc_before_posts', 'tcc_before_posts_filter' );
+	add_action( 'fluid_before_posts', 'tcc_before_posts_filter' );
 }
 
 if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {

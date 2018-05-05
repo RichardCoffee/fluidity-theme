@@ -1,12 +1,13 @@
 <?php
-
-/*
+/**
  * includes/author.php
  *
  */
-
-
-
+/**
+ * load author profile template
+ *
+ * @param string $mypage
+ */
 if ( ! function_exists( 'fluid_before_posts_author' ) ) {
 	function fluid_before_posts_author( $mypage ) {
 		if ( $mypage === 'author' ) {
@@ -25,6 +26,11 @@ if ( ! function_exists( 'fluid_before_posts_author' ) ) {
 	add_action( 'fluid_before_posts', 'fluid_before_posts_author' );
 }
 
+/**
+ * initialize bootstrap clearfix
+ *
+ * @param string $mypage
+ */
 if ( ! function_exists( 'fluid_start_author_loop' ) ) {
 	function fluid_start_author_loop( $mypage ) {
 		if ( $mypage === 'author' ) {
@@ -39,6 +45,10 @@ if ( ! function_exists( 'fluid_start_author_loop' ) ) {
 	add_action( 'fluid_before_posts', 'fluid_start_author_loop', 20 );
 }
 
+/**
+ * prevents the hr element from being displayed on the author page
+ *
+ */
 if ( ! function_exists( 'fluid_post_separator_author' ) ) {
 	function fluid_post_separator_author() {
 		if ( get_page_slug() === 'author' ) {
@@ -49,6 +59,12 @@ if ( ! function_exists( 'fluid_post_separator_author' ) ) {
 	add_action( 'fluid_before_posts', 'fluid_post_separator_author' );
 }
 
+/**
+ * stops the sidebar from being shown on the author page
+ *
+ * @param string $position
+ * @return string
+ */
 if ( ! function_exists( 'fluid_theme_sidebar_positioning_author' ) ) {
 	function fluid_theme_sidebar_positioning_author( $position ) {
 		if ( get_page_slug() === 'author' ) {

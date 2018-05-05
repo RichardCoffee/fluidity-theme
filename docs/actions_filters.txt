@@ -9,7 +9,7 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_page_top
 		tcc_inside_page
 		tcc_before_main
-		tcc_before_posts
+		fluid_before_posts
 		tcc_before_loop
 		tcc_after_loop
 		tcc_no_loop ( when this runs then tcc_before_loop and tcc_after_loop did not fire )
@@ -30,8 +30,6 @@ Note:  this list is certainly not accurate, check source for up to date infomati
                                 registered
 		tcc_pre_enqueue                   run before fluidity enqueues
 		tcc_after_enqueue                 run after fluidity enqueues
-		tcc_before_page                   occurs at the top of the page,                     stock.php, et. al.
-		                                    immediately after the header
 		tcc_enqueue                       load child enqueues here, runs last
 		tcc_excerpt_parallax              inline stylesheet for excerpts
  tcc_footer                   footer body
