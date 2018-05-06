@@ -55,7 +55,7 @@ if ( ! function_exists( 'fluid_before_posts_author' ) ) {
 if ( ! function_exists( 'fluid_enqueue_devicon' ) ) {
 	function fluid_enqueue_devicon() {
 		if ( get_page_slug() === 'author' ) {
-			wp_enqueue_style( 'fluid_devicon' );
+			wp_enqueue_style( 'fluid_devicon', get_theme_file_uri( 'css/devicon.min.css' ), null, '2.2.0' );
 		}
 	}
 	add_action( 'tcc_after_enqueue', 'fluid_enqueue_devicon' );
