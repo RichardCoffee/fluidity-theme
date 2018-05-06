@@ -325,7 +325,7 @@ class TCC_Theme_Customizer {
 		$controls = array(
 			'postdate' => array(
 				'default'   => 'original',
-#				'transport' => 'postMessage',
+				'transport' => 'postMessage',
 				'label'     => __( 'Displayed Publish/Edit Date', 'tcc-fluid' ),
 				'render'    => 'radio',
 				'choices'   => array(
@@ -334,7 +334,9 @@ class TCC_Theme_Customizer {
 					'original' => __( 'Always use published post date.', 'tcc-fluid' ),
 					'none'     => __( 'Never show the post date.', 'tcc-fluid' ),
 				),
-#				'active_callback' => 'is_single', // PHP Catchable fatal error:  Object of class WP_Customize_Manager could not be converted to string in /home1/zxkrycvs/rtcenterprises.net/wp-includes/class-wp-query.php on line 3827
+				'active_callback' => function() {
+					return is_single();
+				}, // PHP Catchable fatal error:  Object of class WP_Customize_Manager could not be converted to string in /home1/zxkrycvs/rtcenterprises.net/wp-includes/class-wp-query.php on line 3827
 				'add_partial' => array(
 					'id' => 'content_postdate',
 					'args' => array(
