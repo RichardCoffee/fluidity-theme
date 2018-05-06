@@ -32,7 +32,7 @@ class TCC_Theme_Customizer {
 
 	public function customize_register( WP_Customize_Manager $customize ) {
 		$this->register_theme_controls( $customize );
-		$this->assign_postmessage( $customize );
+		$this->modify_core_controls( $customize );
 	}
 
 	public function register_theme_controls( WP_Customize_Manager $customize ) {
@@ -62,9 +62,13 @@ class TCC_Theme_Customizer {
 		}
 	}
 
-	public function assign_postmessage( WP_Customize_Manager $customize ) {
+	public function modify_core_controls( WP_Customize_Manager $customize ) {
 		$customize->remove_control('background_color');
 		$customize->get_setting( 'blogname' )->transport = 'postMessage';
+/*		$customize->selective_refresh->add_partial( 'blogname', array(
+			'selector' => 'a.navbar-brand',
+			'render_callback' => 'twentyfifteen_customize_partial_blogname',
+		) ); //*/
 	}
 
 	public function assign_partials( WP_Customize_Manager $customize ) {
