@@ -3,6 +3,28 @@
  * includes/author.php
  *
  */
+
+/* temp testing function */
+function fluid_author_skills( $value, $user_id, $original_user_id ) {
+	if ( $user_id === 1 ) {
+		return array(
+			'Bootstrap'  => 'devicon-bootstrap-plain',
+			'CSS 3'      => 'devicon-css3-plain',
+			'Git'        => 'devicon-git-plain',
+			'HTML 5'     => 'devicon-html5-plain',
+			'Javascript' => 'devicon-javascript-plain',
+			'jQuery'     => 'devicon-jquery-plain',
+			'Linux'      => 'devicon-linux-plain',
+			'mySQL'      => 'devicon-mysql-plain',
+			'PHP'        => 'devicon-php-plain',
+			'Sass'       => 'devicon-sass-original',
+			'WordPress'  => 'devicon-wordpress-plain'
+		);
+	}
+	return $value;
+}
+add_filter( 'get_the_author_skills', 'fluid_author_skills', 10, 3 );
+
 /**
  * load author profile template
  *
