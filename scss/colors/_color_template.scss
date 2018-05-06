@@ -132,7 +132,7 @@ ul.pagination > li {
 a.tcc-footer-menu-item {
 	color: color(textcolor);
 	&:visited {
-		border-bottom: 1px wavy color(textcolor);
+		border-bottom: 1px solid color(textcolor);
 	}
 }
 
@@ -140,7 +140,7 @@ a {
 	border-bottom: 1px solid $maincomp; //color(background);
 	color: $maincomp; //color(background);
 	&:visited {
-		border-bottom: 1px wavy $maincomp; //color(background);
+		border-bottom: 1px solid $maincomp; //color(background);
 		color: $mainhigh; //color(bgHighlight);
 	}
 	&:hover, &:focus {

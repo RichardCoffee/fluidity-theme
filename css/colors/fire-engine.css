@@ -287,7 +287,7 @@ a.tcc-footer-menu-item {
   color: #FFFFFF;
 }
 a.tcc-footer-menu-item:visited {
-  border-bottom: 1px wavy #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
 }
 
 a {
@@ -295,7 +295,7 @@ a {
   color: #CE2029;
 }
 a:visited {
-  border-bottom: 1px wavy #CE2029;
+  border-bottom: 1px solid #CE2029;
   color: #671015;
 }
 a:hover, a:focus {
