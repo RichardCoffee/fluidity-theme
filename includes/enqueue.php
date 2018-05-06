@@ -4,6 +4,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 	function tcc_enqueue() {
 		do_action( 'tcc_pre_enqueue' );
 		#  register scripts
+		fluidity_register_devicon();
 		fluidity_register_fontawesome();
 		fluidity_register_color_scheme();
 		fluidity_register_css_js();
@@ -66,6 +67,12 @@ if ( ! function_exists( 'fluidity_admin_enqueue' ) ) {
 		do_action( 'fluidity_admin_enqueue' );
 	}
 	add_action( 'admin_enqueue_scripts', 'fluidity_admin_enqueue' );
+}
+
+if ( ! function_exists( 'fluidity_register_devicon' ) ) {
+	function fluidity_register_devicon() {
+		wp_register_style( 'tcc-devicon', get_theme_file_uri( 'css/devicon.min.css' ), false, '2.2.0' );
+	}
 }
 
 if ( ! function_exists( 'fluidity_register_fontawesome' ) ) {
