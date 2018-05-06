@@ -42,15 +42,6 @@
 			} );
 		}
 
-		/***   handle postMessage tasks   ***/
-
-		// Site title.
-		api( 'blogname', function( value ) {
-			value.bind( function( to ) {
-				jQuery( 'a.navbar-brand' ).text( to );
-			} );
-		} );
-
 	} );
 } )();
 

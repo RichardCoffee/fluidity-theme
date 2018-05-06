@@ -65,10 +65,12 @@ class TCC_Theme_Customizer {
 	public function modify_core_controls( WP_Customize_Manager $customize ) {
 		$customize->remove_control('background_color');
 		$customize->get_setting( 'blogname' )->transport = 'postMessage';
-/*		$customize->selective_refresh->add_partial( 'blogname', array(
+		$customize->selective_refresh->add_partial( 'blogname', array(
 			'selector' => 'a.navbar-brand',
-			'render_callback' => 'twentyfifteen_customize_partial_blogname',
-		) ); //*/
+			'render_callback' => function() {
+				bloginfo( 'name' );
+			},
+		) );
 	}
 
 	public function assign_partials( WP_Customize_Manager $customize ) {

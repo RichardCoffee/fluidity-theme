@@ -71,20 +71,20 @@ if ( ! function_exists( 'fluidity_admin_enqueue' ) ) {
 
 if ( ! function_exists( 'fluidity_register_devicon' ) ) {
 	function fluidity_register_devicon() {
-		wp_register_style( 'fluid-devicon', get_theme_file_uri( 'css/devicon.min.css' ), false, '2.2.0' );
+		wp_register_style( 'fluid-devicon', get_theme_file_uri( 'css/devicon.min.css' ), null, '2.2.0' );
 	}
 }
 
 if ( ! function_exists( 'fluidity_register_fontawesome' ) ) {
 	function fluidity_register_fontawesome() {
-		wp_register_style( 'tcc-fawe', get_theme_file_uri( 'vendor/css/font-awesome.min.css' ), false, '4.7.0' );
+		wp_register_style( 'tcc-fawe', get_theme_file_uri( 'vendor/css/font-awesome.min.css' ), null, '4.7.0' );
 	}
 }
 
 if ( ! function_exists( 'fluidity_register_color_scheme' ) ) {
 	function fluidity_register_color_scheme() {
 		if ( $color = fluid_color_scheme() ) {
-			wp_register_style( 'fluid-color',  get_theme_file_uri( "css/colors/$color.css" ), false, FLUIDITY_VERSION );
+			wp_register_style( 'fluid-color',  get_theme_file_uri( "css/colors/$color.css" ), null, FLUIDITY_VERSION );
 		}
 	}
 }
