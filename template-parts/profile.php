@@ -19,14 +19,16 @@ defined( 'ABSPATH' ) || exit; ?>
 	}
 
 	$skills = get_the_author_meta( 'skills' );
-	if ( ! empty( $skills ) ) {
-		fluid()->element( 'h1', [ 'class' => 'text-center' ], __( 'Skills', 'tcc-fluid' ) );
-		foreach( $skills as $text => $icon ) { ?>
-			<div class="col-md-1"><?php
-				fluid()->element( 'i', [ 'class' => $icon ] );
-				fluid()->element( 'h3', [ 'class' => 'text-center' ], $text ); ?>
-			</div><?php
-		}
+	if ( ! empty( $skills ) ) { ?>
+		<div class="row"><?php
+			fluid()->element( 'h1', [ 'class' => 'text-center' ], __( 'Skills', 'tcc-fluid' ) );
+			foreach( $skills as $text => $icon ) { ?>
+				<div class="col-md-1"><?php
+					fluid()->element( 'i', [ 'class' => $icon ] );
+					fluid()->element( 'h4', [ 'class' => 'text-center' ], $text ); ?>
+				</div><?php
+			} ?>
+		</div><?php
 	} ?>
 
 </div>
