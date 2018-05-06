@@ -25,11 +25,12 @@ defined( 'ABSPATH' ) || exit; ?>
 			foreach( $skills as $text => $icon ) { ?>
 				<div class="col-md-1 text-center"><?php
 					fluid()->element( 'i', [ 'class' => $icon, 'style' => 'font-size: 50px;' ] );
-#					fluid()->element( 'h5', [ 'class' => 'text-center' ], $text );
 					fluid()->element( 'h5', [ ], $text ); ?>
 				</div><?php
 			} ?>
 		</div><?php
-	} ?>
+	}
+
+	fluid()->element( 'h1', [ 'class' => 'text-center' ], __( 'Posts', 'tcc-fluid' ) ); ?>
 
 </div>
