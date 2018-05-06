@@ -71,7 +71,7 @@ if ( ! function_exists( 'fluidity_admin_enqueue' ) ) {
 
 if ( ! function_exists( 'fluidity_register_devicon' ) ) {
 	function fluidity_register_devicon() {
-		wp_register_style( 'tcc-devicon', get_theme_file_uri( 'css/devicon.min.css' ), false, '2.2.0' );
+		wp_register_style( 'fluid-devicon', get_theme_file_uri( 'css/devicon.min.css' ), false, '2.2.0' );
 	}
 }
 
