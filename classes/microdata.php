@@ -25,10 +25,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if (!function_exists('microdata')) {
-  function microdata() {
-    return TCC_Microdata::instance();
-  }
+if ( ! function_exists( 'microdata' ) ) {
+	function microdata() {
+		static $library = null;
+		if ( empty( $library ) ) {
+			$library = TCC_Microdata::instance();
+		}
+		return $library;
+	}
 }
 
 if (!class_exists('TCC_Microdata')) {

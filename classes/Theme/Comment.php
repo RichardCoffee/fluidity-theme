@@ -128,9 +128,16 @@ class TCC_Theme_Comment {
 	}
 
 	public function move_comment_field_to_bottom( $fields ) {
+		# move comment textarea to bottom
 		$comment_field = $fields['comment'];
 		unset( $fields['comment'] );
 		$fields['comment'] = $comment_field;
+		if ( isset( $fields['cookies'] ) ) {
+			# move checkbox to under textarea
+			$cookies = $fields['cookies'];
+			unset( $fields['cookies'] );
+			$fields['cookies'] = $cookies;
+		}
 		return $fields;
 	}
 

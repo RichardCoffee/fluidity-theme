@@ -17,10 +17,8 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 			$attrs = array(
 				'type'  => $this->type,
 				'name'  => $this->field_name,
-			);
-			if ( $this->onchange ) {
-				$attrs['onchange'] = $this->onchange;
-			} ?>
+				'onchange' => $this->onchange,
+			); ?>
 			<div title="<?php echo esc_attr( $this->field_help ); ?>"><?php
 /*				if ( $this->field_pretext ) {
 					$uniq = 'radio_' . uniqid(); ?>
@@ -30,13 +28,11 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 					$attrs['aria-describedby'] = $uniq;
 				} //*/
 				foreach( $this->choices as $key => $text ) {
-					if ( isset( $attrs['checked'] ) ) { unset( $attrs['checked'] ); }
 					$attrs['value'] = $key; ?>
 					<div>
 						<label><?php
-							$attrs = $this->checked( $attrs, $this->field_value, $key );
-							$this->element( 'input', $attrs );
-							echo esc_html( $text ); ?>
+							$atts = $this->checked( $attrs, $this->field_value, $key );
+							$this->element( 'input', $atts, $text ); ?>
 						</label>
 					</div><?php
 				}

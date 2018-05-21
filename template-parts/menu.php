@@ -42,7 +42,7 @@ if ( has_nav_menu( $menu ) ) {
 					<span class="sr-only">Toggle navigation</span>
 					<?php fluid()->fawe( 'fa-bars' ); ?>
 				</button>
-				<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
+				<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>"><?php microdata()->bloginfo( 'name' ); ?></a>
 			</div>
 
 			<div class="collapse navbar-collapse navbar-<?php echo $menu; ?>-collapse"><?php

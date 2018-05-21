@@ -71,7 +71,6 @@ abstract class TCC_Form_Field_Field {
 		return $attrs;
 	}
 
-
 	protected function label() {
 		if ( empty( $this->description ) ) {
 			return;

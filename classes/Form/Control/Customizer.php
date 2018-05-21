@@ -28,7 +28,8 @@ class TCC_Form_Control_Customizer {
 			add_filter( 'fluid_customize_controls_localization', array( $this, 'fluid_customize_controls_localization' ) );
 		}
 		$render = $this->control['render'];
-		$this->$render();
+		$args   = $this->control_settings();
+		$this->$render( $args );
 		if ( isset( $this->control['add_partial'] ) ) {
 			$this->add_partial();
 		}
@@ -72,44 +73,41 @@ class TCC_Form_Control_Customizer {
 			'type'        => $this->control['render'],
 		);
 		$args = array_merge( $defaults, $this->control );
-		return self::$theme->control_defaults( $args );
+		return fluid_customizer()->control_defaults( $args );
 	}
 
-	protected function content() {
-		$args = $this->control_settings();
+
+	/***   Render   ***/
+
+	protected function content( $args ) {
 		$obj  = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
 
-	protected function font() {
-		$args = $this->control_settings();
+	protected function font( $args ) {
 		$args['choices'] = $this->control['choices'];
 		$args['type']    = 'select';
 		$this->add_control( $args );
 	}
 
-	protected function htmlradio() {
-		$args = $this->control_settings();
+	protected function htmlradio( $args ) {
 		$args['type'] = 'radio';
 		$obj  = new TCC_Form_Control_HTMLRadio( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
 
-	protected function radio() {
-		$args = $this->control_settings();
+	protected function radio( $args ) {
 		$args['choices'] = $this->control['choices'];
 		$args['type'] = 'radio';
 		$this->add_control( $args );
 	}
 
-	protected function spinner() {
-		$args = $this->control_settings();
+	protected function spinner( $args ) {
 		$args['type'] = 'number';
 		$this->add_control( $args );
 	}
 
-	protected function text() {
-		$args = $this->control_settings();
+	protected function text( $args ) {
 fluid(1)->log($args);
 		$this->add_control( $args );
 	}
