@@ -76,6 +76,7 @@ class TCC_Theme_Comment {
 			'comment_notes_before_req' => __( 'Your email address is required but will not be published.', 'tcc-fluid' ),
 			'email'         => __( 'Your Email Please',                  'tcc-fluid' ),
 			'email_req'     => __( 'Your Email Please - Required Field', 'tcc-fluid' ),
+			'consent'       => __( 'Save my name, email, and website in a browser cookie for the next time I comment.', 'tcc-fluid' ),
 			'logged_in_as'  => _x( 'Logged in as %1$s. %2$sLog out?%3$s', '1: User name,  2,3: html start and end of link to log-out page', 'tcc-fluid' ),
 			'must_log_in'   => _x( 'You must be %slogged in%s to post a comment.', 'start and end of html for link to log-in page', 'tcc-fluid' ),
 			'profile'       => __( 'Edit your profile.',    'tcc-fluid' ),
@@ -120,9 +121,10 @@ class TCC_Theme_Comment {
 
 	protected function comment_fields() {
 		$fields = array(
-			'author' => '<p class="comment-form-author">' . $this->get_apply_attrs_tag( 'input', $this->author_attrs() ) . '</p>',
-			'email'  => '<p class="comment-form-email">' .  $this->get_apply_attrs_tag( 'input', $this->email_attrs() ) .  '</p>',
-			'url'    => '<p class="comment-form-url">'  .   $this->get_apply_attrs_tag( 'input', $this->url_attrs() ) .    '</p>',
+			'author'  => '<p class="comment-form-author">' . $this->get_tag( 'input', $this->author_attrs() ) . '</p>',
+			'email'   => '<p class="comment-form-email">' .  $this->get_tag( 'input', $this->email_attrs() ) .  '</p>',
+			'url'     => '<p class="comment-form-url">'  .   $this->get_tag( 'input', $this->url_attrs() ) .    '</p>',
+			'cookies' => '<p class="comment-form-cookies-consent">' . $this->cookies_html() . '</p>',
 		);
 		return apply_filters( 'comment_form_default_fields', $fields );
 	}
@@ -204,6 +206,20 @@ class TCC_Theme_Comment {
 			'title'       => $this->strings['title']['url'],
 		);
 		return apply_filters( "{$this->prefix}_comment_url_attrs", $attrs );
+	}
+
+	protected function cookies_html() {
+		$attrs = array(
+			'field_id'    => 'wp-comment-cookies-consent',
+			'field_name'  => 'wp-comment-cookies-consent',
+			'type'        => 'checkbox',
+			'field_value' => 'yes',
+			'description' => $this->strings['consent'],
+			'checked'     => ( ! empty( $this->author['email'] ) ),
+		);
+		$attrs    = apply_filters( "{$this->prefix}_comment_cookies_attrs", $attrs );
+		$checkbox = new TCC_Form_Field_CheckBox( $attrs );
+		return $checkbox->get_checkbox();
 	}
 
 	protected function comment_attrs() {

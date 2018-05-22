@@ -8,21 +8,21 @@
 
 abstract class TCC_Form_Field_Field {
 
-	protected $field_css     = '';      #  field css
-	protected $default       = '';      ## default value
-	protected $field_help    = '';      #  used for tooltip text
-	protected $field_id      = '';      #  field id
-	protected $field_name    = '';      #  field name
-	protected $type          = 'text';  ## input type
-	protected $field_value = '';        #  field value
-	protected $label_css   = '';        #  label css
-	protected $description = '';        ## label text
-	protected $onchange    = null;      #  onchange attribute
-	protected $placeholder = '';        #  placeholder text
-#	protected $post_id;                 #  wordpress post id number
-	protected $sanitize   = 'esc_attr'; #  default sanitize method
-	protected $see_label  = true;       #  is the label visible?
-	protected $form_control = true;     #  add form-control css
+	protected $field_css   = '';         #  field css
+	protected $default     = '';         ## default value
+	protected $field_help  = '';         #  used for tooltip text
+	protected $field_id    = '';         #  field id
+	protected $field_name  = '';         #  field name
+	protected $type        = 'text';     ## input type
+	protected $field_value = '';         #  field value
+	protected $label_css   = '';         #  label css
+	protected $description = '';         ## label text
+	protected $onchange    = null;       #  onchange attribute
+	protected $placeholder = '';         #  placeholder text
+#	protected $post_id;                  #  wordpress post id number
+	protected $sanitize    = 'esc_attr'; #  default sanitize method
+	protected $see_label   = true;       #  is the label visible?
+	protected $form_control = true;      #  add form-control css
 
 	protected static $date_format = 'm/d/y';
 
@@ -56,7 +56,7 @@ abstract class TCC_Form_Field_Field {
 	}
 
 	public function get_input() {
-		return $this->get_apply_attrs_element( 'input', $this->get_input_attributes() );
+		return $this->get_element( 'input', $this->get_input_attributes() );
 	}
 
 	protected function get_input_attributes() {
@@ -82,7 +82,7 @@ abstract class TCC_Form_Field_Field {
 		if ( empty( $this->description ) ) {
 			return '';
 		}
-		return $this->get_apply_attrs_element( 'label', $this->get_label_attributes(), $this->description );
+		return $this->get_element( 'label', $this->get_label_attributes(), $this->description );
 	}
 
 	protected function get_label_attributes() {
