@@ -17,6 +17,12 @@
 .comment-form-email { }
 .comment-form-url { }
 .comment-form-comment { }
+.comment-form-cookies-consent label {
+	font-weight: normal;
+	& input {
+		width: auto;
+	}
+}
 .comment-notes { }
 .comment-reply-title { }
 .comment-respond { }
