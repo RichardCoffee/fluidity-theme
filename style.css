@@ -258,6 +258,13 @@ body.archive.author .article {
   margin: 0;
 }
 
+.comment-form-cookies-consent label {
+  font-weight: normal;
+}
+.comment-form-cookies-consent label input {
+  width: auto;
+}
+
 button:active
 button:hover,
 .btn-fluidity:active,
