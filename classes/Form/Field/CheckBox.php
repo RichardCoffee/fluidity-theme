@@ -10,7 +10,7 @@ class TCC_Form_Field_CheckBox extends TCC_Form_Field_Field {
 	}
 
 	public function get_checkbox() {
-		return $this->get_input() . $this->get_label();
+		return $this->get_tag( 'label', [ 'id' => $this->field_id . '_label' ] ) . $this->get_input() . $this->description . '</label>';
 	}
 
 	protected function get_input_attributes() {
