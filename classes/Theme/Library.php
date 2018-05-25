@@ -118,5 +118,10 @@ $this->log($meta);
 		);
 	}
 
+	public function get_html_attributes( $html ) {
+		$x = new SimpleXMLElement( $html );
+		return iterator_to_array( $x->attributes() );
+	}
+
 
 }
