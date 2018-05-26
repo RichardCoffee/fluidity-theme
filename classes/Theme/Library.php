@@ -118,9 +118,20 @@ $this->log($meta);
 		);
 	}
 
-	public function get_html_attributes( $html ) {
-		$x = new SimpleXMLElement( $html );
-		return iterator_to_array( $x->attributes() );
+	public function get_html_object( $html ) {
+		$obj = new stdClass();
+		$doc = new DOMDocument();
+		$doc->loadHTML( $html );
+		$element = $doc->documentElement->firstChild->firstChild;
+		$obj->attrs = array();
+		$obj->tag   = $element->tagName;
+		$obj->text  = $element->textContent;
+		if ( $element->hasAttributes() ) {
+			foreach ($element->attributes as $attr) {
+				$obj->attrs[ $attr->nodeName ] = $attr->nodeValue;
+			}
+		}
+		return $obj;
 	}
 
 
