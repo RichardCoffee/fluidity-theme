@@ -171,7 +171,7 @@ trait TCC_Trait_Attributes {
 		$html  = "<$element ";
 		$html .= $this->get_apply_attrs( $attrs );
 		if ( $this->is_tag_self_closing( $element ) ) {
-			$html .= ' />';
+			$html .= ' />' . esc_html( $text );
 		} else {
 			$html .= '>' . esc_html( $text ) . "</$element>";
 		}

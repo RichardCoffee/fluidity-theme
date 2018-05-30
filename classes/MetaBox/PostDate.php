@@ -37,7 +37,6 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 			),
 		);
 		$this->radio = new TCC_Form_Field_Radio( $args );
-fluid()->log($this->radio);
 	}
 
 	public function show_meta_box( $post ) {
