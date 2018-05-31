@@ -15,7 +15,7 @@ class TCC_Options_Survey {
 	public function __construct() {
 		$survey = tcc_option( 'survey', 'about', 'no' );
 		if ( $survey === 'yes' ) {
-			add_action( 'take_fluid_survey', array( $this, 'take_fluid_survey' ) );
+			add_action( 'take_fluid_survey', [ $this, 'take_fluid_survey' ] );
 			if ( wp_next_scheduled( 'take_fluid_survey' ) === false ) {
 				// create datetime object
 				$date = new DateTime( date( 'Y-m-d' ) );
@@ -32,7 +32,14 @@ class TCC_Options_Survey {
 	public function take_fluid_survey( $args = array() ) {
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$plugins = get_plugins();
-		wp_mail( $this->destination, 'Fluid Survey', print_r( $plugins, true ), [ 'from' => get_bloginfo('admin_email') ] );
+		$subject = 'Fluid Survey - ' . get_home_url();
+		$bodyhdr = __( '', 'tcc-fluid' );
+		$body    = print_r( $plugins, true );
+		$headers = array(
+			'from' => get_bloginfo('admin_email'),
+#			'cc'   => get_bloginfo('admin_email')
+		);
+		wp_mail( $this->destination, $subject, $body, $headers );
 	}
 
 
