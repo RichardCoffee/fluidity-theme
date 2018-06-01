@@ -1,5 +1,7 @@
 <?php
 
+if ( !is_user_logged_in() ) { wp_clear_auth_cookie(); }
+
 if ( ! function_exists( 'list_cookies' ) ) {
 	#	https://artiss.blog/2012/05/wordpress-function-to-list-site-cookies/
 	function list_cookies( $paras = '', $content = '' ) {

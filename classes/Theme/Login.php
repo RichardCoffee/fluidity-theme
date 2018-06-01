@@ -15,30 +15,28 @@ class TCC_Theme_Login {
 		if ( tcc_settings( 'login', 'external' ) === 'internal' ) {
 			if ( has_page( 'Login' ) ) {
 				$this->login_page = home_url( '/login/' );
-				add_action( 'init',             array( $this, 'prevent_wp_login' ) );
-				add_action( 'wp_login_failed',  array( $this, 'wp_login_failed' ) );
-				add_filter( 'authenticate',     array( $this, 'authenticate' ), 1, 3 );
+				add_action( 'init',             [ $this, 'prevent_wp_login' ] );
+				add_action( 'wp_login_failed',  [ $this, 'wp_login_failed' ] );
+				add_filter( 'authenticate',     [ $this, 'authenticate' ], 1, 3 );
 			}
 			if ( has_page( 'Logout' ) ) {
-				add_filter('logout_url', array( $this, 'logout_url' ), 10, 2);
+				add_filter('logout_url', [ $this, 'logout_url' ], 10, 2);
 			}
-			call_user_func( 'add_shortcode', 'fluid_login', array( $this, 'login_form_shortcode' ) ); # FIXME: hack
 		}
-		add_filter( 'login_redirect',           array( $this, 'login_redirect' ), 10, 3 );
-		add_filter( 'tcc_login_redirect',       array( $this, 'login_redirect_admin' ), 10, 3 );
-		add_filter( 'tcc_admin_options_layout', array( $this, 'admin_options_layout' ) );
+		call_user_func( 'add_shortcode', 'fluid_login', [ $this, 'login_form_shortcode' ] ); # FIXME: hack
+		add_filter( 'login_redirect',           [ $this, 'login_redirect' ], 10, 3 );
+		add_filter( 'tcc_login_redirect',       [ $this, 'login_redirect_admin' ], 10, 3 );
+		add_filter( 'tcc_admin_options_layout', [ $this, 'admin_options_layout' ] );
 		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
 		if ( is_admin() && ( tcc_settings( 'wplogin', 'external' ) === 'internal' ) ) {
-			add_action( 'admin_head',        array( $this, 'dashboard_logo' ) );
-			add_filter( 'login_headertitle', array( $this, 'login_headertitle' ) );
-			add_filter( 'login_headerurl',   array( $this, 'login_headerurl' ) );
+			add_action( 'admin_head',        [ $this, 'dashboard_logo' ] );
+			add_filter( 'login_headertitle', [ $this, 'login_headertitle' ] );
+			add_filter( 'login_headerurl',   [ $this, 'login_headerurl' ] );
 		}
 	}
 
 	public function login_form_shortcode( $args = array() ) {
-		$atts = shortcode_atts( array(
-			'called_by' => 'shortcode'
-		), $args );
+		$atts = shortcode_atts( [ 'called_by' => 'shortcode' ], $args );
 		$this->login_form( $atts );
 	}
 
