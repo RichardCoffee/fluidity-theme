@@ -9,17 +9,18 @@ if (!function_exists('tcc_admin_howdy')) {
 		if ( $user_id ) {
 			/* Add the "My Account" menu */
 			$current = wp_get_current_user();
-			$profile = get_edit_profile_url( $user_id );
 			$avatar  = get_avatar( $user_id, 28 );
-			$text    = tcc_holiday_greeting();
-			$howdy   = sprintf( _x( '%1$s, %2$s', 'text greeting, user name', 'tcc-fluid' ), $text, $current->display_name );
-			$class   = ( empty( $avatar ) ) ? '' : 'with-avatar';
-			$args    = array('id'     => 'my-account',
-			                 'parent' => 'top-secondary',
-			                 'title'  => esc_html( $howdy ) . $avatar,
-			                 'href'   => $profile,
-			                 'meta'   => array( 'class' => $class,
-			                                    'title' => esc_html__( 'My Account', 'tcc-fluid' ) ) );
+			$howdy   = sprintf( _x( '%1$s, %2$s', 'text greeting, user name', 'tcc-fluid' ), tcc_holiday_greeting(), $current->display_name );
+			$args    = array(
+				'id'     => 'my-account',
+				'parent' => 'top-secondary',
+				'title'  => esc_html( $howdy ) . $avatar,
+				'href'   => get_edit_profile_url( $user_id ),
+				'meta'   => array(
+					'class' => ( empty( $avatar ) ) ? '' : 'with-avatar',
+					'title' => esc_html__( 'My Account', 'tcc-fluid' )
+				)
+			);
 			$wp_admin_bar->add_menu( $args );
 		}
 	}
@@ -37,7 +38,7 @@ if ( ! function_exists( 'tcc_custom_css_admin' ) ) {
 
 if ( ! function_exists( 'fluid_plugin_information_footer' ) ) {
 	function fluid_plugin_information_footer() {
-		echo "\n#plugin-information-footer {\n\tleft: auto;\n\tright: 15px;\n}\n";
+		echo "\n#plugin-information-footer {\n\tleft: auto;\n\tright: 15px;\n\twidth: 217px;\n}\n";
 	}
 	add_action( 'tcc_custom_css_admin', 'fluid_plugin_information_footer' );
 }
