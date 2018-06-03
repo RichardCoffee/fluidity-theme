@@ -163,6 +163,8 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
 			if ( is_tax() || is_category() || is_tag() ) {
 				$title =  ( $descrip = term_description() ) ? $descrip : $title;
 			}
+		} else if ( is_search() ) {
+			$title = 'Search Results';
 		}
 		return $title; #  apply_filters( 'tcc_get_page_title', $title, $slug );
 	}
