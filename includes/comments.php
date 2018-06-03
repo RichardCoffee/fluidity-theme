@@ -69,8 +69,11 @@ fluid()->log($args);
 				}
 				$css = ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? 'post-author' : $striping; ?>
 				<li id="comment-<?php e_esc_attr( $comment->comment_ID ); ?>" <?php comment_class( $css ); ?>>
-					<div class="comment-author vcard"><?php
-						echo get_avatar( $comment, 34 ) . '&nbsp;' . sprintf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
+					<div class="comment-author vcard">
+						<span><?php
+							echo get_avatar( $comment, 34 ); ?>
+						</span>&nbsp;<?php
+						printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
 					</div><!-- .comment-author .vcard --><?php
 					if ( $comment->comment_approved === '0' ) { ?>
 						<em><?php
