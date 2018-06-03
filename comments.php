@@ -35,10 +35,10 @@ who_am_i(); ?>
 		fluid_comment_navigation(); ?>
 		<ol class="commentlist"><?php
 			$list = array(
-				'style'       => 'ol',
+#				'style'       => 'ol',
 				'short_ping'  => true,
 				'avatar_size' => 34,
-				'callback'    => 'fluid_list_comments',
+#				'callback'    => 'fluid_list_comments',
 			);
 			wp_list_comments( $list ); ?>
 		</ol><!-- .commentlist --><?php

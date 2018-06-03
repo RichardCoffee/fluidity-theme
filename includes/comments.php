@@ -55,40 +55,42 @@ fluid()->log($args);
 			'pingback'  => esc_html__( 'Pingback', 'tcc-fluid' )
 		);
 		$comm_type = $comment->comment_type;
+		$attrs = array(
+			'id'    => 'comment-' . $comment->comment_ID,
+			'class' => get_comment_class( '', $comment ),
+		);
 		switch ( $comm_type ) {
 			case 'pingback' :
 			case 'trackback' :
-				$comm_css = "post $comm_type $striping" ?>
-				<li id="comment-<?php e_esc_attr( $comment->comment_ID ); ?>" <?php comment_class( $comm_css ); ?>><?php
-					printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() );
-//				</li> - wordpress adds closing tag
+				$attrs['class'] .= " post $comm_type stripe-$striping";
+				fluid()->tag( 'li', $attrs );
+				printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() );
 				break;
 			default: # comment
 				if ( empty( $comm_type ) ) {
 					$comm_type = 'comment';
 				}
-				$css = ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? 'post-author' : $striping; ?>
-				<li id="comment-<?php e_esc_attr( $comment->comment_ID ); ?>" <?php comment_class( $css ); ?>>
-					<div class="comment-author vcard">
-						<span><?php
-							echo get_avatar( $comment, 34 ); ?>
-						</span>&nbsp;<?php
-						printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
-					</div><!-- .comment-author .vcard --><?php
-					if ( $comment->comment_approved === '0' ) { ?>
-						<em><?php
-							esc_html_e( 'Your comment is awaiting moderation.', 'tcc-fluid' ); ?>
-						</em>
-						<br /><?php
-					} ?>
-					<div class="comment-text"><?php
-						comment_text(); ?>
-					</div>
-					<div class="reply"><?php
-						comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-					</div><!-- .reply --><?php
-					$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
-//				</li> - wordpress puts in closing tag
+				$attrs['class'] .= ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? ' post-author' : " striping-$striping";
+				fluid()->tag( 'li', $attrs ); ?>
+				<div class="comment-author vcard">
+					<span><?php
+						echo get_avatar( $comment, 34 ); ?>
+					</span>&nbsp;<?php
+					printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
+				</div><!-- .comment-author .vcard --><?php
+				if ( $comment->comment_approved === '0' ) { ?>
+					<em><?php
+						esc_html_e( 'Your comment is awaiting moderation.', 'tcc-fluid' ); ?>
+					</em>
+					<br /><?php
+				} ?>
+				<div class="comment-text"><?php
+					comment_text(); ?>
+				</div>
+				<div class="reply"><?php
+					comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+				</div><!-- .reply --><?php
+				$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
 		}
 		$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
 	}
