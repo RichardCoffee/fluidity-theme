@@ -62,7 +62,7 @@ fluid()->log($args);
 		switch ( $comm_type ) {
 			case 'pingback' :
 			case 'trackback' :
-				$attrs['class'] .= " post $comm_type stripe-$striping";
+				array_merge( $attrs['class'], [ 'post', $comm_type, "stripe-$striping" ] );
 				fluid()->tag( 'li', $attrs );
 				printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() );
 				break;
@@ -70,7 +70,8 @@ fluid()->log($args);
 				if ( empty( $comm_type ) ) {
 					$comm_type = 'comment';
 				}
-				$attrs['class'] .= ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? ' post-author' : " striping-$striping";
+				$css = ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? 'post-author' : "striping-$striping";
+				array_merge( $attrs['class'], [ $css ] );
 				fluid()->tag( 'li', $attrs ); ?>
 				<div class="comment-author vcard">
 					<span><?php
