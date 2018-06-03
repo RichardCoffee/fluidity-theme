@@ -16,9 +16,8 @@ class TCC_Theme_Customizer {
 	public $base_cap = 'edit_theme_options';
 
 	public function __construct( $args = array() ) {
-		add_action( 'customize_register',                 array( $this, 'customize_register' ), 11, 1 );
-		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
-		add_action( 'wp_ajax_fluid_postdate_display',     array( $this, 'fluid_postdate_display') );
+		add_action( 'customize_register',                 [ $this, 'customize_register' ], 11, 1 );
+		add_action( 'customize_controls_enqueue_scripts', [ $this, 'customize_controls_enqueue_scripts' ] );
 	}
 
 	public function customize_controls_enqueue_scripts() {
@@ -71,19 +70,6 @@ class TCC_Theme_Customizer {
 				bloginfo( 'name' );
 			},
 		) );
-	}
-
-	public function assign_partials( WP_Customize_Manager $customize ) {
-		$customize->selective_refresh->add_partial(
-			'content_postdate',
-			array(
-				'selector' => '#fluid_content_post_dates',
-				'render_callback' => function() {
-					fluid_show_post_dates();
-				},
-				'container_inclusive' => false,
-			)
-		);
 	}
 
 	public function get_panel_defaults( $panel ) {
@@ -342,7 +328,7 @@ class TCC_Theme_Customizer {
 				),
 				'active_callback' => function() {
 					return is_single();
-				}, // PHP Catchable fatal error:  Object of class WP_Customize_Manager could not be converted to string in /home1/zxkrycvs/rtcenterprises.net/wp-includes/class-wp-query.php on line 3827
+				},
 				'add_partial' => array(
 					'id' => 'content_postdate',
 					'args' => array(
@@ -364,11 +350,6 @@ class TCC_Theme_Customizer {
 
 
 /***   postMessage functions   ***/
-
-	public function fluid_postdate_display() {
-		fluid_show_post_dates();
-		wp_die();
-	}
 
 
 }
