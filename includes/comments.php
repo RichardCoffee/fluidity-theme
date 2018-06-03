@@ -45,9 +45,10 @@ if ( ! function_exists( 'disable_website_field' ) ) {
  */
 if (!function_exists('fluid_list_comments')) {
 	function fluid_list_comments( WP_Comment $comment, array $args, $depth ) {
+fluid()->log($args);
 		static $striping = 'odd';
 		$GLOBALS['comment'] = $comment;
-		$string    = esc_html_x( '%1$s: %2$s on %3$s', 'first placeholder is the comment type, second placeholder is an author link, third placeholder is a date', 'tcc-fluid' );
+		$string    = esc_html_x( '%1$s by %2$s on %3$s', 'the comment type; author name; date of comment', 'tcc-fluid' );
 		$type_arr  = array(
 			'comment'   => esc_html__( 'Comment', 'tcc-fluid' ),
 			'trackback' => esc_html__( 'Trackback', 'tcc-fluid' ),
@@ -69,8 +70,7 @@ if (!function_exists('fluid_list_comments')) {
 				$css = ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? 'post-author' : $striping; ?>
 				<li id="comment-<?php e_esc_attr( $comment->comment_ID ); ?>" <?php comment_class( $css ); ?>>
 					<div class="comment-author vcard"><?php
-						echo get_avatar( $comment, 34 );
-						echo ' ' . sprintf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
+						echo get_avatar( $comment, 34 ) . '&nbsp;' . sprintf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
 					</div><!-- .comment-author .vcard --><?php
 					if ( $comment->comment_approved === '0' ) { ?>
 						<em><?php
