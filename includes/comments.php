@@ -74,7 +74,7 @@ fluid()->log($args);
 				array_merge( $attrs['class'], [ $css ] );
 				fluid()->tag( 'li', $attrs ); ?>
 				<div class="comment-author vcard">
-					<span><?php
+					<span class="pull-left"><?php
 						echo get_avatar( $comment, 34 ); ?>
 					</span>&nbsp;<?php
 					printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
