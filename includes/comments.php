@@ -78,12 +78,6 @@ if (!function_exists('fluid_list_comments')) {
 						</em>
 						<br /><?php
 					} ?>
-					<div class="comment-meta commentmetadata">
-						<a href="<?php echo esc_url( get_comment_link() ); ?>"><?php
-							comment_date(); ?>
-						</a> <?php
-#						edit_comment_link( __( '(Edit)', 'tcc-fluid' ), ' ' ); ?>
-					</div><!-- .comment-meta .commentmetadata -->
 					<div class="comment-text"><?php
 						comment_text(); ?>
 					</div>
