@@ -117,10 +117,11 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 					echo '<hr>';
 				}
 #				if ( has_tag() || ( ! empty( $cat_list ) ) ) { }
-				$comm_0 = esc_html__( 'No Comments', 'tcc-fluid' );
+/*				$comm_0 = esc_html__( 'No Comments', 'tcc-fluid' );
 				$comm_1 = esc_html_x( '1 Comment', 'single comment', 'tcc-fluid' );
-				$comm_2 = esc_html_x( '% Comments', 'number of comments', 'tcc-fluid' );
-				comments_popup_link( $comm_0, $comm_1, $comm_2 ); ?>
+				$comm_2 = esc_html_x( '%s Comments', 'number of comments', 'tcc-fluid' );
+				$nocomm = esc_html__( 'Comments are Off', 'tcc-fluid' );
+				comments_popup_link( $comm_0, $comm_1, $comm_2, '', $nocomm ); //*/ ?>
 			</div>
 		</div><?php
 	}
