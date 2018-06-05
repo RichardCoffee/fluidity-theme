@@ -38,7 +38,7 @@ who_am_i(); ?>
 #				'style'       => 'ol',
 				'short_ping'  => true,
 				'avatar_size' => 34,
-#				'callback'    => 'fluid_list_comments',
+				'callback'    => 'fluid_list_comments',
 			);
 			wp_list_comments( $list ); ?>
 		</ol><!-- .commentlist --><?php
