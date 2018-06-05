@@ -6,7 +6,7 @@
  * Author URI: http://rtcenterprises.net
  * Description: Wordpress Theme based on using a fluid design, with bootstrap
  * Version: 3.0.0
- * Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-background, full-width-template, sticky-post, translation-ready
+ * Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-background, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, translation-ready
  * Text Domain: tcc-fluid
  * Domain Path: /languages
  * License: GPLv2
@@ -14,9 +14,47 @@
  * Copyright 2015-2017, The Creative Collective
  */
 
+
 /* tags list: https://wordpress.org/themes/ */
 
 @import "bootstrap/bootstrap/mixins";
+
+/**
+ * Table of Contents
+ *
+ * 1.0 - Third Party Vendors
+
+ * 2.0 - Genericons
+ * 3.0 - Typography
+ * 4.0 - Elements
+ * 5.0 - Forms
+ * 6.0 - Navigation
+ *   6.1 - Links
+ *   6.2 - Menus
+ * 7.0 - Accessibility
+ * 8.0 - Alignments
+ * 9.0 - Clearings
+ * 10.0 - Widgets
+ * 11.0 - Content
+ *    11.1 - Header
+ *    11.2 - Posts and pages
+ *    11.3 - Post Formats
+ *    11.4 - Comments
+ *    11.5 - Sidebar
+ *    11.6 - Footer
+ * 12.0 - Media
+ *    12.1 - Captions
+ *    12.2 - Galleries
+ * 13.0 - Multisite
+ * 14.0 - Media Queries
+ *    14.1 - >= 710px
+ *    14.2 - >= 783px
+ *    14.3 - >= 910px
+ *    14.4 - >= 985px
+ *    14.5 - >= 1200px
+ * 15.0 - Print
+ */
+
 @import "vendors/vendors";
 // components imported at bottom of this file
 
@@ -61,6 +99,10 @@ img {
   max-width: 100%;
   overflow: hidden;
   opacity: 1.0 !important;
+}
+
+img.avatar {
+	border-radius: 50%;
 }
 
 logo {
