@@ -64,7 +64,7 @@ fluid()->log($args);
 			case 'trackback' :
 				array_merge( $attrs['class'], [ 'post', $comm_type, "stripe-$striping" ] );
 				fluid()->tag( 'li', $attrs );
-				printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() );
+				printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date( '', $comment->comment_ID ) );
 				break;
 			default: # comment
 				if ( empty( $comm_type ) ) {
@@ -77,7 +77,7 @@ fluid()->log($args);
 					<span class="pull-left"><?php
 						echo get_avatar( $comment, 34 ); ?>
 					</span>&nbsp;<?php
-					printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date() ); ?>
+					printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date( '', $comment->comment_ID ) ); ?>
 				</div><!-- .comment-author .vcard --><?php
 				if ( $comment->comment_approved === '0' ) { ?>
 					<em><?php

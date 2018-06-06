@@ -153,30 +153,31 @@ class TCC_Microdata {
   *
   */
 
-  private function filters( $pri = 20 ) {
-    add_filter('comments_popup_link_attributes',     array($this,'comments_popup_link_attributes'),     $pri);
-    add_filter('comment_reply_link',                 array($this,'comment_reply_link'),                 $pri);
-    add_filter('get_archives_link',                  array($this,'get_archives_link'),                  $pri);
-    add_filter('get_avatar',                         array($this,'get_avatar'),                         $pri);
-    add_filter('get_comment_author_link',            array($this,'get_comment_author_link'),            $pri);
-    add_filter('get_comment_author_url_link',        array($this,'get_comment_author_url_link'),        $pri);
-    add_filter('get_post_time',                      array($this,'get_post_time'),                      $pri, 3);
-    add_filter('get_the_archive_description',        array($this,'get_the_archive_description'),        $pri);
-    add_filter('get_the_archive_title',              array($this,'get_the_archive_title'),              $pri);
-    add_filter('get_the_date',                       array($this,'get_the_date'),                       $pri, 3);
-    add_filter('get_the_modified_date',              array($this,'get_the_modified_date'),              $pri, 3);
-    add_filter('get_the_title',                      array($this,'get_the_title'),                      $pri, 2);
-    add_filter('post_thumbnail_html',                array($this,'post_thumbnail_html'),                $pri);
-    add_filter('post_type_archive_title',            array($this,'get_the_title'),                      $pri, 2);
-    add_filter('single_cat_title',                   array($this,'single_term_title'),                  $pri);
-    add_filter('single_post_title',                  array($this,'get_the_title'),                      $pri, 2);
-    add_filter('single_tag_title',                   array($this,'single_term_title'),                  $pri);
-    add_filter('single_term_title',                  array($this,'single_term_title'),                  $pri);
-    add_filter('the_author',                         array($this,'the_author'),                         $pri);
-    add_filter('the_author_posts_link',              array($this,'the_author_posts_link'),              $pri);
-    add_filter('wp_get_attachment_image_attributes', array($this,'wp_get_attachment_image_attributes'), $pri, 2);
-    add_filter('wp_get_attachment_link',             array($this,'wp_get_attachment_link'),             $pri);
-  }
+	private function filters( $pri = 20 ) {
+		add_filter('comments_popup_link_attributes',     [ $this, 'comments_popup_link_attributes' ],     $pri );
+		add_filter('comment_reply_link',                 [ $this, 'comment_reply_link' ],                 $pri );
+		add_filter('get_archives_link',                  [ $this, 'get_archives_link' ],                  $pri );
+		add_filter('get_avatar',                         [ $this, 'get_avatar' ],                         $pri );
+		add_filter('get_comment_author_link',            [ $this, 'get_comment_author_link' ],            $pri );
+		add_filter('get_comment_author_url_link',        [ $this, 'get_comment_author_url_link' ],        $pri );
+		add_filter('get_comment_date',                   [ $this, 'get_comment_date' ],                   $pri, 3 );
+		add_filter('get_post_time',                      [ $this, 'get_post_time' ],                      $pri, 3 );
+		add_filter('get_the_archive_description',        [ $this, 'get_the_archive_description' ],        $pri );
+		add_filter('get_the_archive_title',              [ $this, 'get_the_archive_title' ],              $pri );
+		add_filter('get_the_date',                       [ $this, 'get_the_date' ],                       $pri, 3 );
+		add_filter('get_the_modified_date',              [ $this, 'get_the_modified_date' ],              $pri, 3 );
+		add_filter('get_the_title',                      [ $this, 'get_the_title' ],                      $pri, 2 );
+		add_filter('post_thumbnail_html',                [ $this, 'post_thumbnail_html' ],                $pri );
+		add_filter('post_type_archive_title',            [ $this, 'get_the_title' ],                      $pri, 2 );
+		add_filter('single_cat_title',                   [ $this, 'single_term_title' ],                  $pri );
+		add_filter('single_post_title',                  [ $this, 'get_the_title' ],                      $pri, 2 );
+		add_filter('single_tag_title',                   [ $this, 'single_term_title' ],                  $pri );
+		add_filter('single_term_title',                  [ $this, 'single_term_title' ],                  $pri );
+		add_filter('the_author',                         [ $this, 'the_author' ],                         $pri );
+		add_filter('the_author_posts_link',              [ $this, 'the_author_posts_link' ],              $pri );
+		add_filter('wp_get_attachment_image_attributes', [ $this, 'wp_get_attachment_image_attributes' ], $pri, 2 );
+		add_filter('wp_get_attachment_link',             [ $this, 'wp_get_attachment_link' ],             $pri );
+	}
 
   public function comments_popup_link_attributes($attr) {
     return 'itemprop="discussionURL"';
@@ -205,11 +206,11 @@ class TCC_Microdata {
 
 	public function get_comment_author_link( $link ) {
 		if ( strpos( $link, 'target=' ) === false ) {
-			$link = preg_replace( '/(<a.*?)(\/>|>)/i', '$1 target="_blank" $2', $link );
+			$link = preg_replace( '/(<a.*?)(>)/i', '$1 target="_blank" $2', $link );
 		}
 		if ( strpos( $link, 'itemprop' ) === false ) {
 			$pats = array( '/(<a.*?)(>)/i',       '/(<a.*?>)(.*?)(<\/a>)/i' ); #<?
-			$reps = array( '$1 itemprop="url"$2', '$1<span itemprop="name">$2</span>$3' );
+			$reps = array( '$1 itemprop="url"$2', '$1<span itemprop="creator">$2</span>$3' );
 			$link = preg_replace( $pats, $reps, $link );
 		}
 		return $link;
@@ -221,6 +222,12 @@ class TCC_Microdata {
     }
     return $link;
   }
+
+	public function get_comment_date( $date, $d, $comment ) {
+		$datetime = mysql2date( 'Y-m-d H:i:s', $comment->comment_date );
+		$date = '<time itemprop="commentTime" datetime="' . $datetime . '">' . esc_html( $date ) . '</time>';
+		return $date;
+	}
 
 	public function get_post_time( $time, $format, $gmt ) {
 		if ( strpos( $time, 'itemprop' ) === false ) {

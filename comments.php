@@ -14,7 +14,7 @@ if ( post_password_required() ) {
 
 who_am_i(); ?>
 
-<div id="comments" class="article comments-area" itemprop="comment" itemscope itemtype='http://schema.org/Comment'><?php
+<div id="comments" class="article comments-area" itemprop="comment" itemscope itemtype='http://schema.org/UserComments'><?php
 	if ( pings_open() ) { ?>
 		<p id="respond">
 			<span id="trackback-link">
@@ -33,15 +33,14 @@ who_am_i(); ?>
 			echo wp_kses( sprintf( $format, $number, $title ), fluid()->kses() ); ?>
 		</h2><?php
 		fluid_comment_navigation(); ?>
-		<ol class="commentlist"><?php
+		<ul class="commentlist"><?php
 			$list = array(
-#				'style'       => 'ol',
 				'short_ping'  => true,
 				'avatar_size' => 34,
 				'callback'    => 'fluid_list_comments',
 			);
 			wp_list_comments( $list ); ?>
-		</ol><!-- .commentlist --><?php
+		</ul><!-- .commentlist --><?php
 		fluid_comment_navigation();
 		if ( ! comments_open() ) { ?>
 			<p class="no-comments">
