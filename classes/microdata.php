@@ -161,6 +161,7 @@ class TCC_Microdata {
 		add_filter('get_comment_author_link',            [ $this, 'get_comment_author_link' ],            $pri );
 		add_filter('get_comment_author_url_link',        [ $this, 'get_comment_author_url_link' ],        $pri );
 		add_filter('get_comment_date',                   [ $this, 'get_comment_date' ],                   $pri, 3 );
+		add_filter('get_comment_text',                   [ $this, 'get_comment_text' ],                   $pri, 3 );
 		add_filter('get_post_time',                      [ $this, 'get_post_time' ],                      $pri, 3 );
 		add_filter('get_the_archive_description',        [ $this, 'get_the_archive_description' ],        $pri );
 		add_filter('get_the_archive_title',              [ $this, 'get_the_archive_title' ],              $pri );
@@ -224,9 +225,18 @@ class TCC_Microdata {
   }
 
 	public function get_comment_date( $date, $d, $comment ) {
-		$datetime = mysql2date( 'Y-m-d H:i:s', $comment->comment_date );
-		$date = '<time itemprop="commentTime" datetime="' . $datetime . '">' . esc_html( $date ) . '</time>';
+		if ( strpos( $date, 'time itemprop' ) === false ) {
+			$datetime = mysql2date( 'Y-m-d H:i:s', $comment->comment_date );
+			$date = '<time itemprop="commentTime" datetime="' . $datetime . '">' . esc_html( $date ) . '</time>';
+		}
 		return $date;
+	}
+
+	public function get_comment_text( $text, $comment, $args ) {
+		if ( strpos( $text, 'span itemprop' ) === false ) {
+			$text = '<span itemprop="commentText">' . $text . '</span>';
+		}
+		return $text;
 	}
 
 	public function get_post_time( $time, $format, $gmt ) {

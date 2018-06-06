@@ -56,13 +56,14 @@ fluid()->log($args);
 		);
 		$comm_type = $comment->comment_type;
 		$attrs = array(
-			'id'    => 'comment-' . $comment->comment_ID,
-			'class' => get_comment_class( '', $comment ),
+			'id'        => 'comment-' . $comment->comment_ID,
+			'class'     => get_comment_class( '', $comment ),
 		);
+		$attrs = array_merge( $attrs, microdata()->microdata_attrs( 'Comment' ) );
 		switch ( $comm_type ) {
 			case 'pingback' :
 			case 'trackback' :
-				array_merge( $attrs['class'], [ 'post', $comm_type, "stripe-$striping" ] );
+				$attrs['class'] = array_merge( $attrs['class'], [ 'post', $comm_type, "stripe-$striping" ] );
 				fluid()->tag( 'li', $attrs );
 				printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date( '', $comment->comment_ID ) );
 				break;
@@ -71,7 +72,7 @@ fluid()->log($args);
 					$comm_type = 'comment';
 				}
 				$css = ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? 'post-author' : "striping-$striping";
-				array_merge( $attrs['class'], [ $css ] );
+				$attrs['class'] = array_merge( $attrs['class'], [ $css ] );
 				fluid()->tag( 'li', $attrs ); ?>
 				<div class="comment-author vcard">
 					<span class="pull-left"><?php
