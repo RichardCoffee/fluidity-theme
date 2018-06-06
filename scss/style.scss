@@ -1,4 +1,4 @@
-/*
+/**
  *
  * Theme Name: Creative Fluidity
  * Theme URI: http://rtcenterprises.net
@@ -14,8 +14,7 @@
  * Copyright 2015-2017, The Creative Collective
  */
 
-
-/* tags list: https://wordpress.org/themes/ */
+// tags list: https://wordpress.org/themes/
 
 @import "bootstrap/bootstrap/mixins";
 
@@ -23,8 +22,7 @@
  * Table of Contents
  *
  * 1.0 - Third Party Vendors
-
- * 2.0 - Genericons
+ * 2.0 -
  * 3.0 - Typography
  * 4.0 - Elements
  * 5.0 - Forms
@@ -33,7 +31,7 @@
  *   6.2 - Menus
  * 7.0 - Accessibility
  * 8.0 - Alignments
- * 9.0 - Clearings
+ * 9.0 -
  * 10.0 - Widgets
  * 11.0 - Content
  *    11.1 - Header
@@ -45,14 +43,9 @@
  * 12.0 - Media
  *    12.1 - Captions
  *    12.2 - Galleries
- * 13.0 - Multisite
+ * 13.0 -
  * 14.0 - Media Queries
- *    14.1 - >= 710px
- *    14.2 - >= 783px
- *    14.3 - >= 910px
- *    14.4 - >= 985px
- *    14.5 - >= 1200px
- * 15.0 - Print
+ *    14.1 - Print
  */
 
 @import "vendors/vendors";
@@ -67,11 +60,6 @@ a:hover, a:focus {
 		border-width: 1px;
 	}
 }
-//
-//a.btn:hover,
-//a.btn:focus {
-//	border-width: 1px;
-//}
 
 .article pre {
 	margin-bottom: 2.5em;

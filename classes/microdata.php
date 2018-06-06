@@ -203,14 +203,17 @@ class TCC_Microdata {
     return $avatar;
   }
 
-  public function get_comment_author_link($link) {
-    if (strpos($link,'itemprop')===false) {
-      $pats = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
-      $reps = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
-      $link = preg_replace($pats,$reps,$link);
-    }
-    return $link;
-  }
+	public function get_comment_author_link( $link ) {
+		if ( strpos( $link, 'target=' ) === false ) {
+			$link = preg_replace( '/(<a.*?)(\/>|>)/i', '$1 target="_blank" $2', $link );
+		}
+		if ( strpos( $link, 'itemprop' ) === false ) {
+			$pats = array( '/(<a.*?)(>)/i',       '/(<a.*?>)(.*?)(<\/a>)/i' ); #<?
+			$reps = array( '$1 itemprop="url"$2', '$1<span itemprop="name">$2</span>$3' );
+			$link = preg_replace( $pats, $reps, $link );
+		}
+		return $link;
+	}
 
   public function get_comment_author_url_link($link) {
     if (strpos($link,'itemprop')===false) {
