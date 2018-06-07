@@ -17,7 +17,11 @@
  * Table of Contents
  *
  * 1.0 - Third Party Vendors
- * 2.0 -
+ *   1.1 - Devicon
+ *   1.2 - s2member
+ *   1.3 - WP FrontEnd Profile
+ *   1.4 - Underscore Navigation Menus
+ * 2.0 - WordPress
  * 3.0 - Typography
  * 4.0 - Elements
  * 5.0 - Forms
@@ -43,24 +47,49 @@
  *    14.1 - Print
  */
 /**
- * 1.0 - Third Party Vendors
+ *
+ *  1.0 - Third Party Vendors
+ *
+ */
+/**
+ *
+ *  1.1 - Devicon
+ *
  */
 [class*=" devicon-"],
 [class^="devicon-"] {
   cursor: default;
 }
 
-/**  s2member  **/
+/**
+ *
+ *  1.2 - s2member
+ *
+ */
 .ws-plugin--s2member-s-badge {
   margin-top: 8px;
 }
 
-/*--------------------------------------------------------------
-## Links
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-## Menus
---------------------------------------------------------------*/
+/**
+ *
+ *  1.3 - WP FrontEnd Profile
+ *
+ */
+.wpfep-fields input, .wpfep-fields .wp-editor-container {
+  border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+  ul.wpfep-tabs li a {
+    font-size: 13px;
+    padding: 0 4px;
+  }
+}
+/**
+ *
+ *  1.4 - Underscore Navigation Menus
+ *
+ */
 .main-navigation {
   clear: both;
   display: block;
@@ -142,16 +171,6 @@
   width: 50%;
 }
 
-.wpfep-fields input, .wpfep-fields .wp-editor-container {
-  border-radius: 4px;
-}
-
-@media (max-width: 767px) {
-  ul.wpfep-tabs li a {
-    font-size: 13px;
-    padding: 0 4px;
-  }
-}
 a:hover, a:focus {
   border-bottom: 2px solid;
   text-decoration: none;
@@ -164,13 +183,13 @@ a:hover.btn, a:focus.btn {
   margin-bottom: 2.5em;
 }
 
-.excerpt-title-wrap {
-  display: grid;
-}
-
 .content {
   border: 1px solid;
   border-radius: 5px;
+}
+
+.excerpt-title-wrap {
+  display: grid;
 }
 
 #fluid-content {
@@ -185,7 +204,7 @@ a:hover.btn, a:focus.btn {
 img {
   max-width: 100%;
   overflow: hidden;
-  opacity: 1.0 !important;
+  opacity: 1.0;
 }
 
 img.avatar {
@@ -231,6 +250,9 @@ pre {
 }
 
 /**
+ *
+ *  2.0 - WordPress
+ *
  *  Class definitions required by WordPress
  *
  *  Also some other wordpress related stuff
@@ -289,6 +311,48 @@ pre {
   border: 0;
 }
 
+/**
+ *
+ *  3.0 - Typography
+ *
+ */
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-weight: normal;
+  font-style: normal;
+  /*  font-size: 18px; set in theme options */
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+button,
+input:focus,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+textarea:focus,
+.btn,
+.button {
+  transition: all 0.1s ease-in-out 0s;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
 body.archive.author article {
   border-radius: 6px;
   margin-bottom: 1em;
@@ -296,6 +360,14 @@ body.archive.author article {
 }
 body.archive.author .article {
   margin: 0;
+}
+
+.comment-author {
+  margin-bottom: 0.4375em;
+}
+.comment-author .comment-info {
+  align: center;
+  height: 34px;
 }
 
 .comment-form-cookies-consent label {
@@ -571,44 +643,6 @@ table.posting-table th[scope=row] {
 table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
   background-color: #632a2a;
   color: #fff;
-}
-
-/**  Typography  **/
-html {
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  font-weight: normal;
-  font-style: normal;
-  /*  font-size: 18px; set in theme options */
-  -webkit-font-smoothing: antialiased;
-}
-
-a,
-button,
-input:focus,
-input[type="button"],
-input[type="reset"],
-input[type="submit"],
-textarea:focus,
-.btn,
-.button {
-  transition: all 0.1s ease-in-out 0s;
-}
-
-p {
-  margin-bottom: 1.5em;
 }
 
 .width-fluid {

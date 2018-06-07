@@ -4,6 +4,8 @@
 @import "mixins";
 
 @import "wordpress"; // load required wordpress css first
+@import "typography";
+
 @import "author";
 @import "comments";
 @import "effects";
@@ -15,6 +17,6 @@
 @import "parallax";
 @import "posts";
 @import "posting-table";
-@import "typography";
 @import "width";
+
 @import "print"; // print css must be last

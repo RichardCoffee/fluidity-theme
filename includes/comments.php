@@ -77,8 +77,10 @@ fluid()->log($args);
 				<div class="comment-author vcard">
 					<span class="pull-left"><?php
 						echo get_avatar( $comment, 34 ); ?>
-					</span>&nbsp;<?php
-					printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date( '', $comment->comment_ID ) ); ?>
+					</span>&nbsp;
+					<span class="comment-info"><?php
+						printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date( '', $comment->comment_ID ) ); ?>
+					</span>
 				</div><!-- .comment-author .vcard --><?php
 				if ( $comment->comment_approved === '0' ) { ?>
 					<em><?php
