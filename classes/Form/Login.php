@@ -16,7 +16,7 @@ class TCC_Form_Login {
 
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
-		add_action( 'login_form_defaults', array( $this, 'login_form_defaults' ), 1 );	#	run early - make it easy to override values
+		add_action( 'login_form_defaults', [ $this, 'login_form_defaults' ], 1 );	#	run early - make it easy to override values
 		#	Do not show login errors to users
 		if ( ! WP_DEBUG) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
 	}
@@ -30,7 +30,7 @@ class TCC_Form_Login {
 			$defaults = $args;
 			return $args;
 		}, 9999 );
-		# filter gets called here - was unable to find a better way to get the form values
+		# filter gets called here - should be a better way to get the form values
 		$form = wp_login_form( array( 'echo' => false ) );
 		return $defaults;
 	}
@@ -73,60 +73,75 @@ class TCC_Form_Login {
 		extract( $args, EXTR_IF_EXISTS );
 		$defaults = $this->get_login_form_defaults();
 		extract( $defaults );	#	See $this->login_form_defaults for the list of extracted variables
-		$remember = ( $in_navbar ) ?  false : $remember;
-		$form_css = ( $in_navbar ) ? 'navbar-form navbar-login-form' . ( ( $pull_right ) ? ' navbar-right' : '' ) : 'login-form';
 		$text_css = ( $in_navbar ) ? 'sr-only' : 'login-text';
-		$attrs = array(
+		$remember = ( $in_navbar ) ?  false : $remember;
+		$fattrs = array(
 			'id'     => $form_id,
-			'class'  => $form_css,
+			'class'  => ( $in_navbar ) ? 'navbar-form navbar-login-form' . ( ( $pull_right ) ? ' navbar-right' : '' ) : 'login-form',
 			'name'   => 'loginform',
 			'action' => site_url( '/wp-login.php' ),
 			'method' => 'post',
+		);
+		$unattrs = array(
+			'type'  => 'text',
+			'name'  => 'log',
+			'id'    => $id_username,
+			'class' => 'form-control',
+			'placeholder' => $label_username,
+			'required'    => '',
+		);
+		$pwattrs = array(
+			'type' => 'password',
+			'name' => 'pwd',
+			'id'   => $id_password,
+			'class' => 'form-control',
+			'placeholder' => $label_password,
+			'required' => '',
 		); ?>
-		<form <?php $this->apply_attrs( $attrs ); ?>>
 
-			<div class='form-group login-username'>
-				<label class="<?php e_esc_attr( $text_css ); ?>" for="<?php echo esc_attr( $id_username ); ?>">
-					<?php echo esc_html( $label_username ); ?>
-				</label>
-				<input type="text" name="log" id="<?php echo esc_attr( $id_username ); ?>" class="form-control"
-					placeholder="<?php echo esc_html( $label_username ); ?>" required>
+		<form <?php $this->apply_attrs( $fattrs ); ?>>
+
+			<div class='form-group login-username'><?php
+				$this->element( 'label', [ 'class' => $text_css, 'for' => $id_username ], $label_username );
+				$this->element( 'input', $unattrs ); ?>
 			</div>
 
-			<div class='form-group login-password'>
-				<label class="<?php e_esc_attr( $text_css ); ?>" for="<?php echo esc_attr( $id_password ); ?>">
-					<?php echo esc_html( $label_password ); ?>
-				</label>
-				<input type="password" name="pwd" id="<?php echo esc_attr( $id_password ); ?>"
-					class="form-control" placeholder="<?php echo esc_attr( $label_password ); ?>" required>
-			</div>
+			<div class='form-group login-password'><?php
+				$this->element( 'label', [ 'class' => $text_css, 'for' => $id_password ], $label_password );
+				$this->element( 'input', $pwattrs ); ?>
+			</div><?php
 
-			<?php if ( $remember ) { ?>
+			if ( $remember ) { ?>
 				<div class="checkbox login-remember">
 					<label>
 						<input type="checkbox" id="<?php echo esc_attr( $id_remember ); ?>"
 							name="rememberme" value="forever" <?php checked( $value_remember, true ); ?>>&nbsp;
 						<?php echo esc_html( $label_remember ); ?>
 					</label>
-				</div>
-			<?php  } ?>
+				</div><?php
+			} ?>
 
-			<div class="form-group login-submit">
+			<div class="form-group login-submit pull-left">
 				<button type="submit" id="<?php echo esc_attr( $id_submit ); ?>" class="btn btn-fluidity" name="wp-submit">
 					<?php fluid()->fawe( 'fa-sign-in' ); ?>&nbsp;
 					<?php echo esc_html( $label_log_in ); ?>
 				</button>
 				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect ); ?>" />
-			</div>
+			</div><?php
 
-			<?php if ( ! empty( $label_lostpw ) && ( $lost_url = wp_lostpassword_url( home_url() ) ) ) {
-				$tooltip = __( 'You can request a new password via this link.', 'tcc-fluid' ); ?>
-				<a class="pull-right" href="<?php echo esc_url( $lost_url ); ?>" title="<?php echo esc_attr( $tooltip ); ?>" rel="nofollow">
+			if ( ! empty( $label_lostpw ) && ( $lost_url = wp_lostpassword_url( home_url() ) ) ) {
+				$lpattrs = array(
+					'class' => 'pull-right',
+					'href'  => $lost_url,
+					'title' => __( 'You can request a new password via this link.', 'tcc-fluid' ),
+					'rel'   => 'nofollow',
+				);
+				$this->tag( 'a', $lpattrs ); ?>
 					<small>
 						<?php echo esc_html( $label_lostpw ); ?>
 					</small>
-				</a>
-			<?php } ?>
+				</a><?php
+			} ?>
 
 		</form><?php
 	}
