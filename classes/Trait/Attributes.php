@@ -47,17 +47,17 @@ trait TCC_Trait_Attributes {
 	 */
 	public function get_apply_attrs( $attrs ) {
 
-		$is_allowed_no_value = array( 'itemscope', 'multiple', 'value' );
-/*		static $is_allowed_no_value;
-		if ( ! $is_allowed_no_value ) {
+/*		static $is_allowed_no_value = null;
+		if ( empty( $is_allowed_no_value ) ) {
 			$is_allowed_no_value = apply_filters( 'fluid_attr_is_allowed_no_value', [ 'itemscope', 'value' ] );
 		} //*/
+		$is_allowed_no_value = array( 'itemscope', 'multiple', 'value', 'required' );
 
 		$html = ' ';
 		foreach( $attrs as $attr => $value ) {
 			if ( empty( $value ) ) {
 				if ( in_array( $attr, $is_allowed_no_value, true ) ) {
-					$html .= $attr . '="" ';
+					$html .= "$attr ";
 				}
 				continue;
 			}
