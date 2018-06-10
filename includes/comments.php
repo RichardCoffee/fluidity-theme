@@ -45,7 +45,7 @@ if ( ! function_exists( 'disable_website_field' ) ) {
  */
 if (!function_exists('fluid_list_comments')) {
 	function fluid_list_comments( WP_Comment $comment, array $args, $depth ) {
-fluid()->log($args);
+fluid()->log($comment,$args);
 		static $striping = 'odd';
 		$GLOBALS['comment'] = $comment;
 		$string    = esc_html_x( '%1$s by %2$s on %3$s', 'the comment type; author name; date of comment', 'tcc-fluid' );
