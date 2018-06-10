@@ -5,7 +5,7 @@
 #	http://www.wpbeginner.com/wp-themes/how-to-style-wordpress-comment-form/
 #	http://justintadlock.com/archives/2010/07/21/using-the-wordpress-comment-form
 
-class TCC_Theme_Comment {
+class TCC_Form_Comment {
 
 
 	protected $field_cols  = '60';     #	WordPress default: 45

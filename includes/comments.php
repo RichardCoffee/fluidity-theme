@@ -92,7 +92,7 @@ fluid()->log($comment,$args);
 					comment_text(); ?>
 				</div>
 				<div class="reply"><?php
-					comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					comment_reply_link( [ 'depth' => $depth ], $comment->comment_ID, $comment->comment_post_ID ); ?>
 				</div><!-- .reply --><?php
 				$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
 		}

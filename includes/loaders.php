@@ -54,14 +54,14 @@ if ( ! function_exists( 'clearfix' ) ) {
  * Returns an instance of the Comment class
  *
  * @since 20160227
- * @staticvar TCC_Theme_Comment $library
- * @return TCC_Theme_Comment the instance
+ * @staticvar TCC_Form_Comment $library
+ * @return TCC_Form_Comment the instance
  */
 if ( ! function_exists( 'fluid_comment' ) ) {
    function fluid_comment() {
       static $library;
       if ( empty( $library ) ) {
-         $library = new TCC_Theme_Comment;
+         $library = new TCC_Form_Comment;
       }
       return $library;
    }
