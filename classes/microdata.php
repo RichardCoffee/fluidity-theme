@@ -118,6 +118,10 @@ class TCC_Microdata {
     echo 'itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"';
   }
 
+	public function SiteNavigationElement() {
+		echo 'itemprop="WebPageElement" itemscope itemtype="http://schema.org/SiteNavigationElement"';
+	}
+
 
 	/**
 	 *  These functions are designed to be called in place of the native wordpress function.
