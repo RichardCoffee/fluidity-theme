@@ -118,6 +118,9 @@ class TCC_Microdata {
     echo 'itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"';
   }
 
+	/**
+	 * @link https://github.com/schemaorg/schemaorg/issues/1912
+	 */
 	public function SiteNavigationElement() {
 		echo 'itemprop="WebPageElement" itemscope itemtype="http://schema.org/SiteNavigationElement"';
 	}
