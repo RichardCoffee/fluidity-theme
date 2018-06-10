@@ -377,6 +377,11 @@ body.archive.author .article {
   width: auto;
 }
 
+.comment-text p {
+  margin-bottom: 0.25em;
+  margin-top: 1em;
+}
+
 button:active
 button:hover,
 .btn-fluidity:active,
