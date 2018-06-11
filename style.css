@@ -377,6 +377,10 @@ body.archive.author .article {
   width: auto;
 }
 
+.comment-list {
+  list-style: none;
+}
+
 .comment-text p {
   margin-bottom: 0.25em;
   margin-top: 1em;

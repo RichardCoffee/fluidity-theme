@@ -33,14 +33,14 @@ who_am_i(); ?>
 			echo wp_kses( sprintf( $format, $number, $title ), fluid()->kses() ); ?>
 		</h2><?php
 		fluid_comment_navigation(); ?>
-		<ul class="commentlist"><?php
+		<ul class="comment-list"><?php
 			$list = array(
 				'short_ping'  => true,
 				'avatar_size' => 34,
 				'callback'    => 'fluid_list_comments',
 			);
 			wp_list_comments( $list ); ?>
-		</ul><!-- .commentlist --><?php
+		</ul><!-- .comment-list --><?php
 		fluid_comment_navigation();
 		if ( ! comments_open() ) { ?>
 			<p class="no-comments">
