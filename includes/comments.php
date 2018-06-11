@@ -23,6 +23,15 @@ if (!function_exists('fluid_comment_navigation')) {
   }
 }
 
+if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
+	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
+		$data = fluid()->get_html_object( $link );
+fluid()->log( $data );
+		return $link;
+	}
+	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 20, 4 );
+} //*/
+
 if ( ! function_exists( 'disable_website_field' ) ) {
 	#	https://github.com/taniarascia/wp-functions
 	function fluid_disable_website_field( $fields ) {
