@@ -182,13 +182,7 @@ trait TCC_Trait_Attributes {
 		if ( ( $html_tag === 'a' ) && isset( $attrs[ 'target' ] ) ) {
 			# @link https://www.hongkiat.com/blog/wordpress-rel-noopener/
 			$attrs['rel'] = ( ( isset( $attrs['rel'] ) ) ? $attrs['rel'] : '' ) . ' nofollow noopener';
-/*			$add_rel = ' nofollow noopener';
-			if ( isset( $attrs['rel'] ) ) {
-				$attrs['rel'] = $attrs['rel'] . $add_rel;
-			} else {
-				$attrs['rel'] = $add_rel;
-			} //*/
-#			$attrs['rel'] = apply_filters( 'fluid_filter_attributes_by_a_rel', $attrs['rel'] );
+#			$attrs['rel'] = apply_filters( 'fluid_filter_attributes_by_a_rel', $attrs['rel'], $attrs );
 		}
 		return $attrs;
 	}
