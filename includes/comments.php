@@ -22,7 +22,7 @@ if (!function_exists('fluid_comment_navigation')) {
     }
   }
 }
-
+/*
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
 fluid()->log( $link );
@@ -30,7 +30,7 @@ fluid()->log( $link );
 fluid()->log( $data );
 		return $link;
 	}
-#	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 20, 4 );
+	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 20, 4 );
 } //*/
 
 if ( ! function_exists( 'disable_website_field' ) ) {
