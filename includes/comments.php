@@ -30,7 +30,7 @@ fluid()->log( $link );
 fluid()->log( $data );
 		return $link;
 	}
-	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 20, 4 );
+#	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 20, 4 );
 } //*/
 
 if ( ! function_exists( 'disable_website_field' ) ) {
