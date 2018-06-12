@@ -101,7 +101,7 @@ if (!function_exists('fluid_list_comments')) {
 					comment_text(); ?>
 				</div>
 				<div class="reply"><?php
-					comment_reply_link( [ 'depth' => $depth ], $comment->comment_ID, $comment->comment_post_ID ); ?>
+					comment_reply_link( [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ], $comment->comment_ID, $comment->comment_post_ID ); ?>
 				</div><!-- .reply --><?php
 				$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
 		}
