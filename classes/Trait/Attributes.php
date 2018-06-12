@@ -102,7 +102,7 @@ trait TCC_Trait_Attributes {
 			// convert string to an array
 			$classes = explode( ' ', $classes );
 		}
-		return implode( ' ', array_map( 'sanitize_html_class', array_unique( $classes ) ) );
+		return sanitize_html_class( implode( ' ', array_unique( $classes ) ) );
 	}
 
 	/**
