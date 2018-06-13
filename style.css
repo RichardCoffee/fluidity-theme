@@ -30,7 +30,7 @@
  *   6.2 - Menus
  * 7.0 - Accessibility
  * 8.0 - Alignments
- * 9.0 -
+ * 9.0 - Effects
  * 10.0 - Widgets
  * 11.0 - Content
  *    11.1 - Header
@@ -171,14 +171,6 @@
   width: 50%;
 }
 
-a:hover, a:focus {
-  border-bottom: 2px solid;
-  text-decoration: none;
-}
-a:hover.btn, a:focus.btn {
-  border-width: 1px;
-}
-
 .article pre {
   margin-bottom: 2.5em;
 }
@@ -254,8 +246,8 @@ pre {
  *  2.0 - WordPress
  *
  *  Class definitions required by WordPress
+ *    Also some other wordpress related stuff
  *
- *  Also some other wordpress related stuff
  */
 .aligncenter {
   text-align: center;
@@ -316,6 +308,18 @@ pre {
  *  3.0 - Typography
  *
  */
+body {
+  font-weight: normal;
+  font-style: normal;
+  /*  font-size: 18px; set in theme options */
+  -webkit-font-smoothing: antialiased;
+}
+
+/**
+ *
+ *  4.0 - Elements
+ *
+ */
 html {
   box-sizing: border-box;
   -webkit-text-size-adjust: 100%;
@@ -330,23 +334,12 @@ body {
   width: 100%;
 }
 
-body {
-  font-weight: normal;
-  font-style: normal;
-  /*  font-size: 18px; set in theme options */
-  -webkit-font-smoothing: antialiased;
+a:hover, a:focus {
+  border-bottom: 2px solid;
+  text-decoration: none;
 }
-
-a,
-button,
-input:focus,
-input[type="button"],
-input[type="reset"],
-input[type="submit"],
-textarea:focus,
-.btn,
-.button {
-  transition: all 0.1s ease-in-out 0s;
+a:hover.btn, a:focus.btn {
+  border-width: 1px;
 }
 
 p {
@@ -388,6 +381,18 @@ body.archive.author .article {
 .comment-text p {
   margin-bottom: 0.25em;
   margin-top: 1em;
+}
+
+a,
+button,
+input:focus,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+textarea:focus,
+.btn,
+.button {
+  transition: all 0.1s ease-in-out 0s;
 }
 
 button:active
@@ -524,10 +529,6 @@ header {
 }
 .fluidity-social-icons a:hover, .fluidity-social-icons a:focus, .fluidity-social-icons a:visited {
   border: none;
-}
-
-.fluid-print-button {
-  margin-top: 7px;
 }
 
 .input-group .input-group-btn .btn-search {
@@ -695,6 +696,10 @@ table.posting-table tr:hover th[scope=row], table.posting-table tr:hover td {
     width: 1170px;
   }
 }
+.fluid-print-button {
+  margin-top: 7px;
+}
+
 @media print {
   article {
     text-decoration: none;

@@ -5,8 +5,9 @@
 
 @import "wordpress"; // load required wordpress css first
 @import "typography";
+@import "elements";
 
-@import "author";
+@import "pages";
 @import "comments";
 @import "effects";
 @import "footer";

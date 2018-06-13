@@ -5,39 +5,9 @@
  *
  */
 
-html {
-	box-sizing: border-box;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust:     100%;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
-}
-
 body {
   font-weight: normal;
   font-style: normal;
 /*  font-size: 18px; set in theme options */
   -webkit-font-smoothing: antialiased;
-}
-
-a,
-button,
-input:focus,
-input[type="button"],
-input[type="reset"],
-input[type="submit"],
-textarea:focus,
-.btn,
-.button {
-    transition: all 0.1s ease-in-out 0s;
-}
-
-p {
-	margin-bottom: 1.5em;
 }

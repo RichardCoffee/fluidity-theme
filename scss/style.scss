@@ -35,7 +35,7 @@
  *   6.2 - Menus
  * 7.0 - Accessibility
  * 8.0 - Alignments
- * 9.0 -
+ * 9.0 - Effects
  * 10.0 - Widgets
  * 11.0 - Content
  *    11.1 - Header
@@ -56,14 +56,6 @@
 // components imported at bottom of this file
 
 // FIXME: everything below this line, except the import, needs to be moved to their respective proper file
-
-a:hover, a:focus {
-	border-bottom: 2px solid;
-	text-decoration: none;
-	&.btn {
-		border-width: 1px;
-	}
-}
 
 .article pre {
 	margin-bottom: 2.5em;
