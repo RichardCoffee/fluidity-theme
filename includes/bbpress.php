@@ -2,41 +2,64 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/*
+/**
  *  includes/bbpress.php
  *
  */
 
-
-#  bugfix from http://www.rewweb.co.uk/bbpress-wp4-fix2/
+/**
+ *  bugfix
+ *
+ * @link http://www.rewweb.co.uk/bbpress-wp4-fix2/
+ */
 add_filter( 'bbp_show_lead_topic', '__return_true' ); // FIXME:  has this bug been fixed yet?
 
-# remove normal content header
+/**
+ *  remove normal content header and footer, add content header for forum title
+ *
+ * @param string $page_slug
+ */
 add_action( 'tcc_before_loop', function( $page_slug ) {
 	if ( is_bbpress() ) {
 		remove_action( 'fluid_content_header', 'fluid_show_content_title' );
-		add_action(    'fluid_content_header', 'fluid_show_forum_title' );
 		remove_action( 'fluid_content_footer', 'fluid_show_content_footer' );
+		add_action(    'fluid_content_header', 'fluid_show_forum_title' );
 	}
 } );
 
-#  do not show sidebar on forum pages
-# FIXME:  make this optional
+/**
+ *  do not show sidebar on forum pages
+ *
+ * FIXME:  make this optional
+ *
+ * @param string $side
+ * @return string
+ */
 add_filter( 'fluid_theme_sidebar_positioning', function( $side ) {
 	if ( is_bbpress() ) {
-		$side = 'none';
+		return 'none';
 	}
 	return $side;
 } );
 
-#  force use of template-parts/content.php
-add_filter( 'tcc_template-parts_root', function( $rootslug, $pageslug ) {
+/**
+ *  force use of template-parts/content.php on forum pages
+ *
+ * @param string $root_slug
+ * @param string $page_slug
+ * @return string
+ */
+add_filter( 'tcc_template-parts_root', function( $root_slug, $page_slug ) {
 	if ( is_bbpress() ) {
 		return 'content';
 	}
-	return $rootslug;
+	return $root_slug;
 }, 10, 2 );
 
+/**
+ *  add custom css for subscription text/button
+ *
+ */
 add_action( 'tcc_custom_css', function() {
 	if ( is_bbpress() ) {
 		echo "\n#subscription-toggle {\n\tfloat: right; }\n";
@@ -46,6 +69,12 @@ add_action( 'tcc_custom_css', function() {
 
 /***   Topic Subscription   ***/
 
+/**
+ *  Add title/option to fluidity theme options content page
+ *
+ * @param array $layout
+ * @return array
+ */
 if ( ! function_exists( 'fluid_bbp_options_topic_subscription' ) ) {
 	function fluid_bbp_options_topic_subscription( $layout ) {
 		$layout['bbp'] = array(
@@ -64,11 +93,16 @@ if ( ! function_exists( 'fluid_bbp_options_topic_subscription' ) ) {
 	add_filter( 'tcc_content_options_layout', 'fluid_bbp_options_topic_subscription' );
 }
 
+/**
+ *  display subscription option to user.  FIXME: unused
+ *
+ * @param WP_User $user
+ */
 if ( ! function_exists( 'fluid_bbp_personal_options' ) ) {
 	function fluid_bbp_personal_options( $user ) {
 		$label = __( 'bbPress Topics', 'tcc-fluid' );
-		$value = get_user_meta( $user->ID, 'fluid_bbp_topic_subscribe', true );
-		$default = fluid_bbp_topic_subscribed_default(); ?>
+		$def_v = fluid_bbp_topic_subscribed_default();
+		$value = get_user_meta( $user->ID, 'fluid_bbp_topic_subscribe', $def_v ); ?>
 		<table class="form-table">
 			<tr class="fluid-bbp-topic-subscribe-wrap">
 				<th scope="row">
@@ -96,13 +130,19 @@ if ( ! function_exists( 'fluid_bbp_personal_options' ) ) {
 	}
 }
 
-#  https://bbpress.org/forums/topic/default-bbp_topic_subscription/
-#  change default (for topic subscription when posting) to true
+/**
+ *   change default (for topic subscription when posting) to true
+ *  Most of this is copied from plugins/bbpress/includes/topics/template.php,
+ *    but it allows 'true' as a =default= value, rather than just over-writing
+ *    the actual value, as suggested in the forum article.
+ *
+ * @link https://bbpress.org/forums/topic/default-bbp_topic_subscription/
+ * @param string $checked
+ * @param string $topic_subscribed
+ * @return string
+ */
 if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 	function fluid_bbp_get_form_topic_subscribed( $checked, $topic_subscribed ) {
-		#  Most of this is copied from plugins/bbpress/includes/topics/template.php,
-		#    but it allows 'true' as a =default= value, rather than just over-writing
-		#    the actual value, as suggested in the forum article.
 		// Get _POST data
 		if ( bbp_is_post_request() && isset( $_POST['bbp_topic_subscription'] ) ) {
 			$topic_subscribed = (bool) $_POST['bbp_topic_subscription'];
@@ -118,17 +158,15 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
 	add_filter( 'bbp_get_form_topic_subscribed', 'fluid_bbp_get_form_topic_subscribed', 10, 2 );
 }
 
+/**
+ *  Apply theme setting to topic subscription default value
+ *
+ * @param bool $subscribe
+ * @return bool
+ */
 if ( ! function_exists( 'fluid_bbp_topic_subscribed_default' ) ) {
-	function fluid_bbp_topic_subscribed_default( $subscribe = false ) {
-#fluid()->log(0,'default1: '.$subscribe);
-		$subscribe = ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : $subscribe;
-#fluid()->log(0,'default2: '.$subscribe);
-/*		if ( is_user_logged_in() ) {
-			$user      = wp_get_current_user();
-			$subscribe = get_user_meta( $user->ID, 'fluid_bbp_topic_subscribe', $subscribe );
-fluid()->log(0,'default3: '.$subscribe);
-		} //*/
-		return $subscribe;
+	function fluid_bbp_topic_subscribed_default( $subscribe ) {
+		return ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : $subscribe;
 	}
 	add_filter( 'fluid_bbp_topic_subscribed_default', 'fluid_bbp_topic_subscribed_default' );
 }
@@ -136,8 +174,13 @@ fluid()->log(0,'default3: '.$subscribe);
 
 /***   Font Sizes   ***/
 
+/**
+ *  Add font sizes to Theme Options customizer
+ *
+ * @param array $controls
+ * @return array
+ */
 if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
-	#  Add font sizes to Theme Options - Design page
 	function fluid_bbp_options_font_size( $controls ) {
 		$controls['bbp_font_text'] = array(
 			'label'       => __( 'bbPress', 'tcc-fluid' ),
@@ -168,8 +211,11 @@ if ( ! function_exists( 'fluid_bbp_options_font_size' ) ) {
 	add_filter( 'fluid_customizer_controls_font', 'fluid_bbp_options_font_size' );
 }
 
+/**
+ *  Add custom css for bbpress font sizes
+ *
+ */
 if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
-	#  Add font sizes to custom css
 	function fluid_bbp_font_size() {
 		if ( is_bbpress() ) {
 			$fontsize = get_theme_mod( 'font_bbp_font_size', 12 );
@@ -204,6 +250,10 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 
 /***   Forum Title   ***/
 
+/**
+ *  Show forum title
+ *
+ */
 if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 	function fluid_show_forum_title() { ?>
 		<h1 class="page-title text-center">
