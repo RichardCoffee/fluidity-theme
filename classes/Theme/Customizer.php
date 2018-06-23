@@ -307,7 +307,7 @@ class TCC_Theme_Customizer {
 		return $choices;
 	}
 
-	public function content_controls( $options ) {
+	public function content_controls( $options = array() ) {
 		$section = array(
 			'priority'    => 80,
 			'panel'       => 'fluid_mods',
@@ -320,7 +320,7 @@ class TCC_Theme_Customizer {
 				'transport' => 'postMessage',
 				'label'     => __( 'Displayed Publish/Edit Date', 'tcc-fluid' ),
 				'render'    => 'radio',
-				'choices'   => array(
+				'choices'   => array( // This array referenced in classes/MetaBox/PostDate.php initialize_radio()
 					'both'     => __( 'Show both modified and original post date when showing full post content', 'tcc-fluid' ),
 					'modified' => __( 'Use modified post date, where applicable.', 'tcc-fluid' ),
 					'original' => __( 'Always use published post date.', 'tcc-fluid' ),
