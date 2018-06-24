@@ -283,7 +283,7 @@ class TCC_Microdata {
 
 	public function get_the_modified_date( $the_date, $format, $postID ) {
 		if ( ( strpos( $the_date, 'itemprop' ) === false ) && ( ! ( $format === 'U' ) ) ) {
-			$datetime = mysql2date( 'Y-m-d H:i:s', get_post( $postID )->post_date );
+			$datetime = mysql2date( 'Y-m-d H:i:s', get_post( $postID )->post_modified );
 			$string   = '<time itemprop="dateModified" datetime="%1$s">%2$s</time>';
 			return sprintf( $string, $datetime, esc_html( $the_date ) );
 		}
