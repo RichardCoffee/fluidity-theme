@@ -136,13 +136,13 @@ fluid()->log($url);
 		echo "\nbody {\n\tfont-family: $font;\n}\n";
 		// font size
 		$size = intval( get_theme_mod( 'font_size', 18 ), 10 );
-		echo "body { font-size: {$size}px; }";
+		echo "\nbody {\n\tfont-size: {$size}px;\n}\n";
 		// font family for header
 		$header = self::mixed_fonts( get_theme_mod( 'font_head_typog', 'Open Sans' ) );
-		echo "header#fluid-header { font-family: $header; }";
+		echo "\nheader#fluid-header {\n\tfont-family: $header;\n}\n";
 		// widget panel title
 		$panel = max( 1, $size - 2 );
-		echo "panel-title { font-size: {$panel}px; }";
+		echo "\npanel-title {\n\tfont-size: {$panel}px;\n}\n";
 	}
 
 	public static function customizer_controls( $options ) {
