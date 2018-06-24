@@ -21,7 +21,7 @@
 
 </head>
 
-<body <?php body_class( ); ?>>
+<body <?php body_class( ); ?> <?php fluid_schema_page_check(); ?>>
 	<a class="skip-link sr-only" href="#fluid-content"><?php esc_html_e( 'Skip to content', 'tcc-fluid' ); ?></a><?php
 	$slug = get_page_slug();
 #fluid()->log('slug: '.$slug ); #, list_filter_hooks() );

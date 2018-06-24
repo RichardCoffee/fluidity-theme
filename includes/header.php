@@ -169,3 +169,12 @@ if ( ! function_exists( 'fluid_menubar_print_button' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'fluid_schema_page_check' ) ) {
+	function fluid_schema_page_check() {
+		if ( is_single() ) {
+			microdata()->ItemPage();
+		}
+		do_action( 'fluid_schema_page_check' );
+	}
+}
