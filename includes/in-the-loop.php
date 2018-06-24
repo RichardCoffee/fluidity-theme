@@ -81,6 +81,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 			if ( in_array( $postdate, [ 'both', 'modified' ] ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
 				$default  = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 				$date     = get_the_modified_date();
+fluid()->log( get_post( get_the_ID() ) );
 				$showboth = ( $postdate === 'both' );
 			}
 			$string = apply_filters( 'fluid_post_date_sprintf', $default, $postdate, $showboth );
