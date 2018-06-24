@@ -315,12 +315,12 @@ class TCC_Microdata {
 		return '<span itemprop="author">' . esc_html( $author ) . '</span>';
 	}
 
-  public function the_author_posts_link($link) {
-    if (!(strpos($link,'itemprop')===false)) return $link;
-    $pattern = array('/(<a.*?)(>)/i',      '/(<a.*?>)(.*?)(<\/a>)/i'); #<?
-    $replace = array('$1 itemprop="url"$2','$1<span itemprop="name">$2</span>$3');
-    return preg_replace($pattern,$replace,$link);
-  }
+	public function the_author_posts_link( $link ) {
+		if ( ! ( strpos( $link, 'itemprop' ) === false ) ) return $link;
+		$pattern = array( '/(<a.*?)(>)/i',       '/(<a.*?>)(.*?)(<\/a>)/i' ); #<?
+		$replace = array( '$1 itemprop="url"$2', '$1<span itemprop="author">$2</span>$3' );
+		return preg_replace( $pattern, $replace, $link );
+}
 
   public function wp_get_attachment_image_attributes($attr,$attachment) {
     if (!isset($attr['itemprop'])) { $attr['itemprop'] = 'image'; }
