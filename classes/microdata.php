@@ -312,14 +312,15 @@ class TCC_Microdata {
 	public function the_author( $author ) {
 		if ( ! ( strpos( $author, 'itemprop' ) === false ) ) { return $author; }
 		if ( $this->called_by( [ 'get_the_author_posts_link' ] ) ) { return $author; }
-		return '<span itemprop="author">' . esc_html( $author ) . '</span>';
+		return '<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">' . esc_html( $author ) . '</span></span>';
 	}
 
 	public function the_author_posts_link( $link ) {
 		if ( ! ( strpos( $link, 'itemprop' ) === false ) ) return $link;
+		$schema  = '<span itemprop="author" itemscope itemtype="http://schema.org/Person">';
 		$pattern = array( '/(<a.*?)(>)/i',       '/(<a.*?>)(.*?)(<\/a>)/i' ); #<?
-		$replace = array( '$1 itemprop="url"$2', '$1<span itemprop="author">$2</span>$3' );
-		return preg_replace( $pattern, $replace, $link );
+		$replace = array( '$1 itemprop="url"$2', '$1<span itemprop="name">$2</span>$3' );
+		return $schema . preg_replace( $pattern, $replace, $link ) . '</span>';
 }
 
   public function wp_get_attachment_image_attributes($attr,$attachment) {
