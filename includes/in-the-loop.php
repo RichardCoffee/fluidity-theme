@@ -110,18 +110,11 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 					the_tags( esc_html__( 'Tags: ', 'tcc-fluid' ), ', ', '<br>' );
 					echo '<hr>';
 				}
-				$cat_list = get_the_category_list();
+				$cat_list = get_the_category_list( ', ', 'single' );
 				if ( ! empty( $cat_list ) ) {  #  wordpress's has_category() does not always return a correct value - wtf?
-					esc_html_ex( 'Categories: ', 'string will be followed by one or more categories', 'tcc-fluid' );
-					the_category(', ');
+					printf( esc_html_x( 'Categories: %s', 'string - one or more categories', 'tcc-fluid' ), $cat_list );
 					echo '<hr>';
-				}
-#				if ( has_tag() || ( ! empty( $cat_list ) ) ) { }
-/*				$comm_0 = esc_html__( 'No Comments', 'tcc-fluid' );
-				$comm_1 = esc_html_x( '1 Comment', 'single comment', 'tcc-fluid' );
-				$comm_2 = esc_html_x( '%s Comments', 'number of comments', 'tcc-fluid' );
-				$nocomm = esc_html__( 'Comments are Off', 'tcc-fluid' );
-				comments_popup_link( $comm_0, $comm_1, $comm_2, '', $nocomm ); //*/ ?>
+				} ?>
 			</div>
 		</div><?php
 	}
