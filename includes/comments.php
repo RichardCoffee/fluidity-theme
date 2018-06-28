@@ -22,7 +22,7 @@ if (!function_exists('fluid_comment_navigation')) {
     }
   }
 }
-/*
+
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
 fluid()->log( $link );
