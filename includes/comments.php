@@ -22,15 +22,17 @@ if (!function_exists('fluid_comment_navigation')) {
     }
   }
 }
-/*
+
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
-fluid()->log( $link );
 		$data = fluid()->get_html_object( $link );
-fluid()->log( $data );
-		return $link;
+		$data->attrs['class']   .= ' btn btn-fluidity';
+		if ( empty( $data->attrs['itemprop'] ) ) {
+			$data->attrs['itemprop'] = 'replyToUrl';
+		}
+		return fluid()->get_element( 'button', $data->attrs, $data->text );
 	}
-	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 20, 4 );
+	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 30, 4 );
 } //*/
 
 if ( ! function_exists( 'disable_website_field' ) ) {

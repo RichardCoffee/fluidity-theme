@@ -191,11 +191,13 @@ class TCC_Microdata {
     return 'itemprop="discussionURL"';
   }
 
-  public function comment_reply_link($link) {
-    if (strpos($link,'itemprop')===false)
-      $link = preg_replace('/(<a\s)/i','$1 itemprop="replyToUrl"',$link);
-    return $link;
-  }
+	public function comment_reply_link( $link ) {
+		if ( strpos( $link, 'itemprop' ) === false ) {
+			$patts = [ '/(<a\s)/i', '/(<button\s)/i' ];
+			$link  = preg_replace( $patts, '$1 itemprop="replyToUrl"', $link );
+		}
+		return $link;
+	}
 
   public function get_archives_link($link) {
     if (strpos($link,'itemprop')===false) {
