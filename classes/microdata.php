@@ -193,8 +193,10 @@ class TCC_Microdata {
 
 	public function comment_reply_link( $link ) {
 		if ( strpos( $link, 'itemprop' ) === false ) {
-			$patts = [ '/(<a\s)/i', '/(<button\s)/i' ];
-			$link  = preg_replace( $patts, '$1 itemprop="replyToUrl"', $link );
+			$patts  = [ '/(<a\s)/i', '/(<button\s)/i' ];
+			$link   = preg_replace( $patts, '$1 itemprop="url"', $link );
+			$schema = '<span itemprop="potentialAction" itemscope itemtype="http://schema.org/ReplyAction">';
+			$link   = $schema . $link . '</span>';
 		}
 		return $link;
 	}
@@ -236,14 +238,14 @@ class TCC_Microdata {
 	public function get_comment_date( $date, $d, $comment ) {
 		if ( strpos( $date, 'time itemprop' ) === false ) {
 			$datetime = mysql2date( 'Y-m-d H:i:s', $comment->comment_date );
-			$date = '<time itemprop="commentTime" datetime="' . $datetime . '">' . esc_html( $date ) . '</time>';
+			$date = '<time itemprop="dateCreated" datetime="' . $datetime . '">' . esc_html( $date ) . '</time>';
 		}
 		return $date;
 	}
 
 	public function get_comment_text( $text, $comment, $args ) {
 		if ( strpos( $text, 'span itemprop' ) === false ) {
-			$text = '<span itemprop="commentText">' . $text . '</span>';
+			$text = '<span itemprop="text">' . $text . '</span>';
 		}
 		return $text;
 	}

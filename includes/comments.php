@@ -26,16 +26,13 @@ if (!function_exists('fluid_comment_navigation')) {
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
 		$data = fluid()->get_html_object( $link );
-		$data->attrs['class']   .= ' btn btn-fluidity pull-right';
-		if ( empty( $data->attrs['itemprop'] ) ) {
-			$data->attrs['itemprop'] = 'replyToUrl';
-		}
+		$data->attrs['class'] .= ' btn btn-fluidity pull-right';
 		if ( empty( $data->attrs['title'] ) && ( ! empty( $data->attrs['aria-label'] ) ) ) {
 			$data->attrs['title'] = $data->attrs['aria-label'];
 		}
 		return fluid()->get_element( 'button', $data->attrs, $data->text );
 	}
-	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 30, 4 );
+	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 15, 4 );
 } //*/
 
 if ( ! function_exists( 'disable_website_field' ) ) {
