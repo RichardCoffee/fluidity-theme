@@ -99,7 +99,7 @@ if (!function_exists('fluid_list_comments')) {
 				<div class="comment-text"><?php
 					comment_text(); ?>
 				</div><!-- .comment-text -->
-				<div class="reply"><?php
+				<div class="reply col-xs-12"><?php
 					comment_reply_link( [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ], $comment->comment_ID, $comment->comment_post_ID ); ?>
 				</div><!-- .reply --><?php
 		} ?>
