@@ -380,6 +380,7 @@ body.archive.author .article {
 
 .comment-list {
   list-style: none;
+  padding-right: 40px;
 }
 
 .comment-text p {
