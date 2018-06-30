@@ -14,7 +14,7 @@ if ( post_password_required() ) {
 
 who_am_i(); ?>
 
-<div id="comments" class="article comments-area" itemscope itemtype='http://schema.org/UserComments'><?php
+<div id="comments" class="article comments-area"><?php
 	if ( pings_open() ) { ?>
 		<p id="respond">
 			<span id="trackback-link">
