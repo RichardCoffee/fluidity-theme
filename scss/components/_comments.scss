@@ -1,6 +1,5 @@
 #author { }
 #cancel-comment-reply-link { }
-#comment { }
 #commentform { }
 #email { }
 #email-notes { }
@@ -8,6 +7,12 @@
 #respond { }
 #submit { }
 #url { }
+
+#comment {
+	& .reply {
+		margin-bottom: 0.5em;
+	}
+}
 
 .comment-author {
 	margin-bottom: 0.4375em; // twentysixteen

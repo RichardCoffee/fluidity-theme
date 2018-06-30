@@ -26,7 +26,7 @@ if (!function_exists('fluid_comment_navigation')) {
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
 		$data = fluid()->get_html_object( $link );
-		$data->attrs['class']   .= ' btn btn-fluidity';
+		$data->attrs['class']   .= ' btn btn-fluidity pull-right';
 		if ( empty( $data->attrs['itemprop'] ) ) {
 			$data->attrs['itemprop'] = 'replyToUrl';
 		}
