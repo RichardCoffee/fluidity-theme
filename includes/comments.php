@@ -57,7 +57,6 @@ if ( ! function_exists( 'disable_website_field' ) ) {
  */
 if (!function_exists('fluid_list_comments')) {
 	function fluid_list_comments( WP_Comment $comment, array $args, $depth ) {
-		static $striping = 'odd';
 		$GLOBALS['comment'] = $comment;
 		$string    = esc_html_x( '%1$s by %2$s on %3$s', 'the comment type; author name; date of comment', 'tcc-fluid' );
 		$type_arr  = array(
@@ -74,7 +73,7 @@ if (!function_exists('fluid_list_comments')) {
 		switch ( $comm_type ) {
 			case 'pingback' :
 			case 'trackback' :
-				$attrs['class'] = array_merge( $attrs['class'], [ 'post', $comm_type, "stripe-$striping" ] );
+				$attrs['class'] = array_merge( $attrs['class'], [ 'post', $comm_type ] );
 				fluid()->tag( 'li', $attrs );
 				printf( $string, $type_arr[ $comm_type ], get_comment_author_link(), get_comment_date( '', $comment->comment_ID ) );
 				break;
@@ -82,8 +81,6 @@ if (!function_exists('fluid_list_comments')) {
 				if ( empty( $comm_type ) ) {
 					$comm_type = 'comment';
 				}
-				$css = ( get_the_author_meta( 'user_email' ) === get_comment_author_email() ) ? 'post-author' : "striping-$striping";
-				$attrs['class'] = array_merge( $attrs['class'], [ $css ] );
 				fluid()->tag( 'li', $attrs ); ?>
 				<div class="comment-author vcard">
 					<span class="pull-left"><?php
@@ -101,12 +98,10 @@ if (!function_exists('fluid_list_comments')) {
 				} ?>
 				<div class="comment-text"><?php
 					comment_text(); ?>
-				</div>
+				</div><!-- .comment-text -->
 				<div class="reply"><?php
 					comment_reply_link( [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ], $comment->comment_ID, $comment->comment_post_ID ); ?>
 				</div><!-- .reply --><?php
-				$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
 		}
-		$striping = ( $striping === 'odd' ) ? 'even' : 'odd';
 	}
 }
