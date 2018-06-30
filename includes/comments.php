@@ -97,11 +97,13 @@ if (!function_exists('fluid_list_comments')) {
 					<br /><?php
 				} ?>
 				<div class="comment-text"><?php
-					comment_text(); ?>
-				</div><!-- .comment-text -->
-				<div class="reply col-xs-12"><?php
-					comment_reply_link( [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ], $comment->comment_ID, $comment->comment_post_ID ); ?>
-				</div><!-- .reply --><?php
+					comment_text();
+					if ( ! ( $comment->comment_approved === '0' ) ) { ?>
+						<span class="reply"><?php
+							comment_reply_link( [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ], $comment->comment_ID, $comment->comment_post_ID ); ?>
+						</span><!-- .reply --><?php
+					} ?>
+				</div><!-- .comment-text --><?php
 		} ?>
 		<hr class="comment-separator"><?php
 	}
