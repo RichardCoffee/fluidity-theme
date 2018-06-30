@@ -33,7 +33,8 @@ who_am_i(); ?>
 			echo wp_kses( sprintf( $format, $number, $title ), fluid()->kses() ); ?>
 		</h2><?php
 		fluid_comment_navigation(); ?>
-		<ul class="comment-list"><?php
+		<ul class="comment-list">
+			<hr class="comment-separator"><?php
 			$list = array(
 				'short_ping'  => true,
 				'avatar_size' => 34,

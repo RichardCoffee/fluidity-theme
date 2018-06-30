@@ -102,6 +102,7 @@ if (!function_exists('fluid_list_comments')) {
 				<div class="reply"><?php
 					comment_reply_link( [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ], $comment->comment_ID, $comment->comment_post_ID ); ?>
 				</div><!-- .reply --><?php
-		}
+		} ?>
+		<hr class="comment-separator"><?php
 	}
 }
