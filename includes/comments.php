@@ -30,6 +30,9 @@ if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 		if ( empty( $data->attrs['itemprop'] ) ) {
 			$data->attrs['itemprop'] = 'replyToUrl';
 		}
+		if ( empty( $data->attrs['title'] ) && ( ! empty( $data->attrs['aria-label'] ) ) ) {
+			$data->attrs['title'] = $data->attrs['aria-label'];
+		}
 		return fluid()->get_element( 'button', $data->attrs, $data->text );
 	}
 	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 30, 4 );
@@ -99,9 +102,9 @@ if (!function_exists('fluid_list_comments')) {
 				<div class="comment-text"><?php
 					comment_text();
 					if ( ! ( $comment->comment_approved === '0' ) ) { ?>
-						<span class="reply"><?php
+						<p class="reply"><?php
 							comment_reply_link( [ 'depth' => $depth, 'max_depth' => $args['max_depth'] ], $comment->comment_ID, $comment->comment_post_ID ); ?>
-						</span><!-- .reply --><?php
+						<p><!-- .reply --><?php
 					} ?>
 				</div><!-- .comment-text --><?php
 		} ?>
