@@ -355,7 +355,7 @@ body.archive.author .article {
   margin: 0;
 }
 
-#comment .reply {
+.comment .reply {
   margin-bottom: 0.5em;
 }
 
