@@ -35,15 +35,15 @@ if ( ! function_exists( 'microdata' ) ) {
 	}
 }
 
-if (!class_exists('TCC_Microdata')) {
+if ( ! class_exists( 'TCC_Microdata' ) ) {
 
 class TCC_Microdata {
 
 	use TCC_Trait_Singleton;
 
-  private function __construct() {
-    $this->filters();
-  }
+	private function __construct() {
+		$this->filters();
+	}
 
 
  /*
@@ -77,10 +77,7 @@ class TCC_Microdata {
 		if ( method_exists( $this, $type ) ) {
 			$this->$type();
 		} else if ( $as_attr ) {
-			return array(
-				'itemscope' => 'itemscope',
-				'itemtype'  => 'http://schema.org/' . $type,
-			);
+			return $this->microdata_attrs( $type );
 		} else {
 			echo 'itemscope itemtype="http://schema.org/' . esc_attr( $type ) . '"';
 		}
@@ -93,30 +90,31 @@ class TCC_Microdata {
 		);
 	}
 
-  public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
-  public function address()  { $this->PostalAddress(); }          // descendant of many types - see itemtype link
-  public function agent()    { $this->RealEstateAgent(); }        // Organization|Place > LocalBusiness > RealEstateAgent
-  public function company()  { $this->Organization(); }           // first tier type
-  public function contact()  { $this->ContactPage(); }            // CreativeWork > WebPage > ContactPage
-  public function element()  { $this->WebPageElement(); }         // CreativeWork > WebPage > WebPageElement
-  public function footer()   { $this->WPFooter(); }               // CreativeWork > WebPage > WebPageElement > WPFooter
-  public function group()    { $this->Organization(); }           // first tier type
-  public function header()   { $this->WPHeader(); }               // CreativeWork > WebPage > WebPageElement > WPHeader
-  public function item()     { $this->ItemPage(); }               // CreativeWork > WebPage > ItemPage
-  public function navigate() { $this->SiteNavigationElement(); }  // CreativeWork > WebPage > WebPageElement > SiteNavigationElement
-  public function page()     { $this->WebPage(); }                // CreativeWork > WebPage
-  public function post()     { $this->BlogPosting(); }            // CreativeWork > Blog > BlogPosting
-  public function profile()  { $this->ProfilePage(); }            // CreativeWork > WebPage > ProfilePage
-  public function search()   { $this->SearchResultsPage(); }      // CreativeWork > WebPage > SearchResultsPage
-  public function sidebar()  { $this->WPSideBar(); }              // CreativeWork > WebPage > WebPageElement > WPSideBar
+	/***   helper shortcuts   ***/
+	public function about()    { $this->AboutPage(); }              // CreativeWork > WebPage > AboutPage
+	public function address()  { $this->PostalAddress(); }          // descendant of many types - see itemtype link
+	public function agent()    { $this->RealEstateAgent(); }        // Organization|Place > LocalBusiness > RealEstateAgent
+	public function company()  { $this->Organization(); }           // first tier type
+	public function contact()  { $this->ContactPage(); }            // CreativeWork > WebPage > ContactPage
+	public function element()  { $this->WebPageElement(); }         // CreativeWork > WebPage > WebPageElement
+	public function footer()   { $this->WPFooter(); }               // CreativeWork > WebPage > WebPageElement > WPFooter
+	public function group()    { $this->Organization(); }           // first tier type
+	public function header()   { $this->WPHeader(); }               // CreativeWork > WebPage > WebPageElement > WPHeader
+	public function item()     { $this->ItemPage(); }               // CreativeWork > WebPage > ItemPage
+	public function navigate() { $this->SiteNavigationElement(); }  // CreativeWork > WebPage > WebPageElement > SiteNavigationElement
+	public function page()     { $this->WebPage(); }                // CreativeWork > WebPage
+	public function post()     { $this->BlogPosting(); }            // CreativeWork > Blog > BlogPosting
+	public function profile()  { $this->ProfilePage(); }            // CreativeWork > WebPage > ProfilePage
+	public function search()   { $this->SearchResultsPage(); }      // CreativeWork > WebPage > SearchResultsPage
+	public function sidebar()  { $this->WPSideBar(); }              // CreativeWork > WebPage > WebPageElement > WPSideBar
 
-  public function BlogPosting() { // CreativeWork > Blog > BlogPosting
-    echo 'itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"';
-  }
+	public function BlogPosting() { // CreativeWork > Blog > BlogPosting
+		echo 'itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"';
+	}
 
-  public function PostalAddress() { // descendant of many types - see itemtype link
-    echo 'itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"';
-  }
+	public function PostalAddress() { // descendant of many types - see itemtype link
+		echo 'itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"';
+	}
 
 	/**
 	 * @link https://github.com/schemaorg/schemaorg/issues/1912
@@ -130,8 +128,8 @@ class TCC_Microdata {
 	 *  These functions are designed to be called in place of the native wordpress function.
 	 *
 	 *  These functions should be called like so:
-	 *		microdata()->bloginfo( 'name' );
-	 *		$name = microdata()->get_bloginfo( 'name' );
+	 *    microdata()->bloginfo( 'name' );
+	 *    $name = microdata()->get_bloginfo( 'name' );
 	 *
 	 */
 
@@ -151,14 +149,14 @@ class TCC_Microdata {
 		return $string;
 	}
 
- /*
-  *  These are filters, and will do their work behind the scenes.  Nothing else is required.
-  *
-  *  Note the priority on these.  Extend the class if you need a different priority.
-  *  If you find you do need to change the priority, please send me an email if the change
-  *    needs to be reflected in the 'core' code.
-  *
-  */
+	/*
+	 *  These are filters, and will do their work behind the scenes.  Nothing else is required.
+	 *
+	 *  Note the priority on these.  Extend the class if you need a different priority.
+	 *  If you find you do need to change the priority, please send me an email if you
+	 *    feel the change should be reflected in the 'core' code.
+	 *
+	 */
 
 	private function filters( $pri = 20 ) {
 		add_filter('comments_popup_link_attributes',     [ $this, 'comments_popup_link_attributes' ],     $pri );
@@ -187,9 +185,9 @@ class TCC_Microdata {
 		add_filter('wp_get_attachment_link',             [ $this, 'wp_get_attachment_link' ],             $pri );
 	}
 
-  public function comments_popup_link_attributes($attr) {
-    return 'itemprop="discussionURL"';
-  }
+	public function comments_popup_link_attributes( $attr ) {
+		return 'itemprop="discussionURL"';
+	}
 
 	public function comment_reply_link( $link ) {
 		if ( strpos( $link, 'itemprop' ) === false ) {
@@ -201,20 +199,20 @@ class TCC_Microdata {
 		return $link;
 	}
 
-  public function get_archives_link($link) {
-    if (strpos($link,'itemprop')===false) {
-      $patts = array('/(<link.*?)(\/>)/i',"/(<option.*?>)(\'>)/i","/(<a.*?)(>)/i"); #<?
-      $link  = preg_replace($patts,'$1 itemprop="url" $2',$link);
-    }
-    return $link;
-  }
+	public function get_archives_link( $link ) {
+		if ( strpos( $link, 'itemprop' ) === false ) {
+			$patts = array( '/(<link.*?)(\/>)/i', "/(<option.*?>)(\'>)/i", "/(<a.*?)(>)/i" ); #<?
+			$link  = preg_replace( $patts, '$1 itemprop="url" $2', $link );
+		}
+		return $link;
+	}
 
-  public function get_avatar($avatar) {
-    if (strpos($avatar,'itemprop')===false) {
-      $avatar = preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$avatar);
-    }
-    return $avatar;
-  }
+	public function get_avatar( $avatar ) {
+		if ( strpos( $avatar, 'itemprop' ) === false ) {
+			$avatar = preg_replace( '/(<img.*?)(\/>|>)/i', '$1 itemprop="image" $2', $avatar );
+		}
+		return $avatar;
+	}
 
 	public function get_comment_author_link( $link ) {
 		if ( strpos( $link, 'target=' ) === false ) {
@@ -228,12 +226,12 @@ class TCC_Microdata {
 		return $link;
 	}
 
-  public function get_comment_author_url_link($link) {
-    if (strpos($link,'itemprop')===false) {
-      $link = preg_replace('/(<a.*?)(>)/i','$1 itemprop="url"$2',$link);
-    }
-    return $link;
-  }
+	public function get_comment_author_url_link( $link ) {
+		if ( strpos( $link, 'itemprop' ) === false ) {
+			$link = preg_replace( '/(<a.*?)(>)/i', '$1 itemprop="url"$2', $link );
+		}
+		return $link;
+	}
 
 	public function get_comment_date( $date, $d, $comment ) {
 		if ( strpos( $date, 'time itemprop' ) === false ) {
@@ -266,15 +264,16 @@ class TCC_Microdata {
 		return '<span itemprop="description">' . esc_html( $descrip ) . '</span>';
 }
 
-  public function get_the_archive_title($title) {
-    if (strpos($title,'itemprop')===false) {
-      if (is_author()) {
-        $title = preg_replace('/(<span.*?)(>)/i','$1 itemprop="author"$2',$title); }
-      else if ($title==__('Archives')) {  #  Translatable in core
-        $title = '<span itemprop="headline">' . esc_html( $title ) . '</span>'; }
-    }
-    return $title;
-  }
+	public function get_the_archive_title( $title ) {
+		if ( strpos( $title, 'itemprop' ) === false ) {
+			if ( is_author() ) {
+				$title = preg_replace( '/(<span.*?)(>)/i', '$1 itemprop="author"$2', $title );
+			} else if ( $title === __( 'Archives' ) ) {  #  Translatable in core
+				$title = '<span itemprop="headline">' . esc_html( $title ) . '</span>';
+			}
+		}
+		return $title;
+	}
 
 	public function get_the_date( $the_date, $format, $postID ) {
 		if ( ( strpos( $the_date, 'itemprop' ) === false ) && ( ! ( $format === 'U' ) ) ) {
@@ -294,18 +293,18 @@ class TCC_Microdata {
 		return $the_date;
 	}
 
-  public function get_the_title($title,$id) {
-    if (!(strpos($title,'itemprop')===false)) return $title; // itemprop already present
-    if (!(strpos($title,'sr-only')===false)) return $title;  // bootstrap css
-    if (!(strpos($title,'screen-reader-text')===false)) return $title; // underscore theme
-    if ($this->called_by(array('wp_title','_wp_render_title_tag'))) return $title;
-    return '<span itemprop="headline">' . esc_html( $title ) . '</span>';
-  }
+	public function get_the_title( $title, $id ) {
+		if ( ! ( strpos( $title, 'itemprop' ) === false ) )               return $title;  // itemprop already present
+		if ( ! ( strpos( $title, 'sr-only' ) === false ) )                return $title;  // bootstrap css
+		if ( ! ( strpos( $title, 'screen-reader-text') === false ) )      return $title;  // underscore theme
+		if ( $this->called_by( [ 'wp_title', '_wp_render_title_tag' ] ) ) return $title;  // string already processed
+		return '<span itemprop="headline">' . esc_html( $title ) . '</span>';
+	}
 
-  public function post_thumbnail_html($html) {
-    if (!(strpos($html,'itemprop')===false)) return $html;
-    return preg_replace('/(<img.*?)(\/>|>)/i','$1 itemprop="image" $2',$html);
-  }
+	public function post_thumbnail_html( $html ) {
+		if ( ! ( strpos( $html, 'itemprop' ) === false ) ) return $html;
+		return preg_replace( '/(<img.*?)(\/>|>)/i', '$1 itemprop="image" $2', $html );
+	}
 
 	public function single_term_title($title) {
 		if ( ! ( strpos( $title, 'itemprop' ) === false ) ) { return $title; }
@@ -327,18 +326,20 @@ class TCC_Microdata {
 		return $schema . preg_replace( $pattern, $replace, $link ) . '</span>';
 }
 
-  public function wp_get_attachment_image_attributes($attr,$attachment) {
-    if (!isset($attr['itemprop'])) { $attr['itemprop'] = 'image'; }
-    return $attr;
-  }
+	public function wp_get_attachment_image_attributes( $attr, $attachment ) {
+		if ( ! isset( $attr['itemprop'] ) ) {
+			$attr['itemprop'] = 'image';
+		}
+		return $attr;
+	}
 
-  public function wp_get_attachment_link($link) {
-    if (!(strpos($link,'itemprop')===false)) return $link;
-    return preg_replace('/(<a.*?)>/i','$1 itemprop="contentURL">',$link);
-  }
+	public function wp_get_attachment_link( $link ) {
+		if ( ! ( strpos( $link, 'itemprop' ) === false ) ) return $link;
+		return preg_replace( '/(<a.*?)>/i', '$1 itemprop="contentURL">', $link );
+	}
 
 
-  /**  Helper functions  **/
+	/***   Helper functions   ***/
 
 	public function description( $text ) {
 		if ( ! ( strpos( $text, 'itemprop' ) === false ) ) { return $text; }
@@ -352,9 +353,9 @@ class TCC_Microdata {
 		return sprintf( $string, $email, $email );
 	}
 
-  public function image_html($image) {
-    return $this->post_thumbnail_html($image);
-  }
+	public function image_html( $image ) {
+		return $this->post_thumbnail_html( $image );
+	}
 
 	public function name( $name ) {
 		if ( ! ( strpos( $name, 'itemprop' ) === false ) ) { return $name; }
@@ -373,7 +374,7 @@ class TCC_Microdata {
 	}
 
 
-  /**  Address helper functions  **/
+	/***   Address helper functions   ***/
 
 	public function city( $city ) {
 		if ( ! ( strpos( $city, 'itemprop' ) === false ) ) { return $city; }
@@ -401,18 +402,18 @@ class TCC_Microdata {
 	}
 
 
-  /**  Private functions  **/
+	/***   Private functions   ***/
 
-  private function called_by($test=array()) {
-    $stack  = debug_backtrace();
-    foreach($stack as $entry) {
-      if (!isset($entry['function'])) continue;
-      if (in_array($entry['function'],(array)$test)) return true;
-    }
-    return false;
-  }
+	private function called_by( $test = array() ) {
+		$stack  = debug_backtrace();
+		foreach( $stack as $entry ) {
+			if ( ! isset( $entry['function'] ) ) continue;
+			if ( in_array( $entry['function'], (array) $test ) ) return true;
+		}
+		return false;
+	}
 
 
-}
+}  #  end of class TCC_Microdata
 
 }  #  end of class exists check

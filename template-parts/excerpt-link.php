@@ -10,7 +10,8 @@ who_am_i(); ?>
 
 <div class="<?php clearfix()->div_class(); ?>">
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>><?php
+		fluid()->element( 'link', [ 'itemprop' => 'mainEntityOfPage', 'href' => get_the_permalink() ] ); ?>
 
 		<div class="row"><?php
 
