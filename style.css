@@ -241,6 +241,12 @@ pre {
   margin-bottom: 0;
 }
 
+.sr-only:focus {
+  height: 1em;
+  margin: 0;
+  width: auto;
+}
+
 /**
  *
  *  2.0 - WordPress

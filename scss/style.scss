@@ -127,4 +127,10 @@ pre {
   margin-bottom: 0;
 }
 
+.sr-only:focus {
+	height: 1em;
+	margin: 0;
+	width: auto;
+}
+
 @import "components/components";
