@@ -129,7 +129,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	}
 
 	protected function show_page_link ( $int ) {
-		$text = sprintf( _nx( 'Page %s', 'Page %s', $int, 'a number', 'tcc-fluid' ), $int );
+		$text = sprintf( _nx( 'Go to page %s', 'Go to page %s', $int, 'page number', 'tcc-fluid' ), $int );
 		$attrs = array(
 			'class' => 'page-numbers',
 			'href'  => get_pagenum_link( $int ),
