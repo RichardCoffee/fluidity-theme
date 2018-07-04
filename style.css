@@ -241,10 +241,16 @@ pre {
   margin-bottom: 0;
 }
 
-.sr-only:focus {
+.skip-link.sr-only:focus {
   height: 1em;
+  left: 1px;
   margin: 0;
+  padding: 1em 2.5em;
+  top: 1px;
   width: auto;
+  -webkit-transition: top 0.1s ease-in-out;
+  -o-transition: top 0.1s ease-in-out;
+  transition: top 0.1s ease-in-out;
 }
 
 /**

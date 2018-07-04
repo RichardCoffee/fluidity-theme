@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $page = get_page_slug();
-$menu = apply_filters( 'tcc_menu', 'primary', $page );	#	defaults: primary, header or footer
+$menu = apply_filters( 'fluid_menu', 'primary', $page ); # defaults: primary, header or footer
 
 if ( has_nav_menu( $menu ) ) {
 
@@ -22,7 +22,7 @@ if ( has_nav_menu( $menu ) ) {
 
 	$button_attrs = array(
 		'class'         => 'menu-toggle navbar-toggle', // underscore and bootstrap
-		'aria-controls' => $menu,
+		'aria-controls' => "$menu-menu",
 		'aria-expanded' => 'false',
 		'data-toggle'   => 'collapse',               // bootstrap
 		'data-target'   => ".navbar-$menu-collapse", // bootstrap
@@ -51,7 +51,7 @@ if ( has_nav_menu( $menu ) ) {
 #				require_once( FLUIDITY_HOME . 'vendor/wp-bootstrap-navwalker.php' );
 				wp_nav_menu( array(
 					'menu'           => $menu,
-					'menu_id'        => 'primary-menu',
+					'menu_id'        => "$menu-menu",
 					'theme_location' => $menu,
 					'depth'          => 3,
 					'container'      => false,
@@ -79,7 +79,7 @@ if ( has_nav_menu( $menu ) ) {
 
 			wp_nav_menu( array(
 				'theme_location' => $menu,
-				'menu_id'        => 'primary-menu',
+				'menu_id'        => "$menu-menu",
 				'fallback_cb'    => '' )
 			); ?>
 
