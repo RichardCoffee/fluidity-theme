@@ -65,6 +65,9 @@ body {
 body.archive.author article {
   border: 1px solid #5cb85c;
 }
+body .skip-link:focus {
+  background-color: #5cb85c;
+}
 
 .btn-fluidity,
 .color-fluidity,
