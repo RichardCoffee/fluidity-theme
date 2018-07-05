@@ -17,7 +17,7 @@ body {
 		border: 1px solid $maincomp;
 	}
 	& .skip-link:focus {
-		background-color: color(background);
+		background-color: $mainlite;
 	}
 }
 
