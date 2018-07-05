@@ -16,6 +16,9 @@ body {
 	&.archive.author article {
 		border: 1px solid $maincomp;
 	}
+	& .skip-link:focus {
+		background-color: color(background);
+	}
 }
 
 .btn-fluidity,
