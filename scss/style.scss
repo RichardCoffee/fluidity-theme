@@ -128,12 +128,14 @@ pre {
 }
 
 .skip-link.sr-only:focus {
+	border: none;
 	border-bottom-right-radius: 6px;
 	height: 1em;
 	left: 1px;
 	margin: 0;
-	padding: 1em 2.5em;
-	position: static;
+	padding: 0.5em 1em;
+	position: sticky;
+	text-decoration: underline;
 	top: 1px;
 	width: auto;
 	@include transition( top 0.1s ease-in-out );
