@@ -43,6 +43,6 @@ if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 #			echo "\n#latest-comments > ul.subsubsub {\n\twidth: 100%;\n}\n";
 		}
 	}
-	add_action('tcc_custom_css_admin', 'fluid_site_activity_css' );
+	add_action('fluid_custom_css_admin', 'fluid_site_activity_css' );
 
 }
