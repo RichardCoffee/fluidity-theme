@@ -58,12 +58,6 @@ if ( is_admin() ) {
 
 /**  Test functions  **/
 
-#https://codex.wordpress.org/Plugin_API/Filter_Reference/show_admin_bar
-#add_filter( 'show_admin_bar', '__return_false' );
-function my_function_admin_bar($content) {
-	return ( current_user_can( 'administrator' ) ) ? $content : false;
-}
-call_user_func( 'add_filter', 'show_admin_bar' , 'my_function_admin_bar'); # FIXME: hack
 /*
 function themeslug_customize_register( $section_args, $section_id, $sidebar_id ) {
   fluid()->log( $section_args, $section_id, $sidebar_id );

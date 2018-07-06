@@ -178,3 +178,19 @@ if ( ! function_exists( 'fluid_schema_page_check' ) ) {
 		do_action( 'fluid_schema_page_check' );
 	}
 }
+
+/**
+ *  show/hide admin bar on front end
+ *
+ * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/show_admin_bar
+ * @parameter bool $show
+ */
+if ( ! function_exists( 'fluid_show_admin_bar' ) ) {
+	function fluid_show_admin_bar( $show ) {
+		# TODO: add theme_mod setting - plugin territory
+		return ( current_user_can( 'administrator' ) ) ? $show : false;
+	}
+	add_filter( 'show_admin_bar' , 'fluid_show_admin_bar' );
+}
+#add_filter( 'show_admin_bar', '__return_false' );
+
