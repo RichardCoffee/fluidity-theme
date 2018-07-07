@@ -180,6 +180,10 @@
   border-radius: 5px;
 }
 
+li.customize-control-content {
+  margin-top: 1em;
+}
+
 .excerpt-title-wrap {
   display: grid;
 }
