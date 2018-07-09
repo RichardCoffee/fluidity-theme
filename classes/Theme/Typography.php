@@ -133,16 +133,22 @@ fluid()->log($url);
 	public static function typography_styles() {
 		// font family
 		$font = self::mixed_fonts( get_theme_mod( 'font_typography', 'Helvitica Neue' ) );
-		echo "\nbody {\n\tfont-family: $font;\n}\n";
+		echo "\nbody {\n\tfont-family: $font;\n";
 		// font size
 		$size = intval( get_theme_mod( 'font_size', 18 ), 10 );
-		echo "\nbody {\n\tfont-size: {$size}px;\n}\n";
+		echo "\tfont-size: {$size}px;\n}\n";
 		// font family for header
-		$header = self::mixed_fonts( get_theme_mod( 'font_head_typog', 'Open Sans' ) );
-		echo "\nheader#fluid-header {\n\tfont-family: $header;\n}\n";
+		$head = self::mixed_fonts( get_theme_mod( 'font_head_typog', 'Open Sans' ) );
+		echo "\nheader#fluid-header {\n\tfont-family: $head;\n}\n";
+		// widget area
+		$side = self::mixed_fonts( get_theme_mod( 'font_side_typog', 'Open Sans' ) );
+		echo "\ndiv.widget-area {\n\tfont-family: $side;\n}\n";
 		// widget panel title
 		$panel = max( 1, $size - 2 );
 		echo "\npanel-title {\n\tfont-size: {$panel}px;\n}\n";
+		// footer
+		$foot = self::mixed_fonts( get_theme_mod( 'font_foot_typog', 'Open Sans' ) );
+		echo "\ndiv.#fluid-footer {\n\tfont-family: $foot;\n}\n";
 	}
 
 	public static function customizer_controls( $options ) {
@@ -152,15 +158,27 @@ fluid()->log($url);
 			'description' => __( 'Site typography options', 'tcc-fluid' ),
 		);
 		$controls = array(
-			'head_typog' => array(
-				'default' => 'Open Sans',
-				'label'   => __( 'Header Font Type', 'tcc-fluid' ),
+			'typography' => array(
+				'default' => 'Helvitica Neue',
+				'label'   => __( 'Site Main Font', 'tcc-fluid' ),
 				'render'  => 'font',
 				'choices' => TCC_Theme_Typography::mixed_fonts(),
 			),
-			'typography' => array(
-				'default' => 'Helvitica Neue',
-				'label'   => __( 'Content Font Type', 'tcc-fluid' ),
+			'head_typog' => array(
+				'default' => 'Open Sans',
+				'label'   => __( 'Header Font', 'tcc-fluid' ),
+				'render'  => 'font',
+				'choices' => TCC_Theme_Typography::mixed_fonts(),
+			),
+			'side_typog' => array(
+				'default' => 'Open Sans',
+				'label'   => __( 'Sidebar Font', 'tcc-fluid' ),
+				'render'  => 'font',
+				'choices' => TCC_Theme_Typography::mixed_fonts(),
+			),
+			'foot_typog' => array(
+				'default' => 'Open Sans',
+				'label'   => __( 'Footer Font', 'tcc-fluid' ),
 				'render'  => 'font',
 				'choices' => TCC_Theme_Typography::mixed_fonts(),
 			),
