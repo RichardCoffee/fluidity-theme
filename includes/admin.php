@@ -52,9 +52,9 @@ if ( ! function_exists( 'fluid_admin_howdy' ) ) {
 if ( ! function_exists( 'fluid_wp_admin_bar_my_account_profile_url' ) ) {
 	function fluid_wp_admin_bar_my_account_profile_url( $profile_url, WP_User $user ) {
 		if ( current_user_can( 'read' ) ) {
-			$profile_url = get_edit_profile_url( $user->id );
+			$profile_url = get_edit_profile_url( $user->ID );
 		} elseif ( is_multisite() ) {
-			$profile_url = get_dashboard_url( $user->id, 'profile.php' );
+			$profile_url = get_dashboard_url( $user->ID, 'profile.php' );
 		}
 		return $profile_url;
 	}
