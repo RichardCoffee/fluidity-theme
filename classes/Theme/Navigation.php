@@ -52,6 +52,7 @@ add_filter( 'previous_post_link', function() {
 		);
 	}
 
+#	 * @since 20160830
 	protected function navigation() {
 		if ( $this->taxonomy || $this->all_links ) { ?>
 			<div class="article noprint">

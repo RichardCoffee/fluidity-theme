@@ -1,12 +1,14 @@
 <?php
 
-/*
+/**
  *  File:  includes/in-the-loop.php
  *
  *  All functions in this file expect to be run inside the WordPress loop
  *
+ * @since 20160830
  */
 
+# * @since 20160830
 if (!function_exists('fluid_content_slug')) {
   function fluid_content_slug( $page='single' ) {
     $slug = ($format=get_post_format()) ? $format : get_post_type();
@@ -17,6 +19,7 @@ if (!function_exists('fluid_content_slug')) {
   }
 }
 
+# * @since 20160830
 if ( ! function_exists( 'fluid_edit_post_link' ) ) {
 	function fluid_edit_post_link() {
 		$text   = '&nbsp;{ ' . esc_html_x( 'Edit', 'verb', 'tcc-fluid' ) . ' }';
@@ -29,8 +32,7 @@ if ( ! function_exists( 'fluid_edit_post_link' ) ) {
 /**
  * Returns a string intended to be used for the title attribute for post links in excerpts
  *
- * @since 2.3.0
- *
+ * @since 20180328
  * @return string
  */
 if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
@@ -40,6 +42,7 @@ if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
 	}
 }
 
+# * @since 20180328
 if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 	function fluid_edit_post_link_anchor( $anchor, $id, $text ) {
 		$attrs = array(
@@ -55,6 +58,7 @@ if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 	add_filter( 'edit_post_link', 'fluid_edit_post_link_anchor', 10, 3 );
 }
 
+# * @since 20160830
 if (!function_exists('fluid_next_post_exists')) {
   function fluid_next_post_exists() {
     global $wp_query;
@@ -65,6 +69,7 @@ if (!function_exists('fluid_next_post_exists')) {
 /**
  * show the post publish and/or last edit date
  *
+ * @since 20160830
  * @param string $postdate
  * @return bool
  */
@@ -91,6 +96,7 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 	}
 }
 
+# * @since 20180417
 if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
 	function fluid_post_date_sprintf( $format, $postdate, $showboth = false ) {
 		if ( $showboth && ( $postdate === 'original' ) ) {
@@ -101,6 +107,7 @@ if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
 	add_filter( 'fluid_post_date_sprintf', 'fluid_post_date_sprintf', 10, 3 );
 }
 
+# * @since 20161231
 if ( ! function_exists( 'fluid_postmetadata' ) ) {
 	function fluid_postmetadata() { ?>
 		<div class="article margint1e noprint">
@@ -120,6 +127,7 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 	}
 }
 
+# * @since 20161206
 if ( ! function_exists( 'fluid_post_separator' ) ) {
 	function fluid_post_separator( $slug ) {
 		if ( fluid_next_post_exists() ) {
@@ -134,11 +142,12 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 	}
 }
 
+# * @since 20150520
+# * @link http://codex.wordpress.org/Excerpt
+# * @link https://make.wordpress.org/themes/handbook/review/accessibility/required/
+# * @link https://github.com/wpaccessibility/a11ythemepatterns
+# * @link https://make.wordpress.org/accessibility/handbook/best-practices/markup/post-excerpts-for-an-archive-template/
 if ( ! function_exists( 'fluid_read_more_link' ) ) {
-	#	http://codex.wordpress.org/Excerpt
-	#	https://make.wordpress.org/themes/handbook/review/accessibility/required/
-	#	https://github.com/wpaccessibility/a11ythemepatterns
-	#	https://make.wordpress.org/accessibility/handbook/best-practices/markup/post-excerpts-for-an-archive-template/
 	function fluid_read_more_link( $output ) {
 		$attrs = array(
 			'class'       => apply_filters( 'fluid_read_more_css', 'read-more-link' ),
@@ -154,13 +163,14 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 		$link .= wp_strip_all_tags( get_the_title( get_the_ID() ) );
 		$link .= '</span></a>';
 		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
-			$link = ' [' . $link . ']';
+			$link = ' <span style="display: inline-block">[' . $link . ']</span>';
 		}
 		return $link;
 	}
 	add_filter( 'excerpt_more', 'fluid_read_more_link' );
 }
 
+# * @since 20180313
 if ( ! function_exists( 'fluid_show_content_title' ) ) {
 	function fluid_show_content_title() {
 		if ( ! is_page() ) {
@@ -195,6 +205,7 @@ if ( ! function_exists( 'fluid_show_post_dates' ) ) {
 	}
 }
 
+#	 * @since 20160830
 if ( ! function_exists( 'fluid_thumbnail' ) ) {
 	function fluid_thumbnail( $size = null, $class = 'img-responsive' ) {
 		if ( ! is_page() || ( tcc_design( 'paral', 'no' ) == 'no' ) ) {
@@ -210,6 +221,7 @@ if ( ! function_exists( 'fluid_thumbnail' ) ) {
 	add_action( 'fluid_content_header', 'fluid_thumbnail', 20 );
 }
 
+# * @since 20161229
 if ( ! function_exists( 'fluid_title' ) ) {
 	function fluid_title( $length=0 ) {
 		$echo = false; $after = '...'; $before = ''; // FIXME
@@ -230,6 +242,7 @@ if ( ! function_exists( 'fluid_title' ) ) {
 	}
 }
 
+# * @since 20161229
 if (!function_exists('tcc_post_title')) {
 	function tcc_post_title( $max = 0, $anchor = true ) {
 		$anchor = ( is_single() || is_page() ) ? false : $anchor;
@@ -246,6 +259,7 @@ if (!function_exists('tcc_post_title')) {
 	}
 }
 
+# * @since 20180324
 if ( ! function_exists( 'fluid_show_content_footer' ) ) {
 	function fluid_show_content_footer() {
 		if ( is_single() && ! is_page() ) {
@@ -258,6 +272,7 @@ if ( ! function_exists( 'fluid_show_content_footer' ) ) {
 	add_action( 'fluid_content_footer', 'fluid_show_content_footer' );
 }
 
+# * @since 20170120
 if (!function_exists('tcc_show_comments')) {
 	function tcc_show_comments() {
 		if ( comments_open() || get_comments_number() ) {

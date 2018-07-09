@@ -67,7 +67,6 @@
 		fluid_thumbnail()
 		fluid_title( $length = 0 )
 		get_featured_url( $postID = null )
-		get_the_author_posts_link( $authorID = 0 )
 		tcc_excerpt_parallax()
 		tcc_post_parallax( $css = 'single-parallax' )
 		tcc_post_title( $max = 0, $anchor = true )
