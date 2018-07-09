@@ -148,7 +148,7 @@ fluid()->log($url);
 		echo "\npanel-title {\n\tfont-size: {$panel}px;\n}\n";
 		// footer
 		$foot = self::mixed_fonts( get_theme_mod( 'font_foot_typog', 'Open Sans' ) );
-		echo "\ndiv.#fluid-footer {\n\tfont-family: $foot;\n}\n";
+		echo "\ndiv#fluid-footer {\n\tfont-family: $foot;\n}\n";
 	}
 
 	public static function customizer_controls( $options ) {
