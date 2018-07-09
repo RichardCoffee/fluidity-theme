@@ -1,14 +1,20 @@
 <?php
 
-// Only show the front page section when on the front page
-function contextual_static_front_page_section($wp_customize) {
-  $wp_customize->get_section('static_front_page')->active_callback = 'is_front_page';
+// Only show the front page section when on the front page - source?
+function contextual_static_front_page_section( $wp_customize ) {
+	$wp_customize->get_section( 'static_front_page' )->active_callback = 'is_front_page';
 }
 add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 
-##  simple query template
-if (!function_exists('fluidity_show_query')) {
-	function fluidity_show_query( array $args, $template, $slug='' ) {
+/**
+ *  simple query template
+ *
+ * @param array $args list of arguements for the query
+ * @param string $template passed as first get_template_part() parameter
+ * @param string $slug passed as second get_template_part() parameter
+ */
+if ( ! function_exists( 'fluidity_show_query' ) ) {
+	function fluidity_show_query( array $args, $template, $slug = '' ) {
 		$query = new WP_Query( $args );
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
@@ -20,29 +26,32 @@ if (!function_exists('fluidity_show_query')) {
 	}
 }
 
-if (!function_exists('fluidity_social_icons')) {
-  function fluidity_social_icons() {
-    $icons = get_option('tcc_options_social');
-    if ($icons['active']==='yes') {
-      if (has_action('fluidity_social_icons')) {
-        do_action('fluidity_social_icons');
-      } else {
-        $size   = (isset($icons['size']))   ? $icons['size']   : '';
-        $target = (isset($icons['target'])) ? $icons['target'] : 'target';
-        unset($icons['active'],$icons['target'],$icons['size']);
-        $social = array(); // FIXME: find another way to do this
-        foreach($icons as $field=>$value) {
-          $pos = strpos($field,'_color');
-          if ($pos) {
-            $split = explode('_',$field);
-            $social[$split[0]]['color'] = $value;
-          } else {
-            $social[$field]['link'] = $value;
-          }
-        }
-        $insta  = new TCC_Options_Social;
-        $layout = $insta->options_layout();
-        #fluid()->log($icons,$social,$layout); ?>
+/**
+ *  show default theme social icons
+ *
+ */
+if ( ! function_exists( 'fluidity_social_icons' ) ) {
+	function fluidity_social_icons() {
+		$icons = get_option( 'tcc_options_social' );
+		if ( $icons['active'] === 'yes' ) {
+			if ( has_action( 'fluidity_social_icons' ) ) {
+				do_action( 'fluidity_social_icons' );
+			} else {
+				$size   = ( isset( $icons['size'] ) )   ? $icons['size']   : '';
+				$target = ( isset( $icons['target'] ) ) ? $icons['target'] : 'target';
+				unset( $icons['active'], $icons['target'], $icons['size'] );
+				$social = array(); // FIXME: find another way to do this
+				foreach( $icons as $field => $value ) {
+					$pos = strpos( $field, '_color' );
+					if ( $pos ) {
+						$split = explode( '_', $field );
+						$social[ $split[0] ]['color'] = $value;
+					} else {
+						$social[ $field ]['link'] = $value;
+					}
+				}
+				$insta  = new TCC_Options_Social;
+				$layout = $insta->options_layout(); ?>
 				<span class='fluidity-social-icons'><?php
 					$library = fluid();
 					foreach( $social as $key => $set ) {
@@ -56,15 +65,21 @@ if (!function_exists('fluidity_social_icons')) {
 							'style' => "color:{$set['color']};",
 							'title' => ( $key === 'rss' ) ? esc_html__( 'Subscribe to our RSS feed', 'tcc-fluid' ) : $tool, // TODO: option to change this text
 							'target'=> ( $target === 'target' ) ? "fluidity_$key" : "_blank",
-							); ?>
-						<a <?php $library->apply_attrs( $attr ); ?>> </a>
-					<?php } ?>
+						);
+						fluid()->element( 'a', $attr, ' ' );
+					} ?>
 				</span><?php
 			}
 		}
 	} //*/
 }
 
+/**
+ *  add monthly to wp cron schedules
+ *
+ * @param array $schedules
+ * @return array
+ */
 if ( ! function_exists( 'fluid_survey_cron_schedules' ) ) {
 	function fluid_survey_cron_schedules( $schedules = array() ) {
 		if ( ! isset( $schedules['monthly'] ) ) {
@@ -85,14 +100,26 @@ WHERE a.post_type = 'revision'
 
 } //*/
 
-if (!function_exists('has_page')) {
+/**
+ *  helper function - alias
+ *
+ * @param string $title
+ * @return string
+ */
+if ( ! function_exists( 'has_page' ) ) {
 	function has_page( $title ) {
 		return page_exists( $title );
 	}
 }
 
+/**
+ *  check to see if a page exists
+ *
+ * @link http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
+ * @link string $title
+ * @return bool
+ */
 if ( ! function_exists( 'page_exists' ) ) {
-	#	http://www.tammyhartdesigns.com/tutorials/wordpress-how-to-determine-if-a-certain-page-exists
 	function page_exists( $title ) {
 		$pages = get_pages();
 		$search = sanitize_title( $title );
@@ -105,8 +132,12 @@ if ( ! function_exists( 'page_exists' ) ) {
 	}
 }
 
+/**
+ *  redirect search page to post page if one result was returned by the search
+ *
+ * @link http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
+ */
 if ( ! function_exists( 'single_search_result' ) ) {
-	#	 http://www.hongkiat.com/blog/wordpress-tweaks-for-post-management/
 	function single_search_result() {
 		global $wp_query;
 		if ( is_search() || is_archive() ) {
@@ -118,8 +149,14 @@ if ( ! function_exists( 'single_search_result' ) ) {
 	add_action( 'template_redirect', 'single_search_result' );
 }
 
+/**
+ *  creates an array that contains information about an image
+ *
+ * @link http://stackoverflow.com/questions/25974196/how-to-get-wp-gallery-image-captions
+ * @parameter numeric $attachment_id
+ * @return array
+ */
 if ( ! function_exists( 'wp_get_attachment' ) ) {
-	#	http://stackoverflow.com/questions/25974196/how-to-get-wp-gallery-image-captions
 	function wp_get_attachment( $attachment_id ) {
 		$attachment = get_post( $attachment_id );
 		$metadata   = get_post_meta( $attachment_id );
@@ -137,6 +174,13 @@ if ( ! function_exists( 'wp_get_attachment' ) ) {
 	}
 }
 
+/**
+ *  returns an array of image sizes available
+ *
+ * @param array $data
+ * @param string $stem
+ * @return array
+ */
 if ( ! function_exists( 'attachment_sizes' ) ) {
 	function attachment_sizes( $data, $stem ) {
 		$sizes = array();
@@ -147,8 +191,14 @@ if ( ! function_exists( 'attachment_sizes' ) ) {
 	}
 }
 
+/**
+ *  generates a string slug for a post or page - possible duplicate
+ *
+ * @link http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
+ * @param numeric $id
+ * @return string
+ */
 if ( ! function_exists( 'get_the_slug' ) ) {
-	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
 	function get_the_slug( $id = null ) {
 		if ( empty( $id ) ) {
 			global $post;
@@ -160,13 +210,25 @@ if ( ! function_exists( 'get_the_slug' ) ) {
 	}
 }
 
+/**
+ *  displays the post/page slug
+ *
+ * @link http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
+ * @param numeric $id
+ * @return string
+ */
 if ( ! function_exists( 'the_slug' ) ) {
-	#	http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
 	function the_slug( $id = null ) {
 		e_esc_html( apply_filters( 'the_slug', get_the_slug( $id ) ) );
 	}
 }
 
+/**
+ *  returns the stem for a url
+ *
+ * @param string $url
+ * @return string
+ */
 if ( ! function_exists( 'url_stem' ) ) {
 	function url_stem( $url ) {
 		$pos  = strrpos( $url, '/' );
@@ -175,9 +237,16 @@ if ( ! function_exists( 'url_stem' ) ) {
 	}
 }
 
+/**
+ *  generates a holiday greeting
+ *
+ * @link http://stackoverflow.com/questions/14907561/how-to-get-date-for-holidays-using-php
+ * @param string $default
+ * @return string
+ */
 if (!function_exists('tcc_holiday_greeting')) {
-	function tcc_holiday_greeting() {
-		#	http://stackoverflow.com/questions/14907561/how-to-get-date-for-holidays-using-php
+	function tcc_holiday_greeting( $default = '' ) {
+		$default = ( (bool) $default ) ? $default : __( 'Welcome', 'tcc-fluid' );
 		$year = date('Y');
 		$MLK  = date( 'm-d', strtotime( "january $year third monday" ) ); //marthin luthor king day
 		$PD   = date( 'm-d', strtotime( "february $year third monday" ) ); //presidents day
@@ -225,7 +294,7 @@ if (!function_exists('tcc_holiday_greeting')) {
 				$message = __( 'Merry Christmas', 'tcc-fluid' );
 				break;
 			default:
-				$message = ( get_current_user_id() === 1 ) ? __( 'Your Royal Highness', 'tcc-fluid' ) : __( 'Welcome', 'tcc-fluid' );
+				$message = ( get_current_user_id() === 1 ) ? __( 'Your Royal Highness', 'tcc-fluid' ) : $default;
 		}
 		return $message;
 	}
