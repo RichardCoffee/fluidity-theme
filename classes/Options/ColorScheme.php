@@ -2,6 +2,10 @@
 
 class TCC_Options_ColorScheme {
 
+	public function __construct() {
+		add_filter( 'fluid_support_custom_background', [ $this, 'custom_background' ] );
+	}
+
 	public function color_scheme_controls( $options ) {
 		$controls = array(
 			'scheme' => array(
@@ -42,6 +46,16 @@ class TCC_Options_ColorScheme {
 			}
 		}
 		return $colors; // apply_filters( 'fluid_available_color_schemes', $colors );
+	}
+
+	public function custom_background( $settings ) {
+		$scheme = 'color_scheme_' . fluid_color_scheme();
+		$image  = get_theme_mod( $scheme, '' );
+		if ( (bool) $image ) {
+fluid()->log( $image );
+#			$settings['default-image'] = $image;
+		}
+		return $settings;
 	}
 
 

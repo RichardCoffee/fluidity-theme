@@ -330,9 +330,9 @@ class TCC_Theme_Customizer {
 					return is_single();
 				},
 				'add_partial' => array(
-					'id' => 'content_postdate',
+					'id'   => 'content_postdate',
 					'args' => array(
-						'selector' => '#fluid_content_post_dates',
+						'selector'        => '#fluid_content_post_dates',
 						'render_callback' => function() {
 							fluid_show_post_dates();
 						},
