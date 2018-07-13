@@ -29,7 +29,11 @@ class TCC_Form_Control_Customizer {
 		}
 		$render = $this->control['render'];
 		$args   = $this->control_settings();
-		$this->$render( $args );
+		if ( method_exists( $this, $render ) ) {
+			$this->$render( $args );
+		} else {
+			$this->add_control( $args );
+		}
 		if ( isset( $this->control['add_partial'] ) ) {
 			$this->add_partial();
 		}
@@ -79,13 +83,6 @@ class TCC_Form_Control_Customizer {
 
 	/***   Render   ***/
 
-#	 * @since 20180713
-	protected function checkbox( $args ) {
-fluid(1)->log($args);
-		$args['type'] = 'checkbox';
-		$this->add_control( $args );
-	}
-
 	protected function content( $args ) {
 		$obj  = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
@@ -99,15 +96,8 @@ fluid(1)->log($args);
 
 	protected function htmlradio( $args ) {
 		$args['type'] = 'radio';
-		$obj  = new TCC_Form_Control_HTMLRadio( $this->customize, $this->setting_id, $args );
+		$obj = new TCC_Form_Control_HTMLRadio( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
-	}
-
-	protected function radio( $args ) {
-fluid(1)->log($args);
-		$args['choices'] = $this->control['choices'];
-		$args['type'] = 'radio';
-		$this->add_control( $args );
 	}
 
 	protected function spinner( $args ) {

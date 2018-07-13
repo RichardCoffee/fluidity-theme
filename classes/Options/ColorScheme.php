@@ -6,6 +6,7 @@ class TCC_Options_ColorScheme {
 	public function __construct() {
 		add_filter( 'fluid_support_custom_background',          [ $this, 'fluid_support_custom_background' ] );
 		add_filter( 'theme_mod_background_image_scheme_custom', [ $this, 'theme_mod_background_image_scheme_custom' ] );
+		add_filter( 'pre_set_theme_mod_background_image_scheme_custom', [ $this, 'pre_set_theme_mod_background_image_scheme_custom' ], 10, 2 );
 	}
 
 
@@ -78,6 +79,12 @@ class TCC_Options_ColorScheme {
 		if ( is_customize_preview() ) {
 fluid()->log( $value );
 		}
+		return $value;
+	}
+
+#	 * @since 20180713
+	public function pre_set_theme_mod_background_image_scheme_custom( $value, $old_value ) {
+fluid()->log( $_POST );
 		return $value;
 	}
 
