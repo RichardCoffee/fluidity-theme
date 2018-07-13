@@ -151,6 +151,7 @@ class TCC_Theme_Customizer {
 		$options = $this->widget_collapse( $options );
 		$options = $this->content_controls( $options );
 		$options = fluid_color()->color_scheme_controls( $options );
+		$options = fluid_color()->custom_background_controls( $options );
 		return $options;
 	}
 

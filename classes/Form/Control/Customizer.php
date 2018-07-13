@@ -79,6 +79,13 @@ class TCC_Form_Control_Customizer {
 
 	/***   Render   ***/
 
+#	 * @since 20180713
+	protected function checkbox( $args ) {
+fluid(1)->log($args);
+		$args['type'] = 'checkbox';
+		$this->add_control( $args );
+	}
+
 	protected function content( $args ) {
 		$obj  = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
@@ -97,6 +104,7 @@ class TCC_Form_Control_Customizer {
 	}
 
 	protected function radio( $args ) {
+fluid(1)->log($args);
 		$args['choices'] = $this->control['choices'];
 		$args['type'] = 'radio';
 		$this->add_control( $args );
