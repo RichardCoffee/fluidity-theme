@@ -63,11 +63,14 @@ class TCC_Options_ColorScheme {
 		$options['background_image'] = array(
 			'section'  => null,
 			'controls' => array(
+				'scheme_text' => array(
+					'label'  => __( 'Color Scheme', 'tcc-fluid' ),
+					'render' => 'title',
+				),
 				'scheme_custom' => array(
-					'default'     => false,
-					'label'       => __( 'Color Scheme', 'tcc-fluid' ),
-					'description' => $description,
-					'render'      => 'checkbox',
+					'default' => false,
+					'label'   => $description,
+					'render'  => 'checkbox',
 				),
 			),
 		);
