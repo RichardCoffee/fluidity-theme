@@ -64,14 +64,16 @@ class TCC_Options_ColorScheme {
 			'section'  => null,
 			'controls' => array(
 				'scheme_text' => array(
-					'label'  => __( 'Color Scheme', 'tcc-fluid' ),
-					'render' => 'content',
+					'label'       => __( 'Color Scheme', 'tcc-fluid' ),
+					'description' => '',
+					'render'      => 'content',
 					'sanitize_callback' => '__return_true',
 				),
 				'scheme_custom' => array(
-					'default' => false,
-					'label'   => $description,
-					'render'  => 'checkbox',
+					'default'     => false,
+					'label'       => $description,
+					'description' => '',
+					'render'      => 'checkbox',
 				),
 			),
 		);
