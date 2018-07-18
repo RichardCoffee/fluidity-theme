@@ -84,6 +84,7 @@ class TCC_Form_Control_Customizer {
 	/***   Render   ***/
 
 	protected function checkbox( $args ) {
+		$args['title'] = $this->control['title'];
 		$obj = new TCC_Form_Control_Checkbox( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
