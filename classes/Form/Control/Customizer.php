@@ -83,8 +83,13 @@ class TCC_Form_Control_Customizer {
 
 	/***   Render   ***/
 
+	protected function checkbox( $args ) {
+		$obj = new TCC_Form_Control_Checkbox( $this->customize, $this->setting_id, $args );
+		$this->add_object_control( $obj );
+	}
+
 	protected function content( $args ) {
-		$obj  = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
+		$obj = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
 
