@@ -58,20 +58,13 @@ class TCC_Options_ColorScheme {
 
 #	 * @since 20180713
 	public function custom_background_controls( $options ) {
-		$scheme = fluid_color_scheme();
-		$description = sprintf( __( 'Assign this background image to current scheme: %s', 'tcc-fluid' ), $scheme );
 		$options['background_image'] = array(
 			'section'  => null,
 			'controls' => array(
-				'scheme_text' => array(
-					'label'       => __( 'Color Scheme', 'tcc-fluid' ),
-					'description' => '',
-					'render'      => 'content',
-					'sanitize_callback' => '__return_true',
-				),
 				'scheme_custom' => array(
 					'default'     => false,
-					'label'       => $description,
+					'title'       => __( 'Color Scheme Image', 'tcc-fluid' ),
+					'label'       => sprintf( __( 'Assign this background image to current scheme: %s', 'tcc-fluid' ), fluid_color_scheme() ),
 					'description' => '',
 					'render'      => 'checkbox',
 				),
