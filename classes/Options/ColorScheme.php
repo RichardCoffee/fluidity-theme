@@ -65,7 +65,8 @@ class TCC_Options_ColorScheme {
 			'controls' => array(
 				'scheme_text' => array(
 					'label'  => __( 'Color Scheme', 'tcc-fluid' ),
-					'render' => 'title',
+					'render' => 'content',
+					'sanitize_callback' => '__return_true',
 				),
 				'scheme_custom' => array(
 					'default' => false,

@@ -4,7 +4,7 @@
  *
  * @package    Customizer_Library
  * @author     Devin Price
-	@link       https://github.com/devinsays/customizer-library
+ * @link       https://github.com/devinsays/customizer-library
  */
 
 if ( ! class_exists( 'WP_Customize_Control' ) ) {
@@ -21,7 +21,7 @@ class TCC_Form_Control_Content extends TCC_Form_Control_Control {
 	/**
 	 * Render the control's content.
 	 *
-	 * Allows the content to be overriden without having to rewrite the wrapper.
+	 * Allows the content to be overridden without having to rewrite the wrapper.
 	 *
 	 * @since   1.0.0
 	 * @return  void
