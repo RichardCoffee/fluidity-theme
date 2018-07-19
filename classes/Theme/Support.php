@@ -10,6 +10,7 @@
 /**
  * Sets up the wordpress theme support
  *
+ * @since 20170508
  * @link https://github.com/RichardCoffee/fluidity-theme/wiki/Theme-Support
  */
 class TCC_Theme_Support {
@@ -46,6 +47,7 @@ class TCC_Theme_Support {
 	/**
 	 * run all methods needed for theme feature support
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Theme_Features
 	 */
 	public function load_theme_support() {
@@ -75,6 +77,7 @@ class TCC_Theme_Support {
 	/**
 	 * adds RSS feed links to HTML <head>
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Automatic_Feed_Links
 	 */
 	protected function automatic_feed_links() {
@@ -84,6 +87,7 @@ class TCC_Theme_Support {
 	/**
 	 * set content_width global
 	 *
+	 * @since 20180401
 	 * @link https://codex.wordpress.org/Content_Width
 	 */
 	protected function content_width() {
@@ -94,6 +98,7 @@ class TCC_Theme_Support {
 	/**
 	 * set defaults for custom background feature
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Custom_Backgrounds
 	 */
 	protected function custom_background() {
@@ -111,7 +116,7 @@ class TCC_Theme_Support {
 			'admin-preview-callback' => '',
 		);
 		$background = apply_filters( $this->filter_prefix . '_support_custom_background', $background );
-		if ( $background ) {
+		if ( (bool) $background ) {
 			add_theme_support( 'custom-background', $background );
 		}
 	}
@@ -119,6 +124,7 @@ class TCC_Theme_Support {
 	/**
 	 * set defaults for custom header
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Custom_Headers
 	 * @link https://codex.wordpress.org/Function_Reference/register_default_headers
 	 */
@@ -140,7 +146,7 @@ class TCC_Theme_Support {
 			'video-active-callback'  => 'is_front_page',
 		);
 		$header = apply_filters( $this->filter_prefix . '_support_custom_header', $header );
-		if ( $header ) {
+		if ( (bool) $header ) {
 			add_theme_support( 'custom-header', $header );
 		}
 	}
@@ -148,6 +154,7 @@ class TCC_Theme_Support {
 	/**
 	 * set defaults for custom logo
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Theme_Logo
 	 */
 	protected function custom_logo() {
@@ -159,10 +166,17 @@ class TCC_Theme_Support {
 			'header-text' => '', // array( 'site-title', 'site-description' ),
 		);
 		$logo = apply_filters( $this->filter_prefix . '_support_custom_logo', $logo );
-		if ( $logo )
-		add_theme_support( 'custom-logo', $logo );
+		if ( (bool) $logo ) {
+			add_theme_support( 'custom-logo', $logo );
+		}
 	}
 
+	/**
+	 *  Adds support for partial refreshes for widgets
+	 *
+	 * @since 20180324
+	 * @link https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
+	 */
 	protected function customize_selective_refresh_widgets() {
 		add_theme_support( 'customize-selective-refresh-widgets' );
 	}
@@ -170,6 +184,7 @@ class TCC_Theme_Support {
 	/**
 	 * load editor stylesheet
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Editor_Style
 	 */
 	protected function editor_style() {
@@ -184,6 +199,7 @@ class TCC_Theme_Support {
 	/**
 	 * sets where html5 markup will be used
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Theme_Markup
 	 */
 	protected function html5() {
@@ -195,7 +211,7 @@ class TCC_Theme_Support {
 			'search-form',
 		);
 		$html5 = apply_filters( $this->filter_prefix . '_support_html5', $html5 );
-		if ( $html5 ) {
+		if ( (bool) $html5 ) {
 			add_theme_support( 'html5', $html5 );
 		}
 	}
@@ -203,6 +219,7 @@ class TCC_Theme_Support {
 	/**
 	 * set the usable post formats
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Post_Formats
 	 */
 	protected function post_formats() {
@@ -218,7 +235,7 @@ class TCC_Theme_Support {
 			'video',
 		);
 		$formats = apply_filters( $this->filter_prefix . '_support_post_formats', $formats );
-		if ( $formats ) {
+		if ( (bool) $formats ) {
 			add_theme_support( 'post-formats', $formats );
 			add_filter( $this->filter_prefix . '_theme_post_type_support', function( $supports ) {
 				$supports[] = 'post-formats';
@@ -230,6 +247,7 @@ class TCC_Theme_Support {
 	/**
 	 * set post type support
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Function_Reference/add_post_type_support
 	 */
 	public function post_type_support() {
@@ -244,10 +262,10 @@ class TCC_Theme_Support {
 			'revisions',
 		);
 		$supports = apply_filters( $this->filter_prefix . '_theme_post_type_support', $supports );
-		if ( $supports ) {
+		if ( (bool) $supports ) {
 			# post type: post
 			$posts = apply_filters( $this->filter_prefix . '_theme_post_type_support_posts', $supports );
-			if ( $posts ) {
+			if ( (bool) $posts ) {
 				add_post_type_support( 'post', $posts );
 			}
 			# post type: page
@@ -255,7 +273,7 @@ class TCC_Theme_Support {
 				$supports[] = 'page-attributes';
 			}
 			$pages = apply_filters( $this->filter_prefix . '_theme_post_type_support_pages', $supports );
-			if ( $pages ) {
+			if ( (bool) $pages ) {
 				add_post_type_support( 'page', $pages );
 			}
 		}
@@ -264,6 +282,7 @@ class TCC_Theme_Support {
 	/**
 	 * adds basic post thumbnail support
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Post_Thumbnails
 	 */
 	protected function post_thumbnails() {
@@ -278,32 +297,35 @@ class TCC_Theme_Support {
 	/**
 	 * tell wp which directories not to scan
 	 *
+	 * @since 20180324
 	 * @link https://developer.wordpress.org/reference/hooks/theme_scandir_exclusions/
 	 */
 	public function theme_scandir_exclusions( $exclusions ) {
-		$exclusions = array_merge( $exclusions, array(
+		$standard = array(
 			'docs',
 			'fonts',
 			'icons',
 			'languages',
 			'scss',
-		) );
+		);
 		# add these exclusions when WP is checking for page templates
+		$not_templates = array();
 		if ( was_called_by( 'get_post_templates' ) ) {
-			$exclusions = array_merge( $exclusions, array(
+			$not_templates = array(
 				'classes',
 				'css',
 				'includes',
 				'js',
 				'template-parts',
-			) );
+			);
 		}
-		return $exclusions;
+		return apply_filters( $this->filter_prefix . '_theme_scandir_exclusions', array_merge( $exclusions, $standard, $not_templates ), $exclusions );
 	}
 
 	/**
 	 * add document title tag to HTML <head>
 	 *
+	 * @since 20170508
 	 * @link https://codex.wordpress.org/Title_Tag
 	 */
 	protected function title_tag() {
@@ -313,6 +335,14 @@ class TCC_Theme_Support {
 
 }
 
+/**
+ *  used by theme_scandir_exclusions method
+ *
+ * @since 20180324
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Trait/Logging.php
+ * @param string $func
+ * @return boolean
+ */
 if ( ! function_exists( 'was_called_by' ) ) {
 	function was_called_by( $func ) {
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
