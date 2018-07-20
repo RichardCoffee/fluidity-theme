@@ -18,16 +18,16 @@ class TCC_AutoComplete {
 		if ( ! is_admin() ) {
 			wp_enqueue_style( 'fluid-autocomplete-css', get_theme_file_uri( 'css/ui-autocomplete.css' ), null, FLUIDITY_VERSION );
 		}
-		wp_register_script( 'fluid-autocomplete-js', get_theme_file_uri( 'js/autocomplete.js' ), array( 'jquery-ui-autocomplete' ), FLUIDITY_VERSION, true );
-		add_action( 'get_search_form',               array( __CLASS__, 'get_search_form' ) );
-		add_action( 'wp_ajax_' . self::$action,      array( __CLASS__, 'autocomplete_suggestions' ) );
-		add_action( 'wp_ajax_nopriv_'.self::$action, array( __CLASS__, 'autocomplete_suggestions' ) );
+		wp_register_script( 'fluid-autocomplete-js', get_theme_file_uri( 'js/autocomplete.js' ), [ 'jquery-ui-autocomplete' ], FLUIDITY_VERSION, true );
+		add_action( 'get_search_form',                 [ __CLASS__, 'get_search_form' ] );
+		add_action( 'wp_ajax_' . static::$action,      [ __CLASS__, 'autocomplete_suggestions' ] );
+		add_action( 'wp_ajax_nopriv_'.static::$action, [ __CLASS__, 'autocomplete_suggestions' ] );
 	}
 
 	static function get_search_form( $form ) {
 		$args = array(
 			'url'    => admin_url( 'admin-ajax.php' ),
-			'action' => self::$action
+			'action' => static::$action
 		);
 		wp_localize_script( 'fluid-autocomplete-js', 'FluidAutocomplete', $args );
 		wp_enqueue_script( 'fluid-autocomplete-js' );
@@ -44,7 +44,10 @@ class TCC_AutoComplete {
 		if ( $posts->have_posts() ) {
 			while ( $posts->have_posts() ) {
 				$posts->the_post();
-				$suggestions[] = array( 'label' => get_the_title(), 'link' => get_permalink() );
+				$suggestions[] = array(
+					'label' => get_the_title(),
+					'link'  => get_permalink()
+				);
 			}
 		}
 

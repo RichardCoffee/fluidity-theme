@@ -5,7 +5,6 @@ class TCC_Widget_Widget extends WP_Widget {
 	protected $title = '';
 	protected $desc  = '';
 	protected $slug  = '';
-	protected static $micro = null;
 
 	use TCC_Trait_Attributes;
 
@@ -15,9 +14,6 @@ class TCC_Widget_Widget extends WP_Widget {
 			'customize_selective_refresh' => true,
 		);
 		parent::__construct( $this->slug, $this->title, $args );
-		if ( ! self::$micro && class_exists( 'TCC_Microdata' ) ) {
-			self::$micro = microdata();
-		}
 		# https://developer.wordpress.org/themes/customize-api/tools-for-improved-user-experience/
 		# https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
 		if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {

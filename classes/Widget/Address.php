@@ -5,34 +5,38 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 	private $address;
 
 	public function __construct() {
-		#$this->title = get_bloginfo('name');
-		$this->title = esc_html__('Address','tcc-fluid');
-		$this->desc  = esc_html__('Fluidity address widget','tcc-fluid');
+		$this->title = esc_html__( 'Address', 'tcc-fluid' );
+		$this->desc  = esc_html__( 'Fluidity address widget', 'tcc-fluid' );
 		$this->slug  = 'tcc_address';
-		$this->address = array('tcc-street' => __('Street Address','tcc-fluid'),
-		                       'tcc-local'  => __('City','tcc-fluid'),
-		                       'tcc-region' => __('State','tcc-fluid'),
-		                       'tcc-code'   => __('Zipcode','tcc-fluid'),
-		                       'tcc-phone'  => __('Contact Number','tcc-fluid'),
-		                       'tcc-email'  => __('Email Address','tcc-fluid'),
-		       );
+		$this->address = array(
+			'tcc-street' => __( 'Street Address', 'tcc-fluid' ),
+			'tcc-local'  => __( 'City', 'tcc-fluid' ),
+			'tcc-region' => __( 'State', 'tcc-fluid' ),
+			'tcc-code'   => __( 'Zipcode', 'tcc-fluid' ),
+			'tcc-phone'  => __( 'Contact Number', 'tcc-fluid' ),
+			'tcc-email'  => __( 'Email Address', 'tcc-fluid' ),
+		);
 		parent::__construct();
 	}
 
 	public function inner_widget( $args, $instance ) { ?>
-		<div class="widget-address" <?php self::$micro->Organization(); ?>>
-			<h2 itemprop="name"><?php bloginfo('name'); ?></h2>
-			<address <?php self::$micro->PostalAddress(); ?>><?php
+		<div class="widget-address" <?php microdata()->Organization(); ?>>
+			<h2 itemprop="name"><?php
+				bloginfo('name'); ?>
+			</h2>
+			<address <?php microdata()->PostalAddress(); ?>><?php
 				if ( ! empty( $instance['tcc-street'] ) ) {
-					echo wp_kses( self::$micro->street( $instance['tcc-street'] ), fluid()->kses() );
+					echo wp_kses( microdata()->street( $instance['tcc-street'] ), fluid()->kses() );
 				} ?>
 				<span class="comma-after" itemprop="addressLocality">
 					<?php echo esc_html( $instance['tcc-local'] ); ?>
-				</span> <span itemprop="addressRegion">
-					<?php echo esc_html( $instance['tcc-region'] );
+				</span>&nbsp;
+				<span itemprop="addressRegion"><?php
+					echo esc_html( $instance['tcc-region'] );
 					if ( ! empty( $instance['tcc-code'] ) ) { ?>
-						</span> <span itemprop="postalCode">
-						<?php echo esc_html( $instance['tcc-code'] );
+						</span>&nbsp;
+						<span itemprop="postalCode"><?php
+							echo esc_html( $instance['tcc-code'] );
 					} ?>
 				</span><br><?php
 				if ( ! empty( $instance['tcc-phone'] ) ) {
@@ -42,11 +46,10 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 				}
 				if ( ! empty( $instance['tcc-email'] ) ) {
 					esc_html_e( 'Email: ', 'tcc-fluid' );
-					echo wp_kses( self::$micro->email_format( $instance['tcc-email'] ), fluid()->kses() );
-				} /*
- ?>
-				<a href="mailto:<?php echo esc_html( $instance['tcc-email'] ); ?>">
-					<?php echo esc_html( $instance['tcc-email'] );?>
+					echo wp_kses( microdata()->email_format( $instance['tcc-email'] ), fluid()->kses() );
+				} /* ?>
+				<a href="mailto:<?php echo esc_html( $instance['tcc-email'] ); ?>"><?php
+					echo esc_html( $instance['tcc-email'] );?>
 				</a>*/ ?>
 			</address>
 			<br>
@@ -60,14 +63,18 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 		</div><?php
 	}
 
-	public function form($instance) {
-		if (empty($instance['tcc-email'])) { $instance['tcc-email'] = get_option('admin_email'); }
-		parent::form($instance);
-		echo "<p>Caution:  We advise that you think very carefully about putting your address out on the internet.</p>";
-		foreach($this->address as $slug=>$text) {
-			$this->form_field($instance, $slug, $text);
+	public function form( $instance ) {
+		if ( empty( $instance['tcc-email'] ) ) {
+			$instance['tcc-email'] = get_option( 'admin_email' );
 		}
-		$this->form_checkbox($instance,'tcc-map',__('Display Google map','tcc-fluid'));
+		parent::form( $instance ); ?>
+		<p><?php
+			esc_html_e( 'Caution:  We advise that you think very carefully about putting your address out on the internet.', 'tcc-fluid' ); ?>
+		</p><?php
+		foreach( $this->address as $slug => $text ) {
+			$this->form_field( $instance, $slug, $text );
+		}
+		$this->form_checkbox( $instance, 'tcc-map', __( 'Display Google map', 'tcc-fluid' ) );
 	}
 
 	public function update( $new, $old ) {

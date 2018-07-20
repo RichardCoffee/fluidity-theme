@@ -15,14 +15,9 @@ class TCC_Form_Control_Customizer {
 	protected $section_id;
 	protected $setting_id;
 
-	protected static $theme; // TCC_Theme_Customizer
-
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args ) {
-		if ( empty( self::$theme ) ) {
-			self::$theme = fluid_customizer();
-		}
 		$this->parse_args( $args );
 		if ( isset( $this->control['showhide'] ) ) {
 			add_filter( 'fluid_customize_controls_localization', array( $this, 'fluid_customize_controls_localization' ) );
