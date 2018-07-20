@@ -60,7 +60,7 @@ if ( has_nav_menu( $menu ) ) {
 					'fallback_cb'    => 'TCC_NavWalker_Bootstrap::fallback'
 				) ); ?>
 				<span class="pull-right margint1e">
-					<?php echo fluid_color_scheme(); ?>
+					<?php echo fluid_color(); ?>
 				</span>
 			</div>
 
@@ -84,7 +84,7 @@ if ( has_nav_menu( $menu ) ) {
 			); ?>
 
 			<span class="pull-right margint1e">
-				<?php echo fluid_color_scheme(); ?>
+				<?php echo fluid_color(); ?>
 			</span>
 
 		</nav><!-- #site-navigation --><?php

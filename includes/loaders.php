@@ -68,17 +68,17 @@ if ( ! function_exists( 'fluid_comment' ) ) {
 }
 
 /**
- * Returns an instance of TCC_Options_ColorScheme
+ * Returns an instance of TCC_Theme_ColorScheme
  *
  * @since 20180430
- * @staticvar TCC_Options_ColorScheme $library
- * @return TCC_Options_ColorScheme
+ * @staticvar TCC_Theme_ColorScheme $library
+ * @return TCC_Theme_ColorScheme
  */
 if ( ! function_exists( 'fluid_color' ) ) {
 	function fluid_color() {
 		static $library;
 		if ( empty( $library ) ) {
-			$library = new TCC_Options_ColorScheme;
+			$library = new TCC_Theme_ColorScheme;
 		}
 		return $library;
 	}

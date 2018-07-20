@@ -24,7 +24,7 @@ class TCC_Theme_Customizer {
 		wp_enqueue_style(  'fluid-customizer.css', get_theme_file_uri( 'css/customizer.css' ), null, FLUIDITY_VERSION);
 		wp_enqueue_script( 'fluid-customizer.js',  get_theme_file_uri( 'js/customizer.js' ), [ 'customize-preview', 'customize-selective-refresh' ], FLUIDITY_VERSION, true);
 		$options = apply_filters( 'fluid_customize_controls_localization', [ ] );
-		if ( $options ) {
+		if ( (bool) $options ) {
 			wp_localize_script( 'fluid-customizer.js', 'fluid_customize', $options );
 		}
 	}
@@ -150,8 +150,6 @@ class TCC_Theme_Customizer {
 		$options = $this->theme_sidebar( $options );
 		$options = $this->widget_collapse( $options );
 		$options = $this->content_controls( $options );
-		$options = fluid_color()->color_scheme_controls( $options );
-		$options = fluid_color()->custom_background_controls( $options );
 		return $options;
 	}
 

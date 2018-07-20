@@ -37,7 +37,8 @@ fluidity_check_update();
 require_once( 'classes/autocomplete.php' );
 fluid_register_sidebars(); # TCC_Register_Sidebars
 fluid_theme_support();     # TCC_Theme_Support
-fluid_login();             # TCC_Theme_Login class
+fluid_login();             # TCC_Theme_Login
+fluid_color();             # TCC_Theme_ColorScheme
 fluid_customizer();        # TCC_Theme_Customizer
 new TCC_Options_Survey;    # check about sending plugin list for survey
 
@@ -78,7 +79,7 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 ); //*/
 
 /*add_action( 'wp_loaded', function () {
-	$color   = new TCC_Options_ColorScheme;
+	$color   = fluid_color();
 	$schemes = $color->get_available_color_schemes( array( 'none' => __( 'Do not use internal color scheme', 'tcc-fluid' ) ) );
 	fluid()->log( $schemes );
 } ); //*/
