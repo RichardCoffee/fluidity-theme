@@ -62,6 +62,7 @@ class TCC_Theme_Support {
 			'html5',
 			'post_formats',
 			'post_thumbnails',
+			'starter_content',
 			'title_tag',
 		);
 		$funcs = apply_filters( $this->filter_prefix . '_load_theme_support', $funcs );
@@ -292,6 +293,20 @@ class TCC_Theme_Support {
 			$supports[] = 'thumbnail';
 			return $supports;
 		});
+	}
+
+	/**
+	 * adds starter content support
+	 *
+	 * @since 20180722
+	 * @link https://make.wordpress.org/core/2016/11/30/starter-content-for-themes-in-4-7/
+	 * @link https://developer.wordpress.org/reference/functions/get_theme_starter_content/
+	 */
+	public function starter_content() {
+		$content = apply_filters( $this->filter_prefix . '_starter_content_support', array() );
+		if ( ! empty( $content ) ) {
+			add_theme_support( 'starter-content', $content );
+		}
 	}
 
 	/**
