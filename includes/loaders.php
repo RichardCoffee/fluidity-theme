@@ -24,13 +24,17 @@ if ( ! function_exists( 'fluidity_class_loader' ) ) {
  * @return TCC_Theme_Library the instance
  */
 if ( ! function_exists( 'fluid' ) ) {
-   function fluid() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Theme_Library;
-      }
-      return $library;
-   }
+	function fluid( $force = false ) {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Library;
+		}
+		if ( $force ) {
+			#  force log entry during ajax call
+			$library->logging_force = $force;
+		}
+		return $library;
+	}
 }
 
 /**
