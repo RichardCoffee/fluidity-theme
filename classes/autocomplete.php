@@ -11,17 +11,18 @@ class TCC_AutoComplete {
 	static $action = 'fluid_autocomplete';
 
 	static function load() {
-		add_action( 'init', array( __CLASS__, 'init' ) );
+		add_action( 'init', [ __CLASS__, 'init' ] );
 	}
 
 	static function init() {
-		if ( ! is_admin() ) {
-			wp_enqueue_style( 'fluid-autocomplete-css', get_theme_file_uri( 'css/ui-autocomplete.css' ), null, FLUIDITY_VERSION );
+		if ( wp_doing_ajax() ) {
+			add_action( 'wp_ajax_' . static::$action,      [ __CLASS__, 'autocomplete_suggestions' ] );
+			add_action( 'wp_ajax_nopriv_'.static::$action, [ __CLASS__, 'autocomplete_suggestions' ] );
+		} else if ( ! is_admin() ) {
+			wp_enqueue_style(   'fluid-autocomplete-css', get_theme_file_uri( 'css/ui-autocomplete.css' ), null, FLUIDITY_VERSION );
+			wp_register_script( 'fluid-autocomplete-js',  get_theme_file_uri( 'js/autocomplete.js' ), [ 'jquery-ui-autocomplete' ], FLUIDITY_VERSION, true );
+			add_action( 'get_search_form', [ __CLASS__, 'get_search_form' ] );
 		}
-		wp_register_script( 'fluid-autocomplete-js', get_theme_file_uri( 'js/autocomplete.js' ), [ 'jquery-ui-autocomplete' ], FLUIDITY_VERSION, true );
-		add_action( 'get_search_form',                 [ __CLASS__, 'get_search_form' ] );
-		add_action( 'wp_ajax_' . static::$action,      [ __CLASS__, 'autocomplete_suggestions' ] );
-		add_action( 'wp_ajax_nopriv_'.static::$action, [ __CLASS__, 'autocomplete_suggestions' ] );
 	}
 
 	static function get_search_form( $form ) {
@@ -35,11 +36,14 @@ class TCC_AutoComplete {
 	}
 
 	static function autocomplete_suggestions() {
-
-		$args  = array( 's' => trim( esc_attr( wp_strip_all_tags( wp_unslash( $_REQUEST['term'] ) ) ) ) );
+		$args  = array(
+			'post_status' => 'publish',
+			'nopaging'    => true,
+			's' => trim( esc_attr( wp_strip_all_tags( wp_unslash( $_REQUEST['term'] ) ) ) )
+		);
 		$args  = apply_filters( 'autocomplete_args', $args );
 		$posts = new WP_Query( $args );
-
+#fluid(1)->log($_REQUEST,$args,$posts);
 		$suggestions = array();
 		if ( $posts->have_posts() ) {
 			while ( $posts->have_posts() ) {
@@ -50,10 +54,8 @@ class TCC_AutoComplete {
 				);
 			}
 		}
-
 		$suggestions = apply_filters( 'autocomplete_array', $suggestions );
-		echo sanitize_key( $_GET["callback"] ) . "(" . json_encode($suggestions) . ")";
-		exit;
+		wp_send_json( $suggestions );
 	}
 
 

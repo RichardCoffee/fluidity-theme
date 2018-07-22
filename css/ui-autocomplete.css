@@ -1,10 +1,10 @@
 /* Autocomplete
 ----------------------------------*/
-.ui-autocomplete { position: absolute; cursor: default; border: 1px; }
-.ui-autocomplete-loading { background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
-
-/* workarounds */
-* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+.ui-autocomplete {
+	border: 1px;
+	cursor: default;
+	position: absolute;
+}
 
 /* Menu
 ----------------------------------*/
