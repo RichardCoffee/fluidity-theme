@@ -8,10 +8,11 @@ body.archive.author {
 	& .article {
 		margin: 0;
 	}
-	&.error404 {
-		& h3,
-		& h4 {
-			margin-bottom: 20px;
-		}
+}
+
+.error404 {
+	& h3,
+	& h4 {
+		margin-bottom: 20px;
 	}
 }

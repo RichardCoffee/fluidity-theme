@@ -379,7 +379,8 @@ body.archive.author article {
 body.archive.author .article {
   margin: 0;
 }
-body.archive.author.error404 h3, body.archive.author.error404 h4 {
+
+.error404 h3, .error404 h4 {
   margin-bottom: 20px;
 }
 
