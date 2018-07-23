@@ -45,13 +45,13 @@ if ( ! function_exists( 'fluid' ) ) {
  * @return TCC_Theme_ClearFix the instance
  */
 if ( ! function_exists( 'clearfix' ) ) {
-   function clearfix() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Theme_ClearFix;
-      }
-      return $library;
-   }
+	function clearfix() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_ClearFix;
+		}
+		return $library;
+	}
 }
 
 /**
@@ -62,13 +62,13 @@ if ( ! function_exists( 'clearfix' ) ) {
  * @return TCC_Form_Comment the instance
  */
 if ( ! function_exists( 'fluid_comment' ) ) {
-   function fluid_comment() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Form_Comment;
-      }
-      return $library;
-   }
+	function fluid_comment() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Form_Comment;
+		}
+		return $library;
+	}
 }
 
 /**
@@ -96,13 +96,13 @@ if ( ! function_exists( 'fluid_color' ) ) {
  * @return TCC_Options_Customizer
  */
 if ( ! function_exists( 'fluid_customizer' ) ) {
-   function fluid_customizer() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Theme_Customizer;
-      }
-      return $library;
-   }
+	function fluid_customizer() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Customizer;
+		}
+		return $library;
+	}
 }
 
 /**
@@ -113,13 +113,13 @@ if ( ! function_exists( 'fluid_customizer' ) ) {
  * @return TCC_Theme_Login the instance
  */
 if ( ! function_exists( 'fluid_login' ) ) {
-   function fluid_login() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Theme_Login();
-      }
-      return $library;
-   }
+	function fluid_login() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Login();
+		}
+		return $library;
+	}
 }
 
 /**
@@ -130,13 +130,13 @@ if ( ! function_exists( 'fluid_login' ) ) {
  * @return TCC_Options_FLuidity the instance
  */
 if ( ! function_exists( 'fluid_options' ) ) {
-   function fluid_options() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = TCC_Options_Fluidity::instance();
-      }
-      return $library;
-   }
+	function fluid_options() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = TCC_Options_Fluidity::instance();
+		}
+		return $library;
+	}
 }
 
 /**
@@ -147,13 +147,13 @@ if ( ! function_exists( 'fluid_options' ) ) {
  * @return TCC_Register_Sidebars the instance
  */
 if ( ! function_exists( 'fluid_register_sidebars' ) ) {
-   function fluid_register_sidebars() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Register_Sidebars;
-      }
-      return $library;
-   }
+	function fluid_register_sidebars() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Register_Sidebars;
+		}
+		return $library;
+	}
 }
 
 /**
@@ -164,13 +164,13 @@ if ( ! function_exists( 'fluid_register_sidebars' ) ) {
  * @return TCC_Form_Sanitize
  */
 if ( ! function_exists( 'fluid_sanitize' ) ) {
-   function fluid_sanitize() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Form_Sanitize;
-      }
-      return $library;
-   }
+	function fluid_sanitize() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Form_Sanitize;
+		}
+		return $library;
+	}
 }
 
 /**
@@ -194,13 +194,13 @@ if ( ! function_exists( 'fluid_sidebar' ) ) {
  * @return TCC_Theme_Support the instance
  */
 if ( ! function_exists( 'fluid_theme_support' ) ) {
-   function fluid_theme_support() {
-      static $library;
-      if ( empty( $library ) ) {
-         $library = new TCC_Theme_Support;
-      }
-      return $library;
-   }
+	function fluid_theme_support() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Support;
+		}
+		return $library;
+	}
 }
 
 /**
