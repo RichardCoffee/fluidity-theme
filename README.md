@@ -141,7 +141,7 @@ trait](https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Trait
 #### Login form
 
 The theme's login form, suitable for use in a navbar or a widget.  Should also
-be able to be used in a modal, although I still haven't writing the modal code.
+be able to be used in a modal, although I still haven't written the modal code.
 
 
 ### Metaboxes
