@@ -463,8 +463,9 @@ p#fluidity-copyright {
 }
 
 body.error404 footer {
-  position: fixed;
   bottom: 0;
+  position: fixed;
+  width: 100%;
 }
 
 .comma-after::after {
