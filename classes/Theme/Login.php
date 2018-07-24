@@ -175,13 +175,13 @@ function prevent_wp_login() {
 	public function admin_options_layout( $layout ) {
 		$opts = array(
 			'default' => 'external',
-			'label'   => __( 'Theme Login', 'tcc-fluid' ),
-			'text'    => __( 'Choose whether you use a plugin for logins, or whether the internal theme login should be used', 'tcc-fluid' ),
+			'label'   => __( 'Login page', 'tcc-fluid' ),
+			'text'    => __( 'Use a plugin to handle the login page, or whether the internal theme login shortcode should be used', 'tcc-fluid' ),
 			'help'    => __( 'I recommend Theme My Login.  Fluidity plays nice with that plugin, also with WP Frontend Profile', 'tcc-fluid' ),
 			'render'  => 'radio',
 			'source'  => array(
-				'internal' => __( 'Theme', 'tcc-fluid' ),
-				'external' => __( 'Plugin', 'tcc-fluid' ),
+				'internal' => __( 'Use [fluid-login] shortcode.', 'tcc-fluid' ),
+				'external' => __( 'Use a plugin.  (recommended)', 'tcc-fluid' ),
 			),
 		);
 		$layout['login'] = $opts;
