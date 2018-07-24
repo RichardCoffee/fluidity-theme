@@ -154,14 +154,14 @@ class TCC_Theme_ColorScheme {
 #	 * @since 20180713
 	public function theme_mod_background_image_scheme_custom( $value ) {
 		if ( is_customize_preview() ) {
-fluid()->log( $value );
+fluid(1)->log( $value );
 		}
 		return $value;
 	}
 
 #	 * @since 20180713
 	public function pre_set_theme_mod_background_image_scheme_custom( $value, $old_value ) {
-fluid()->log( $_POST );
+fluid(1)->log( $_POST );
 		return $value;
 	}
 
@@ -171,7 +171,7 @@ fluid()->log( $_POST );
 			$scheme = 'color_scheme_' . $this->color_scheme();
 			$image  = get_theme_mod( $scheme, '' );
 			if ( (bool) $image ) {
-fluid()->log( $image );
+fluid(1)->log( $image );
 #				$settings['default-image'] = $image;
 			}
 		}
