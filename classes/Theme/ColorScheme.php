@@ -3,7 +3,7 @@
 class TCC_Theme_ColorScheme {
 
 
-	public static $scheme = null;
+	public static $scheme = '';
 
 
 	public function __construct() {
@@ -34,9 +34,11 @@ class TCC_Theme_ColorScheme {
 #	 * @since 20160807
 	public function color_scheme( $ext = false ) {
 		if ( empty( static::$scheme ) ) {
-			$scheme = null;
+			$scheme = '';
 			$color  = get_theme_mod( 'colors_scheme', 'random' );
-			if ( $color === 'random' ) {
+			if ( $color === 'none' ) {
+				return '';
+			} else if ( $color === 'random' ) {
 				$color = $this->random_color_scheme();
 			}
 			$base = "/css/colors/$color.css";
