@@ -10,12 +10,14 @@ defined( 'ABSPATH' ) || exit; ?>
 
 	<h1 class="text-center">
 		<?php printf( esc_html_x( 'Author %s', "post author's name", 'tcc-fluid' ), get_the_author() ); ?>
-	</h1><?php
+	</h1>
+	<hr><?php
 
 	if ( $descrip = get_the_author_meta( 'description' ) ) { ?>
 		<div class="author-description">
 			<?php e_esc_html( $descrip ); ?>
-		</div><?php
+		</div>
+		<hr><?php
 	}
 
 	$skills = get_the_author_meta( 'skills' );
@@ -28,7 +30,8 @@ defined( 'ABSPATH' ) || exit; ?>
 					fluid()->element( 'h5', [ ], $text ); ?>
 				</div><?php
 			} ?>
-		</div><?php
+		</div>
+		<hr><?php
 	}
 
 	fluid()->element( 'h1', [ 'class' => 'text-center' ], __( 'Posts', 'tcc-fluid' ) ); ?>
