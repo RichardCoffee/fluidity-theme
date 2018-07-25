@@ -28,7 +28,7 @@ class TCC_Register_Sidebars {
 		$this->set_widget_icons();
 		add_action( 'widgets_init',              [ $this, 'register_sidebars' ] );
 		add_action( 'wp_enqueue_scripts',        [ $this, 'enqueue_widget_icons' ], 100 );
-		add_filter( 'fluid_customizer_controls', [ $this, 'fluid_customizer_controls' ], $customizer_priority );
+		add_filter( 'fluid_customizer_controls', [ $this, 'fluid_customizer_controls' ], $this->customizer_priority );
 	}
 
 	/**
@@ -134,7 +134,7 @@ class TCC_Register_Sidebars {
 	public function fluid_customizer_controls( $options ) {
 		$options['sidebar'] = array(
 			'section'  => array(
-				'priority'    => $customizer_priority,
+				'priority'    => $this->customizer_priority,
 				'panel'       => 'fluid_mods',
 				'title'       => __( 'Sidebar Behavior', 'tcc-fluid' ),
 				'description' => __( 'This section controls things dealing with the sidebar.  My, how informative that was...', 'tcc-fluid' )
