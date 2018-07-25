@@ -14,6 +14,11 @@ class TCC_Register_Sidebars {
 	 *
 	 */
 	protected $fawe = array();
+	/**
+	 *  Customizer section priority
+	 *
+	 */
+	protected $customizer_priority = 40;
 
 	/**
 	 * set up tasks for registering sidebars
@@ -21,8 +26,9 @@ class TCC_Register_Sidebars {
 	 */
 	public function __construct() {
 		$this->set_widget_icons();
-		add_action( 'widgets_init',       array( $this, 'register_sidebars' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_widget_icons' ), 100 );
+		add_action( 'widgets_init',              [ $this, 'register_sidebars' ] );
+		add_action( 'wp_enqueue_scripts',        [ $this, 'enqueue_widget_icons' ], 100 );
+		add_filter( 'fluid_customizer_controls', [ $this, 'fluid_customizer_controls' ], $customizer_priority );
 	}
 
 	/**
@@ -123,6 +129,62 @@ class TCC_Register_Sidebars {
 		#	Second /div closes "panel-body" div
 		$widget['after']  = '</div></div>';
 		return $widget; # apply_filters( 'fluid_register_sidebar_widget', $widget );
+	}
+
+	public function fluid_customizer_controls( $options ) {
+		$options['sidebar'] = array(
+			'section'  => array(
+				'priority'    => $customizer_priority,
+				'panel'       => 'fluid_mods',
+				'title'       => __( 'Sidebar Behavior', 'tcc-fluid' ),
+				'description' => __( 'This section controls things dealing with the sidebar.  My, how informative that was...', 'tcc-fluid' )
+			),
+			'controls' => array(
+				'position' => array(
+					'default'     => 'right',
+					'label'       => __( 'Sidebar', 'tcc-fluid' ),
+					'description' => __( 'Which side of the screen should the sidebar show up on?', 'tcc-fluid' ),
+					'render'      => 'radio',
+					'choices'     => array(
+						'none'  => __( 'No Sidebar', 'tcc-fluid' ),
+						'left'  => __( 'Left side', 'tcc-fluid' ),
+						'right' => __( 'Right side', 'tcc-fluid' ),
+					),
+				),
+				'fluidity' => array(
+					'default'     => 'static',
+					'label'       => __( 'Fluid Sidebar', 'tcc-fluid' ),
+					'description' => __( 'Let content flow around sidebar', 'tcc-fluid' ),
+					'render'      => 'radio',
+					'choices'     => array(
+						'static' => __( 'Static content', 'tcc-fluid' ),
+						'fluid'  => __( 'Fluid content', 'tcc-fluid' ),
+					),
+					'showhide' => array(
+						'control' => 'sidebar_position',
+						'action'  => 'hide',
+						'setting' => 'none'
+					),
+				),
+				'mobile' => array(
+					'default'     => 'bottom',
+					'label'       => __( 'Mobile Sidebar', 'tcc-fluid' ),
+					'description' => __( 'Where should the sidebar show up on mobile devices?', 'tcc-fluid' ),
+					'render'      =>'radio',
+					'choices'     => array(
+						'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
+						'top'    => __( 'Before post content', 'tcc-fluid' ),
+						'bottom' => __( 'After post content', 'tcc-fluid' ),
+					),
+					'showhide' => array(
+						'control' => 'sidebar_position',
+						'action'  => 'hide',
+						'setting' => 'none'
+					),
+				),
+			),
+		);
+		return $options;
 	}
 
 

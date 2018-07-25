@@ -147,7 +147,6 @@ class TCC_Theme_Customizer {
 
 	public function get_customizer_controls( $options = array() ) {
 		$options = $this->screen_width( $options );
-		$options = $this->theme_sidebar( $options );
 		$options = $this->widget_collapse( $options );
 		$options = $this->content_controls( $options );
 		return $options;
@@ -187,64 +186,6 @@ class TCC_Theme_Customizer {
 			);
 		} //*/
 		$options['behavior'] = array(
-			'section'  => $section,
-			'controls' => $controls
-		);
-		return $options;
-	}
-
-	public function theme_sidebar( $options ) {
-		$section = array(
-			'priority'    => 40,
-			'panel'       => 'fluid_mods',
-			'title'       => __( 'Sidebar Behavior', 'tcc-fluid' ),
-			'description' => __( 'This section controls things dealing with the sidebar.  My, how informative that was...', 'tcc-fluid' )
-		);
-		$controls = array(
-			'position' => array(
-				'default'     => 'right',
-				'label'       => __( 'Sidebar', 'tcc-fluid' ),
-				'description' => __( 'Which side of the screen should the sidebar show up on?', 'tcc-fluid' ),
-				'render'      => 'radio',
-				'choices'     => array(
-					'none'  => __( 'No Sidebar', 'tcc-fluid' ),
-					'left'  => __( 'Left side', 'tcc-fluid' ),
-					'right' => __( 'Right side', 'tcc-fluid' ),
-				),
-			),
-			'fluidity' => array(
-				'default'     => 'static',
-				'label'       => __( 'Fluid Sidebar', 'tcc-fluid' ),
-				'description' => __( 'Let content flow around sidebar', 'tcc-fluid' ),
-				'render'      => 'radio',
-				'choices'     => array(
-					'static' => __( 'Static content', 'tcc-fluid' ),
-					'fluid'  => __( 'Fluid content', 'tcc-fluid' ),
-				),
-				'showhide' => array(
-					'control' => 'sidebar_position',
-					'action'  => 'hide',
-					'setting' => 'none'
-				),
-			),
-			'mobile' => array(
-				'default'     => 'bottom',
-				'label'       => __( 'Mobile Sidebar', 'tcc-fluid' ),
-				'description' => __( 'Where should the sidebar show up on mobile devices?', 'tcc-fluid' ),
-				'render'      =>'radio',
-				'choices'     => array(
-					'none'   => __( 'Do not show sidebar on mobile devices', 'tcc-fluid' ),
-					'top'    => __( 'Before post content', 'tcc-fluid' ),
-					'bottom' => __( 'After post content', 'tcc-fluid' ),
-				),
-				'showhide' => array(
-					'control' => 'sidebar_position',
-					'action'  => 'hide',
-					'setting' => 'none'
-				),
-			),
-		);
-		$options['sidebar'] = array(
 			'section'  => $section,
 			'controls' => $controls
 		);
