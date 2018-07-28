@@ -4,6 +4,8 @@
  *  File:  classes/Form/Field/Field.php
  *
  *  Note:  The sanitize callback may be called twice, as per https://core.trac.wordpress.org/ticket/21989
+ *
+ *  Todo: property names should conform to attribute names
  */
 
 abstract class TCC_Form_Field_Field {
@@ -31,6 +33,9 @@ abstract class TCC_Form_Field_Field {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args = array() ) {
+#		if ( empty( self::$date_format ) ) {
+#			self::$date_format = get_option( 'date_format' );
+#		}
 		$this->parse_args( $args );
 		if ( ( empty( $this->placeholder ) ) && ( ! empty( $this->description ) ) ) {
 			$this->placeholder = $this->description;
