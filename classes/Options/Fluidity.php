@@ -330,13 +330,32 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	}
 
 	private function add_currency_symbol() {
-		$args = array(
-			'field_css'     => 'small-text',
-			'field_default' => _x( '$', 'primary currency symbol', 'tcc-fluid' ),
-			'field_name'    => 'currency_symbol',
-			'group'         => 'general',
-			'description'   => __( 'Currency Symbol', 'tcc-fluid' ),
-			'sanitize'      => 'sanitize_text_field',
+		$default     = _x( '$', 'primary currency symbol', 'tcc-fluid' );
+		$field_name  = 'currency_symbol';
+		$description = __( 'Currency Symbol', 'tcc-fluid' );
+/*		$possible = array(
+			'currency_sign' => __( 'Currency Sign', 'tcc-fluid' ),
+			$field_name     => $description,
+		);
+		for ( $possible as $key => $desc ) {
+			$test = get_option( $key, '' );
+			if ( ! empty( $test ) ) {
+				$default     = $test;
+				$field_name  = $key;
+				$description = $desc;
+				break;
+			}
+		} //*/
+		$args = apply_filters(
+			'fluid_currency_symbol',
+			array(
+				'field_css'     => 'small-text',
+				'field_default' => $default,
+				'field_name'    => $field_name,
+				'group'         => 'general',
+				'description'   => $description,
+				'sanitize'      => 'sanitize_text_field',
+			)
 		);
 		new TCC_Form_Field_Admin( $args );
 	}

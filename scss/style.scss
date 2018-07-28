@@ -39,11 +39,12 @@
  * 10.0 - Widgets
  * 11.0 - Content
  *    11.1 - Header
- *    11.2 - Posts and pages
+ *    11.2 - Posts
  *    11.3 - Post Formats
- *    11.4 - Comments
- *    11.5 - Sidebar
- *    11.6 - Footer
+ *    11.4 - Pages
+ *    11.5 - Comments
+ *    11.6 - Sidebar
+ *    11.7 - Footer
  * 12.0 - Media
  *    12.1 - Captions
  *    12.2 - Galleries
@@ -56,6 +57,8 @@
 // components imported at bottom of this file
 
 // FIXME: everything below this line, except the import, needs to be moved to their respective proper file
+
+/**  unsorted css  **/
 
 .article pre {
 	margin-bottom: 2.5em;
@@ -149,5 +152,7 @@ pre {
 	width: auto;
 	@include transition( top 0.1s ease-in-out );
 }
+
+/* end of unsorted css */
 
 @import "components/components";

@@ -17,7 +17,7 @@ class TCC_Widget_Widget extends WP_Widget {
 		# https://developer.wordpress.org/themes/customize-api/tools-for-improved-user-experience/
 		# https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
 		if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 		}
 	}
 
@@ -64,12 +64,21 @@ class TCC_Widget_Widget extends WP_Widget {
 					'id'   => $this->get_field_id( $slug ),
 					'name' => $this->get_field_name( $slug ),
 				);
-				$attrs = $this->checked( $attrs, $value, 'on' );
-				$this->element( 'input', $attrs ); ?>
+				$attr = $this->checked( $attrs, $value, 'on' );
+				$this->element( 'input', $attr ); ?>
 				&nbsp;<span>
 					 <?php esc_html( $text ); ?>
 				</span>
 			</label>
+		</p><?php
+	}
+
+	protected function form_radio( $instance, $slug, $text ) {
+fluid()->log( $instance, $slug, $text );
+		$args = array(
+			
+		); ?>
+		<p>
 		</p><?php
 	}
 
