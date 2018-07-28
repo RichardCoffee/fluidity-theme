@@ -13,7 +13,7 @@ get_header();
 if ( WP_DEBUG && is_user_logged_in() && current_user_can( 'update_core' ) ) { ?>
 	<div class="panel panel-fluidity collapse-auto">
 		<div class="panel-heading">
-			<h3 class="panel-title">Word Press Information</h3>
+			Word Press Information
 		</div>
 		<div class="panel-body">
 			<pre><?php
