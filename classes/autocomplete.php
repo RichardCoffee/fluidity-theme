@@ -21,18 +21,17 @@ class TCC_AutoComplete {
 		} else if ( ! is_admin() ) {
 			wp_enqueue_style(   'fluid-autocomplete-css', get_theme_file_uri( 'css/ui-autocomplete.css' ), null, FLUIDITY_VERSION );
 			wp_register_script( 'fluid-autocomplete-js',  get_theme_file_uri( 'js/autocomplete.js' ), [ 'jquery-ui-autocomplete' ], FLUIDITY_VERSION, true );
-			add_action( 'get_search_form', [ __CLASS__, 'get_search_form' ] );
+			add_action( 'pre_get_search_form', [ __CLASS__, 'pre_get_search_form' ] );
 		}
 	}
 
-	static function get_search_form( $form ) {
+	static function pre_get_search_form() {
 		$args = array(
 			'url'    => admin_url( 'admin-ajax.php' ),
 			'action' => static::$action
 		);
 		wp_localize_script( 'fluid-autocomplete-js', 'FluidAutocomplete', $args );
 		wp_enqueue_script( 'fluid-autocomplete-js' );
-		return $form;
 	}
 
 	static function autocomplete_suggestions() {
