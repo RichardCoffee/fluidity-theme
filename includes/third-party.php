@@ -41,6 +41,16 @@ fluid()->log(
 } //*/
 
 
+/** Essential Real Estate **/
+if ( function_exists( 'ere_get_option' ) && ( ! function_exists( 'fluidity_ere_currency_symbol' ) ) ) {
+	function fluidity_ere_currency_symbol( $args ) {
+		$symbol = ere_get_option( 'currency_sign', $args['field_default'] );
+		return $args;
+	}
+	add_filter( 'fluid_currency_symbol', 'fluidity_ere_currency_symbol' );
+}
+
+
 /**  Jetpack  **/
 
 /*  jetpack_the_site_logo() called in includes/header.php, function fluidity_header_logo() */
