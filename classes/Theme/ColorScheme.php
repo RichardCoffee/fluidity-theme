@@ -113,7 +113,7 @@ class TCC_Theme_ColorScheme {
 		return $options;
 	}
 
-#	 * TODO:  get child theme color schemes
+#	 * @since 20180720
 	public function get_available_color_schemes( $colors = array() ) {
 		$path   = FLUIDITY_HOME . 'css/colors';
 		$avail  = scandir( $path );
@@ -130,7 +130,7 @@ class TCC_Theme_ColorScheme {
 				$colors[ $index ] = $data['name'];
 			}
 		}
-		return $colors; // apply_filters( 'fluid_available_color_schemes', $colors );
+		return apply_filters( 'fluid_available_color_schemes', $colors );
 	}
 
 
@@ -138,11 +138,12 @@ class TCC_Theme_ColorScheme {
 
 #	 * @since 20180713
 	public function custom_background_controls( $options ) {
+		# FIXME: current value should be false if no image assigned to current color scheme
 		$options['background_image'] = array(
 			'section'  => null,
 			'controls' => array(
 				'scheme_custom' => array(
-					'default'     => false,
+					'default'     => false, # FIXME: check for existing image match
 					'title'       => __( 'Color Scheme Image', 'tcc-fluid' ),
 					'label'       => sprintf( __( 'Assign this background image to current scheme: %s', 'tcc-fluid' ), $this->color_scheme() ),
 					'description' => '',
@@ -163,7 +164,7 @@ fluid(1)->log( $value );
 
 #	 * @since 20180713
 	public function pre_set_theme_mod_background_image_scheme_custom( $value, $old_value ) {
-fluid(1)->log( $_POST );
+fluid(1)->log( $_POST, $value, $old_value );
 		return $value;
 	}
 
