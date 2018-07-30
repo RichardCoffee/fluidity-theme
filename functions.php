@@ -85,3 +85,4 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 
 #fluid()->log( fluid()->get_html_attributes( '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">' ) );
 #fluid()->log( wp_kses_allowed_html( 'data' ) );
+fluid()->log( get_theme_mods() );
