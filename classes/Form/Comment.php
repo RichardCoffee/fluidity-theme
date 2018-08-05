@@ -27,6 +27,8 @@ class TCC_Form_Comment {
 		$this->author  = $this->author();
 		$this->require = get_option( 'require_name_email' );
 		$this->strings = $this->strings();
+		add_filter( 'comment_form_default_fields', [ $this, 'comment_form_default_fields'  ] );
+		add_filter( 'comment_form_fields',         [ $this, 'move_comment_field_to_bottom' ] );
 	}
 
 	public function set_post_id( $post_id = 0 ) {
@@ -84,7 +86,7 @@ class TCC_Form_Comment {
 			'url'           => __( 'Your Website',          'tcc-fluid' ),
 		);
 		$strings = apply_filters( "{$this->prefix}_comment_strings_base", $strings );
-		$strings['aria'] = array(
+		$aria = array(
 			'author'     => $strings['author'],
 			'author_req' => $strings['author_req'],
 			'comment'    => $strings['comment_field'],
@@ -94,7 +96,8 @@ class TCC_Form_Comment {
 			'profile'    => $strings['profile'],
 			'url'        => $strings['url'],
 		);
-		$strings['title'] = $strings['aria'];
+		$strings['aria']  = apply_filters( "{$this->prefix}_aria_strings",  $aria );
+		$strings['title'] = apply_filters( "{$this->prefix}_title_strings", $aria );
 		return apply_filters( "{$this->prefix}_comment_strings", $strings );
 	}
 
@@ -106,8 +109,7 @@ class TCC_Form_Comment {
 		$comment_notes_before = ( $this->require ) ? $this->strings['comment_notes_before_req'] : $this->strings['comment_notes_before'];
 		$args = array(
 			'title_reply'          => $this->strings['title_reply'],
-			'fields'               => $this->comment_fields(),
-			'comment_field'        => '<p><textarea ' . $this->get_apply_attrs( $this->comment_attrs() ) . '></textarea></p>',
+			'comment_field'        => '<p>' . $this->get_element( 'textarea', $this->comment_attrs() ) . '</p>',
 			'must_log_in'          => '<p class="must-log-in">' .  $this->must_log_in() .  '</p>',
 			'logged_in_as'         => '<p class="logged-in-as">' . $this->logged_in_as() . '</p>',
 			'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . esc_html( $comment_notes_before ) . '</span></p>',
@@ -115,7 +117,6 @@ class TCC_Form_Comment {
 			'class_submit'         => 'btn btn-fluidity',
 		);
 		$args = apply_filters( "{$this->prefix}_comment_args", $args );
-		add_filter( 'comment_form_fields', array( $this, 'move_comment_field_to_bottom' ) );
 		comment_form( $args );
 	}
 
@@ -126,7 +127,17 @@ class TCC_Form_Comment {
 			'url'     => '<p class="comment-form-url">'  .   $this->get_tag( 'input', $this->url_attrs() ) .    '</p>',
 			'cookies' => '<p class="comment-form-cookies-consent">' . $this->cookies_html() . '</p>',
 		);
-		return apply_filters( 'comment_form_default_fields', $fields );
+		return $fields;
+	}
+
+	public function comment_form_default_fields( $fields ) {
+		$theme = $this->comment_fields();
+		foreach( $fields as $key => $field ) {
+			if ( isset( $theme[ $key ] ) ) {
+				$fields[ $key ] = $theme[ $key ];
+			}
+		}
+		return $fields;
 	}
 
 	public function move_comment_field_to_bottom( $fields ) {
@@ -242,7 +253,7 @@ class TCC_Form_Comment {
 	/**  must_log_in  **/
 
 	protected function must_log_in() {
-		$link_html = $this->get_apply_attrs_tag( 'a', $this->must_log_in_link_attrs() );
+		$link_html = $this->get_tag( 'a', $this->must_log_in_link_attrs() );
 		return sprintf( $this->strings['must_log_in'], $link_html, '</a>' );
 	}
 
@@ -257,8 +268,8 @@ class TCC_Form_Comment {
 	/**  logged_in_as  **/
 
 	protected function logged_in_as() {
-		$profile_link = $this->get_apply_attrs_element( 'a', $this->profile_link_attrs(), $this->author['name'] );
-		$logout_link  = $this->get_apply_attrs_tag( 'a', $this->logout_link_attrs() );
+		$profile_link = $this->get_element( 'a', $this->profile_link_attrs(), $this->author['name'] );
+		$logout_link  = $this->get_tag( 'a', $this->logout_link_attrs() );
 		return sprintf( $this->strings['logged_in_as'], $profile_link, $logout_link, '</a>' );
 	}
 

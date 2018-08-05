@@ -47,7 +47,7 @@ console.log('header: '+hdrHeight);
 } //*/
 
 if ( ! function_exists( 'tcc_copyright' ) ) {
-	function tcc_copyright( $banner=true ) { ?>
+	function tcc_copyright( $banner = true ) { ?>
 
 		<span class="pull-left">
 			<?php do_action( 'tcc_copyright_left' ); ?>
@@ -65,7 +65,7 @@ if ( ! function_exists( 'tcc_copyright' ) ) {
 		</p><?php
 	}
 }
-
+/*
 if ( ! function_exists( 'tcc_footer_menu' ) ) {
 	function tcc_footer_menu() {
 		$foot_menu = array();
@@ -87,7 +87,7 @@ if ( ! function_exists( 'tcc_footer_menu' ) ) {
 			</span><?php
 		}
 	}
-}
+} //*/
 /*
 if ( ! function_exists( 'tcc_site_link' ) ) {
 	function tcc_site_link() {
