@@ -119,6 +119,17 @@ if (!function_exists('fluidity_load_sidebar')) {
   }
 }
 
+if ( ! function_exists( 'fluidity_post_sidebar' ) ) {
+	function fluidity_post_sidebar( $positioning ) {
+		if ( is_single() ) {
+			global $wp_query;
+fluid()->log($wp_query);
+		}
+		return $positioning;
+	}
+	add_filter( 'fluid_theme_sidebar_positioning', 'fluidity_post_sidebar' );
+}
+
 if (!function_exists('fluidity_sidebar_parameter')) {
   function fluidity_sidebar_parameter() {
     $trace = debug_backtrace();
