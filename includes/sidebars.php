@@ -121,9 +121,15 @@ if (!function_exists('fluidity_load_sidebar')) {
 
 if ( ! function_exists( 'fluidity_post_sidebar' ) ) {
 	function fluidity_post_sidebar( $positioning ) {
-		if ( is_single() ) {
+		if ( ( ! ( $positioning === 'none' ) ) && is_single() ) {
 			global $wp_query;
-fluid()->log($wp_query);
+			$post_id = $wp_query->post->ID;
+			if ( $post_id ) {
+				$sidebar = get_post_meta( $post_id, 'post_display_sidebar', true );
+				if ( $sidebar && ( $sidebar === 'hide' ) ) {
+					$positioning = 'none';
+				}
+			}
 		}
 		return $positioning;
 	}
