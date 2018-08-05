@@ -58,31 +58,8 @@ if ( is_admin() ) {
 
 /**  Test functions  **/
 
-/*
-function themeslug_customize_register( $section_args, $section_id, $sidebar_id ) {
-  fluid()->log( $section_args, $section_id, $sidebar_id );
-	return $section_args;
-}
-add_action( 'customizer_widgets_section_args', 'themeslug_customize_register', 10, 3 ); //*/
-
 add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid(1)->log( $resource, $data );
 	return $resource;
 }, 10, 2 ); //*/
 
-/*add_action( 'wp_loaded', function () {
-#		$filter = 'logout_redirect';
-		$filter = 'the_content';
-		fluid()->log( list_filter_hooks( $filter ) );
-	}
-); //*/
-
-/*add_action( 'wp_loaded', function () {
-	$color   = fluid_color();
-	$schemes = $color->get_available_color_schemes( array( 'none' => __( 'Do not use internal color scheme', 'tcc-fluid' ) ) );
-	fluid()->log( $schemes );
-} ); //*/
-
-#fluid()->log( fluid()->get_html_attributes( '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">' ) );
-#fluid()->log( wp_kses_allowed_html( 'data' ) );
-#fluid()->log( get_theme_mods() );
