@@ -36,7 +36,8 @@ if ( WP_DEBUG && is_user_logged_in() && current_user_can( 'update_core' ) ) { ?>
 					fluid()->element( 'h4', [ ], __( 'It looks like nothing was found at this location', 'tcc-fluid' ) ); ?>
 					<div class="row">
 						<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12"><?php
-							get_search_form(); ?>
+							get_search_form();
+							the_widget( 'WP_Widget_Recent_Posts' ); ?>
 						</div>
 					</div>
 				</div><!-- .page-content -->
