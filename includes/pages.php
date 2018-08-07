@@ -21,6 +21,41 @@ if (!function_exists('fluid_category_page_noposts')) {
     fluid_noposts_page($text);
   }
 }
+
+/**
+ *  Add page controls to customizer
+ *
+ * @since 20180807
+ * @param array $options
+ * @return array
+ */
+if ( ! function_exists( 'fluid_customizer_pages' ) ) {
+	function fluid_customizer_pages( $options = array() ) {
+		$options['pages'] = array(
+			'section' => array(
+				'priority'    => 40,
+				'panel'       => 'fluid_mods',
+				'title'       => __( 'Pages', 'tcc-fluid' ),
+				'description' => __( 'All settings dealing with pages', 'tcc-fluid' )
+			),
+			'controls' => array(
+				'title' => array(
+					'default' => 'no',
+					'label'   => __( 'Page Title', 'tcc-fluid' ),
+					'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
+					'render'  => 'radio',
+					'source'  => array(
+						'no'   => __( 'Do not show the page title.', 'tcc-fluid' ),
+						'page' => __( 'Show the page title after the header and before the content/sidebar.', 'tcc-fluid' ),
+						'main' => __( 'Over content area only, when showing sidebar.', 'tcc-fluid' ),
+					)
+				)
+			)
+		);
+		return $options;
+	}
+	add_filter( 'fluid_customizer_controls', 'fluid_customizer_pages' );
+}
 /*
 if ( ! function_exists( 'fluid_hide_content_title' ) ) {
 	function fluid_hide_content_title( $page ) {
