@@ -21,6 +21,7 @@ require_once( 'includes/enqueue.php' );
 require_once('includes/library.php');
 require_once('includes/menus.php');
 require_once(FLUIDITY_HOME.'includes/misc.php');     #  Needs full path, or wp-admin/includes/misc.php gets loaded instead
+require_once( 'includes/pages.php' );
 require_once('includes/parallax.php');
 require_once('includes/sidebars.php');
 require_once( 'includes/support.php' );
@@ -51,7 +52,6 @@ if ( is_admin() ) {
 	require_once('includes/footer.php');
 	require_once('includes/header.php');
 	require_once('includes/in-the-loop.php');
-	require_once('includes/pages.php');
 	require_once('classes/microdata.php');
 }
 
