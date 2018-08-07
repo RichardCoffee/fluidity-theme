@@ -29,19 +29,6 @@ if ( ! function_exists( 'fluid_edit_post_link' ) ) {
 	}
 }
 
-/**
- * Returns a string intended to be used for the title attribute for post links in excerpts
- *
- * @since 20180328
- * @return string
- */
-if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
-	function fluid_excerpt_link_tooltip() {
-		$tooltip = sprintf( esc_html_x('Read All About %s','a post title','tcc-fluid'), fluid_title() );
-		return $tooltip; # apply_filters( 'fluid_excerpt_link_tooltip', $tooltip );
-	}
-}
-
 # * @since 20180328
 if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 	function fluid_edit_post_link_anchor( $anchor, $id, $text ) {
@@ -51,11 +38,41 @@ if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 			'target' => '_blank',
 			'title'  => sprintf( _x( 'Edit %s', 'Name of current post', 'tcc-fluid' ), get_the_title() ),
 		);
-		$link   = fluid()->get_apply_attrs_tag( 'a', $attrs );
-		$link  .= $text . '</a>';
-		return $link;
+		return fluid()->get_element( 'a', $attrs, $text );
 	}
 	add_filter( 'edit_post_link', 'fluid_edit_post_link_anchor', 10, 3 );
+}
+
+/**
+ *  Display excerpt header
+ *
+ * @since 20180807
+ */
+if ( ! function_exists( 'fluid_excerpt_header' ) ) {
+	function fluid_excerpt_header() { ?>
+		<h2 class="text-center" itemprop="headline"><?php
+			tcc_post_title( 40 ); ?>
+		</h2><?php
+		if ( tcc_option( 'exdate', 'content', 'show' ) === 'show' ) { ?>
+			<h3 class="text-center"><?php
+				fluid_post_date(); ?>
+			</h3><?php
+		}
+	}
+	add_action( 'fluid_excerpt_header', 'fluid_excerpt_header' );
+}
+
+/**
+ * Returns a string intended to be used for the title attribute for post links in excerpts
+ *
+ * @since 20180328
+ * @return string
+ */
+if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
+	function fluid_excerpt_link_tooltip() {
+		$tooltip = sprintf( esc_html_x( 'Read All About %s', 'the post title', 'tcc-fluid' ), fluid_title() );
+		return $tooltip; # apply_filters( 'fluid_excerpt_link_tooltip', $tooltip );
+	}
 }
 
 # * @since 20160830
@@ -194,8 +211,8 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
  */
 if ( ! function_exists( 'fluid_show_post_dates' ) ) {
 	function fluid_show_post_dates() { ?>
-		<h3 class="post-date text-center">
-			<?php $show_orig = fluid_post_date(); ?>
+		<h3 class="post-date text-center"><?php
+			$show_orig = fluid_post_date(); ?>
 		</h3><?php
 		if ( $show_orig ) { ?>
 			<h4 class="post-date text-center"><?php
@@ -223,8 +240,8 @@ if ( ! function_exists( 'fluid_thumbnail' ) ) {
 
 # * @since 20161229
 if ( ! function_exists( 'fluid_title' ) ) {
-	function fluid_title( $length=0 ) {
-		$echo = false; $after = '...'; $before = ''; // FIXME
+	function fluid_title( $length = 0, $echo = false ) {
+		$after = '...'; $before = ''; // FIXME
 		$title  = wp_strip_all_tags( get_the_title( get_the_ID() ) );
 		if ( strlen( $title ) === 0 ) {
 			$title = "{No Title}";
@@ -238,7 +255,11 @@ if ( ! function_exists( 'fluid_title' ) ) {
 			}
 			$title = apply_filters( 'the_title', $title, get_the_ID() );
 		}
-		if ($echo) { echo esc_html( $title ); } else { return $title; }
+		if ( $echo ) {
+			e_esc_html( $title );
+		} else {
+			return $title;
+		}
 	}
 }
 
@@ -246,16 +267,16 @@ if ( ! function_exists( 'fluid_title' ) ) {
 if (!function_exists('tcc_post_title')) {
 	function tcc_post_title( $max = 0, $anchor = true ) {
 		$anchor = ( is_single() || is_page() ) ? false : $anchor;
-		$html   = fluid_title( $max );
 		if ( $anchor ) {
 			$attrs = array(
 				'href'  => get_the_permalink(),
 				'rel'   => 'bookmark',
 				'title' => fluid_excerpt_link_tooltip()
 			);
-			$html = fluid()->get_apply_attrs_element( 'a', $attrs, $html );
+			fluid()->element( 'a', $attrs, fluid_title( $max ) );
+		} else {
+			fluid_title( $max, true );
 		}
-		echo $html;
 	}
 }
 
