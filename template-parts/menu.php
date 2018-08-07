@@ -58,10 +58,12 @@ if ( has_nav_menu( $menu ) ) {
 					'menu_class'     => 'nav navbar-nav',
 					'walker'         => new TCC_NavWalker_Bootstrap(),
 					'fallback_cb'    => 'TCC_NavWalker_Bootstrap::fallback'
-				) ); ?>
-				<span class="pull-right margint1e">
-					<?php echo fluid_color(); ?>
-				</span>
+				) );
+				if ( WP_DEBUG ) { ?>
+					<span class="pull-right margint1e">
+						<?php echo fluid_color(); ?>
+					</span><?php
+				} ?>
 			</div>
 
 		</nav><?php
@@ -81,11 +83,13 @@ if ( has_nav_menu( $menu ) ) {
 				'theme_location' => $menu,
 				'menu_id'        => "$menu-menu",
 				'fallback_cb'    => '' )
-			); ?>
+			);
 
-			<span class="pull-right margint1e">
-				<?php echo fluid_color(); ?>
-			</span>
+			if ( WP_DEBUG ) { ?>
+				<span class="pull-right margint1e">
+					<?php echo fluid_color(); ?>
+				</span><?php
+			} ?>
 
 		</nav><!-- #site-navigation --><?php
 
