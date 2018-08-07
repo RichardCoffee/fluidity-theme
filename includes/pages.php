@@ -33,7 +33,7 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 	function fluid_customizer_pages( $options = array() ) {
 		$options['pages'] = array(
 			'section' => array(
-				'priority'    => 40,
+				'priority'    => 30,
 				'panel'       => 'fluid_mods',
 				'title'       => __( 'Pages', 'tcc-fluid' ),
 				'description' => __( 'All settings dealing with pages', 'tcc-fluid' )
