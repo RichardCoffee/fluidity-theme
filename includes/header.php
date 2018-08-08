@@ -25,7 +25,7 @@ if (!function_exists('tcc_browser_body_class')) {
 
 if ( ! function_exists( 'tcc_custom_css' ) ) {
 	function tcc_custom_css() { ?>
-		<style id="tcc-custom-css" type="text/css"><?php
+		<style id="tcc-custom-css"><?php
 			do_action( 'tcc_custom_css' ); ?>
 		</style><?php
 	}

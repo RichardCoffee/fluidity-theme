@@ -16,7 +16,6 @@ if ( has_nav_menu( $menu ) ) {
 	$nav_attrs = array(
 		'id'    => 'site-navigation',
 		'class' => "main-navigation {$menu}-navigation {$page}-{$menu}-navigation navbar-fluidity",
-		'role'  => 'navigation',
 	);
 	$nav_attrs = array_merge( $nav_attrs, microdata()->microdata_attrs( 'SiteNavigationElement' ) );
 

@@ -78,7 +78,6 @@ abstract class TCC_Theme_BasicNav {
 			'class' => 'navigation noprint ' . $this->nav_css,
 			'title' => $this->sr_text,
 			'aria-label' => $this->sr_text,
-			'role'  => 'navigation',
 		);
 		$html = $this->get_tag( 'nav', $attrs );
 		$html.= '<div class="nav-links">%s</div>';

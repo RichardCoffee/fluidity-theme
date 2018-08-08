@@ -6,7 +6,7 @@
 
 defined( 'ABSPATH' ) || exit; ?>
 
-<header id="fluid-header" <?php microdata()->WPHeader(); ?> role="banner">
+<header id="fluid-header" <?php microdata()->WPHeader(); ?>>
 
 	<div class="<?php e_esc_attr( 'header-' . tcc_layout( 'header', 'static' ) ); ?> <?php e_esc_attr( container_type( 'header' ) ); ?>">
 
