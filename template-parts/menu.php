@@ -8,6 +8,7 @@ defined( 'ABSPATH' ) || exit;
 
 $page = get_page_slug();
 $menu = apply_filters( 'fluid_menu', 'primary', $page ); # defaults: primary, header or footer
+$msys = apply_filters( 'fluid_menu_system', 'bootstrap' );
 
 if ( has_nav_menu( $menu ) ) {
 
@@ -27,7 +28,7 @@ if ( has_nav_menu( $menu ) ) {
 		'data-target'   => ".navbar-$menu-collapse", // bootstrap
 	);
 
-	if ( tcc_layout( 'menu', 'bootstrap' ) === 'bootstrap' ) {
+	if ( $msys === 'bootstrap' ) {
 
 		/* bootstrap navigation */
 
@@ -79,8 +80,9 @@ if ( has_nav_menu( $menu ) ) {
 			</button><?php
 
 			wp_nav_menu( array(
-				'theme_location' => $menu,
+				'menu'           => $menu,
 				'menu_id'        => "$menu-menu",
+				'theme_location' => $menu,
 				'fallback_cb'    => '' )
 			);
 
