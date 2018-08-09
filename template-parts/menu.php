@@ -66,12 +66,13 @@ if ( has_nav_menu( $menu ) ) {
 				} ?>
 			</div>
 
-		</nav><?php
+		</nav><!-- #site-navigation --><?php
 
 	} else {
 
 		/* underscore navigation */
 
+		$nav_attrs = apply_filters( 'fluid_menu_underscore', $nav_attrs );
 		fluid()->tag( 'nav', $nav_attrs );
 
 			fluid()->tag( 'button', $button_attrs ); ?>
