@@ -284,8 +284,8 @@ if (!function_exists('tcc_post_title')) {
 if ( ! function_exists( 'fluid_show_content_footer' ) ) {
 	function fluid_show_content_footer() {
 		if ( is_single() && ! is_page() ) {
-			$taxonomy = 'category'; # apply_filters( 'fluid_content_taxonomy', 'category' );
-			new TCC_Theme_Navigation( array( 'taxonomy' => $taxonomy ) );
+			$taxonomy = 'category'; # apply_filters( 'fluid_content_navigation_taxonomy', 'category' );
+			fluid_navigation( $taxonomy );
 			fluid_postmetadata();
 		}
 		tcc_show_comments();

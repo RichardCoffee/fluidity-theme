@@ -123,6 +123,19 @@ if ( ! function_exists( 'fluid_login' ) ) {
 }
 
 /**
+ *  returns an instance of the Theme Navigation class
+ *
+ * @since 20180810
+ * @param string $taxonomy
+ * @return TCC_Theme_Navigation
+ */
+if ( ! function_exists( 'fluid_navigation' ) ) {
+	function fluid_navigation( $taxonomy = 'category' ) {
+		return new TCC_Theme_Navigation( [ 'taxonomy' => $taxonomy ] );
+	}
+}
+
+/**
  * Returns an instance of the Options class
  *
  * @since 20180314
