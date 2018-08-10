@@ -37,19 +37,10 @@ class TCC_Theme_Sidebar {
 			$this->parse_args( $args );
 			if ( ! $this->horizontal ) {
 				$this->check_mobile();
-				if ( ! ( $this->fluid === 'static' ) ) { ?>
-					<style>
-						.article .login-form input.form-control,
-						.article .login-form textarea.form-control,
-						#commentform input.form-control,
-						#commentform textarea.form-control {
-							width: 73%;
-						}
-					</style><?php
-				}
 			}
 			if ( ! empty( $this->action ) ) {
-				add_action( $this->action, array( $this, 'show_sidebar' ) );
+				add_action( 'tcc_custom_css', [ $this, 'fluid_style' ] );
+				add_action( $this->action,    [ $this, 'show_sidebar' ] );
 			}
 		}
 	}
@@ -64,6 +55,18 @@ class TCC_Theme_Sidebar {
 			}
 		} else if ( ( $this->fluid === 'static' ) && get_theme_mod( 'sidebar_position', 'right' ) === 'right' ) {
 			$this->action = 'tcc_after_main';
+		}
+	}
+
+	private function fluid_style() {
+		if ( ! ( $this->fluid === 'static' ) ) {
+			echo "
+#commentform input.form-control,
+#commentform textarea.form-control {
+	width: 73%;
+}
+";
+			do_action( 'fluidity_sidebar_fluid_styling' );
 		}
 	}
 
