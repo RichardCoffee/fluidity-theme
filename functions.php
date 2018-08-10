@@ -57,7 +57,7 @@ if ( is_admin() ) {
 
 
 /**  Test functions  **/
-
+/*
 add_filter( 'heartbeat_received', function ( $resource, $data ) {
 	fluid(1)->log( $resource, $data );
 	return $resource;
