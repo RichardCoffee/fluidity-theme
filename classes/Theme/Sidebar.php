@@ -37,6 +37,13 @@ class TCC_Theme_Sidebar {
 			$this->parse_args( $args );
 			if ( ! $this->horizontal ) {
 				$this->check_mobile();
+				if ( ! ( $this->fluid === 'static' ) ) { ?>
+					<style>
+						.form-control[type='input'] {
+							width: 73%;
+						}
+					</style><?php
+				}
 			}
 			if ( ! empty( $this->action ) ) {
 				add_action( $this->action, array( $this, 'show_sidebar' ) );
