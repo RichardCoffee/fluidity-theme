@@ -58,7 +58,7 @@ class TCC_Theme_Sidebar {
 		}
 	}
 
-	private function fluid_style() {
+	public function fluid_style() {
 		if ( ! ( $this->fluid === 'static' ) ) {
 			echo "
 #commentform input.form-control,
