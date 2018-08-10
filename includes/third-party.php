@@ -16,29 +16,8 @@ if ( function_exists( 'is_bbpress' ) ) {
 /**  BuddyPress  **/
 
 if ( class_exists( 'BuddyPress' ) ) {
-	function fluidity_buddypress_login_redirect( $redirect_to, $request, $user ) {
-		$new_url = $redirect_to;
-		if ( ! $user ) {
-			$new_url = home_url();
-		} else if ( ! is_object( $user ) ) {
-			fluid()->log( 'user var is not an object', $user, 'stack' );
-		} else if ( get_class( $user ) === 'WP_Error' ) {
-			fluid()->log( 'user var is a WP_Error object', $user );
-		} else {
-			$user_name = $user->data->user_nicename;
-			$new_url   = home_url( "members/$user_name/profile/" ) ;
-fluid()->log(
-	'   redirect_to:  ' . $redirect_to,
-	'       request:  ' . $request,
-	'wp_get_referer:  ' . wp_get_referer(),
-	'       new url:  ' . $new_url,
-	$user
-);
-		}
-		return $new_url;
-	}
-	add_filter( 'login_redirect', 'fluidity_buddypress_login_redirect', 10, 3 );
-} //*/
+	require_once( FLUIDITY_HOME . 'includes/buddypress.php' );
+}
 
 
 /** Essential Real Estate **/
