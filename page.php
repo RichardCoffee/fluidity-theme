@@ -6,11 +6,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header();
-
-$mypage = get_page_slug();
-
+$mypage       = get_page_slug();
 $page_sidebar = fluid_sidebar();
+
+get_header();
 
 do_action( 'fluid_page_top', $mypage ); ?>
 
