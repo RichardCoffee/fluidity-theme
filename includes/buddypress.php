@@ -48,6 +48,8 @@ fluid()->log(
 if ( ! function_exists( 'fluidity_buddypress_sidebar_fluid_styling' ) ) {
 	function fluidity_buddypress_sidebar_fluid_styling() {
 		echo "\nform#members-directory-form.dir-form {\n\tclear: inherit;\n}\n";
+		echo "\nform#members-directory-form div.pagination {\n\twidth: auto;\n}\n";
+		echo "\nform#members-directory-form ul.item-list {\n\tclear: left;\n}\n";
 	}
 	add_action( 'fluidity_sidebar_fluid_styling', 'fluidity_buddypress_sidebar_fluid_styling' );
 }
