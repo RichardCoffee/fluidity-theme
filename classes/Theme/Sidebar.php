@@ -39,7 +39,7 @@ class TCC_Theme_Sidebar {
 				$this->check_mobile();
 				if ( ! ( $this->fluid === 'static' ) ) { ?>
 					<style>
-						.form-control[type='input'] {
+						input.form-control {
 							width: 73%;
 						}
 					</style><?php
