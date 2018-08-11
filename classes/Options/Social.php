@@ -63,6 +63,22 @@ class TCC_Options_Social extends TCC_Options_Options {
 			),
 			'divcss'  => 'social-option-icon',
 		);
+		$layout['single'] = array(
+			'default' => 'individual',
+			'label'   => __( 'Icon Colors', 'tcc-fluid' ),
+			'render'  => 'radio',
+			'source'  => array(
+				'individual' => __( 'Use individual colors for each icon.', 'tcc-fluid' ),
+				'single'     => __( 'Use one color for all icons.','tcc-fluid' ),
+			),
+			'divcss' => 'social-option-icon',
+		);
+		$layout['color'] = array(
+			'default' => 'blue',
+			'label'   => __( 'Base Color', 'tcc-fluid' ),
+			'render'  => 'color',
+			'divcss'  => 'social-option-icon',
+		);
 		$layout['prote'] = array(
 			'label'  => __( 'Social Site URL', 'tcc-fluid' ),
 			'text'   => __( 'Be sure to add the protocol (ie: http:// or https://).', 'tcc-fluid' ),

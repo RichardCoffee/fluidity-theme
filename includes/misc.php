@@ -31,14 +31,16 @@ if ( ! function_exists( 'fluidity_show_query' ) ) {
  *
  */
 if ( ! function_exists( 'fluidity_social_icons' ) ) {
-	function fluidity_social_icons() {
-		$icons = get_option( 'tcc_options_social' );
+	function fluidity_social_icons( $args ) {
+		$icons = get_option( 'tcc_options_social', [ 'active' => 'no' ] );
 		if ( $icons['active'] === 'yes' ) {
 			if ( has_action( 'fluidity_social_icons' ) ) {
-				do_action( 'fluidity_social_icons' );
+				do_action( 'fluidity_social_icons', $args );
 			} else {
 				$size   = ( isset( $icons['size'] ) )   ? $icons['size']   : '';
 				$target = ( isset( $icons['target'] ) ) ? $icons['target'] : 'target';
+				$single = ( isset( $icons['single'] ) ) ? $icons['single'] : 'individual';
+				$color  = ( isset( $icons['color']  ) ) ? $icons['color']  : 'blue';
 				unset( $icons['active'], $icons['target'], $icons['size'] );
 				$social = array(); // FIXME: find another way to do this
 				foreach( $icons as $field => $value ) {
@@ -62,7 +64,7 @@ if ( ! function_exists( 'fluidity_social_icons' ) ) {
 							'class' => "$fawe fa-fw fa-$key-square $size",
 							'href'  => $set['link'],
 							'rel'   => 'nofollow',
-							'style' => "color:{$set['color']};",
+							'style' => 'color:' . ( ( $single === 'single' ) ? $color : $set['color'] ) . ';',
 							'title' => ( $key === 'rss' ) ? esc_html__( 'Subscribe to our RSS feed', 'tcc-fluid' ) : $tool, // TODO: option to change this text
 							'target'=> ( $target === 'target' ) ? "fluidity_$key" : "_blank",
 						);
