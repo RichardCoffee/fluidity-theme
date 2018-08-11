@@ -52,6 +52,11 @@ class TCC_Theme_Login {
 		$login_form->login_form();
 	}
 
+	public function navbar_login_form() {
+		$login_form = new TCC_Form_Login( [ 'in_navbar' => true ] );
+		$login_form->login_form();
+	}
+
 
 /***   Admin Login   ***/
 
