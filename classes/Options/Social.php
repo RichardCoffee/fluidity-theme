@@ -76,7 +76,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 		$layout['color'] = array(
 			'default' => 'blue',
 			'label'   => __( 'Base Color', 'tcc-fluid' ),
-			'render'  => 'color',
+			'render'  => 'colorpicker',
 			'divcss'  => 'social-option-icon',
 		);
 		$layout['prote'] = array(

@@ -478,11 +478,11 @@ abstract class TCC_Form_Admin {
 			'value' => $value,
 			'data-default-color' => $layout['default']
 		);
-		$this->apply_attrs_element( 'input', $attrs );
+		$this->element( 'input', $attrs );
 		$text = ( ! empty( $layout['text'] ) ) ? $layout['text'] : '';
 		if ( ! empty( $text ) ) {
 			echo esc_html( '&nbsp;' );
-			$this->apply_attrs_element( 'span', [ 'class' => 'form-colorpicker-text' ], $text );
+			$this->element( 'span', [ 'class' => 'form-colorpicker-text' ], $text );
 		}
 	}
 
