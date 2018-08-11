@@ -151,15 +151,16 @@ class TCC_Form_Login {
 		<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url( home_url() ); ?>" method="post">
 			<div class="text-center"><?php
 				$attrs = array(
+					'type'  => 'button',
 					'class' => 'btn btn-fluidity',
 					'href'  =>  esc_url( wp_logout_url( home_url() ) ),
 					'title' =>  $signout,
 					'rel'   => 'nofollow',
 				); ?>
-				<a <?php $this->apply_attrs( $attrs ); ?>>&nbsp;
+				<button <?php $this->apply_attrs( $attrs ); ?>>&nbsp;
 					<?php echo esc_html( $signout ); ?>
 					&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
-				</a>
+				</button>
 			</div>
 		</form><?php
 	}
