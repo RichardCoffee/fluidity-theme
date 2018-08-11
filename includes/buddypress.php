@@ -23,7 +23,7 @@ if ( ! function_exists( 'fluidity_buddypress_login_redirect' ) ) {
 		} else if ( ! is_object( $user ) ) {
 			fluid()->log( 'user var is not an object', $user, 'stack' );
 		} else if ( get_class( $user ) === 'WP_Error' ) {
-			fluid()->log( 'user var is a WP_Error object', $user, $redirect );
+			fluid()->log( 'user var is a WP_Error object', $user, $redirect_to );
 		} else {
 			$user_name   = $user->data->user_nicename;
 			$redirect_to = home_url( "members/$user_name/profile/" ) ;
