@@ -87,11 +87,11 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 	}
 	add_action('widgets_init','fluidity_register_sidebars');
 } //*/
-
+/*
 function fluidity_the_widget(  $widget, $instance, $args ) {
 	fluid()->log( 'the_widget', $widget, $instance, $args );
 }
-add_action( 'the_widget', 'fluidity_the_widget', 999, 3 );
+add_action( 'the_widget', 'fluidity_the_widget', 999, 3 ); //*/
 
 if (!function_exists('fluidity_get_sidebar')) {
   #  This function works in tandem with fluidity_sidebar_parameter()
