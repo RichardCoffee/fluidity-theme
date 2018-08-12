@@ -267,7 +267,7 @@ if ( ! function_exists( 'fluid_title' ) ) {
 
 #	 * @since 201811
 if ( ! function_exists( 'fluid_view_image_link' ) ) {
-	function fluid_view_image_link( $output ) {
+	function fluid_view_image_link() {
 		$attrs = array(
 			'class'       => apply_filters( 'fluid_view_image_link_css', 'text-center' ),
 			'href'        => get_permalink( get_the_ID() ),
