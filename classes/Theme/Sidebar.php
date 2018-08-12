@@ -60,12 +60,8 @@ class TCC_Theme_Sidebar {
 
 	public function fluid_style() {
 		if ( ! ( $this->fluid === 'static' ) ) {
-			echo "
-#commentform input.form-control,
-#commentform textarea.form-control {
-	width: 73%;
-}
-";
+			echo "\n#commentform input.form-control,\n#commentform textarea.form-control {\n\twidth: 73%;\n}\n";
+			echo "\n.featured-image .img-responsive {\n\tmax-width: 71%;\n}\n";
 			do_action( 'fluidity_sidebar_fluid_styling' );
 		}
 	}
