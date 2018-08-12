@@ -173,7 +173,7 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 			'aria-hidden' => 'true',
 			'tabindex'    => '-1',
 		);
-		$link  = fluid()->get_apply_attrs_tag( 'a', $attrs );
+		$link  = fluid()->get_tag( 'a', $attrs );
 		$link .= apply_filters( 'fluid_read_more_text', __( 'Read More', 'tcc-fluid' ) );
 		// title inserted here for SEO purposes
 		$link .= '<span class="screen-reader-text"> ';
@@ -264,6 +264,21 @@ if ( ! function_exists( 'fluid_title' ) ) {
 		}
 	}
 }
+
+#	 * @since 201811
+if ( ! function_exists( 'fluid_view_image_link' ) ) {
+	function fluid_view_image_link( $output ) {
+		$attrs = array(
+			'class'       => apply_filters( 'fluid_view_image_link_css', 'text-center' ),
+			'href'        => get_permalink( get_the_ID() ),
+			'itemprop'    => 'url',
+			'aria-hidden' => 'true',
+			'tabindex'    => '-1',
+		);
+		fluid()->element( 'a', $attrs, __( 'View image', 'tcc-fluid' ) );
+	}
+}
+
 
 # * @since 20161229
 if (!function_exists('tcc_post_title')) {
