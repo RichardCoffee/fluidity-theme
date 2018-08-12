@@ -269,7 +269,7 @@ if ( ! function_exists( 'fluid_title' ) ) {
 if ( ! function_exists( 'fluid_view_image_link' ) ) {
 	function fluid_view_image_link() {
 		$attrs = array(
-			'class'       => apply_filters( 'fluid_view_image_link_css', 'text-center' ),
+#			'class'       => apply_filters( 'fluid_view_image_link_css', 'text-center' ),
 			'href'        => get_permalink( get_the_ID() ),
 			'itemprop'    => 'url',
 			'aria-hidden' => 'true',

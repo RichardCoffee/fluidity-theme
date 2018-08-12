@@ -17,8 +17,10 @@ who_am_i(); ?>
 			do_action( 'fluid_excerpt_header' ); ?>
 		</header>
 
-		<section class="article" itemprop="description"><?php
-			fluid_view_image_link(); ?>
+		<section class="article" itemprop="description">
+			<h3 class="text-center"><?php
+				fluid_view_image_link(); ?>
+			</h3>
 		</section>
 
 	</article>
