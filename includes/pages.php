@@ -39,6 +39,11 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 				'description' => __( 'All settings dealing with pages', 'tcc-fluid' )
 			),
 			'controls' => array(
+				'test' => array(
+					'label'  => __( 'Test Label', 'tcc-fluid' ),
+					'text'   => __( 'Text for test label', 'tcc-fluid' ),
+					'render' => 'title',
+				),
 				'title' => array(
 					'default' => 'no',
 					'label'   => __( 'Page Title', 'tcc-fluid' ),
