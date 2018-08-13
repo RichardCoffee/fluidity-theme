@@ -39,17 +39,12 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 				'description' => __( 'All settings dealing with pages', 'tcc-fluid' )
 			),
 			'controls' => array(
-				'test' => array(
-					'label'  => __( 'Test Label', 'tcc-fluid' ),
-					'text'   => __( 'Text for test label', 'tcc-fluid' ),
-					'render' => 'content',
-				),
 				'the-title' => array(
 					'default' => 'no',
 					'label'   => __( 'Page Title', 'tcc-fluid' ),
 					'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
 					'render'  => 'radio',
-					'source'  => array(
+					'choices'  => array(
 						'no'   => __( 'Do not show the page title.', 'tcc-fluid' ),
 						'page' => __( 'Show the page title after the header and before the content/sidebar.', 'tcc-fluid' ),
 						'main' => __( 'Over content area only, when showing sidebar.', 'tcc-fluid' ),
