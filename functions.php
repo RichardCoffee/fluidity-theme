@@ -64,4 +64,4 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 }, 10, 2 ); //*/
 
 global $shortcode_tags;
-fluid()->log( $shortcodes );
+fluid()->log( $shortcode_tags );
