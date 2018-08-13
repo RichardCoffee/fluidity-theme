@@ -22,7 +22,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$layout   = fluid_customizer()->content_controls();
 		$choices  = $layout['content']['controls']['postdate']['choices'];
 		$default  = $layout['content']['controls']['postdate']['default'];
-		$current  = tcc_content( 'postdate', $default );
+		$current  = get_theme_mod( 'content_postdate', $default );
 		$args = array(
 			'default'     => 'defaultpd',
 			'field_name'  => $this->field,
