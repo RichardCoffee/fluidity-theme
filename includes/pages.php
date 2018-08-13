@@ -42,7 +42,7 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 				'test' => array(
 					'label'  => __( 'Test Label', 'tcc-fluid' ),
 					'text'   => __( 'Text for test label', 'tcc-fluid' ),
-					'render' => 'title',
+					'render' => 'content',
 				),
 				'title' => array(
 					'default' => 'no',
