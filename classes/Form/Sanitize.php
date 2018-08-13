@@ -81,8 +81,19 @@ class TCC_Form_Sanitize {
 		return wp_filter_nohtml_kses( $input );
 	}
 
-	public function text_color($input) {
-		return $this->text($input);
+	public function text_color( $input ) {
+		return $this->text( $input );
+	}
+
+	/**
+	 *  sanitize function for render 'title'
+	 *
+	 * @since 20180812
+	 * @param string $input
+	 * @return string
+	 */
+	public function title( $input ) {
+		return $this->text( $input );
 	}
 
 	public function url( $input ) {
