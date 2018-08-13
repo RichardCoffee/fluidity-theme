@@ -32,19 +32,6 @@ class TCC_Options_Design extends TCC_Options_Options {
 				'yes' => __( 'Use featured image as background', 'tcc-fluid' ),
 			)
 		);
-		$layout['title'] = array(
-			'default' => 'no',
-			'label'   => __( 'Page Title', 'tcc-fluid' ),
-			'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'no'   => __( 'Do not show the page title.', 'tcc-fluid' ),
-				'page' => __( 'Show the page title after the header and before the content/sidebar.', 'tcc-fluid' ),
-			)
-		);
-		if ( ! ( get_theme_mod( 'sidebar_position', 'right' ) === 'none' ) ) {
-			$layout['title']['source']['main'] = __( 'Over content area only, when showing sidebar.', 'tcc-fluid' );
-		}
 		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
 	}
 
