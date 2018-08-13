@@ -1,8 +1,9 @@
 <?php
-
-/*
+/**
  *  includes/third-party.php
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 
@@ -148,12 +149,28 @@ if ( function_exists( 'wpfai_social' ) && ( ! function_exists('fluidity_wpfai_so
 
 /** WP Frontend Profile **/
 
-if ( ! function_exists( 'fluid_wpfep_get_edit_user_url' ) && function_exists( 'wpfep_show_profile' ) ) {
-	function fluid_wpfep_get_edit_user_url( $url, $user_id, $scheme ) {
-		if ( page_exists( 'Your Profile' ) ) {
-			return esc_url_raw( home_url( '/your-profile' ) );
+if ( function_exists( 'wpfep_show_profile' ) ) {
+
+	if ( ! function_exists( 'fluid_wpfep_get_edit_user_url' ) ) {
+		function fluid_wpfep_get_edit_user_url( $url, $user_id, $scheme ) {
+			if ( page_exists( 'Your Profile' ) ) {
+				return esc_url_raw( home_url( '/your-profile' ) );
+			}
+			return $url;
 		}
-		return $url;
+		add_filter( 'edit_profile_url', 'fluid_wpfep_get_edit_user_url', 11, 3 );
 	}
-	add_filter( 'edit_profile_url', 'fluid_wpfep_get_edit_user_url', 11, 3 );
+
+	/**
+	 *  handle fluid sidebar for profile page
+	 *
+	 * @since 20180812
+	 */
+	if ( ! function_exists( 'fluid_wpfep_fluid_sidebar_css' ) ) {
+		function fluid_wpfep_fluid_sidebar_css() {
+			echo "form.wpfep-form-profile {\n\tmax-width: 73%;\n}\n";
+		}
+	}
+	add_action( 'fluidity_sidebar_fluid_styling', 'fluid_wpfep_fluid_sidebar_css' );
+
 }
