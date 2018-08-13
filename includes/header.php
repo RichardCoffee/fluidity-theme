@@ -116,24 +116,18 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 					<a <?php fluid()->apply_attrs( $attrs ); ?>><?php
 						$logo_id = get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
-							$size  = apply_filters( 'tcc_header_logo_size', 'medium' );
-							$class = apply_filters( 'tcc_header_logo_class', array( 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ) );
+							$size  = apply_filters( 'fluid_header_logo_size', 'full' );
+							$class = apply_filters( 'fluid_header_logo_class', array( 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ) );
+							$logo  = wp_get_attachment_image_src( $custom_logo_id , $size );
 							$attrs = array(
-								'class'     => implode( ' ', $class ),
+								'class'     => $class,
 								'data-size' => $size,
+								'src'       => $logo[0],
 								'alt'       => get_bloginfo( 'name' ),
-								'itemprop'  => 'image',
+								'title'     => get_bloginfo( 'name' ),
+								'itemprop'  => 'logo',
 							);
-							echo wp_get_attachment_image( $logo_id, $size, false, $attrs );
-						} else if ( $logo = tcc_design( 'logo' ) ) {  #  get logo url
-							$class = apply_filters( 'tcc_header_logo_class', array( 'img-responsive', 'hidden-xs' ) );
-							$attrs = array(
-								'class'    => implode( ' ', $class ),
-								'src'      => $logo,
-								'alt'      => get_bloginfo( 'name' ),
-								'itemprop' => 'image',
-							); ?>
-							<img <?php fluid()->apply_attrs( $attrs ); ?>><?php
+							fluid()->element( 'img', $attrs );
 						} else {
 							bloginfo( 'name' );
 						} ?>

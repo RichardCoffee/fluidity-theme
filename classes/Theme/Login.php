@@ -62,10 +62,12 @@ class TCC_Theme_Login {
 
 	# http://www.catswhocode.com/blog/10-wordpress-dashboard-hacks
 	public function dashboard_logo() {
-		$logo = tcc_design( 'logo' );
-		if ( $logo ) {
-			add_action( 'tcc_custom_css', function() use ( $logo ) {
-				echo "\n#header-logo {\n\tbackground-image: url( " . esc_url_raw( $logo ) . " ) !important;\n}\n";
+		$logo_id = get_theme_mod( 'custom_logo' );
+		if ( $logo_id ) {
+			add_action( 'tcc_custom_css', function() use ( $logo_id ) {
+				$size = apply_filters( 'fluid_header_logo_size', 'full' );
+				$logo = wp_get_attachment_image_src( $logo_id , $size );
+				echo "\n#header-logo {\n\tbackground-image: url( " . esc_url_raw( $logo[0] ) . " ) !important;\n}\n";
 			});
 		}
 	}

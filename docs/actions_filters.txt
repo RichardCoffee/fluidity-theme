@@ -61,6 +61,8 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_{$page}_container_type      as above, only on specified page/section           container_type
 		fluid_default_sidebars            Filter the sidebars that the theme creates         TCC_Register_Sidebars->
 		fluid_excerpt_link_tooltip        string used for post link tooltip in excerpts      fluid_excerpt_link_tooltip
+		fluid_header_logo_class             css applied to header logo image                   fluidity_header_logo
+		fluid_header_logo_size              control size of logo image, default: medium        fluidity_header_logo
 		fluid_navigation_excluded_terms   control what terms are excluded from post links    fluid_navigation
 		fluid_navigation_taxonomy         What taxonomy should be used for taxonomy links    fluid_navigation
 		fluid_post_date_sprintf           string used to format the post date                fluid_post_date
@@ -77,8 +79,6 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		                                    template-part, css has to be in url format
 		tcc_copyright_name                site title displayed in copyright notice           tcc_copyright
 		tcc_google_fonts                  list of google fonts we want to use                Typography::google_fonts
-		tcc_header_logo_class             css applied to header logo image                   fluidity_header_logo
-		tcc_header_logo_size              control size of logo image, default: medium        fluidity_header_logo
 		tcc_log_in_text                   text for login button                              tcc_login_form_defaults
 		tcc_login_form_id                 id for login form div                              tcc_login_form_defaults
 		tcc_login_password                text for user password field                       tcc_login_form_defaults

@@ -9,12 +9,9 @@ class TCC_Widget_Logo extends TCC_Widget_Widget {
     parent::__construct();
   }
 
-  public function inner_widget($args,$instance) {
-    $logo = tcc_design('logo'); ?>
-    <a href="<?php echo esc_url(home_url()); ?>/">
-      <img itemprop="logo" class="img-responsive" src='<?php echo esc_url( $logo ); ?>' alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
-    </a><?php
-  }
+	public function inner_widget($args,$instance) {
+		fluid_header_logo();
+	}
 
 	public function form($instance) {
 		if (isset($instance['title']) && ($instance['title']===$this->title)) { $instance['title'] = ''; }
