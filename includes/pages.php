@@ -40,7 +40,7 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 			),
 			'controls' => array(
 				'the-title' => array(
-					'default' => 'no',
+					'default' => 'page',
 					'label'   => __( 'Page Title', 'tcc-fluid' ),
 					'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
 					'render'  => 'radio',
