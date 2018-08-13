@@ -2,6 +2,8 @@
 /*
  *  File:  includes/options.php
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 /*
 if ( ! function_exists( 'fluid_rest_dispatch_request' ) ) {
@@ -69,15 +71,6 @@ if ( ! function_exists( 'fluid_load_post_classes_admin' ) ) {
 	}
 	add_action( 'admin_init', 'fluid_load_post_classes_admin' );
 }
-/*
-if ( ! function_exists( 'fluid_load_post_classes' ) ) {
-	function fluid_load_post_classes() {
-		if ( is_page() || is_single() ) {
-
-		}
-	}
-	add_action( 'init', 'fluid_load_post_classes' );
-} //*/
 
 if (!function_exists('tcc_bootstrap')) {
 	function tcc_bootstrap( $option ) {
@@ -104,15 +97,6 @@ if ( ! function_exists( 'tcc_design' ) ) {
 		if ( isset( $data[ $option ] ) ) { return $data[ $option ]; }
 		return $default;
 	}
-}
-
-if ( ! function_exists( 'tcc_excerpt_length' ) ) {
-	function tcc_excerpt_length( $length ) {
-		$stored  = tcc_option( 'exlength', 'content', 55 );
-		$calced  = intval( $stored, 10 );
-		return ( $calced ) ? $calced : $length;
-	}
-	add_filter( 'excerpt_length', 'tcc_excerpt_length', 11 );
 }
 
 if ( ! function_exists( 'tcc_layout' ) ) {

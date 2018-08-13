@@ -2,6 +2,8 @@
 /*
  *  File Name:  excerpt.php
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -23,6 +25,6 @@ who_am_i(); ?>
 
 	</article>
 
-</div>
+</div><?php
 
-<?php clearfix()->apply();
+clearfix()->apply();

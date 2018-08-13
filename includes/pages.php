@@ -2,8 +2,10 @@
 
 /*
  *  File:  includes/pages.php
- *
  *		Custom Fields on Pages:		<?php echo get_post_meta(get_page_id($page), 'key string here', true); ?>
+ *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 if ( ! function_exists( 'get_page_id' ) ) {
@@ -40,11 +42,11 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 			),
 			'controls' => array(
 				'the-title' => array(
-					'default' => 'page',
-					'label'   => __( 'Page Title', 'tcc-fluid' ),
-					'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
-					'render'  => 'radio',
-					'choices'  => array(
+					'default'    => 'page',
+					'label'      => __( 'Page Title', 'tcc-fluid' ),
+					'descripion' => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
+					'render'     => 'radio',
+					'choices'    => array(
 						'no'   => __( 'Do not show the page title.', 'tcc-fluid' ),
 						'page' => __( 'Show the page title after the header and before the content/sidebar.', 'tcc-fluid' ),
 						'main' => __( 'Over content area only, when showing sidebar.', 'tcc-fluid' ),

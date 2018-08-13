@@ -2,6 +2,8 @@
 /**
  * classes/Theme/Customizer.php
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 require_once( 'Typography.php' );
 /**
@@ -124,7 +126,7 @@ class TCC_Theme_Customizer {
 			'priority'    => 10,
 			'section'     => '',
 			'label'       => __( 'Control Label', 'tcc-fluid' ),
-			'description' => __( 'Control Description', 'tcc-fluid' ),
+			'description' => '',
 			'choices'     => array(), // used only if type = 'radio' or 'select' only
 			'type'        => $control['render'],
 			'input_attrs' => array(),
@@ -259,6 +261,7 @@ class TCC_Theme_Customizer {
 				'default'   => 'original',
 				'transport' => 'postMessage',
 				'label'     => __( 'Displayed Publish/Edit Date', 'tcc-fluid' ),
+				'descripion' => __( 'Control when and how the post dates are displayed', 'tcc-fluid' ),
 				'render'    => 'radio',
 				'choices'   => array( // This array referenced in classes/MetaBox/PostDate.php initialize_radio()
 					'both'     => __( 'Show both modified and original post date when showing full post content', 'tcc-fluid' ),
@@ -279,6 +282,43 @@ class TCC_Theme_Customizer {
 						'container_inclusive' => false,
 					),
 				),
+			),
+			'excerpt' => array(
+				'default'     => 'excerpt',
+				'label'       => __( 'Blog/News/Search', 'tcc-fluid' ),
+				'description' => __( 'Show full post content or just an excerpt on archive/category/search pages', 'tcc-fluid' ),
+				'render'      => 'radio',
+				'choices'     => array(
+					'content' => __( 'Content', 'tcc-fluid' ),
+					'excerpt' => __( 'Excerpt', 'tcc-fluid' ),
+				),
+				'active_callback' => function() {
+					return is_archive();
+				},
+			),
+			'exdate' => array(
+				'default'     => 'show',
+				'label'       => __( 'Excerpt Date', 'tcc-fluid' ),
+				'description' => __( 'Should the post date be displayed with excerpt?', 'tcc-fluid' ),
+				'render'      => 'radio',
+				'choices'     => array(
+					'none'     => __( 'Never show date.', 'tcc-fluid' ),
+					'show'     => __( 'Always show date.', 'tcc-fluid' ),
+					'postshow' => __( 'Allow control per post with default to show.', 'tcc-fluid' ),
+					'posthide' => __( 'Allow control per post with default to hide.', 'tcc-fluid' ),
+				),
+				'active_callback' => function() {
+					return is_archive();
+				},
+			),
+			'exlength' => array(
+				'default'     => apply_filters( 'excerpt_length', 55 ),
+				'label'       => __( 'Excerpt Length', 'tcc-fluid' ),
+				'description' => 'Number of words in excerpt',
+				'render'      => 'spinner',
+				'active_callback' => function() {
+					return is_archive();
+				},
 			),
 		);
 		$options['content'] = array(

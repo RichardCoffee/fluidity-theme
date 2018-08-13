@@ -2,6 +2,8 @@
 /*
  *  Template Part:  excerpt-link.php
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -16,26 +18,21 @@ who_am_i(); ?>
 		<div class="row"><?php
 
 			$link_css = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
-			if ( has_post_thumbnail() ) { // FIXME:  need option for image/title placement ?>
-				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-					<?php fluid_thumbnail(); ?>
+			if ( has_post_thumbnail() ) { ?>
+				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs"><?php
+					fluid_thumbnail(); ?>
 				</div><!-- .col-* --><?php
 				$link_css = "col-lg-9 col-md-9 col-sm-12 col-xs-12";
 			} ?>
 
-			<div class="<?php e_esc_attr( $link_css ); ?>">
+			<section class="<?php e_esc_attr( $link_css ); ?> article" itemprop="description"><?php
+				the_content(); ?>
+			</section><!-- .article -->
 
-				<?php do_action( 'fluid_content_header' ); ?>
-
-				<div class="article" itemprop="description">
-					<?php the_content(); ?>
-				</div><!-- .article -->
-
-			</div><!-- .col-* -->
 		</div><!-- .row -->
 
 	</article>
 
-	</div>
+</div><?php
 
-<?php clearfix()->apply();
+clearfix()->apply();

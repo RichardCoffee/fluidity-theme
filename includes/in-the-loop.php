@@ -5,6 +5,8 @@
  *
  *  All functions in this file expect to be run inside the WordPress loop
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  * @since 20160830
  */
 
@@ -44,6 +46,22 @@ if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 }
 
 /**
+ *  display excerpt
+ *
+ * @since 20180813
+ */
+if ( ! function_exists( 'fluid_excerpt' ) ) {
+	function fluid_excerpt() {
+		# FIXME:  create postmeta option for post control
+		if ( get_theme_mod( 'content_excerpt', 'excerpt' ) === 'content' ) {
+			the_content();
+		} else {
+			the_excerpt();
+		}
+	}
+}
+
+/**
  *  Display excerpt header
  *
  * @since 20180807
@@ -53,13 +71,29 @@ if ( ! function_exists( 'fluid_excerpt_header' ) ) {
 		<h2 class="text-center" itemprop="headline"><?php
 			tcc_post_title( 40 ); ?>
 		</h2><?php
-		if ( tcc_option( 'exdate', 'content', 'show' ) === 'show' ) { ?>
+		if ( get_theme_mod( 'content_exdate', 'show' ) === 'show' ) { ?>
 			<h3 class="text-center"><?php
 				fluid_post_date(); ?>
 			</h3><?php
 		}
 	}
 	add_action( 'fluid_excerpt_header', 'fluid_excerpt_header' );
+}
+
+/**
+ *  Control excerpt length
+ *
+ * @since 20170126
+ * @param numeric $length
+ * @return numeric
+ */
+if ( ! function_exists( 'fluid_excerpt_length' ) ) {
+	function fluid_excerpt_length( $length ) {
+		$stored  = get_theme_mod( 'content_exlength', 55 );
+		$calced  = intval( $stored, 10 );
+		return ( $calced ) ? $calced : $length;
+	}
+	add_filter( 'excerpt_length', 'fluid_excerpt_length', 11 );
 }
 
 /**
@@ -192,12 +226,12 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
 	function fluid_show_content_title() {
 		if ( ! is_page() ) {
 			$show_orig = false; ?>
-			<h2 class="text-center" itemprop="headline">
-				<?php tcc_post_title(); ?>
-				<?php fluid_edit_post_link(); ?>
+			<h2 class="text-center" itemprop="headline"><?php
+				tcc_post_title();
+				fluid_edit_post_link(); ?>
 			</h2>
-			<div id="fluid_content_post_dates">
-				<?php fluid_show_post_dates(); ?>
+			<div id="fluid_content_post_dates"><?php
+				fluid_show_post_dates(); ?>
 			</div><?php
 		}
 	}

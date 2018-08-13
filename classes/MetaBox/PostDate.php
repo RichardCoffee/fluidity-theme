@@ -1,9 +1,14 @@
 <?php
+/**
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ */
 
 class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 
 	protected $context  = 'side';
 	protected $field    = 'postdate_display';
+	protected $excerpt  = array( 'field' => 'postdate_excerpt', 'object' => null );
 	protected $nonce    = 'postdate_meta_box';
 	protected $priority = 'default';
 	protected $radio    = null;  #  object of type TCC_Form_Field_Radio
@@ -37,14 +42,34 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 				$choices
 			),
 		);
-		$this->radio = new TCC_Form_Field_Radio( $args );
+		$this->radio  = new TCC_Form_Field_Radio( $args );
+		$show_excerpt = in_array( get_theme_mod( 'content_exdate', 'show' ), [ 'postshow', 'posthide' ] );
+		if ( $show_excerpt ) {
+			$exdate = get_post_meta( $postID, $this->excerpt, true );
+			$ex_def = ( get_theme_mod( 'content_exdate', 'postshow' ) === 'posthide' ) ? 'hide' : 'show';
+			$this->excerpt['header'] = $layout['content']['controls']['exdate']['label'];
+			$this->excerpt['args']   = array(
+				'default'     => $ex_def,
+				'field_name'  => $this->excerpt['field'],
+				'field_value' => ( $exdate ) ? $exdate : $ex_def,
+				'choices'     => array(
+					'show' => $layout['content']['controls']['exdate']['choices']['show'],
+					'hide' => $layout['content']['controls']['exdate']['choices']['hide'],
+				),
+			);
+			$this->excerpt['object'] = new TCC_Form_Field_Radio( $this->excerpt['args'] );
+		}
 	}
 
 	public function show_meta_box( $post ) {
 		$this->initialize_radio( $post->ID );
 		wp_nonce_field( basename( __FILE__ ), $this->nonce ); ?>
-		<div id="<?php e_esc_attr( $this->slug ); ?>">
-			<?php $this->radio->radio(); ?>
+		<div id="<?php e_esc_attr( $this->slug ); ?>"><?php
+			$this->radio->radio();
+			if ( $this->excerpt['object'] ) {
+				$this->element( 'h3', [ ], $this->excerpt['header'] );
+				$this->excerpt['object']->radio();
+			} ?>
 		</div><?php
 	}
 
@@ -54,8 +79,12 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		}
 		if ( ! empty( $_POST[ $this->field ] ) ) {
 			$this->initialize_radio( $postID );
-			$value = $this->radio->sanitize( wp_unslash( $_POST[ $this->field ] ) );
+			$value = $this->radio->sanitize( $_POST[ $this->field ] );
 			update_post_meta( $postID, $this->field, $value );
+			if ( $this->excerpt['object'] && ! empty( $_POST[ $this->excerpt['field'] ] ) ) {
+				$exdate = $this->excerpt['object']->sanitize( $_POST[ $this->excerpt['field'] ] );
+				update_post_meta( $postID, $this->excerpt['field'], $exdate );
+			}
 		}
 	}
 

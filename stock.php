@@ -30,7 +30,7 @@ do_action( 'fluid_page_top', $mypage ); ?>
 
 				do_action( 'tcc_before_loop', $mypage );
 
-				$root = ( is_singular() ) ? 'content' : tcc_content( 'content', 'excerpt' );
+				$root = ( is_singular() ) ? 'content' : get_theme_mod( 'content_excerpt', 'excerpt' );
 				$root = apply_filters( 'tcc_template-parts_root', $root, $mypage );
 				while ( have_posts () ) { ?>
 					<div><?php
