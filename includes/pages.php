@@ -44,7 +44,7 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 					'text'   => __( 'Text for test label', 'tcc-fluid' ),
 					'render' => 'content',
 				),
-				'title' => array(
+				'the-title' => array(
 					'default' => 'no',
 					'label'   => __( 'Page Title', 'tcc-fluid' ),
 					'text'    => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
