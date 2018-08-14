@@ -31,7 +31,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$args = array(
 			'default'     => 'defaultpd',
 			'field_name'  => $this->field,
-			'field_value' => ( $postdate ) ? $postdate : $default,
+			'field_value' => ( $postdate ) ? $postdate : 'defaultdp',
 			'choices'     => array_merge(
 				array(
 					'defaultpd' => sprintf(
