@@ -2,6 +2,8 @@
 /**
  * classes/Trait/Attributes.php
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 /**
  * A trait that provides methods to generate html for tag attributes
@@ -12,7 +14,7 @@
 trait TCC_Trait_Attributes {
 
 	/**
-	 * alias for apply_attrs_element
+	 *  alias for apply_attrs_element method
 	 *
 	 * @since 20180426
 	 * @param string $tag
@@ -23,17 +25,37 @@ trait TCC_Trait_Attributes {
 		$this->apply_attrs_element( $tag, $attrs, $text );
 	}
 
-#	 * @since 20180426
+	/**
+	 *  alias for get_apply_attrs_element method
+	 *
+	 * @since 20180426
+	 * @param string $tag
+	 * @param array $attrs
+	 * @param string $text
+	 * @return string
+	 */
 	public function get_element( $tag, $attrs, $text = '' ) {
 		return $this->get_apply_attrs_element( $tag, $attrs, $text );
-}
+	}
 
-#	 * @since 20180426
+	/**
+	 *  alias for apply_attrs_tag method
+	 *
+	 * @since 20180426
+	 * @param string $tag
+	 * @param array $attrs
+	 */
 	public function tag( $tag, $attrs ) {
 		$this->apply_attrs_tag( $tag, $attrs );
 	}
 
-#	 * @since 20180426
+	/**
+	 *  alias for get_apply_attrs_tag method
+	 * @since 20180426
+	 * @param string $tag
+	 * @param array $attrs
+	 * @return string
+	 */
 	public function get_tag( $tag, $attrs ) {
 		return $this->get_apply_attrs_tag( $tag, $attrs );
 	}
@@ -192,8 +214,15 @@ trait TCC_Trait_Attributes {
 		return $html;
 	}
 
-#	 * @since 20180425
-#	 * @link https://www.hongkiat.com/blog/wordpress-rel-noopener/
+	/**
+	 *  filter the attribute array by the htnl tag and the array subscript
+	 *
+	 * @since 20180425
+	 * @link https://www.hongkiat.com/blog/wordpress-rel-noopener/
+	 * @param string $html_tag
+	 * @param array $attrs
+	 * @return array
+	 */
 	public function filter_attributes_by_tag( $html_tag, $attrs ) {
 		if ( ( $html_tag === 'a' ) && isset( $attrs[ 'target' ] ) ) {
 			$attrs['rel'] = ( ( isset( $attrs['rel'] ) ) ? $attrs['rel'] . ' ' : '' ) . 'nofollow noopener';
@@ -205,27 +234,73 @@ trait TCC_Trait_Attributes {
 
 /***   helper functions   ***/
 
-#	 * @since 20180424
+	/**
+	 *  add the checked attribute to the attributes array
+	 *
+	 * @since 20180424
+	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
+	 * @param array $attrs
+	 * @param mixed $checked value to check
+	 * @param mixed $current base value to check against
+	 * @return array
+	 */
 	public function checked( $attrs, $checked, $current = true ) {
 		return $this->checked_selected_helper( $attrs, $checked, $current, 'checked' );
 	}
 
-#	 * @since 20180424
+	/**
+	 *  add the disabled attribute to the attributes array
+	 *
+	 * @since 20180424
+	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
+	 * @param array $attrs
+	 * @param mixed $disabled value to check
+	 * @param mixed $current base value to check against
+	 * @return array
+	 */
 	public function disabled( $attrs, $disabled, $current = true ) {
 		return $this->checked_selected_helper( $attrs, $disabled, $current, 'disabled' );
 	}
 
-#	 * @since 20180424
+	/**
+	 *  add the readonly attribute to the attributes array
+	 *
+	 * @since 20180424
+	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
+	 * @param array $attrs
+	 * @param mixed $readonly value to check
+	 * @param mixed $current base value to check against
+	 * @return array
+	 */
 	public function readonly( $attrs, $readonly, $current = true ) {
 		return $this->checked_selected_helper( $attrs, $readonly, $current, 'readonly' );
 	}
 
-#	 * @since 20180424
+	/**
+	 *  add the selected attribute to the attributes array
+	 *
+	 * @since 20180424
+	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
+	 * @param array $attrs
+	 * @param mixed $selected value to check
+	 * @param mixed $current base value to check against
+	 * @return array
+	 */
 	public function selected( $attrs, $selected, $current = true ) {
 		return $this->checked_selected_helper( $attrs, $selected, $current, 'selected' );
 	}
 
-#	 * @since 20180424
+	/**
+	 *  workhorse of the checked, disabled, readonly, and selected methods
+	 *
+	 * @since 20180424
+	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
+	 * @param array $attrs
+	 * @param mixed $checked value to check
+	 * @param mixed $current base value to check against
+	 * @param string $type attribute to add
+	 * @return array
+	 */
 	protected function checked_selected_helper( $attrs, $helper, $current, $type ) {
 		if ( (string) $helper === (string) $current ) {
 			$attrs[ $type ] = $type;
