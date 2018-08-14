@@ -11,8 +11,8 @@
  */
 if ( ! function_exists( 'fluid_load_theme_support' ) ) {
 	function fluid_load_theme_support( $args = array() ) {
-		$minus = array( 'custom_header', 'custom_logo' ); //, 'editor_style' );
-		return array_diff( $args, $minus );
+		$minus = array( 'custom-header', 'custom-logo' ); //, 'editor_style' );
+		return array_diff( $args, [ 'custom-header' ] );
 	}
 	add_filter( 'fluid_load_theme_support', 'fluid_load_theme_support' );
 }

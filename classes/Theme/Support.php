@@ -5,6 +5,7 @@
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/Support.php
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/support.php
  * @author Richard Coffee <richard.coffee@gmail.com>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 /**
@@ -39,9 +40,10 @@ class TCC_Theme_Support {
 	 *
 	 */
 	public function __construct() {
-		add_action( 'after_setup_theme',        array( $this, 'load_theme_support'       ), 100 );
-		add_action( 'init',                     array( $this, 'post_type_support'        ) );
-		add_filter( 'theme_scandir_exclusions', array( $this, 'theme_scandir_exclusions' ) );
+		add_action( 'after_setup_theme',        [ $this, 'load_theme_support'       ], 100 );
+		add_action( 'init',                     [ $this, 'post_type_support'        ] );
+		add_filter( 'theme_scandir_exclusions', [ $this, 'theme_scandir_exclusions' ] );
+		$this->editor_style = apply_filters( $this->filter_prefix . '_editor_style', $this->editor_style );
 	}
 
 	/**
@@ -51,25 +53,31 @@ class TCC_Theme_Support {
 	 * @link https://codex.wordpress.org/Theme_Features
 	 */
 	public function load_theme_support() {
-		$funcs = array(
-			'automatic_feed_links',
-			'content_width',
-			'custom_background',
-			'custom_header',
-			'custom_logo',
-			'customize_selective_refresh_widgets',
-			'editor_style',
+		$support = array(
+			'automatic-feed-links',
+			'content-width',
+			'custom-background',
+			'custom-header',
+			'custom-logo',
+			'customize-selective-refresh-widgets',
+			'editor-style',
 			'html5',
-			'post_formats',
-			'post_thumbnails',
-			'starter_content',
-			'title_tag',
+			'post-formats',
+			'post-thumbnails',
+			'starter-content',
+			'title-tag',
 		);
-		$funcs = apply_filters( $this->filter_prefix . '_load_theme_support', $funcs );
-		if ( ! empty( $funcs ) ) {
-			foreach( $funcs as $func ) {
-				if ( method_exists( $this, $func ) ) {
-					$this->$func();
+		$support = apply_filters( $this->filter_prefix . '_load_theme_support', $support );
+		if ( ! empty( $support ) ) {
+			$functions = array_map(
+				function( $item ) {
+					return str_replace( '-', '_', $item );
+				},
+				$support
+			);
+			foreach( $functions as $run_this ) {
+				if ( method_exists( $this, $run_this ) ) {
+					$this->$run_this();
 				}
 			}
 		}
