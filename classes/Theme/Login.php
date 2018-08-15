@@ -28,7 +28,7 @@ class TCC_Theme_Login {
 		add_filter( 'login_redirect', [ $this, 'login_redirect' ], 10, 3 );
 		add_filter( 'login_redirect', [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'fluid_customizer_controls_behavior', [ $this, 'fluid_customizer_controls_behavior' ] );
-		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
+		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) { return $this->redirect_to; }, 11, 3 ); }
 		if ( is_admin() && ( tcc_settings( 'wplogin', 'external' ) === 'internal' ) ) {
 			add_action( 'admin_head',        [ $this, 'dashboard_logo' ] );
 			add_filter( 'login_headertitle', [ $this, 'login_headertitle' ] );

@@ -38,7 +38,7 @@ class TCC_Form_Login {
 	public function login_form_defaults( $defaults = array() ) {
 		# array mainly taken from wp-includes/general-template.php
 		$new = array(
-			'redirect'       => apply_filters( 'login_redirect',     home_url( add_query_arg( NULL, NULL ) ) ),
+			'redirect'       => apply_filters( 'login_redirect',     home_url( add_query_arg( NULL, NULL ) ), null, null ),
 			'form_id'        => apply_filters( 'tcc_login_form_id',  uniqid( 'login_form_' ) ),
 			'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address', 'tcc-fluid' ) ),
 			'label_password' => apply_filters( 'tcc_login_password', __( 'Password',      'tcc-fluid' ) ),
