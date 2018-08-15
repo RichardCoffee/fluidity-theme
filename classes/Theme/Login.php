@@ -12,7 +12,7 @@ class TCC_Theme_Login {
 
 
 	public function __construct() {
-		if ( tcc_settings( 'login', 'external' ) === 'internal' ) {
+		if ( get_theme_mod( 'behavior_login', 'external' ) === 'internal' ) {
 			if ( has_page( 'Login' ) ) {
 				$this->login_page = home_url( '/login/' );
 				add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'tcc_custom_css' ] );
@@ -23,11 +23,11 @@ class TCC_Theme_Login {
 			if ( has_page( 'Logout' ) ) {
 				add_filter('logout_url', [ $this, 'logout_url' ], 10, 2);
 			}
-			call_user_func( 'add_shortcode', 'fluid_login', [ $this, 'login_form_shortcode' ] ); # FIXME: hack
+			add_shortcode( 'fluid_login', [ $this, 'login_form_shortcode' ] );
 		}
-		add_filter( 'login_redirect',           [ $this, 'login_redirect' ], 10, 3 );
-		add_filter( 'tcc_login_redirect',       [ $this, 'login_redirect_admin' ], 10, 3 );
-		add_filter( 'tcc_admin_options_layout', [ $this, 'admin_options_layout' ] );
+		add_filter( 'login_redirect',     [ $this, 'login_redirect' ], 10, 3 );
+		add_filter( 'tcc_login_redirect', [ $this, 'login_redirect_admin' ], 10, 3 );
+		add_filter( 'fluid_customizer_controls_behavior', [ $this, 'fluid_customizer_controls_behavior' ] );
 		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
 		if ( is_admin() && ( tcc_settings( 'wplogin', 'external' ) === 'internal' ) ) {
 			add_action( 'admin_head',        [ $this, 'dashboard_logo' ] );
@@ -186,20 +186,20 @@ function prevent_wp_login() {
 
 /***   Options   ***/
 
-	public function admin_options_layout( $layout ) {
-		$opts = array(
-			'default' => 'external',
-			'label'   => __( 'Login page', 'tcc-fluid' ),
-			'text'    => __( 'Use a plugin to handle the login page, or whether the internal theme login shortcode should be used', 'tcc-fluid' ),
-			'help'    => __( 'I recommend Theme My Login.  Fluidity plays nice with that plugin, also with WP Frontend Profile', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
+	public function fluid_customizer_controls_behavior( $controls = array() ) {
+		$controls['login'] = array(
+			'default'     => 'external',
+			'label'       => __( 'Login page', 'tcc-fluid' ),
+			'description' => __( 'Use a plugin to handle the login page, or whether the internal theme login shortcode should be used', 'tcc-fluid' ),
+			'help'        => __( 'I recommend Theme My Login.  Fluidity plays nice with that plugin, also with WP Frontend Profile', 'tcc-fluid' ),
+			'render'      => 'radio',
+			'choices'     => array(
 				'internal' => __( 'Use [fluid-login] shortcode.', 'tcc-fluid' ),
 				'external' => __( 'Use a plugin.  (recommended)', 'tcc-fluid' ),
 			),
 		);
 		$layout['login'] = $opts;
-		return $layout;
+		return $controls;
 	}
 
 
