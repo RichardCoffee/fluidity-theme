@@ -94,8 +94,8 @@ if (!function_exists('fluid_save_page_template')) {
 	add_action('template_include', 'fluid_save_page_template', 1000);
 }
 
+#	 * @link http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
 if ( ! function_exists( 'get_page_slug' ) ) {
-	#	http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
 	function get_page_slug( $set_slug = '' ) {
 		global $wp_query;
 		static $slug = null;

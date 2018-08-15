@@ -37,7 +37,7 @@ class TCC_Theme_Login {
 	}
 
 	public function tcc_custom_css() {
-		if ( is_page( 'Login' ) ) {
+		if ( is_page( 'login' ) ) {
 			echo "\n.article .login-form input.form-control,\n.article .login-form textarea.form-control {\n\twidth: 73%;\n}\n";
 		}
 	}
@@ -178,7 +178,7 @@ function prevent_wp_login() {
 			parse_str( htmlspecialchars_decode( substr( $url, $pos + 1 ) ), $parms );
 			$parms['redirect_to'] = $site;
 			$opts  = http_build_query( $parms, 'tcc_' );
-			$url   = $base . '?' . htmlspecialchars( $otpts );
+			$url   = $base . '?' . htmlspecialchars( $opts );
 		}
 		return $url;
 	}
@@ -198,7 +198,6 @@ function prevent_wp_login() {
 				'external' => __( 'Use a plugin.  (recommended)', 'tcc-fluid' ),
 			),
 		);
-		$layout['login'] = $opts;
 		return $controls;
 	}
 
