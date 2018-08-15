@@ -38,13 +38,13 @@ class TCC_Form_Login {
 	public function login_form_defaults( $defaults = array() ) {
 		# array mainly taken from wp-includes/general-template.php
 		$new = array(
-			'redirect'       => apply_filters( 'tcc_login_redirect_to', home_url( add_query_arg( NULL, NULL ) ) ),
-			'form_id'        => apply_filters( 'tcc_login_form_id',     uniqid( 'login_form_' ) ),
-			'label_username' => apply_filters( 'tcc_login_username',    __( 'Username or Email Address', 'tcc-fluid' ) ),
-			'label_password' => apply_filters( 'tcc_login_password',    __( 'Password',      'tcc-fluid' ) ),
+			'redirect'       => apply_filters( 'login_redirect',     home_url( add_query_arg( NULL, NULL ) ) ),
+			'form_id'        => apply_filters( 'tcc_login_form_id',  uniqid( 'login_form_' ) ),
+			'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address', 'tcc-fluid' ) ),
+			'label_password' => apply_filters( 'tcc_login_password', __( 'Password',      'tcc-fluid' ) ),
 #			'label_remember' => __( 'Remember Me', 'tcc-fluid' ),
-			'label_log_in'   => apply_filters( 'tcc_log_in_text',       __( 'Sign In',       'tcc-fluid' ) ),
-			'label_lostpw'   => apply_filters( 'tcc_lostpw_text',       __( 'Lost Password', 'tcc-fluid' ) ),
+			'label_log_in'   => apply_filters( 'tcc_log_in_text',    __( 'Sign In',       'tcc-fluid' ) ),
+			'label_lostpw'   => apply_filters( 'tcc_lostpw_text',    __( 'Lost Password', 'tcc-fluid' ) ),
 			'id_username'    => uniqid( 'user_login_' ),
 			'id_password'    => uniqid( 'user_pass_'  ),
 			'id_remember'    => uniqid( 'rememberme_' ),
@@ -163,54 +163,6 @@ class TCC_Form_Login {
 				</button>
 			</div>
 		</form><?php
-	}
-
-
-/***   Redirects   ***/
-
-/*
-$redirect = home_url( add_query_arg( '_', false ) ); ?>
-Alternately:  global $wp; home_url(add_query_arg(array(),$wp->request)); ?>
-Or:           home_url( add_query_arg( NULL, NULL ) ); ?>
-Or:           global $wp; $location = add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) ); ?>
-Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme']}://{$parts['host']}" . add_query_arg( NULL, NULL ); ?> */
-
-	# https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
-	public function login_redirect( $redirect_to, $request, $user ) {
-		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
-			if ( ! $user ) {
-				$redirect_to = home_url();
-			} else if ( ! is_object( $user ) ) {
-				$this->log( 'user var is not an object', $user );
-			} else if ( get_class( $user ) === 'WP_Error' ) {
-				$this->log( 'user error', $user );
-			} else {
-				$location = ( isset( $_POST['login_location'] ) )
-					? esc_url_raw( wp_unslash( $_POST['login_location'] ) )
-					: esc_url_raw( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
-				$this->log(
-					'   redirect_to:  ' . $redirect_to,
-					'       request:  ' . $request,
-					'wp_get_referer:  ' . wp_get_referer(),
-					'      location:  ' . $location,
-					$user  //  FIXME:  php complains when a comma is at the end of this line. wtf?
-				);
-				wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
-				exit;
-			}
-		}
-else { $this->log( func_get_args(), $_GET, $_POST ); }
-		return $redirect_to;
-	}
-
-	public function login_redirect_admin( $redirect_to, $request, $user ) {
-#		$from = wp_get_referer();
-##		if ( strpos( $from, 'wp-admin' ) !== false )       { return $from; }
-##		if ( ! in_array( 'administrator', $user->roles ) ) { return $redirect_to }
-#		$user_id = get_current_user_id();
-#		if ( $user_id === 1 ) { return $from; }
-#		return home_url();
-		return $redirect_to;
 	}
 
 

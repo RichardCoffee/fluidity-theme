@@ -82,8 +82,6 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		tcc_log_in_text                   text for login button                              tcc_login_form_defaults
 		tcc_login_form_id                 id for login form div                              tcc_login_form_defaults
 		tcc_login_password                text for user password field                       tcc_login_form_defaults
-		tcc_login_redirect                login redirect url                                 tcc_login_redirect
-		tcc_login_redirect_to             redirect url for login form                        tcc_login_form_defaults
 		tcc_login_username                text/placeholder for user name field               tcc_login_form_defaults
 		tcc_lostpw_text                   text for lost password anchor tag                  tcc_login_form_defaults
 		tcc_mixed_fonts                   combined fonts list                                Typography::mixed_fonts

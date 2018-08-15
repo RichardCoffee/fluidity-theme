@@ -25,10 +25,10 @@ class TCC_Theme_Login {
 			}
 			add_shortcode( 'fluid_login', [ $this, 'login_form_shortcode' ] );
 		}
-		add_filter( 'login_redirect',     [ $this, 'login_redirect' ], 10, 3 );
-		add_filter( 'tcc_login_redirect', [ $this, 'login_redirect_admin' ], 10, 3 );
+		add_filter( 'login_redirect', [ $this, 'login_redirect' ], 10, 3 );
+		add_filter( 'login_redirect', [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'fluid_customizer_controls_behavior', [ $this, 'fluid_customizer_controls_behavior' ] );
-		if ( $this->redirect_to ) { add_filter( 'tcc_login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
+		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg ) { return $this->redirect_to; }, 11, 3 ); }
 		if ( is_admin() && ( tcc_settings( 'wplogin', 'external' ) === 'internal' ) ) {
 			add_action( 'admin_head',        [ $this, 'dashboard_logo' ] );
 			add_filter( 'login_headertitle', [ $this, 'login_headertitle' ] );
@@ -113,7 +113,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 					'      location:  ' . $location,
 					$user  //  FIXME:  php complains when a comma is at the end of this line. wtf?
 				);
-				wp_safe_redirect( apply_filters( 'tcc_login_redirect', $location, $request, $user ) );
+				wp_safe_redirect( apply_filters( 'login_redirect', $location, $request, $user ) );
 				exit;
 			}
 		} else if ( get_class( $user ) === 'WP_Error' ) {
