@@ -1,12 +1,15 @@
 # fluidity-theme
 
-A WordPress theme.
+A WordPress theme I use as a parent theme.  I am trying to add docblocks to all
+files, classes, and functions, but since I use vi as my editor, the docblocks
+don't really do me any good, and I have no way of testing their usefulness.
+Could someone look at this for me?
 
-## Root theme files
+## Theme files - root directory
 
 This section covers all theme root directory files.  If you are at all familiar
-with how a WordPress theme works, what the majority of what these files are,
-and how they work, will already be known to you.
+with how a WordPress theme works, then what the majority of these files are,
+and how they work, should already be known to you.
 
 ### Pages
 
@@ -69,6 +72,12 @@ Displays the sidebar widget areas.
 #### style.css
 
 Main css file.
+
+### Miscellaneous
+
+#### favicon.ico
+
+The image that shows up in the tab of the browser.
 
 
 ## Classes
@@ -149,10 +158,15 @@ be able to be used in a modal, although I still haven't written the modal code.
 The theme includes an abstract class, TCC_Metabox_Metabox, which I use for admin
 metaboxes, although it gets used mainly in mainly in plugins.
 
-#### PostDate metabox
+#### PostDate
 
-TCC_MetaBox_PostDate is only metabox the theme provides, it works with the post
-edit page, controlling how the date/author is displayed with each individual post.
+TCC_MetaBox_PostDate works with the post edit page, controlling how the
+date/author is displayed with each individual post.
+
+#### Sidebar
+
+TCC_MetaBox_Sidebar is also for the post edit page.  It allows the author to
+control whether the sidebar is displayed with the post.
 
 
 ### Modals
@@ -168,6 +182,10 @@ Hmmm, TCC_Modal_Login - never finished.  PR anyone?
 ### NavWalker
 
 The theme currently uses TCC_NavWalker_Bootstrap, loosely based on [this one on github](https://github.com/wp-bootstrap/wp-bootstrap-navwalker).
+
+#### Taxonomy
+
+This is used to dynamically add a taxonomy's terms to a menu.
 
 
 ### Options
@@ -199,18 +217,26 @@ for an idea of what's going on there.
 
 ## Template Parts
 
+## Vendors
 
-## External Libraries
+### External Libraries
 
-### Bootstrap
+#### Bootstrap
 
 Currently uses Bootstrap 3.3.7, with plans to upgrade to version 4 as time permits.
 
-### Font Awesome
+#### Font Awesome
 
 Currently uses Font Awesome 4.7.0, with no plans to upgrade to version 5 at this time.
+
+### External Files
+
+#### custom_menu_items.php
+
+Comes from [this gist](https://gist.github.com/daggerhart/c17bdc51662be5a588c9).  Used by TCC_NavWalker_Taxonomy to add
+taxonomy terms to a menu.
 
 
 ## Pull Requests
 
-Any pull request made within the spirit of the theme may, or may not, be accepted.
+Any pull request made within the spirit of the theme may be accepted.
