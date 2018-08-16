@@ -200,6 +200,19 @@ if ( ! function_exists( 'fluid_sidebar' ) ) {
 }
 
 /**
+ * Returns an instance of the Taxonomy class
+ *
+ * @since 20180816
+ * @param array $args
+ * @return TCC_NavWalker_Taxonomy
+ */
+if ( ! function_exists( 'fluid_taxonomy' ) ) {
+	function fluid_taxonomy( $args = array() ) {
+		return new TCC_NavWalker_Taxonomy( $args );
+	}
+}
+
+/**
  * Returns an instance of the Theme Support class
  *
  * @since 20180324
