@@ -19,7 +19,7 @@ class TCC_NavWalker_Taxonomy {
 	use TCC_Trait_ParseArgs;
 
 
-	public function __construct( $menu = '', $taxonomy = '' ) {
+	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
 		$terms = $this->get_terms();
 		if ( is_wp_error( $terms ) ) {
