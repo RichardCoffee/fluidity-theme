@@ -49,7 +49,7 @@ class TCC_NavWalker_Taxonomy {
 			require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
 			custom_menu_items::add_item( $this->menu, $tax_meta->labels->name, 'javascript: void(0);', 0, 0, $this->top_id );
 			foreach( $terms as $term ) {
-				$name = $term->name . fluid()->get_element( 'span', [ 'class' => 'term-count' ], $this->count );
+				$name = $term->name . fluid()->get_element( 'span', [ 'class' => 'term-count' ], $term->count );
 				$path = 'category/' . $term->slug;
 				custom_menu_items::add_item( $this->menu, $name, $path, 0, $this->top_id );
 			}
