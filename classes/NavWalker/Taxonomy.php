@@ -26,8 +26,8 @@ class TCC_NavWalker_Taxonomy {
 			fluid()->log( $terms );
 			return $terms;
 		}
-		fluid()->log($terms);
-#		$this->add_terms( $terms );
+#		fluid()->log($terms);
+		$this->add_terms( $terms );
 	}
 
 #	 * @link https://developer.wordpress.org/reference/functions/get_terms/
@@ -48,9 +48,11 @@ class TCC_NavWalker_Taxonomy {
 		if ( $tax_meta ) {
 			require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
 			custom_menu_items::add_item( $this->menu, $tax_meta->labels->name, 'javascript: void(0);', 0, 0, $this->top_id );
-#			foreach( $terms as $term ) {
-#				custom_menu_items::add_item( $this->menu, term name goes here, archive url goes here, 0, $this->top_id );
-#			}
+			foreach( $terms as $term ) {
+				$name = $term->name . fluid()->get_element( 'span', [ 'class' => 'term-count' ], $this->count );
+				$path = 'category/' . $term->slug;
+				custom_menu_items::add_item( $this->menu, $name, $path, 0, $this->top_id );
+			}
 		}
 	}
 
