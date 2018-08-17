@@ -115,7 +115,7 @@ trait TCC_Trait_Attributes {
 				default:
 					$value = esc_attr( $value );
 			}
-			$html .= $attr . '="' . $value . '" ';
+			$html .= ' ' . $attr . '="' . $value . '"';
 		}
 		return $html;
 	}
@@ -159,7 +159,7 @@ trait TCC_Trait_Attributes {
 	 */
 	public function get_apply_attrs_tag( $html_tag, $attrs ) {
 		$attrs = $this->filter_attributes_by_tag( $html_tag, $attrs );
-		$html  = "<$html_tag ";
+		$html  = '<' . esc_attr( $html_tag );
 		$html .= $this->get_apply_attrs( $attrs );
 		$html .= ( $this->is_tag_self_closing( $html_tag ) ) ? ' />' : '>';
 		return $html;
@@ -204,12 +204,12 @@ trait TCC_Trait_Attributes {
 	 */
 	public function get_apply_attrs_element( $element, $attrs, $text = '' ) {
 		$attrs = $this->filter_attributes_by_tag( $element, $attrs );
-		$html  = "<$element ";
+		$html  = '<' . esc_attr( $element );
 		$html .= $this->get_apply_attrs( $attrs );
 		if ( $this->is_tag_self_closing( $element ) ) {
 			$html .= ' />' . esc_html( $text );
 		} else {
-			$html .= '>' . esc_html( $text ) . "</$element>";
+			$html .= '>' . esc_html( $text ) . '</' . esc_attr( $element ) . '>';
 		}
 		return $html;
 	}
