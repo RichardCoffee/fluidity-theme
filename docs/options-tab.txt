@@ -1,5 +1,7 @@
 
 This file describes how to implement a new tab on the Theme Options screen.
+Please don't use this if possible.  Place options here only they can not be
+put in the customizer.
 
 The admin options screen is controlled by the form-layout array.  The array
 is initialized in the Fluidity_Options_Form class, which is defined in
@@ -9,8 +11,6 @@ the options.php file, the options.php should be considered the more
 reliable source.  The various tabs on the options screen are defined in
 these files:
 
-  classes/Options/Design.php, filter priority 10
-  classes/Options/Layout.php, filter priority 20
   classes/Options/Colors.php, filter priority 30
   classes/Options/Social.php, filter priority 100
   classes/Options/Settings.php, filter priority 500
@@ -20,9 +20,7 @@ When adding a tab to the screen, classes/design.php can be used as a guide.
 
 The form-layout array should have this structure:
 
-  Array ( 'design' => Design tab array,
-          'layout' => Layout tab array,
-          'colors' => Colors tab array,
+  Array ( 'colors' => Colors tab array,
           'social' => Social Icons tab array,
           'admin'  => Admin tab array
           'about'  => About tab array );

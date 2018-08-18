@@ -106,10 +106,10 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 				$slug = TCC_PAGE_SLUG;
 			} else if ( ( ! is_admin() ) && $wp_query->is_main_query() ) {
 				if ( is_home() && empty( $wp_query->query_string ) ) {
-					$slug = 'home';
+					$slug = apply_filters( 'fluid_home_page_slug', 'home');
 				#} else if ( ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
 				} else if ( get_option('page_on_front') && ( $wp_query->get('page_id') === get_option('page_on_front') ) ) {
-					$slug = 'front';
+					$slug = apply_filters( 'fluid_front_page_slug', 'front');
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
 					if ( is_object( $page ) ) {
