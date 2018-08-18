@@ -20,9 +20,10 @@ trait TCC_Trait_Attributes {
 	 * @param string $tag
 	 * @param array $attrs
 	 * @param string $text
+	 * @param boolean $raw if true will prevent $text from being escaped when displayed
 	 */
-	public function element( $tag, $attrs, $text = '' ) {
-		$this->apply_attrs_element( $tag, $attrs, $text );
+	public function element( $tag, $attrs, $text = '', $raw = false ) {
+		$this->apply_attrs_element( $tag, $attrs, $text, $raw );
 	}
 
 	/**
@@ -32,10 +33,11 @@ trait TCC_Trait_Attributes {
 	 * @param string $tag
 	 * @param array $attrs
 	 * @param string $text
+	 * @param boolean $raw if true will prevent $text from being escaped when displayed
 	 * @return string
 	 */
-	public function get_element( $tag, $attrs, $text = '' ) {
-		return $this->get_apply_attrs_element( $tag, $attrs, $text );
+	public function get_element( $tag, $attrs, $text = '', $raw = false ) {
+		return $this->get_apply_attrs_element( $tag, $attrs, $text, $raw );
 	}
 
 	/**
@@ -200,16 +202,18 @@ trait TCC_Trait_Attributes {
 	 * @param string $element element to be generated
 	 * @param array $attrs contains attribute/value pairs
 	 * @param string $text content of html element
+	 * @param boolean $raw if true will prevent $text from being escaped when displayed
 	 * @return string
 	 */
-	public function get_apply_attrs_element( $element, $attrs, $text = '' ) {
+	public function get_apply_attrs_element( $element, $attrs, $text = '', $raw = false ) {
 		$attrs = $this->filter_attributes_by_tag( $element, $attrs );
 		$html  = '<' . esc_attr( $element );
 		$html .= $this->get_apply_attrs( $attrs );
+		$inner = ( $raw ) ? $text : esc_html( $text );
 		if ( $this->is_tag_self_closing( $element ) ) {
-			$html .= ' />' . esc_html( $text );
+			$html .= ' />' . $inner;
 		} else {
-			$html .= '>' . esc_html( $text ) . '</' . esc_attr( $element ) . '>';
+			$html .= '>' . $inner . '</' . esc_attr( $element ) . '>';
 		}
 		return $html;
 	}
