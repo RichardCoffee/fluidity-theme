@@ -214,7 +214,7 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 		$link .= sprintf( __( 'Read more about %s', 'tcc-fluid' ), wp_strip_all_tags( get_the_title( get_the_ID() ) ) );
 		$link .= '</span></a>';
 		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
-			$link = ' <span style="display: inline-block">[' . $link . ']</span>';
+			$link = ' <span class="block">[' . $link . ']</span>';
 		}
 		return $link;
 	}
