@@ -49,7 +49,7 @@ add_filter( 'fluid_theme_sidebar_positioning', function( $side ) {
  * @param string $page_slug
  * @return string
  */
-add_filter( 'tcc_template-parts_root', function( $root_slug, $page_slug ) {
+add_filter( 'fluid_loop_template_root', function( $root_slug, $page_slug ) {
 	if ( is_bbpress() ) {
 		return 'content';
 	}

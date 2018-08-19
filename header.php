@@ -24,5 +24,6 @@
 <body <?php body_class( ); ?> <?php fluid_schema_page_check(); ?>>
 	<a class="skip-link sr-only" href="#fluid-content"><?php esc_html_e( 'Skip to content', 'tcc-fluid' ); ?></a><?php
 	$slug = get_page_slug();
-#fluid()->log('slug: '.$slug ); #, list_filter_hooks() );
-	get_template_part( 'template-parts/header', $slug );
+	$dir  = apply_filters( 'fluid_header_template_dir', 'template-parts', $slug );
+	$root = apply_filters( 'fluid_header_template_root', 'header', $slug );
+	get_template_part( "$dir/$root", $slug );

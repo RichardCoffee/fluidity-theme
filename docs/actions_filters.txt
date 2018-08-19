@@ -61,8 +61,14 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_{$page}_container_type      as above, only on specified page/section           container_type
 		fluid_default_sidebars            Filter the sidebars that the theme creates         TCC_Register_Sidebars->
 		fluid_excerpt_link_tooltip        string used for post link tooltip in excerpts      fluid_excerpt_link_tooltip
-		fluid_header_logo_class             css applied to header logo image                   fluidity_header_logo
-		fluid_header_logo_size              control size of logo image, default: medium        fluidity_header_logo
+		fluid_front_page_slug             assign the slug used for the front page, default: front
+		fluid_header_logo_class           css applied to header logo image                   fluidity_header_logo
+		fluid_header_logo_size            control size of logo image, default: medium        fluidity_header_logo
+		fluid_header_template_dir         template directory used for template parts, default: template-parts
+		fluid_header_template_root        root file name used for get_template_parts, default: header
+		fluid_home_page_slug              assign the slug used for the home page, default: home
+		fluid_loop_template_dir           template directory used for template parts, default: template-parts
+		fluid_loop_template_root          root file name used for get_template_parts, default: content or excerpt
 		fluid_navigation_excluded_terms   control what terms are excluded from post links    fluid_navigation
 		fluid_navigation_taxonomy         What taxonomy should be used for taxonomy links    fluid_navigation
 		fluid_post_date_sprintf           string used to format the post date                fluid_post_date

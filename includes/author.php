@@ -33,10 +33,12 @@ add_filter( 'get_the_author_skills', 'fluid_author_skills', 10, 3 );
 if ( ! function_exists( 'fluid_before_posts_author' ) ) {
 	function fluid_before_posts_author( $mypage ) {
 		if ( $mypage === 'author' ) {
+			$dir  = apply_filters( 'fluid_author_template_dir', 'template-parts', $mypage );
+			$root = apply_filters( 'fluid_author_template_root', 'profile', $mypage );
 #			$current = ( isset( $_GET['author_name'] ) ) ? get_user_by( 'slug', $author_name ) : get_userdata( intval( $author ) ); wtf?
 			$current = get_userdata( get_query_var( 'author', null ) );
 			$role    = ( $current ) ? $current->roles[0] : ''; // TODO: filter roles
-			get_template_part( 'template-parts/profile', $role );
+			get_template_part( "$dir/$root", $role );
 /* ? >
 			<div class='<?php echo esc_attr( $title_class ); ? >' itemprop='headline'>
 				<h3 class='text-center'>

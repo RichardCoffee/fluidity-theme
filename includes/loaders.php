@@ -153,6 +153,23 @@ if ( ! function_exists( 'fluid_options' ) ) {
 }
 
 /**
+ * Returns an instance of the Theme Pagination class
+ *
+ * @since 20180819
+ * @staticvar TCC_Theme_Pagination $library
+ * @return TCC_Theme_Pagination
+ */
+if ( ! function_exists( 'fluid_pagination' ) ) {
+	function fluid_pagination() {
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Pagination;
+		}
+		return $library;
+	}
+}
+
+/**
  * Returns an instance of the Register Sidebars class
  *
  * @since 20180324

@@ -1,0 +1,16 @@
+/*
+ * Theme Name: Fluidity Child
+ * Theme URI: http://rtcenterprises.net
+ * License:
+ * License URI:
+ * Description: Child theme, based on Fluidity parent theme
+ * Author: James Gaither & Richard Coffee
+ * Author URI: http://rtcenterprises.net
+ * Template: fluid_child
+ * Template Version: 1.0.0
+ * Version: 1.0.0
+ * Tags: blue, white, two-columns, custom-header
+ * Text Domain: tcc-child
+ * */
+
+@import url("../fluidity/style.css");

@@ -64,8 +64,8 @@ if ( ! function_exists( 'fluid_default_header' ) ) {
 	function fluid_default_header() { ?>
 		<div class="row margint1e marginb1e">
 			<div class="col-lg-1  col-md-1  hidden-sm hidden-xs"></div>
-			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-				<?php get_template_part('template-parts/menu'); ?>
+			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"><?php
+				get_template_part('template-parts/menu'); ?>
 			</div>
 			<div class="col-lg-1  col-md-1  hidden-sm hidden-xs"></div>
 		</div><?php
