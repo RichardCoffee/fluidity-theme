@@ -33,8 +33,8 @@ if ( ! function_exists( 'tcc_custom_css' ) ) {
 
 if ( ! function_exists( 'fluid_assign_default_header' ) ) {
 	function fluid_assign_default_header() {
-		if ( ! has_action( 'tcc_header_body_content' ) ) {
-			add_action( 'tcc_header_body_content', 'fluid_default_header' );
+		if ( ! has_action( 'fluid_header_body_content' ) ) {
+			add_action( 'fluid_header_body_content', 'fluid_default_header' );
 		}
 	}
 	add_action( 'wp_loaded', 'fluid_assign_default_header' );

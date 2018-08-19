@@ -5,7 +5,7 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 
 		Action Sequence
 	==========================
-		tcc_header_body_content
+		fluid_header_body_content
 		fluid_page_top
 		tcc_inside_page
 		tcc_before_main
@@ -22,6 +22,7 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 	==========================         ==============================================    ========================
 		fluid_content_header
 		fluid_content_footer
+		fluid_header_body_content         control what goes into the header body used by fluidity_header_body
 		fluid_post_separator              between post excerpts, overrides default
 		fluid_post_separator_{$page}      between excerpts on a specific page
 		fluidity_admin_enqueue            runs after fluidity admin enqueues
@@ -33,8 +34,6 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		tcc_enqueue                       load child enqueues here, runs last
 		tcc_excerpt_parallax              inline stylesheet for excerpts
  tcc_footer                   footer body
- tcc_header_body_content      control what goes into the header body
-                                used by fluidity_header_body
  tcc_header_menubar           bottom menubar of header
  tcc_header_top_menubar       top menubar of header
  tcc_navbar_signout           insert navbar html before signout button          tcc_login_form
@@ -75,14 +74,13 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_read_more_brackets          boolean that determines if brackets are displayed  fluid_read_more_link
 		fluid_read_more_css               css applied to span around read more link          fluid_read_more_link
 		fluid_read_more_text              text displayed in read more link                   fluid_read_more_link
-		fluidity_options_form_layout      array that displays the theme options              TCC_Options_Fluidity->form_layout
+		fluid_register_sidebars           array of sidebars to register                      TCC_Register_Sidebars->register_sidebars()
+		fluidity_options_form_layout      array that displays the theme options              TCC_Options_Fluidity->form_layout()
 		get_title_class                   div css for page title                             get_title_class, used in tcc_page_title
 		get_title_class_$page             div css for $page title                            get_title_class, used in tcc_page_title
 		tcc_author_posts_header           header title for list of author's posts            author.php
 		tcc_content_slug                  template-part slug                                 fluid_content_slug
 		tcc_{$page}_content_slug          template-part slug for $page                       fluid_content_slug
-		tcc_{$page}_content_css           clearfix css applied to div that surrounds         special template file
-		                                    template-part, css has to be in url format
 		tcc_copyright_name                site title displayed in copyright notice           tcc_copyright
 		tcc_google_fonts                  list of google fonts we want to use                Typography::google_fonts
 		tcc_log_in_text                   text for login button                              tcc_login_form_defaults

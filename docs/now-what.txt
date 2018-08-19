@@ -4,7 +4,7 @@ Header
 function your_header_content( $page_slug ) {
 	/* your header here */
 }
-add_action( 'tcc_header_body_content', 'your_header_content' );
+add_action( 'fluid_header_body_content', 'your_header_content' );
 
 Alternately, create a template-parts/header.php file in the child theme,
 although this may disable certain theme options dealing with the header.

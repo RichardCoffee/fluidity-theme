@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit; ?>
 
 	<div class="<?php e_esc_attr( 'header-' . tcc_layout( 'header', 'static' ) ); ?> <?php e_esc_attr( container_type( 'header' ) ); ?>">
 
-		<?php do_action('tcc_header_body_content', get_page_slug() ); ?>
+		<?php do_action('fluid_header_body_content', get_page_slug() ); ?>
 
 	</div>
 
