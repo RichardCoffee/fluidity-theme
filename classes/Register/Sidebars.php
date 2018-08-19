@@ -72,6 +72,7 @@ class TCC_Register_Sidebars {
 		remove_action( 'widgets_init', array( $this, 'register_sidebars' ) ); // prevents possible recursion
 		$sidebars = $this->default_sidebars( array() );
 		$sidebars = $this->prepare_sidebars( $sidebars );
+		$sidebars = apply_filters( 'fluid_register_sidebars', $sidebars );
 		foreach( $sidebars as $sidebar ) {
 			register_sidebar( $sidebar );
 		}
