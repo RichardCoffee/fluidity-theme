@@ -80,6 +80,23 @@ if ( ! function_exists( 'fluid_excerpt_length_author' ) ) {
 }
 
 /**
+ *  add classes to author excerpt article div
+ *
+ * @since 20180820
+ * @param array $classes
+ * @param array $class
+ * @param int $post_id
+ * @return array
+ */
+if ( ! function_exists( 'fluid_post_class_author' ) ) {
+	function fluid_post_class_author( $classes, $class, $post_id ) {
+fluid()->log( $classes, $class, $post_id, get_page_slug() );
+		return $classes;
+	}
+	add_filter( 'post_class', 'fluid_post_class_author' );
+}
+
+/**
  * hide the post author name when displaying on author archive page
  *
  * @param string $string

@@ -25,12 +25,26 @@ $args = array(
 );
 $users = get_users( $args );
 
-if ( $users ) { ?>
-	<div class="row"><?php
+if ( $users ) {
+	global $wp_roles; ?>
+	<div class="article"><?php
+		clearfix()->initialize( [ 'lg' => 4, 'md' => 4, 'sm' => 6, 'xs' => 12 ] );
 		foreach( $users as $user ) { ?>
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><?php
-				print_r($user); ?>
+			<div class="<?php clearfix()->div_class(); ?>">
+				<article class="enclosure">
+					<h3 class="text-center"><?php
+						printf(
+							"%s - <span class='block'>%s</span>\n",
+							translate_user_role( $wp_roles->roles[ $user->roles[0] ]['name'] ),
+							$user->display_name
+						); ?>
+					</h3><?php
+#					if ( WP_DEBUG && is_user_logged_in() && current_user_can( 'update_core' ) ) {
+#						print_r($user);
+#					} ?>
+				</article>
 			</div><?php
+			clearfix()->apply();
 		} ?>
 	</div><?php
 }
