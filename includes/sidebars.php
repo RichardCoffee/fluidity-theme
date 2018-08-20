@@ -80,7 +80,7 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 			'after_widget'  => "$after_widget</div>",
 		);
 		#	apply filters
-		$sidebars = apply_filters('tcc_register_sidebars',$sidebars);
+		$sidebars = apply_filters('fluid_register_sidebars',$sidebars);
 		foreach($sidebars as $sidebar) {
 			register_sidebar($sidebar);
 		}

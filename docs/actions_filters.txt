@@ -66,8 +66,14 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_header_template_dir         template directory used for template parts, default: template-parts
 		fluid_header_template_root        root file name used for get_template_parts, default: header
 		fluid_home_page_slug              assign the slug used for the home page, default: home
+		fluid_login_form_id               login form id, default: uniqid( 'login_form_' )    TCC_Form_Login->login_form_defaults()
+		fluid_login_password              text for user password field, default: Password    TCC_Form_Login->login_form_defaults()
+		fluid_login_username              text/placeholder for user name field, default: Username or Email Address
+		fluid_login_text                  text for login button                              TCC_Form_Login->login_form_defaults()
+		fluid_logout_text                 text for logout button                             TCC_Form_Login->show_logout_form()
 		fluid_loop_template_dir           template directory used for template parts, default: template-parts
 		fluid_loop_template_root          root file name used for get_template_parts, default: content or excerpt
+		fluid_lostpw_text                 text for lost password anchor tag                  TCC_Form_Login->login_form_defaults()
 		fluid_navigation_excluded_terms   control what terms are excluded from post links    fluid_navigation
 		fluid_navigation_taxonomy         What taxonomy should be used for taxonomy links    fluid_navigation
 		fluid_post_date_sprintf           string used to format the post date                fluid_post_date
@@ -83,14 +89,8 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		tcc_{$page}_content_slug          template-part slug for $page                       fluid_content_slug
 		tcc_copyright_name                site title displayed in copyright notice           tcc_copyright
 		tcc_google_fonts                  list of google fonts we want to use                Typography::google_fonts
-		tcc_log_in_text                   text for login button                              tcc_login_form_defaults
-		tcc_login_form_id                 id for login form div                              tcc_login_form_defaults
-		tcc_login_password                text for user password field                       tcc_login_form_defaults
-		tcc_login_username                text/placeholder for user name field               tcc_login_form_defaults
-		tcc_lostpw_text                   text for lost password anchor tag                  tcc_login_form_defaults
 		tcc_mixed_fonts                   combined fonts list                                Typography::mixed_fonts
 		tcc_os_fonts                      user operating system fonts list                   Typography::os_fonts
-		tcc_register_sidebars             array of sidebars to be registered                 register_fluid_sidebars
 		tcc_register_widgets_list         fluidity registered widgets                        tcc_register_widgets
 		tcc_signout_text                  text for log out button                            tcc_login_form_defaults
 		widget_title                      widget title                                       TCC_Widget_Basic->widget

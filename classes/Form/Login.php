@@ -38,13 +38,13 @@ class TCC_Form_Login {
 	public function login_form_defaults( $defaults = array() ) {
 		# array mainly taken from wp-includes/general-template.php
 		$new = array(
-			'redirect'       => apply_filters( 'login_redirect',     home_url( add_query_arg( NULL, NULL ) ), null, null ),
-			'form_id'        => apply_filters( 'tcc_login_form_id',  uniqid( 'login_form_' ) ),
-			'label_username' => apply_filters( 'tcc_login_username', __( 'Username or Email Address', 'tcc-fluid' ) ),
-			'label_password' => apply_filters( 'tcc_login_password', __( 'Password',      'tcc-fluid' ) ),
+			'redirect'       => apply_filters( 'login_redirect',          home_url( add_query_arg( NULL, NULL ) ), null, null ),
+			'form_id'        => apply_filters( 'fluid_login_form_id',  uniqid( 'login_form_' ) ),
+			'label_username' => apply_filters( 'fluid_login_username', __( 'Username or Email Address', 'tcc-fluid' ) ),
+			'label_password' => apply_filters( 'fluid_login_password', __( 'Password',      'tcc-fluid' ) ),
 #			'label_remember' => __( 'Remember Me', 'tcc-fluid' ),
-			'label_log_in'   => apply_filters( 'tcc_log_in_text',    __( 'Sign In',       'tcc-fluid' ) ),
-			'label_lostpw'   => apply_filters( 'tcc_lostpw_text',    __( 'Lost Password', 'tcc-fluid' ) ),
+			'label_log_in'   => apply_filters( 'fluid_login_text',     __( 'Sign In',       'tcc-fluid' ) ),
+			'label_lostpw'   => apply_filters( 'fluid_lostpw_text',    __( 'Lost Password', 'tcc-fluid' ) ),
 			'id_username'    => uniqid( 'user_login_' ),
 			'id_password'    => uniqid( 'user_pass_'  ),
 			'id_remember'    => uniqid( 'rememberme_' ),
@@ -147,7 +147,7 @@ class TCC_Form_Login {
 	}
 
 	public function show_logout_form() {
-		$signout = apply_filters( 'tcc_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
+		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
 		<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url( home_url() ); ?>" method="post">
 			<div class="text-center"><?php
 				$attrs = array(
