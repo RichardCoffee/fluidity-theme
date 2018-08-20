@@ -380,11 +380,6 @@ article.enclosure {
   padding: 0 1em;
 }
 
-body.archive.author article {
-  border-radius: 6px;
-  margin-bottom: 1em;
-  padding: 0 1em;
-}
 body.archive.author .article {
   margin: 0;
 }

@@ -6,6 +6,15 @@ function contextual_static_front_page_section( $wp_customize ) {
 }
 add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
 
+if ( ! function_exists( 'fluidity_post_class' ) ) {
+	function fluidity_post_class( $classes, $added, $postid ) {
+		$current = get_page_slug();
+		$classes = apply_filters( "post_class_$current", $classes, $added, $postid );
+		return $classes;
+	}
+	add_filter( 'post_class', 'fluidity_post_class', 11, 3 );
+}
+
 /**
  *  simple query template
  *

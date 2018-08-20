@@ -90,10 +90,12 @@ if ( ! function_exists( 'fluid_excerpt_length_author' ) ) {
  */
 if ( ! function_exists( 'fluid_post_class_author' ) ) {
 	function fluid_post_class_author( $classes, $class, $post_id ) {
-fluid()->log( $classes, $class, $post_id, get_page_slug() );
+		if ( get_page_slug() === 'author' ) {
+			$classes[] = 'enclosure';
+		}
 		return $classes;
 	}
-	add_filter( 'post_class', 'fluid_post_class_author' );
+	add_filter( 'post_class_author', 'fluid_post_class_author', 11, 3 );
 }
 
 /**

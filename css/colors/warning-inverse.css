@@ -59,12 +59,12 @@ form .form-control:focus, .wpfep-wrapper .wpfep-field input:focus {
   box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
 }
 
+article.enclosure {
+  border: 1px solid #8A6D3B;
+}
+
 body {
   color: #8A6D3B;
-}
-body.archive.author article,
-body article.enclosure {
-  border: 1px solid #8A6D3B;
 }
 body .skip-link:focus {
   background-color: #FCF8E3;

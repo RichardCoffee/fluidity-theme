@@ -11,12 +11,12 @@ $mainlite: lightest(color(background), color(textcolor));
 
 @import "placeholders";
 
+article.enclosure {
+	border: 1px solid $maincomp;
+}
+
 body {
 	color: $maincomp;
-	&.archive.author article,
-	article.enclosure {
-		border: 1px solid $maincomp;
-	}
 	& .skip-link:focus {
 		background-color: $mainlite;
 	}
