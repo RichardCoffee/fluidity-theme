@@ -2,6 +2,7 @@
 
 who_am_i();
 
+# * @link https://codex.wordpress.org/Function_Reference/get_users
 $args = array(
 	'blog_id'      => $GLOBALS['blog_id'],
 	'role'         => '',
@@ -14,7 +15,7 @@ $args = array(
 	'date_query'   => array(),
 	'include'      => array(),
 	'exclude'      => array(),
-	'orderby'      => 'login',
+	'orderby'      => 'registered',
 	'order'        => 'ASC',
 	'offset'       => '',
 	'search'       => '',
