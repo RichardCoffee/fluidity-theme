@@ -13,7 +13,8 @@ $mainlite: lightest(color(background), color(textcolor));
 
 body {
 	color: $maincomp;
-	&.archive.author article {
+	&.archive.author article,
+	article.enclosure {
 		border: 1px solid $maincomp;
 	}
 	& .skip-link:focus {

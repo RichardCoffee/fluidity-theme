@@ -60,7 +60,8 @@ form .form-control:focus, .wpfep-wrapper .wpfep-field input:focus {
 body {
   color: #CE2029;
 }
-body.archive.author article {
+body.archive.author article,
+body article.enclosure {
   border: 1px solid #CE2029;
 }
 body .skip-link:focus {
