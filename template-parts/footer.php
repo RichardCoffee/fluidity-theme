@@ -13,9 +13,9 @@ defined( 'ABSPATH' ) || exit; ?>
 	<?php who_am_i(); ?>
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" <?php microdata()->WPSideBar(); ?>><?php
-		$footer_template_stem = apply_filters( 'tcc_footer_template_stem', 'sidebar' );
-		$footer_template_part = apply_filters( 'tcc_footer_template_part', 'footer' );
-		get_template_part( $footer_template_stem, $footer_template_part ); ?>
+		$footer_template_dir  = apply_filters( 'fluid_footer_template_dir', 'sidebar' );
+		$footer_template_file = apply_filters( 'fluid_footer_template_file', 'footer' );
+		get_template_part( $footer_template_dir, $footer_template_file ); ?>
 	</div>
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
