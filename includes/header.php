@@ -108,7 +108,7 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 	function fluid_header_logo( $html = '', $blog_id = 1 ) {
 		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  allows for separate use
 		if ( ! is_customize_preview() ) {
-			$scheme  = fluid_color_scheme();
+			$scheme  = fluid_color()->color_scheme();
 			$div_css = apply_filters( 'fluid_logo_div_css', 'pointer' );
 			ob_start(); ?>
 			<div class="<?php echo $div_css; ?>" <?php microdata()->ImageObject(); ?>><?php
@@ -122,7 +122,7 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 						'itemprop' => 'url', // 'relatedLink',
 					); ?>
 					<a <?php fluid()->apply_attrs( $attrs ); ?>><?php
-						$logo_id = get_theme_mod( 'color_scheme_logo', false );
+						$logo_id = get_theme_mod( "color_scheme_logo_$scheme", false );
 						$logo_id = ( $logo_id ) ? $logo_id : get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
 							$size  = apply_filters( 'fluid_header_logo_size', 'full' );
