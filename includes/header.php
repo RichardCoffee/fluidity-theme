@@ -95,7 +95,7 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 					<a <?php fluid()->apply_attrs( $attrs ); ?>><?php
 						$logo_id = get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
-							$size  = apply_filters( 'fluid_header_logo_size', 'full' );
+							$size  = apply_filters( 'fluid_header_logo_size', 'medium' );
 							$class = apply_filters( 'fluid_header_logo_class', array( 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ) );
 							$logo  = wp_get_attachment_image_src( $logo_id , $size );
 							$attrs = array(
