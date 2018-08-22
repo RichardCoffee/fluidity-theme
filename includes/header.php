@@ -107,7 +107,7 @@ if ( ! function_exists( 'fluid_header_links' ) ) {
 if ( ! function_exists( 'fluid_header_logo' ) ) {
 	function fluid_header_logo( $html = '', $blog_id = 1 ) {
 		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  allows for separate use
-		if ( ! is_customize_preview() ) {
+#		if ( ! is_customize_preview() ) {
 			$scheme  = fluid_color()->color_scheme();
 			$div_css = apply_filters( 'fluid_logo_div_css', 'pointer' );
 			ob_start(); ?>
@@ -148,7 +148,7 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 			$html = ob_get_clean();
 		}
 		if ( $echo ) { echo $html; } else { return $html; }
-	}
+#	}
 	add_filter( 'get_custom_logo', 'fluid_header_logo', 20, 2 );
 }
 
