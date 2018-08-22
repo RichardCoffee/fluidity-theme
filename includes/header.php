@@ -146,9 +146,9 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 				} ?>
 			</div><?php
 			$html = ob_get_clean();
-		}
+#		}
 		if ( $echo ) { echo $html; } else { return $html; }
-#	}
+	}
 	add_filter( 'get_custom_logo', 'fluid_header_logo', 20, 2 );
 }
 
