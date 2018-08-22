@@ -24,8 +24,8 @@ if (!function_exists('fluid_content_slug')) {
 # * @since 20160830
 if ( ! function_exists( 'fluid_edit_post_link' ) ) {
 	function fluid_edit_post_link() {
-		$text   = '&nbsp;{ ' . esc_html_x( 'Edit', 'verb', 'tcc-fluid' ) . ' }';
-		$before = '<span class="edit-link small block">';
+		$text   = '{ ' . esc_html_x( 'Edit', 'verb', 'tcc-fluid' ) . ' }';
+		$before = '&nbsp;<span class="edit-link small block">';
 		$after  = '</span>';
 		edit_post_link( $text, $before, $after );
 	}
