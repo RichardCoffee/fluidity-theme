@@ -97,7 +97,7 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 						if ( $logo_id ) {
 							$size  = apply_filters( 'fluid_header_logo_size', 'full' );
 							$class = apply_filters( 'fluid_header_logo_class', array( 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ) );
-							$logo  = wp_get_attachment_image_src( $custom_logo_id , $size );
+							$logo  = wp_get_attachment_image_src( $logo_id , $size );
 							$attrs = array(
 								'class'     => $class,
 								'data-size' => $size,
