@@ -31,15 +31,6 @@ if ( ! function_exists( 'tcc_custom_css' ) ) {
 	}
 }
 
-if ( ! function_exists( 'fluid_assign_default_header' ) ) {
-	function fluid_assign_default_header() {
-		if ( ! has_action( 'fluid_header_body_content' ) ) {
-			add_action( 'fluid_header_body_content', 'fluid_default_header' );
-		}
-	}
-	add_action( 'wp_loaded', 'fluid_assign_default_header' );
-}
-
 // Limit length of title string
 if (!function_exists('fluid_browser_title')) {
   function fluid_browser_title( $title ) {
@@ -58,18 +49,6 @@ if (!function_exists('fluid_browser_title')) {
     return $title;
   }
   add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title to be deprecated
-}
-
-if ( ! function_exists( 'fluid_default_header' ) ) {
-	function fluid_default_header() { ?>
-		<div class="row margint1e marginb1e">
-			<div class="col-lg-1  col-md-1  hidden-sm hidden-xs"></div>
-			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"><?php
-				get_template_part('template-parts/menu'); ?>
-			</div>
-			<div class="col-lg-1  col-md-1  hidden-sm hidden-xs"></div>
-		</div><?php
-	}
 }
 
 /**

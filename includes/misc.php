@@ -40,7 +40,7 @@ if ( ! function_exists( 'fluidity_show_query' ) ) {
  *
  */
 if ( ! function_exists( 'fluidity_social_icons' ) ) {
-	function fluidity_social_icons( $args ) {
+	function fluidity_social_icons( $args = array() ) {
 		$icons = get_option( 'tcc_options_social', [ 'active' => 'no' ] );
 		if ( $icons['active'] === 'yes' ) {
 			if ( has_action( 'fluidity_social_icons' ) ) {
