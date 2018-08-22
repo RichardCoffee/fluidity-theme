@@ -140,7 +140,7 @@ if ( function_exists( 'wpfai_social' ) && ( ! function_exists('fluidity_wpfai_so
 			'loadfa'  => 'no'
 		);
 		$attributes = array_merge( $defaults, $args ); ?>
-		<div class="fluidity-social-icons"><?php
+		<div class="social-icons"><?php
 			echo wpfai_social( $attributes ); ?>
 		</div><?php
 	}

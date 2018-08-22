@@ -50,7 +50,7 @@ if ( ! function_exists( 'fluidity_social_icons' ) ) {
 				$target = ( isset( $icons['target'] ) ) ? $icons['target'] : 'target';
 				$single = ( isset( $icons['single'] ) ) ? $icons['single'] : 'individual';
 				$color  = ( isset( $icons['color']  ) ) ? $icons['color']  : 'blue';
-				unset( $icons['active'], $icons['target'], $icons['size'] );
+#				unset( $icons['active'], $icons['target'], $icons['size'] );
 				$social = array(); // FIXME: find another way to do this
 				foreach( $icons as $field => $value ) {
 					$pos = strpos( $field, '_color' );
@@ -64,9 +64,9 @@ if ( ! function_exists( 'fluidity_social_icons' ) ) {
 				$insta  = new TCC_Options_Social;
 				$layout = $insta->options_layout(); ?>
 				<span class='fluidity-social-icons'><?php
-					$library = fluid();
 					foreach( $social as $key => $set ) {
-						if ( empty( $set['link'] ) ) continue;
+						if ( empty( $layout[ $key ]['color'] ) ) { continue; }
+						if ( empty( $set['link'] ) ) { continue; }
 						$tool = sprintf( _x( 'See us on %s', '(social) website name', 'tcc-fluid' ), $layout[ $key ] ['label'] );
 						$fawe = 'fa'; // ( $key === 'rss' ) ? 'fas' : 'fab';
 						$attr = array(
