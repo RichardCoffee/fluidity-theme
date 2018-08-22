@@ -15,7 +15,7 @@ class TCC_Theme_Login {
 		if ( get_theme_mod( 'behavior_login', 'external' ) === 'internal' ) {
 			if ( has_page( 'Login' ) ) {
 				$this->login_page = home_url( '/login/' );
-				add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'tcc_custom_css' ] );
+				add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
 				add_action( 'init',             [ $this, 'prevent_wp_login' ] );
 				add_action( 'wp_login_failed',  [ $this, 'wp_login_failed' ] );
 				add_filter( 'authenticate',     [ $this, 'authenticate' ], 1, 3 );
@@ -36,9 +36,9 @@ class TCC_Theme_Login {
 		}
 	}
 
-	public function tcc_custom_css() {
+	public function fluid_custom_css() {
 		if ( is_page( 'login' ) ) {
-			echo "\n.article .login-form input.form-control,\n.article .login-form textarea.form-control {\n\twidth: 73%;\n}\n";
+			echo "\n.article .login-form input.form-control,\n.article .login-form textarea.form-control {\n\tmax-width: 73%;\n}\n";
 		}
 	}
 

@@ -131,11 +131,12 @@ class TCC_Theme_Support {
 	}
 
 	/**
-	 * set defaults for custom header
+	 *  set defaults for custom header
 	 *
 	 * @since 20170508
 	 * @link https://codex.wordpress.org/Custom_Headers
 	 * @link https://codex.wordpress.org/Function_Reference/register_default_headers
+	 * @link https://developer.wordpress.org/themes/functionality/custom-logo/
 	 */
 	protected function custom_header() {
 		$header = array(
@@ -146,7 +147,7 @@ class TCC_Theme_Support {
 			'flex-height'            => false,
 			'flex-width'             => false,
 			'default-text-color'     => '',
-			'header-text'            => true,
+			'header-text'            => true, // array( 'site-title', 'site-description' ),
 			'uploads'                => true,
 			'wp-head-callback'       => '',
 			'admin-head-callback'    => '',

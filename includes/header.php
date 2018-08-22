@@ -1,13 +1,20 @@
 <?php
-
-/*
+/**
  *  includes/header.php
  *
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
-
-if (!function_exists('tcc_browser_body_class')) {
-  // http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
-  function tcc_browser_body_class( array $classes ) {
+/**
+ *  add browser string to body class
+ *
+ * @since 20150515
+ * @link http://www.smashingmagazine.com/2009/08/18/10-useful-wordpress-hook-hacks/
+ * @param array $classes
+ * @return array
+ */
+if (!function_exists('fluid_browser_body_class')) {
+  function fluid_browser_body_class( array $classes ) {
     global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
     if     ($is_lynx)   $classes[] = 'lynx';
     elseif ($is_gecko)  $classes[] = 'gecko';
@@ -20,18 +27,30 @@ if (!function_exists('tcc_browser_body_class')) {
     if     ($is_iphone) $classes[] = 'iphone';
     return $classes;
   }
-  add_filter('body_class','tcc_browser_body_class');
+  add_filter('body_class','fluid_browser_body_class');
 }
 
-if ( ! function_exists( 'tcc_custom_css' ) ) {
-	function tcc_custom_css() { ?>
-		<style id="tcc-custom-css"><?php
+/**
+ *  provides for placing all custom css within single stylesheet
+ *
+ * @since 20160807
+ */
+if ( ! function_exists( 'fluid_custom_css' ) ) {
+	function fluid_custom_css() { ?>
+		<style id="fluid-custom-css"><?php
+			do_action( 'fluid_custom_css' );
 			do_action( 'tcc_custom_css' ); ?>
 		</style><?php
 	}
 }
 
-// Limit length of title string
+/**
+ *  Limit length of title string
+ *
+ * @since 20150502
+ * @param string $title
+ * @return string
+ */
 if (!function_exists('fluid_browser_title')) {
   function fluid_browser_title( $title ) {
     if (!is_feed()) {
@@ -77,15 +96,25 @@ if ( ! function_exists( 'fluid_header_links' ) ) {
 	add_action( 'fluid_header_links', 'fluid_header_links' );
 }
 
+/**
+ *  will show color scheme logo if available
+ *
+ * @since 20150511
+ * @param string $html
+ * @param numeric $blog_id
+ * @return string
+ */
 if ( ! function_exists( 'fluid_header_logo' ) ) {
 	function fluid_header_logo( $html = '', $blog_id = 1 ) {
-		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  for backward compatibility
+		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  allows for separate use
 		if ( ! is_customize_preview() ) {
+			$scheme  = fluid_color_scheme();
+			$div_css = apply_filters( 'fluid_logo_div_css', 'pointer' );
 			ob_start(); ?>
-			<div class="pointer" itemprop="logo" <?php microdata()->ImageObject(); ?>><?php
-#				if ( function_exists( 'jetpack_the_site_logo' ) ) {
-#					jetpack_the_site_logo();
-#				} else {
+			<div class="<?php echo $div_css; ?>" <?php microdata()->ImageObject(); ?>><?php
+				if ( $scheme === 'none' ) {
+					echo $html;
+				} else {
 					$attrs = array(
 						'class'    => 'custom-logo-link',
 						'href'     => home_url( '/' ),
@@ -93,17 +122,20 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 						'itemprop' => 'url', // 'relatedLink',
 					); ?>
 					<a <?php fluid()->apply_attrs( $attrs ); ?>><?php
-						$logo_id = get_theme_mod( 'custom_logo' );
+						$logo_id = get_theme_mod( 'color_scheme_logo', false );
+						$logo_id = ( $logo_id ) ? $logo_id : get_theme_mod( 'custom_logo' );
 						if ( $logo_id ) {
-							$size  = apply_filters( 'fluid_header_logo_size', 'medium' );
-							$class = apply_filters( 'fluid_header_logo_class', array( 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ) );
+							$size  = apply_filters( 'fluid_header_logo_size', 'full' );
+							$class = apply_filters( 'fluid_header_logo_class', [ 'custom-logo', 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ] );
 							$logo  = wp_get_attachment_image_src( $logo_id , $size );
+							$alt   = get_post_meta( $logo_id, '_wp_attachment_image_alt', true );
+							$alt   = ( $alt ) ? $alt : get_bloginfo( 'name', 'display'  );
 							$attrs = array(
 								'class'     => $class,
 								'data-size' => $size,
 								'src'       => $logo[0],
-								'alt'       => get_bloginfo( 'name' ),
-								'title'     => get_bloginfo( 'name' ),
+								'alt'       => $alt,
+								'title'     => $alt,
 								'itemprop'  => 'logo',
 							);
 							fluid()->element( 'img', $attrs );
@@ -111,7 +143,7 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 							bloginfo( 'name' );
 						} ?>
 					</a><?php
-#				} ?>
+				} ?>
 			</div><?php
 			$html = ob_get_clean();
 		}
@@ -120,6 +152,11 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 	add_filter( 'get_custom_logo', 'fluid_header_logo', 20, 2 );
 }
 
+/**
+ *  show print button
+ *
+ * @since 20160830
+ */
 if ( ! function_exists( 'fluid_menubar_print_button' ) ) {
 	function fluid_menubar_print_button() {
 		if ( is_single() || is_page() ) {
@@ -142,6 +179,11 @@ if ( ! function_exists( 'fluid_menubar_print_button' ) ) {
 	}
 }
 
+/**
+ *  insert schema microdata for single pages
+ *
+ * @since 20180624
+ */
 if ( ! function_exists( 'fluid_schema_page_check' ) ) {
 	function fluid_schema_page_check() {
 		if ( is_single() ) {
@@ -154,6 +196,7 @@ if ( ! function_exists( 'fluid_schema_page_check' ) ) {
 /**
  *  show/hide admin bar on front end
  *
+ * @since 20180706
  * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/show_admin_bar
  * @parameter bool $show
  */
@@ -165,4 +208,3 @@ if ( ! function_exists( 'fluid_show_admin_bar' ) ) {
 	add_filter( 'show_admin_bar' , 'fluid_show_admin_bar' );
 }
 #add_filter( 'show_admin_bar', '__return_false' );
-
