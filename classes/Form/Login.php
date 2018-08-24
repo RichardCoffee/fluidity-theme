@@ -3,11 +3,10 @@
 
 class TCC_Form_Login {
 
+	protected $defaults    = array();
 	protected $show_mode   = 'modal';
 	protected $in_modal    = false;
-	protected $in_navbar   = false;
 	protected $in_widget   = false;
-	protected $pull_right  = true;
 	protected $redirect_to = null;
 
 	use TCC_Trait_Attributes;
@@ -18,7 +17,8 @@ class TCC_Form_Login {
 		$this->parse_args( $args );
 		add_action( 'login_form_defaults', [ $this, 'login_form_defaults' ], 1 );	#	run early - make it easy to override values
 		#	Do not show login errors to users
-		if ( ! WP_DEBUG) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
+		if ( ! WP_DEBUG ) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
+		$this->get_login_form_defaults();
 	}
 
 
@@ -32,13 +32,14 @@ class TCC_Form_Login {
 		}, 9999 );
 		# filter gets called here - should be a better way to get the form values
 		$form = wp_login_form( array( 'echo' => false ) );
-		return $defaults;
+		$this->defaults = $defaults;
+		return;
 	}
 
 	public function login_form_defaults( $defaults = array() ) {
 		# array mainly taken from wp-includes/general-template.php
 		$new = array(
-			'redirect'       => apply_filters( 'login_redirect',          home_url( add_query_arg( NULL, NULL ) ), null, null ),
+			'redirect'       => apply_filters( 'login_redirect',       home_url( add_query_arg( NULL, NULL ) ), null, null ),
 			'form_id'        => apply_filters( 'fluid_login_form_id',  uniqid( 'login_form_' ) ),
 			'label_username' => apply_filters( 'fluid_login_username', __( 'Username or Email Address', 'tcc-fluid' ) ),
 			'label_password' => apply_filters( 'fluid_login_password', __( 'Password',      'tcc-fluid' ) ),
@@ -59,91 +60,113 @@ class TCC_Form_Login {
 
 /***   Login/Logout Forms   ***/
 
-	public function login_form( $args = array() ) {
+	public function login_form() {
 		if ( is_user_logged_in() ) {
 			$this->show_logout_form();
 		} else {
-			$this->show_login_form( $args );
+			$this->show_login_form();
 		}
 	}
 
-	public function show_login_form( $args ) {
-		$in_navbar  = $this->in_navbar;
-		$pull_right = $this->pull_right;
-		extract( $args, EXTR_IF_EXISTS );
-		$defaults = $this->get_login_form_defaults();
-		extract( $defaults );	#	See $this->login_form_defaults for the list of extracted variables
-		$text_css = ( $in_navbar ) ? 'sr-only' : 'login-text';
-		$remember = ( $in_navbar ) ?  false : $remember;
-		$fattrs = array(
-			'id'     => $form_id,
-			'class'  => ( $in_navbar ) ? 'navbar-form navbar-login-form' . ( ( $pull_right ) ? ' navbar-right' : '' ) : 'login-form',
+	public function show_login_form() {
+		$attrs = array(
+			'id'     => $this->defaults['form_id'],
+			'class'  => 'login-form',
 			'name'   => 'loginform',
 			'action' => site_url( '/wp-login.php' ),
 			'method' => 'post',
-		);
-		$unattrs = array(
+		); ?>
+		<form <?php $this->apply_attrs( $attrs ); ?>>
+			<div class='form-group login-username'><?php
+				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_username'] ], $this->defaults['label_username'] );
+				$this->element( 'input', $this->get_username_attrs() ); ?>
+			</div>
+			<div class='form-group login-password'><?php
+				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_password'] ], $this->defaults['label_password'] );
+				$this->element( 'input', $this->get_password_attrs() ); ?>
+			</div>
+			<div class="checkbox login-remember"><?php
+				$this->remember_checkbox(); ?>
+			</div>
+			<div class="form-group login-submit pull-left"><?php
+				$this->submit_button(); ?>
+			</div><?php
+			$this->lost_password(); ?>
+		</form><?php
+	}
+
+	protected function get_username_attrs() {
+		$attrs = array(
 			'type'  => 'text',
 			'name'  => 'log',
-			'id'    => $id_username,
+			'id'    => $this->defaults['id_username'],
 			'class' => 'form-control',
-			'placeholder' => $label_username,
+			'placeholder' => $this->defaults['label_username'],
 			'required'    => '',
 		);
-		$pwattrs = array(
-			'type' => 'password',
-			'name' => 'pwd',
-			'id'   => $id_password,
+		return $attrs;
+	}
+
+	protected function get_password_attrs() {
+		$attrs = array(
+			'type'  => 'password',
+			'name'  => 'pwd',
+			'id'    => $this->default['id_password'],
 			'class' => 'form-control',
-			'placeholder' => $label_password,
-			'required' => '',
-		); ?>
+			'placeholder' => $this->defaults['label_password'],
+			'required'    => '',
+		);
+		return $attrs;
+	}
 
-		<form <?php $this->apply_attrs( $fattrs ); ?>>
+	protected function remember_checkbox() {
+		$attrs = array(
+			'type'  => 'checkbox',
+			'id'    => $this->defaults['id_remember'],
+			'name'  => 'rememberme',
+			'value' => 'forever',
+		);
+		$attr = $this->checked( $attrs, $this->defaults['value_remember'], true ); ?>
+		<label>&nbsp;<?php
+			$this->element( 'input', $attr, $this->defaults['label_remember'] ); ?>
+		</label><?php
+	}
 
-			<div class='form-group login-username'><?php
-				$this->element( 'label', [ 'class' => $text_css, 'for' => $id_username ], $label_username );
-				$this->element( 'input', $unattrs ); ?>
-			</div>
+	protected function submit_button() {
+		$attrs = array(
+			'type'  => 'submit',
+			'id'    => $this->defaults['id_submit'],
+			'class' => 'btn btn-fluidity',
+			'name'  => 'wp-submit',
+		);
+		$this->tag( 'button', $attrs );
+			fluid()->fawe( 'fa-sign-in' ); ?>&nbsp;<?php
+			echo esc_html( $this->defaults['label_log_in'] ); ?>
+		</button><?php
+		$input = array(
+			'type'  => 'hidden',
+			'name'  => 'redirect_to',
+			'value' => esc_url( $this->defaults['redirect'] ), // esc_html() also gets applied to this field
+		);
+		$this->element( 'input', $input );
+	}
 
-			<div class='form-group login-password'><?php
-				$this->element( 'label', [ 'class' => $text_css, 'for' => $id_password ], $label_password );
-				$this->element( 'input', $pwattrs ); ?>
-			</div><?php
-
-			if ( $remember ) { ?>
-				<div class="checkbox login-remember">
-					<label>
-						<input type="checkbox" id="<?php echo esc_attr( $id_remember ); ?>"
-							name="rememberme" value="forever" <?php checked( $value_remember, true ); ?>>&nbsp;
-						<?php echo esc_html( $label_remember ); ?>
-					</label>
-				</div><?php
-			} ?>
-
-			<div class="form-group login-submit pull-left">
-				<button type="submit" id="<?php echo esc_attr( $id_submit ); ?>" class="btn btn-fluidity" name="wp-submit">
-					<?php fluid()->fawe( 'fa-sign-in' ); ?>&nbsp;
-					<?php echo esc_html( $label_log_in ); ?>
-				</button>
-				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect ); ?>" />
-			</div><?php
-
-			if ( ! empty( $label_lostpw ) && ( $lost_url = wp_lostpassword_url( home_url() ) ) ) {
-				$lpattrs = array(
+	protected function lost_password() {
+		if ( ! empty( $this->defaults['label_lostpw'] ) ) {
+			$lost_url = wp_lostpassword_url( home_url() );
+			if ( ! empty( $lost_url ) ) {
+				$attrs = array(
 					'class' => 'pull-right',
 					'href'  => $lost_url,
 					'title' => __( 'You can request a new password via this link.', 'tcc-fluid' ),
 					'rel'   => 'nofollow',
 				);
-				$this->tag( 'a', $lpattrs ); ?>
-					<small>
-						<?php echo esc_html( $label_lostpw ); ?>
-					</small>
+				$attrs = apply_filters( 'fluid_login_lost_password', $attrs );
+				$this->tag( 'a', $attrs );
+					$this->element( 'small', [ ], $this->defaults['label_lostpw'] ); ?>
 				</a><?php
-			} ?>
-
-		</form><?php
+			}
+		}
 	}
 
 	public function show_logout_form() {

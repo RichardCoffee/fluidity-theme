@@ -52,8 +52,8 @@ class TCC_Theme_Login {
 		$login_form->login_form();
 	}
 
-	public function navbar_login_form() {
-		$login_form = new TCC_Form_Login( [ 'in_navbar' => true ] );
+	public function navbar_login_form( $args = array() ) {
+		$login_form = new TCC_Form_Navbar( $args );
 		$login_form->login_form();
 	}
 
