@@ -111,7 +111,7 @@ class TCC_Form_Login {
 		$attrs = array(
 			'type'  => 'password',
 			'name'  => 'pwd',
-			'id'    => $this->default['id_password'],
+			'id'    => $this->defaults['id_password'],
 			'class' => 'form-control',
 			'placeholder' => $this->defaults['label_password'],
 			'required'    => '',
