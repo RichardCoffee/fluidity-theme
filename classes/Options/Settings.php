@@ -11,6 +11,10 @@ class TCC_Options_Settings extends TCC_Options_Options {
 		return __( 'Settings', 'tcc-fluid' );
 	}
 
+	protected function form_icon() {
+		return 'dashicons-admin-settings';
+	}
+
 	public function describe_options() {
 		esc_html_e( 'Theme Behavior Options', 'tcc-fluid' );
 	}

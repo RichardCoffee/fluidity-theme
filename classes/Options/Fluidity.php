@@ -94,6 +94,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		$form = apply_filters( 'fluidity_options_form_layout', $form );
 		$form['about'] = array(
 			'describe' => 'describe_about',
+			'icon'     => 'dashicons-welcome-view-site',
 			'title'    => __( 'About / Contact', 'tcc-fluid' ),
 			'option'   => 'tcc_options_about',
 			'layout'   => $this->options_layout( 'about' )

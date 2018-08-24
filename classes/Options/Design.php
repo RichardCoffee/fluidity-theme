@@ -11,6 +11,10 @@ class TCC_Options_Design extends TCC_Options_Options {
 		return __( 'Design', 'tcc-fluid' );
 	}
 
+	protected function form_icon() {
+		return 'dashicons-art';
+	}
+
 	public function describe_options() { ?>
 		<span title="No they don't.  This doesn't work.  yet">
 			<?php esc_html_e('Design Options - these options also show up in the WordPress Customizer.','tcc-fluid'); ?>

@@ -11,6 +11,10 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 		return __( 'API Control', 'tcc-fluid' );
 	}
 
+	protected function form_icon() {
+		return 'dashicons-rest-api';
+	}
+
 	public function describe_options() {
 		esc_html_e( 'REST API Control', 'tcc-fluid' );
 	}

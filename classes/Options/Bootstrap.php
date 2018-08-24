@@ -9,6 +9,10 @@ class TCC_Options_Bootstrap extends TCC_Options_Options {
 		return __( 'Bootstrap', 'tcc-fluid' );
 	}
 
+	protected function form_icon() {
+		return 'dashicons-hammer';
+	}
+
 	public function describe_options() { ?>
 		<span>
 			<?php esc_html_e( 'Bootstrap Components - specify which bootstrap components to load.', 'tcc-fluid' ); ?>

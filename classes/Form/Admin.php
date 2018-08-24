@@ -279,37 +279,39 @@ abstract class TCC_Form_Admin {
 		</div><?php //*/
 	}
 
-  public function render_tabbed_form() {
-    $active_page = sanitize_key( $_GET['page'] ); ?>
-    <div class="wrap">
-      <div id="icon-themes" class="icon32"></div>
-      <h1 class='centered'>
-        <?php echo esc_html($this->form['title']); ?>
-      </h1><?php
-      settings_errors(); ?>
-      <h2 class="nav-tab-wrapper"><?php
-        $refer = "admin.php?page=$active_page";
-        foreach($this->form as $key=>$menu_item) {
-          if (is_string($menu_item)) continue;
-          $tab_css  = 'nav-tab';
-          $tab_css .= ($this->tab==$key) ? ' nav-tab-active' : '';
-          $tab_ref  = "$refer&tab=$key"; ?>
-          <a href='<?php echo esc_attr($tab_ref); ?>' class='<?php echo esc_attr($tab_css); ?>'>
-            <?php echo esc_html($menu_item['title']); ?>
-          </a><?php
-        } ?>
-      </h2>
-      <form method="post" action="options.php">
-        <input type='hidden' name='tab' value='<?php echo esc_attr( $this->tab ); ?>'><?php
-        $current  = (isset($this->form[$this->tab]['option'])) ? $this->form[$this->tab]['option'] : $this->prefix.$this->tab;
-        do_action( "form_admin_pre_display_{$this->tab}" );
-        settings_fields($current);
-        do_settings_sections($current);
-        do_action("form_admin_post_display_{$this->tab}");
-        $this->submit_buttons($this->form[$this->tab]['title']); ?>
-      </form>
-    <div><?php //*/
-  }
+	public function render_tabbed_form() {
+		$active_page = sanitize_key( $_GET['page'] ); ?>
+		<div class="wrap">
+			<div id="icon-themes" class="icon32"></div>
+			<h1 class='centered'><?php
+				e_esc_html( $this->form['title'] ); ?>
+			</h1><?php
+			settings_errors(); ?>
+			<h2 class="nav-tab-wrapper"><?php
+				$refer = "admin.php?page=$active_page";
+				foreach( $this->form as $key => $menu_item ) {
+					if ( is_string( $menu_item ) ) continue;
+					$tab_ref  = "$refer&tab=$key";
+					$tab_css  = 'nav-tab' . ( $this->tab === $key ) ? ' nav-tab-active' : ''; ?>
+					<a href='<?php e_esc_attr( $tab_ref ); ?>' class='<?php e_esc_attr( $tab_css ); ?>'><?php
+						if ( ! empty( $menu_item['icon'] ) ) { ?>
+							<i class="dashicons <?php e_esc_attr( $menu_item['icon'] ); ?>"></i><?php
+						}
+						e_esc_html( $menu_item['title'] ); ?>
+					</a><?php
+				} ?>
+			</h2>
+			<form method="post" action="options.php">
+				<input type='hidden' name='tab' value='<?php e_esc_attr( $this->tab ); ?>'><?php
+				$current = ( isset( $this->form[ $this->tab ]['option'] ) ) ? $this->form[ $this->tab ]['option'] : $this->prefix . $this->tab;
+				do_action( "form_admin_pre_display_{$this->tab}" );
+				settings_fields( $current );
+				do_settings_sections( $current );
+				do_action( "form_admin_post_display_{$this->tab}" );
+				$this->submit_buttons( $this->form[ $this->tab ]['title'] ); ?>
+			</form>
+		<div><?php //*/
+	}
 
 	private function submit_buttons($title='') {
 		if (!isset($this->form_text['submit'])) { fluid()->log('stack'); $this->form_text(); } // track down erratic bug
@@ -844,9 +846,14 @@ abstract class TCC_Form_Admin {
 
 }	#	end of TCC_Form_Admin class
 
+#   These are just a shorthand functions
+if ( ! function_exists( 'e_esc_attr' ) ) {
+	function e_esc_attr( $string ) {
+		echo esc_attr( $string );
+	}
+}
 
-if ( ! function_exists('e_esc_html') ) {
-	#   This is just a shorthand function
+if ( ! function_exists( 'e_esc_html' ) ) {
 	function e_esc_html( $string ) {
 		echo esc_html( $string );
 	}

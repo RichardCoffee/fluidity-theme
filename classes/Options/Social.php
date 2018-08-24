@@ -12,6 +12,10 @@ class TCC_Options_Social extends TCC_Options_Options {
 		return __( 'Social Icons', 'tcc-fluid' );
 	}
 
+	protected function form_icon() {
+		return 'dashicons-phone';
+	}
+
 	public function describe_options() {
 		$text = esc_html_x( 'Fluidity Social Icons (powered by %sFont Awesome%s)', 'html anchor/link tag', 'tcc-fluid' );
 		$desc = sprintf( $text, '<a href="http://fontawesome.io/" rel="nofollow noopener" target="fontawesome.io">', '</a>' );
