@@ -292,7 +292,7 @@ abstract class TCC_Form_Admin {
 				foreach( $this->form as $key => $menu_item ) {
 					if ( is_string( $menu_item ) ) continue;
 					$tab_ref  = "$refer&tab=$key";
-					$tab_css  = 'nav-tab' . ( $this->tab === $key ) ? ' nav-tab-active' : ''; ?>
+					$tab_css  = 'nav-tab' . ( ( $this->tab === $key ) ? ' nav-tab-active' : '' ); ?>
 					<a href='<?php e_esc_attr( $tab_ref ); ?>' class='<?php e_esc_attr( $tab_css ); ?>'><?php
 						if ( ! empty( $menu_item['icon'] ) ) { ?>
 							<i class="dashicons <?php e_esc_attr( $menu_item['icon'] ); ?>"></i><?php
