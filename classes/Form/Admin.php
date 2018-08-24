@@ -311,17 +311,18 @@ abstract class TCC_Form_Admin {
     <div><?php //*/
   }
 
-  private function submit_buttons($title='') {
-    $buttons = $this->form_text['submit']; ?>
-    <p><?php
-      submit_button($buttons['save'],'primary','submit',false); ?>
-      <span style='float:right;'><?php
-        $object = (empty($title)) ? $buttons['object'] : $title;
-        $reset  = sprintf($buttons['reset'],$object);
-        submit_button($reset,'secondary','reset',false); ?>
-      </span>
-    </p><?php
-  }
+	private function submit_buttons($title='') {
+		if (!isset($this->form_text['submit'])) { fluid()->log('stack'); $this->form_text(); } // track down erratic bug
+		$buttons = $this->form_text['submit']; ?>
+		<p><?php
+			submit_button( $buttons['save'], 'primary', 'submit', false ); ?>
+			<span style='float:right;'><?php
+				$object = ( empty( $title ) ) ? $buttons['object'] : $title;
+				$reset  = sprintf( $buttons['reset'], $object );
+				submit_button( $reset, 'secondary', 'reset', false ); ?>
+			</span>
+		</p><?php
+	}
 
 	public function render_single_options( $args ) {
 		extract( $args );  #  array( 'key'=>$key, 'item'=>$item, 'num'=>$i);
