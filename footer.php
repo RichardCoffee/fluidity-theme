@@ -16,6 +16,8 @@ defined( 'ABSPATH' ) || exit; ?>
 				get_template_part( "$dir/$root", $slug ); ?>
 			</div>
 
+			<?php do_action( 'fluid_php_error_messages' ); ?>
+
 			<div id="wp-footer"><?php
 				wp_footer(); ?>
 			</div>

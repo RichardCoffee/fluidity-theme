@@ -86,6 +86,77 @@ if ( ! function_exists( 'fluidity_social_icons' ) ) {
 }
 
 /**
+ *  show php errors in alert box
+ *
+ * @since 20180824
+ * @link https://code.tutsplus.com/articles/display-php-errors-as-wordpress-admin-alerts--wp-23993
+ * @param integer $errno
+ * @param string $errstr
+ * @param string $errfile
+ * @param integer $errline
+ * @param array $errcontext
+ */
+if ( ! function_exists( 'fluid_php_error_alerts' ) ) {
+	function fluid_php_error_alerts( $errno, $errstr, $errfile = '', $errline = 0, $errcontext = array() ) {
+		global $php_error_messages;
+		$errorType = array (
+			E_ERROR             => 'ERROR',
+			E_CORE_ERROR        => 'PHP CORE ERROR',
+			E_COMPILE_ERROR     => 'COMPILE ERROR',
+			E_USER_ERROR        => 'PROGRAMMER ERROR',
+			E_RECOVERABLE_ERROR => 'RECOVERABLE ERROR',
+			E_WARNING           => 'WARNING',
+			E_CORE_WARNING      => 'PHP CORE WARNING',
+			E_COMPILE_WARNING   => 'COMPILE WARNING',
+			E_USER_WARNING      => 'USER WARNING',
+			E_NOTICE            => 'NOTICE',
+			E_USER_NOTICE       => 'USER NOTICE',
+			E_DEPRECATED        => 'DEPRECATED',
+			E_USER_DEPRECATED   => 'USER DEPRECATED',
+			E_PARSE             => 'PARSING ERROR'
+		);
+		if ( array_key_exists( $errno, $errorType ) ) {
+			$errname = $errorType[ $errno ];
+		} else {
+			$errname = 'UNKNOWN ERROR';
+		}
+		$format = esc_html__( '%1$s Error: [%2$s] %3$s, %4$s on line %5$s', 'tcc-fluid' );
+		ob_start();?>
+		<div class="error">
+			<p><?php
+				printf(
+					$format,
+					'<strong>' . $errname . '</strong>',
+					'<strong>' . $errno   . '</strong>',
+					$errstr,
+					'<strong>' . $errfile . '</strong>',
+					'<strong>' . $errline . '</strong>'
+				); ?>
+			</p>
+		</div><?php
+		$error_message = ob_get_clean();
+		if ( is_admin() ) {
+			echo $error_message;
+		} else {
+			if ( empty( $php_error_messages ) ) {
+				add_action( 'fluid_php_error_messages', function() {
+					global $php_error_messages;
+					echo $php_error_messages;
+				} );
+			}
+			$php_error_messages .= $error_message;
+		}
+		if ( in_array( $errno, [ E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR, E_RECOVERABLE_ERROR ] ) ) {
+			if ( ! is_admin() ) {
+				echo $error_message;
+			}
+			die();
+		}
+	}
+	set_error_handler( 'fluid_php_error_alerts', E_ERROR ^ E_CORE_ERROR ^ E_COMPILE_ERROR ^ E_USER_ERROR ^ E_RECOVERABLE_ERROR ^ E_WARNING ^ E_CORE_WARNING ^ E_COMPILE_WARNING ^ E_USER_WARNING ^ E_NOTICE ^ E_USER_NOTICE ^ E_DEPRECATED ^ E_USER_DEPRECATED ^ E_PARSE );
+}
+
+/**
  *  add monthly to wp cron schedules
  *
  * @param array $schedules
@@ -199,38 +270,6 @@ if ( ! function_exists( 'attachment_sizes' ) ) {
 			$sizes[ $size ] = $stem . $data['file'];
 		}
 		return $sizes;
-	}
-}
-
-/**
- *  generates a string slug for a post or page - possible duplicate
- *
- * @link http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
- * @param numeric $id
- * @return string
- */
-if ( ! function_exists( 'get_the_slug' ) ) {
-	function get_the_slug( $id = null ) {
-		if ( empty( $id ) ) {
-			global $post;
-			if ( empty( $post ) ) { return ''; } // No global $post var available.
-			$id = $post->ID;
-		}
-		$slug = basename( get_permalink( $id ) );
-		return $slug;
-	}
-}
-
-/**
- *  displays the post/page slug
- *
- * @link http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
- * @param numeric $id
- * @return string
- */
-if ( ! function_exists( 'the_slug' ) ) {
-	function the_slug( $id = null ) {
-		e_esc_html( apply_filters( 'the_slug', get_the_slug( $id ) ) );
 	}
 }
 

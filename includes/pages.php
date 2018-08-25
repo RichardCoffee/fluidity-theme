@@ -95,6 +95,7 @@ if (!function_exists('fluid_save_page_template')) {
 }
 
 #	 * @link http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
+#	 * @link http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
 if ( ! function_exists( 'get_page_slug' ) ) {
 	function get_page_slug( $set_slug = '' ) {
 		global $wp_query;
