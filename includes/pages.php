@@ -99,17 +99,18 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 	function get_page_slug( $set_slug = '' ) {
 		global $wp_query;
 		static $slug = null;
-		if ( ! $slug ) {
-			if ( $set_slug ) {
-				$slug = $set_slug;
-			} else if ( defined( 'TCC_PAGE_SLUG' ) ) {
-				$slug = TCC_PAGE_SLUG;
-			} else if ( ( ! is_admin() ) && $wp_query->is_main_query() ) {
+		if ( ! empty( $set_slug ) ) {
+			$slug = $set_slug;
+		} else if ( defined( 'TCC_PAGE_SLUG' ) ) {
+			$slug = TCC_PAGE_SLUG;
+		}
+		if ( empty( $slug ) ) {
+			if ( ( ! is_admin() ) && $wp_query->is_main_query() ) {
 				if ( is_home() && empty( $wp_query->query_string ) ) {
-					$slug = apply_filters( 'fluid_home_page_slug', 'home');
+					$slug = apply_filters( 'fluid_home_page_slug', 'home' );
 				#} else if ( ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
-				} else if ( get_option('page_on_front') && ( $wp_query->get('page_id') === get_option('page_on_front') ) ) {
-					$slug = apply_filters( 'fluid_front_page_slug', 'front');
+				} else if ( get_option( 'page_on_front' ) && ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) ) ) {
+					$slug = apply_filters( 'fluid_front_page_slug', 'front' );
 				} else {
 					$page = get_queried_object();  #  $wp_query->queried_object
 					if ( is_object( $page ) ) {
@@ -122,11 +123,12 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						} else {
 							$slug = $page->name;
 						}
-					} else {
-						global $fluidity_theme_template; // FIXME: this is not a reliable source
-						$slug = $fluidity_theme_template;
 					}
 				}
+			}
+			if ( empty( $slug ) ) {
+				fluid()->log( 'missing page slug', $wp_query );
+				$slug = 'ERROR_missing_page_slug';
 			}
 		}
 		return $slug;
