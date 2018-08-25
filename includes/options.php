@@ -42,7 +42,7 @@ add_action( 'tcc_custom_css',     array( 'TCC_Theme_Typography', 'typography_sty
 
 if ( ! function_exists( 'fluid_stop_heartbeat' ) ) {
 	function fluid_stop_heartbeat() {
-		$heart = tcc_settings( 'heart', 'on' );
+		$heart = tcc_option( 'heart', 'apicontrol', 'on' );
 		if ( $heart == 'off' ) {
 			global $pagenow;
 			$authorized = array( 'post.php', 'post-new.php', 'admin.php' );
