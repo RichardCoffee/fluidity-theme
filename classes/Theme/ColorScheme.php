@@ -36,6 +36,7 @@ class TCC_Theme_ColorScheme {
 		if ( empty( static::$scheme ) ) {
 			$scheme = '';
 			$color  = get_theme_mod( 'colors_scheme', 'random' );
+			$color  = apply_filters( 'fluid_pre_color_scheme', $scheme );
 			if ( $color === 'none' ) {
 				return '';
 			} else if ( $color === 'random' ) {
