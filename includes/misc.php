@@ -122,7 +122,7 @@ if ( ! function_exists( 'fluid_php_error_alerts' ) ) {
 		}
 		$format = esc_html__( '%1$s Error: [%2$s] %3$s, %4$s on line %5$s', 'tcc-fluid' );
 		ob_start();?>
-		<div class="error">
+		<div class="notice error">
 			<p><?php
 				printf(
 					$format,
