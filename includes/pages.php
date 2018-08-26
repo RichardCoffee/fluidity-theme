@@ -130,7 +130,7 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 				}
 			}
 			if ( empty( $slug ) ) {
-				fluid()->log( 'missing page slug', $wp_query );
+				fluid()->log( 'missing page slug', $wp_query, 'stack' );
 				$slug = 'ERROR_missing_page_slug';
 			}
 		}
