@@ -90,7 +90,7 @@ if ( ! function_exists( 'fluid_bbp_options_topic_subscription' ) ) {
 		);
 		return $layout;
 	}
-	add_filter( 'tcc_content_options_layout', 'fluid_bbp_options_topic_subscription' );
+	add_filter( 'tcc_third_options_layout', 'fluid_bbp_options_topic_subscription' );
 }
 
 /**
@@ -166,7 +166,7 @@ if ( ! function_exists( 'fluid_bbp_get_form_topic_subscribed' ) ) {
  */
 if ( ! function_exists( 'fluid_bbp_topic_subscribed_default' ) ) {
 	function fluid_bbp_topic_subscribed_default( $subscribe ) {
-		return ( tcc_content( 'bbp-subscribe', 'no' ) === 'yes' ) ? true : $subscribe;
+		return ( tcc_option( 'bbp-subscribe', 'third', 'no' ) === 'yes' ) ? true : $subscribe;
 	}
 	add_filter( 'fluid_bbp_topic_subscribed_default', 'fluid_bbp_topic_subscribed_default' );
 }
@@ -261,5 +261,3 @@ if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 		</h1><?php
 	}
 }
-
-

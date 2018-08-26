@@ -3,7 +3,7 @@
 class TCC_Options_Bootstrap extends TCC_Options_Options {
 
 	protected $base     = 'bootstrap';
-	protected $priority = 600;
+	protected $priority = 700;
 
 	protected function form_title() {
 		return __( 'Bootstrap', 'tcc-fluid' );

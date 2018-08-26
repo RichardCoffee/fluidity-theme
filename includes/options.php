@@ -81,15 +81,6 @@ if (!function_exists('tcc_bootstrap')) {
 	}
 }
 
-if ( ! function_exists( 'tcc_content' ) ) {
-	function tcc_content( $option, $default = '' ) {
-		static $data;
-		if ( empty( $data ) ) { $data = get_option( 'tcc_options_content' ); }
-		if ( isset( $data[ $option ] ) ) { return $data[ $option ]; }
-		return $default;
-	}
-}
-
 if ( ! function_exists( 'tcc_design' ) ) {
 	function tcc_design( $option, $default = '' ) {
 		static $data;
