@@ -305,7 +305,7 @@ a:visited {
   color: #8A6D3B;
 }
 a:hover, a:focus {
-  border-bottom: 2px solid #8A6D3B;
+  border-bottom: 1px solid #8A6D3B;
   color: #8A6D3B;
   font-weight: bold;
   text-decoration: none;
