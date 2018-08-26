@@ -128,8 +128,9 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 							$size  = apply_filters( 'fluid_header_logo_size', 'full' );
 							$class = apply_filters( 'fluid_header_logo_class', [ 'custom-logo', 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ], $size );
 							$logo  = wp_get_attachment_image_src( $logo_id , $size );
-							$alt   = get_post_meta( $logo_id, '_wp_attachment_image_alt', true );
-							$alt   = ( $alt ) ? $alt : get_bloginfo( 'name', 'display'  );
+#							$alt   = get_post_meta( $logo_id, '_wp_attachment_image_alt', true );
+#							$alt   = ( $alt ) ? $alt : get_bloginfo( 'name', 'display'  );
+							$alt   = get_bloginfo( 'name', 'display'  );
 							$attrs = array(
 								'class'     => $class,
 								'data-size' => $size,
