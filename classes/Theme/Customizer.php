@@ -176,7 +176,7 @@ class TCC_Theme_Customizer {
 		);
 /*		if ( WP_DEBUG ) {
 			$controls['menu']    = array(
-				'default'     => 'bootstrap',
+				'default'     => 'underscore',
 				'label'       => __( 'Menu', 'tcc-fluid' ),
 				'description' => __( 'Which menuing system do you want to use?', 'tcc-fluid' ),
 				'title'       => __( '', 'tcc-fluid' ),

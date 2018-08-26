@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 
 $page = get_page_slug();
 $menu = apply_filters( 'fluid_menu', 'primary', $page ); # defaults: primary, header or footer
-$msys = apply_filters( 'fluid_menu_system', 'bootstrap' );
+$msys = apply_filters( 'fluid_menu_system', 'underscore' );
 fluid_taxonomy();
 
 who_am_i();
