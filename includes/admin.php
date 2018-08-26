@@ -22,7 +22,7 @@ if ( ! function_exists( 'fluid_admin_howdy' ) ) {
 		}
 		$user   = wp_get_current_user();
 		$avatar = get_avatar( $user_id, 28 );
-		$greet  = apply_filters( 'wp_admin_bar_my_account_greeting', tcc_holiday_greeting(), $current );
+		$greet  = apply_filters( 'wp_admin_bar_my_account_greeting', tcc_holiday_greeting(), $user );
 		$name   = fluid()->get_element( 'span', [ 'class' => 'display-name' ], $user->display_name );
 		$howdy  = sprintf( _x( '%1$s, %2$s', 'text greeting, user name', 'tcc-fluid' ), $greet, $name );
 		$args   = array(
