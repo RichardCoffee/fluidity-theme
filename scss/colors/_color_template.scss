@@ -148,7 +148,7 @@ a {
 		color: $mainhigh; //color(bgHighlight);
 	}
 	&:hover, &:focus {
-		border-bottom: 2px solid $mainhigh; //color(bgHighlight);
+		border-bottom: 1px solid $mainhigh; //color(bgHighlight);
 		color: $mainhigh; //color(bgHighlight);
 		font-weight: bold;
 		text-decoration: none;
