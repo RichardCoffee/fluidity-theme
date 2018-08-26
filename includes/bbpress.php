@@ -229,6 +229,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 					'div#bbpress-forums ul.bbp-forums',
 					'div#bbpress-forums ul.bbp-replies',
 					'div#bbpress-forums ul.bbp-search-results',
+					'div#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content',
 				);
 				$css_tags = implode( ",\n", $css );
 				echo "$css_tags { font-size:  {$fontsize}px; }";
