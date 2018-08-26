@@ -25,9 +25,7 @@ do_action( 'fluid_page_top', $mypage ); ?>
 		<main id="content" class="<?php e_esc_attr( $page_sidebar->main_tag_css( $mypage, '' ) ); ?>" tabindex="-1"><?php
 
 			do_action( 'fluid_before_posts', $mypage );
-
 			if ( have_posts() ) {
-
 				do_action( 'tcc_before_loop', $mypage );
 
 				$dir  = apply_filters( 'fluid_loop_template_dir', 'template-parts', $mypage );
@@ -56,7 +54,6 @@ do_action( 'fluid_page_top', $mypage ); ?>
 			} else {
 				do_action( 'tcc_no_loop', $mypage );
 			}
-
 			do_action( 'tcc_after_posts', $mypage ); ?>
 
 		</main><!-- #content -->
