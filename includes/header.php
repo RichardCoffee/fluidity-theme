@@ -108,10 +108,11 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 	function fluid_header_logo( $html = '', $blog_id = 1 ) {
 		$echo = ( doing_filter( 'get_custom_logo' ) ) ? false : true;  #  allows for separate use
 #		if ( ! is_customize_preview() ) {
-			$scheme  = fluid_color()->color_scheme();
-			$div_css = apply_filters( 'fluid_logo_div_css', 'pointer' );
+			$scheme   = fluid_color()->color_scheme();
+			$div_css  = apply_filters( 'fluid_logo_div_css', 'pointer' );
+			$div_atts = array_merge( [ 'class' => $div_css ], microdata()->ImageObject( true ) );
 			ob_start(); ?>
-			<div class="<?php echo $div_css; ?>" <?php microdata()->ImageObject(); ?>><?php
+			<div <?php fluid()->apply_attrs( $div_atts ); ?>><?php
 				if ( $scheme === 'none' ) {
 					echo $html;
 				} else {
@@ -128,8 +129,6 @@ if ( ! function_exists( 'fluid_header_logo' ) ) {
 							$size  = apply_filters( 'fluid_header_logo_size', 'full' );
 							$class = apply_filters( 'fluid_header_logo_class', [ 'custom-logo', 'centered', 'img-responsive', "attachment-$size", 'hidden-xs' ], $size );
 							$logo  = wp_get_attachment_image_src( $logo_id , $size );
-#							$alt   = get_post_meta( $logo_id, '_wp_attachment_image_alt', true );
-#							$alt   = ( $alt ) ? $alt : get_bloginfo( 'name', 'display'  );
 							$alt   = get_bloginfo( 'name', 'display'  );
 							$attrs = array(
 								'class'     => $class,

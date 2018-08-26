@@ -114,6 +114,7 @@ trait TCC_Trait_Attributes {
 				case 'placeholder':
 				case 'title':
 					$value = esc_attr( wp_strip_all_tags( $value ) );
+					break;
 				default:
 					$value = esc_attr( $value );
 			}
