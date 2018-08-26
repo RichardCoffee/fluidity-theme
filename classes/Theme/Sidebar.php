@@ -6,8 +6,8 @@ class TCC_Theme_Sidebar {
 	private $main_css    = 'col-lg-9 col-md-9 col-sm-12 col-xs-12';
 	private $sidebar_css = 'col-lg-3 col-md-3 col-sm-12 col-xs-12';
 
-	protected $action     = 'tcc_before_main';
-	protected $mobile     = 'tcc_after_main';
+	protected $action     = 'fluid_before_main';
+	protected $mobile     = 'fluid_after_main';
 	protected $css        =  array();
 	protected $horizontal =  false;
 	protected $position   = 'none';
@@ -51,10 +51,10 @@ class TCC_Theme_Sidebar {
 			if ( $mobile === 'none' ) {
 				$this->action = false;
 			} else if ( $mobile === 'bottom' ) {
-				$this->action = 'tcc_after_main';
+				$this->action = 'fluid_after_main';
 			}
 		} else if ( ( $this->fluid === 'static' ) && get_theme_mod( 'sidebar_position', 'right' ) === 'right' ) {
-			$this->action = 'tcc_after_main';
+			$this->action = 'fluid_after_main';
 		}
 	}
 

@@ -3,19 +3,19 @@
 Note:  this list is certainly not accurate, check source for up to date infomation
 
 
-		Action Sequence
-	==========================
+		Action Sequence for index.php
+	=====================================
 		fluid_header_body_content
 		fluid_page_top
-		tcc_inside_page
-		tcc_before_main
+		fluid_inside_page
+		fluid_before_main
 		fluid_before_posts
-		tcc_before_loop
-		tcc_after_loop
-		tcc_no_loop ( when this runs then tcc_before_loop and tcc_after_loop did not fire )
-		tcc_after_posts
-		tcc_after_main
-		tcc_page_bottom
+		fluid_before_loop
+		fluid_after_loop
+		fluid_no_loop ( when this runs then tcc_before_loop and tcc_after_loop did not fire )
+		fluid_after_posts
+		fluid_after_main
+		fluid_page_bottom
 
 
 		     Actions                       Purpose / Occurrance                              Function / File
@@ -58,6 +58,7 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_color_scheme                name of color scheme file                          fluid_color_scheme
 		fluid_container_type              control bootstrap container class                  container_type
 		fluid_{$page}_container_type      as above, only on specified page/section           container_type
+		fluid_copyright_name              site title displayed in copyright notice           tcc_copyright
 		fluid_default_sidebars            Filter the sidebars that the theme creates         TCC_Register_Sidebars->
 		fluid_excerpt_link_tooltip        string used for post link tooltip in excerpts      fluid_excerpt_link_tooltip
 		fluid_front_page_slug             assign the slug used for the front page, default: front
@@ -87,10 +88,8 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		tcc_author_posts_header           header title for list of author's posts            author.php
 		tcc_content_slug                  template-part slug                                 fluid_content_slug
 		tcc_{$page}_content_slug          template-part slug for $page                       fluid_content_slug
-		tcc_copyright_name                site title displayed in copyright notice           tcc_copyright
 		tcc_google_fonts                  list of google fonts we want to use                Typography::google_fonts
 		tcc_mixed_fonts                   combined fonts list                                Typography::mixed_fonts
 		tcc_os_fonts                      user operating system fonts list                   Typography::os_fonts
 		tcc_register_widgets_list         fluidity registered widgets                        tcc_register_widgets
-		tcc_signout_text                  text for log out button                            tcc_login_form_defaults
 		widget_title                      widget title                                       TCC_Widget_Basic->widget

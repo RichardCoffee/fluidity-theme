@@ -247,7 +247,7 @@ class TCC_Theme_Support {
 		$formats = apply_filters( $this->filter_prefix . '_support_post_formats', $formats );
 		if ( (bool) $formats ) {
 			add_theme_support( 'post-formats', $formats );
-			add_filter( $this->filter_prefix . '_theme_post_type_support', function( $supports ) {
+			add_filter( $this->filter_prefix . '_support_post_type', function( $supports ) {
 				$supports[] = 'post-formats';
 				return $supports;
 			});
@@ -271,10 +271,10 @@ class TCC_Theme_Support {
 			'comments',
 			'revisions',
 		);
-		$supports = apply_filters( $this->filter_prefix . '_theme_post_type_support', $supports );
+		$supports = apply_filters( $this->filter_prefix . '_support_post_type', $supports );
 		if ( (bool) $supports ) {
 			# post type: post
-			$posts = apply_filters( $this->filter_prefix . '_theme_post_type_support_posts', $supports );
+			$posts = apply_filters( $this->filter_prefix . '_support_post_type_posts', $supports );
 			if ( (bool) $posts ) {
 				add_post_type_support( 'post', $posts );
 			}
@@ -282,7 +282,7 @@ class TCC_Theme_Support {
 			if ( is_post_type_hierarchical( 'page' ) ) {
 				$supports[] = 'page-attributes';
 			}
-			$pages = apply_filters( $this->filter_prefix . '_theme_post_type_support_pages', $supports );
+			$pages = apply_filters( $this->filter_prefix . '_support_post_type_pages', $supports );
 			if ( (bool) $pages ) {
 				add_post_type_support( 'page', $pages );
 			}
@@ -298,7 +298,7 @@ class TCC_Theme_Support {
 	protected function post_thumbnails() {
 		add_theme_support( 'post-thumbnails' );  # thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
 		do_action(  $this->filter_prefix . '_support_post_thumbnails' );
-		add_filter( $this->filter_prefix . '_theme_post_type_support', function( $supports ) {
+		add_filter( $this->filter_prefix . '_support_post_type', function( $supports ) {
 			$supports[] = 'thumbnail';
 			return $supports;
 		});
@@ -312,7 +312,7 @@ class TCC_Theme_Support {
 	 * @link https://developer.wordpress.org/reference/functions/get_theme_starter_content/
 	 */
 	public function starter_content() {
-		$content = apply_filters( $this->filter_prefix . '_starter_content_support', array() );
+		$content = apply_filters( $this->filter_prefix . '_support_starter_content', array() );
 		if ( ! empty( $content ) ) {
 			add_theme_support( 'starter-content', $content );
 		}

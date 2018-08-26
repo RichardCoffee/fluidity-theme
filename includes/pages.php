@@ -67,7 +67,7 @@ fluid()->log($page);
 			remove_action( 'fluid_content_header', 'fluid_show_content_title' );
 		}
 	}
-	add_action( 'tcc_before_loop', 'fluid_hide_content_title' );
+	add_action( 'fluid_before_loop', 'fluid_hide_content_title' );
 } //*/
 
 if (!function_exists('fluid_noposts_page')) {
@@ -212,8 +212,8 @@ if ( ! function_exists( 'tcc_get_page_title' ) ) {
 	}
 }
 
-if ( ! function_exists( 'tcc_page_effects' ) ) {
-	function tcc_page_effects( $mypage ) {
+if ( ! function_exists( 'fluid_page_effects' ) ) {
+	function fluid_page_effects( $mypage ) {
 		if ( is_page() ) {
 			tcc_page_parallax( $mypage );
 		}
@@ -222,7 +222,7 @@ if ( ! function_exists( 'tcc_page_effects' ) ) {
 			tcc_show_page_title( $mypage );
 		}
 	}
-	add_action( 'tcc_inside_page', 'tcc_page_effects' );
+	add_action( 'tcc_inside_page', 'fluid_page_effects' );
 }
 
 if ( ! function_exists( 'tcc_page_title' ) ) {

@@ -497,8 +497,8 @@ if (!function_exists('debug_rewrite_rules')) {
 if ( ! function_exists( 'is_a_debugger' ) ) {
 	function is_a_debugger() {
 		$user = wp_get_current_user();
-		$list = apply_filters( 'tcc_debugger_list', array(1) );
-		if ( $list && in_array( $user->ID, (array)$list ) ) {
+		$list = apply_filters( 'fluid_debugger_list', [ 1 ] );
+		if ( $list && in_array( $user->ID, (array) $list ) ) {
 			return true;
 		} else if ( in_array( "administrator", $user->roles ) ) {
 			return true;

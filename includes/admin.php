@@ -20,17 +20,16 @@ if ( ! function_exists( 'fluid_admin_howdy' ) ) {
 		if ( ! ( $user_id = get_current_user_id() ) ) {
 			return;
 		}
-		$current = wp_get_current_user();
-		$avatar  = get_avatar( $user_id, 28 );
-		$greet   = apply_filters( 'wp_admin_bar_my_account_greeting', tcc_holiday_greeting(), $current );
-		$name    = '<span class="display-name">' . $current->display_name . '</span>';
-#		$name    = fluid()->get_element( 'span', [ 'class' => 'display-name' ], $current->display_name );
-		$howdy   = sprintf( _x( '%1$s, %2$s', 'text greeting, user name', 'tcc-fluid' ), $greet, $name );
-		$args    = array(
+		$user   = wp_get_current_user();
+		$avatar = get_avatar( $user_id, 28 );
+		$greet  = apply_filters( 'wp_admin_bar_my_account_greeting', tcc_holiday_greeting(), $current );
+		$name   = fluid()->get_element( 'span', [ 'class' => 'display-name' ], $user->display_name );
+		$howdy  = sprintf( _x( '%1$s, %2$s', 'text greeting, user name', 'tcc-fluid' ), $greet, $name );
+		$args   = array(
 			'id'     => 'my-account',
 			'parent' => 'top-secondary',
 			'title'  => $howdy . $avatar,
-			'href'   => apply_filters( 'wp_admin_bar_my_account_profile_url', false, $current ),
+			'href'   => apply_filters( 'wp_admin_bar_my_account_profile_url', false, $user ),
 			'meta'   => array(
 				'class' => ( empty( $avatar ) ) ? '' : 'with-avatar',
 				'title' => esc_html__( 'My Account', 'tcc-fluid' )

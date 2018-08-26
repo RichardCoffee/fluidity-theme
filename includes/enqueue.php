@@ -15,7 +15,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		fluidity_enqueue_bootstrap();
 		do_action( 'tcc_during_enqueue' );
 		#  load javascript
-		if ( apply_filters( 'fluid_menu_system', 'bootstrap' ) === 'underscore' ) {
+		if ( apply_filters( 'fluid_menu_system', 'underscore' ) === 'underscore' ) {
 			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), array(), '20151215', true );
 		}
 		wp_enqueue_script( 'tcc-skiplink' );

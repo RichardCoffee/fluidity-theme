@@ -2,6 +2,9 @@
 /*
  *  File Name: stock.php
  *
+ * @since 20161206
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -15,18 +18,18 @@ do_action( 'fluid_page_top', $mypage ); ?>
 
 <div id="fluid-content" class="fluid-<?php e_esc_attr( $mypage); ?> <?php e_esc_attr( container_type( $mypage ) ); ?>" <?php microdata()->Blog(); ?>>
 
-	<?php do_action( 'tcc_inside_page', $mypage ); ?>
+	<?php do_action( 'fluid_inside_page', $mypage ); ?>
 
 	<div class="row">
 		<?php who_am_i(); ?>
 
-		<?php do_action( 'tcc_before_main', $mypage ); ?>
+		<?php do_action( 'fluid_before_main', $mypage ); ?>
 
 		<main id="content" class="<?php e_esc_attr( $page_sidebar->main_tag_css( $mypage, '' ) ); ?>" tabindex="-1"><?php
 
 			do_action( 'fluid_before_posts', $mypage );
 			if ( have_posts() ) {
-				do_action( 'tcc_before_loop', $mypage );
+				do_action( 'fluid_before_loop', $mypage );
 
 				$dir  = apply_filters( 'fluid_loop_template_dir', 'template-parts', $mypage );
 				$root = ( is_singular() ) ? 'content' : get_theme_mod( 'content_excerpt', 'excerpt' );
@@ -50,20 +53,20 @@ do_action( 'fluid_page_top', $mypage ); ?>
 					</div><?php
 				}
 
-				do_action( 'tcc_after_loop', $mypage );
+				do_action( 'fluid_after_loop', $mypage );
 			} else {
-				do_action( 'tcc_no_loop', $mypage );
+				do_action( 'fluid_no_loop', $mypage );
 			}
-			do_action( 'tcc_after_posts', $mypage ); ?>
+			do_action( 'fluid_after_posts', $mypage ); ?>
 
 		</main><!-- #content -->
 
-		<?php do_action( 'tcc_after_main', $mypage ); ?>
+		<?php do_action( 'fluid_after_main', $mypage ); ?>
 
 	</div>
 
 </div><!-- #fluid-content --><?php
 
-do_action( 'tcc_page_bottom', $mypage );
+do_action( 'fluid_page_bottom', $mypage );
 
 get_footer();

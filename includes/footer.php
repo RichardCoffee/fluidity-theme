@@ -59,7 +59,7 @@ if ( ! function_exists( 'tcc_copyright' ) ) {
 
 		<p id="fluidity-copyright" class="text-center"><?php
 			$format = _x( 'Copyright %1$s %2$s, All rights reserved.', '1: numeric year  2: site name', 'tcc-fluid' );
-			$title  = apply_filters( 'tcc_copyright_name', microdata()->get_bloginfo( 'name' ) );
+			$title  = apply_filters( 'fluid_copyright_name', microdata()->get_bloginfo( 'name' ) );
 			echo wp_kses ( sprintf( $format, fluid_copyright_dates(), $title ), fluid()->kses() );
 #			fluid()->fawe( 'fab fa-php' ); ?>
 		</p><?php
