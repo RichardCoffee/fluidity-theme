@@ -12,8 +12,8 @@ defined( 'ABSPATH' ) || exit;
 $mypage       = get_page_slug();
 $page_sidebar = fluid_sidebar();
 
-who_am_i();
 get_header();
+who_am_i();
 
 do_action( 'fluid_page_top', $mypage ); ?>
 
