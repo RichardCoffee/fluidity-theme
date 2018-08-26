@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 $mypage       = get_page_slug();
 $page_sidebar = fluid_sidebar();
 
+who_am_i();
 get_header();
 
 do_action( 'fluid_page_top', $mypage ); ?>
@@ -21,7 +22,6 @@ do_action( 'fluid_page_top', $mypage ); ?>
 	<?php do_action( 'fluid_inside_page', $mypage ); ?>
 
 	<div class="row">
-		<?php who_am_i(); ?>
 
 		<?php do_action( 'fluid_before_main', $mypage ); ?>
 
