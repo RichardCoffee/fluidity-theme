@@ -229,7 +229,6 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 					'div#bbpress-forums ul.bbp-forums',
 					'div#bbpress-forums ul.bbp-replies',
 					'div#bbpress-forums ul.bbp-search-results',
-					'div#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content',
 				);
 				$css_tags = implode( ",\n", $css );
 				echo "$css_tags { font-size:  {$fontsize}px; }";
@@ -239,6 +238,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 				$css1 = array(
 					'div#bbpress-forums .bbp-forum-info .bbp-forum-content',
 					'div#bbpress-forums p.bbp-topic-meta',
+					'div#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content',
 				);
 				$css_tags1 = implode( ",\n", $css1 );
 				echo "$css_tags1 { font-size:  {$fontosize1}px; }";
