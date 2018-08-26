@@ -107,7 +107,9 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 		}
 		if ( empty( $slug ) ) {
 			if ( ( ! is_admin() ) && $wp_query->is_main_query() ) {
-				if ( is_home() && empty( $wp_query->query_string ) ) {
+				if ( ! empty( $wp_query->query['feed'] ) && ( $wp_query->query['feed'] === 'feed' ) ) {
+					$slug = 'feed';
+				} else if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = apply_filters( 'fluid_home_page_slug', 'home' );
 				#} else if ( ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
 				} else if ( get_option( 'page_on_front' ) && ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) ) ) {
