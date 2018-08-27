@@ -136,7 +136,7 @@ class TCC_Theme_Support {
 	 * @since 20170508
 	 * @link https://codex.wordpress.org/Custom_Headers
 	 * @link https://codex.wordpress.org/Function_Reference/register_default_headers
-	 * @link https://developer.wordpress.org/themes/functionality/custom-logo/
+	 * @link https://developer.wordpress.org/themes/functionality/custom-headers/
 	 */
 	protected function custom_header() {
 		$header = array(
@@ -144,8 +144,8 @@ class TCC_Theme_Support {
 			'random-default'         => false,
 			'width'                  => 0,
 			'height'                 => 0,
-			'flex-height'            => false,
-			'flex-width'             => false,
+			'flex-height'            => true,
+			'flex-width'             => true,
 			'default-text-color'     => '',
 			'header-text'            => true, // array( 'site-title', 'site-description' ),
 			'uploads'                => true,
@@ -166,6 +166,7 @@ class TCC_Theme_Support {
 	 *
 	 * @since 20170508
 	 * @link https://codex.wordpress.org/Theme_Logo
+	 * @link https://developer.wordpress.org/themes/functionality/custom-logo/
 	 */
 	protected function custom_logo() {
 		$logo = array(
