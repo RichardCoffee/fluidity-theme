@@ -21,9 +21,10 @@ if ( ! function_exists( 'fluidity_buddypress_login_redirect' ) ) {
 		if ( ! $user ) {
 			$redirect_to = home_url();
 		} else if ( ! is_object( $user ) ) {
-			fluid()->log( 'user var is not an object', $user, 'stack' );
+			fluid()->log( '$user is not an object', $user, 'stack' );
 		} else if ( get_class( $user ) === 'WP_Error' ) {
-			fluid()->log( 'user var is a WP_Error object', $user, $redirect_to );
+			fluid()->log( '$user is a WP_Error object', $user, $redirect_to );
+		} else if ( $user->ID === 1 ) {
 		} else {
 			$user_name   = $user->data->user_nicename;
 			$redirect_to = home_url( "members/$user_name/profile/" ) ;
