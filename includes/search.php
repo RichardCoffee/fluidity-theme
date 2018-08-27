@@ -20,8 +20,8 @@ if ( ! function_exists( 'fluid_show_search_form' ) ) {
 				fluid()->element( 'input', $form['search'] ); ?>
 				<span class="input-group-btn">
 					<button <?php fluid()->apply_attrs( $form['button'] ); ?>>
-						<?php fluid()->fawe( 'fa-search' ); ?>
-						<span class="screen-reader-text">&nbsp;
+						<?php fluid()->fawe( 'fa-search' ); ?>&nbsp;
+						<span class="screen-reader-text">
 							<?php esc_html( $form['text']['button'] ); ?>
 						</span>
 					</button>
