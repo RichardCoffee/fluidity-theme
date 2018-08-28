@@ -264,7 +264,7 @@ if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 }
 
 /**
- *  Don't recommend Theme My Login if bbPress is active since it provides a profile page
+ *  Don't recommend WP Front End Profile if bbPress is active since it provides a profile page
  *
  * @since 20180827
  * @param array $plugins
@@ -273,7 +273,7 @@ if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 add_filter( 'fluidity_tgmpa_plugins', function( $plugins ) {
 	$filtered = array();
 	foreach( $plugins as $plugin ) {
-		if ( $plugin['slug'] === 'theme-my-login' ) {
+		if ( $plugin['slug'] === 'wp-frontend-profile' ) {
 			continue;
 		}
 		$filtered[] = $plugin;
