@@ -119,11 +119,11 @@ add_filter( 'fluid_register_sidebars', function( $sidebars ) {
 
 #	add_filter( 'fluid_bbp_topic_subscribed_default', function( $arg ) { return true; } );
 
-function child_load_textdomain(){
+function load_child_textdomain(){
 	$data = get_file_data( CHILD_THEME_HOME . 'style.css', array( 'textdomain' => 'Text Domain', 'domainpath' => 'Domain Path' ) );
 	$dir  = get_stylesheet_directory() . $data['domainpath'];
 	if ( file_exists( $dir ) ) {
-		load_theme_textdomain( $data['textdomain'], get_stylesheet_directory() . $data['domainpath'] );
+		load_theme_textdomain( $data['textdomain'], $dir );
 	}
 }
-add_action( 'after_setup_theme', 'child_load_textdomain' );
+add_action( 'after_setup_theme', 'load_child_textdomain' );
