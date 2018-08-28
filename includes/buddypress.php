@@ -28,13 +28,13 @@ if ( ! function_exists( 'fluidity_buddypress_login_redirect' ) ) {
 		} else {
 			$user_name   = $user->data->user_nicename;
 			$redirect_to = home_url( "members/$user_name/profile/" ) ;
-fluid()->log(
+/*fluid()->log(
 	'   redirect_to:  ' . func_get_arg(0),
 	'       request:  ' . $request,
 	'wp_get_referer:  ' . wp_get_referer(),
 	'       new url:  ' . $redirect_to,
 	$user
-);
+); //*/
 		}
 		return $redirect_to;
 	}
