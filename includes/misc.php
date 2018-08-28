@@ -135,6 +135,7 @@ if ( ! function_exists( 'fluid_php_error_alerts' ) ) {
 			</p>
 		</div><?php
 		$error_message = ob_get_clean();
+		fluid()->log( $error_message, 'stack' );
 		if ( is_admin() ) {
 			echo $error_message;
 		} else {
