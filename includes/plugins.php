@@ -19,19 +19,19 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 				'is_callable' => 'Nav_Menu_Roles',
 			),
 			array(
-				'name'        => 'Privacy My Way',
+				'name'        => 'Privacy My Way by Richard Coffee',
 				'slug'        => 'privacy-my-way',
 				'source'      => 'https://github.com/RichardCoffee/privacy-my-way/archive/master.zip',
 #				'external_url'=> 'http://rtcenterprises/plugins/privacy-my-way',
 				'is_callable' => 'pmw',
 			),
 			array(
-				'name'        => 'Theme My Login',
+				'name'        => 'Theme My Login by Jeff Farthing',
 				'slug'        => 'theme-my-login',
 				'is_callable' => [ 'Theme_My_Login', 'get_object' ],
 			),
 			array(
-				'name'        => 'User Last Login',
+				'name'        => 'User Last Login by Raj',
 				'slug'        => 'user-last-login',
 #				'is_callable' =>
 			),
@@ -41,7 +41,7 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 				'is_callable' => 'wpseo_init',
 			),
 			array(
-				'name'        => 'WP Front End Profile',
+				'name'        => 'WP Front End Profile by Mark Wilkinson',
 				'slug'        => 'wp-frontend-profile',
 				'is_callable' => 'wpfep_show_profile',
 			),
