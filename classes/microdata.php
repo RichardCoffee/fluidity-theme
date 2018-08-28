@@ -70,7 +70,7 @@ class TCC_Microdata {
   */
 
 	public function __call( $name, $args ) {
-		$this->microdata( $name, $args );
+		return $this->microdata( $name, $args );
 	}
 
 	public function microdata( $type, $as_attr = false ) {

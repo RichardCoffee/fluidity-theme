@@ -1,16 +1,13 @@
 <?php
-@ini_set('display_errors', 1);
 
-echo "\ntesting microdata 1\n";
+define( 'ABSPATH', 'true' );
 
-echo ( 1 + 1 );
-
-echo "\n my $error\n";
-
+require_once( 'stubs.php' );
+require_once( '../classes/Trait/Singleton.php' );
 require_once( '../classes/microdata.php' );
 
-echo "\ntesting microdata 2\n";
+$attrs = microdata()->ImageObject( true );
 
-echo microdata()->ImageObject();
+print_r( $attrs );
 
-echo microdata()->ImageObject( true );
+echo "\nafter test\n";
