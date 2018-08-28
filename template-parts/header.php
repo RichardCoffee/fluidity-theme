@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit; ?>
 
 <header id="fluid-header" <?php microdata()->WPHeader(); ?>>
-	<div class="<?php e_esc_attr( 'header-' . tcc_layout( 'header', 'static' ) ); ?> <?php e_esc_attr( container_type( 'header' ) ); ?>">
+	<div id="header-container" class="<?php e_esc_attr( 'header-' . tcc_layout( 'header', 'static' ) ); ?> <?php e_esc_attr( container_type( 'header' ) ); ?>">
 		<div class="row margint1e marginb1e">
 
 			<div class="col-lg-1  col-md-1  hidden-sm hidden-xs"></div>
