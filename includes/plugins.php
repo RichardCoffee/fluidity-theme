@@ -36,6 +36,11 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 #				'is_callable' =>
 			),
 			array(
+				'name'        => 'Wordfence Security by Wordfence',
+				'slug'        => 'wordfence',
+				'is_callable' => [ 'wordfence', 'install_actions' ],
+			),
+			array(
 				'name'        => 'WordPress SEO by Yoast',
 				'slug'        => 'wordpress-seo',
 				'is_callable' => 'wpseo_init',
