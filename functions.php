@@ -46,6 +46,7 @@ if ( is_admin() ) {
 	fluid_options();
 	require_once( FLUIDITY_HOME . 'includes/admin.php' );      #  Needs full path, or wp-admin/includes/admin.php gets loaded instead
 	require_once( FLUIDITY_HOME . 'includes/dashboard.php' );  #  Needs full path, or wp-admin/includes/dashboard.php gets loaded instead
+	require_once( FLUIDITY_HOME . 'includes/plugins.php' );
 } else {
 	require_once( 'includes/author.php' );
 	require_once('includes/comments.php');
