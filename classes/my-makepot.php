@@ -37,6 +37,7 @@ class Fluid_StringExtractor extends StringExtractor {
 			'docs',
 			'fonts',
 			'icons',
+			'images',
 			'js',
 			'languages',
 			'scss',
