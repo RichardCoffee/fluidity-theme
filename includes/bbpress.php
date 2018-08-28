@@ -60,7 +60,7 @@ add_filter( 'fluid_loop_template_root', function( $root_slug, $page_slug ) {
  *  add custom css for subscription text/button
  *
  */
-add_action( 'tcc_custom_css', function() {
+add_action( 'fluid_custom_css', function() {
 	if ( is_bbpress() ) {
 		echo "\n#subscription-toggle {\n\tfloat: right; }\n";
 	}
@@ -262,3 +262,21 @@ if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 		</h1><?php
 	}
 }
+
+/**
+ *  Don't recommend Theme My Login if bbPress is active since it provides a profile page
+ *
+ * @since 20180827
+ * @param array $plugins
+ * @return array
+ */
+add_filter( 'fluidity_tgmpa_plugins', function( $plugins ) {
+	$filtered = array();
+	foreach( $plugins as $plugin ) {
+		if ( $plugin['slug'] === 'theme-my-login' {
+			continue;
+		}
+		$filtered[] = $plugin;
+	}
+	return $filtered;
+} );
