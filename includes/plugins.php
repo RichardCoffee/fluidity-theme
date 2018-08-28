@@ -22,7 +22,7 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 				'name'        => 'Privacy My Way by Richard Coffee',
 				'slug'        => 'privacy-my-way',
 				'source'      => 'https://github.com/RichardCoffee/privacy-my-way/archive/master.zip',
-#				'external_url'=> 'http://rtcenterprises/plugins/privacy-my-way',
+				'external_url'=> 'http://rtcenterprises.net/wordpress/wordpress-and-the-right-to-no-privacy/',
 				'is_callable' => 'pmw',
 			),
 			array(
