@@ -330,7 +330,7 @@ abstract class TCC_Form_Admin {
 		extract( $args );  #  array( 'key'=>$key, 'item'=>$item, 'num'=>$i);
 		$data   = $this->form_opts;
 		$layout = $this->form['layout'];
-		$this->apply_attrs_tag( 'div', $this->render_attributes( $layout[ $item ] ) );
+		$this->tag( 'div', $this->render_attributes( $layout[ $item ] ) );
 			if ( empty( $layout[ $item ]['render'] ) ) {
 				e_esc_html( $data[ $item ] );
 			} else {
@@ -364,7 +364,7 @@ abstract class TCC_Form_Admin {
 		extract( $args );  #  $args = array( 'key' => {group-slug}, 'item' => {item-slug})
 		$data   = $this->form_opts;
 		$layout = $this->form[ $key ]['layout'];
-		$this->apply_attrs_tag( 'div', $this->render_attributes( $layout[ $item ] ) );
+		$this->tag( 'div', $this->render_attributes( $layout[ $item ] ) );
 		if ( empty( $layout[ $item ]['render'] ) ) {
 			e_esc_html( $data[$item] );
 		} else {
@@ -666,7 +666,7 @@ abstract class TCC_Form_Admin {
 			'step'  => '1',
 			'value' => $value,
 		);
-		$this->apply_attrs_tag( 'input', $attrs );
+		$this->element( 'input', $attrs );
 		if ( ! empty( $layout['stext'] ) ) { e_esc_attr( $layout['stext'] ); }
 	}
 

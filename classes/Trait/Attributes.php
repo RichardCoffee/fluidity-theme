@@ -23,7 +23,7 @@ trait TCC_Trait_Attributes {
 	 * @param boolean $raw if true will prevent $text from being escaped when displayed
 	 */
 	public function element( $tag, $attrs, $text = '', $raw = false ) {
-		$this->apply_attrs_element( $tag, $attrs, $text, $raw );
+		echo $this->get_apply_attrs_element( $tag, $attrs, $text, $raw );
 	}
 
 	/**
@@ -48,7 +48,7 @@ trait TCC_Trait_Attributes {
 	 * @param array $attrs
 	 */
 	public function tag( $tag, $attrs ) {
-		$this->apply_attrs_tag( $tag, $attrs );
+		echo $this->get_apply_attrs_tag( $tag, $attrs );
 	}
 
 	/**
@@ -69,7 +69,7 @@ trait TCC_Trait_Attributes {
 	 * @param array $attrs an associative array containing the attribute keys and values
 	 */
 	public function apply_attrs( $attrs ) {
-		echo wp_kses( $this->get_apply_attrs( $attrs ), [ ] );
+		echo $this->get_apply_attrs( $attrs );
 	}
 
 	/**
@@ -88,7 +88,8 @@ trait TCC_Trait_Attributes {
 		$is_allowed_no_value = array( 'itemscope', 'multiple', 'value', 'required' );
 
 		$html = '';
-		foreach( $attrs as $attr => $value ) {
+		foreach( $attrs as $key => $value ) {
+			$attr = sanitize_key( $key );
 			if ( empty( $value ) ) {
 				if ( in_array( $attr, $is_allowed_no_value, true ) ) {
 					$html .= "$attr ";
@@ -139,17 +140,6 @@ trait TCC_Trait_Attributes {
 			$classes = explode( ' ', $classes );
 		}
 		return implode( ' ', array_map( 'sanitize_html_class', array_unique( $classes ) ) );
-	}
-
-	/**
-	 * echo the generated tag html
-	 *
-	 * @since 20170507
-	 * @param string $html_tag the tag to be generated
-	 * @param array $attrs an associative array containing the attribute keys and values
-	 */
-	public function apply_attrs_tag( $tag, $attrs ) {
-		echo $this->get_apply_attrs_tag( $tag, $attrs );
 	}
 
 	/**
