@@ -5,8 +5,6 @@ class TCC_Form_Login {
 
 	protected $defaults    = array();
 	protected $show_mode   = 'modal';
-	protected $in_modal    = false;
-	protected $in_widget   = false;
 	protected $redirect_to = null;
 
 	use TCC_Trait_Attributes;
@@ -15,6 +13,7 @@ class TCC_Form_Login {
 
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
+		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( add_query_arg( NULL, NULL ) ) : $this->redirect_to;
 		add_action( 'login_form_defaults', [ $this, 'login_form_defaults' ], 1 );	#	run early - make it easy to override values
 		#	Do not show login errors to users
 		if ( ! WP_DEBUG ) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
@@ -39,7 +38,7 @@ class TCC_Form_Login {
 	public function login_form_defaults( $defaults = array() ) {
 		# array mainly taken from wp-includes/general-template.php
 		$new = array(
-			'redirect'       => apply_filters( 'login_redirect',       home_url( add_query_arg( NULL, NULL ) ), null, null ),
+			'redirect'       => apply_filters( 'login_redirect',       $this->redirect_to, null, null ),
 			'form_id'        => apply_filters( 'fluid_login_form_id',  uniqid( 'login_form_' ) ),
 			'label_username' => apply_filters( 'fluid_login_username', __( 'Username or Email Address', 'tcc-fluid' ) ),
 			'label_password' => apply_filters( 'fluid_login_password', __( 'Password',      'tcc-fluid' ) ),

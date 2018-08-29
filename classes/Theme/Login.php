@@ -9,9 +9,12 @@ class TCC_Theme_Login {
 	protected $redirect_to = null;
 
 	use TCC_Trait_Logging;
+	use TCC_Trait_ParseArgs;
 
 
-	public function __construct() {
+	public function __construct( $args = array() ) {
+		$this->parse_args( $args );
+		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( add_query_arg( NULL, NULL ) ) : $this->redirect_to;
 		if ( get_theme_mod( 'behavior_login', 'external' ) === 'internal' ) {
 			if ( has_page( 'Login' ) ) {
 				$this->login_page = home_url( '/login/' );
@@ -23,7 +26,7 @@ class TCC_Theme_Login {
 			if ( has_page( 'Logout' ) ) {
 				add_filter('logout_url', [ $this, 'logout_url' ], 10, 2);
 			}
-			add_shortcode( 'fluid_login', [ $this, 'login_form_shortcode' ] );
+			add_shortcode( 'fluid_login', [ $this, 'shortcode_login_form' ] );
 		}
 		add_filter( 'login_redirect', [ $this, 'login_redirect' ], 10, 3 );
 		add_filter( 'login_redirect', [ $this, 'login_redirect_admin' ], 10, 3 );
@@ -42,19 +45,28 @@ class TCC_Theme_Login {
 		}
 	}
 
-	public function login_form_shortcode( $args = array() ) {
+	public function shortcode_login_form( $args = array() ) {
+		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
 		$atts = shortcode_atts( [ 'called_by' => 'shortcode' ], $args );
 		$this->login_form( $atts );
 	}
 
 	public function login_form( $args = array() ) {
-		$login_form = new TCC_Form_Login( $args );
+		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
+		$login_form = new TCC_Form_Login_Login( $args );
 		$login_form->login_form();
 	}
 
 	public function navbar_login_form( $args = array() ) {
-		$login_form = new TCC_Form_Navbar( $args );
+		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
+		$login_form = new TCC_Form_Login_Navbar( $args );
 		$login_form->login_form();
+	}
+
+	public function modal_login_form( $args = array() ) {
+		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
+#		$login_form = new TCC_Form_Login_Modal( $args );
+#		$login_form->login_form();
 	}
 
 
