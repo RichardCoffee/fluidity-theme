@@ -1,7 +1,7 @@
 <?php
 
 
-class TCC_Form_Login {
+class TCC_Form_Login_Login {
 
 	protected $defaults    = array();
 	protected $show_mode   = 'modal';

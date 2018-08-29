@@ -5,7 +5,7 @@
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
  */
-class TCC_Form_Navbar extends TCC_Form_Login {
+class TCC_Form_Login_Navbar extends TCC_Form_Login_Login {
 
 	protected $pull_right  = true;
 
