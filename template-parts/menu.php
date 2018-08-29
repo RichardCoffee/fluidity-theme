@@ -62,11 +62,7 @@ if ( has_nav_menu( $menu ) ) {
 					'walker'         => new TCC_NavWalker_Bootstrap(),
 					'fallback_cb'    => 'TCC_NavWalker_Bootstrap::fallback'
 				) );
-				if ( WP_DEBUG ) { ?>
-					<span class="pull-right margint1e">
-						<?php echo fluid_color(); ?>
-					</span><?php
-				} ?>
+				fluid_show_color_scheme(); ?>
 			</div>
 
 		</nav><!-- #site-navigation --><?php
@@ -90,11 +86,7 @@ if ( has_nav_menu( $menu ) ) {
 				'fallback_cb'    => '' )
 			);
 
-			if ( WP_DEBUG ) { ?>
-				<span class="pull-right margint1e">
-					<?php echo fluid_color(); ?>
-				</span><?php
-			} ?>
+			fluid_show_color_scheme(); ?>
 
 		</nav><!-- #site-navigation --><?php
 
