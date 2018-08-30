@@ -40,31 +40,29 @@ class TCC_Theme_Login {
 	}
 
 	public function shortcode_login_form( $args = array() ) {
-		if ( empty( $args ) ) {
-			$args = array( 'redirect_to' => $this->redirect_to );
-		} else {
-			$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
-		}
-		$atts = shortcode_atts( [ 'called_by' => 'shortcode' ], $args );
+		$atts = shortcode_atts( [ 'called_by' => 'shortcode' ], $this->default_args( $args ) );
 		$this->login_form( $atts );
 	}
 
 	public function login_form( $args = array() ) {
-		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
-		$login_form = new TCC_Form_Login_Login( $args );
+		$login_form = new TCC_Form_Login_Login( $this->default_args( $args ) );
 		$login_form->login_form();
 	}
 
 	public function navbar_login_form( $args = array() ) {
-		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
-		$login_form = new TCC_Form_Login_Navbar( $args );
+		$login_form = new TCC_Form_Login_Navbar( $this->default_args( $args ) );
 		$login_form->login_form();
 	}
 
 	public function modal_login_form( $args = array() ) {
-		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
-#		$login_form = new TCC_Form_Login_Modal( $args );
+#		$login_form = new TCC_Form_Login_Modal( $this->default_args( $args ) );
 #		$login_form->login_form();
+	}
+
+	protected function default_args( $args ) {
+		$defs = array( 'redirect_to' => $this->redirect_to );
+		$args = ( empty( $args ) ) ? $defs : array_merge( $defs, (array)$args );
+		return $args;
 	}
 
 
