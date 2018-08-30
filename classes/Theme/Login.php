@@ -23,7 +23,7 @@ class TCC_Theme_Login {
 			add_shortcode( 'fluid_login',   [ $this, 'shortcode_login_form' ] );
 		}
 		add_action( 'admin_head',        [ $this, 'dashboard_logo' ] );
-		add_filter( 'authenticate',      [ $this, 'authenticate' ], 1, 3 );
+#		add_filter( 'authenticate',      [ $this, 'authenticate' ], 1, 3 );
 #		add_filter( 'fluid_customizer_controls_behavior', [ $this, 'fluid_customizer_controls_behavior' ] );
 		add_filter( 'login_headertitle', [ $this, 'login_headertitle' ] );
 		add_filter( 'login_headerurl',   [ $this, 'login_headerurl' ] );
