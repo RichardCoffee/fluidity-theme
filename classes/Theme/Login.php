@@ -15,28 +15,22 @@ class TCC_Theme_Login {
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
 		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( add_query_arg( NULL, NULL ) ) : $this->redirect_to;
-		if ( get_theme_mod( 'behavior_login', 'external' ) === 'internal' ) {
-			if ( has_page( 'Login' ) ) {
-				$this->login_page = home_url( '/login/' );
-				add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
-				add_action( 'init',             [ $this, 'prevent_wp_login' ] );
-				add_action( 'wp_login_failed',  [ $this, 'wp_login_failed' ] );
-				add_filter( 'authenticate',     [ $this, 'authenticate' ], 1, 3 );
-			}
-			if ( has_page( 'Logout' ) ) {
-				add_filter('logout_url', [ $this, 'logout_url' ], 10, 2);
-			}
-			add_shortcode( 'fluid_login', [ $this, 'shortcode_login_form' ] );
+		if ( has_page( 'Login' ) ) {
+			$this->login_page = home_url( '/login/' );
+			add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
+#			add_action( 'init',             [ $this, 'prevent_wp_login' ] );
+			add_action( 'wp_login_failed',  [ $this, 'wp_login_failed' ] );
+			add_shortcode( 'fluid_login',   [ $this, 'shortcode_login_form' ] );
 		}
-		add_filter( 'login_redirect', [ $this, 'login_redirect' ], 10, 3 );
-		add_filter( 'login_redirect', [ $this, 'login_redirect_admin' ], 10, 3 );
-		add_filter( 'fluid_customizer_controls_behavior', [ $this, 'fluid_customizer_controls_behavior' ] );
+		add_action( 'admin_head',        [ $this, 'dashboard_logo' ] );
+		add_filter( 'authenticate',      [ $this, 'authenticate' ], 1, 3 );
+#		add_filter( 'fluid_customizer_controls_behavior', [ $this, 'fluid_customizer_controls_behavior' ] );
+		add_filter( 'login_headertitle', [ $this, 'login_headertitle' ] );
+		add_filter( 'login_headerurl',   [ $this, 'login_headerurl' ] );
+		add_filter( 'login_redirect',    [ $this, 'login_redirect' ], 10, 3 );
+		add_filter( 'login_redirect',    [ $this, 'login_redirect_admin' ], 10, 3 );
+		add_filter( 'logout_url',        [ $this, 'logout_url' ], 10, 2);
 		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) { return $this->redirect_to; }, 11, 3 ); }
-		if ( is_admin() && ( tcc_settings( 'wplogin', 'external' ) === 'internal' ) ) {
-			add_action( 'admin_head',        [ $this, 'dashboard_logo' ] );
-			add_filter( 'login_headertitle', [ $this, 'login_headertitle' ] );
-			add_filter( 'login_headerurl',   [ $this, 'login_headerurl' ] );
-		}
 	}
 
 	public function fluid_custom_css() {
@@ -162,7 +156,6 @@ function prevent_wp_login() {
         exit();
     }
 }
-
 
 	public function authenticate( $user, $username, $password ) {
 		if( $username === "" || $password === "" ) {

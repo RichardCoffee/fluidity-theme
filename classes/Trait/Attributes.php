@@ -152,10 +152,23 @@ trait TCC_Trait_Attributes {
 	 */
 	public function get_apply_attrs_tag( $html_tag, $attrs ) {
 		$attrs = $this->filter_attributes_by_tag( $html_tag, $attrs );
-		$html  = '<' . esc_attr( $html_tag );
+		$html  = '<' . $this->sanitize_tag( $html_tag );
 		$html .= $this->get_apply_attrs( $attrs );
 		$html .= ( $this->is_tag_self_closing( $html_tag ) ) ? ' />' : '>';
 		return $html;
+	}
+
+	/**
+	 *  sanitize element tag
+	 *
+	 * @since 20180829
+	 * @param string $tag
+	 * @return string
+	 */
+	protected function sanitize_tag( $tag ) {
+		$tag = strtolower( $tag );
+		$tag = preg_replace( '/[^a-z]/', '', $tag );
+		return $tag;
 	}
 
 	/**
@@ -197,20 +210,20 @@ trait TCC_Trait_Attributes {
 	 * @return string
 	 */
 	public function get_apply_attrs_element( $element, $attrs, $text = '', $raw = false ) {
-		$attrs = $this->filter_attributes_by_tag( $element, $attrs );
-		$html  = '<' . esc_attr( $element );
-		$html .= $this->get_apply_attrs( $attrs );
-		$inner = ( $raw ) ? $text : esc_html( $text );
+		$element = $this->sanitize_tag( $element );
+		$attrs   = $this->filter_attributes_by_tag( $element, $attrs );
+		$html    = "<$element" . $this->get_apply_attrs( $attrs );
+		$inner   = ( $raw ) ? $text : esc_html( $text );
 		if ( $this->is_tag_self_closing( $element ) ) {
 			$html .= ' />' . $inner;
 		} else {
-			$html .= '>' . $inner . '</' . esc_attr( $element ) . '>';
+			$html .= '>' . $inner . "</$element>";
 		}
 		return $html;
 	}
 
 	/**
-	 *  filter the attribute array by the htnl tag and the array subscript
+	 *  filter the attribute array by the html tag and the array subscript
 	 *
 	 * @since 20180425
 	 * @link https://www.hongkiat.com/blog/wordpress-rel-noopener/
