@@ -210,8 +210,8 @@ img.avatar {
 }
 
 form div.input-group input.form-control.searchform-input {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
 }
 
 .login-form a small {
