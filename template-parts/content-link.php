@@ -12,23 +12,24 @@ who_am_i(); ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php microdata()->BlogPosting(); ?>>
 
-		<div><?php
-/*
-			$link_css = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+		<header><?php
+/*			$link_css = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
 			if ( has_post_thumbnail() ) { // FIXME:  need option for image/title placement ?>
 				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 					<?php fluid_thumbnail(); ?>
 				</div><!-- .col-* --><?php
 				$link_css = "col-lg-9 col-md-9 col-sm-12 col-xs-12";
-			} */ ?>
+			} //*/
+			do_action( 'fluid_content_header' ); ?>
+		</header>
 
-			<?php do_action( 'fluid_content_header' ); ?>
+		<section class="article" itemprop="description"><?php
+				the_content(); ?>
+		</section><!-- .article -->
 
-			<div class="article" itemprop="description">
-				<?php the_content(); ?>
-			</div><!-- .article -->
-
-		</div>
+		<footer><?php
+			do_action( 'fluid_content_footer' ); ?>
+		</footer>
 
 	</article>
 

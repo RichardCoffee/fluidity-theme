@@ -35,7 +35,7 @@ do_action( 'fluid_page_top', $mypage ); ?>
 				$root = ( is_singular() ) ? 'content' : get_theme_mod( 'content_excerpt', 'excerpt' );
 				$root = apply_filters( 'fluid_loop_template_root', $root, $mypage );
 				while ( have_posts () ) { ?>
-					<div><?php
+					<div class="post-loop"><?php
 						the_post();
 						$stem = fluid_content_slug( $mypage );
 						get_template_part( "$dir/$root", $stem );
