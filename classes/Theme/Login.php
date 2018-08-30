@@ -40,7 +40,11 @@ class TCC_Theme_Login {
 	}
 
 	public function shortcode_login_form( $args = array() ) {
-		$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
+		if ( empty( $args ) ) {
+			$args = array( 'redirect_to' => $this->redirect_to );
+		} else {
+			$args = array_merge( [ 'redirect_to' => $this->redirect_to ], $args );
+		}
 		$atts = shortcode_atts( [ 'called_by' => 'shortcode' ], $args );
 		$this->login_form( $atts );
 	}
