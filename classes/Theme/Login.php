@@ -55,8 +55,13 @@ class TCC_Theme_Login {
 	}
 
 	public function modal_login_form( $args = array() ) {
-#		$login_form = new TCC_Form_Login_Modal( $this->default_args( $args ) );
-#		$login_form->login_form();
+		$login_form  = new TCC_Form_Login_Login( $this->default_args( $args ) );
+		$this->modal = new TCC_Modal_Login( $login_form );
+		$this->modal->modal();
+	}
+
+	public function modal_login_button( $text = '' ) {
+		$this->modal->button( $text );
 	}
 
 	protected function default_args( $args ) {

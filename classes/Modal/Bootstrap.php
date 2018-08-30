@@ -3,6 +3,7 @@
 abstract class TCC_Modal_Bootstrap {
 
 
+	protected $id     = '';
 	protected $prefix = 'tcc';  #  used as filter prefix
 	protected $size   = 'modal-lg';
 	protected $title  = 'Modal Title';
@@ -17,7 +18,8 @@ abstract class TCC_Modal_Bootstrap {
 
 	/**  Modal  **/
 
-	public function modal() { ?>
+	public function modal() {
+		$this->id = ( empty( $this->id ) ) ? $this->prefix . '-modal-main' : $this->id; ?>
 		<div <?php $this->apply_attrs( $this->get_modal_attrs() ); ?>>
 			<div <?php $this->apply_attrs( $this->get_modal_dialog_attrs() ); ?>>
 				<div class="modal-content"><?php
@@ -31,7 +33,7 @@ abstract class TCC_Modal_Bootstrap {
 
 	private function get_modal_attrs() {
 		$attrs = array(
-			'id'              => $this->prefix . '-modal-main',
+			'id'              => $this->id,
 			'class'           => 'modal fade',
 			'tabindex'        => '-1',
 			'role'            => 'dialog',
@@ -112,6 +114,25 @@ abstract class TCC_Modal_Bootstrap {
 			'class' => 'modal-footer',
 		);
 		return $attrs; # apply_filters( "{$this->prefix}_modal_footer_attrs", $attrs );
+	}
+
+	public function button( $text = '' ) {
+		$attrs = $this->get_modal_button_attributes();
+		fluid()->element( 'button', $attrs, $this->get_button_text( $text ) );
+	}
+
+	protected function get_modal_button_attributes() {
+		$attrs = array(
+			'type'        => 'button',
+			'class'       => 'btn btn-fluidity',
+			'data-toggle' => 'modal',
+			'data-target' => $this->id,
+		);
+		return $attrs; # apply_filters( "{$this->prefix}_modal_show_button_attrs", $attrs );
+	}
+
+	protected function get_button_text( $text = '' ) {
+		return ( empty( $text ) ) ? __( 'Show Modal', 'tcc-fluid' ) : $text;
 	}
 
 
