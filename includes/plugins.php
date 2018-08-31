@@ -25,11 +25,11 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 				'external_url'=> 'http://rtcenterprises.net/wordpress/wordpress-and-the-right-to-no-privacy/',
 				'is_callable' => 'pmw',
 			),
-			array(
+/*			array(
 				'name'        => 'Theme My Login by Jeff Farthing',
 				'slug'        => 'theme-my-login',
 				'is_callable' => [ 'Theme_My_Login', 'get_object' ],
-			),
+			), //*/
 			array(
 				'name'        => 'User Last Login by Raj',
 				'slug'        => 'user-last-login',
