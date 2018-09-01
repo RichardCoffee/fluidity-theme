@@ -50,6 +50,7 @@ add_filter( 'fluid_register_sidebars', function( $sidebars ) {
 
 /***   General filters   ***/
 
+#	add_filter( 'fluid_pre_color_scheme',  function( $arg ) { if ( $arg === 'random' ) { return 'none'; } else { return $arg; } } );
 #	add_filter( 'fluid_color_scheme',      function( $arg ) { return 'none'; } );
 #	add_filter( 'fluid_available_color_schemes', function( $args ) { return $args; } ); // return null for no support
 #	add_filter( 'fluid_copyright_name',    function( $arg ) { return microdata()->get_bloginfo( 'name' ); } );
