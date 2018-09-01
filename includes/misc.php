@@ -1,10 +1,71 @@
 <?php
+/**
+ *  various miscellaneous functions
+ *
+ */
+defined( 'ABSPATH' ) || exit;
 
 // Only show the front page section when on the front page - source?
 function contextual_static_front_page_section( $wp_customize ) {
 	$wp_customize->get_section( 'static_front_page' )->active_callback = 'is_front_page';
 }
 add_action( 'customize_register', 'contextual_static_front_page_section', 11 );
+
+/**
+ *  format a phone number, allows for other locale formats with corresponding functions
+ *
+ * @since 20180901
+ * @link https://thebarton.org/php-format-phone-number-function/
+ * @param string $phone
+ * @param string|array $country
+ * @return string
+ */
+if ( ! function_exists( 'fluid_format_phone_number' ) ) {
+	function fluid_format_phone_number( $phone, $country = 'us' ) {
+		$function = 'fluid_format_phone_number_' . sanitize_key( $country ); // handles everything but dashes, which will error out
+		if ( function_exists( $function ) ) {
+			$phone = $function( $phone );
+		} else if ( is_callable( $country ) ) {
+			if ( $country === (array)$country ) {
+				$phone = call_user_func_array( $country, $phone);
+			} else {
+				$phone = call_user_func( $country, $phone );
+			}
+		}
+		return $phone;
+	}
+}
+
+/**
+ *  format a phone using us standard formats
+ *
+ * @since 20180901
+ * @link https://thebarton.org/php-format-phone-number-function/
+ * @param string $phone
+ * @return string
+ */
+if ( ! function_exists( 'fluid_format_phone_number_us' ) ) {
+	function fluid_format_phone_number_us( $phone ) {
+		// note: making sure we have something
+		if ( ! isset( $phone{3} ) ) { return ''; }
+		// note: strip out everything but numbers
+		$phone  = preg_replace( "/[^0-9]/", "", $phone );
+		$length = strlen( $phone );
+		switch( $length ) {
+			case 7:
+				$phone = preg_replace( "/([0-9]{3})([0-9]{4})/", "$1-$2", $phone );
+				break;
+			case 10:
+				$phone = preg_replace( "/([0-9]{3})([0-9]{3})([0-9]{4})/", "($1) $2-$3", $phone );
+				break;
+			case 11:
+				$phone = preg_replace( "/([0-9]{1})([0-9]{3})([0-9]{3})([0-9]{4})/", "$1($2) $3-$4", $phone );
+				break;
+			default:
+		}
+		return $phone;
+	}
+}
 
 if ( ! function_exists( 'fluidity_post_class' ) ) {
 	function fluidity_post_class( $classes, $added, $postid ) {
