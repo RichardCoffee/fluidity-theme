@@ -56,8 +56,8 @@ abstract class TCC_Modal_Bootstrap {
 	/**  Modal Header  **/
 
 	private function generate_header() {
-		$this->element( 'div', $this->get_modal_header_attrs() );
-			$this->element( 'button', $this->get_modal_header_button_close_attrs() ); ?>
+		$this->tag( 'div', $this->get_modal_header_attrs() );
+			$this->tag( 'button', $this->get_modal_header_button_close_attrs() ); ?>
 				<span aria-hidden="true">&times;</span>
 			</button><?php
 			$this->element( 'h4', [ 'id' => $this->prefix . '-title', 'class' => 'modal-title text-center' ], $this->title ); ?>
