@@ -16,15 +16,17 @@ if ( ! function_exists( 'fluid_show_search_form' ) ) {
 				fluid()->element( 'label', $form['label'], $form['text']['label'] );
 				if ( isset( $form['hidden'] ) ) {
 					fluid()->element( 'input', $form['hidden'] );
-				}
-				fluid()->element( 'input', $form['search'] ); ?>
-				<span class="input-group-btn">
-					<button <?php fluid()->apply_attrs( $form['button'] ); ?>>
-						<?php fluid()->fawe( 'fa-search' ); ?>&nbsp;
-						<span class="screen-reader-text">
-							<?php esc_html( $form['text']['button'] ); ?>
-						</span>
-					</button>
+				} ?>
+				<span class="search-input-group"><?php
+					fluid()->element( 'input', $form['search'] ); ?>
+					<span class="input-group-btn">
+						<button <?php fluid()->apply_attrs( $form['button'] ); ?>>
+							<?php fluid()->fawe( 'fa-search' ); ?>&nbsp;
+							<span class="screen-reader-text">
+								<?php esc_html( $form['text']['button'] ); ?>
+							</span>
+						</button>
+					</span>
 				</span>
 			</div>
 		</form><?php
