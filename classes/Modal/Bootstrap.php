@@ -37,7 +37,7 @@ abstract class TCC_Modal_Bootstrap {
 			'class'           => 'modal fade',
 			'tabindex'        => '-1',
 			'role'            => 'dialog',
-			'aria-labelledby' => $this->prefix . '-title',
+			'aria-labelledby' => $this->id . '-title',
 			'data-backdrop'   => 'true',  #  true/static
 			'data-keyboard'   => 'true',  #  true/false
 		);
@@ -60,13 +60,13 @@ abstract class TCC_Modal_Bootstrap {
 			$this->tag( 'button', $this->get_modal_header_button_close_attrs() ); ?>
 				<span aria-hidden="true">&times;</span>
 			</button><?php
-			$this->element( 'h4', [ 'id' => $this->prefix . '-title', 'class' => 'modal-title text-center' ], $this->title ); ?>
+			$this->element( 'h4', [ 'id' => $this->id . '-title', 'class' => 'modal-title text-center' ], $this->title ); ?>
 		</div><?php
 	}
 
 	private function get_modal_header_attrs() {
 		$attrs = array(
-			'id'    => $this->prefix . '-header',
+			'id'    => $this->id . '-header',
 			'class' => 'modal-header',
 		);
 		return $attrs; # apply_filters( "{$this->prefix}_modal_header_attrs", $attrs );
@@ -93,7 +93,7 @@ abstract class TCC_Modal_Bootstrap {
 
 	private function get_modal_body_attrs() {
 		$attrs = array(
-			'id'    => $this->prefix . '-body',
+			'id'    => $this->id . '-body',
 			'class' => 'modal-body',
 		);
 		return apply_filters( "{$this->prefix}_modal_body_attrs_{$this->id}", $attrs );
@@ -110,7 +110,7 @@ abstract class TCC_Modal_Bootstrap {
 
 	private function get_modal_footer_attrs() {
 		$attrs = array(
-			'id'    => $this->prefix . '-footer',
+			'id'    => $this->id . '-footer',
 			'class' => 'modal-footer',
 		);
 		return $attrs; # apply_filters( "{$this->prefix}_modal_footer_attrs", $attrs );
