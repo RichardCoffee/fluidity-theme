@@ -256,6 +256,10 @@ pre {
   margin-bottom: 0;
 }
 
+.search-input-group {
+  display: inline-block;
+}
+
 .skip-link.sr-only:focus {
   border: none;
   border-bottom-right-radius: 6px;
