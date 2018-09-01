@@ -257,7 +257,7 @@ pre {
 }
 
 .search-input-group {
-  display: inline-block;
+  display: inline-table;
 }
 
 .skip-link.sr-only:focus {
