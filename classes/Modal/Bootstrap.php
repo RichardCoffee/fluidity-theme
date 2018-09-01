@@ -45,7 +45,7 @@ abstract class TCC_Modal_Bootstrap {
 	}
 
 	private function get_modal_dialog_attrs() {
-		$dialog_attrs = array(
+		$attrs = array(
 			'class' => 'modal-dialog ' . $this->size,
 			'role'  => 'document',
 		);
