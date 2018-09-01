@@ -70,10 +70,10 @@ if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
 				wp_enqueue_style( 'bootstrap.css', get_theme_file_uri( 'css/bootstrap.min.css' ), null, $version );
 				$load_bootstrap = true;
 			}
-			# load javascript file
-			if ( $load_bootstrap || $load_javascript || $javascript ) {
-				wp_enqueue_script( 'bootstrap.js', get_theme_file_uri( 'js/bootstrap.min.js' ), array( 'jquery' ), $version, true );
-			}
+		}
+		# load javascript file
+		if ( $load_bootstrap || $load_javascript || $javascript ) {
+			wp_enqueue_script( 'bootstrap.js', get_theme_file_uri( 'js/bootstrap.min.js' ), array( 'jquery' ), $version, true );
 		}
 	}
 }
