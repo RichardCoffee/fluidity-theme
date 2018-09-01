@@ -96,7 +96,7 @@ abstract class TCC_Modal_Bootstrap {
 			'id'    => $this->prefix . '-body',
 			'class' => 'modal-body',
 		);
-		return $attrs; # apply_filters( "{$this->prefix}_modal_body_attrs", $attrs );
+		return apply_filters( "{$this->prefix}_modal_body_attrs_{$this->id}", $attrs );
 	}
 
 
