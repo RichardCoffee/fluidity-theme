@@ -24,7 +24,9 @@ $theme_search = array(
 		'value' => '',
 		'name'  => 's',
 		'placeholder' => __( 'Search', 'tcc-fluid' ),
-		),
+		'spellcheck'  => 'false',
+		'autocorrect' => 'off'
+	),
 	'button' => array(
 		'type'  => 'submit',
 		'class' => 'btn btn-fluidity btn-search'
