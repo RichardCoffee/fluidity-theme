@@ -133,6 +133,11 @@ if ( ! function_exists( 'fluid_php_error_alerts' ) ) {
 					'<strong>' . $errline . '</strong>'
 				); ?>
 			</p>
+			<button type="button" class="notice-dismiss">
+				<span class="screen-reader-text"><?php
+					esc_html_e( 'Dismiss this notice.', 'tcc-fluid' ); ?>
+				</span>
+			</button>
 		</div><?php
 		$error_message = ob_get_clean();
 		fluid()->log( $error_message, 'stack' );
