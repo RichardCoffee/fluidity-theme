@@ -14,7 +14,8 @@ if ( ! function_exists( 'fluid_show_address' ) ) {
 	function fluid_show_address( $info ) { ?>
 		<address <?php microdata()->PostalAddress(); ?>><?php
 			if ( ! empty( $info['street'] ) ) {
-				echo wp_kses( microdata()->street( $info['street'] ), fluid()->kses() );
+				echo wp_kses( microdata()->street( $info['street'] ), fluid()->kses() ); ?>
+				<br><?php
 			} ?>
 			<span class="comma-after" itemprop="addressLocality"><?php
 				e_esc_html( $info['local'] ); ?>

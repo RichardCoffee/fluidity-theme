@@ -23,24 +23,8 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 		<div class="widget-address" <?php microdata()->Organization(); ?>>
 			<h2 itemprop="name"><?php
 				bloginfo('name'); ?>
-			</h2>
-			<address <?php microdata()->PostalAddress(); ?>><?php
-				if ( ! empty( $instance['street'] ) ) {
-					echo wp_kses( microdata()->street( $instance['street'] ), fluid()->kses() );
-				} ?>
-				<span class="comma-after" itemprop="addressLocality">
-					<?php echo esc_html( $instance['local'] ); ?>
-				</span>&nbsp;
-				<span itemprop="addressRegion"><?php
-					echo esc_html( $instance['region'] );
-					if ( ! empty( $instance['code'] ) ) { ?>
-						</span>&nbsp;
-						<span itemprop="postalCode"><?php
-							echo esc_html( $instance['code'] );
-					} ?>
-				</span>
-				<br>
-			</address><?php
+			</h2><?php
+			fluid_show_address( $instance );
 			if ( ! empty( $instance['phone'] ) ) {
 				$attrs = array(
 					'href' => 'phone:' . preg_replace( "/[^0-9]/", "", $instance['phone'] )
