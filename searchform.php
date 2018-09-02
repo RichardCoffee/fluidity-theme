@@ -9,6 +9,7 @@ $unique_id = uniqid();
 $theme_search = array(
 	'form' => array(
 		'id'     => 'searchform-' . $unique_id,
+		'class'  => 'searchform',
 		'method' => 'get',
 		'action' => home_url( '/' ),
 		'role'   => 'search',
