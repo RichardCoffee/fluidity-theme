@@ -9,12 +9,12 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 		$this->desc  = esc_html__( 'Fluidity address widget', 'tcc-fluid' );
 		$this->slug  = 'tcc_address';
 		$this->address = array(
-			'tcc-street' => __( 'Street Address', 'tcc-fluid' ),
-			'tcc-local'  => __( 'City', 'tcc-fluid' ),
-			'tcc-region' => __( 'State', 'tcc-fluid' ),
-			'tcc-code'   => __( 'Zipcode', 'tcc-fluid' ),
-			'tcc-phone'  => __( 'Contact Number', 'tcc-fluid' ),
-			'tcc-email'  => __( 'Email Address', 'tcc-fluid' ),
+			'street' => __( 'Street Address', 'tcc-fluid' ),
+			'local'  => __( 'City', 'tcc-fluid' ),
+			'region' => __( 'State', 'tcc-fluid' ),
+			'code'   => __( 'Zipcode', 'tcc-fluid' ),
+			'phone'  => __( 'Contact Number', 'tcc-fluid' ),
+			'email'  => __( 'Email Address', 'tcc-fluid' ),
 		);
 		parent::__construct();
 	}
@@ -25,37 +25,37 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 				bloginfo('name'); ?>
 			</h2>
 			<address <?php microdata()->PostalAddress(); ?>><?php
-				if ( ! empty( $instance['tcc-street'] ) ) {
-					echo wp_kses( microdata()->street( $instance['tcc-street'] ), fluid()->kses() );
+				if ( ! empty( $instance['street'] ) ) {
+					echo wp_kses( microdata()->street( $instance['street'] ), fluid()->kses() );
 				} ?>
 				<span class="comma-after" itemprop="addressLocality">
-					<?php echo esc_html( $instance['tcc-local'] ); ?>
+					<?php echo esc_html( $instance['local'] ); ?>
 				</span>&nbsp;
 				<span itemprop="addressRegion"><?php
-					echo esc_html( $instance['tcc-region'] );
-					if ( ! empty( $instance['tcc-code'] ) ) { ?>
+					echo esc_html( $instance['region'] );
+					if ( ! empty( $instance['code'] ) ) { ?>
 						</span>&nbsp;
 						<span itemprop="postalCode"><?php
-							echo esc_html( $instance['tcc-code'] );
+							echo esc_html( $instance['code'] );
 					} ?>
 				</span><br><?php
-				if ( ! empty( $instance['tcc-phone'] ) ) {
+				if ( ! empty( $instance['phone'] ) ) {
 					esc_html_e( 'Office: ', 'tcc-fluid' ); ?> <span itemprop="telephone">
-					<?php echo esc_html( $instance['tcc-phone'] ); ?>
+					<?php echo esc_html( $instance['phone'] ); ?>
 					</span><br><?php
 				}
-				if ( ! empty( $instance['tcc-email'] ) ) {
+				if ( ! empty( $instance['email'] ) ) {
 					esc_html_e( 'Email: ', 'tcc-fluid' );
-					echo wp_kses( microdata()->email_format( $instance['tcc-email'] ), fluid()->kses() );
+					echo wp_kses( microdata()->email_format( $instance['email'] ), fluid()->kses() );
 				} /* ?>
-				<a href="mailto:<?php echo esc_html( $instance['tcc-email'] ); ?>"><?php
-					echo esc_html( $instance['tcc-email'] );?>
+				<a href="mailto:<?php echo esc_html( $instance['email'] ); ?>"><?php
+					echo esc_html( $instance['email'] );?>
 				</a>*/ ?>
 			</address>
 			<br>
 			<?php
-			if (!empty($instance['tcc-map']) && ($instance['tcc-map']==='on')) {
-				$add = urlencode($instance['tcc-street'].', '.$instance['tcc-local'].', '.$instance['tcc-region'].' '.$instance['tcc-code']); ?>
+			if (!empty($instance['map']) && ($instance['map']==='on')) {
+				$add = urlencode($instance['street'].', '.$instance['local'].', '.$instance['region'].' '.$instance['code']); ?>
 				<div>
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.1007959100875!2d-79.1893191848468!3d35.50178578023649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89aca610f70e7563%3A0xbc2f0b4f4c8e88a6!2s<?php echo esc_attr( $add ); ?>!5e0!3m2!1sen!2sus!4v1481581752243" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen></iframe>
 				</div><?php
@@ -64,8 +64,8 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 	}
 
 	public function form( $instance ) {
-		if ( empty( $instance['tcc-email'] ) ) {
-			$instance['tcc-email'] = get_option( 'admin_email' );
+		if ( empty( $instance['email'] ) ) {
+			$instance['email'] = get_option( 'admin_email' );
 		}
 		parent::form( $instance ); ?>
 		<p><?php
@@ -74,7 +74,7 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 		foreach( $this->address as $slug => $text ) {
 			$this->form_field( $instance, $slug, $text );
 		}
-		$this->form_checkbox( $instance, 'tcc-map', __( 'Display Google map', 'tcc-fluid' ) );
+		$this->form_checkbox( $instance, 'map', __( 'Display Google map', 'tcc-fluid' ) );
 	}
 
 	public function update( $new, $old ) {
@@ -82,7 +82,7 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 		foreach( $this->address as $slug => $text ) {
 			$instance[ $slug ] = ( ! empty( $new[ $slug ] ) ) ? wp_strip_all_tags( $new[ $slug ] ) : '';
 		}
-		$instance['tcc-map'] = ( ! empty( $new['tcc-map'] ) ) ? $new['tcc-map'] : 'off';
+		$instance['map'] = ( ! empty( $new['map'] ) ) ? $new['map'] : 'off';
 		return $instance;
 	}
 
