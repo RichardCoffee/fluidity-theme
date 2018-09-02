@@ -17,9 +17,10 @@ if ( ! function_exists( 'fluid_copyright_dates' ) ) {
 		$copyright_dates = $wpdb->get_results( $select );
 		if ( $copyright_dates ) {
 			$copyright = $copyright_dates[0];
-			$output = "&copy; <span itemprop='copyrightYear'>{$copyright->firstdate}</span>";
-			if ( ! ( $copyright->firstdate === $copyright->lastdate ) ) {
-				$output .= '-' . $copyright->lastdate;
+			if ( $copyright->firstdate === $copyright->lastdate ) {
+				$output = "&copy; <span itemprop='copyrightYear'>{$copyright->firstdate}</span>";
+			} else {
+				$output = "&copy; {$copyright->firstdate}-<span itemprop='copyrightYear'>{$copyright->lastdate}</span>";
 			}
 		}
 		return $output;
