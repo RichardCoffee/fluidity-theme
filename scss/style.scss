@@ -143,6 +143,10 @@ pre {
   margin-bottom: 0;
 }
 
+.search-input-group {
+	display: inherit;
+}
+
 .skip-link.sr-only:focus {
 	border: none;
 	border-bottom-right-radius: 6px;
