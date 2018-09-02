@@ -38,22 +38,27 @@ class TCC_Widget_Address extends TCC_Widget_Widget {
 						<span itemprop="postalCode"><?php
 							echo esc_html( $instance['code'] );
 					} ?>
-				</span><br><?php
-				if ( ! empty( $instance['phone'] ) ) {
-					esc_html_e( 'Office: ', 'tcc-fluid' ); ?> <span itemprop="telephone">
-					<?php echo esc_html( $instance['phone'] ); ?>
-					</span><br><?php
-				}
-				if ( ! empty( $instance['email'] ) ) {
-					esc_html_e( 'Email: ', 'tcc-fluid' );
-					echo wp_kses( microdata()->email_format( $instance['email'] ), fluid()->kses() );
-				} /* ?>
-				<a href="mailto:<?php echo esc_html( $instance['email'] ); ?>"><?php
-					echo esc_html( $instance['email'] );?>
-				</a>*/ ?>
-			</address>
-			<br>
-			<?php
+				</span>
+				<br>
+			</address><?php
+			if ( ! empty( $instance['phone'] ) ) {
+				$attrs = array(
+					'href' => 'phone:' . preg_replace( "/[^0-9]/", "", $instance['phone'] )
+				);
+				$text = sprintf(
+					esc_html_x( 'Office: %s', 'phone number', 'tcc-fluid' ),
+					microdata()->telephone( fluid_format_phone_number( $instance['phone'] ) )
+				);
+				fluid()->element( 'a', $attrs, $text, true ); ?>
+				<br><?php
+			}
+			if ( ! empty( $instance['email'] ) ) {
+				printf(
+					esc_html_x( 'Email: %s', 'email address', 'tcc-fluid' ),
+					microdata()->email_format( $instance['email'] )
+				); ?>
+				<br><?php
+			}
 			if (!empty($instance['map']) && ($instance['map']==='on')) {
 				$add = urlencode($instance['street'].', '.$instance['local'].', '.$instance['region'].' '.$instance['code']); ?>
 				<div>
