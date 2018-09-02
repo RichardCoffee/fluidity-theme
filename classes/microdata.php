@@ -367,6 +367,13 @@ class TCC_Microdata {
 		return '<span itemprop="telephone">' . esc_html( $phone ). '</span>';
 	}
 
+	public function telephone_format( $phone ) {
+		if ( ! ( strpos( $phone, 'itemprop' ) === false ) ) { return $phone; }
+		$cleaned = preg_replace( "/[^0-9]/", "", $phone );
+		$string  = '<a href="telephone:%s" itemprop="telephone">%s</a>';
+		return sprintf( $string, $cleaned, $phone );
+	}
+
 	public function url_format( $url ) {
 		if ( ! ( strpos( $url, 'itemprop' ) === false ) ) { return $url; }
 		$string = '<a href="%s" itemprop="url">%s</a>';
