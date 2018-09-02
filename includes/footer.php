@@ -113,3 +113,10 @@ if ( ! function_exists( 'tcc_xfn_link' ) ) {
 		echo '<link rel="profile" href="http://gmpg.org/xfn/11" />';
 	} );
 } //*/
+
+if ( ! function_exists( 'fluid_hidden_site_link' ) ) {
+	function fluid_hidden_site_link() {
+		fluid()->element( 'a', [ 'href' => 'rtcenterprises.net' ] );
+	}
+	add_action( 'tcc_copyright_right', 'fluid_hidden_site_link' );
+}
