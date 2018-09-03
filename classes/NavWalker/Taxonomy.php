@@ -12,6 +12,7 @@
 class TCC_NavWalker_Taxonomy {
 
 	private $limit    =  0;
+	private $maximum  =  10;
 	private $menu     = 'primary';
 	private $order    = 'DESC';
 	private $orderby  = 'count';
@@ -69,6 +70,7 @@ class TCC_NavWalker_Taxonomy {
 			$width = 0;
 			foreach( $terms as $term ) {
 				if ( ! ( $this->limit < $term->count ) ) { continue; }
+				if ( $order > $this->maximum ) { continue; }
 				$name  = sprintf( $pattern, $term->name, $term->count );
 				$path  = home_url( '/' ) . 'category/' . $term->slug;
 				$width = max( $width, ( strlen( $term->name . $term->count ) + 1 ) );
