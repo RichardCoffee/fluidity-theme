@@ -70,7 +70,7 @@ class TCC_NavWalker_Taxonomy {
 			foreach( $terms as $term ) {
 				if ( ! ( $this->limit < $term->count ) ) { continue; }
 				$name  = sprintf( $pattern, $term->name, $term->count );
-				$path  = 'category/' . $term->slug;
+				$path  = home_url( '/' ) . 'category/' . $term->slug;
 				$width = max( $width, ( strlen( $term->name . $term->count ) + 1 ) );
 fluid()->log( $name, $path, $width );
 				custom_menu_items::add_item( $this->menu, $name, $path, $order++, $this->top_id );
