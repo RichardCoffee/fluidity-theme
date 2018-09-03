@@ -101,10 +101,6 @@ form input.searchform-input {
 @import "navbar";
 @import "underscore";
 
-li.menu-item a:visited {
-	color: $maincomp; //color(background);
-}
-
 // pagination
 
 ul.pagination > li {

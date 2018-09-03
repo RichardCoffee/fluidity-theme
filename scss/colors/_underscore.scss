@@ -15,6 +15,9 @@
 			color: color(textcolor);
 			font-weight: normal;
 		}
+		&:visited {
+			color: color(textcolor);
+		}
 	}
 }
 

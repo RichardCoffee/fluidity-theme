@@ -262,13 +262,12 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
   color: #a94442;
   font-weight: normal;
 }
+.main-navigation a:visited {
+  color: #a94442;
+}
 
 ul.sub-menu {
   background-color: white;
-}
-
-li.menu-item a:visited {
-  color: #a94442;
 }
 
 ul.pagination > li > a {
