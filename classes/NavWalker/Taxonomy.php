@@ -72,7 +72,7 @@ class TCC_NavWalker_Taxonomy {
 				$name  = sprintf( $pattern, $term->name, $term->count );
 				$path  = home_url( '/' ) . 'category/' . $term->slug;
 				$width = max( $width, ( strlen( $term->name . $term->count ) + 1 ) );
-fluid()->log( $name, $path, $width );
+#fluid()->log( $name, $path, $width );
 				custom_menu_items::add_item( $this->menu, $name, $path, $order++, $this->top_id );
 			} ?>
 			<style>
