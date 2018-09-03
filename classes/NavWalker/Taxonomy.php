@@ -11,7 +11,7 @@
 
 class TCC_NavWalker_Taxonomy {
 
-	private $limit    =  1;
+	private $limit    =  0;
 	private $menu     = 'primary';
 	private $order    = 'DESC';
 	private $orderby  = 'count';

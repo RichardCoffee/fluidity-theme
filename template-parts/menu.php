@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 $page = get_page_slug();
 $menu = apply_filters( 'fluid_menu', 'primary', $page ); # defaults: primary, header or footer
 $msys = apply_filters( 'fluid_menu_system', 'underscore' );
-fluid_taxonomy();
+fluid_taxonomy( [ 'limit' => 1 ] );
 
 who_am_i();
 
