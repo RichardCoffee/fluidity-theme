@@ -29,6 +29,7 @@ class TCC_NavWalker_Taxonomy {
 			return $terms; //  return?  really?  programmer, where do you think this going to end up?
 		}
 #		fluid()->log($terms);
+		$this->menu = apply_filters( 'fluid_navwalker_taxonomy_menu', $this->menu, $this->taxonomy );
 		$this->add_terms( $terms );
 	}
 
