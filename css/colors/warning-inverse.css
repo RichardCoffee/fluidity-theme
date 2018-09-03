@@ -268,6 +268,10 @@ ul.sub-menu {
   background-color: white;
 }
 
+li.menu-item a:visited {
+  color: #8A6D3B;
+}
+
 ul.pagination > li > a {
   color: #8A6D3B;
   background: #FCF8E3;

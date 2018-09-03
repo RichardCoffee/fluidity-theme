@@ -266,6 +266,10 @@ ul.sub-menu {
   background-color: #fef1e2;
 }
 
+li.menu-item a:visited {
+  color: #f7941d;
+}
+
 ul.pagination > li > a {
   color: #FFFFFF;
   background: #f7941d;
