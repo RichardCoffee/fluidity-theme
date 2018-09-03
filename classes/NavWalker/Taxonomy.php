@@ -28,7 +28,6 @@ class TCC_NavWalker_Taxonomy {
 			fluid()->log( $terms );
 			return $terms; //  return?  really?  programmer, where do you think this going to end up?
 		}
-#		fluid()->log($terms);
 		$this->menu = apply_filters( 'fluid_navwalker_taxonomy_menu', $this->menu, $this->taxonomy );
 		$this->add_terms( $terms );
 	}
@@ -64,12 +63,13 @@ class TCC_NavWalker_Taxonomy {
 			require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
 			custom_menu_items::add_item( $this->menu, $tax_meta->labels->name, 'javascript: void(0);', 0, 0, $this->top_id );
 			$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
+			$order = 1;
 			foreach( $terms as $term ) {
 				if ( ! ( $this->limit < $term->count ) ) { continue; }
 				$name = sprintf( $pattern, $term->name, $term->count );
 				$path = 'category/' . $term->slug;
 fluid()->log( $name, $path );
-				custom_menu_items::add_item( $this->menu, $name, $path, 0, $this->top_id );
+				custom_menu_items::add_item( $this->menu, $name, $path, $order++, $this->top_id );
 			}
 		}
 	}
