@@ -15,6 +15,7 @@ class TCC_NavWalker_Taxonomy {
 	private $menu     = 'primary';
 	private $order    = 'DESC';
 	private $orderby  = 'count';
+	private $position =  0;
 	private $taxonomy = 'category';
 	private $top_id   =  529876; // hopefully there won't actually be a menu item with this id.  TODO: check this in db
 
@@ -28,7 +29,8 @@ class TCC_NavWalker_Taxonomy {
 			fluid()->log( $terms );
 			return $terms; //  return?  really?  programmer, where do you think this going to end up?
 		}
-		$this->menu = apply_filters( 'fluid_navwalker_taxonomy_menu', $this->menu, $this->taxonomy );
+		$this->menu     = apply_filters( 'fluid_navwalker_taxonomy_menu',     $this->menu, $this->taxonomy );
+		$this->position = apply_filters( 'fluid_navwalker_taxonomy_posotion', $this->position, $this->menu, $this->taxonomy );
 		$this->add_terms( $terms );
 	}
 
@@ -61,7 +63,7 @@ class TCC_NavWalker_Taxonomy {
 		$tax_meta = get_taxonomy( $this->taxonomy );
 		if ( $tax_meta ) {
 			require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
-			custom_menu_items::add_item( $this->menu, $tax_meta->labels->name, 'javascript: void(0);', 0, 0, $this->top_id );
+			custom_menu_items::add_item( $this->menu, $tax_meta->labels->name, 'javascript: void(0);', $this->position, 0, $this->top_id );
 			$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
 			$order = 1;
 			foreach( $terms as $term ) {
