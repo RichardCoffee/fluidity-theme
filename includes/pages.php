@@ -126,6 +126,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						} else if ( ! empty( $post->post_title ) ) {
 							$slug = sanitize_title( $post->post_title );
 						}
+					} else if ( $post instanceof WP_Term ) {
+						$slug = $post->slug;
 					} else if ( $post instanceof WP_User ) {
 						$slug = 'author';
 					}
@@ -177,6 +179,7 @@ if (!function_exists('page_exists')) {
 if ( ! function_exists( 'tcc_before_posts_filter' ) ) {
 	function tcc_before_posts_filter( $mypage ) {
 		# ! get_theme_mod( 'pages_the-title', 'page' ) === 'main'
+		fluid()->log( 'theme mod: ' . get_theme_mod( 'pages_the-title', 'page' ) );
 		if ( ! in_array( get_theme_mod( 'pages_the-title', 'page' ), array( 'no', 'page' ) ) ) {
 			tcc_show_page_title( $mypage );
 		}
