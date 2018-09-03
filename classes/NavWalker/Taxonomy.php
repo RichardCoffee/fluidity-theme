@@ -30,7 +30,7 @@ class TCC_NavWalker_Taxonomy {
 			return $terms; //  return?  really?  programmer, where do you think this going to end up?
 		}
 		$this->menu     = apply_filters( 'fluid_navwalker_taxonomy_menu',     $this->menu, $this->taxonomy );
-		$this->position = apply_filters( 'fluid_navwalker_taxonomy_posotion', $this->position, $this->menu, $this->taxonomy );
+		$this->position = apply_filters( 'fluid_navwalker_taxonomy_position', $this->position, $this->menu, $this->taxonomy );
 		$this->add_terms( $terms );
 	}
 
