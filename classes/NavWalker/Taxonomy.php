@@ -77,7 +77,7 @@ fluid()->log( $name, $path, $width );
 			} ?>
 			<style>
 				.main-navigation ul.sub-menu {
-					width: <?php echo $width; ?>em;
+					width: <?php echo round( $width / 4 * 3 ); ?>em;
 				}
 			</style><?php
 		}
