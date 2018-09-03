@@ -2,6 +2,7 @@
 /**
  *  Add the terms of a taxonomy to a menu
  *
+ * @since 20170111
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/NavWalker/Taxonomy.php
@@ -14,7 +15,7 @@ class TCC_NavWalker_Taxonomy {
 	private $order    = 'DESC';
 	private $orderby  = 'count';
 	private $taxonomy = 'category';
-	private $top_id   = 29876; // presumably there won't actually be a menu item with this id
+	private $top_id   =  529876; // hopefully there won't actually be a menu item with this id.  TODO: check this in db
 
 	use TCC_Trait_ParseArgs;
 
@@ -24,13 +25,19 @@ class TCC_NavWalker_Taxonomy {
 		$terms = $this->get_terms();
 		if ( is_wp_error( $terms ) ) {
 			fluid()->log( $terms );
-			return $terms;
+			return $terms; //  return?  really?  programmer, where do you think this going to end up?
 		}
 #		fluid()->log($terms);
 		$this->add_terms( $terms );
 	}
 
-#	 * @link https://developer.wordpress.org/reference/functions/get_terms/
+	/**
+	 *  get the taxonomy terms
+	 *
+	 * @since 20180916
+	 * @link https://developer.wordpress.org/reference/functions/get_terms/
+	 * @return array
+	 */
 	public function get_terms() {
 		$args = array(
 			'taxonomy'        => $this->taxonomy,
@@ -43,6 +50,12 @@ class TCC_NavWalker_Taxonomy {
 		return get_terms( $args );
 	}
 
+	/**
+	 *  add taxonomy name to top level menu, and taxonomy terms as submenu
+	 *
+	 * @since 20180916
+	 * @param array $terms
+	 */
 	public function add_terms( $terms ) {
 		$tax_meta = get_taxonomy( $this->taxonomy );
 		if ( $tax_meta ) {
@@ -52,6 +65,7 @@ class TCC_NavWalker_Taxonomy {
 			foreach( $terms as $term ) {
 				$name = sprintf( $pattern, $term->name, $term->count );
 				$path = 'category/' . $term->slug;
+fluid()->log( $name, $path );
 				custom_menu_items::add_item( $this->menu, $name, $path, 0, $this->top_id );
 			}
 		}
