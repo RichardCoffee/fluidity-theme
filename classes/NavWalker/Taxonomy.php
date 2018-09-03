@@ -11,6 +11,7 @@
 
 class TCC_NavWalker_Taxonomy {
 
+	private $limit    =  1;
 	private $menu     = 'primary';
 	private $order    = 'DESC';
 	private $orderby  = 'count';
@@ -63,6 +64,7 @@ class TCC_NavWalker_Taxonomy {
 			custom_menu_items::add_item( $this->menu, $tax_meta->labels->name, 'javascript: void(0);', 0, 0, $this->top_id );
 			$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
 			foreach( $terms as $term ) {
+				if ( ! ( $this->limit < $term->count ) ) { continue; }
 				$name = sprintf( $pattern, $term->name, $term->count );
 				$path = 'category/' . $term->slug;
 fluid()->log( $name, $path );
