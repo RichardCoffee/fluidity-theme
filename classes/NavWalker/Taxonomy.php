@@ -66,13 +66,20 @@ class TCC_NavWalker_Taxonomy {
 			custom_menu_items::add_item( $this->menu, $tax_meta->labels->name, 'javascript: void(0);', $this->position, 0, $this->top_id );
 			$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
 			$order = 1;
+			$width = 0;
 			foreach( $terms as $term ) {
 				if ( ! ( $this->limit < $term->count ) ) { continue; }
-				$name = sprintf( $pattern, $term->name, $term->count );
-				$path = 'category/' . $term->slug;
-fluid()->log( $name, $path );
+				$name  = sprintf( $pattern, $term->name, $term->count );
+				$path  = 'category/' . $term->slug;
+				$width = max( $width, ( strlen( $term->name . $term->count ) + 1 ) );
+fluid()->log( $name, $path, $width );
 				custom_menu_items::add_item( $this->menu, $name, $path, $order++, $this->top_id );
-			}
+			} ?>
+			<style>
+				.main-navigation ul.sub-menu {
+					width: <?php echo $width; ?>em;
+				}
+			</style><?php
 		}
 	}
 
