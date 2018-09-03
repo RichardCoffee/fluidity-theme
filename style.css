@@ -107,7 +107,7 @@
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   float: left;
   position: absolute;
-  top: 1.5em;
+  top: 3em;
   left: -999em;
   z-index: 99999;
 }
@@ -117,6 +117,10 @@
 }
 .main-navigation ul ul li:hover > ul, .main-navigation ul ul li.focus > ul {
   left: 100%;
+}
+.main-navigation ul ul a:hover,
+.main-navigation ul ul a.focus {
+  width: 100%;
 }
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
