@@ -14,28 +14,42 @@ class TCC_Theme_Typography {
 		// OS Font Defaults
 		// TODO: load browser fonts (via js(?))
 		$os_faces = array(
-			'Arial'          => 'Arial, sans-serif',
-			'Avant Garde'    => '"Avant Garde", sans-serif',
-			'Cambria'        => 'Cambria, Georgia, serif',
-			'Copse'          => 'Copse, sans-serif', // duplicate in google_fonts()
-			'Garamond'       => 'Garamond, "Hoefler Text", Times New Roman, Times, serif',
-			'Georgia'        => 'Georgia, serif',
-			'Helvitica Neue' => '"Helvetica Neue", Helvetica, sans-serif',
-			'Tahoma'         => 'Tahoma, Geneva, sans-serif'
+			'Andale Mono'      => '"Andale Mono", sans-serif',
+			'Arial'            => 'Arial, sans-serif',
+#			'Avant Garde'      => '"Avant Garde", sans-serif',
+			'Cambria'          => 'Cambria, Georgia, serif',
+			'Comic Sans MS'    => '"Comic Sans", sans-serif',
+#			'Copse'            => 'Copse, sans-serif', // duplicate in google_fonts()
+			'Courier New'      => '"Courier New", serif',
+			'DejaVu Sans Mono' => '"DejaVu Sans Mono", sans-serif',
+#			'Garamond'         => 'Garamond, "Hoefler Text", Times New Roman, Times, serif',
+			'Georgia'          => 'Georgia, serif',
+#			'Helvitica Neue'   => '"Helvetica Neue", Helvetica, sans-serif',
+			'Liberation Sans'  => '"Liberation Sans",sans-serif',
+			'Liberation Serif' => 'Liberation Serif, serif',
+			'Tahoma'           => 'Tahoma, Geneva, sans-serif',
+			'Times New Roman'  => '"Times New Roman", serif',
 		);
 		return apply_filters( 'fluid_os_fonts', $os_faces );
 	}
 
 	public static function os_fonts_filter( $fonts ) {
 		$check = array(
-			'Arial'          => _x( 'on', "Arial font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Avant Garde'    => _x( 'on', "Avant Garde font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Cambria'        => _x( 'on', "Cambria font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Copse'          => _x( 'on', "Copse font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Garamond'       => _x( 'on', "Garamond font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Georgia'        => _x( 'on', "Georgia font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Helvitica Neue' => _x( 'on', "Helvitica Neue font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Tahoma'         => _x( 'on', "Tahoma font: translate as 'on' or 'off'", 'tcc-fluid' )
+			'Andale Mono'      => _x( 'on', "Andale Mono font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Arial'            => _x( 'on', "Arial font: translate as 'on' or 'off'", 'tcc-fluid' ),
+#			'Avant Garde'      => _x( 'on', "Avant Garde font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Cambria'          => _x( 'on', "Cambria font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Comic Sans MS'    => _x( 'on', "Comic Sans MS font: translate as 'on' or 'off'", 'tcc-fluid' ),
+#			'Copse'            => _x( 'on', "Copse font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Courier New'      => _x( 'on', "Courier New font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'DejaVu Sans Mono' => _x( 'on', "Arial font: translate as 'on' or 'off'", 'tcc-fluid' ),
+#			'Garamond'         => _x( 'on', "Garamond font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Georgia'          => _x( 'on', "Georgia font: translate as 'on' or 'off'", 'tcc-fluid' ),
+#			'Helvitica Neue'   => _x( 'on', "Helvitica Neue font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Liberation Sans'  => _x( 'on', "Liberation Sans font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Liberation Serif' => _x( 'on', "Liberation Serif font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Tahoma'           => _x( 'on', "Tahoma font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Times New Roman'  => _x( 'on', "Times New Roman font: translate as 'on' or 'off'", 'tcc-fluid' ),
 		);
 		foreach( $check as $font => $state ) {
 			if ( ( isset( $fonts[ $font ] ) ) && ( $state === 'off' ) ) {
@@ -115,7 +129,8 @@ class TCC_Theme_Typography {
 
 	public static function load_google_font() {
 #		$google_fonts = array_keys( self::google_fonts() );
-		$current  = get_theme_mod( 'font_typography', 'Helvitica Neue' );
+		$current  = get_theme_mod( 'font_typography', 'Arial' );
+fluid()->log( 'font: ' . $current );
 		if ( ! in_array( $current, self::os_fonts() ) ) { // Really?  Are we sure about this?
 			$google = self::google_fonts();
 			if ( in_array( $current, $google ) ) {
@@ -136,7 +151,7 @@ fluid()->log($url);
 
 	public static function typography_styles() {
 		// font family
-		$font = self::mixed_fonts( get_theme_mod( 'font_typography', 'Helvitica Neue' ) );
+		$font = self::mixed_fonts( get_theme_mod( 'font_typography', 'Arial' ) );
 		echo "\nbody {\n\tfont-family: $font;\n";
 		// font size
 		$size = intval( get_theme_mod( 'font_size', 18 ), 10 );
