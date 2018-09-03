@@ -17,6 +17,7 @@ class TCC_NavWalker_Taxonomy {
 	private $order    = 'DESC';
 	private $orderby  = 'count';
 	private $position =  0;
+	private $show_sub =  0;
 	private $taxonomy = 'category';
 	private $top_id   =  529876; // hopefully there won't actually be a menu item with this id.  TODO: check this in db
 
@@ -48,7 +49,7 @@ class TCC_NavWalker_Taxonomy {
 			'hide_empty'      => true,
 			'order'           => $this->order,
 			'orderby'         => $this->orderby,
-			'parent'          => 0, // show only top-level terms
+			'parent'          => $this->show_sub, // 0 = show only top-level terms
 			'suppress_filter' => false,
 		);
 		return get_terms( $args );
