@@ -30,8 +30,7 @@ if ( ! function_exists( 'fluid_show_search_form' ) ) {
  * @param array $form
  */
 if ( ! function_exists( 'fluid_show_search_field' ) ) {
-	function fluid_show_search_field( $form ) {
-#		$form = apply_filters( 'fluid_show_search_field', $form ); ?>
+	function fluid_show_search_field( $form ) { ?>
 		<div class="input-group"><?php
 			fluid()->element( 'label', $form['label'], $form['text']['label'] );
 			if ( isset( $form['hidden'] ) ) {
