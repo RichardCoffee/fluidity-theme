@@ -63,8 +63,9 @@ if ( ! function_exists( 'fluid_get_page_title' ) ) {
 	function fluid_get_page_title( $slug ) {
 		$title = tcc_get_page_id_by_slug( $slug, 'post_title' );
 		if ( is_archive() && ! get_query_var( 'paged' ) ) {
+			$title = get_the_archive_title();
 			if ( is_tax() || is_category() || is_tag() ) {
-				$title =  ( $descrip = term_description() ) ? $descrip : $title;
+				$title = ( $descrip = term_description() ) ? $descrip : $title;
 			}
 		} else if ( is_search() ) {
 			$title = __( 'Search Results', 'tcc-fluid' );
