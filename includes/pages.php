@@ -118,7 +118,7 @@ if ( ! function_exists( 'fluid_page_title' ) ) {
  */
 if ( ! function_exists( 'fluid_title_placement' ) ) {
 	function fluid_title_placement() {
-		if ( is_page() || is_archive() ) {
+		if ( ! is_single() ) { # is_page() || is_archive() ) {
 			$slug    = get_page_slug();
 			$exclude = apply_filters( 'fluid_exclude_page_title', [ ] );
 			if ( ! in_array( $slug, $exclude ) ) {
