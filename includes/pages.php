@@ -231,7 +231,7 @@ if ( ! function_exists( 'fluid_page_effects' ) ) {
 			tcc_show_page_title( $mypage );
 		}
 	}
-	add_action( 'tcc_inside_page', 'fluid_page_effects' );
+	add_action( 'fluid_inside_page', 'fluid_page_effects' );
 }
 
 if ( ! function_exists( 'tcc_page_title' ) ) {
