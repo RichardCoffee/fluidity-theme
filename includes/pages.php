@@ -82,18 +82,6 @@ if (!function_exists('fluid_noposts_page')) {
   }
 }
 
-// FIXME: can we get rid of this function yet?
-if (!function_exists('fluid_save_page_template')) {
-	function fluid_save_page_template( $template ) {
-		global $fluidity_theme_template;
-		if ( empty( $fluidity_theme_template ) ) {
-			$fluidity_theme_template = basename($template,".php");
-		}
-		return $template;
-	}
-	add_action('template_include', 'fluid_save_page_template', 1000);
-}
-
 #	 * @link http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
 #	 * @link http://www.tcbarrett.com/2013/05/wordpress-how-to-get-the-slug-of-your-post-or-page
 if ( ! function_exists( 'get_page_slug' ) ) {
