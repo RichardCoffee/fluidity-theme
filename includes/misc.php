@@ -201,7 +201,7 @@ if ( ! function_exists( 'fluid_php_error_alerts' ) ) {
 			</button>
 		</div><?php
 		$error_message = ob_get_clean();
-		fluid()->log( $error_message, 'stack' );
+		fluid()->log( $errstr, $error_message, 'stack' );
 		if ( is_admin() ) {
 			echo $error_message;
 		} else {
@@ -221,7 +221,7 @@ if ( ! function_exists( 'fluid_php_error_alerts' ) ) {
 		}
 	}
 	if ( WP_DEBUG ) {
-		set_error_handler( 'fluid_php_error_alerts', E_ERROR ^ E_CORE_ERROR ^ E_COMPILE_ERROR ^ E_USER_ERROR ^ E_RECOVERABLE_ERROR ^ E_WARNING ^ E_CORE_WARNING ^ E_COMPILE_WARNING ^ E_USER_WARNING ^ E_NOTICE ^ E_USER_NOTICE ^ E_DEPRECATED ^ E_USER_DEPRECATED ^ E_PARSE );
+#		set_error_handler( 'fluid_php_error_alerts', E_ERROR ^ E_CORE_ERROR ^ E_COMPILE_ERROR ^ E_USER_ERROR ^ E_RECOVERABLE_ERROR ^ E_WARNING ^ E_CORE_WARNING ^ E_COMPILE_WARNING ^ E_USER_WARNING ^ E_NOTICE ^ E_USER_NOTICE ^ E_DEPRECATED ^ E_USER_DEPRECATED ^ E_PARSE );
 	}
 }
 
