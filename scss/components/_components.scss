@@ -7,17 +7,18 @@
 @import "typography";
 @import "elements";
 
-@import "pages";
-@import "comments";
-@import "effects";
-@import "footer";
 @import "general";
-@import "header";
 @import "misc";
-@import "pagination";
+@import "width";
+@import "effects";
 @import "parallax";
+@import "header";
 @import "posts";
 @import "posting-table";
-@import "width";
+@import "pages";
+@import "comments";
+@import "footer";
+@import "gallery";
+@import "pagination";
 
 @import "print"; // print css must be last
