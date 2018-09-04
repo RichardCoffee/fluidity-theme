@@ -136,8 +136,6 @@ class TCC_Theme_Typography {
 	}
 
 	public static function load_google_font( $font, $typog ) {
-#		$google_fonts = array_keys( self::google_fonts() );
-fluid()->log( 'font: ' . $font );
 		if ( ! in_array( $font, self::os_fonts() ) ) { // Really?  Are we sure about this?
 			$google = self::google_fonts();
 			if ( in_array( $font, $google ) ) {
@@ -150,7 +148,6 @@ fluid()->log( 'font: ' . $font );
 					'subset' => urlencode( 'latin,latin-ext' ) // FIXME: when would subset be something different?
 				);
 				$url = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
-fluid()->log($url);
 				wp_enqueue_style( "font_$typog", $url, null, null, 'all' );
 			}
 		}
