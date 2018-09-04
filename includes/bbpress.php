@@ -19,8 +19,10 @@ add_filter( 'bbp_show_lead_topic', '__return_true' ); // FIXME:  has this bug be
  *
  * @param string $page_slug
  */
-add_action( 'fluid_before_loop', function( $page_slug ) {
+add_action( 'fluid_page_top', function( $page_slug ) {
 	if ( is_bbpress() ) {
+		remove_action( 'fluid_before_main',    'fluid_page_title' );
+		remove_action( 'fluid_before_posts',   'fluid_page_title' );
 		remove_action( 'fluid_content_header', 'fluid_show_content_title' );
 		remove_action( 'fluid_content_footer', 'fluid_show_content_footer' );
 		add_action(    'fluid_content_header', 'fluid_show_forum_title' );
