@@ -99,14 +99,14 @@ if ( ! function_exists( 'fluid_page_title' ) ) {
 		} else if ( has_action( 'fluid_page_title' ) ) {
 			do_action( 'fluid_page_title', $slug );
 		} else {
-			$title = fluid_get_page_title( $slug );
-			if ( $title ) { ?>
-				<div id="fluid-page-title-banner" <?php title_class(); ?>>
+			$title = fluid_get_page_title( $slug ); ?>
+			<div id="fluid-page-title-banner" <?php title_class(); ?>><?php
+				if ( $title ) { ?>
 					<h1 class="text-center" itemprop="headline"><?php
 						e_esc_html( wp_strip_all_tags( $title ) ); ?>
-					</h1>
-				</div><?php
-			}
+					</h1><?php
+				} ?>
+			</div><?php
 		}
 	}
 }
