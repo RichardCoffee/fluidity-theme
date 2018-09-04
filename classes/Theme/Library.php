@@ -42,9 +42,9 @@ class TCC_Theme_Library {
 #		if ( ( ! in_array( 'fab', $css, true ) ) && ( ! in_array( 'fas', $css, true ) ) ) {
 #			array_push( $css, 'fas' ); // default for 4.7.0 icons
 #		}
-		array_push( $css, 'fa' ); // 4.7.0 crossover
+#		array_push( $css, 'fa' ); // 4.7.0 crossover
 		$args = array (
-			'class'       => implode( ' ', $css ),
+			'class'       => 'fa ' . implode( ' ', $css ),
 			'aria-hidden' => 'true',
 		);
 		return $this->get_element( 'i', $args );

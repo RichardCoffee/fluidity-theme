@@ -186,6 +186,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						} else if ( ! empty( $post->post_title ) ) {
 							$slug = sanitize_title( $post->post_title );
 						}
+					} else if ( $post instanceof WP_Post_Type ) {
+						$slug = $post->name;
 					} else if ( $post instanceof WP_Term ) {
 						$slug = $post->slug;
 					} else if ( $post instanceof WP_User ) {
