@@ -45,13 +45,13 @@
 	==================================
 		author_role_template( $templates = '' )
 		fluid_content_slug( $page = 'single' )
+		fluid_get_page_title( $page_slug )
 		fluid_noposts_page( $text )
+		fluid_page_title( $page_slug )
 		fluid_read_more_link( $output )
 		fluid_save_page_template( $template )
 		get_page_slug()
 		tcc_get_page_id_by_slug( $slug, $prop='ID' )
-		tcc_get_page_title( $page_slug )
-		tcc_page_title( $page_slug )
 		tcc_page_parallax( $div = true )
 
 			Posts

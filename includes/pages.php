@@ -1,21 +1,14 @@
 <?php
-
 /*
  *  File:  includes/pages.php
- *		Custom Fields on Pages:		<?php echo get_post_meta(get_page_id($page), 'key string here', true); ?>
+ *  Custom Fields on Pages: <?php echo get_post_meta( get_page_id( $slug ), 'key string here', true ); ?>
  *
+ * @since 20160901
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/pages.php
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
  */
-
-if ( ! function_exists( 'get_page_id' ) ) {
-	# http://snipplr.com/view/39004/
-	# http://www.smipple.net/snippet/elieandraos/Get%20Page%20ID%20By%20Slug
-	function get_page_id( $slug ) {
-		global $wpdb;
-		return $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'" );
-	}
-}
+defined( 'ABSPATH' ) || exit;
 
 if (!function_exists('fluid_category_page_noposts')) {
   function fluid_category_page_noposts() {
@@ -58,17 +51,27 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 	}
 	add_filter( 'fluid_customizer_controls', 'fluid_customizer_pages' );
 }
-/*
-if ( ! function_exists( 'fluid_hide_content_title' ) ) {
-	function fluid_hide_content_title( $page ) {
-fluid()->log($page);
-		$exclude = array( 'log-in' );
-		if ( in_array( $page, $exclude ) ) {
-			remove_action( 'fluid_content_header', 'fluid_show_content_title' );
+
+/**
+ *  determine the page title
+ *
+ * @since 20161219
+ * @param string $slug
+ * @return string
+ */
+if ( ! function_exists( 'fluid_get_page_title' ) ) {
+	function fluid_get_page_title( $slug ) {
+		$title = tcc_get_page_id_by_slug( $slug, 'post_title' );
+		if ( is_archive() && ! get_query_var( 'paged' ) ) {
+			if ( is_tax() || is_category() || is_tag() ) {
+				$title =  ( $descrip = term_description() ) ? $descrip : $title;
+			}
+		} else if ( is_search() ) {
+			$title = __( 'Search Results', 'tcc-fluid' );
 		}
+		return $title; #  apply_filters( 'tcc_get_page_title', $title, $slug );
 	}
-	add_action( 'fluid_before_loop', 'fluid_hide_content_title' );
-} //*/
+}
 
 if (!function_exists('fluid_noposts_page')) {
   function fluid_noposts_page($text) { ?>
@@ -80,6 +83,72 @@ if (!function_exists('fluid_noposts_page')) {
       get_search_form(); ?>
     </div><!-- #post-0 --><?php
   }
+}
+
+/**
+ *  display the page title
+ *
+ * @since 20161219
+ * @param string $slug
+ */
+if ( ! function_exists( 'fluid_page_title' ) ) {
+	function fluid_page_title( $slug ) {
+		if ( has_action( "fluid_page_title_$slug" ) ) {
+			do_action( "fluid_page_title_$slug" );
+		} else if ( has_action( 'fluid_page_title' ) ) {
+			do_action( 'fluid_page_title', $slug );
+		} else {
+			$title = fluid_get_page_title( $slug );
+			if ( $title ) { ?>
+				<div id="fluid-page-title-banner" <?php title_class(); ?>>
+					<h1 class="text-center" itemprop="headline"><?php
+						e_esc_html( wp_strip_all_tags( $title ) ); ?>
+					</h1>
+				</div><?php
+			}
+		}
+	}
+}
+
+/**
+ *  assign actions for proper title placement
+ *
+ * @since 20180904
+ */
+if ( ! function_exists( 'fluid_title_placement' ) ) {
+	function fluid_title_placement() {
+		if ( is_page() || is_archive() ) {
+			$slug = get_page_slug();
+			$exclude = apply_filters( 'fluid_exclude_page_title', [ ] );
+			if ( ! in_array( $slug, $exclude ) ) {
+				$place = get_theme_mod( 'pages_the-title', 'page' );
+				if ( $place === 'no' ) {
+					// take no action
+				} else if ( $place === 'page' ) {
+					add_action( 'fluid_before_main',  'fluid_page_title' );
+				} else if ( $place === 'main' ) {
+					add_action( 'fluid_before_posts', 'fluid_page_title' );
+				}
+			}
+		}
+	}
+	add_action( 'wp_head', 'fluid_title_placement' );
+}
+
+/**
+ *  get the page id from the page slug
+ *
+ * @since 201701008
+ * @link http://snipplr.com/view/39004/
+ * @link http://www.smipple.net/snippet/elieandraos/Get%20Page%20ID%20By%20Slug
+ * @param string $slug
+ * @return numeric
+ */
+if ( ! function_exists( 'get_page_id' ) ) {
+	function get_page_id( $slug ) {
+		global $wpdb;
+		return $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'" );
+	}
 }
 
 #	 * @link http://www.wpaustralia.org/wordpress-forums/topic/pre_get_posts-and-is_front_page/
@@ -164,17 +233,6 @@ if (!function_exists('page_exists')) {
 	}
 } //*/
 
-if ( ! function_exists( 'tcc_before_posts_filter' ) ) {
-	function tcc_before_posts_filter( $mypage ) {
-		# ! get_theme_mod( 'pages_the-title', 'page' ) === 'main'
-		fluid()->log( 'theme mod: ' . get_theme_mod( 'pages_the-title', 'page' ) );
-		if ( ! in_array( get_theme_mod( 'pages_the-title', 'page' ), array( 'no', 'page' ) ) ) {
-			tcc_show_page_title( $mypage );
-		}
-	}
-	add_action( 'fluid_before_posts', 'tcc_before_posts_filter' );
-}
-
 if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {
 	function tcc_get_page_id_by_slug( $slug, $prop = 'ID' ) {
 		static $curr;
@@ -195,51 +253,13 @@ if ( ! function_exists( 'tcc_get_page_id_by_slug' ) ) {
 	}
 }
 
-if ( ! function_exists( 'tcc_get_page_title' ) ) {
-	function tcc_get_page_title( $slug ) {
-		$title = tcc_get_page_id_by_slug( $slug, 'post_title' );
-		if ( is_archive() && ! get_query_var( 'paged' ) ) {
-			if ( is_tax() || is_category() || is_tag() ) {
-				$title =  ( $descrip = term_description() ) ? $descrip : $title;
-			}
-		} else if ( is_search() ) {
-			$title = 'Search Results';
-		}
-		return $title; #  apply_filters( 'tcc_get_page_title', $title, $slug );
-	}
-}
-
 if ( ! function_exists( 'fluid_page_effects' ) ) {
 	function fluid_page_effects( $mypage ) {
 		if ( is_page() ) {
 			tcc_page_parallax( $mypage );
 		}
-		# ! get_theme_mod( 'pages_the-title', 'page' ) === 'page'
-		if ( ! in_array( get_theme_mod( 'pages_the-title', 'page' ), array( 'no', 'main' ) ) ) {
-			tcc_show_page_title( $mypage );
-		}
 	}
 	add_action( 'fluid_inside_page', 'fluid_page_effects' );
-}
-
-if ( ! function_exists( 'tcc_page_title' ) ) {
-	function tcc_page_title( $slug ) {
-		if ( has_action( "tcc_page_title_$slug" ) ) {
-			do_action( "tcc_page_title_$slug" );
-		} else if ( has_action( 'tcc_page_title' ) ) {
-			do_action( 'tcc_page_title', $slug );
-		} else if ( get_theme_mod( 'pages_the-title', 'page' ) === 'no' ) {
-		} else {
-			$title = tcc_get_page_title( $slug );
-			if ( $title ) { ?>
-				<div id="fluid-page-title-banner" <?php title_class(); ?>>
-					<h1 class="text-center" itemprop="headline">
-						<?php e_esc_html( wp_strip_all_tags( $title ) ); ?>
-					</h1>
-				</div><?php
-			}
-		}
-	}
 }
 
 if ( ! function_exists( 'tcc_show_page_title' ) ) {

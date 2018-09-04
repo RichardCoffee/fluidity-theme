@@ -23,6 +23,8 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_content_header
 		fluid_content_footer
 		fluid_header_body_content         control what goes into the header body used by fluidity_header_body
+		fluid_page_title
+		fluid_page_title_{$page}
 		fluid_post_separator              between post excerpts, overrides default
 		fluid_post_separator_{$page}      between excerpts on a specific page
 		fluidity_admin_enqueue            runs after fluidity admin enqueues
@@ -61,6 +63,7 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_copyright_name              site title displayed in copyright notice           tcc_copyright
 		fluid_default_sidebars            Filter the sidebars that the theme creates         TCC_Register_Sidebars->
 		fluid_excerpt_link_tooltip        string used for post link tooltip in excerpts      fluid_excerpt_link_tooltip
+		fluid_exclude_page_title          prevent title from displaying on selected pages    fluid_title_placement
 		fluid_front_page_slug             assign the slug used for the front page, default: front
 		fluid_header_logo_class           css applied to header logo image                   fluidity_header_logo
 		fluid_header_logo_size            control size of logo image, default: medium        fluidity_header_logo
@@ -83,8 +86,6 @@ Note:  this list is certainly not accurate, check source for up to date infomati
 		fluid_read_more_text              text displayed in read more link                   fluid_read_more_link
 		fluid_register_sidebars           array of sidebars to register                      TCC_Register_Sidebars->register_sidebars()
 		fluidity_options_form_layout      array that displays the theme options              TCC_Options_Fluidity->form_layout()
-		get_title_class                   div css for page title                             get_title_class, used in tcc_page_title
-		get_title_class_$page             div css for $page title                            get_title_class, used in tcc_page_title
 		tcc_author_posts_header           header title for list of author's posts            author.php
 		tcc_content_slug                  template-part slug                                 fluid_content_slug
 		tcc_{$page}_content_slug          template-part slug for $page                       fluid_content_slug
