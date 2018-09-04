@@ -70,6 +70,7 @@ class TCC_Theme_Sidebar {
 		$side = get_theme_mod( 'sidebar_position', 'right' );
 		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
 		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
+		if ( is_attachment() )                { $side = 'none';  }
 		$side = apply_filters( 'fluid_theme_sidebar_positioning', $side );
 		return $side;
 	}
