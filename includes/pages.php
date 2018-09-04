@@ -172,6 +172,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 				#} else if ( ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) && get_option( 'page_on_front' ) ) || empty( $wp_query->query_string ) ) {
 				} else if ( get_option( 'page_on_front' ) && ( $wp_query->get( 'page_id' ) === get_option( 'page_on_front' ) ) ) {
 					$slug = apply_filters( 'fluid_front_page_slug', 'front' );
+				} else if ( is_search() ) {
+					$slug = apply_filters( 'fluid_search_page_slug', 'search' );
 				} else {
 					$post = get_queried_object();  #  $wp_query->queried_object
 					if ( $post instanceof WP_Post ) {
@@ -188,6 +190,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						$slug = $post->slug;
 					} else if ( $post instanceof WP_User ) {
 						$slug = 'author';
+					} else {
+						fluid()->log( $post );
 					}
 				}
 			}
