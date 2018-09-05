@@ -22,7 +22,7 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 		if ( ! is_callable( 'bbpress' ) ) { return; }
 		$this->title = $this->get_forums_title();
 		$forums = $this->get_forums();
-		$forums = $this->get_forum_count( $forums );
+		$forums = $this->get_forum_counts( $forums );
 fluid()->log( 'forums', $forums );
 	}
 
