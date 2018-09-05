@@ -17,7 +17,7 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 	protected $order    = 'DESC';
 	protected $orderby  = 'count';
 	protected $parent   =  0;
-	protected $slug     = 'taxonomy';
+	protected $slug     = 'navtax';
 	protected $taxonomy = 'category';
 
 

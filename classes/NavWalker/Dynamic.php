@@ -51,7 +51,6 @@ abstract class TCC_NavWalker_Dynamic {
 	}
 
 	protected function add_menu_item( $title ) {
-#		custom_menu_items::add_item( $this->menu, $title, $this->link, $this->position, 0, $this->top_id );
 		$item = $this->item_defaults();
 		$item['title'] = $title;
 		$this->add_item( $item );
@@ -67,8 +66,8 @@ abstract class TCC_NavWalker_Dynamic {
 	}
 
 	protected function add_sub_menu_item( $name, $path, $order ) {
-		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
-/*		$item = array_merge(
+#		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
+		$item = array_merge(
 			$this->item_defaults(),
 			array(
 				'title'  => $name,
