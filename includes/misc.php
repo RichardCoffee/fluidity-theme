@@ -304,7 +304,7 @@ if ( ! function_exists( 'single_search_result' ) ) {
  *  creates an array that contains information about an image
  *
  * @link http://stackoverflow.com/questions/25974196/how-to-get-wp-gallery-image-captions
- * @parameter numeric $attachment_id
+ * @parameter int $attachment_id
  * @return array
  */
 if ( ! function_exists( 'wp_get_attachment' ) ) {

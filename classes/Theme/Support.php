@@ -19,7 +19,7 @@ class TCC_Theme_Support {
 	/**
 	 * set maximum content width
 	 *
-	 * @var numeric
+	 * @var int
 	 */
 	public $content_width =  1600;
 	/**
@@ -354,7 +354,7 @@ class TCC_Theme_Support {
 	 * @link https://codex.wordpress.org/Title_Tag
 	 */
 	protected function title_tag() {
-		add_theme_support('title-tag');
+		add_theme_support( 'title-tag' );
 	}
 
 

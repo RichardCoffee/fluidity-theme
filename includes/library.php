@@ -256,25 +256,6 @@ if (!function_exists('author_role_template')) {
 }
 
 /**
- * get featured image url, needs postID if used outside of loop
- *
- * @param numeric $postID
- * @return string
- */
-if ( ! function_exists( 'get_featured_url' ) ) {
-	function get_featured_url( $postID=null ) {
-		$imgURL = null; # 'invalid post ID passed to get_featured_url';
-		// FIXME: postID should be able to be the post object
-		$postID = ( intval( $postID, 10 ) > 0 ) ? intval( $postID, 10 ) : null;
-		if ( $postID && has_post_thumbnail( $postID ) ) {
-			$imgID  = get_post_thumbnail_id( $postID );
-			$imgURL = wp_get_attachment_url( $imgID );
-		}
-		return $imgURL;
-	}
-}
-
-/**
  * get term name
  *
  * @param string $tax
@@ -296,7 +277,7 @@ if ( ! function_exists( 'get_term_name' ) ) {
  *
  * @link https://codex.wordpress.org/Using_Gravatars
  * @param string $email
- * @param numeric $size
+ * @param int $size
  * @return string
  */
 if ( ! function_exists( 'get_valid_gravatar' ) ) {
@@ -464,7 +445,7 @@ if ( ! function_exists( 'json_last_error_msg' ) ) {
 /**
  * return consistent settings for json encoding
  *
- * @return numeric
+ * @return int
  */
 function json_options() {
 	return JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE;

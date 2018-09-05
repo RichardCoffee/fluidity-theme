@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor>
+	<parser>
+		<target>docs/api</target>
+	</parser>
+	<transformer>
+		<target>docs/api</target>
+	</transformer>
+	<files>
+		<directory>.</directory>
+		<ignore>tests/*</ignore>
+		<ignore>vendor/*</ignore>
+	</files>
+	<logging>
+		<level>debug</level>
+		<paths>
+			<default>{APP_ROOT}/logs/{DATE}.phpdoc.log</default>
+			<errors>{APP_ROOT}/logs/{DATE}.phpdoc.errors.log</errors>
+		</paths>
+	</logging>
+</phpdocumentor>

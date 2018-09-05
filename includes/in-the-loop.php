@@ -84,8 +84,8 @@ if ( ! function_exists( 'fluid_excerpt_header' ) ) {
  *  Control excerpt length
  *
  * @since 20170126
- * @param numeric $length
- * @return numeric
+ * @param int $length
+ * @return int
  */
 if ( ! function_exists( 'fluid_excerpt_length' ) ) {
 	function fluid_excerpt_length( $length ) {

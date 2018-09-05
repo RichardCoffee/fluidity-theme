@@ -66,8 +66,8 @@ if ( ! function_exists( 'fluid_enqueue_devicon' ) ) {
 /**
  * control excerpt length for author archive page
  *
- * @param numeric $length
- * @return numeric
+ * @param int $length
+ * @return int
  */
 if ( ! function_exists( 'fluid_excerpt_length_author' ) ) {
 	function fluid_excerpt_length_author( $length ) {

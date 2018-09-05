@@ -143,7 +143,7 @@ if ( ! function_exists( 'fluid_title_placement' ) ) {
  * @link http://snipplr.com/view/39004/
  * @link http://www.smipple.net/snippet/elieandraos/Get%20Page%20ID%20By%20Slug
  * @param string $slug
- * @return numeric
+ * @return int
  */
 if ( ! function_exists( 'get_page_id' ) ) {
 	function get_page_id( $slug ) {

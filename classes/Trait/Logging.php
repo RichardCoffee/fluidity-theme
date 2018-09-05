@@ -43,7 +43,7 @@ trait TCC_Trait_Logging {
 	 * selectively skipping parts of the stack.
 	 *
 	 * @link http://php.net/debug_backtrace
-	 * @param numeric $depth
+	 * @param int $depth
 	 * @return string
 	 */
 	public function logging_calling_location( $depth = 1 ) {
@@ -92,7 +92,7 @@ trait TCC_Trait_Logging {
 	 * locates a function name in the stack
 	 *
 	 * @param string $func
-	 * @return bool|numeric false or stack level
+	 * @return bool|int false or stack level
 	 */
 	public function logging_was_called_by( $func ) {
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );

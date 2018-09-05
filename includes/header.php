@@ -45,32 +45,6 @@ if ( ! function_exists( 'fluid_custom_css' ) ) {
 }
 
 /**
- *  Limit length of title string
- *
- * @since 20150502
- * @param string $title
- * @return string
- */
-if (!function_exists('fluid_browser_title')) {
-  function fluid_browser_title( $title ) {
-    if (!is_feed()) {
-      $test = get_bloginfo('name');
-      if (empty($title)) {
-        $title = $test;
-      } else {
-        $spot = strpos($title,$test);
-        if ($spot) {
-          $title = substr($title,0,$spot);
-        }
-        $title.= ($test) ? " $test" : '';
-      }
-    }
-    return $title;
-  }
-  add_filter('wp_title','fluid_browser_title',10,2); // FIXME:  wp_title to be deprecated
-}
-
-/**
  * put in theme header links
  *
  * @since 20180418
@@ -101,7 +75,7 @@ if ( ! function_exists( 'fluid_header_links' ) ) {
  *
  * @since 20150511
  * @param string $html
- * @param numeric $blog_id
+ * @param int $blog_id
  * @return string
  */
 if ( ! function_exists( 'fluid_header_logo' ) ) {
