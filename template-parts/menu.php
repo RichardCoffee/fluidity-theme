@@ -1,7 +1,11 @@
-<?php  /* Name: Menu Default */
+<?php
 /*
  *  File Name:  template-parts/menu.php
  *
+ * @since 20160301
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/template-parts/menu.php
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -15,8 +19,6 @@ do_action( 'fluid_before_menu', $page );
 who_am_i();
 
 if ( has_nav_menu( $menu ) ) {
-
-#	$main_css = get_menu_class($menu,$page);
 
 	$nav_attrs = array(
 		'id'    => 'site-navigation',
@@ -41,19 +43,18 @@ if ( has_nav_menu( $menu ) ) {
 
 		fluid()->tag( 'nav', $nav_attrs ); ?>
 
-			<div class="navbar-header">
-				<?php fluid()->tag( 'button', $button_attrs ); ?>
-					<span class="sr-only">Toggle navigation</span>
-					<?php fluid()->fawe( 'fa-bars' ); ?>
+			<div class="navbar-header"><?php
+					fluid()->tag( 'button', $button_attrs ); ?>
+					<span class="sr-only"><?php
+						esc_html_e( 'Toggle navigation', 'tcc-fluid' ); ?>
+					</span><?php
+					fluid()->fawe( 'fa-bars' ); ?>
 				</button>
 				<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>"><?php microdata()->bloginfo( 'name' ); ?></a>
 			</div>
 
 			<div class="collapse navbar-collapse navbar-<?php echo $menu; ?>-collapse"><?php
-				// FIXME: add filter for wp_nav_menu($args)
-#				wp_nav_menu( array('menu'=>$menu,'container'=>false,'menu_class'=>'nav navbar-nav','walker'=> new TCC_NavWalker_Bootstrap(), 'fallback_cb' => '' ) );
-#				require_once( FLUIDITY_HOME . 'vendor/wp-bootstrap-navwalker.php' );
-				wp_nav_menu( array(
+				$args = array(
 					'menu'           => $menu,
 					'menu_id'        => "$menu-menu",
 					'theme_location' => $menu,
@@ -62,7 +63,9 @@ if ( has_nav_menu( $menu ) ) {
 					'menu_class'     => 'nav navbar-nav',
 					'walker'         => new TCC_NavWalker_Bootstrap(),
 					'fallback_cb'    => 'TCC_NavWalker_Bootstrap::fallback'
-				) );
+				);
+				$args = apply_filters( 'fluid_nav_menu', $args );
+				wp_nav_menu( $args );
 				fluid_show_color_scheme(); ?>
 			</div>
 
@@ -76,19 +79,21 @@ if ( has_nav_menu( $menu ) ) {
 		fluid()->tag( 'nav', $nav_attrs );
 
 			fluid()->tag( 'button', $button_attrs ); ?>
-				<span class="sr-only">Toggle navigation</span>
-				<?php fluid()->fawe( 'fa-bars' ); ?>
+				<span class="sr-only"><?php
+					esc_html_e( 'Toggle navigation', 'tcc-fluid' ); ?>
+				</span><?php
+			fluid()->fawe( 'fa-bars' ); ?>
 			</button><?php
 
-			wp_nav_menu( array(
+			$args = array(
 				'menu'           => $menu,
 				'menu_id'        => "$menu-menu",
 				'theme_location' => $menu,
-				'fallback_cb'    => '' )
+				'fallback_cb'    => ''
 			);
-
+			$args = apply_filters( 'fluid_nav_menu', $args );
+			wp_nav_menu( $args );
 			fluid_show_color_scheme(); ?>
-
 		</nav><!-- #site-navigation --><?php
 
 	}

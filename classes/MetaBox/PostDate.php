@@ -15,7 +15,6 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	protected $slug     = 'postdate_meta_box';
 
 	public function __construct( $args = array() ) {
-		//  FIXME:  separate all text into filterable array
 		$this->title = __( 'Displayed Post Date', 'tcc-fluid' );
 		parent::__construct( $args );
 	}
