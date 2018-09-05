@@ -51,10 +51,10 @@ abstract class TCC_NavWalker_Dynamic {
 	}
 
 	protected function add_menu_item( $title ) {
-		custom_menu_items::add_item( $this->menu, $title, $this->link, $this->position, 0, $this->top_id );
-#		$item = $this->item_defaults();
-#		$item['title'] = $title;
-#		$this->add_item( $item );
+#		custom_menu_items::add_item( $this->menu, $title, $this->link, $this->position, 0, $this->top_id );
+		$item = $this->item_defaults();
+		$item['title'] = $title;
+		$this->add_item( $item );
 	}
 
 	protected function sub_menu_loop( $items ) {
@@ -81,13 +81,13 @@ abstract class TCC_NavWalker_Dynamic {
 	}
 
 	protected function add_item( $item ) {
-		$instance = custom_menu_items::get_instance();
-		$instance->menus[ $item['menu'] ] = $item['menu'];
-		$instance->menu_items[] = $item;
+		$slug   = $item['menu'];
+		$custom = custom_menu_items::get_instance();
+		$custom->menus[ $slug ] = $slug;
+		$custom->menu_items[] = $item;
 	}
 
 	public function fluid_custom_css() {
-fluid()->log( 'width: ' . $this->width );
 		$width = round( $this->width / 4 * 3 );
 		echo "\n.main-navigation ul.sub-menu {\n\twidth: {$width}em;\n}";
 	}
