@@ -1,8 +1,10 @@
 <?php
 /*
- *  File Name: template-parts/content.php
+ *  File Name: template-parts/content-attachment.php
  *
- *  Notes:  can only be used within The Loop
+ * @since 20180904
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 defined( 'ABSPATH' ) || exit;

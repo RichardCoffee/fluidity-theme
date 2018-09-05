@@ -2,7 +2,9 @@
 /*
  *  File Name: template-parts/content.php
  *
- *  Notes:  can only be used within The Loop
+ * @since 20160301
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  */
 
 defined( 'ABSPATH' ) || exit;
