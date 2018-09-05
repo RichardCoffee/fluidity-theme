@@ -73,6 +73,7 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 				$this->width = max( $this->width, ( strlen( $term->name . $term->count ) + 3 ) );
 				$this->add_sub_menu_item( $name, $path, $order++ );
 			}
+fluid()->log( 'width:  ' . $this->width );
 		}
 	}
 

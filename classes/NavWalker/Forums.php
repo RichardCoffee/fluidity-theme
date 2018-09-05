@@ -22,8 +22,8 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 		if ( ! is_callable( 'bbpress' ) ) { return; }
 		$this->title = $this->get_forums_title();
 		$forums = $this->get_forums();
-fluid()->log( $forums );
-#		$forums = $this->get_forum_count( $forums );
+		$forums = $this->get_forum_count( $forums );
+fluid()->log( 'forums', $forums );
 	}
 
 	protected function get_forums_title() {
@@ -43,8 +43,8 @@ fluid()->log( $forums );
 	}
 
 	protected function get_forum_counts( $forums ) {
-		foreach( $forums as $forum ) {
-			#$cnt = bbp_get_forum_topic_count( $forum_id );
+		foreach( $forums as &$forum ) {
+			$forum->comment_count = bbp_get_forum_topic_count( $forum->ID );
 		}
 	}
 

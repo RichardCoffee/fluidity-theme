@@ -38,8 +38,22 @@ abstract class TCC_NavWalker_Dynamic {
 		add_action( 'fluid_custom_css', [ $this, 'fluid_custom_css' ] );
 	}
 
+	protected function item_defaults() {
+		return array(
+			'menu'   => $this->menu,
+			'title'  => '',
+			'url'    => $this->link,
+			'order'  => $this->position,
+			'parent' => 0,
+			'ID'     => $this->top_id,
+			'type'   => $this->slug,
+		);
+	}
+
 	protected function add_menu_item( $title ) {
-		custom_menu_items::add_item( $this->menu, $title, $this->link, $this->position, 0, $this->top_id );
+		$item = $this->item_defaults();
+		$item['title'] = $title;
+		$this->add_item( $item );
 	}
 
 	protected function sub_menu_loop( $items ) {
@@ -52,10 +66,26 @@ abstract class TCC_NavWalker_Dynamic {
 	}
 
 	protected function add_sub_menu_item( $name, $path, $order ) {
-		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
+		$item = array_merge(
+			$this->item_defaults(),
+			array(
+				'title'  => $name,
+				'url'    => $path,
+				'order'  => $order,
+				'parent' => $this->top_id,
+			)
+		);
+		$this->add_item( $item );
+	}
+
+	protected function add_item( $item ) {
+		$instance = custom_menu_items::get_instance();
+		$instance->menus[ $item['menu'] ] = $item['menu'];
+		$instance->menu_items[] = $item;
 	}
 
 	public function fluid_custom_css() {
+fluid()->log( 'width: ' . $this->width );
 		$width = round( $this->width / 4 * 3 );
 		echo "\n.main-navigation ul.sub-menu {\n\twidth: {$width}em;\n}";
 	}
