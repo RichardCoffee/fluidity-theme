@@ -102,7 +102,7 @@ add_filter( 'nav_menu_item_id', function( $arg, $item, $args, $depth ) {
 
 	public function fluid_custom_css() {
 		$width = round( $this->width / 4 * 3 );
-		echo "\n.main-navigation ul.sub-menu {\n\twidth: {$width}em;\n}";
+		echo "\nli.menu-item-type-{$this->slug} ul.sub-menu {\n\twidth: {$width}em;\n}";
 	}
 
 	/**
