@@ -3,8 +3,13 @@
  *  File: printer.php
  *  Description:  Print post information as pdf
  *
+ * @package Fluidity
+ * @subpackage Print
+ * @since 20160215
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/printer.php
  */
-
 defined( 'ABSPATH' ) || exit;
 
 if (!isset($post->ID)) {

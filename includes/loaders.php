@@ -106,6 +106,19 @@ if ( ! function_exists( 'fluid_customizer' ) ) {
 }
 
 /**
+ * Returns an instance of the Forums class
+ *
+ * @since 20180905
+ * @param array $args
+ * @return TCC_NavWalker_Forums
+ */
+if ( ! function_exists( 'fluid_forums' ) ) {
+	function fluid_forums( $args = array() ) {
+		return new TCC_NavWalker_Forums( $args );
+	}
+}
+
+/**
  * Returns an instance of the Theme Login class
  *
  * @since 20170121

@@ -1,10 +1,16 @@
 <?php
-
 /**
  * The template for displaying 404 pages (Not Found)
+ *
+ * @package Fluidity
+ * @subpackage Main
+ * @since 20150512
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/404.php
  */
-
 defined( 'ABSPATH' ) || exit;
+
 $mypage = get_page_slug( '404' );
 add_filter( 'fluid_404_container_type', function( $args ) { return 'container'; } );
 

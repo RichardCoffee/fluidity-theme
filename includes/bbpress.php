@@ -1,12 +1,15 @@
 <?php
-
-defined( 'ABSPATH' ) || exit;
-
 /**
- *  includes/bbpress.php
+ *  handles tasks associated with the bbPress plugin
  *
+ * @package Fluidity
+ * @subpackage bbPress
+ * @since 20180905
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/bbpress.php
  */
-
+defined( 'ABSPATH' ) || exit;
 /**
  *  bugfix
  *

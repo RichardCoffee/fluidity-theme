@@ -2,8 +2,13 @@
 /**
  *  functions.php
  *
+ * @package Fluidity
+ * @subpackage Main
+ * @since 20150501
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/functions.php
  */
-
 defined( 'ABSPATH' ) || exit;
 
 define( 'FLUIDITY_HOME', trailingslashit( dirname( __FILE__ ) ) );  #  get current directory

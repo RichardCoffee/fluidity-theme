@@ -1,10 +1,13 @@
 <?php
-
-/*
- *  fluidity/footer.php
+/**
  *
+ * @package Fluidity
+ * @subpackage Main
+ * @since 20150511
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/footer.php
  */
-
 defined( 'ABSPATH' ) || exit; ?>
 
 		<footer>

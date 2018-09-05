@@ -2,8 +2,13 @@
 /*
  *  sidebar.php
  *
+ * @package Fluidity
+ * @subpackage Sidebar
+ * @since 20150511
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/sidebar.php
  */
-
 defined( 'ABSPATH' ) || exit;
 
 who_am_i();

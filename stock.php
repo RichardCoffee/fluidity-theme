@@ -1,7 +1,7 @@
 <?php
-/*
- *  File Name: stock.php
- *
+/**
+ * @package Fluidity
+ * @subpackage Main
  * @since 20161206
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee

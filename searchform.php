@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * @package Fluidity
+ * @subpackage Search
+ * @since 20150520
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/searchform.php
+ */
 defined( 'ABSPATH' ) || exit;
 
 include_once( FLUIDITY_HOME . 'includes/search.php' );

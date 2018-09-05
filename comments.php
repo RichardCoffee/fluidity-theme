@@ -2,10 +2,15 @@
 /*
  * File Name: comments.php
  *
- *  http://www.christianmontoya.com
- *  http://themeshaper.com/2012/11/04/the-wordpress-theme-comments-template/
+ * @package Fluidity
+ * @subpackage Comments
+ * @since 20150516
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/comments.php
+ * @link http://www.christianmontoya.com
+ * @link http://themeshaper.com/2012/11/04/the-wordpress-theme-comments-template/
  */
-
 defined( 'ABSPATH' ) || exit;
 
 if ( post_password_required() ) {

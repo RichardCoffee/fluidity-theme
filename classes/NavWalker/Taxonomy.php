@@ -2,31 +2,27 @@
 /**
  *  Add the terms of a taxonomy to a menu
  *
+ * @package Fluidity
+ * @subpackage Taxonomy
  * @since 20170111
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/NavWalker/Taxonomy.php
  * @link https://gist.github.com/daggerhart/c17bdc51662be5a588c9
  */
+defined( 'ABSPATH' ) || exit;
 
-class TCC_NavWalker_Taxonomy {
+class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 
-	private $limit    =  0;
-	private $maximum  =  10;
-	private $menu     = 'primary';
-	private $order    = 'DESC';
-	private $orderby  = 'count';
-	private $position =  0;
-	private $show_sub =  0;
-	private $taxonomy = 'category';
-	private $top_id   =  529876; // hopefully there won't actually be a menu item with this id.  TODO: check this in db
-	private $title    = '';
-
-	use TCC_Trait_ParseArgs;
+	protected $order    = 'DESC';
+	protected $orderby  = 'count';
+	protected $parent   =  0;
+	protected $slug     = 'taxonomy';
+	protected $taxonomy = 'category';
 
 
 	public function __construct( $args = array() ) {
-		$this->parse_args( $args );
+		parent::__construct( $args );
 		$terms = $this->get_terms();
 		if ( is_wp_error( $terms ) ) {
 			fluid()->log( $terms );
@@ -50,7 +46,7 @@ class TCC_NavWalker_Taxonomy {
 			'hide_empty'      => true,
 			'order'           => $this->order,
 			'orderby'         => $this->orderby,
-			'parent'          => $this->show_sub, // 0 = show only top-level terms
+			'parent'          => $this->parent, // 0 = show only top-level terms
 			'suppress_filter' => false,
 		);
 		return get_terms( $args );
@@ -65,26 +61,18 @@ class TCC_NavWalker_Taxonomy {
 	public function add_terms( $terms ) {
 		$tax_meta = get_taxonomy( $this->taxonomy );
 		if ( $tax_meta ) {
-			require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
 			$title = ( empty( $this->title ) ) ? $tax_meta->labels->name : $this->title;
-			custom_menu_items::add_item( $this->menu, $title, 'javascript: void(0);', $this->position, 0, $this->top_id );
+			$this->add_menu_item( $title );
 			$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
 			$order = 1;
-			$width = 0;
 			foreach( $terms as $term ) {
 				if ( ! ( $this->limit < $term->count ) ) { continue; }
 				if ( $order > $this->maximum ) { continue; }
 				$name  = sprintf( $pattern, $term->name, $term->count );
 				$path  = home_url( '/' ) . 'category/' . $term->slug;
-				$width = max( $width, ( strlen( $term->name . $term->count ) + 3 ) );
-#fluid()->log( $name, $path, $width );
-				custom_menu_items::add_item( $this->menu, $name, $path, $order++, $this->top_id );
-			} ?>
-			<style>
-				.main-navigation ul.sub-menu {
-					width: <?php echo round( $width / 4 * 3 ); ?>em;
-				}
-			</style><?php
+				$this->width = max( $this->width, ( strlen( $term->name . $term->count ) + 3 ) );
+				$this->add_sub_menu_item( $name, $path, $order++ );
+			}
 		}
 	}
 
