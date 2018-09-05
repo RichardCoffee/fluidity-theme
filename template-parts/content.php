@@ -3,6 +3,7 @@
  *  File Name: template-parts/content.php
  *
  * @since 20160301
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/template-parts/content.php
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
  */
