@@ -28,11 +28,14 @@ abstract class TCC_NavWalker_Dynamic {
 	protected $title    = '';
 	protected $width    =  1;
 
+	static private $custom = null;
+
 	use TCC_Trait_ParseArgs;
 
 
 	public function __construct( $args = array() ) {
 		require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
+		self::$custom = custom_menu_items::get_instance();
 		$this->top_id += mt_rand( 1, $this->top_id );
 		$this->parse_args( $args );
 		add_action( 'fluid_custom_css', [ $this, 'fluid_custom_css' ] );
@@ -95,9 +98,8 @@ add_filter( 'nav_menu_item_id', function( $arg, $item, $args, $depth ) {
 
 	protected function add_item( $item ) {
 		$slug   = $item['menu'];
-		$custom = custom_menu_items::get_instance();
-		$custom->menus[ $slug ] = $slug;
-		$custom->menu_items[] = $item;
+		self::$custom->menus[ $slug ] = $slug;
+		self::$custom->menu_items[] = $item;
 	}
 
 	public function fluid_custom_css() {
