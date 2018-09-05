@@ -177,9 +177,7 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 				} else {
 					$post = get_queried_object();  #  $wp_query->queried_object
 					if ( $post instanceof WP_Post ) {
-						if ( ! empty( $post->post_type ) && ( $post->post_type === 'page' ) ) {
-							$slug = $post->post_name;
-						} else if ( ! empty( $post->post_name ) ) {
+						if ( ! empty( $post->post_name ) ) {
 							$slug = $post->post_name;
 						} else if ( ! empty( $post->name ) ) {
 							$slug = $post->name;
