@@ -19,9 +19,9 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 	 *
 	 * @since 20180905
 	 * @var string
-	 * @see TCC_NavWalker_Dynamic::$slug
+	 * @see TCC_NavWalker_Dynamic::$type
 	 */
-	protected $slug = 'forums';
+	protected $type = 'forum';
 
 	/**
 	 *  constructor function.

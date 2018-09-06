@@ -40,9 +40,9 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 	 *
 	 * @since 20180816
 	 * @var string
-	 * @see TCC_NavWalker_Dynamic::$slug
+	 * @see TCC_NavWalker_Dynamic::$type
 	 */
-	protected $slug = 'navtax';
+	protected $type = 'navtax';
 	/**
 	 *  default taxonomy used for submenu items.  Also used as css postfix for submenu items.
 	 *

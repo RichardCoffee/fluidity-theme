@@ -60,7 +60,7 @@ abstract class TCC_NavWalker_Dynamic {
 	 * @since 20180905
 	 * @var string
 	 */
-	protected $slug = 'dynamic';
+	protected $type = 'dynamic';
 	/**
 	 *  default id used for the main menu item.
 	 *
@@ -147,7 +147,7 @@ abstract class TCC_NavWalker_Dynamic {
 			$this->item_defaults(),
 			array(
 				'title' => $title,
-				'type'  => $this->slug,
+				'type'  => $this->type,
 				'ID'    => $this->top_id,
 			)
 		);
@@ -217,7 +217,7 @@ abstract class TCC_NavWalker_Dynamic {
 	 */
 	public function fluid_custom_css() {
 		$width = round( $this->width / 4 * 3 );
-		echo "\nli.menu-item-type-{$this->slug} ul.sub-menu {\n\twidth: {$width}em;\n}";
+		echo "\nli.menu-item-type-{$this->type} ul.sub-menu {\n\twidth: {$width}em;\n}";
 	}
 
 	/**
