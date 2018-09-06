@@ -13,7 +13,7 @@ $bbpress_search = array(
 	'form' => array(
 		'id'     => 'bbp-search-form',
 		'method' => 'get',
-		'action' =>  bbp_search_url(),
+		'action' =>  bbp_get_search_url(),
 		'role'   => 'search',
 	),
 	'label' => array(
