@@ -154,6 +154,20 @@ abstract class TCC_NavWalker_Dynamic {
 		$this->add_item( $item );
 	}
 
+	protected function add_menu_object( $title, $object, $object_id ) {
+		$item = array_merge(
+			$this->item_defaults(),
+			array(
+				'title'  => $title,
+				'type'   => $this->type,
+				'ID'     => $this->top_id,
+				'object' => $object,
+				'object_id' => $object_id,
+			)
+		);
+		$this->add_item( $item );
+	}
+
 	/**
 	 *  used as a default loop for adding submenu items.
 	 *

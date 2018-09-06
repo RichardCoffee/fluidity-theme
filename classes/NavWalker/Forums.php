@@ -85,11 +85,19 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 	 *
 	 * @since 20180906
 	 * @param array $forums
+	 * @uses tcc_get_page_id_by_slug()
+	 * @uses fluid()
 	 * @uses TCC_Trait_Attributes::get_element()
+	 * @uses bbp_get_forum_permalink()
 	 */
 	protected function add_forums( $forums ) {
 		$title = ( empty( $this->title ) ) ? $this->get_forums_title() : $this->title;
-		$this->add_menu_item( $title );
+		$page_id = tcc_get_page_id_by_slug( $this->type );
+		if ( $page_id ) {
+			$this->add_menu_object( $title, $this->type, $page_id );
+		} else {
+			$this->add_menu_item( $title );
+		}
 		$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
 		$order   = 1;
 		foreach( $forums as $forum ) {
