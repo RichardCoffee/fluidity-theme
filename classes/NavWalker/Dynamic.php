@@ -158,14 +158,18 @@ abstract class TCC_NavWalker_Dynamic {
 	 * @since 20180905
 	 * @param array $items an array of associative arrays of items to be
 	 *                     displayed.  Minimum required indexes are 'count',
-	 *                     'name', and 'path'.
+	 *                     'name', and 'path'.  Array should be pre-sorted.
+	 * @uses TCC_Trait_Attributes::get_element()
 	 */
 	protected function sub_menu_loop( $items ) {
-		$order = 1;
+		$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
+		$order   = 1;
 		foreach( $items as $item ) {
 			if ( ! ( $this->limit < $item['count'] ) ) { break; }
 			if ( $order > $this->maximum ) { break; }
-			$this->add_sub_menu_item( $item['name'], $item['path'], $order++ );
+			$name = sprintf( $pattern, $item['name'], $item['count'] );
+			$this->width = max( $this->width, ( strlen( $item['name'] . $item['count'] ) + 3 ) );
+			$this->add_sub_menu_item( $name, $item['path'], $order++ );
 		}
 	}
 

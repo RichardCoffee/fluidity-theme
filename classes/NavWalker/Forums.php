@@ -81,10 +81,20 @@ fluid()->log( 'forums', $forums, $counts );
 	 *  add forums as main menu item.
 	 *
 	 * @since 20180906
+	 * @param array $forums
+	 * @uses TCC_Trait_Attributes::get_element()
 	 */
 	protected function add_forums( $forums ) {
 		$title = ( empty( $this->title ) ) ? $this->get_forums_title() : $this->title;
 		$this->add_menu_item( $title );
+		$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
+		$order   = 1;
+		foreach( $forums as $forum ) {
+			$name = sprintf( $pattern, $forum->post_title, $forum->topic_count );
+			$path = bbp_get_forum_permalink( $forum->ID );
+			$this->width = max( $this->width, ( strlen( $forum->post_title . $forum->topic_count ) + 3 ) );
+			$this->add_sub_menu_item( $name, $path, $order++, 'forum' );
+		}
 	}
 
 	/**
