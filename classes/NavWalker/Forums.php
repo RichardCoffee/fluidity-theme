@@ -123,7 +123,9 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 	}
 
 	public function nav_menu_css_class( $classes, $item, $args, $depth ) {
-		fluid()->log( $classes, $item, $args, $depth );
+		if ( in_array( 'menu-item-type-forum', $classes ) && in_array( 'menu-item-has-children', $classes ) ) {
+			$classes[] = 'current-menu-item';
+		}
 		return $classes;
 	}
 
