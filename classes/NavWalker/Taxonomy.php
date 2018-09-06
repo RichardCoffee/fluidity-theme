@@ -19,6 +19,7 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 	protected $parent   =  0;
 	protected $slug     = 'navtax';
 	protected $taxonomy = 'category';
+	protected $type     = 'term';
 
 
 	public function __construct( $args = array() ) {

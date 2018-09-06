@@ -63,13 +63,13 @@ add_filter( 'nav_menu_item_id', function( $arg, $item, $args, $depth ) {
 			'order'  => $this->position,
 			'parent' => 0,
 			'ID'     => $this->top_id,
-			'type'   => $this->slug,
 		);
 	}
 
 	protected function add_menu_item( $title ) {
 		$item = $this->item_defaults();
 		$item['title'] = $title;
+		$item['type']  = $this->slug;
 		$this->add_item( $item );
 	}
 
@@ -83,14 +83,15 @@ add_filter( 'nav_menu_item_id', function( $arg, $item, $args, $depth ) {
 	}
 
 	protected function add_sub_menu_item( $name, $path, $order ) {
-		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
-/*		$item = array_merge(
+#		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
+		$item = array_merge(
 			$this->item_defaults(),
 			array(
 				'title'  => $name,
 				'url'    => $path,
 				'order'  => $order,
 				'parent' => $this->top_id,
+				'type'   => $this->type,
 			)
 		);
 		$this->add_item( $item ); //*/
