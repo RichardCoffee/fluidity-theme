@@ -37,7 +37,7 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 		if ( ! is_callable( 'bbpress' ) ) { return; }
-		$this->link = home_url( '/' ) . fluid()->bbp_get_form_option( '_bbp_root_slug', 'forum', true );
+		$this->link .= fluid()->bbp_get_form_option( '_bbp_root_slug', 'forum', true );
 		$forums = $this->get_forums();
 		$counts = $this->get_forum_counts( $forums );
 fluid()->log( 'forums', $forums, $counts );

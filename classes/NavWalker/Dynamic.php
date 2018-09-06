@@ -112,6 +112,7 @@ abstract class TCC_NavWalker_Dynamic {
 		require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
 		self::$custom = custom_menu_items::get_instance();
 		$this->top_id += mt_rand( 1, $this->top_id );
+		$this->link    = home_url( '/' );
 		$this->parse_args( $args );
 		add_action( 'fluid_custom_css',   [ $this, 'fluid_custom_css' ] );
 #		add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 100, 4 );
