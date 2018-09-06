@@ -14,14 +14,53 @@ defined( 'ABSPATH' ) || exit;
 
 class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 
-	protected $order    = 'DESC';
-	protected $orderby  = 'count';
-	protected $parent   =  0;
-	protected $slug     = 'navtax';
+	/**
+	 *  default order that terms are retrieved in.
+	 *
+	 * @since 20180816
+	 * @var string
+	 */
+	protected $order = 'DESC';
+	/**
+	 *  default field used to order terms.
+	 *
+	 * @since 20180816
+	 * @var string
+	 */
+	protected $orderby = 'count';
+	/**
+	 *  default parent id.
+	 *
+	 * @since 20180816
+	 * @var int
+	 */
+	protected $parent =  0;
+	/**
+	 *  default string used as css postfix for menu item.
+	 *
+	 * @since 20180816
+	 * @var string
+	 * @see TCC_NavWalker_Dynamic::$slug
+	 */
+	protected $slug = 'navtax';
+	/**
+	 *  default taxonomy used for submenu items.  Also used as css postfix for submenu items.
+	 *
+	 * @since 20180816
+	 * @var string
+	 */
 	protected $taxonomy = 'category';
-	protected $type     = 'term';
 
-
+	/**
+	 *  constructor function.
+	 *
+	 * @since 20180905
+	 * @param array $args Optional.  Associative array, whose only valid indexes are
+	 *                    existing class properties, with additional class properties
+	 *                    found in TCC_NavWalker_Dynamic. All other indexes will be ignored.
+	 * @uses TCC_NavWalker_Dynamic::__constructer()
+	 * @uses TCC_Trait_Logging::log()
+	 */
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 		$terms = $this->get_terms();
@@ -58,6 +97,7 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 	 *
 	 * @since 20180916
 	 * @param array $terms
+	 * @uses TCC_Trait_Attributes::get_element()
 	 */
 	public function add_terms( $terms ) {
 		$tax_meta = get_taxonomy( $this->taxonomy );
@@ -67,12 +107,12 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 			$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
 			$order = 1;
 			foreach( $terms as $term ) {
-				if ( ! ( $this->limit < $term->count ) ) { continue; }
-				if ( $order > $this->maximum ) { continue; }
+				if ( ! ( $this->limit < $term->count ) ) { break; }
+				if ( $order > $this->maximum ) { break; }
 				$name  = sprintf( $pattern, $term->name, $term->count );
 				$path  = home_url( '/' ) . 'category/' . $term->slug;
 				$this->width = max( $this->width, ( strlen( $term->name . $term->count ) + 3 ) );
-				$this->add_sub_menu_item( $name, $path, $order++, 'category' );
+				$this->add_sub_menu_item( $name, $path, $order++, $this->taxonomy );
 			}
 		}
 	}
