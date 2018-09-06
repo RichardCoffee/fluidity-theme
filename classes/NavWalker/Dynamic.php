@@ -51,8 +51,11 @@ add_filter( 'nav_menu_css_class', function( $classes, $item, $args, $depth ) {
 add_filter( 'nav_menu_item_id', function( $arg, $item, $args, $depth ) {
 	fluid()->log( $arg, $item, $args, $depth );
 	return $arg;
-}, 100, 4 );
-*/
+}, 100, 4 ); */
+add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
+	fluid()->log( 'nav_menu_submenu_css_class', $classes, $args, $depth );
+	return $classes;
+} );
 	}
 
 	protected function item_defaults() {
