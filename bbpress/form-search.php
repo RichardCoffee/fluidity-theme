@@ -29,14 +29,14 @@ $bbpress_search = array(
 		'type'     => 'text',
 		'id'       => 'bbp_search',
 		'name'     => 'bbp_search',
-		'tabindex' =>  bbp_tab_index(),
+		'tabindex' =>  bbp_get_tab_index(),
 		'value'    =>  bbp_get_search_terms(),
 	),
 	'button' => array(
 		'type'     => 'submit',
 		'id'       => 'bbp_search_submit',
 		'class'    => 'button',
-		'tabindex' =>  bbp_tab_index(),
+		'tabindex' =>  bbp_get_tab_index(),
 	),
 	'text' => array(
 		'label'  => __( 'Search for:', 'bbpress' ),
