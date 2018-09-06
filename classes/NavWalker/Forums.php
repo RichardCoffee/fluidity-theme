@@ -42,6 +42,7 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 		$counts = $this->get_forum_counts( $forums );
 #fluid()->log( 'forums', $forums, $counts );
 		$this->add_forums( $forums );
+		$this->check_queried_object();
 	}
 
 	/**
@@ -85,26 +86,20 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 	 *
 	 * @since 20180906
 	 * @param array $forums
-	 * @uses tcc_get_page_id_by_slug()
 	 * @uses fluid()
 	 * @uses TCC_Trait_Attributes::get_element()
 	 * @uses bbp_get_forum_permalink()
 	 */
 	protected function add_forums( $forums ) {
-		$title = ( empty( $this->title ) ) ? $this->get_forums_title() : $this->title;
-		$page_id = tcc_get_page_id_by_slug( $this->type );
-		if ( $page_id ) {
-			$this->add_menu_object( $title, $this->type, $page_id );
-		} else {
-			$this->add_menu_item( $title );
-		}
-		$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
 		$order   = 1;
+		$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
+		$title   = ( empty( $this->title ) ) ? $this->get_forums_title() : $this->title;
+		$this->add_menu_item( $title );
 		foreach( $forums as $forum ) {
 			$name = sprintf( $pattern, $forum->post_title, $forum->topic_count );
 			$path = bbp_get_forum_permalink( $forum->ID );
-			$this->width = max( $this->width, ( strlen( $forum->post_title . $forum->topic_count ) + 3 ) );
 			$this->add_sub_menu_item( $name, $path, $order++, 'forum' );
+			$this->width = max( $this->width, ( strlen( $forum->post_title . $forum->topic_count ) + 3 ) );
 		}
 	}
 
@@ -118,6 +113,18 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 	protected function get_forums_title() {
 		$labels = bbp_get_forum_post_type_labels();
 		return $labels['menu_name'];
+	}
+
+	protected function check_queried_object() {
+		$object = get_queried_object();
+		if ( ( $object instanceof WP_Post_Type ) && ( $object->name === $this->type ) ) {
+			add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 100, 4 );
+		}
+	}
+
+	public function nav_menu_css_class( $classes, $item, $args, $depth ) {
+		fluid()->log( $classes, $item, $args, $depth );
+		return $classes;
 	}
 
 
