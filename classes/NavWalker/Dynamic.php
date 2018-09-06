@@ -44,7 +44,7 @@ abstract class TCC_NavWalker_Dynamic {
 add_filter( 'nav_menu_item_args', function( $args, $item, $depth ) {
 	fluid()->log( $args, $item, $depth );
 	return $args;
-}, 100, 3 ); */
+}, 100, 3 ); *//*
 add_filter( 'nav_menu_css_class', function( $classes, $item, $args, $depth ) {
 	fluid()->log( $classes, $item, $args, $depth );
 	return $classes;
