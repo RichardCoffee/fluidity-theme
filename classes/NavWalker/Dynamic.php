@@ -8,6 +8,7 @@
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/NavWalker/Dynamic.php
+ * @link https://www.daggerhart.com/dynamically-add-item-to-wordpress-menus/
  * @link https://gist.github.com/daggerhart/c17bdc51662be5a588c9
  */
 defined( 'ABSPATH' ) || exit;
@@ -43,19 +44,19 @@ abstract class TCC_NavWalker_Dynamic {
 add_filter( 'nav_menu_item_args', function( $args, $item, $depth ) {
 	fluid()->log( $args, $item, $depth );
 	return $args;
-}, 100, 3 );
+}, 100, 3 ); */
 add_filter( 'nav_menu_css_class', function( $classes, $item, $args, $depth ) {
 	fluid()->log( $classes, $item, $args, $depth );
 	return $classes;
-}, 100, 4 );
+}, 100, 4 ); /*
 add_filter( 'nav_menu_item_id', function( $arg, $item, $args, $depth ) {
 	fluid()->log( $arg, $item, $args, $depth );
 	return $arg;
-}, 100, 4 ); */
+}, 100, 4 );
 add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 	fluid()->log( 'nav_menu_submenu_css_class', $classes, $args, $depth );
 	return $classes;
-}, 100, 3 );
+}, 100, 3 ); //*/
 	}
 
 	protected function item_defaults() {
@@ -94,7 +95,7 @@ add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 				'url'    => $path,
 				'order'  => $order,
 				'parent' => $this->top_id,
-				'type'   => $this->type,
+				'type'   => 'custom',
 			)
 		);
 		$this->add_item( $item ); //*/
