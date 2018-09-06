@@ -119,7 +119,7 @@ add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 	}
 
 	public function nav_menu_css_class( $classes, $item, $args, $depth ) {
-fluid_log( $classes, $item, $args, $depth );
+fluid()->log( $classes, $item, $args, $depth );
 		return $classes;
 	}
 
