@@ -1,4 +1,15 @@
 <?php
+/*
+ *  Handles all login tasks
+ *
+ * @package Fluidity
+ * @subpackage Login
+ * @since 20180318
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/Login.php
+ */
+defined( 'ABSPATH' ) || exit;
 
 
 class TCC_Theme_Login {
