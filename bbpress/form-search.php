@@ -28,6 +28,7 @@ $bbpress_search = array(
 	'search' => array(
 		'type'     => 'text',
 		'id'       => 'bbp_search',
+		'class'    => 'form-control searchform-input',
 		'name'     => 'bbp_search',
 		'tabindex' =>  bbp_get_tab_index(),
 		'value'    =>  bbp_get_search_terms(),
@@ -35,7 +36,7 @@ $bbpress_search = array(
 	'button' => array(
 		'type'     => 'submit',
 		'id'       => 'bbp_search_submit',
-		'class'    => 'button',
+		'class'    => 'button btn btn-fluidity btn-search',
 		'tabindex' =>  bbp_get_tab_index(),
 	),
 	'text' => array(
@@ -45,4 +46,3 @@ $bbpress_search = array(
 );
 
 fluid_show_search_form( $bbpress_search );
-

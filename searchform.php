@@ -46,4 +46,3 @@ $theme_search = array(
 );
 
 fluid_show_search_form( $theme_search );
-
