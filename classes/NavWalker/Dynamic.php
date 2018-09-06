@@ -39,7 +39,8 @@ abstract class TCC_NavWalker_Dynamic {
 		self::$custom = custom_menu_items::get_instance();
 		$this->top_id += mt_rand( 1, $this->top_id );
 		$this->parse_args( $args );
-		add_action( 'fluid_custom_css', [ $this, 'fluid_custom_css' ] );
+		add_action( 'fluid_custom_css',   [ $this, 'fluid_custom_css' ] );
+		add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 100, 4 );
 /*
 add_filter( 'nav_menu_item_args', function( $args, $item, $depth ) {
 	fluid()->log( $args, $item, $depth );
@@ -66,14 +67,19 @@ add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 			'url'    => $this->link,
 			'order'  => $this->position,
 			'parent' => 0,
-			'ID'     => $this->top_id,
+			'ID'     => 0,
 		);
 	}
 
 	protected function add_menu_item( $title ) {
-		$item = $this->item_defaults();
-		$item['title'] = $title;
-		$item['type']  = $this->slug;
+		$item = array_merge(
+			$this->item_defaults(),
+			array(
+				'title' => $title,
+				'type'  => $this->slug,
+				'ID'    => $this->top_id,
+			)
+		);
 		$this->add_item( $item );
 	}
 
@@ -86,23 +92,23 @@ add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 		}
 	}
 
-	protected function add_sub_menu_item( $name, $path, $order ) {
-		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
-/*		$item = array_merge(
+	protected function add_sub_menu_item( $name, $path, $order, $type ) {
+#		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
+		$item = array_merge(
 			$this->item_defaults(),
 			array(
 				'title'  => $name,
 				'url'    => $path,
 				'order'  => $order,
 				'parent' => $this->top_id,
-				'type'   => 'custom',
+				'type'   => $type,
 			)
 		);
 		$this->add_item( $item ); //*/
 	}
 
 	protected function add_item( $item ) {
-		$slug   = $item['menu'];
+		$slug = $item['menu'];
 		self::$custom->menus[ $slug ] = $slug;
 		self::$custom->menu_items[] = $item;
 	}
@@ -112,37 +118,10 @@ add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 		echo "\nli.menu-item-type-{$this->slug} ul.sub-menu {\n\twidth: {$width}em;\n}";
 	}
 
-	/**
-	 *  add taxonomy name to top level menu, and taxonomy terms as submenu
-	 *
-	 * @since 20180916
-	 * @param array $terms
-	 *//*
-	public function add_terms( $terms ) {
-		$tax_meta = get_taxonomy( $this->taxonomy );
-		if ( $tax_meta ) {
-			require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
-			$title = ( empty( $this->title ) ) ? $tax_meta->labels->name : $this->title;
-			custom_menu_items::add_item( $this->menu, $title, $this->link, $this->position, 0, $this->top_id );
-			$pattern = '%1$s ' . fluid()->get_element( 'span', [ 'class' => 'term-count' ], '%2$s' );
-			$order = 1;
-			$width = 0;
-			foreach( $terms as $term ) {
-				if ( ! ( $this->limit < $term->count ) ) { continue; }
-				if ( $order > $this->maximum ) { continue; }
-				$name  = sprintf( $pattern, $term->name, $term->count );
-				$path  = home_url( '/' ) . 'category/' . $term->slug;
-				$width = max( $width, ( strlen( $term->name . $term->count ) + 3 ) );
-#fluid()->log( $name, $path, $width );
-				custom_menu_items::add_item( $this->menu, $name, $path, $order++, $this->top_id );
-			} ?>
-			<style>
-				.main-navigation ul.sub-menu {
-					width: <?php echo round( $width / 4 * 3 ); ?>em;
-				}
-			</style><?php
-		}
-	} //*/
+	public function nav_menu_css_class( $classes, $item, $args, $depth ) {
+fluid_log( $classes, $item, $args, $depth );
+		return $classes;
+	}
 
 
 }
