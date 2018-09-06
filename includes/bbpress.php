@@ -236,7 +236,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 					'div#bbpress-forums ul.bbp-search-results',
 				);
 				$css_tags = implode( ",\n", $css );
-				echo "$css_tags { font-size:  {$fontsize}px; }";
+				echo "\n$css_tags {\n\tfont-size:  {$fontsize}px;\n}\n";
 			}
 			$fontosize1 = get_theme_mod( 'font_bbp_font_text_size', 11 );
 			if ( $fontosize1 && ( ! ( $fontosize1 === 11 ) ) ) { # 11 is the default
@@ -246,7 +246,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 					'div#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content',
 				);
 				$css_tags1 = implode( ",\n", $css1 );
-				echo "$css_tags1 { font-size:  {$fontosize1}px; }";
+				echo "\n$css_tags1 {\n\tfont-size:  {$fontosize1}px;\n}\n";
 			}
 		}
 	}
