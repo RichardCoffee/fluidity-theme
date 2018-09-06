@@ -40,24 +40,7 @@ abstract class TCC_NavWalker_Dynamic {
 		$this->top_id += mt_rand( 1, $this->top_id );
 		$this->parse_args( $args );
 		add_action( 'fluid_custom_css',   [ $this, 'fluid_custom_css' ] );
-		add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 100, 4 );
-/*
-add_filter( 'nav_menu_item_args', function( $args, $item, $depth ) {
-	fluid()->log( $args, $item, $depth );
-	return $args;
-}, 100, 3 ); *//*
-add_filter( 'nav_menu_css_class', function( $classes, $item, $args, $depth ) {
-	fluid()->log( $classes, $item, $args, $depth );
-	return $classes;
-}, 100, 4 ); /*
-add_filter( 'nav_menu_item_id', function( $arg, $item, $args, $depth ) {
-	fluid()->log( $arg, $item, $args, $depth );
-	return $arg;
-}, 100, 4 );
-add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
-	fluid()->log( 'nav_menu_submenu_css_class', $classes, $args, $depth );
-	return $classes;
-}, 100, 3 ); //*/
+#		add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 100, 4 );
 	}
 
 	protected function item_defaults() {
@@ -93,7 +76,6 @@ add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 	}
 
 	protected function add_sub_menu_item( $name, $path, $order, $type ) {
-#		custom_menu_items::add_item( $this->menu, $name, $path, $order, $this->top_id );
 		$item = array_merge(
 			$this->item_defaults(),
 			array(
@@ -119,7 +101,7 @@ add_filter( 'nav_menu_submenu_css_class', function( $classes, $args, $depth ) {
 	}
 
 	public function nav_menu_css_class( $classes, $item, $args, $depth ) {
-fluid()->log( $classes, $item, $args, $depth );
+		fluid()->log( $classes, $item, $args, $depth );
 		return $classes;
 	}
 
