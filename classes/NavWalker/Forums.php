@@ -31,11 +31,13 @@ class TCC_NavWalker_Forums extends TCC_NavWalker_Dynamic {
 	 *                    existing class properties, with additional class properties
 	 *                    found in TCC_NavWalker_Dynamic. All other indexes will be ignored.
 	 * @see TCC_NavWalker_Dynamic::__constructer()
+	 * @uses home_url()
+	 * @uses TCC_Theme_Library::bbp_get_form_option()
 	 */
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 		if ( ! is_callable( 'bbpress' ) ) { return; }
-		$this->link = home_url( '/' ) . bbp_form_option( '_bbp_forum_slug', 'forum', true );
+		$this->link = home_url( '/' ) . fluid()->bbp_get_form_option( '_bbp_forum_slug', 'forum', true );
 		$forums = $this->get_forums();
 		$counts = $this->get_forum_counts( $forums );
 fluid()->log( 'forums', $forums, $counts );

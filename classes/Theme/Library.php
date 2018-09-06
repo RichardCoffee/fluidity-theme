@@ -134,5 +134,32 @@ $this->log($meta);
 		return $obj;
 	}
 
+	/**
+	 *  makes the bbPress function available outside of admin pages.
+	 *
+	 * @since 20180906
+	 * @uses get_option()
+	 * @uses esc_attr()
+	 * @uses apply_filters()
+	 * @param string $option
+	 * @param string $default
+	 * @param bool $slug
+	 * @return mixed
+	 */
+	public function bbp_get_form_option( $option, $default = '', $slug = false ) {
+		if ( function_exists( 'bbp_get_form_option' ) ) {
+			return bbp_get_form_option( $option, $default, $slug );
+		}
+		$value = get_option( $option, $default );
+		if ( true === $slug ) {
+			$value = esc_attr( apply_filters( 'editable_slug', $value ) );
+		} else {
+			$value = esc_attr( $value );
+		}
+		if ( empty( $value ) )
+			$value = $default;
+		return apply_filters( 'bbp_get_form_option', $value, $option );
+	}
+
 
 }
