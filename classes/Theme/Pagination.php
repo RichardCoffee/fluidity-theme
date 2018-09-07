@@ -13,9 +13,18 @@ defined( 'ABSPATH' ) || exit;
 /**
  *  handles theme pagination tasks.
  *
+ *  If this is used in a custom loop, then both the $paged and $pages values must
+ *  be passed when calling the class.  The relevant code would look something like this:
+ *    ```
+ *    $args = array( 'paged' => ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1 ) );
+ *    $loop = new WP_Query( $args );
+ *    new TCC_Theme_Pagination( [ 'paged' => $args['paged'], 'pages' => $loop->max_num_pages ] );
+ *    ```
+ *
  * @link http://sgwordpress.com/teaches/how-to-add-wordpress-pagination-without-a-plugin/
  * @link wp-includes/link-template.php
  * @link wp-includes/general-template.php
+ * @link https://wordpress.stackexchange.com/questions/120407/how-to-fix-pagination-for-custom-loops
  */
 class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 
@@ -60,14 +69,14 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 * @since 20170505
 	 * @var string
 	 */
-	protected $paged = 1;
+	protected $paged = 0;
 	/**
 	 *  number of pages.
 	 *
 	 * @since 20170505
 	 * @var int
 	 */
-	protected $pages = 1;
+	protected $pages = 0;
 	/**
 	 *  page range to be displayed.
 	 *
@@ -91,9 +100,9 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 * @uses TCC_Theme_BasicNav::__construct()
 	 */
 	public function __construct( $args = array() ) {
+		parent::__construct( $args );
 		$this->get_paged();
 		$this->get_pages();
-		parent::__construct( $args );
 		$this->show = ( $this->range * 2 ) + 1;
 		$this->pagination();
 	}
@@ -105,9 +114,11 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 * @global $paged
 	 */
 	protected function get_paged() {
-		global $paged;
-		if ( $paged ) {
-			$this->paged = $paged;
+		if ( $this->paged === 0 ) {
+			global $paged;
+			if ( $paged ) {
+				$this->paged = $paged;
+			}
 		}
 	}
 
@@ -119,11 +130,13 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 * @global $wp_query
 	 */
 	protected function get_pages() {
-		global $wp_query;
-		if ( $wp_query ) {
-			$pages = $wp_query->max_num_pages;
-			if ( $pages ) {
-				$this->pages = $pages;
+		if ( $this->pages === 0 ) {
+			global $wp_query;
+			if ( $wp_query ) {
+				$pages = $wp_query->max_num_pages;
+				if ( $pages ) {
+					$this->pages = $pages;
+				}
 			}
 		}
 	}

@@ -47,8 +47,8 @@ do_action( 'fluid_page_top', $mypage ); ?>
 
 				if ( ! is_singular() ) { ?>
 					<div class="row">
-						<div class="text-wide text-center">
-							<?php fluid_pagination(); ?>
+						<div class="text-wide text-center"><?php
+							fluid_pagination(); ?>
 						</div>
 					</div><?php
 				}
