@@ -1,30 +1,33 @@
 <?php
 /**
- * classes/Theme/BasicNav.php
+ *  supplies basic navigation functions.
  *
  * @package Fluidity
  * @subpackage Navigation
- * @since 2.3.0
+ * @since 20170510
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/BasicNav.php
  */
+defined( 'ABSPATH' ) || exit;
 /**
- * abstract class that provides generic post navigation functions
+ *  abstract class that provides generic post navigation functions.
  *
- * @since 2.3.0
+ * @since 20170510
  */
 abstract class TCC_Theme_BasicNav {
 
 	/**
 	 * css class assigned to <nav> object
 	 *
-	 * @since 2.3.0
+	 * @since 20170510
 	 * @var string
 	 */
 	protected $nav_css = 'posts-navigation';
-
 	/**
 	 * text used for title and aria-label on <nav> object
 	 *
-	 * @since 2.3.0
+	 * @since 20170510
 	 * @var string
 	 */
 	protected $sr_text = '';
@@ -35,15 +38,17 @@ abstract class TCC_Theme_BasicNav {
 	/**
 	 * method to generate links html
 	 *
-	 * @since 2.3.0
+	 * @since 20170510
 	 */
 	abstract protected function generate_links();
 
 	/**
-	 * basic construct method for class
+	 * basic construction method for class
 	 *
-	 * @since 2.3.0
-	 * @param array $args
+	 * @since 20170510
+	 * @param array $args Optional.  Associative array, whose only valid indexes are
+	 *                    existing class properties. All other indexes will be ignored.
+	 * @uses TCC_Trait_ParseArgs::parse_args()
 	 */
 	public function __construct( $args = array() ) {
 		$this->sr_text = __( 'Post navigation' , 'tcc-fluid' );
@@ -53,8 +58,10 @@ abstract class TCC_Theme_BasicNav {
 	/**
 	 * replicates wordpress navigation template use
 	 *
-	 * @since 2.3.0
-	 * @return string
+	 * @since 20170510
+	 * @uses apply_filters()
+	 * @uses sanitize_html_class()
+	 * @uses esc_html()
 	 */
 	protected function generate_navigation() {
 		$template = apply_filters( 'navigation_markup_template', null, $this->nav_css );
@@ -70,7 +77,7 @@ abstract class TCC_Theme_BasicNav {
 	/**
 	 * creates div.nav-links html for wrapping navigation links
 	 *
-	 * @since 2.3.0
+	 * @since 20170510
 	 * @return string
 	 */
 	protected function generate_markup() {
