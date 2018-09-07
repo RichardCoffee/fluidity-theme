@@ -69,8 +69,10 @@ if ( ! function_exists( 'fluid_format_phone_number_us' ) ) {
 
 if ( ! function_exists( 'fluidity_post_class' ) ) {
 	function fluidity_post_class( $classes, $added, $postid ) {
-		$current = get_page_slug();
-		$classes = apply_filters( "post_class_$current", $classes, $added, $postid );
+		if ( ! is_admin() ) {
+			$current = get_page_slug();
+			$classes = apply_filters( "post_class_$current", $classes, $added, $postid );
+		}
 		return $classes;
 	}
 	add_filter( 'post_class', 'fluidity_post_class', 11, 3 );
