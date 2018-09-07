@@ -64,12 +64,12 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 */
 	protected $prev = '&lt;';
 	/**
-	 *  default url link used for main menu item.
+	 *  current page number.
 	 *
 	 * @since 20170505
 	 * @var string
 	 */
-	protected $paged = 0;
+	protected $paged = 1;
 	/**
 	 *  number of pages.
 	 *
