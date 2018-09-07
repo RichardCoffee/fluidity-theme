@@ -114,7 +114,7 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 * @global $paged
 	 */
 	protected function get_paged() {
-		if ( $this->paged === 0 ) {
+		if ( $this->paged < 2 ) {
 			global $paged;
 			if ( $paged ) {
 				$this->paged = $paged;
