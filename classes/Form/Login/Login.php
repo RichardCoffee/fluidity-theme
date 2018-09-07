@@ -169,8 +169,10 @@ class TCC_Form_Login_Login {
 	}
 
 	public function show_logout_form() {
-		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
+		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) );
+/* ?>
 		<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url( home_url() ); ?>" method="post">
+*/ ?>
 			<div class="text-center"><?php
 				$attrs = array(
 					'type'  => 'button',
@@ -179,12 +181,13 @@ class TCC_Form_Login_Login {
 					'title' =>  $signout,
 					'rel'   => 'nofollow',
 				); ?>
-				<button <?php $this->apply_attrs( $attrs ); ?>>&nbsp;
+				<a <?php $this->apply_attrs( $attrs ); ?>>&nbsp;
 					<?php echo esc_html( $signout ); ?>
 					&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
-				</button>
+				</a>
 			</div>
-		</form><?php
+<?php /*
+		</form><?php */
 	}
 
 
