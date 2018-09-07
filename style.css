@@ -403,6 +403,10 @@ p {
   display: inline-block;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .aligncenter,
 .centered {
   margin-right: auto;

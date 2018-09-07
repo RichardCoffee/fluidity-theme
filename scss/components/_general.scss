@@ -8,7 +8,13 @@
 	content: '.';
 }
 
-.block { display: inline-block; }
+.block {
+	display: inline-block;
+}
+
+.bold {
+	font-weight: bold;
+}
 
 .aligncenter,
 .centered {
