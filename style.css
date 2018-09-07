@@ -609,7 +609,7 @@ button:hover,
   background-size: contain;
 }
 
-header {
+header#fluid-header {
   transition: all 1.2s ease;
   z-index: 5000;
 }
