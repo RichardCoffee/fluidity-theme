@@ -247,6 +247,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 					'div#bbpress-forums .bbp-forum-info .bbp-forum-content',
 					'div#bbpress-forums p.bbp-topic-meta',
 					'div#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content',
+					'div.bbp-meta span.bbp-admin-links a',
 				);
 				$css_tags1 = implode( ",\n", $css1 );
 				echo "\n$css_tags1 {\n\tfont-size:  {$fontosize1}px;\n}\n";
