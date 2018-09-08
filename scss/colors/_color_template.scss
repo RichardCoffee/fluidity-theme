@@ -216,6 +216,7 @@ hr {
 .forum {
 	& div.bbp-template-notice,
 	& div.bbp-template-notice.info,
+	& div.bbp-template-notice.info a,
 	& legend {
 		@extend %regular;
 	}

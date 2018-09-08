@@ -6,7 +6,7 @@
 .btn-fluidity,
 .color-fluidity,
 li.btn-fluidity > a,
-.searchform-input, form input.searchform-input, .forum div.bbp-template-notice, .forum div.bbp-template-notice.info, .forum legend, .wpfep-wrapper .wpfep-save input[type="submit"] {
+.searchform-input, form input.searchform-input, .forum div.bbp-template-notice, .forum div.bbp-template-notice.info, .forum div.bbp-template-notice.info a, .forum legend, .wpfep-wrapper .wpfep-save input[type="submit"] {
   background-color: #ff0000;
   border-color: #cc0000;
   color: #FFFFFF;
@@ -14,10 +14,10 @@ li.btn-fluidity > a,
 .btn-fluidity:hover,
 .color-fluidity:hover,
 li.btn-fluidity > a:hover,
-.searchform-input:hover, .forum div.bbp-template-notice:hover, .forum legend:hover, .wpfep-wrapper .wpfep-save input[type="submit"]:hover, .btn-fluidity:focus,
+.searchform-input:hover, .forum div.bbp-template-notice:hover, .forum div.bbp-template-notice.info a:hover, .forum legend:hover, .wpfep-wrapper .wpfep-save input[type="submit"]:hover, .btn-fluidity:focus,
 .color-fluidity:focus,
 li.btn-fluidity > a:focus,
-.searchform-input:focus, .forum div.bbp-template-notice:focus, .forum legend:focus, .wpfep-wrapper .wpfep-save input[type="submit"]:focus {
+.searchform-input:focus, .forum div.bbp-template-notice:focus, .forum div.bbp-template-notice.info a:focus, .forum legend:focus, .wpfep-wrapper .wpfep-save input[type="submit"]:focus {
   background-color: #FFFFFF;
   border-color: #00FFFF;
   color: #ff0000;
