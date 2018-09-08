@@ -9,6 +9,9 @@
  * @copyright Copyright (c) 2018, Richard Coffee
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/bbpress.php
  */
+/**
+ *  check for wordpress
+ */
 defined( 'ABSPATH' ) || exit;
 /**
  *  bugfix
@@ -267,6 +270,36 @@ if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 		</h1><?php
 	}
 }
+
+
+/***   Spam filters   ***/
+
+if ( ! defined( 'SKIP_FLUID_BBP_SPAM_FILTERS' ) ) {
+	# TODO: reset last active id for forum.  Either zero out or find previous reply/topic that is not spam
+	add_filter( 'bbp_get_forum_last_active_id', function( $active_id, $forum_id ) {
+		if ( bbp_is_topic_spam( $active_id ) ) {
+			return 0;
+		}
+		return $active_id;
+	}, 100, 2 );
+	# TODO:  get replies in reverse order until finding one that is not spam, or queue is empty
+	add_filter( 'bbp_get_forum_last_reply_id', function( $reply_id, $forum_id ) {
+		if ( bbp_is_reply_spam( $reply_id ) ) {
+			return 0;
+		}
+		return $reply_id;
+	}, 100, 2 );
+
+	# TODO:  get topics in reverse order until finding one that is not spam, or queue is empty
+	add_filter( 'bbp_get_forum_last_topic_id', function( $topic_id, $forum_id ) {
+		if ( bbp_is_topic_spam( $topic_id ) ) {
+			return 0;
+		}
+		return $topic_id;
+	}, 100, 2 );
+
+}
+
 
 /**
  *  Don't recommend WP Front End Profile if bbPress is active since it provides a profile page
