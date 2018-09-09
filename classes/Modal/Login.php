@@ -7,8 +7,8 @@ class TCC_Modal_Login extends TCC_Modal_Bootstrap {
 	protected $prefix = 'fluid_login';
 
 
-	public function __construct( TCC_Form_Login_Login $form = null ) {
-		if ( is_object( $form ) ) {
+	public function __construct( $form = null ) {
+		if ( $form instanceof TCC_Form_Login_Login ) {
 			$this->form = $form;
 		} else {
 			$this->form = new TCC_Form_Login_Login;
@@ -24,7 +24,7 @@ class TCC_Modal_Login extends TCC_Modal_Bootstrap {
 	}
 
 	protected function get_button_text( $text = '' ) {
-		return ( empty( $text ) ) ? $this->title : $text;
+		return $this->form->defaults['label_log_in'];
 	}
 
 

@@ -66,19 +66,18 @@ class TCC_Theme_Login {
 	}
 
 	public function modal_login_form( $args = array() ) {
-		$login_form  = new TCC_Form_Login_Login( $this->default_args( $args ) );
-		$this->modal = new TCC_Modal_Login( $login_form );
-		$this->modal->modal();
-	}
-
-	public function modal_login_button( $text = '' ) {
-		$this->modal->button( $text );
+		static $modal_defined = false;
+		if ( ! $modal_defined ) {
+			$login_form  = new TCC_Form_Login_Login( $this->default_args( $args ) );
+			$this->modal = new TCC_Modal_Login( $login_form );
+			$this->modal->modal();
+		}
+		$this->modal->button();
 	}
 
 	protected function default_args( $args ) {
 		$defs = array( 'redirect_to' => $this->redirect_to );
-		$args = ( empty( $args ) ) ? $defs : array_merge( $defs, (array)$args );
-		return $args;
+		return ( empty( $args ) ) ? $defs : array_merge( $defs, (array)$args );
 	}
 
 

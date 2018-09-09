@@ -3,7 +3,7 @@
 
 class TCC_Form_Login_Login {
 
-	protected $defaults    = array();
+	public    $defaults    = array();
 	protected $show_mode   = 'modal';
 	protected $redirect_to = null;
 
@@ -132,22 +132,29 @@ class TCC_Form_Login_Login {
 	}
 
 	protected function submit_button() {
+		$attrs = $this->get_submit_button_attrs();
+		$this->tag( 'button', $attrs );
+			fluid()->fawe( 'fa-sign-in' ); ?>&nbsp;<?php
+			echo esc_html( $this->defaults['label_log_in'] ); ?>
+		</button><?php
+		if ( $attrs['type'] === 'submit' ) {
+			$input = array(
+				'type'  => 'hidden',
+				'name'  => 'redirect_to',
+				'value' => esc_url( $this->defaults['redirect'] ), // esc_html() also gets applied to this field
+			);
+			$this->element( 'input', $input );
+		}
+	}
+
+	protected function get_submit_button_attrs() {
 		$attrs = array(
 			'type'  => 'submit',
 			'id'    => $this->defaults['id_submit'],
 			'class' => 'btn btn-fluidity',
 			'name'  => 'wp-submit',
 		);
-		$this->tag( 'button', $attrs );
-			fluid()->fawe( 'fa-sign-in' ); ?>&nbsp;<?php
-			echo esc_html( $this->defaults['label_log_in'] ); ?>
-		</button><?php
-		$input = array(
-			'type'  => 'hidden',
-			'name'  => 'redirect_to',
-			'value' => esc_url( $this->defaults['redirect'] ), // esc_html() also gets applied to this field
-		);
-		$this->element( 'input', $input );
+		return $attrs; //apply_filters( 'fluid_login_submit_button_attrs', $attrs, $this );
 	}
 
 	protected function lost_password() {
