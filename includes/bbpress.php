@@ -231,6 +231,7 @@ if ( ! function_exists( 'fluid_bbp_font_size' ) ) {
 				$css = array(
 					'div#bbpress-forums',
 					'div#bbpress-forums div.bbp-breadcrumb',
+					'div#bbpress-forums div.bbp-topic-tags',
 					'div#bbpress-forums div.bbp-template-notice p',
 					'div#bbpress-forums ul.bbp-lead-topic',
 					'div#bbpress-forums ul.bbp-topics',
