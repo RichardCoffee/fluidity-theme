@@ -273,6 +273,25 @@ if ( ! function_exists( 'fluid_show_forum_title' ) ) {
 }
 
 
+/***   Authors   ***/
+
+/**
+ *  do not display avatars
+ *
+ * @since 20180909
+ * @param array $r
+ * @return array
+ */
+if ( ! function_exists( 'fluid_bbp_author_link_avatar' ) ) {
+	function fluid_bbp_author_link_avatar( $r ) {
+		$r['type'] = 'name';
+		return $r;
+	}
+	add_filter( 'bbp_after_get_reply_author_link_parse_args', 'fluid_bbp_author_link_avatar', 100 );
+	add_filter( 'bbp_after_get_topic_author_link_parse_args', 'fluid_bbp_author_link_avatar', 100 );
+}
+
+
 /***   Spam filters   ***/
 
 if ( ! defined( 'SKIP_FLUID_BBP_SPAM_FILTERS' ) ) {
