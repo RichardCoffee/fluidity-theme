@@ -190,8 +190,12 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						$slug = $post->slug;
 					} else if ( $post instanceof WP_User ) {
 						$slug = 'author';
-					} else {
+					} else if ( ! empty( $post ) ) {
 						fluid()->log( $post );
+					} else if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
+						$slug = 'bbpress-page';
+					} else {
+						fluid()->log( 'no queried object available' );
 					}
 				}
 			}
