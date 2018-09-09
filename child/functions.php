@@ -1,5 +1,7 @@
 <?php
 
+define( 'CHILD_THEME_HOME', trailingslashit( dirname( __FILE__ ) ) );  #  get current directory
+
 /* James - just ignore this first function, the good stuff is down below
 function fluid_child_generate_filters() {
 	$templates = array(
