@@ -213,6 +213,12 @@ class TCC_Theme_Typography {
 			'description' => __( 'We suggest you visit fonts.google.com to see what the fonts look like.', 'tcc-fluid' ),
 		);
 		$controls = array(
+			'typography_text' => array(
+				'label'       => __( 'Typography', 'tcc-fluid' ),
+				'description' => __( 'IMPORTANT: Customizer preview does not work properly on the fonts.  Go to https://fonts.google.com to see what each font will appear as.', 'tcc-fluid' ),
+				'render'      => 'content',
+				'sanitize_callback' => '__return_true',
+			),
 			'typography' => array(
 				'default' => 'Helvitica Neue',
 				'label'   => __( 'Site Main Font', 'tcc-fluid' ),
