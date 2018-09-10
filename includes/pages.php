@@ -99,7 +99,8 @@ if ( ! function_exists( 'fluid_page_title' ) ) {
 		} else if ( has_action( 'fluid_page_title' ) ) {
 			do_action( 'fluid_page_title', $slug );
 		} else {
-			$title = fluid_get_page_title( $slug ); ?>
+			$title = fluid_get_page_title( $slug );
+			$title = apply_filters( "fluid_page_title_text_$slug", $title ); ?>
 			<div id="fluid-page-title-banner" <?php title_class(); ?>><?php
 				if ( $title ) { ?>
 					<h1 class="text-center" itemprop="headline"><?php
