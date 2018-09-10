@@ -68,7 +68,7 @@ class TCC_Theme_Typography {
 			'Caveat'       => 'Caveat, cursive',
 			'Cookie'       => 'Cookie, cursive',
 			'Copse'        => 'Copse, sans-serif', // duplicate in os_fonts()
-			'Dancing Lights'     => 'Dancing Lights, cursive',
+			'Dancing Script'     => 'Dancing Script, cursive',
 			'Droid Sans'   => 'Droid Sans, sans-serif',
 			'Droid Serif'  => 'Droid Serif, serif',
 			'Gamja Flower' => 'Gamja Flower, cursive',
