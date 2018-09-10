@@ -162,14 +162,27 @@ class TCC_Theme_Typography {
 		if ( ! empty( static::$loaded ) ) {
 			$fonts = array_unique( static::$loaded );
 			$fonts = array_map( [ 'TCC_Theme_Typography', 'map_font' ], $fonts );
-			$args  = [ 'family' => urlencode( implode( '|', $fonts ) ) ];
-			$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
-			wp_enqueue_style( 'theme_fonts', $url, null, null, 'all' );
+			foreach( $fonts as $font ) {
+				$args  = [ 'family' => urlencode( $font ) ];
+				$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
+				wp_enqueue_style( 'theme_font_' . sanitize_key( $font ), $url, null, null, 'all' );
+			}
 		}
 	}
 
 	public static function map_font( $font ) {
-		return $font . ':300,300i,400,400i,500,500i,600,600i,700,700i';
+		switch( $font ) {
+			case 'Lustria':
+				$font .= ':400,400i,600,600i,700,700i';
+				break;
+			case 'Roboto':
+				$font .= ':300,400,400i,500,600,700';
+				break;
+			case 'Raleway':
+			default:
+				$font .= ':300,300i,400,400i,500,500i,600,600i,700,700i';
+		}
+		return $font;
 	}
 
 	public static function typography_styles() {
