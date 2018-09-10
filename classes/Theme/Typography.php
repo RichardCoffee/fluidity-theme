@@ -139,8 +139,10 @@ class TCC_Theme_Typography {
 	}
 
 	public static function load_google_font( $font = 'Arial' ) {
+fluid()->log('load font: ' . $font);
 		if ( ( ! in_array( $font, self::os_fonts(), true ) ) && ( ! in_array( $font, static::$loaded, true ) ) ) {
 			if ( empty( static::$loaded ) ) {
+fluid()->log('initialize action for font: ' . $font );
 				add_action( 'wp_enqueue_scripts', [ 'TCC_Theme_Typography', 'enqueue_fonts' ] );
 			}
 			static::$loaded[] = $font;
