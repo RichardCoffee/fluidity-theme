@@ -48,7 +48,7 @@ if ( ! function_exists( 'fluid_stop_heartbeat' ) ) {
 			$authorized = array( 'post.php', 'post-new.php', 'admin.php' );
 			if ( ! in_array( $pagenow, $authorized ) ) {
 				add_action( 'admin_enqueue_scripts', function() { wp_deregister_script( 'heartbeat' ); }, 999);
-				add_action( 'wp_enqueue_scripts',    function() { wp_deregister_script( 'heartbeat' ); }, 999);
+				add_action( 'wp_loaded',    function() { wp_deregister_script( 'heartbeat' ); }, 999);
 				add_filter( 'heartbeat_settings', function ( $settings ) {
 					$settings['minimalInterval'] = 600;
 					$settings['autostart']       = false; // default is true
