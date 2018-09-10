@@ -268,7 +268,7 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 }
 
 ul.sub-menu {
-  background-color: white;
+  background-color: #dff0d8;
 }
 
 ul.pagination > li > a {

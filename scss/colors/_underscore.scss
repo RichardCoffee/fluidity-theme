@@ -22,5 +22,6 @@
 }
 
 ul.sub-menu {
-   background-color: lighten($headerBody,40%);
+//	background-color: lighten($headerBody,40%);
+	background-color: color(background);
 }
