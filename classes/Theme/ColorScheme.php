@@ -96,6 +96,12 @@ class TCC_Theme_ColorScheme {
 		$options['colors'] = array(
 			'section'  => null,
 			'controls' => array(
+				'text' => array(
+					'label'       => __( 'Color Notes', 'tcc-fluid' ),
+					'description' => __( 'Customizer preview does not render the colors.  You will need to exit out of the previewer to see each color change.', 'tcc-fluid' ),
+					'render'      => 'content',
+					'sanitize_callback' => '__return_true',
+				),
 				'scheme' => array(
 					'default' => 'random',
 					'label'   => __( 'Color Scheme', 'tcc-fluid' ),
