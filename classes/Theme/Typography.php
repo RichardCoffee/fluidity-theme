@@ -139,23 +139,20 @@ class TCC_Theme_Typography {
 	}
 
 	public static function load_google_font( $font, $typog ) {
-		if ( ( ! in_array( $font, self::os_fonts() ) ) && ( ! in_array( $font, $loaded ) ) ) {
-			$google = self::google_fonts();
-			if ( in_array( $font, $google ) ) {
-				$myfont = explode( ',', $google[ $font ] );
-				if ( $myfont[0] === 'Raleway' ) {
-					$myfont[0] = 'Raleway:100'; // FIXME: special case, should this be more generic?  what does this do anyway?
-				}
-				$args = array(
-					'family' => urlencode( implode( '|', $myfont ) ),
-					'subset' => urlencode( 'latin,latin-ext' ) // FIXME: when would subset be something different?
-				);
-			} else {
-				$args = [ 'family' => $font ];
+		if ( ( ! in_array( $font, self::os_fonts(), true ) ) && ( ! in_array( $font, $loaded, true ) ) ) {
+			if ( empty( $loaded ) ) {
+				add_action( 'init', [ 'TCC_Theme_Typography', 'enqueue_fonts' ] );
 			}
-			$url = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
-			wp_enqueue_style( "font_$typog", $url, null, null, 'all' );
 			$loaded[] = $font;
+		}
+	}
+
+	public static function enqueue_fonts() {
+		if ( ! empty( $loaded ) ) {
+			$fonts = array_unique( $loaded );
+			$args  = [ 'family' => urlencode( implode( '|', $fonts ) ) ];
+			$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
+			wp_enqueue_style( "font_$typog", $url, null, null, 'all' );
 		}
 	}
 
