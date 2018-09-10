@@ -136,7 +136,7 @@ class TCC_Theme_Typography {
 			asort( $mixed_fonts );
 		}
 		if ( func_num_args() > 0 ) {
-			return ( isset( $mixed_fonts [ $font ] ) ) ? "'" . $mixed_fonts [ $font ] . "'" : false;
+			return ( isset( $mixed_fonts [ $font ] ) ) ? $mixed_fonts [ $font ] : false;
 		}
 		return $mixed_fonts; // apply_filters( 'fluid_mixed_fonts', $mixed_fonts );
 	}
