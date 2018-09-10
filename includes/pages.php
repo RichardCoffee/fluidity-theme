@@ -35,7 +35,7 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 			),
 			'controls' => array(
 				'the-title' => array(
-					'default'    => 'page',
+					'default'    => 'main',
 					'label'      => __( 'Page Title', 'tcc-fluid' ),
 					'descripion' => __( 'Do you want to show the page title before the content?', 'tcc-fluid' ),
 					'render'     => 'radio',
@@ -122,7 +122,7 @@ if ( ! function_exists( 'fluid_title_placement' ) ) {
 			$slug    = get_page_slug();
 			$exclude = apply_filters( 'fluid_exclude_page_title', [ ] );
 			if ( ! in_array( $slug, $exclude ) ) {
-				$place = get_theme_mod( 'pages_the-title', 'page' );
+				$place = get_theme_mod( 'pages_the-title', 'main' );
 				if ( $place === 'no' ) {
 					// take no action
 				} else if ( $place === 'page' ) {
