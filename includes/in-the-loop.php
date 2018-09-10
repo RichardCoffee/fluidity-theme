@@ -178,7 +178,12 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 	}
 }
 
-# * @since 20161206
+/**
+ *  display a separator between excerpts
+ *
+ * @since 20161206
+ * @param string $slug the page slug
+ */
 if ( ! function_exists( 'fluid_post_separator' ) ) {
 	function fluid_post_separator( $slug ) {
 		if ( fluid_next_post_exists() ) {
@@ -187,7 +192,7 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 			} else if ( has_action( 'fluid_post_separator' ) ) {
 				do_action( 'fluid_post_separator' );
 			} else {
-				echo "<hr class='padbott'>";
+				echo '<hr class="padbott">';
 			}
 		}
 	}
