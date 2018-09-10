@@ -134,11 +134,11 @@ class TCC_Theme_Typography {
 		$locs = array( 'typography', 'head_typog', 'side_typog', 'foot_typog' );
 		foreach( $locs as $typog ) {
 			$font = get_theme_mod( "font_$typog", 'Arial' );
-			self::load_google_font( $font, $typog );
+			self::load_google_font( $font );
 		}
 	}
 
-	public static function load_google_font( $font, $typog ) {
+	public static function load_google_font( $font = 'Arial' ) {
 		if ( ( ! in_array( $font, self::os_fonts(), true ) ) && ( ! in_array( $font, $loaded, true ) ) ) {
 			if ( empty( $loaded ) ) {
 				add_action( 'init', [ 'TCC_Theme_Typography', 'enqueue_fonts' ] );
@@ -152,7 +152,7 @@ class TCC_Theme_Typography {
 			$fonts = array_unique( $loaded );
 			$args  = [ 'family' => urlencode( implode( '|', $fonts ) ) ];
 			$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
-			wp_enqueue_style( "font_$typog", $url, null, null, 'all' );
+			wp_enqueue_style( 'theme_fonts', $url, null, null, 'all' );
 		}
 	}
 
