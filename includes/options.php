@@ -37,8 +37,8 @@ fluid()->log(0,$filter);
 	add_filter( 'rest_endpoints', 'fluid_rest_dispatch_request' );
 } //*/
 
-add_action( 'wp_enqueue_scripts', array( 'TCC_Theme_Typography', 'load_fonts' ) );
-add_action( 'tcc_custom_css',     array( 'TCC_Theme_Typography', 'typography_styles' ), 1 );
+add_action( 'init',           array( 'TCC_Theme_Typography', 'load_fonts' ) );
+add_action( 'tcc_custom_css', array( 'TCC_Theme_Typography', 'typography_styles' ), 1 );
 
 if ( ! function_exists( 'fluid_stop_heartbeat' ) ) {
 	function fluid_stop_heartbeat() {
