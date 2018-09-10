@@ -145,7 +145,6 @@ class TCC_Theme_Typography {
 			}
 			static::$loaded[] = $font;
 		}
-fluid()->log( static::$loaded );
 	}
 
 	public static function enqueue_fonts() {
@@ -153,6 +152,7 @@ fluid()->log( static::$loaded );
 			$fonts = array_unique( static::$loaded );
 			$args  = [ 'family' => urlencode( implode( '|', $fonts ) ) ];
 			$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
+fluid()->log( static::$loaded, $args, $url );
 			wp_enqueue_style( 'theme_fonts', $url, null, null, 'all' );
 		}
 	}
