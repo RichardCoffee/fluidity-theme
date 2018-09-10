@@ -145,6 +145,7 @@ class TCC_Theme_Typography {
 			}
 			static::$loaded[] = $font;
 		}
+fluid()->log( static::$loaded );
 	}
 
 	public static function enqueue_fonts() {
