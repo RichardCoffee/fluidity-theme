@@ -161,10 +161,15 @@ class TCC_Theme_Typography {
 	public static function enqueue_fonts() {
 		if ( ! empty( static::$loaded ) ) {
 			$fonts = array_unique( static::$loaded );
+			$fonts = array_map( [ 'TCC_Theme_Typography', 'map_font' ], $fonts );
 			$args  = [ 'family' => urlencode( implode( '|', $fonts ) ) ];
 			$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
 			wp_enqueue_style( 'theme_fonts', $url, null, null, 'all' );
 		}
+	}
+
+	public static function map_font( $font ) {
+		return $font . ':300,300i,400,400i,500,500i,600,600i,700,700i';
 	}
 
 	public static function typography_styles() {

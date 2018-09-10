@@ -308,7 +308,6 @@ a:visited {
 a:hover, a:focus {
   border-bottom: 1px solid #671015;
   color: #671015;
-  font-weight: italic;
   text-decoration: none;
 }
 
