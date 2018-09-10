@@ -9,6 +9,7 @@
 class TCC_Theme_Typography {
 
 	private static $option = 'tcc_options_design';
+	private static $loaded = array();
 
 	public static function os_fonts() {
 		// OS Font Defaults
@@ -69,6 +70,7 @@ class TCC_Theme_Typography {
 			'Droid Serif'  => 'Droid Serif, serif',
 			'Lato'         => 'Lato, sans-serif',
 			'Lobster'      => 'Lobster, cursive',
+			'Lustria'      => 'Lustria, Open Sans',
 			'Nobile'       => 'Nobile, sans-serif',
 			'Open Sans'    => 'Open Sans, sans-serif',
 			'Oswald'       => 'Oswald, sans-serif',
@@ -93,6 +95,7 @@ class TCC_Theme_Typography {
 			'Droid Serif'  => _x( 'on', "Droid Serif font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Lato'         => _x( 'on', "Lato font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Lobster'      => _x( 'on', "Lobster font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Lustria'      => _x( 'on', "Lustria font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Nobile'       => _x( 'on', "Nobile font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Open Sans'    => _x( 'on', "Open Sans font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Oswald'       => _x( 'on', "Oswald font: translate as 'on' or 'off'", 'tcc-fluid' ),
@@ -136,7 +139,7 @@ class TCC_Theme_Typography {
 	}
 
 	public static function load_google_font( $font, $typog ) {
-		if ( ! in_array( $font, self::os_fonts() ) ) { // Really?  Are we sure about this?
+		if ( ( ! in_array( $font, self::os_fonts() ) ) && ( ! in_array( $font, $loaded ) ) ) {
 			$google = self::google_fonts();
 			if ( in_array( $font, $google ) ) {
 				$myfont = explode( ',', $google[ $font ] );
@@ -147,9 +150,12 @@ class TCC_Theme_Typography {
 					'family' => urlencode( implode( '|', $myfont ) ),
 					'subset' => urlencode( 'latin,latin-ext' ) // FIXME: when would subset be something different?
 				);
-				$url = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
-				wp_enqueue_style( "font_$typog", $url, null, null, 'all' );
+			} else {
+				$args = [ 'family' => $font ];
 			}
+			$url = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
+			wp_enqueue_style( "font_$typog", $url, null, null, 'all' );
+			$loaded[] = $font;
 		}
 	}
 
