@@ -2,6 +2,7 @@
 /**
  * classes/Theme/Support.php
  *
+ * @link https://github.com/RichardCoffee/fluidity-theme/wiki/Theme-Support
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/Support.php
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/support.php
  * @author Richard Coffee <richard.coffee@gmail.com>
@@ -312,7 +313,7 @@ class TCC_Theme_Support {
 	 * @link https://make.wordpress.org/core/2016/11/30/starter-content-for-themes-in-4-7/
 	 * @link https://developer.wordpress.org/reference/functions/get_theme_starter_content/
 	 */
-	public function starter_content() {
+	protected function starter_content() {
 		$content = apply_filters( $this->filter_prefix . '_support_starter_content', array() );
 		if ( ! empty( $content ) ) {
 			add_theme_support( 'starter-content', $content );

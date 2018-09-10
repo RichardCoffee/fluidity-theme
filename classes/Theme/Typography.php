@@ -140,16 +140,16 @@ class TCC_Theme_Typography {
 
 	public static function load_google_font( $font = 'Arial' ) {
 		if ( ( ! in_array( $font, self::os_fonts(), true ) ) && ( ! in_array( $font, $loaded, true ) ) ) {
-			if ( empty( $loaded ) ) {
+			if ( empty( static::$loaded ) ) {
 				add_action( 'init', [ 'TCC_Theme_Typography', 'enqueue_fonts' ] );
 			}
-			$loaded[] = $font;
+			static::$loaded[] = $font;
 		}
 	}
 
 	public static function enqueue_fonts() {
-		if ( ! empty( $loaded ) ) {
-			$fonts = array_unique( $loaded );
+		if ( ! empty( static::$loaded ) ) {
+			$fonts = array_unique( static::$loaded );
 			$args  = [ 'family' => urlencode( implode( '|', $fonts ) ) ];
 			$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
 			wp_enqueue_style( 'theme_fonts', $url, null, null, 'all' );
