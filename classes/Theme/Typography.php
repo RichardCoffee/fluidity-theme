@@ -65,12 +65,21 @@ class TCC_Theme_Typography {
 		// Google Font Defaults
 		$google_faces = array(
 			'Arvo'         => 'Arvo, serif',
+			'Caveat'       => 'Caveat, cursive',
+			'Cookie'       => 'Cookie, cursive',
 			'Copse'        => 'Copse, sans-serif', // duplicate in os_fonts()
+			'Dancing Lights'     => 'Dancing Lights, cursive',
 			'Droid Sans'   => 'Droid Sans, sans-serif',
 			'Droid Serif'  => 'Droid Serif, serif',
+			'Gamja Flower' => 'Gamja Flower, cursive',
+			'Gloria Hallelujah'  => 'Gloria Hallelujah, cursive',
+			'Great Vibes'  => 'Great Vibes, cursive',
+			'Indie Flower' => 'Indie Flower, cursive',
+			'Kaushan'      => 'Kaishan Script, cursive',
 			'Lato'         => 'Lato, sans-serif',
 			'Lobster'      => 'Lobster, cursive',
 			'Lustria'      => 'Lustria, Open Sans',
+			'Merienda'     => 'Merienda, cursive',
 			'Nobile'       => 'Nobile, sans-serif',
 			'Open Sans'    => 'Open Sans, sans-serif',
 			'Oswald'       => 'Oswald, sans-serif',
@@ -80,9 +89,11 @@ class TCC_Theme_Typography {
 			'Rokkit'       => 'Rokkitt, serif',
 			'PT Sans'      => 'PT Sans, sans-serif',
 			'Quattrocento' => 'Quattrocento, serif',
-			'Raleway'      => 'Raleway, cursive',
+			'Raleway'      => 'Raleway, sans-serif',
+			'Satisfy'      => 'Satisfy, cursive',
+			'Shadows Into Light' => 'Shadows Into Light, cursive',
 			'Ubuntu'       => 'Ubuntu, sans-serif',
-			'Yanone Kaffeesatz' => 'Yanone Kaffeesatz, sans-serif'
+			'Yanone Kaffeesatz'  => 'Yanone Kaffeesatz, sans-serif'
 		);
 		return apply_filters( 'fluid_google_fonts', $google_faces );
 	}
@@ -125,7 +136,7 @@ class TCC_Theme_Typography {
 			asort( $mixed_fonts );
 		}
 		if ( func_num_args() > 0 ) {
-			return ( isset( $mixed_fonts [ $font ] ) ) ? $mixed_fonts [ $font ] : false;
+			return ( isset( $mixed_fonts [ $font ] ) ) ? "'" . $mixed_fonts [ $font ] . "'" : false;
 		}
 		return $mixed_fonts; // apply_filters( 'fluid_mixed_fonts', $mixed_fonts );
 	}
@@ -139,10 +150,8 @@ class TCC_Theme_Typography {
 	}
 
 	public static function load_google_font( $font = 'Arial' ) {
-fluid()->log('load font: ' . $font);
 		if ( ( ! in_array( $font, self::os_fonts(), true ) ) && ( ! in_array( $font, static::$loaded, true ) ) ) {
 			if ( empty( static::$loaded ) ) {
-fluid()->log('initialize action for font: ' . $font, current_filter() );
 				add_action( 'wp_enqueue_scripts', [ 'TCC_Theme_Typography', 'enqueue_fonts' ] );
 			}
 			static::$loaded[] = $font;
@@ -154,7 +163,6 @@ fluid()->log('initialize action for font: ' . $font, current_filter() );
 			$fonts = array_unique( static::$loaded );
 			$args  = [ 'family' => urlencode( implode( '|', $fonts ) ) ];
 			$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
-fluid()->log( static::$loaded, $args, $url );
 			wp_enqueue_style( 'theme_fonts', $url, null, null, 'all' );
 		}
 	}
@@ -184,7 +192,7 @@ fluid()->log( static::$loaded, $args, $url );
 		$section = array(
 			'priority'    => 30,
 			'title'       => __( 'Typography', 'tcc-fluid' ),
-			'description' => __( 'Site typography options', 'tcc-fluid' ),
+			'description' => __( 'We suggest you visit fonts.google.com to see what the fonts look like.', 'tcc-fluid' ),
 		);
 		$controls = array(
 			'typography' => array(
