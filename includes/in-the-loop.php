@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  File:  includes/in-the-loop.php
  *
@@ -9,16 +8,29 @@
  * @copyright Copyright (c) 2018, Richard Coffee
  * @since 20160830
  */
+/**
+ *  check for wordpress
+ */
+defined( 'ABSPATH' ) || exit;
 
-# * @since 20160830
-if (!function_exists('fluid_content_slug')) {
-  function fluid_content_slug( $page='single' ) {
-    $slug = ($format=get_post_format()) ? $format : get_post_type();
-    $slug = ($slug==='page')            ? $page   : $slug;
-    $slug = apply_filters("tcc_content_slug",         $slug, $page);
-    $slug = apply_filters("tcc_{$page}_content_slug", $slug, $page);
-    return $slug;
-  }
+/**
+ *  controls the second parameter used for get_template_part calls
+ *
+ * @since 20160830
+ * @param string $page
+ * @uses get_post_format()
+ * @uses get_post_type()
+ * @uses apply_filters()
+ * @return string
+ */
+if ( ! function_exists( 'fluid_content_slug' ) ) {
+	function fluid_content_slug( $page = 'single' ) {
+		$slug = ( $format = get_post_format() ) ? $format : get_post_type();
+		$slug = ( $slug === 'page' )            ? $page   : $slug;
+		$slug = apply_filters( "tcc_content_slug",       $slug, $page );
+		$slug = apply_filters( "tcc_content_slug_$page", $slug, $page );
+		return $slug;
+	}
 }
 
 # * @since 20160830
