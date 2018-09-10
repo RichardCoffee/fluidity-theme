@@ -75,6 +75,10 @@ class TCC_Theme_Login {
 		$this->modal->button();
 	}
 
+	public function modal_button( $args = array() ) {
+		$this->modal_login_form( $args );
+	}
+
 	protected function default_args( $args ) {
 		$defs = array( 'redirect_to' => $this->redirect_to );
 		return ( empty( $args ) ) ? $defs : array_merge( $defs, (array)$args );
