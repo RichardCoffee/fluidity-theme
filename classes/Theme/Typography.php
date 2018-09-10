@@ -215,7 +215,7 @@ class TCC_Theme_Typography {
 		$controls = array(
 			'typography_text' => array(
 				'label'       => __( 'Typography', 'tcc-fluid' ),
-				'description' => __( 'IMPORTANT: Customizer preview does not work properly on the fonts.  Go to https://fonts.google.com to see what each font will appear as.', 'tcc-fluid' ),
+				'description' => __( 'IMPORTANT: Customizer preview does not work properly on the fonts.  Go to https://fonts.google.com to see what each font will appear as.  Some fonts may require a larger font size to make them easily readable.', 'tcc-fluid' ),
 				'render'      => 'content',
 				'sanitize_callback' => '__return_true',
 			),
