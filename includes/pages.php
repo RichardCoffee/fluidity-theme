@@ -195,6 +195,7 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						fluid()->log( $post );
 					} else if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 						$slug = 'bbpress-page';
+					} else if ( is_customize_preview() ) {
 					} else {
 						fluid()->log( 'no queried object available' );
 					}
