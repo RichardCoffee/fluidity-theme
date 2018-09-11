@@ -186,24 +186,31 @@ class TCC_Theme_Typography {
 	}
 
 	public static function typography_styles() {
+
 		// font family
 		$font = self::mixed_fonts( get_theme_mod( 'font_typography', 'Arial' ) );
 		echo "\nbody {\n\tfont-family: $font;\n";
 		// font size
 		$size = intval( get_theme_mod( 'font_size', 18 ), 10 );
 		echo "\tfont-size: {$size}px;\n}\n";
+
 		// font family for header
 		$head = self::mixed_fonts( get_theme_mod( 'font_head_typog', 'Open Sans' ) );
-		echo "\nheader#fluid-header {\n\tfont-family: $head;\n}\n";
+		echo "\nheader#fluid-header {\n\tfont-family: $head;\n";
+		// font size for header
+		$size = intval( get_theme_mod( 'font_head_size', 18 ), 10 );
+		echo "\tfont-size: {$size}px;\n}\n";
 		// widget area
 		$side = self::mixed_fonts( get_theme_mod( 'font_side_typog', 'Open Sans' ) );
-		echo "\ndiv.widget-area {\n\tfont-family: $side;\n}\n";
+		echo "\ndiv.widget-area {\n\tfont-family: $side;\n";
+		echo "\tfont-size: {$size}px;\n}\n";
 		// widget panel title
 		$panel = max( 1, $size - 2 );
 		echo "\npanel-title {\n\tfont-size: {$panel}px;\n}\n";
 		// footer
 		$foot = self::mixed_fonts( get_theme_mod( 'font_foot_typog', 'Open Sans' ) );
-		echo "\ndiv#fluid-footer {\n\tfont-family: $foot;\n}\n";
+		echo "\ndiv#fluid-footer {\n\tfont-family: $foot;\n";
+		echo "\tfont-size: {$size}px;\n}\n";
 	}
 
 	public static function customizer_controls( $options ) {
@@ -225,11 +232,31 @@ class TCC_Theme_Typography {
 				'render'  => 'font',
 				'choices' => TCC_Theme_Typography::mixed_fonts(),
 			),
+			'size' => array(
+				'default' => 18,
+				'label'   => __('Site Font Size','tcc-fluid'),
+				'render'  => 'spinner',
+				'input_attrs'   => array(
+					'class' => 'text_3em_wide',
+					'min'   => '1',
+					'step'  => '1',
+				),
+			),
 			'head_typog' => array(
 				'default' => 'Open Sans',
 				'label'   => __( 'Header Font', 'tcc-fluid' ),
 				'render'  => 'font',
 				'choices' => TCC_Theme_Typography::mixed_fonts(),
+			),
+			'head_size' => array(
+				'default' => 18,
+				'label'   => __('Header Font Size','tcc-fluid'),
+				'render'  => 'spinner',
+				'input_attrs'   => array(
+					'class' => 'text_3em_wide',
+					'min'   => '1',
+					'step'  => '1',
+				),
 			),
 			'side_typog' => array(
 				'default' => 'Open Sans',
@@ -242,18 +269,6 @@ class TCC_Theme_Typography {
 				'label'   => __( 'Footer Font', 'tcc-fluid' ),
 				'render'  => 'font',
 				'choices' => TCC_Theme_Typography::mixed_fonts(),
-			),
-			'size' => array(
-				'default' => 18,
-				'label'   => __('Content Font Size','tcc-fluid'),
-				//'stext'   => _x( 'px', "abbreviation for 'pixel' - not sure this even needs translating...", 'tcc-fluid' ),
-				'render'  => 'spinner',
-				'input_attrs'   => array(
-					'class' => 'text_3em_wide',
-					'min'   => '1',
-					'step'  => '1',
-#					'value' => intval( get_theme_mod( 'font_size', 18 ), 10 ),
-				),
 			),
 		);
 		$options['font'] = array(
