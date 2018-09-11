@@ -39,6 +39,15 @@ class TCC_Theme_Library {
 
 	public function get_fawe( $icon = 'fa-question fa-border' ) {
 		$css = explode( ' ', $icon );
+		$css = array_map(
+			function( $icon ) {
+				if ( ! ( substr( $icon, 0, 3 ) === 'fa-' ) ) {
+					$icon = 'fa-' . $icon;
+				}
+				return $icon;
+			},
+			$css
+		);
 #		if ( ( ! in_array( 'fab', $css, true ) ) && ( ! in_array( 'fas', $css, true ) ) ) {
 #			array_push( $css, 'fas' ); // default for 4.7.0 icons
 #		}

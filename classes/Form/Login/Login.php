@@ -1,16 +1,50 @@
 <?php
-
-
+/**
+ *  handles showing the login form
+ *
+ * @package Fluidity
+ * @subpackage Login
+ * @since 20170201
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/bbpress.php
+ */
+/**
+ *  check for wordpress
+ */
+defined( 'ABSPATH' ) || exit;
+/**
+ *  handles login forms
+ *
+ * @since 20170201
+ */
 class TCC_Form_Login_Login {
 
-	public    $defaults    = array();
-	protected $show_mode   = 'modal';
+	/**
+	 *  login form defaults
+	 *
+	 * @since 20170201
+	 * @var array
+	 */
+	public $defaults = array();
+	/**
+	 *  redirect url
+	 *
+	 * @since 20170211
+	 * @var string
+	 */
 	protected $redirect_to = null;
 
-	use TCC_Trait_Attributes;
+	use TCC_Trait_Attributes; // * @since 20170507
 	use TCC_Trait_Logging;
 	use TCC_Trait_ParseArgs;
 
+	/**
+	 *  class constructor
+	 *
+	 * @since 20170201
+	 * @param array $args
+	 */
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
 		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( add_query_arg( NULL, NULL ) ) : $this->redirect_to;
@@ -23,6 +57,11 @@ class TCC_Form_Login_Login {
 
 /***   Form Defaults   ***/
 
+	/**
+	 *  arranges gettin the login form defaults
+	 *
+	 * @since 20170122
+	 */
 	public function get_login_form_defaults() {
 		$defaults = array();
 		add_filter( 'login_form_defaults', function( $args ) use ( &$defaults ) {
@@ -32,9 +71,15 @@ class TCC_Form_Login_Login {
 		# filter gets called here - should be a better way to get the form values
 		$form = wp_login_form( array( 'echo' => false ) );
 		$this->defaults = $defaults;
-		return;
 	}
 
+	/**
+	 *  creates the login form defaults array
+	 *
+	 * @since 20170123
+	 * @param array $defaults
+	 * @return array
+	 */
 	public function login_form_defaults( $defaults = array() ) {
 		# array mainly taken from wp-includes/general-template.php
 		$new = array(
@@ -59,6 +104,11 @@ class TCC_Form_Login_Login {
 
 /***   Login/Logout Forms   ***/
 
+	/**
+	 *  determines whether the login or logout methods should be used
+	 *
+	 * @since 20170211
+	 */
 	public function login_form() {
 		if ( is_user_logged_in() ) {
 			$this->show_logout_form();
@@ -67,6 +117,11 @@ class TCC_Form_Login_Login {
 		}
 	}
 
+	/**
+	 *  show the login form
+	 *
+	 * @since 20150502
+	 */
 	public function show_login_form() {
 		$attrs = array(
 			'id'     => $this->defaults['form_id'],
@@ -94,6 +149,12 @@ class TCC_Form_Login_Login {
 		</form><?php
 	}
 
+	/**
+	 *  provide the attributes for the user name input field
+	 *
+	 * @since 20180823
+	 * @return array
+	 */
 	protected function get_username_attrs() {
 		$attrs = array(
 			'type'  => 'text',
@@ -106,6 +167,12 @@ class TCC_Form_Login_Login {
 		return $attrs;
 	}
 
+	/**
+	 *  provides the attributes for the user password field
+	 *
+	 * @since 20180823
+	 * @return array
+	 */
 	protected function get_password_attrs() {
 		$attrs = array(
 			'type'  => 'password',
@@ -118,6 +185,11 @@ class TCC_Form_Login_Login {
 		return $attrs;
 	}
 
+	/**
+	 *  display the remember me checkbox
+	 *
+	 * @since 20180823
+	 */
 	protected function remember_checkbox() {
 		$attrs = array(
 			'type'  => 'checkbox',
@@ -131,6 +203,11 @@ class TCC_Form_Login_Login {
 		</label><?php
 	}
 
+	/**
+	 *  display the form submit button
+	 *
+	 * @since 20180823
+	 */
 	protected function submit_button() {
 		$attrs = $this->get_submit_button_attrs();
 		$this->tag( 'button', $attrs );
@@ -147,6 +224,12 @@ class TCC_Form_Login_Login {
 		}
 	}
 
+	/**
+	 *  provides the attributes for the form submit button
+	 *
+	 * @since 20180909
+	 * @return array
+	 */
 	protected function get_submit_button_attrs() {
 		$attrs = array(
 			'type'  => 'submit',
@@ -157,6 +240,11 @@ class TCC_Form_Login_Login {
 		return $attrs; //apply_filters( 'fluid_login_submit_button_attrs', $attrs, $this );
 	}
 
+	/**
+	 *  displays the lost password anchor link
+	 *
+	 * @since 20180823
+	 */
 	protected function lost_password() {
 		if ( ! empty( $this->defaults['label_lostpw'] ) ) {
 			$lost_url = wp_lostpassword_url( home_url() );
@@ -175,26 +263,24 @@ class TCC_Form_Login_Login {
 		}
 	}
 
+	/**
+	 *  display the logout button
+	 *
+	 * @since 20170208
+	 */
 	public function show_logout_form() {
-		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) );
-/* ?>
-		<form class="<?php #echo $formclass; ?>" action="<?php #echo wp_logout_url( home_url() ); ?>" method="post">
-*/ ?>
-			<div class="text-center"><?php
-				$attrs = array(
-					'type'  => 'button',
-					'class' => 'btn btn-fluidity',
-					'href'  =>  esc_url( wp_logout_url( home_url() ) ),
-					'title' =>  $signout,
-					'rel'   => 'nofollow',
-				); ?>
-				<a <?php $this->apply_attrs( $attrs ); ?>>&nbsp;
-					<?php echo esc_html( $signout ); ?>
-					&nbsp;&nbsp;<i class='fa fa-sign-out'></i>
-				</a>
-			</div>
-<?php /*
-		</form><?php */
+		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
+		<div class="text-center"><?php
+			$attrs = array(
+				'type'  => 'button',
+				'class' => 'btn btn-fluidity',
+				'href'  =>  esc_url( wp_logout_url( home_url() ) ),
+				'title' =>  $signout,
+				'rel'   => 'nofollow',
+			);
+			$fawe = fluid()->get_fawe( 'sign-out' );
+			$this->element( 'a', $attrs, esc_html( $signout ) . '&nbsp;' . $fawe , true ); ?>
+		</div><?php
 	}
 
 
