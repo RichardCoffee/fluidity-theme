@@ -29,7 +29,8 @@ $users = get_users( $args );
 if ( $users ) {
 	global $wp_roles; ?>
 	<div class="article"><?php
-		clearfix()->initialize( [ 'lg' => 4, 'md' => 4, 'sm' => 6, 'xs' => 12 ] );
+		$cols = apply_filters( 'fluid_about_us_cols', [ 'lg' => 4, 'md' => 4, 'sm' => 6, 'xs' => 12 ] );
+		clearfix()->initialize( $cols );
 		foreach( $users as $user ) { ?>
 			<div class="<?php clearfix()->div_class(); ?>">
 				<article class="enclosure">
@@ -39,10 +40,7 @@ if ( $users ) {
 							translate_user_role( $wp_roles->roles[ $user->roles[0] ]['name'] ),
 							$user->display_name
 						); ?>
-					</h3><?php
-#					if ( WP_DEBUG && is_user_logged_in() && current_user_can( 'update_core' ) ) {
-#						print_r($user);
-#					} ?>
+					</h3>
 				</article>
 			</div><?php
 			clearfix()->apply();
