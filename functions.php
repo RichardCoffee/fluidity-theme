@@ -71,3 +71,5 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 
 #global $shortcode_tags;
 #fluid()->log( $shortcode_tags );
+
+# $current_url = remove_query_arg( 'customize_changeset_uuid', $current_url );

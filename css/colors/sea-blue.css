@@ -249,9 +249,6 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
   }
 }
 /* _s */
-.main-navigation {
-  background-color: #287BBC;
-}
 .main-navigation a {
   background-color: #287BBC;
   color: #FFFFFF;
