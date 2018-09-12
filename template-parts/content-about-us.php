@@ -38,7 +38,7 @@ if ( $users ) {
 						if ( count_user_posts( $user->ID ) > 0 ) {
 							$link = fluid()->get_element( 'a', [ 'class' => 'block', 'href' => get_author_posts_url( $user->ID ) ], $user->display_name );
 						} else {
-							$link = fluid()->get_element( 'span', [ 'class' => 'block' ], $user_>display_name );
+							$link = fluid()->get_element( 'span', [ 'class' => 'block' ], $user->display_name );
 						}
 						printf(
 							"%s - %s\n",
