@@ -45,7 +45,7 @@ if ( $users ) {
 						<span class="text-wide text-center"><?php
 							printf(
 								esc_html_x( 'Forum %s', 'user bbpress forum role', 'tcc-fluid' ),
-								bbp_get_user_role( $user->ID )
+								bbp_get_user_display_role( $user->ID )
 							); ?>
 						</span><?php
 					} ?>
