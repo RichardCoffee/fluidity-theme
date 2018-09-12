@@ -40,7 +40,15 @@ if ( $users ) {
 							translate_user_role( $wp_roles->roles[ $user->roles[0] ]['name'] ),
 							$user->display_name
 						); ?>
-					</h3>
+					</h3><?php
+					if ( function_exists( 'is_bbpress' ) ) { ?>
+						<span class="text-wide text-center"><?php
+							printf(
+								esc_html_x( 'Forum %s', 'user bbpress forum role', 'tcc-fluid' ),
+								bbp_get_user_role( $user->ID )
+							); ?>
+						</span><?php
+					} ?>
 					<hr>
 				</article>
 			</div><?php
