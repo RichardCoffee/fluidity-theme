@@ -35,10 +35,15 @@ if ( $users ) {
 			<div class="<?php clearfix()->div_class(); ?>">
 				<article class="enclosure">
 					<h3 class="text-center"><?php
+						if ( count_user_posts( $user->ID ) > 0 ) {
+							$link = fluid()->get_element( 'a', [ 'class' => 'block', 'href' => get_author_posts_url( $user->ID ) ], $user->display_name );
+						} else {
+							$link = fluid()->get_element( 'span', [ 'class' => 'block' ], $user_>display_name );
+						}
 						printf(
-							"%s - <span class='block'>%s</span>\n",
+							"%s - %s\n",
 							translate_user_role( $wp_roles->roles[ $user->roles[0] ]['name'] ),
-							$user->display_name
+							$link
 						); ?>
 					</h3><?php
 					if ( function_exists( 'is_bbpress' ) ) { ?>
