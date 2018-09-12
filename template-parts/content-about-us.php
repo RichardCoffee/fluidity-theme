@@ -4,7 +4,7 @@ who_am_i();
 
 # * @link https://codex.wordpress.org/Function_Reference/get_users
 $args = array(
-	'blog_id'      => $GLOBALS['blog_id'],
+//	'blog_id'      => $GLOBALS['blog_id'], // defaults to current blog
 	'role'         => '',
 	'role__in'     => array(),
 	'role__not_in' => array( 'subscriber' ),
@@ -20,7 +20,7 @@ $args = array(
 	'offset'       => '',
 	'search'       => '',
 	'number'       => '',
-	'count_total'  => false,
+//	'count_total'  => false, // do not set - set to false by get_users() automatically
 	'fields'       => 'all_with_meta',
 	'who'          => '',
 );
@@ -42,7 +42,8 @@ if ( $users ) {
 						); ?>
 					</h3>
 				</article>
-			</div><?php
+			</div>
+			<hr><?php
 			clearfix()->apply();
 		} ?>
 	</div><?php
