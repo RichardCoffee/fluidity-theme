@@ -42,12 +42,12 @@ if ( $users ) {
 						); ?>
 					</h3><?php
 					if ( function_exists( 'is_bbpress' ) ) { ?>
-						<span class="text-wide text-center"><?php
+						<div class="text-center"><?php
 							printf(
 								esc_html_x( 'Forum %s', 'user bbpress forum role', 'tcc-fluid' ),
 								bbp_get_user_display_role( $user->ID )
 							); ?>
-						</span><?php
+						</div><?php
 					} ?>
 					<hr>
 				</article>
