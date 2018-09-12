@@ -41,9 +41,9 @@ if ( $users ) {
 							$user->display_name
 						); ?>
 					</h3>
+					<hr>
 				</article>
-			</div>
-			<hr><?php
+			</div><?php
 			clearfix()->apply();
 		} ?>
 	</div><?php
