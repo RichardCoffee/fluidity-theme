@@ -81,22 +81,23 @@ trait TCC_Trait_Tabs {
 	 * @uses WordPress::sanitize_title()
 	 * @uses TCC_Trait_Attributes::tag()
 	 */
-	protected function tab_content() {
-		$panel = array(
-			'role'  => 'tabpanel',
-			'class' => 'tab-pane' . ( ( $this->tab_fade_effect ) ? ' fade' : ''),
-		);
-		foreach( $this->tabs as $tab => $title ) {
-			$id = sanitize_title( $tab );
-			$method = 'tab_content_' . $id;
-			if ( method_exists( $this, $method ) ) {
-				$attrs = $this->tab_check_active_key( $panel, $id );
-				$this->tag( 'div', $attrs );
-					$this->$method();
-				echo '</div>';
-			}
-else { fluid()->log( $method ); }
-		}
+	protected function tab_content() { ?>
+		<div class="tab-content"><?php
+			$panel = array(
+				'role'  => 'tabpanel',
+				'class' => 'tab-pane' . ( ( $this->tab_fade_effect ) ? ' fade' : ''),
+			);
+			foreach( $this->tabs as $tab => $title ) {
+				$id = sanitize_title( $tab );
+				$method = 'tab_content_' . $id;
+				if ( method_exists( $this, $method ) ) {
+					$attrs = $this->tab_check_active_key( $panel, $id );
+					$this->tag( 'div', $attrs );
+						$this->$method();
+					echo '</div>';
+				}
+			} ?>
+		</div><?php
 	}
 
 	/**
