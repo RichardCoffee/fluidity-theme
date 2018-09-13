@@ -6,7 +6,7 @@
 if ( ! function_exists( 'fluid_show_color_scheme' ) ) {
 	function fluid_show_color_scheme() {
 		if ( WP_DEBUG && current_user_can( 'administrator' ) ) { ?>
-			<span class="pull-right margint1e"><?php
+			<span class="pull-right"><?php
 				echo fluid_color(); ?>
 			</span><?php
 		}
