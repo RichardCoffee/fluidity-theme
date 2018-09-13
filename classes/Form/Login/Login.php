@@ -268,8 +268,10 @@ class TCC_Form_Login_Login {
 	 *
 	 * @since 20170208
 	 * @link https://mekshq.com/get-current-page-url-wordpress/
+	 * @global $wp
 	 */
 	public function show_logout_form() {
+		global $wp;
 		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
 		<div class="text-center"><?php
 			$attrs = array(
