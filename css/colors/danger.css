@@ -194,7 +194,7 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 }
 
 .nav-tabs > li.active > a {
-  color: #FFFFFF;
+  color: #d9534f;
 }
 
 .navbar-fluidity {
