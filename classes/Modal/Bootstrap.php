@@ -242,6 +242,7 @@ abstract class TCC_Modal_Bootstrap {
 	 *  attributes for the modal activation button
 	 *
 	 * @since 20180830
+	 * @uses WordPress::apply_filters()
 	 * @return array
 	 */
 	protected function get_modal_button_attributes() {
@@ -251,7 +252,7 @@ abstract class TCC_Modal_Bootstrap {
 			'data-toggle' => 'modal',
 			'data-target' => '#' . $this->id,
 		);
-		return $attrs; # apply_filters( "{$this->prefix}_modal_show_button_attrs", $attrs );
+		return apply_filters( "{$this->prefix}_modal_activate_button_attrs", $attrs );
 	}
 
 	/**
