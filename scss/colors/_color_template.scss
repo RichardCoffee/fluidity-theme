@@ -83,7 +83,7 @@ form .form-control {
 form input.searchform-input {
 	@extend %regular;
 	@include placeholder(color(textcolor));
-	&:hover, &:focus {
+	&:hover, &:focus, &:active {
 		@include placeholder(color(background));
 	}
 }
@@ -99,6 +99,9 @@ form input.searchform-input {
 
 .nav-tabs > li.active > a {
 	color: $maincomp;
+	&:hover, &:active, &:focus {
+		color: $maincomp;
+	}
 }
 
 
@@ -117,6 +120,7 @@ ul.pagination > li {
 	}
 	& > a:hover,
 	& > a:focus,
+	& > a:active,
 	& > span {
 		background: color(textcolor);
 		border-color: color(bgHighlight);

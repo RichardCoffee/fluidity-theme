@@ -170,17 +170,17 @@ form input.searchform-input:-ms-input-placeholder {
 form input.searchform-input::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder {
+form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder, form input.searchform-input:active::-moz-placeholder {
   color: #39b54a;
   opacity: 1;
 }
-form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder {
+form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder, form input.searchform-input:active:-moz-placeholder {
   color: #39b54a;
 }
-form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder {
+form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder, form input.searchform-input:active:-ms-input-placeholder {
   color: #39b54a;
 }
-form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder {
+form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder, form input.searchform-input:active::-webkit-input-placeholder {
   color: #39b54a;
 }
 
@@ -191,6 +191,9 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 }
 
 .nav-tabs > li.active > a {
+  color: #39b54a;
+}
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:active, .nav-tabs > li.active > a:focus {
   color: #39b54a;
 }
 
@@ -274,7 +277,7 @@ ul.pagination > li > a {
   border-color: #2e913b;
   color: #FFFFFF;
 }
-ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > span {
+ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > a:active, ul.pagination > li > span {
   background: #FFFFFF;
   border-color: #2e913b;
   color: #39b54a;

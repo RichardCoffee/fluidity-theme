@@ -170,17 +170,17 @@ form input.searchform-input:-ms-input-placeholder {
 form input.searchform-input::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder {
+form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder, form input.searchform-input:active::-moz-placeholder {
   color: #f7941d;
   opacity: 1;
 }
-form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder {
+form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder, form input.searchform-input:active:-moz-placeholder {
   color: #f7941d;
 }
-form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder {
+form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder, form input.searchform-input:active:-ms-input-placeholder {
   color: #f7941d;
 }
-form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder {
+form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder, form input.searchform-input:active::-webkit-input-placeholder {
   color: #f7941d;
 }
 
@@ -191,6 +191,9 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 }
 
 .nav-tabs > li.active > a {
+  color: #f7941d;
+}
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:active, .nav-tabs > li.active > a:focus {
   color: #f7941d;
 }
 
@@ -274,7 +277,7 @@ ul.pagination > li > a {
   border-color: #d57808;
   color: #FFFFFF;
 }
-ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > span {
+ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > a:active, ul.pagination > li > span {
   background: #FFFFFF;
   border-color: #d57808;
   color: #f7941d;

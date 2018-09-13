@@ -171,17 +171,17 @@ form input.searchform-input:-ms-input-placeholder {
 form input.searchform-input::-webkit-input-placeholder {
   color: #31708F;
 }
-form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder {
+form input.searchform-input:hover::-moz-placeholder, form input.searchform-input:focus::-moz-placeholder, form input.searchform-input:active::-moz-placeholder {
   color: #D9EDF7;
   opacity: 1;
 }
-form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder {
+form input.searchform-input:hover:-moz-placeholder, form input.searchform-input:focus:-moz-placeholder, form input.searchform-input:active:-moz-placeholder {
   color: #D9EDF7;
 }
-form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder {
+form input.searchform-input:hover:-ms-input-placeholder, form input.searchform-input:focus:-ms-input-placeholder, form input.searchform-input:active:-ms-input-placeholder {
   color: #D9EDF7;
 }
-form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder {
+form input.searchform-input:hover::-webkit-input-placeholder, form input.searchform-input:focus::-webkit-input-placeholder, form input.searchform-input:active::-webkit-input-placeholder {
   color: #D9EDF7;
 }
 
@@ -192,6 +192,9 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 }
 
 .nav-tabs > li.active > a {
+  color: #31708F;
+}
+.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:active, .nav-tabs > li.active > a:focus {
   color: #31708F;
 }
 
@@ -275,7 +278,7 @@ ul.pagination > li > a {
   border-color: #BCE8F1;
   color: #31708F;
 }
-ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > span {
+ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > a:active, ul.pagination > li > span {
   background: #31708F;
   border-color: #BCE8F1;
   color: #D9EDF7;
