@@ -9,6 +9,9 @@
  * @copyright Copyright (c) 2018, Richard Coffee
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/Login.php
  */
+/**
+ *  check for wordpress
+ */
 defined( 'ABSPATH' ) || exit;
 
 
