@@ -17,7 +17,7 @@ article.enclosure {
 
 body {
 	color: $maincomp;
-	& .skip-link:focus {
+	& .skip-link:focus { // css for testing purposes
 		background-color: $mainlite;
 	}
 }
@@ -95,6 +95,12 @@ form input.searchform-input {
 	appearance: textfield;
 }
 
+// modals
+
+.nav-tabs > li.active > a {
+	color: color(textcolor);
+}
+
 
 // navigation
 
@@ -105,16 +111,16 @@ form input.searchform-input {
 
 ul.pagination > li {
 	& > a {
-		color: color(textcolor);
 		background: color(background);
 		border-color: color(bgHighlight);
+		color: color(textcolor);
 	}
 	& > a:hover,
 	& > a:focus,
 	& > span {
-		color: color(background);
 		background: color(textcolor);
 		border-color: color(bgHighlight);
+		color: color(background);
 		font-weight: normal;
 	}
 }
@@ -123,12 +129,12 @@ ul.pagination > li {
 // panels
 
 .panel-fluidity {
-  border-color: color(bgHighlight);
-  > .panel-heading {
-    background-color: color(background);
-    border-color: color(bgHighlight);
-    color: color(textcolor);
-  }
+	border-color: color(bgHighlight);
+	& > .panel-heading {
+		background-color: color(background);
+		border-color: color(bgHighlight);
+		color: color(textcolor);
+	}
 }
 
 // miscellaneous

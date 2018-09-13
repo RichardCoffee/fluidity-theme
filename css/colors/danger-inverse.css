@@ -191,6 +191,10 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
   appearance: textfield;
 }
 
+.nav-tabs > li.active > a {
+  color: #a94442;
+}
+
 .navbar-fluidity {
   background-color: #f2dede;
   color: #a94442;
@@ -257,7 +261,6 @@ form input.searchform-input:hover::-webkit-input-placeholder, form input.searchf
 .main-navigation a:hover, .main-navigation a:focus {
   background-color: #f2dede;
   color: #a94442;
-  font-weight: normal;
 }
 .main-navigation a:visited {
   color: #a94442;
@@ -268,14 +271,14 @@ ul.sub-menu {
 }
 
 ul.pagination > li > a {
-  color: #a94442;
   background: #f2dede;
   border-color: #f2dede;
+  color: #a94442;
 }
 ul.pagination > li > a:hover, ul.pagination > li > a:focus, ul.pagination > li > span {
-  color: #f2dede;
   background: #a94442;
   border-color: #f2dede;
+  color: #f2dede;
   font-weight: normal;
 }
 
