@@ -134,7 +134,7 @@ abstract class TCC_Modal_Bootstrap {
 			$this->tag( 'button', $this->get_modal_header_button_close_attrs() ); ?>
 				<span aria-hidden="true">&times;</span>
 			</button><?php
-			$this->element( 'h4', [ 'id' => $this->id . '-title', 'class' => 'modal-title text-center' ], $this->title ); ?>
+			$this->element( 'h1', [ 'id' => $this->id . '-title', 'class' => 'modal-title text-center' ], $this->title ); ?>
 		</div><?php
 	}
 
