@@ -267,6 +267,7 @@ class TCC_Form_Login_Login {
 	 *  display the logout button
 	 *
 	 * @since 20170208
+	 * @link https://mekshq.com/get-current-page-url-wordpress/
 	 */
 	public function show_logout_form() {
 		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
@@ -274,7 +275,7 @@ class TCC_Form_Login_Login {
 			$attrs = array(
 				'type'  => 'button',
 				'class' => 'btn btn-fluidity',
-				'href'  =>  esc_url( wp_logout_url( home_url() ) ),
+				'href'  =>  home_url( add_query_arg( array(), $wp->request ) ),
 				'title' =>  $signout,
 				'rel'   => 'nofollow',
 			);
