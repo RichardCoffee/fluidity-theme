@@ -88,7 +88,7 @@ trait TCC_Trait_Tabs {
 		);
 		foreach( $this->tabs as $tab => $title ) {
 			$id = sanitize_title( $tab );
-			$method = 'tab_content_ ' . $id;
+			$method = 'tab_content_' . $id;
 			if ( method_exists( $this, $method ) ) {
 				$attrs = $this->tab_check_active_key( $panel, $id );
 				$this->tag( 'div', $attrs );
