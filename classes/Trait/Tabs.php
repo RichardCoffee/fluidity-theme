@@ -111,7 +111,7 @@ trait TCC_Trait_Tabs {
 	private function tab_check_active_key( $attrs, $tab ) {
 		$attrs['id'] = $tab;
 		if ( $this->tab_active_key === $tab ) {
-			$attrs['class'] .= ' active';
+			$attrs['class'] .= ' active in';
 		}
 		return $attrs;
 	}
