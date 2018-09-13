@@ -194,8 +194,11 @@ function prevent_wp_login() {
 
 /***   Logout   ***/
 
+#	 * @link https://wordpress.stackexchange.com/questions/274569/how-to-get-url-of-current-page-displayed
+#	 * @global $wp
 	public function logout_url( $url, $redirect ) {
-		$site = get_option( 'siteurl' );
+		global $wp;
+		$site = home_url( $wp->request );
 		$pos  = strpos( $url, '?' );
 		if ( $pos === false ) {
 			$url.= "?redirect_to=" . urlencode( $site );
@@ -203,8 +206,8 @@ function prevent_wp_login() {
 			$base  = substr( $url, 0, $pos );
 			parse_str( htmlspecialchars_decode( substr( $url, $pos + 1 ) ), $parms );
 			$parms['redirect_to'] = $site;
-			$opts  = http_build_query( $parms, 'tcc_' );
-			$url   = $base . '?' . htmlspecialchars( $opts );
+			$opts = http_build_query( $parms, 'tcc_' ); # FIXME:  isn't there a wp function for this?
+			$url  = $base . '?' . htmlspecialchars( $opts );
 		}
 		return $url;
 	}
