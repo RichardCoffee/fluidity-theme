@@ -271,13 +271,12 @@ class TCC_Form_Login_Login {
 	 * @global $wp
 	 */
 	public function show_logout_form() {
-		global $wp;
 		$signout = apply_filters( 'fluid_logout_text', __( 'Sign Out', 'tcc-fluid' ) ); ?>
 		<div class="text-center"><?php
 			$attrs = array(
 				'type'  => 'button',
 				'class' => 'btn btn-fluidity',
-				'href'  =>  home_url( add_query_arg( array(), $wp->request ) ),
+				'href'  =>  esc_url( wp_logout_url( home_url() ) ),
 				'title' =>  $signout,
 				'rel'   => 'nofollow',
 			);
