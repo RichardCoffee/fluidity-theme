@@ -1,16 +1,65 @@
 <?php
-
+/**
+ *  Modal base class
+ *
+ * @package Fluidity
+ * @subpackage Modals
+ * @since 20170421
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ */
+/**
+ *  check for wordpress
+ */
+defined( 'ABSPATH' ) || exit;
+/**
+ *  abstract class upon which all modals are based
+ *
+ * @since 20170421
+ */
 abstract class TCC_Modal_Bootstrap {
 
+	/**
+	 *  modal id
+	 *
+	 * @since 20180830
+	 * @var string
+	 */
+	protected $id = '';
+	/**
+	 *  modal filter prefix
+	 *
+	 * @since 20170421
+	 * @var strin
+	 */
+	protected $prefix = 'tcc';
+	/**
+	 *  modal size - 'modal-lg', 'modal-sm'
+	 *
+	 * @since 20170421
+	 * @var string
+	 */
+	protected $size = 'modal-lg';
+	/**
+	 *  modal title
+	 *
+	 * @since 20170421
+	 * @var string
+	 */
+	protected $title = 'Modal Title';
 
-	protected $id     = '';
-	protected $prefix = 'tcc';  #  used as filter prefix
-	protected $size   = 'modal-lg';
-	protected $title  = 'Modal Title';
-
+	/**
+	 *  import attribute functions
+	 *
+	 * @since 20170512
+	 */
 	use TCC_Trait_Attributes;
 
-
+	/**
+	 *  abstract functions required for child classes
+	 *
+	 * @since 20170421
+	 */
 #	abstract protected function modal_header();
 	abstract protected function modal_body();
 	abstract protected function modal_footer();
@@ -18,6 +67,12 @@ abstract class TCC_Modal_Bootstrap {
 
 	/**  Modal  **/
 
+	/**
+	 *  insert the modal in the DOM
+	 *
+	 * @since 20170421
+	 * @uses TCC_Trait_Attributes::apply_attrs()
+	 */
 	public function modal() {
 		$this->id = ( empty( $this->id ) ) ? $this->prefix . '-modal-main' : $this->id; ?>
 		<div <?php $this->apply_attrs( $this->get_modal_attrs() ); ?>>
@@ -31,6 +86,12 @@ abstract class TCC_Modal_Bootstrap {
 		</div><?php
 	}
 
+	/**
+	 *  main modal div attributes
+	 *
+	 * @since 20170421
+	 * @return array
+	 */
 	private function get_modal_attrs() {
 		$attrs = array(
 			'id'              => $this->id,
@@ -44,6 +105,12 @@ abstract class TCC_Modal_Bootstrap {
 		return $attrs; # apply_filters( "{$this->prefix}_modal_main_attrs", $attrs );
 	}
 
+	/**
+	 *  secondary modal div attributes
+	 *
+	 * @since 20170421
+	 * @return array
+	 */
 	private function get_modal_dialog_attrs() {
 		$attrs = array(
 			'class' => 'modal-dialog ' . $this->size,
@@ -55,6 +122,13 @@ abstract class TCC_Modal_Bootstrap {
 
 	/**  Modal Header  **/
 
+	/**
+	 *  insert the modal header
+	 *
+	 * @since 20170421
+	 * @uses TCC_Trait_Attributes::tag()
+	 * @uses TCC_Trait_Attributes::element()
+	 */
 	private function generate_header() {
 		$this->tag( 'div', $this->get_modal_header_attrs() );
 			$this->tag( 'button', $this->get_modal_header_button_close_attrs() ); ?>
@@ -64,6 +138,12 @@ abstract class TCC_Modal_Bootstrap {
 		</div><?php
 	}
 
+	/**
+	 *  modal header div attributes
+	 *
+	 * @since 20170421
+	 * @return array
+	 */
 	private function get_modal_header_attrs() {
 		$attrs = array(
 			'id'    => $this->id . '-header',
@@ -72,6 +152,12 @@ abstract class TCC_Modal_Bootstrap {
 		return $attrs; # apply_filters( "{$this->prefix}_modal_header_attrs", $attrs );
 	}
 
+	/**
+	 *  attributes for the close bi=utton in the header
+	 *
+	 * @since 20170421
+	 * @return array
+	 */
 	private function get_modal_header_button_close_attrs() {
 		$attrs = array(
 			'type'         => 'button',
@@ -85,12 +171,25 @@ abstract class TCC_Modal_Bootstrap {
 
 	/**  Modal Body  **/
 
+	/**
+	 *  insert the modal body
+	 *
+	 * @since 20170421
+	 * @uses TCC_Trait_Attributes::apply_attrs()
+	 */
 	private function generate_body() { ?>
 		<div <?php $this->apply_attrs( $this->get_modal_body_attrs() ); ?>>
 			<?php $this->modal_body(); ?>
 		</div><?php
 	}
 
+	/**
+	 *  attributes for the modal body div
+	 *
+	 * @since 20170421
+	 * @uses WordPress::apply_filters()
+	 * @return array
+	 */
 	private function get_modal_body_attrs() {
 		$attrs = array(
 			'id'    => $this->id . '-body',
@@ -102,12 +201,24 @@ abstract class TCC_Modal_Bootstrap {
 
 	/**  Modal Footer  **/
 
+	/**
+	 *  insert the modal footer
+	 *
+	 * @since 20170421
+	 * @uses TCC_Trait_Attributes::apply_attrs()
+	 */
 	private function generate_footer() { ?>
 		<div <?php $this->apply_attrs( $this->get_modal_footer_attrs() ); ?>>
 			<?php $this->modal_footer(); ?>
 		</div><?php
 	}
 
+	/**
+	 *  attributes for the modal footer div
+	 *
+	 * @since 20170421
+	 * @return array
+	 */
 	private function get_modal_footer_attrs() {
 		$attrs = array(
 			'id'    => $this->id . '-footer',
@@ -116,11 +227,23 @@ abstract class TCC_Modal_Bootstrap {
 		return $attrs; # apply_filters( "{$this->prefix}_modal_footer_attrs", $attrs );
 	}
 
+	/**
+	 *  display the modal activation button
+	 *
+	 * @since 20180830
+	 * @uses TCC_Trait_Attributes::element()
+	 */
 	public function button( $text = '' ) {
 		$attrs = $this->get_modal_button_attributes();
-		fluid()->element( 'button', $attrs, $this->get_button_text( $text ) );
+		$this->element( 'button', $attrs, $this->get_button_text( $text ) );
 	}
 
+	/**
+	 *  attributes for the modal activation button
+	 *
+	 * @since 20180830
+	 * @return array
+	 */
 	protected function get_modal_button_attributes() {
 		$attrs = array(
 			'type'        => 'button',
@@ -131,6 +254,12 @@ abstract class TCC_Modal_Bootstrap {
 		return $attrs; # apply_filters( "{$this->prefix}_modal_show_button_attrs", $attrs );
 	}
 
+	/**
+	 *  text for the modal activation button
+	 *
+	 * @since 20180830
+	 * @return string
+	 */
 	protected function get_button_text( $text = '' ) {
 		return ( empty( $text ) ) ? __( 'Show Modal', 'tcc-fluid' ) : $text;
 	}

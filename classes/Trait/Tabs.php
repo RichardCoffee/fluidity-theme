@@ -1,6 +1,6 @@
 <?php
 /**
- *  handles tabs
+ *  insert tab functions
  *
  * @package Fluidity
  * @subpackage Traits
