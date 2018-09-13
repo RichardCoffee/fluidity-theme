@@ -90,11 +90,12 @@ trait TCC_Trait_Tabs {
 			$id = sanitize_title( $tab );
 			$method = 'tab_content_ ' . $id;
 			if ( method_exists( $this, $method ) ) {
-				$attrs['id'] = $tab;
-				$this->tag( 'div', $this->tab_check_active_key( $attrs, $id ) );
+				$attrs = $this->tab_check_active_key( $panel, $id );
+				$this->tag( 'div', $attrs );
 					$this->$method();
 				echo '</div>';
 			}
+else { fluid()->log( $method ); }
 		}
 	}
 
@@ -107,6 +108,7 @@ trait TCC_Trait_Tabs {
 	 * @return array
 	 */
 	private function tab_check_active_key( $attrs, $tab ) {
+		$attrs['id'] = $tab;
 		if ( $this->tab_active_key === $tab ) {
 			$attrs['class'] .= ' active';
 		}
