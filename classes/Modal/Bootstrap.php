@@ -249,7 +249,7 @@ abstract class TCC_Modal_Bootstrap {
 			'type'        => 'button',
 			'class'       => 'btn btn-fluidity',
 			'data-toggle' => 'modal',
-			'data-target' => $this->id,
+			'data-target' => '#' . $this->id,
 		);
 		return $attrs; # apply_filters( "{$this->prefix}_modal_show_button_attrs", $attrs );
 	}
