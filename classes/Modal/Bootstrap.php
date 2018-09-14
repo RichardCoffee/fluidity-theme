@@ -94,7 +94,7 @@ abstract class TCC_Modal_Bootstrap {
 	 */
 	private function get_modal_attrs() {
 		$attrs = array(
-			'id'              => $this->id,
+			'id'              => $this->id . '-modal',
 			'class'           => 'modal fade',
 			'tabindex'        => '-1',
 			'role'            => 'dialog',
@@ -250,7 +250,7 @@ abstract class TCC_Modal_Bootstrap {
 			'type'        => 'button',
 			'class'       => 'btn btn-fluidity',
 			'data-toggle' => 'modal',
-			'data-target' => '#' . $this->id,
+			'data-target' => '#' . $this->id . '-modal',
 		);
 		return apply_filters( "{$this->prefix}_modal_activate_button_attrs", $attrs );
 	}
