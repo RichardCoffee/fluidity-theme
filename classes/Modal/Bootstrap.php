@@ -34,7 +34,7 @@ abstract class TCC_Modal_Bootstrap {
 	 */
 	protected $prefix = 'tcc';
 	/**
-	 *  modal size - 'modal-lg', 'modal-sm'
+	 *  modal size - possible values: 'modal-xl', 'modal-lg', 'modal-md', 'modal-sm'
 	 *
 	 * @since 20170421
 	 * @var string
@@ -112,6 +112,9 @@ abstract class TCC_Modal_Bootstrap {
 	 * @return array
 	 */
 	private function get_modal_dialog_attrs() {
+		if ( ! in_array( $this->size, [ 'modal-xl', 'modal-lg', 'modal-md', 'modal-sm' ], true ) ) {
+			$this->size = 'modal-md';
+		}
 		$attrs = array(
 			'class' => 'modal-dialog ' . $this->size,
 			'role'  => 'document',
