@@ -222,7 +222,7 @@ abstract class TCC_Modal_Bootstrap {
 	 * @since 20170421
 	 * @return array
 	 */
-	private function get_modal_footer_attrs() {
+	protected function get_modal_footer_attrs() {
 		$attrs = array(
 			'id'    => $this->id . '-footer',
 			'class' => 'modal-footer',
