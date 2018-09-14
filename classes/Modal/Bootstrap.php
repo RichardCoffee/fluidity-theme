@@ -207,7 +207,7 @@ abstract class TCC_Modal_Bootstrap {
 	 * @since 20170421
 	 * @uses TCC_Trait_Attributes::apply_attrs()
 	 */
-	private function generate_footer() { ?>
+	protected function generate_footer() { ?>
 		<div <?php $this->apply_attrs( $this->get_modal_footer_attrs() ); ?>>
 			<?php $this->modal_footer(); ?>
 		</div><?php
