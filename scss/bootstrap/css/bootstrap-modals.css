@@ -149,3 +149,8 @@
     width: 900px;
   }
 }
+@media (min-width: 1200px) {
+  .modal-xl {
+    width: 1200px;
+  }
+}
