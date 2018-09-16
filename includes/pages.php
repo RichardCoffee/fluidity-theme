@@ -175,8 +175,6 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 					$slug = apply_filters( 'fluid_front_page_slug', 'front' );
 				} else if ( is_search() ) {
 					$slug = apply_filters( 'fluid_search_page_slug', 'search' );
-				} else if ( is_archive() ) {
-					$slug = apply_filters( 'fluid_archive_page_slug', 'archive' );
 				} else {
 					$obj = get_queried_object();  #  $wp_query->queried_object
 					if ( $obj instanceof WP_Post ) {
@@ -195,6 +193,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						$slug = 'author';
 					} else if ( ! empty( $obj ) ) {
 						fluid()->log( $obj );
+					} else if ( is_archive() ) {
+						$slug = apply_filters( 'fluid_archive_page_slug', 'archive' );
 					} else if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 						$slug = 'bbpress-page';
 					} else if ( is_customize_preview() ) {
