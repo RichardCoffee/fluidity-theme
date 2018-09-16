@@ -175,24 +175,26 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 					$slug = apply_filters( 'fluid_front_page_slug', 'front' );
 				} else if ( is_search() ) {
 					$slug = apply_filters( 'fluid_search_page_slug', 'search' );
+				} else if ( is_archive() ) {
+					$slug = apply_filters( 'fluid_archive_page_slug', 'archive' );
 				} else {
-					$post = get_queried_object();  #  $wp_query->queried_object
-					if ( $post instanceof WP_Post ) {
-						if ( ! empty( $post->post_name ) ) {
-							$slug = $post->post_name;
-						} else if ( ! empty( $post->name ) ) {
-							$slug = $post->name;
-						} else if ( ! empty( $post->post_title ) ) {
-							$slug = sanitize_title( $post->post_title );
+					$obj = get_queried_object();  #  $wp_query->queried_object
+					if ( $obj instanceof WP_Post ) {
+						if ( ! empty( $obj->post_name ) ) {
+							$slug = $obj->post_name;
+						} else if ( ! empty( $obj->name ) ) {
+							$slug = $obj->name;
+						} else if ( ! empty( $obj->post_title ) ) {
+							$slug = sanitize_title( $obj->post_title );
 						}
-					} else if ( $post instanceof WP_Post_Type ) {
-						$slug = $post->name;
-					} else if ( $post instanceof WP_Term ) {
-						$slug = $post->slug;
-					} else if ( $post instanceof WP_User ) {
+					} else if ( $obj instanceof WP_Post_Type ) {
+						$slug = $obj->name;
+					} else if ( $obj instanceof WP_Term ) {
+						$slug = $obj->slug;
+					} else if ( $obj instanceof WP_User ) {
 						$slug = 'author';
-					} else if ( ! empty( $post ) ) {
-						fluid()->log( $post );
+					} else if ( ! empty( $obj ) ) {
+						fluid()->log( $obj );
 					} else if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 						$slug = 'bbpress-page';
 					} else if ( is_customize_preview() ) {
