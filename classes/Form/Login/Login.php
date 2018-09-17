@@ -135,9 +135,15 @@ class TCC_Form_Login_Login {
 				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_username'] ], $this->defaults['label_username'] );
 				$this->element( 'input', $this->get_username_attrs() ); ?>
 			</div>
-			<div class='form-group login-password'><?php
-				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_password'] ], $this->defaults['label_password'] );
-				$this->element( 'input', $this->get_password_attrs() ); ?>
+			<div class='form-group login-password'>
+				<div class="input-group"><?php
+					$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_password'] ], $this->defaults['label_password'] );
+					$this->element( 'input', $this->get_password_attrs() ); ?>
+					<span class="input-group-addon show-hide-password fa-stack"><?php
+						fluid()->fawe( 'eye' );
+						fluid()->fawe( 'ban' ); ?>
+					</span>
+				</div>
 			</div>
 			<div class="checkbox login-remember"><?php
 				$this->remember_checkbox(); ?>
