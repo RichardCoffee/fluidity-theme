@@ -152,6 +152,7 @@ form .form-control:focus::-webkit-input-placeholder {
 }
 .input-group-addon:hover, .input-group-addon:focus {
   border: 1px solid #206296;
+  color: #206296;
 }
 
 .ui-autocomplete {
