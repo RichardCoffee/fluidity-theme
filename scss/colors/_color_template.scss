@@ -68,6 +68,16 @@ form .form-control {
 	}
 }
 
+.input-group-addon {
+	background-color: $mainlite;
+	border: 1px solid rgba($maincomp, 1);
+	color: color(textcolor);
+	&:hover,
+	&:focus {
+		border: 1px solid rgba($mainhigh, 1);
+	}
+}
+
 .ui-autocomplete {
 	background-color: color(textcolor);
 	border: 2px solid color(bgHighlight);

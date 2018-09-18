@@ -140,8 +140,8 @@ class TCC_Form_Login_Login {
 				<div class="input-group"><?php
 					$this->element( 'input', $this->get_password_attrs() ); ?>
 					<span class="input-group-addon show-hide-password fa-stack"><?php
-						fluid()->fawe( 'eye' );
-						fluid()->fawe( 'ban' ); ?>
+						fluid()->fawe( 'eye fa-stack-1x' );
+						fluid()->fawe( 'ban fa-stack-1x' ); ?>
 					</span>
 				</div>
 			</div>
