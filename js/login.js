@@ -12,4 +12,4 @@ console.log(inp);
 			jQuery( this ).children( '.fa-ban' ).addClass( 'hidden' );
 		}
 	});
-}
+});
