@@ -148,7 +148,7 @@ form .form-control:focus::-webkit-input-placeholder {
 .input-group-addon {
   background-color: #FFFFFF;
   border: 1px solid red;
-  color: #FFFFFF;
+  color: #ff0000;
 }
 .input-group-addon:hover, .input-group-addon:focus {
   border: 1px solid #cc0000;

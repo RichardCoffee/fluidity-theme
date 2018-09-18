@@ -71,7 +71,7 @@ form .form-control {
 .input-group-addon {
 	background-color: $mainlite;
 	border: 1px solid rgba($maincomp, 1);
-	color: color(textcolor);
+	color: $maincomp;
 	&:hover,
 	&:focus {
 		border: 1px solid rgba($mainhigh, 1);
