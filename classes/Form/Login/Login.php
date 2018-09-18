@@ -135,9 +135,9 @@ class TCC_Form_Login_Login {
 				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_username'] ], $this->defaults['label_username'] );
 				$this->element( 'input', $this->get_username_attrs() ); ?>
 			</div>
-			<div class='form-group login-password'>
+			<div class='form-group login-password'><?php
+				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_password'] ], $this->defaults['label_password'] ); ?>
 				<div class="input-group"><?php
-					$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_password'] ], $this->defaults['label_password'] );
 					$this->element( 'input', $this->get_password_attrs() ); ?>
 					<span class="input-group-addon show-hide-password fa-stack"><?php
 						fluid()->fawe( 'eye' );
