@@ -249,7 +249,7 @@ class TCC_Microdata {
 	}
 
 	public function get_post_time( $time, $format, $gmt ) {
-		if ( strpos( $time, 'itemprop' ) === false ) {
+		if ( ( strpos( $time, 'itemprop' ) === false ) && ( ! ( $format === 'U' ) ) ) {
 			$date_time = DateTime::createFromFormat( $format, $time );
 			if ( $date_time ) {
 				$date = $date_time->format( 'Y-m-d H:i:s' );
@@ -276,8 +276,7 @@ class TCC_Microdata {
 	}
 
 	public function get_the_date( $the_date, $format, $postID ) {
-		if ( $format === 'U' ) {
-		} else if ( strpos( $the_date, 'itemprop' ) === false ) {
+		if ( ( strpos( $the_date, 'itemprop' ) === false ) && ( ! ( $format === 'U' ) ) ) {
 			$datetime = mysql2date( 'Y-m-d H:i:s', get_post( $postID )->post_date );
 			$string   = '<time itemprop="datePublished" datetime="%1$s">%2$s</time>';
 			return sprintf( $string, $datetime, esc_html( $the_date ) );
