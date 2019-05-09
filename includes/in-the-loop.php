@@ -147,11 +147,11 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 			$date    = get_the_date();
 			if ( in_array( $postdate, [ 'both', 'modified' ] ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
-fluidity()->log( '   title: ' . get_the_title(),
-					  'modified: ' . get_the_modified_date( 'U' ),
-					  ' seconds: ' . DAY_IN_SECONDS,
-					  '   check: ' . ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ),
-					  '  posted: ' . get_the_date( 'U' ) );
+fluid()->log( '   title: ' . get_the_title(),
+				  'modified: ' . get_the_modified_date( 'U' ),
+				  ' seconds: ' . DAY_IN_SECONDS,
+				  '   check: ' . ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ),
+				  '  posted: ' . get_the_date( 'U' ) );
 				$default  = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 				$date     = get_the_modified_date();
 				$showboth = ( $postdate === 'both' );
