@@ -276,8 +276,8 @@ class TCC_Microdata {
 	}
 
 	public function get_the_date( $the_date, $format, $postID ) {
-fluid()->log( func_get_args() );
-		if ( ( strpos( $the_date, 'itemprop' ) === false ) && ( ! ( $format === 'U' ) ) ) {
+		if ( $format === 'U' ) {
+		} else if ( strpos( $the_date, 'itemprop' ) === false ) {
 			$datetime = mysql2date( 'Y-m-d H:i:s', get_post( $postID )->post_date );
 			$string   = '<time itemprop="datePublished" datetime="%1$s">%2$s</time>';
 			return sprintf( $string, $datetime, esc_html( $the_date ) );

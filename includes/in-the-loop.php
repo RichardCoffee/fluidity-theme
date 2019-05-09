@@ -151,7 +151,8 @@ fluid()->log( '   title: ' . get_the_title(),
 				  'modified: ' . get_the_modified_date( 'U' ),
 				  ' seconds: ' . DAY_IN_SECONDS,
 				  '   check: ' . ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ),
-				  '  posted: ' . get_the_date( 'U' ) );
+				  'posted 1: ' . get_the_date( 'U' ),
+				  'posted 2: ' . get_post_time( 'U' ) );
 				$default  = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 				$date     = get_the_modified_date();
 				$showboth = ( $postdate === 'both' );
