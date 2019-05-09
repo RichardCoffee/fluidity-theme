@@ -93,7 +93,7 @@ if ( has_nav_menu( $menu ) ) {
 			);
 			$args = apply_filters( 'fluid_nav_menu', $args );
 			wp_nav_menu( $args );
-			fluid_show_color_scheme(); ?>
+#			fluid_show_color_scheme(); ?>
 		</nav><!-- #site-navigation --><?php
 
 	}
