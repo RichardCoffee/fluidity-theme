@@ -40,7 +40,7 @@ class TCC_Theme_Login {
 		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 #		add_filter( 'authenticate',       [ $this, 'authenticate' ], 1, 3 );
 #		add_filter( 'fluid_customizer_controls_behavior', [ $this, 'fluid_customizer_controls_behavior' ] );
-		add_filter( 'login_headertitle',  [ $this, 'login_headertitle' ] );
+		add_filter( 'login_headertext',   [ $this, 'login_headertext' ] );
 		add_filter( 'login_headerurl',    [ $this, 'login_headerurl' ] );
 		add_filter( 'login_redirect',     [ $this, 'login_redirect' ], 10, 3 );
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
@@ -107,7 +107,8 @@ class TCC_Theme_Login {
 		}
 	}
 
-	public function login_headertitle( $args ) {
+	public function login_headertext( $args ) {
+		$this->log( $args );
 		return '';
 	}
 
