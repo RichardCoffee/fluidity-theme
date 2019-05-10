@@ -6,7 +6,7 @@ if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 	add_action( 'wp_dashboard_setup', function() {
 		if ( is_blog_admin() ) {
 			remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
-			wp_add_dashboard_widget( 'fluid_dashboard_activity', __( 'Activity' ), 'fluid_dashboard_site_activity' );
+			wp_add_dashboard_widget( 'fluid_dashboard_activity', __( 'Activity', 'tcc-fluid' ), 'fluid_dashboard_site_activity' );
 		}
 	});
 
@@ -18,20 +18,20 @@ if ( ! function_exists( 'fluid_dashboard_site_activity' ) ) {
 			'max'     => 5,
 			'status'  => 'future',
 			'order'   => 'ASC',
-			'title'   => __( 'Publishing Soon' ),
+			'title'   => __( 'Publishing Soon', 'tcc-fluid' ),
 			'id'      => 'future-posts',
 		) );
 		$recent_posts = wp_dashboard_recent_posts( array(
 			'max'     => 5,
 			'status'  => 'publish',
 			'order'   => 'DESC',
-			'title'   => __( 'Recently Published' ),
+			'title'   => __( 'Recently Published', 'tcc-fluid' ),
 			'id'      => 'published-posts',
 		) );
 		if ( !$future_posts && !$recent_posts && !$recent_comments ) {
 			echo '<div class="no-activity">';
 			echo '<p class="smiley" aria-hidden="true"></p>';
-			echo '<p>' . esc_html__( 'No activity yet!' ) . '</p>';
+			echo '<p>' . esc_html__( 'No activity yet!', 'tcc-fluid' ) . '</p>';
 			echo '</div>';
 		}
 		echo '</div>';

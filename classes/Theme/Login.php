@@ -179,7 +179,7 @@ function prevent_wp_login() {
     // Check if we're on the login page, and ensure the action is not 'logout'
     if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp', 'resetpass'))))) {
         // Load the home page url
-        $page = get_bloginfo('url');
+        $page = get_home_url();
         // Redirect to the home page
         wp_redirect($page);
         // Stop execution to prevent the page loading for any reason
