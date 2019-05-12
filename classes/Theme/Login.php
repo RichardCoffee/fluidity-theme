@@ -108,8 +108,7 @@ class TCC_Theme_Login {
 	}
 
 	public function login_headertext( $args ) {
-		$this->log( $args );
-		return '';
+		return get_bloginfo( 'name' );
 	}
 
 	public function login_headerurl() {
