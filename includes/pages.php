@@ -166,7 +166,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 		}
 		if ( empty( $slug ) ) {
 			if ( ( ! is_admin() ) && $wp_query->is_main_query() ) {
-				if ( ! empty( $wp_query->query['feed'] ) && ( $wp_query->query['feed'] === 'feed' ) ) {
+				if ( $wp_query->is_feed ) {
+				#if ( ! empty( $wp_query->query['feed'] ) && ( $wp_query->query['feed'] === 'feed' ) ) {
 					$slug = 'feed';
 				} else if ( is_home() && empty( $wp_query->query_string ) ) {
 					$slug = apply_filters( 'fluid_home_page_slug', 'home' );
