@@ -1,19 +1,27 @@
 <?php
-/*
+/**
  *  File:  includes/pages.php
  *  Custom Fields on Pages: <?php echo get_post_meta( get_page_id( $slug ), 'key string here', true ); ?>
  *
  * @since 20160901
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/pages.php
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
- * @copyright Copyright (c) 2018, Richard Coffee
+ * @copyright Copyright (c) 2019, Richard Coffee
+ */
+/**
+ *  check for wordpress
  */
 defined( 'ABSPATH' ) || exit;
 
-if (!function_exists('fluid_category_page_noposts')) {
+/**
+ * @since 20160901
+ * @uses esc_html__()
+ * @uses fluid_noposts_page()
+ */
+if ( ! function_exists( 'fluid_category_page_noposts' ) ) {
   function fluid_category_page_noposts() {
     $text = esc_html__( 'Apologies, but no results were found for the requested Category. Perhaps searching will help find a related post.','tcc-fluid' );
-    fluid_noposts_page($text);
+    fluid_noposts_page( $text );
   }
 }
 
@@ -22,7 +30,9 @@ if (!function_exists('fluid_category_page_noposts')) {
  *
  * @since 20180807
  * @param array $options
+ * @uses __()
  * @return array
+ * @uses add_filter()
  */
 if ( ! function_exists( 'fluid_customizer_pages' ) ) {
 	function fluid_customizer_pages( $options = array() ) {
@@ -57,6 +67,15 @@ if ( ! function_exists( 'fluid_customizer_pages' ) ) {
  *
  * @since 20161219
  * @param string $slug
+ * @uses tcc_get_page_id_by_slug()
+ * @uses is_archive()
+ * @uses get_query_var()
+ * @uses get_the_archive_title()
+ * @uses is_tax()
+ * @uses is_category()
+ * @uses is_tag()
+ * @uses term_description()
+ * @uses is_search()
  * @return string
  */
 if ( ! function_exists( 'fluid_get_page_title' ) ) {
