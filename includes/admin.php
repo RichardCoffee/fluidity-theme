@@ -2,17 +2,34 @@
 /**
  *  includes/admin.php
  *
+ * @package Fluidity
+ * @subpackage Admin
+ * @since 20150525
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/admin.php
  */
-
+defined( 'ABSPATH' ) || exit;
 /**
- *  Change text greeting in admin bar - replaces wordpress' wp_admin_bar_my_account_item function
+ *  Change text greeting in admin bar - replaces wordpress' wp_admin_bar_my_account_item function.
  *
+ * @since 20170118
+ * @param WP_Admin_Bar $wp_admin_bar
+ * @uses remove_action()
+ * @uses get_current_user_id()
+ * @uses wp_get_current_user()
+ * @uses get_avatar()
+ * @uses apply_filters()
+ * @uses tcc_holiday_greeting()
+ * @uses TCC_Theme_Library::get_element()
+ * @uses _x()
+ * @uses esc_html__()
+ * @uses WP_Admin_Bar::add_menu()
+ * @uses add_action()
  * @link wp-includes/admin-bar.php:function wp_admin_bar_my_account_item( $wp_admin_bar )
  * @link http://www.wpbeginner.com/wp-tutorials/how-to-change-the-howdy-text-in-wordpress-3-3-admin-bar/
  * @link https://premium.wpmudev.org/forums/topic/change-howdy-manually
  * @link http://www.hongkiat.com/blog/wordpress-howdy-customized/
- * @param WP_Admin_Bar $wp_admin_bar
  */
 if ( ! function_exists( 'fluid_admin_howdy' ) ) {
 	function fluid_admin_howdy( WP_Admin_Bar $wp_admin_bar ) {
@@ -41,12 +58,18 @@ if ( ! function_exists( 'fluid_admin_howdy' ) ) {
 }
 
 /**
- *  filter the profile url for the admin bar
+ *  Filter the profile url for the admin bar.
  *
- * @link wp-includes/admin-bar.php:function wp_admin_bar_my_account_item( $wp_admin_bar )
+ * @since 20180705
  * @param string $profile_url
  * @param WP_User $user
+ * @uses current_user_can()
+ * @uses get_edit_profile_url()
+ * @uses is_multisite()
+ * @uses get_dashboard()
  * @return string
+ * @uses add_filter()
+ * @link wp-includes/admin-bar.php:function wp_admin_bar_my_account_item( $wp_admin_bar )
  */
 if ( ! function_exists( 'fluid_wp_admin_bar_my_account_profile_url' ) ) {
 	function fluid_wp_admin_bar_my_account_profile_url( $profile_url, WP_User $user ) {
@@ -61,13 +84,16 @@ if ( ! function_exists( 'fluid_wp_admin_bar_my_account_profile_url' ) ) {
 }
 
 /**
- *  provide action to include custom css when loading admin page
+ *  Provide action to include custom css when loading admin page
  *
+ * @since 20180320
+ * @uses do_action()
+ * @uses add_action()
  */
 if ( ! function_exists( 'fluid_custom_css_admin' ) ) {
 	function fluid_custom_css_admin() { ?>
 		<style id="fluid-custom-css-admin" type="text/css"><?php
-			do_action('fluid_custom_css_admin'); ?>
+			do_action( 'fluid_custom_css_admin' ); ?>
 		</style><?php
 	}
 	add_action( 'admin_head', 'fluid_custom_css_admin' );
@@ -76,6 +102,8 @@ if ( ! function_exists( 'fluid_custom_css_admin' ) ) {
 /**
  *  custom css for the plugin information screen
  *
+ * @since 20180405
+ * @uses add_action()
  */
 if ( ! function_exists( 'fluid_plugin_information_footer' ) ) {
 	function fluid_plugin_information_footer() {
