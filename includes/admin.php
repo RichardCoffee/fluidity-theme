@@ -79,7 +79,7 @@ if ( ! function_exists( 'fluid_custom_css_admin' ) ) {
  */
 if ( ! function_exists( 'fluid_plugin_information_footer' ) ) {
 	function fluid_plugin_information_footer() {
-		echo "\n#plugin-information-footer {\n\tleft: auto;\n\tright: 13px;\n\twidth: 216px;\nborder-left: 1px solid #ddd;}\n";
+		echo "\n#plugin-information-footer {\n\tleft: auto;\n\tright: 13px;\n\twidth: 214px;\nborder-left: 1px solid #ddd;}\n";
 	}
 	add_action( 'fluid_custom_css_admin', 'fluid_plugin_information_footer' );
 }
