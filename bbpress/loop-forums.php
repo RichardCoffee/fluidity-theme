@@ -1,36 +1,35 @@
 <?php
-
 /**
  * Forums Loop
  *
  * @package bbPress
  * @subpackage Theme
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/bbpress/loop-forums.php
  */
 
-?>
-
-<?php do_action( 'bbp_template_before_forums_loop' ); ?>
+do_action( 'bbp_template_before_forums_loop' ); ?>
 
 <ul id="forums-list-<?php bbp_forum_id(); ?>" class="bbp-forums">
 
 	<li class="bbp-header">
 
 		<ul class="forum-titles">
-			<li class="bbp-forum-info"><?php _e( 'Forum', 'bbpress' ); ?></li>
-			<li class="bbp-forum-topic-count"><?php _e( 'Topics', 'bbpress' ); ?></li>
-			<li class="bbp-forum-reply-count"><?php bbp_show_lead_topic() ? _e( 'Replies', 'bbpress' ) : _e( 'Posts', 'bbpress' ); ?></li>
-			<li class="bbp-forum-freshness"><?php _e( 'Activity', 'bbpress' ); ?></li>
+			<li class="bbp-forum-info"><?php esc_html_e( 'Forum', 'bbpress' ); ?></li>
+			<li class="bbp-forum-topic-count"><?php esc_html_e( 'Topics', 'bbpress' ); ?></li>
+			<li class="bbp-forum-reply-count"><?php bbp_show_lead_topic() ? esc_html_e( 'Replies', 'bbpress' ) : esc_html_e( 'Posts', 'bbpress' ); ?></li>
+			<li class="bbp-forum-freshness"><?php esc_html_e( 'Activity', 'bbpress' ); ?></li>
 		</ul>
 
 	</li><!-- .bbp-header -->
 
-	<li class="bbp-body">
+	<li class="bbp-body"><?php
 
-		<?php while ( bbp_forums() ) : bbp_the_forum(); ?>
+		while ( bbp_forums() ) :
 
-			<?php bbp_get_template_part( 'loop', 'single-forum' ); ?>
+			bbp_the_forum();
+			bbp_get_template_part( 'loop', 'single-forum' );
 
-		<?php endwhile; ?>
+		endwhile; ?>
 
 	</li><!-- .bbp-body -->
 
@@ -42,6 +41,6 @@
 
 	</li><!-- .bbp-footer -->
 
-</ul><!-- .forums-directory -->
+</ul><!-- .forums-directory --><?php
 
-<?php do_action( 'bbp_template_after_forums_loop' ); ?>
+do_action( 'bbp_template_after_forums_loop' ); ?>

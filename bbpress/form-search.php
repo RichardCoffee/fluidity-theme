@@ -1,10 +1,13 @@
 <?php
-
 /**
  * Search
  *
- * @package bbPress
- * @subpackage Theme
+ * @package Fluidity
+ * @subpackage bbPress
+ * @since 20180408
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/bbpress/form-search.php
  */
 
 include_once( FLUIDITY_HOME . 'includes/search.php' );
