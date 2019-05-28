@@ -117,6 +117,8 @@ if ( ! function_exists( 'fluid_page_title' ) ) {
 			do_action( "fluid_page_title_$slug" );
 		} else if ( has_action( 'fluid_page_title' ) ) {
 			do_action( 'fluid_page_title', $slug );
+		} else if ( $slug === 'author' ) {
+			//  Do not display title on author pages since the title will be the author's name and the author's name is already displayed on the page.
 		} else {
 			$title = fluid_get_page_title( $slug );
 			$title = apply_filters( "fluid_page_title_text_$slug", $title ); ?>
