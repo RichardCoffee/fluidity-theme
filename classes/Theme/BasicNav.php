@@ -1,6 +1,6 @@
 <?php
 /**
- *  supplies basic navigation functions.
+ *  Supplies basic navigation functions.
  *
  * @package Fluidity
  * @subpackage Navigation
@@ -11,28 +11,34 @@
  */
 defined( 'ABSPATH' ) || exit;
 /**
- *  abstract class that provides generic post navigation functions.
+ *  Abstract class that provides generic post navigation functions.
  *
  * @since 20170510
  */
 abstract class TCC_Theme_BasicNav {
 
 	/**
-	 * css class assigned to <nav> object
+	 *  CSS class assigned to <nav> object.
 	 *
 	 * @since 20170510
 	 * @var string
 	 */
 	protected $nav_css = 'posts-navigation';
 	/**
-	 * text used for title and aria-label on <nav> object
+	 *  Text used for title and aria-label on <nav> object.
 	 *
 	 * @since 20170510
 	 * @var string
 	 */
 	protected $sr_text = '';
 
+	/**
+	 * @link https://github.com/RichardCoffee/custom-post-type/blob/master/classes/Trait/Attributes.php
+	 */
 	use TCC_Trait_Attributes;
+	/**
+	 * @link https://github.com/RichardCoffee/custom-post-type/blob/master/classes/Trait/ParseArgs.php
+	 */
 	use TCC_Trait_ParseArgs;
 
 	/**
@@ -78,6 +84,7 @@ abstract class TCC_Theme_BasicNav {
 	 * creates div.nav-links html for wrapping navigation links
 	 *
 	 * @since 20170510
+	 * @uses TCC_Trait_Attributes::get_tag()
 	 * @return string
 	 */
 	protected function generate_markup() {
@@ -91,6 +98,5 @@ abstract class TCC_Theme_BasicNav {
 		$html.= '</nav>';
 		return $html;
 	}
-
 
 }
