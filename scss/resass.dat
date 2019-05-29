@@ -1,5 +1,5 @@
 #sass --sourcemap=none --style=compressed scss/bootstrap/bootstrap.scss css/bootstrap.min.css
 #sass --sourcemap=none --style=compressed scss/bootstrap/core.scss css/bootstrap-core.min.css
 #sass --sourcemap=none --style=compressed scss/bootstrap-backup.scss css/bootstrap-backup.min.css
-sass --sourcemap=none --style=compressed scss/style.scss css/style.min.css
-sass --sourcemap=none --style=expanded scss/style.scss style.css
+/usr/local/bin/sass --sourcemap=none --style=compressed scss/style.scss css/style.min.css
+/usr/local/bin/sass --sourcemap=none --style=expanded scss/style.scss style.css
