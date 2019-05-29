@@ -15,10 +15,6 @@ article.post .row::after {
   }
 }
 
-code {
-	font-size: 70%; // bootstrap default is 90%
-}
-
 @media (max-width: 991px) { // sm
 	.article {
 		margin: 0;
