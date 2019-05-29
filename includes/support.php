@@ -6,13 +6,14 @@
 /**
  * control which options the theme supports
  *
- * @param array $args contains which options can be supported
- * @return array should contain which options the theme is willing to support
+ * @param array $args Contains which options can be supported.
+ * @return array Should contain which options the theme is willing to support.
  */
 if ( ! function_exists( 'fluid_load_theme_support' ) ) {
 	function fluid_load_theme_support( $args = array() ) {
-		$minus = array( 'custom-header', 'custom-logo' ); //, 'editor_style' );
-		return array_diff( $args, [ 'custom-header' ] );
+		#  Theme will not support these features
+		$minus = array( 'custom-header', 'dark-editor-style', 'disable-custom-colors', 'disable-custom-font-sizes' );
+		return array_diff( $args, $minus );
 	}
 	add_filter( 'fluid_load_theme_support', 'fluid_load_theme_support' );
 }

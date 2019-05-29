@@ -52,21 +52,31 @@ class TCC_Theme_Support {
 	 *
 	 * @since 20170508
 	 * @link https://codex.wordpress.org/Theme_Features
+	 * @link https://developer.wordpress.org/reference/functions/add_theme_support/
 	 */
 	public function load_theme_support() {
 		$support = array(
+			'align-wide',
 			'automatic-feed-links',
 			'content-width',
 			'custom-background',
 			'custom-header',
 			'custom-logo',
 			'customize-selective-refresh-widgets',
+			'dark-editor-style',
+			'disable-custom-colors',
+			'disable-custom-font-sizes',
+			'editor-color-pallete',
+			'editor-font-sizes',
 			'editor-style',
+			'editor-styles',
 			'html5',
 			'post-formats',
 			'post-thumbnails',
+			'responsive-embeds',
 			'starter-content',
 			'title-tag',
+			'wp-block-styles',
 		);
 		$support = apply_filters( $this->filter_prefix . '_load_theme_support', $support );
 		if ( ! empty( $support ) ) {
@@ -82,6 +92,16 @@ class TCC_Theme_Support {
 				}
 			}
 		}
+	}
+
+	/**
+	 *  Allow blocks to add the 'alignwide' or 'alignfull' css to post content
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 */
+	protected function align_wide() {
+		add_theme_support( 'align-wide' );
 	}
 
 	/**
@@ -194,6 +214,86 @@ class TCC_Theme_Support {
 	}
 
 	/**
+	 *  Add theme support for dark editor style.
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 */
+	protected function dark_editor_style() {
+		add_theme_support( 'dark-editor-style' );
+	}
+
+	/**
+	 *  Remove block support for custom colors.
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 */
+	protected function disable_custom_colors() {
+		add_theme_support( 'disable-custom-colors' );
+	}
+
+	/**
+	 *  Remove editor support for custom font sizes
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 */
+	protected function disable_custom_font_sizes() {
+		add_theme_support( 'disable-custom-font-sizes' );
+	}
+
+	/**
+	 *  Add theme support for custom palettes in the editor
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 * @todo Add possibility of parsing css file to automatically generate palettes array 
+	 */
+	protected function editor_color_palette() {
+		$colors = apply_filters( $this->filter_prefix . '_editor_color_palette', array() );
+		if ( (bool) $colors ) {
+			$palettes = array();
+			foreach( $colors as $color ) {
+				if ( isset( $color['name'] ) && isset( $color['color'] ) ) {
+					if ( ! isset( $color['slug'] ) ) {
+						$color['slug'] = sanitize_title( $color['name'] );
+					}
+					$palettes[] = $color;
+				}
+			}
+			if ( (bool) $palettes ) {
+				add_theme_support( 'editor-color-palette', $palettes );
+			}
+		}
+	}
+
+	/**
+	 *  Add support for custom font sizes in the editor
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 * @todo Add possibility of parsing css file to automatically generate fonts array
+	 */
+	protected function editor_font_sizes() {
+		$sizes = apply_filters( $this->filter_prefix . '_editor_font_sizes', array() );
+		if ( ! empty( $sizes ) ) {
+			$fonts = array();
+			foreach( $sizes as $size ) {
+				if ( isset( $size['name'] ) && isset( $size['size'] ) ) {
+					if ( ! isset( $size['slug'] ) ) {
+						$size['slug'] = sanitize_title( $size['name'] );
+					}
+					$fonts[] = $size;
+				}
+			}
+			if ( ! empty( $fonts ) ) {
+				add_theme_support( 'editor-font-sizes', $fonts );
+			}
+		}
+	}
+
+	/**
 	 * load editor stylesheet
 	 *
 	 * @since 20170508
@@ -203,8 +303,21 @@ class TCC_Theme_Support {
 		if ( $this->editor_style ) {
 			$file = get_theme_file_path( $this->editor_style );
 			if ( is_readable( $file ) ) {
+				$this->editor_styles( true );
 				add_editor_style( $this->editor_style );
 			}
+		}
+	}
+
+	/**
+	 *  Allow wordpress to modify editor stylesheet css selectors for use with gutenburg editor.
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 */
+	protected function editor_styles( $editor = false ) {
+		if ( $editor ) {
+			add_theme_support( 'editor-styles' );
 		}
 	}
 
@@ -307,6 +420,16 @@ class TCC_Theme_Support {
 	}
 
 	/**
+	 *  Enable responsive iframe embeds
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 */
+	protected function responsive_embeds() {
+		add_theme_support( 'responsive-embeds' );
+	}
+
+	/**
 	 * adds starter content support
 	 *
 	 * @since 20180722
@@ -356,6 +479,16 @@ class TCC_Theme_Support {
 	 */
 	protected function title_tag() {
 		add_theme_support( 'title-tag' );
+	}
+
+	/**
+	 *  Add default WP block style support
+	 *
+	 * @since 20190529
+	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	 */
+	protected function wp_block_styles() {
+		add_theme_support( 'wp-block-styles' );
 	}
 
 
