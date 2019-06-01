@@ -21,6 +21,7 @@ trait TCC_Trait_Logging {
 		call_user_func_array( [ $this, 'logging_entry' ], func_get_args() );
 	}
 
+# * @used-by TCC_Form_Admin::get_defaults()
 	public function logg() {
 		if ( is_callable( $this->logging_func ) && ( $this->logging_debug || $this->logging_force ) ) {
 			call_user_func_array( $this->logging_func, func_get_args() );
@@ -43,7 +44,7 @@ trait TCC_Trait_Logging {
 	 * selectively skipping parts of the stack.
 	 *
 	 * @link http://php.net/debug_backtrace
-	 * @param int $depth
+	 * @param numeric $depth
 	 * @return string
 	 */
 	public function logging_calling_location( $depth = 1 ) {
@@ -92,7 +93,7 @@ trait TCC_Trait_Logging {
 	 * locates a function name in the stack
 	 *
 	 * @param string $func
-	 * @return bool|int false or stack level
+	 * @return bool|numeric false or stack level
 	 */
 	public function logging_was_called_by( $func ) {
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );

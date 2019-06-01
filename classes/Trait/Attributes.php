@@ -1,14 +1,10 @@
 <?php
 /**
- *  generate html with attributes
+ * classes/Trait/Attributes.php
  *
- * @package Fluidity
- * @subpackage Traits
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
- * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Trait/Attributes.php
  */
-defined( 'ABSPATH' ) || exit;
 /**
  * A trait that provides methods to generate html for tag attributes
  *
@@ -39,6 +35,7 @@ trait TCC_Trait_Attributes {
 	 * @param string $text
 	 * @param boolean $raw if true will prevent $text from being escaped when displayed
 	 * @return string
+	 * @used-by TCC_Form_Admin::field_label()
 	 */
 	public function get_element( $tag, $attrs, $text = '', $raw = false ) {
 		return $this->get_apply_attrs_element( $tag, $attrs, $text, $raw );
@@ -81,11 +78,6 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20170506
 	 * @param array $attrs contains attribute/value pairs
-	 * @uses sanitize_key()
-	 * @uses esc_url()
-	 * @uses esc_html()
-	 * @uses esc_attr()
-	 * @uses wp_strip_all_tags()
 	 * @return string
 	 */
 	public function get_apply_attrs( $attrs ) {
@@ -138,7 +130,6 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20170510
 	 * @param string|array $classes css classes to be sanitized
-	 * @uses sanitize_html_class()
 	 * @return string
 	 */
 	public function sanitize_html_class( $classes ) {
@@ -186,7 +177,6 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20170507
 	 * @param string $tag tag to check for
-	 * @uses apply_filters()
 	 * @return bool
 	 */
 	protected function is_tag_self_closing( $tag ) {
@@ -218,7 +208,6 @@ trait TCC_Trait_Attributes {
 	 * @param array $attrs contains attribute/value pairs
 	 * @param string $text content of html element
 	 * @param boolean $raw if true will prevent $text from being escaped when displayed
-	 * @uses esc_html()
 	 * @return string
 	 */
 	public function get_apply_attrs_element( $element, $attrs, $text = '', $raw = false ) {
