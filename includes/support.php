@@ -12,7 +12,7 @@
 if ( ! function_exists( 'fluid_load_theme_support' ) ) {
 	function fluid_load_theme_support( $args = array() ) {
 		#  Theme will not support these features
-		$minus = array( 'custom-header', 'dark-editor-style', 'disable-custom-colors', 'disable-custom-font-sizes' );
+		$minus = array( 'custom-header', 'dark-editor-style' );
 		return array_diff( $args, $minus );
 	}
 	add_filter( 'fluid_load_theme_support', 'fluid_load_theme_support' );

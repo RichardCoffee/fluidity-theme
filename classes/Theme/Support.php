@@ -229,8 +229,10 @@ class TCC_Theme_Support {
 	 * @since 20190529
 	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
 	 */
-	protected function disable_custom_colors() {
-		add_theme_support( 'disable-custom-colors' );
+	protected function disable_custom_colors( $disable = false ) {
+		if ( $disable ) {
+			add_theme_support( 'disable-custom-colors' );
+		}
 	}
 
 	/**
@@ -239,8 +241,10 @@ class TCC_Theme_Support {
 	 * @since 20190529
 	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
 	 */
-	protected function disable_custom_font_sizes() {
-		add_theme_support( 'disable-custom-font-sizes' );
+	protected function disable_custom_font_sizes( $disable = false ) {
+		if ( $disable ) {
+			add_theme_support( 'disable-custom-font-sizes' );
+		}
 	}
 
 	/**
@@ -263,6 +267,7 @@ class TCC_Theme_Support {
 				}
 			}
 			if ( (bool) $palettes ) {
+				$this->disable_custom_colors( true );
 				add_theme_support( 'editor-color-palette', $palettes );
 			}
 		}
@@ -288,6 +293,7 @@ class TCC_Theme_Support {
 				}
 			}
 			if ( ! empty( $fonts ) ) {
+				$this->disable_custom_font_sizes( true );
 				add_theme_support( 'editor-font-sizes', $fonts );
 			}
 		}
