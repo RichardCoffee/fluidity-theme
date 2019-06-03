@@ -32,7 +32,7 @@ abstract class TCC_Block_Block {
 	 */
 	protected $javascript = 'js/my-new-block.js';
 	/**
-	 *  Dependencies required for the javascript file
+	 *  Dependencies required for the javascript file, possible values include: [ 'wp-i18n', 'wp-blocks', 'wp-edit-post', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-api' ]
 	 *
 	 * @since 20190601
 	 * @var array

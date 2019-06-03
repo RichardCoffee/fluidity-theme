@@ -43,7 +43,7 @@ class TCC_MetaBox_Sidebar extends TCC_MetaBox_MetaBox {
 		if ( ! $this->pre_save_meta_box( $postID, basename( __FILE__ ) ) ) {
 			return;
 		}
-		if ( ! empty( $_POST[ $this->field ] ) ) {
+		if ( array_key_exists( $this->field, $_POST ) ) {
 			$this->initialize_radio( $postID );
 			$value = $this->radio->sanitize( wp_unslash( $_POST[ $this->field ] ) );
 			update_post_meta( $postID, $this->field, $value );

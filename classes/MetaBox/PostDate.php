@@ -22,7 +22,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	public function admin_enqueue_scripts() { }
 
 	protected function initialize_radio( $postID ) {
-		$postdate = get_post_meta( $postID, $this->field, true );
+		$postdate = get_post_meta( $postID, $this->field, false );
 		$layout   = fluid_customizer()->content_controls();
 		$choices  = $layout['content']['controls']['postdate']['choices'];
 		$default  = $layout['content']['controls']['postdate']['default'];
@@ -44,7 +44,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		$this->radio  = new TCC_Form_Field_Radio( $args );
 		$show_excerpt = in_array( get_theme_mod( 'content_exdate', 'show' ), [ 'postshow', 'posthide' ] );
 		if ( $show_excerpt ) {
-			$exdate = get_post_meta( $postID, $this->excerpt, true );
+			$exdate = get_post_meta( $postID, $this->excerpt['field'], false );
 			$ex_def = ( get_theme_mod( 'content_exdate', 'postshow' ) === 'posthide' ) ? 'hide' : 'show';
 			$this->excerpt['header'] = $layout['content']['controls']['exdate']['label'];
 			$this->excerpt['args']   = array(
@@ -76,11 +76,11 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 		if ( ! $this->pre_save_meta_box( $postID, basename( __FILE__ ) ) ) {
 			return;
 		}
-		if ( ! empty( $_POST[ $this->field ] ) ) {
+		if ( array_key_exists( $this->field, $_POST ) ) {
 			$this->initialize_radio( $postID );
 			$value = $this->radio->sanitize( $_POST[ $this->field ] );
 			update_post_meta( $postID, $this->field, $value );
-			if ( $this->excerpt['object'] && ! empty( $_POST[ $this->excerpt['field'] ] ) ) {
+			if ( $this->excerpt['object'] && array_key_exists( $this->excerpt['field'], $_POST ) ) {
 				$exdate = $this->excerpt['object']->sanitize( $_POST[ $this->excerpt['field'] ] );
 				update_post_meta( $postID, $this->excerpt['field'], $exdate );
 			}
