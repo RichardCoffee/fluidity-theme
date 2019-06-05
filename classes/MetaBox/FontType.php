@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  *  Allows the post author to assign a chosen font to be used or a post.
  */
-class FontType extends MetaBox {
+class TCC_MetaBox_FontType extends TCC_MetaBox_MetaBox {
 
 	/**
 	 * @since 20190604
