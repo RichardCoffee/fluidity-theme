@@ -3,7 +3,12 @@
 abstract class TCC_MetaBox_MetaBox {
 
 	protected $add_meta  = null;
-	protected $callback  = null;
+	/**
+	 *  Callback arguments
+			'__block_editor_compatible_meta_box' (boolean) true indicates the metabox can be used with the block editor, default: true
+			'__back_compat_meta_box'             {boolean) true indicates the metabox should only be displayed when using the old editor, default: false
+	 */
+	protected $callback  = [ '__block_editor_compatible_meta_box' => true, '__back_compat_meta_box' => false ];  #  callback arguments - not the callback function!
 	protected $context   = 'normal';
 	protected $nonce     = 'meta_box_nonce';   # change this!
 	protected $priority  = 'high';

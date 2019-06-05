@@ -64,7 +64,7 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 		</label><?php
 	}
 
-	# See also: classes/Form/Sanitizer.php
+	# See also: classes/Form/Sanitize.php
 	public function sanitize( $input ) {
 		$input = sanitize_key( $input );
 		return ( array_key_exists( $input, $this->choices ) ? $input : $this->default );
