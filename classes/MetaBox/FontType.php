@@ -92,7 +92,7 @@ class TCC_MetaBox_FontType extends TCC_MetaBox_MetaBox {
 		if ( ! $this->pre_save_meta_box( $postID, basename( __FILE__ ) ) ) {
 			return;
 		}
-		if ( array_key_exists( $this->field, $_POST ) ) {
+		if ( array_key_exists( $this->field, (array) $_POST ) ) {
 			$this->initialize_radio( $postID );
 			$value = $this->radio->sanitize( wp_unslash( $_POST[ $this->field ] ) );
 			if ( $value === 'default' ) {
