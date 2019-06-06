@@ -2,17 +2,27 @@
 /**
  *  Login form for navbar
  *
+ * @package Fluidity
+ * @subpackage Login
+ * @since 20180929
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Form/Login/Navbar.php
+ */
+defined( 'ABSPATH' ) || exit;
+/**
+ *  Class that displays inputs for navbar login fields.
+ *
+ * @since 20180923
  */
 class TCC_Form_Login_Navbar extends TCC_Form_Login_Login {
+
 
 	protected $pull_right  = true;
 
 
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
-		add_filter( 'fluid_login_lost_password', [ $this, 'fluid_login_lost_password' ], 9 );
 	}
 
 	public function show_login_form() {
@@ -41,8 +51,15 @@ class TCC_Form_Login_Navbar extends TCC_Form_Login_Login {
 		</form><?php
 	}
 
-	public function fluid_login_lost_password( $attrs ) {
-		$attrs['class'] = '';
+	/**
+	 *  The lost password anchor attributes.
+	 *
+	 * @since 20190606
+	 * @return array
+	 */
+	protected function get_lost_password_attributes() {
+		$attrs = parent::get_lost_password_attributes();
+		unset( $attrs['class'] );
 		return $attrs;
 	}
 

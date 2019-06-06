@@ -255,18 +255,28 @@ class TCC_Form_Login_Login {
 		if ( ! empty( $this->defaults['label_lostpw'] ) ) {
 			$lost_url = wp_lostpassword_url( home_url() );
 			if ( ! empty( $lost_url ) ) {
-				$attrs = array(
-					'class' => 'pull-right',
-					'href'  => $lost_url,
-					'title' => __( 'You can request a new password via this link.', 'tcc-fluid' ),
-					'rel'   => 'nofollow',
-				);
+				$attrs = $this->get_lost_password_attributes();
 				$attrs = apply_filters( 'fluid_login_lost_password', $attrs );
 				$this->tag( 'a', $attrs );
 					$this->element( 'small', [ ], $this->defaults['label_lostpw'] ); ?>
 				</a><?php
 			}
 		}
+	}
+
+	/**
+	 *  The lost password anchor attributes.
+	 *
+	 * @since 20190606
+	 * @return array
+	 */
+	protected function get_lost_password_attributes() {
+		return array(
+			'class' => 'pull-right',
+			'href'  => $lost_url,
+			'title' => __( 'You can request a new password via this link.', 'tcc-fluid' ),
+			'rel'   => 'nofollow',
+		);
 	}
 
 	/**
