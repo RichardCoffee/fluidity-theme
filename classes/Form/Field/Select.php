@@ -19,7 +19,7 @@ class TCC_Form_Field_Select extends TCC_Form_Field_Field {
 	 * @since 20190604
 	 * @var array Contains options for select field.
 	 */
-	public $chices = array();
+	public $choices = array();
 	/**
 	 * @since 20190604
 	 * @var string Contains the form field type.
