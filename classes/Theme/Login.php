@@ -52,6 +52,7 @@ class TCC_Theme_Login {
 		if ( is_page( 'login' ) ) {
 			echo "\n.article .login-form input.form-control,\n.article .login-form textarea.form-control {\n\tmax-width: 73%;\n}\n";
 			echo "\n.article .login-form .input-group input.form-control {\n\tmax-width: 100%;\n}\n";
+			echo "\n.article .login-form .input-group {\n\tmax-width: 73%;\n}\n";
 		}
 	}
 
