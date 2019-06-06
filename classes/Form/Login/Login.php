@@ -139,7 +139,7 @@ class TCC_Form_Login_Login {
 				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_password'] ], $this->defaults['label_password'] ); ?>
 				<div class="input-group"><?php
 					$this->element( 'input', $this->get_password_attrs() ); ?>
-					<span class="input-group-addon show-hide-password fa-stack"><?php
+					<span class="input-group-addon show-hide-password fa-stack centered"><?php
 						fluid()->fawe( 'eye fa-stack-1x' );
 						fluid()->fawe( 'ban fa-stack-1x' ); ?>
 					</span>
