@@ -255,7 +255,7 @@ class TCC_Form_Login_Login {
 		if ( ! empty( $this->defaults['label_lostpw'] ) ) {
 			$lost_url = wp_lostpassword_url( home_url() );
 			if ( ! empty( $lost_url ) ) {
-				$attrs = $this->get_lost_password_attributes();
+				$attrs = $this->get_lost_password_attributes( $lost_url );
 				$attrs = apply_filters( 'fluid_login_lost_password', $attrs );
 				$this->tag( 'a', $attrs );
 					$this->element( 'small', [ ], $this->defaults['label_lostpw'] ); ?>
@@ -268,9 +268,10 @@ class TCC_Form_Login_Login {
 	 *  The lost password anchor attributes.
 	 *
 	 * @since 20190606
+	 * @param string $lost_url URL to retrieve lost password.
 	 * @return array
 	 */
-	protected function get_lost_password_attributes() {
+	protected function get_lost_password_attributes( $lost_url ) {
 		return array(
 			'class' => 'pull-right',
 			'href'  => $lost_url,

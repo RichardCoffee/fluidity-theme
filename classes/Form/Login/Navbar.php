@@ -55,10 +55,11 @@ class TCC_Form_Login_Navbar extends TCC_Form_Login_Login {
 	 *  The lost password anchor attributes.
 	 *
 	 * @since 20190606
+	 * @param string $lost_url URL to retrieve lost password.
 	 * @return array
 	 */
-	protected function get_lost_password_attributes() {
-		$attrs = parent::get_lost_password_attributes();
+	protected function get_lost_password_attributes( $lost_url ) {
+		$attrs = parent::get_lost_password_attributes( $lost_url );
 		unset( $attrs['class'] );
 		return $attrs;
 	}
