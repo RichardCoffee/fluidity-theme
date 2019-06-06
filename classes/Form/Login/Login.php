@@ -257,9 +257,7 @@ class TCC_Form_Login_Login {
 			if ( ! empty( $lost_url ) ) {
 				$attrs = $this->get_lost_password_attributes( $lost_url );
 				$attrs = apply_filters( 'fluid_login_lost_password', $attrs );
-				$this->tag( 'a', $attrs );
-					$this->element( 'small', [ ], $this->defaults['label_lostpw'] ); ?>
-				</a><?php
+				$this->display_lost_password_anchor( $attrs );
 			}
 		}
 	}
@@ -278,6 +276,16 @@ class TCC_Form_Login_Login {
 			'title' => __( 'You can request a new password via this link.', 'tcc-fluid' ),
 			'rel'   => 'nofollow',
 		);
+	}
+
+	/**
+	 *  Display lost password anchor.
+	 *
+	 * @since 20190606
+	 * @param array $attrs Attributes for anchor tag.
+	 */
+	protected function display_lost_password_anchor( $attrs ) {
+		$this->element( 'a', $attrs, $this->defaults['label_lostpw'] );
 	}
 
 	/**

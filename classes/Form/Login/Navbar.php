@@ -64,5 +64,20 @@ class TCC_Form_Login_Navbar extends TCC_Form_Login_Login {
 		return $attrs;
 	}
 
+	/**
+	 *  Display lost password anchor.
+	 *
+	 * @since 20190606
+	 * @param array $attrs Attributes for anchor tag.
+	 */
+	protected function display_lost_password_anchor( $attrs ) { ?>
+		<small><?php
+			parent::display_lost_password_anchor( $attrs ); ?>
+		</small><?php
+/*		$this->tag( 'a', $attrs );
+			$this->element( 'small', [ ], $this->defaults['label_lostpw'] ); ?>
+		</a><?php //*/
+	}
+
 
 }
