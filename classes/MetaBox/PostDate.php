@@ -22,7 +22,7 @@ class TCC_MetaBox_PostDate extends TCC_MetaBox_MetaBox {
 	public function admin_enqueue_scripts() { }
 
 	protected function initialize_radio( $postID ) {
-		$postdate = get_post_meta( $postID, $this->field, false );
+		$postdate = get_post_meta( $postID, $this->field, true );
 		$layout   = fluid_customizer()->content_controls();
 		$choices  = $layout['content']['controls']['postdate']['choices'];
 		$default  = $layout['content']['controls']['postdate']['default'];
