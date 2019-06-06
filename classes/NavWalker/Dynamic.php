@@ -34,7 +34,7 @@ abstract class TCC_NavWalker_Dynamic {
 	 */
 	protected $link = 'javascript: void(0);';
 	/**
-	 *  maximum nuber of submenu items to display.
+	 *  maximum number of submenu items to display.
 	 *
 	 * @since 20180905
 	 * @var int

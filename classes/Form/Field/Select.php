@@ -71,8 +71,9 @@ class TCC_Form_Field_Select extends TCC_Form_Field_Field {
 	 */
 	protected function get_select_element_attributes() {
 		$attrs = array(
-			'type' => $this->type,
-			'name' => $this->field_name,
+			'class' => 'components-select-control__input',
+			'type'  => $this->type,
+			'name'  => $this->field_name,
 			'onchange' => $this->onchange,
 		);
 		$attrs['multiple'] = ( strpos( '[]', $this->field_name ) === false ) ? '' : 'multiple';
