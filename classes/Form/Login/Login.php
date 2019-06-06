@@ -48,7 +48,7 @@ class TCC_Form_Login_Login {
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
 		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( add_query_arg( NULL, NULL ) ) : $this->redirect_to;
-		add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
+		add_action( 'fluid_custom_css',    [ $this, 'fluid_custom_css' ] );
 		add_action( 'login_form_defaults', [ $this, 'login_form_defaults' ], 1 );	#	run early - make it easy to override values
 		#	Do not show login errors to users
 		if ( ! WP_DEBUG ) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
