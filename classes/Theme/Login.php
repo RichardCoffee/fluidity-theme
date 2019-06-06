@@ -31,7 +31,6 @@ class TCC_Theme_Login {
 		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( '/' ) : $this->redirect_to;
 		if ( has_page( 'Login' ) ) {
 			$this->login_page = home_url( '/login/' );
-			add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
 #			add_action( 'init',             [ $this, 'prevent_wp_login' ] );
 			add_action( 'wp_login_failed',  [ $this, 'wp_login_failed' ] );
 			add_shortcode( 'fluid_login',   [ $this, 'shortcode_login_form' ] );
@@ -46,14 +45,6 @@ class TCC_Theme_Login {
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'logout_url',         [ $this, 'logout_url' ], 10, 2);
 		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) { return $this->redirect_to; }, 11, 3 ); }
-	}
-
-	public function fluid_custom_css() {
-		if ( is_page( 'login' ) ) {
-			echo "\n.article .login-form input.form-control,\n.article .login-form textarea.form-control {\n\tmax-width: 73%;\n}\n";
-			echo "\n.article .login-form .input-group input.form-control {\n\tmax-width: 100%;\n}\n";
-			echo "\n.article .login-form .input-group {\n\tmax-width: 73%;\n}\n";
-		}
 	}
 
 	public function shortcode_login_form( $args = array() ) {
