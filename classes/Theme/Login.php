@@ -53,6 +53,7 @@ class TCC_Theme_Login {
 			echo "\n.article .login-form input.form-control,\n.article .login-form textarea.form-control {\n\tmax-width: 73%;\n}\n";
 			echo "\n.article .login-form .input-group input.form-control {\n\tmax-width: 100%;\n}\n";
 			echo "\n.article .login-form .input-group {\n\tmax-width: 73%;\n}\n";
+			echo "\n.input-group-addon .show-hide-password {\n\tpadding-bottom: 12px;\n}\n";
 		}
 	}
 
