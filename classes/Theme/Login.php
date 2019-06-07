@@ -63,7 +63,7 @@ class TCC_Theme_Login {
 	}
 
 	public function wp_enqueue_scripts() {
-		wp_enqueue_script( 'tcc-login', get_theme_file_uri( 'js/login.js' ), array( 'jquery' ), FLUIDITY_VERSION, true);
+		wp_enqueue_script( 'fluid-login-js', get_theme_file_uri( 'js/login.js' ), array( 'jquery' ), FLUIDITY_VERSION, true);
 	}
 
 	public function login_form( $args = array() ) {

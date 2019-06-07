@@ -138,8 +138,8 @@ class TCC_Form_Login_Login {
 			<div class='form-group login-password'><?php
 				$this->element( 'label', [ 'class' => 'login-text', 'for' => $this->defaults['id_password'] ], $this->defaults['label_password'] ); ?>
 				<div class="input-group"><?php
-					$this->element( 'input', $this->get_password_attrs() ); ?>
-					<span class="input-group-addon show-hide-password fa-stack centered"><?php
+					$this->element( 'input', $this->get_password_attrs() );
+					$this->tag( 'span', $this->get_password_addon_attributes() );
 						fluid()->fawe( 'eye fa-stack-1x' );
 						fluid()->fawe( 'ban fa-stack-1x' ); ?>
 					</span>
@@ -187,6 +187,21 @@ class TCC_Form_Login_Login {
 			'class' => 'form-control',
 			'placeholder' => $this->defaults['label_password'],
 			'required'    => '',
+		);
+		wp_localize_script( 'fluid-login-js', FluidLogin, [ 'name' => $attr['name'] ] );
+		return $attrs;
+	}
+
+	/**
+	 *  Provide attributes for the user password addon
+	 *
+	 * @since 20190607
+	 * @return array
+	 */
+	protected function get_password_addon_attributes() {
+		$attrs = array(
+			'class' => 'input-group-addon show-hide-password fa-stack',
+			'title' => __( 'View your password.', 'tcc-fluid' )
 		);
 		return $attrs;
 	}
