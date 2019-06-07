@@ -49,11 +49,16 @@ class TCC_Form_Login_Login {
 		$this->parse_args( $args );
 		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( add_query_arg( NULL, NULL ) ) : $this->redirect_to;
 		add_action( 'login_form_defaults', [ $this, 'login_form_defaults' ], 1 );	#	run early - make it easy to override values
+		add_action( 'wp_enqueue_scripts', [ $this, 'wp_localize_script' ] );
 		#	Do not show login errors to users
 		if ( ! WP_DEBUG ) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
 		$this->get_login_form_defaults();
 	}
 
+	public function wp_localize_script() {
+		$attrs = $this->get_password_attrs();
+		wp_localize_script( 'fluid-login-js', 'FluidLogin', [ 'name' => $attr['name'] ] );
+	}
 
 /***   Form Defaults   ***/
 
@@ -188,7 +193,6 @@ class TCC_Form_Login_Login {
 			'placeholder' => $this->defaults['label_password'],
 			'required'    => '',
 		);
-		wp_localize_script( 'fluid-login-js', FluidLogin, [ 'name' => $attr['name'] ] );
 		return $attrs;
 	}
 
