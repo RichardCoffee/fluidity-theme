@@ -91,7 +91,7 @@ function showhideAdminElements( origin, target, show, hide ) {
 console.log('origin: '+origin);
 //console.log('target: '+target);
 	if ( origin && target ) {
-		var radio = jQuery( origin ).find( '> input:radio:checked' );
+		var radio = jQuery( origin ).find( 'div div label input:radio:checked' );
 console.log(radio);
 		if ( radio ) {
 			var state = jQuery( radio ).val();
