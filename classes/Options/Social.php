@@ -80,7 +80,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 				'target' => 'social-option-color',
 				'hide'   => 'individual',
 			),
-			'divcss' => 'social-option-icon',
+			'divcss' => 'social-option-icon social-option-single',
 		);
 		$layout['color'] = array(
 			'default' => 'blue',
