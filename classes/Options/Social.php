@@ -78,7 +78,7 @@ class TCC_Options_Social extends TCC_Options_Options {
 			'showhide' => array(
 				'origin' => 'social-option-single',
 				'target' => 'social-option-color',
-				'show'   => 'yes',
+				'show'   => 'single',
 			),
 			'divcss' => 'social-option-icon',
 		);
