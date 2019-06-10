@@ -75,13 +75,18 @@ class TCC_Options_Social extends TCC_Options_Options {
 				'individual' => __( 'Use individual colors for each icon.', 'tcc-fluid' ),
 				'single'     => __( 'Use one color for all icons.','tcc-fluid' ),
 			),
+			'showhide' => array(
+				'origin' => 'social-option-single',
+				'target' => 'social-option-color',
+				'show'   => 'yes',
+			),
 			'divcss' => 'social-option-icon',
 		);
 		$layout['color'] = array(
 			'default' => 'blue',
 			'label'   => __( 'Base Color', 'tcc-fluid' ),
 			'render'  => 'colorpicker',
-			'divcss'  => 'social-option-icon',
+			'divcss'  => 'social-option-icon social-option-color',
 		);
 		$layout['prote'] = array(
 			'label'  => __( 'Social Site URL', 'tcc-fluid' ),

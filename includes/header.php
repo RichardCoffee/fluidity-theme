@@ -173,7 +173,6 @@ if ( ! function_exists( 'fluid_schema_page_check' ) ) {
  * @since 20180706
  * @link  https://codex.wordpress.org/Plugin_API/Filter_Reference/show_admin_bar
  * @param bool $show
- * 
  */
 if ( ! function_exists( 'fluid_show_admin_bar' ) ) {
 	function fluid_show_admin_bar( $show ) {

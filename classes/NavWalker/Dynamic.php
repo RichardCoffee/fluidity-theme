@@ -228,6 +228,7 @@ abstract class TCC_NavWalker_Dynamic {
 	 *  add css to control the width of the submenu items
 	 *
 	 * @since 20180905
+	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/header.php::fluid_custom_css()
 	 */
 	public function fluid_custom_css() {
 		$width = round( $this->width / 4 * 3 );

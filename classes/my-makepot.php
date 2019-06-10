@@ -2,8 +2,8 @@
 
 #  Reference:  https://neliosoftware.com/blog/top-6-secrets-successful-internationalization/
 
-require_once( '/home/richard/work/svn/wpdev/tools/i18n/makepot.php' );
-require_once( '/home/richard/work/entechpc/fluidity/includes/debugging.php' );
+require_once( '/home/oem/work/svn/wpdev/tools/i18n/makepot.php' );
+require_once( '/home/oem/work/php/fluidity/includes/debugging.php' );
 
 date_default_timezone_set('UTC');
 
