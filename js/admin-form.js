@@ -84,7 +84,7 @@ function showhidePosi( el, target, show, hide ) {
 }
 
 function targetableElements( item ) {
-	showhideAdminElements( item.origin, item.target, item.show, item.hide );
+	showhideAdminElements( '.'+item.origin, '.'+item.target, item.show, item.hide );
 }
 
 function showhideAdminElements( origin, target, show, hide ) {
