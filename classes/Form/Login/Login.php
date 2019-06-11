@@ -50,7 +50,6 @@ class TCC_Form_Login_Login {
 		#	Do not show login errors to users
 		if ( ! WP_DEBUG ) { add_filter( 'login_errors', function( $arg ) { return null; } ); }
 		$this->get_login_form_defaults();
-$this->log($this);
 	}
 
 	public function wp_localize_script() {
