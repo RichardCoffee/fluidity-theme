@@ -97,7 +97,7 @@ class TCC_Theme_Login {
 		$this->modal_login_form( $args );
 	}
 
-	protected function default_args( $args ) {
+	protected function default_args( $args = array() ) {
 		$defs = array( 'redirect_to' => $this->redirect_to );
 		return ( empty( $args ) ) ? $defs : array_merge( $defs, (array)$args );
 	}

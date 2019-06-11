@@ -44,7 +44,7 @@ class TCC_Form_Login_Login {
 	 */
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
-$this->log($this);
+$this->log($this,'stack');
 		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( add_query_arg( NULL, NULL ) ) : $this->redirect_to;
 		add_action( 'login_form_defaults', [ $this, 'login_form_defaults' ], 1 );	#	run early - make it easy to override values
 		add_action( 'wp_enqueue_scripts', [ $this, 'wp_localize_script' ] );
