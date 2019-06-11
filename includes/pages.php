@@ -231,6 +231,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 			if ( empty( $slug ) ) {
 				if ( is_customize_preview() ) {
 					$slug = 'WARNING_in_customizer_preview_no_slug_available';
+				if ( is_rest() ) {
+					$slug = 'rest_reponse_page';
 				} else {
 					fluid()->log( 'missing page slug', $wp_query, 'full-stack' );
 					$slug = 'ERROR_missing_page_slug';
