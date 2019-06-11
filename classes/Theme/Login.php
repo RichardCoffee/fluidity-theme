@@ -54,6 +54,7 @@ $this->log($this);
 		if ( empty( $this->redirect_to ) ) {
 			global $wp;
 			$this->redirect_to = home_url( add_query_arg( array(), $wp->request ) );
+$this->log($this->redirect);
 		}
 	}
 
