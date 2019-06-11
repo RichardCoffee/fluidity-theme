@@ -140,7 +140,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 
 	# https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	public function login_redirect( $redirect_to, $request, $user ) {
-$this-log($redirect_to);
+$this->log($redirect_to);
 		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
 			if ( ! $user ) {
 				$redirect_to = home_url( add_query_arg( '_', false ) );
@@ -164,7 +164,7 @@ $this-log($redirect_to);
 			}
 		} else if ( get_class( $user ) === 'WP_Error' ) {
 		} #else { $this->log( func_get_args(), $_GET, $_POST, $_SERVER ); }
-$this-log($redirect_to);
+$this->log($redirect_to);
 		return $redirect_to;
 	}
 
