@@ -47,17 +47,17 @@ $this->log($this);
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'logout_url',         [ $this, 'logout_url' ], 10, 2);
 		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) { return $this->redirect_to; }, 11, 3 ); }
-$this->log($this);
 	}
 
 	private function determine_redirect() {
 		if ( empty( $this->redirect_to ) ) {
 			global $wp;
-			$this->redirect_to = home_url( add_query_arg( array(), $wp->request ) );
-$this->log(  'redirect_to:'.$this->redirect_to);
-$this->log(0,'request:    '.home_url($wp->request));
-$this->log(0,'add_query:  '.home_url( add_query_arg( '_', false ) ));
-$this->log(0,'server:     '.$_SERVER['REQUEST_URI']);
+			$this->redirect_to = home_url( add_query_arg( '_', false ) );
+$this->log(  'redirect_to: '.$this->redirect_to);
+$this->log(0,'request:     '.home_url($wp->request));
+$this->log(0,'add_query:   '.home_url( add_query_arg( '_', false ) ));
+$this->log(0,'wp->request: '.home_url( add_query_arg( array(), $wp->request ) ));
+$this->log(0,'server:      '.$_SERVER['REQUEST_URI']);
 		}
 	}
 
