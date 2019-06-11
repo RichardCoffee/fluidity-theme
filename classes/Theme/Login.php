@@ -28,7 +28,7 @@ class TCC_Theme_Login {
 
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
-		$this->redirect_to = ( empty( $this->redirect_to ) ) ? home_url( '/' ) : $this->redirect_to;
+		$this->determine_redirect();
 		if ( has_page( 'Login' ) ) {
 			$this->login_page = home_url( '/login/' );
 			add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
@@ -46,6 +46,13 @@ class TCC_Theme_Login {
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'logout_url',         [ $this, 'logout_url' ], 10, 2);
 		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) { return $this->redirect_to; }, 11, 3 ); }
+	}
+
+	private function determine_redirect() {
+		if ( empty( $this->redirect_to ) ) {
+			global $wp;
+			$this->redirect_to = home_url( add_query_arg( array(), $wp->request ) );
+		}
 	}
 
 	public function fluid_custom_css() {
@@ -173,7 +180,7 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 /***   Login Issues   ***/
 
 
-function prevent_wp_login() {
+public function prevent_wp_login() {
     // WP tracks the current page - global the variable to access it
     global $pagenow;
     // Check if a $_GET['action'] is set, and if so, load it into $action variable

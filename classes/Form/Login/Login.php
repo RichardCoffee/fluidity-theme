@@ -6,11 +6,8 @@
  * @subpackage Login
  * @since 20170201
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
- * @copyright Copyright (c) 2018, Richard Coffee
- * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/bbpress.php
- */
-/**
- *  check for wordpress
+ * @copyright Copyright (c) 2017, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Form/Login/Login.php
  */
 defined( 'ABSPATH' ) || exit;
 /**
