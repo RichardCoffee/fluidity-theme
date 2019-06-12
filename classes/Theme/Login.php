@@ -43,8 +43,6 @@ class TCC_Theme_Login {
 		add_filter( 'login_headertext',   [ $this, 'login_headertext' ] );
 		add_filter( 'login_headerurl',    [ $this, 'login_headerurl' ] );
 		add_filter( 'login_redirect',     [ $this, 'login_redirect' ], 10, 3 );
-		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 1, 3 );
-		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 3, 3 );
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'logout_url',         [ $this, 'logout_url' ], 10, 2);
 		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) {
@@ -56,6 +54,7 @@ $this->log($this->redirect_to);
 		if ( empty( $this->redirect_to ) ) {
 			global $wp;
 			$this->redirect_to = home_url( add_query_arg( '_', false ) );
+$this->log($this->redirect_to);
 		}
 	}
 
@@ -150,7 +149,7 @@ if ( $redirect_to === 'http://rtcenterprises.net/login/' ) {
 }
 		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
 			if ( ! $user ) {
-				$redirect_to = home_url( add_query_arg( '_', false ) );
+				$redirect_to = home_url();
 			} else if ( ! is_object( $user ) ) {
 				$this->log( 'user var is not an object', $user );
 			} else if ( get_class( $user ) === 'WP_Error' ) {
