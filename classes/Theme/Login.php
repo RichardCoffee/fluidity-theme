@@ -48,7 +48,7 @@ class TCC_Theme_Login {
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'logout_url',         [ $this, 'logout_url' ], 10, 2);
 		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) {
-$this->log($this->redirect);
+$this->log($this->redirect_to);
  return $this->redirect_to; }, 11, 3 ); }
 	}
 
