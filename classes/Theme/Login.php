@@ -33,7 +33,7 @@ class TCC_Theme_Login {
 			$this->login_page = home_url( '/login/' );
 			add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
 #			add_action( 'init',             [ $this, 'prevent_wp_login' ] );
-			add_action( 'wp_login_failed',  [ $this, 'wp_login_failed' ] );
+#			add_action( 'wp_login_failed',  [ $this, 'wp_login_failed' ] );
 			add_shortcode( 'fluid_login',   [ $this, 'shortcode_login_form' ] );
 		}
 		add_action( 'admin_head',         [ $this, 'dashboard_logo' ] );
