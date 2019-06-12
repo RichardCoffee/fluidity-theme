@@ -519,9 +519,9 @@ if ( ! function_exists( 'is_a_debugger' ) ) {
 #  http://stackoverflow.com/questions/5224209/wordpress-how-do-i-get-all-the-registered-functions-for-the-content-filter
 if ( ! function_exists( 'list_filter_hooks' ) ) {
 	function list_filter_hooks( $hook = '' ) {
+		$hooks = array();
 		if ( WP_DEBUG ) {
 			global $wp_filter;
-			$hooks = array();
 			if ( isset( $wp_filter[$hook]->callbacks ) ) {
 				array_walk( $wp_filter[$hook]->callbacks, function( $callbacks, $priority ) use ( &$hooks ) {
 					foreach ( $callbacks as $id => $callback )
@@ -564,8 +564,8 @@ if ( ! function_exists( 'list_filter_hooks' ) ) {
 					$item['line'] = $ref->getStartLine();
 				}
 			}
-			return $hooks;
 		}
+		return $hooks;
 	}
 }
 

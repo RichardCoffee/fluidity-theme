@@ -83,6 +83,7 @@ class TCC_Form_Login_Login {
 	 * @return array
 	 */
 	public function login_form_defaults( $defaults = array() ) {
+$this->log(list_filter_hooks('login_redirect'));
 		# array mainly taken from wp-includes/general-template.php
 		$new = array(
 			'redirect'       => apply_filters( 'login_redirect',       $this->redirect_to, null, null ),
