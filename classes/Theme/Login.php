@@ -43,9 +43,13 @@ class TCC_Theme_Login {
 		add_filter( 'login_headertext',   [ $this, 'login_headertext' ] );
 		add_filter( 'login_headerurl',    [ $this, 'login_headerurl' ] );
 		add_filter( 'login_redirect',     [ $this, 'login_redirect' ], 10, 3 );
+		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 1, 3 );
+		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 3, 3 );
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'logout_url',         [ $this, 'logout_url' ], 10, 2);
-		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) { return $this->redirect_to; }, 11, 3 ); }
+		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) {
+$this->log($this->redirect);
+ return $this->redirect_to; }, 11, 3 ); }
 	}
 
 	private function determine_redirect() {
@@ -167,6 +171,7 @@ if ( $redirect_to === 'http://rtcenterprises.net/login/' ) {
 			}
 		} else if ( get_class( $user ) === 'WP_Error' ) {
 		} #else { $this->log( func_get_args(), $_GET, $_POST, $_SERVER ); }
+$this->log(0,$redirect_to);
 		return $redirect_to;
 	}
 
@@ -177,6 +182,7 @@ if ( $redirect_to === 'http://rtcenterprises.net/login/' ) {
 #		$user_id = get_current_user_id();
 #		if ( $user_id === 1 ) { return $from; }
 #		return home_url();
+$this->log($redirect_to);
 		return $redirect_to;
 	}
 
