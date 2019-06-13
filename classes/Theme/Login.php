@@ -28,7 +28,7 @@ class TCC_Theme_Login {
 
 	public function __construct( $args = array() ) {
 		$this->parse_args( $args );
-		$this->determine_redirect();
+#		$this->determine_redirect();
 		if ( has_page( 'Login' ) ) {
 			$this->login_page = home_url( '/login/' );
 			add_action( 'fluidity_sidebar_fluid_styling', [ $this, 'fluid_custom_css' ] );
