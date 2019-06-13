@@ -51,10 +51,11 @@ $this->log($this->redirect_to);
 	}
 
 	private function determine_redirect() {
+$this->log($this->redirect_to);
 		if ( empty( $this->redirect_to ) ) {
 			global $wp;
 			$this->redirect_to = home_url( add_query_arg( '_', false ) );
-$this->log($this->redirect_to);
+$this->log(0,$this->redirect_to);
 		}
 	}
 
