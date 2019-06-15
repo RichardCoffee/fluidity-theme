@@ -46,16 +46,13 @@ class TCC_Theme_Login {
 		add_filter( 'login_redirect',     [ $this, 'login_redirect_admin' ], 10, 3 );
 		add_filter( 'logout_url',         [ $this, 'logout_url' ], 10, 2);
 		if ( $this->redirect_to ) { add_filter( 'login_redirect', function( $arg1, $arg2, $arg3 ) {
-$this->log($this->redirect_to);
  return $this->redirect_to; }, 11, 3 ); }
 	}
 
 	private function determine_redirect() {
-$this->log($this->redirect_to);
 		if ( empty( $this->redirect_to ) ) {
 			global $wp;
 			$this->redirect_to = home_url( add_query_arg( '_', false ) );
-$this->log(0,$this->redirect_to);
 		}
 	}
 
@@ -144,10 +141,6 @@ Multi-site:   $parts = parse_url( home_url() ); $current_uri = "{$parts['scheme'
 
 	# https://www.longren.io/wordpress-tip-redirect-to-previous-page-after-login/
 	public function login_redirect( $redirect_to, $request, $user ) {
-$this->log($redirect_to);
-if ( $redirect_to === 'http://rtcenterprises.net/login/' ) {
-	$this->log(0,'stack');
-}
 		if ( ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout') || ( isset( $_POST['login_location'] ) && ! empty( $_POST['login_location'] ) ) ) {
 			if ( ! $user ) {
 				$redirect_to = home_url();
@@ -171,7 +164,6 @@ if ( $redirect_to === 'http://rtcenterprises.net/login/' ) {
 			}
 		} else if ( get_class( $user ) === 'WP_Error' ) {
 		} #else { $this->log( func_get_args(), $_GET, $_POST, $_SERVER ); }
-$this->log(0,$redirect_to);
 		return $redirect_to;
 	}
 
@@ -182,7 +174,6 @@ $this->log(0,$redirect_to);
 #		$user_id = get_current_user_id();
 #		if ( $user_id === 1 ) { return $from; }
 #		return home_url();
-$this->log($redirect_to);
 		return $redirect_to;
 	}
 
