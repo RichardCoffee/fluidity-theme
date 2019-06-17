@@ -74,6 +74,7 @@ class TCC_Theme_ColorScheme {
 			'warning-inverse',
 #			'yellow',
 		);
+		$colors = apply_filters( 'fluid_random_colors', $colors );
 		$index = rand( 0, ( count( $colors ) - 1 ) );
 		return $colors[ $index ];
 	}
