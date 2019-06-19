@@ -84,7 +84,7 @@ The image that shows up in the tab of the browser.
 
 The theme uses a variety of classes, all residing in the classes/ directory,
 and organized mainly via sub-directories.  Wordpress frowns on this type of
-organization, which is okay.  I'll do it the I want, and they can do it the way
+organization, which is okay.  I'll do it how I want, and they can do it the way
 they want.
 
 All classes are loaded via the includes/loader.php file.  Take a look at that
@@ -156,7 +156,7 @@ be able to be used in a modal, although I still haven't written the modal code.
 ### Metaboxes
 
 The theme includes an abstract class, TCC_Metabox_Metabox, which I use for admin
-metaboxes, although it gets used mainly in mainly in plugins.
+metaboxes, although it gets used mainly in plugins.
 
 #### PostDate
 
