@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2018, Richard Coffee
  * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/NavWalker/Dynamic.php
  * @link https://www.daggerhart.com/dynamically-add-item-to-wordpress-menus/
- * @link https://gist.github.com/daggerhart/c17bdc51662be5a588c9
+ * @link https://github.com/daggerhart/wp-custom-menu-items
  */
 defined( 'ABSPATH' ) || exit;
 /**
