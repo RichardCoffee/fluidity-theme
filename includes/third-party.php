@@ -168,7 +168,7 @@ if ( function_exists( 'wpfep_show_profile' ) ) {
 	 */
 	if ( ! function_exists( 'fluid_wpfep_fluid_sidebar_css' ) ) {
 		function fluid_wpfep_fluid_sidebar_css() {
-			echo "form.wpfep-form {\n\tmax-width: 73%;\n}\n";
+			echo ".wpfep-wrapper {\n\tmax-width: 73%;\n}\n";
 		}
 	}
 	add_action( 'fluidity_sidebar_fluid_styling', 'fluid_wpfep_fluid_sidebar_css' );
