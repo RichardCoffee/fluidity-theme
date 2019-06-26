@@ -25,7 +25,7 @@ class TCC_Form_Login_Navbar extends TCC_Form_Login_Login {
 		parent::__construct( $args );
 	}
 
-	public function show_login_form() {
+	public function show_login_form( $show_links = true ) {
 		$attrs = array(
 			'id'     => $this->defaults['form_id'],
 			'class'  => 'navbar-form navbar-login-form' . ( ( $this->pull_right ) ? ' navbar-right' : '' ),
