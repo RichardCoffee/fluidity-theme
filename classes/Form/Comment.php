@@ -78,7 +78,7 @@ class TCC_Form_Comment {
 			'comment_notes_before_req' => __( 'Your email address is required but will not be published.', 'tcc-fluid' ),
 			'email'         => __( 'Your Email Please',                  'tcc-fluid' ),
 			'email_req'     => __( 'Your Email Please - Required Field', 'tcc-fluid' ),
-			'consent'       => __( 'Save my name, email, and website in a browser cookie for the next time I comment.', 'tcc-fluid' ),
+			'consent'       => __( 'Save my name and email in a browser cookie for the next time I comment.', 'tcc-fluid' ),
 			'logged_in_as'  => _x( 'Logged in as %1$s. %2$sLog out?%3$s', '1: User name,  2,3: html start and end of link to log-out page', 'tcc-fluid' ),
 			'must_log_in'   => _x( 'You must be %slogged in%s to post a comment.', 'start and end of html for link to log-in page', 'tcc-fluid' ),
 			'profile'       => __( 'Edit your profile.',    'tcc-fluid' ),
