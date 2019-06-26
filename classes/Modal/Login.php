@@ -17,10 +17,11 @@ class TCC_Modal_Login extends TCC_Modal_Bootstrap {
 	}
 
 	protected function modal_body() {
-		$this->form->login_form();
+		$this->form->login_form( false );
 	}
 
 	protected function modal_footer() {
+		$this->form->show_login_form_links();
 	}
 
 	protected function get_button_text( $text = '' ) {

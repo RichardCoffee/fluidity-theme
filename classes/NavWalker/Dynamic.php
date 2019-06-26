@@ -110,11 +110,11 @@ abstract class TCC_NavWalker_Dynamic {
 	 */
 	public function __construct( $args = array() ) {
 		require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
-		self::$custom = custom_menu_items::get_instance();
-		$this->top_id += mt_rand( 1, $this->top_id );
+		self::$custom  = custom_menu_items::get_instance();
 		$this->link    = home_url( '/' );
-		$this->maximum = apply_filters( 'fluid_dynamic_submenu_maximum', $this->maximum );
+		$this->top_id += mt_rand( 1, $this->top_id );
 		$this->parse_args( $args );
+		$this->maximum = apply_filters( 'fluid_dynamic_submenu_maximum', $this->maximum );
 		add_action( 'fluid_custom_css',   [ $this, 'fluid_custom_css' ] );
 #		add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 100, 4 );
 	}
@@ -154,6 +154,14 @@ abstract class TCC_NavWalker_Dynamic {
 		$this->add_item( $item );
 	}
 
+	/**
+	 *  Add a main menu object.
+	 *
+	 * @since 20180906
+	 * @param string $title
+	 * @param object $object
+	 * @param int $object_id
+	 */
 	protected function add_menu_object( $title, $object, $object_id ) {
 		$item = array_merge(
 			$this->item_defaults(),
@@ -228,7 +236,7 @@ abstract class TCC_NavWalker_Dynamic {
 	 *  add css to control the width of the submenu items
 	 *
 	 * @since 20180905
-	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/header.php::fluid_custom_css()
+	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/header.php:fluid_custom_css()
 	 */
 	public function fluid_custom_css() {
 		$width = round( $this->width / 4 * 3 );
@@ -241,7 +249,7 @@ abstract class TCC_NavWalker_Dynamic {
 	 * @since 20180906
 	 */
 	public function nav_menu_css_class( $classes, $item, $args, $depth ) {
-		fluid()->log( $classes, $item, $args, $depth );
+#		fluid()->log( $classes, $item, $args, $depth );
 		return $classes;
 	}
 

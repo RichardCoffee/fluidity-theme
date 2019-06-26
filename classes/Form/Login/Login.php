@@ -110,12 +110,13 @@ class TCC_Form_Login_Login {
 	 *  determines whether the login or logout methods should be used
 	 *
 	 * @since 20170211
+	 * @param bool $show_links Controls whether login links are shown by default (true).
 	 */
-	public function login_form() {
+	public function login_form( $show_links = true ) {
 		if ( is_user_logged_in() ) {
 			$this->show_logout_form();
 		} else {
-			$this->show_login_form();
+			$this->show_login_form( $show_links );
 		}
 	}
 
@@ -123,8 +124,9 @@ class TCC_Form_Login_Login {
 	 *  show the login form
 	 *
 	 * @since 20150502
+	 * @param bool $show_links Controls whether login links are shown by default (true).
 	 */
-	public function show_login_form() {
+	public function show_login_form( $show_links = true ) {
 		$attrs = array(
 			'id'     => $this->defaults['form_id'],
 			'class'  => 'login-form',
@@ -147,14 +149,25 @@ class TCC_Form_Login_Login {
 					</span>
 				</div>
 			</div>
-			<div class="checkbox login-remember"><?php
+			<div class="checkbox login-remember hidden-xs"><?php
 				$this->remember_checkbox(); ?>
-			</div>
-			<div class="form-group login-submit pull-left"><?php
-				$this->submit_button(); ?>
 			</div><?php
-			$this->lost_password(); ?>
+			if ( $show_links ) {
+				$this->show_login_form_links();
+			} ?>
 		</form><?php
+	}
+
+	/**
+	 *  Show links for login form.  Allows more control over the links location.
+	 *
+	 * @since 20190625
+	 */
+	public function show_login_form_links() { ?>
+		<div class="form-group login-submit pull-left"><?php
+			$this->submit_button(); ?>
+		</div><?php
+		$this->lost_password();
 	}
 
 	/**
