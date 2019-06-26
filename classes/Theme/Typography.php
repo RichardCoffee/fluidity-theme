@@ -180,7 +180,7 @@ class TCC_Theme_Typography {
 				break;
 			case 'Raleway':
 			default:
-				$font .= ':300,300i,400,400i,500,500i,600,600i,700,700i';
+				$font .= ':200,200i,300,300i,400,400i,500,500i,700,700i';
 		}
 		return $font;
 	}
