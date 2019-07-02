@@ -22,7 +22,7 @@ if ( class_exists( 'BuddyPress' ) ) {
 
 
 /** Contact Form 7 **/
-if ( ( ! defined( 'WPCF7_USE_REALLY_SIMPLE_CAPTCHA' ) ) && class_exists( 'ReallySimpleCaptcha' ) {
+if ( ( ! defined( 'WPCF7_USE_REALLY_SIMPLE_CAPTCHA' ) ) && class_exists( 'ReallySimpleCaptcha' ) ) {
 	define( 'WPCF7_USE_REALLY_SIMPLE_CAPTCHA', true );
 }
 
