@@ -164,27 +164,9 @@ add_filter( 'previous_post_link', function() {
 					$orient = $this->get_orientation();
 					if ( $this->show_older ) {
 						$this->show_link( $orient['older'] );
-/*						$attrs = array(
-							'class' => 'previous '. $this->li_css,
-							'title' => $this->older_link,
-						);
-						$this->tag( 'li', $attrs );
-							echo $this->get_adjacent_post_link( '%link', $this->left, true, $this->previous );
-#							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
-#							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
-						</li><?php //*/
 					}
 					if ( $this->show_newer ) {
 						$this->show_link( $orient['newer'] );
-/*						$attrs = array(
-							'class' => 'next '. $this->li_css,
-							'title' => $this->newer_link,
-						);
-						$this->tag( 'li', $attrs );
-							echo $this->get_adjacent_post_link( '%link', $this->right, false, $this->next );
-#							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
-#							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
-						</li><?php //*/
 					} ?>
 				</ul>
 			</div><?php //*/
