@@ -231,7 +231,8 @@ add_filter( 'previous_post_link', function() {
 		} else {
 			$title = $post->post_title;
 			if ( empty( $post->post_title ) ) {
-				$title = $previous ? $this->text['prev_all'] : $this->text['next_all'];
+				$orient = ( $this->orientation === 'bootstrap' ) ? [ 'prev_all', 'next_all' ] : [ 'next_all', 'prev_all' ];
+				$title = $previous ? $this->text[ $orient[0] ] : $this->text[ $orient[1] ];
 			}
 			$title  = apply_filters( 'the_title', $title, $post->ID );
 			$date   = mysql2date( get_option( 'date_format' ), $post->post_date );
