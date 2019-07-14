@@ -16,6 +16,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $newer_link     = '';
 	protected $next           = null;
 	protected $older_link     = '';
+	protected $orientation    = 'bootstrap';  // possible values are 'bootstrap' and 'proper'
 	protected $posts          = array();
 	protected $previous       = null;
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
@@ -160,8 +161,10 @@ add_filter( 'previous_post_link', function() {
 		ob_start(); ?>
 			<div class="row">
 				<ul class="<?php echo esc_attr( $this->ul_css ); ?>"><?php
+					$orient = $this->get_orientation();
 					if ( $this->show_older ) {
-						$attrs = array(
+						$this->show_link( $orient['older'] );
+/*						$attrs = array(
 							'class' => 'previous '. $this->li_css,
 							'title' => $this->older_link,
 						);
@@ -169,10 +172,11 @@ add_filter( 'previous_post_link', function() {
 							echo $this->get_adjacent_post_link( '%link', $this->left, true, $this->previous );
 #							echo $this->get_adjacent_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, true, $this->taxonomy );
 #							previous_post_link( '%link', $this->left, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
-						</li><?php
+						</li><?php //*/
 					}
 					if ( $this->show_newer ) {
-						$attrs = array(
+						$this->show_link( $orient['newer'] );
+/*						$attrs = array(
 							'class' => 'next '. $this->li_css,
 							'title' => $this->newer_link,
 						);
@@ -180,11 +184,47 @@ add_filter( 'previous_post_link', function() {
 							echo $this->get_adjacent_post_link( '%link', $this->right, false, $this->next );
 #							echo $this->get_adjacent_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, false, $this->taxonomy );
 #							next_post_link( '%link', $this->right, $this->same_term, $this->excluded_terms, $this->taxonomy ); ?>
-						</li><?php
+						</li><?php //*/
 					} ?>
 				</ul>
 			</div><?php //*/
 		return ob_get_clean();
+	}
+
+	protected function get_orientation() {
+		$orient = array(
+			'older' => array(
+				'attrs' => array(
+					'class' => 'previous '. $this->li_css,
+					'title' => $this->older_link,
+				),
+				'format' => $this->left,
+				'which'  => true,
+				'post'   => $this->previous
+			),
+			'newer' => array(
+				'attrs' => array(
+					'class' => 'next '. $this->li_css,
+					'title' => $this->newer_link,
+				),
+				'format' => $this->right,
+				'which'  => false,
+				'post'   => $this->next
+			),
+		);
+		if ( $this->orientation === 'proper' ) {
+			$orient['older']['attrs']['class'] = 'next '. $this->li_css;
+			$orient['older']['format'] = $this->right;
+			$orient['newer']['attrs']['class'] = 'previous '. $this->li_css;
+			$orient['newer']['format'] = $this->left;
+		}
+		return $orient;
+	}
+
+	protected function show_link( $data ) {
+		$this->tag( 'li', $data['attrs'] );
+			echo $this->get_adjacent_post_link( '%link', $data['format'], $data['which'], $data['post'] ); ?>
+		</li><?php
 	}
 
 	/**
