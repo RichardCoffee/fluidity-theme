@@ -196,8 +196,10 @@ add_filter( 'previous_post_link', function() {
 		);
 		if ( $this->orientation === 'proper' ) {
 			$orient['older']['attrs']['class'] = 'next '. $this->li_css;
+			$orient['older']['attrs']['title'] = $this->newer_link;
 			$orient['older']['format'] = $this->right;
 			$orient['newer']['attrs']['class'] = 'previous '. $this->li_css;
+			$orient['newer']['attrs']['title'] = $this->older_link;
 			$orient['newer']['format'] = $this->left;
 		}
 		return $orient;
