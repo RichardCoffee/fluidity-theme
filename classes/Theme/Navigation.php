@@ -16,7 +16,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $newer_link     = '';
 	protected $next           = null;
 	protected $older_link     = '';
-	protected $orientation    = 'proper';  // possible values are 'bootstrap' and 'proper'
+	protected $orientation    = 'bootstrap';  // possible values are 'bootstrap' and 'reverse'
 	protected $posts          = array();
 	protected $previous       = null;
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
@@ -194,12 +194,10 @@ add_filter( 'previous_post_link', function() {
 				'post'   => $this->next
 			),
 		);
-		if ( $this->orientation === 'proper' ) {
+		if ( $this->orientation === 'reverse' ) {
 			$orient['older']['attrs']['class'] = 'next '. $this->li_css;
-			$orient['older']['attrs']['title'] = $this->newer_link;
 			$orient['older']['format'] = $this->right;
 			$orient['newer']['attrs']['class'] = 'previous '. $this->li_css;
-			$orient['newer']['attrs']['title'] = $this->older_link;
 			$orient['newer']['format'] = $this->left;
 		}
 		return $orient;
@@ -231,8 +229,7 @@ add_filter( 'previous_post_link', function() {
 		} else {
 			$title = $post->post_title;
 			if ( empty( $post->post_title ) ) {
-				$orient = ( $this->orientation === 'bootstrap' ) ? [ 'prev_all', 'next_all' ] : [ 'next_all', 'prev_all' ];
-				$title = $previous ? $this->text[ $orient[0] ] : $this->text[ $orient[1] ];
+				$title = $previous ? $this->text['prev_all'] : $this->text['next_all'];
 			}
 			$title  = apply_filters( 'the_title', $title, $post->ID );
 			$date   = mysql2date( get_option( 'date_format' ), $post->post_date );
