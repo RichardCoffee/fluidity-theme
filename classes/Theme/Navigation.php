@@ -16,7 +16,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $newer_link     = '';
 	protected $next           = null;
 	protected $older_link     = '';
-	protected $orientation    = 'bootstrap';  // possible values are 'bootstrap' and 'proper'
+	protected $orientation    = 'proper';  // possible values are 'bootstrap' and 'proper'
 	protected $posts          = array();
 	protected $previous       = null;
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
