@@ -49,14 +49,6 @@ if ( ! function_exists( 'fluid_show_color_scheme' ) ) {
 	}
 #}
 
-if ( ! function_exists( 'get_calling_function' ) ) {
-	function get_calling_function( $depth = 1 ) {
-		$result = fluid()->debug_calling_function( $depth );
-		$trace  = array_map( 'trim', explode( ',', $result ) );
-		return $trace[1];
-	}
-}
-
 if ( ! function_exists( 'was_called_by' ) ) {
 	function was_called_by( $func ) {
 		$call_trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
