@@ -3,6 +3,8 @@
  *
  */
 
+add_filter( 'fluid_support_content_width', function( $width ) { return 760; } );
+
 if ( ! function_exists( 'fluid_show_color_scheme' ) ) {
 	function fluid_show_color_scheme() {
 		if ( WP_DEBUG && current_user_can( 'administrator' ) ) { ?>
@@ -68,30 +70,6 @@ if ( ! function_exists( 'was_called_by' ) ) {
 			}
 		}
 		return false;
-	}
-}
-
-if ( ! function_exists( 'tcc_write_error_log' ) ) {
-	function tcc_write_error_log( $log_me, $log_file = 'error_log' ) {
-		static $destination = '';
-		if ( empty( $destination ) ) {
-			$destination = $log_file;
-			if ( defined( 'WP_CONTENT_DIR' ) ) {
-				$destination = WP_CONTENT_DIR . '/debug.log';
-			} else if ( is_writable( '../logs' ) && ( is_dir( '../logs' ) ) ) {
-				$destination = '../logs/pbl-' . date( 'Ymd' ) . '.log';
-			} else if ( function_exists( 'pbl_raw_path' ) ) {
-				$destination = pbl_raw_path() . '/error_log';
-			}
-		}
-		$message = $log_me;
-		if ( is_array( $log_me ) || is_object( $log_me ) ) {
-			$message = print_r( $log_me, true );
-		} else if ( $log_me === 'stack' ) {
-			$message = print_r( debug_backtrace(), true );
-		}
-		$message = date( '[d-M-Y H:i:s e] ' ) . $message . "\n";
-		error_log( $message, 3, $destination );
 	}
 }
 
