@@ -19,15 +19,15 @@ if ( ! function_exists( 'fluid_load_theme_support' ) ) {
 }
 
 /**
+ *  Provide a maximum content width.  Value taken from firefox layout calculation.  questionable...
+ *
+ * @since 20190715
+ * @param int $width
+ * @return int
  */
 if ( ! function_exists( 'fluid_support_content_width' ) ) {
 	function fluid_support_content_width( $width ) {
-		if ( fluid_sidebar()->is_sidebar_active() ) {
-			$width = 760;
-		} else {
-			$width = 1052;
-		}
-		return $width;
+		return min( $width, 1052 );
 	}
 	add_filter( 'fluid_support_content_width', 'fluid_support_content_width' );
 }

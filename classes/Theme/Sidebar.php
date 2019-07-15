@@ -37,6 +37,7 @@ class TCC_Theme_Sidebar {
 				add_action( 'tcc_custom_css', [ $this, 'fluid_style' ] );
 				add_action( $this->action,    [ $this, 'show_sidebar' ] );
 			}
+			$this->adjust_content_width();
 		}
 	}
 
@@ -121,7 +122,19 @@ class TCC_Theme_Sidebar {
 			$css .= ' has-sidebar';
 		}
 		return fluid()->sanitize_html_class( $css ); #  apply_filters( 'fluid_main_tag_css', $css, $page ) );
-}
+	}
+
+	/**
+	 *  Control oEmbed width?
+	 *
+	 * @since 20190715
+	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/support.php
+	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/Support.php
+	 */
+	protected function adjust_content_width() {
+		global $content_width;
+		$content_width = apply_filters( 'fluid_sidebar_content_width', 760 );
+	}
 
 
 }
