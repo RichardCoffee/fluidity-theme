@@ -18,8 +18,7 @@ if (!function_exists('fluid_comment_navigation')) {
         <div class="nav-next"><?php
           next_comments_link( esc_html__('Newer Comments','tcc-fluid').' &rarr;'); ?>
         </div>
-      </nav><!-- #comment-nav-above -->
-		<hr class="comment-separator"><?php
+      </nav><!-- #comment-nav-above --><?php
     }
   }
 }
