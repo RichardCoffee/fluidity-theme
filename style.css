@@ -1,7 +1,7 @@
 /**
  *
  * Theme Name: Creative Fluidity
- * Theme URI: http://rtcenterprises.net
+ * Theme URI: https://github.com/RichardCoffee/fluidity-theme
  * Author: Richard Coffee
  * Author URI: http://rtcenterprises.net
  * Description: Wordpress Theme based on using a fluid design, with bootstrap
@@ -639,6 +639,10 @@ article.post .row::after {
   display: block;
   height: auto;
   max-width: 100%;
+}
+
+main.has-sidebar section.article .aligncenter {
+  margin-left: 0;
 }
 
 @media (max-width: 991px) {
