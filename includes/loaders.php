@@ -152,8 +152,8 @@ if ( ! function_exists( 'fluid_navigation' ) ) {
  * Returns an instance of the Options class
  *
  * @since 20180314
- * @staticvar TCC_Options_FLuidity $library
- * @return TCC_Options_FLuidity the instance
+ * @staticvar TCC_Options_Fluidity $library
+ * @return TCC_Options_Fluidity the instance
  */
 if ( ! function_exists( 'fluid_options' ) ) {
 	function fluid_options() {

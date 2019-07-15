@@ -116,8 +116,13 @@ class TCC_Theme_Sidebar {
 		if ( $this->position === 'none' ) {
 			$css .= ' has-no-sidebar';
 		} else {
-			if ( ( $this->fluid === 'static' ) && empty( $css ) ) {
-				$css = tcc_layout( 'main_css', $this->main_css );
+			if ( $this->fluid === 'static' ) {
+				if ( empty( $css ) ) {
+					$css = tcc_layout( 'main_css', $this->main_css );
+				}
+				$css .= ' has-static-sidebar';
+			} else {
+				$css .= ' has-fluid-sidebar';
 			}
 			$css .= ' has-sidebar';
 		}

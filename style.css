@@ -641,7 +641,7 @@ article.post .row::after {
   max-width: 100%;
 }
 
-main.has-sidebar section.article .aligncenter {
+main.has-fluid-sidebar section.article .aligncenter {
   margin-left: 0;
 }
 
