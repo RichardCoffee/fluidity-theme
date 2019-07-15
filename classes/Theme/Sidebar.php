@@ -19,20 +19,15 @@ class TCC_Theme_Sidebar {
 	use TCC_Trait_ParseArgs;
 
 	public function __construct( $args = array() ) {
-
 		$this->position = $this->positioning();
-
 		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
 			$this->position = 'none';
 		}
-
 		if ( ! ( $this->position === 'none' ) ) {
-
 			$this->sidebar = get_page_slug();
 			$this->slug    = $this->sidebar;
 			$this->fluid   = get_theme_mod( 'sidebar_fluidity', 'static' );
 			$this->css     = ( $this->fluid === 'static' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
-
 			$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 			$this->parse_args( $args );
 			if ( ! $this->horizontal ) {
@@ -43,6 +38,10 @@ class TCC_Theme_Sidebar {
 				add_action( $this->action,    [ $this, 'show_sidebar' ] );
 			}
 		}
+	}
+
+	public function is_sidebar_active() {
+		return ! ( $this->position === 'none' );
 	}
 
 	private function check_mobile() {

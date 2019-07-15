@@ -225,7 +225,11 @@ if ( ! function_exists( 'fluid_sanitize' ) ) {
  */
 if ( ! function_exists( 'fluid_sidebar' ) ) {
 	function fluid_sidebar( $args = [ 'sidebar' => 'standard' ] ) {
-		return new TCC_Theme_Sidebar( $args );
+		static $library;
+		if ( empty( $library ) ) {
+			$library = new TCC_Theme_Sidebar( $args );
+		}
+		return $library;
 	}
 }
 
