@@ -19,6 +19,18 @@ if ( ! function_exists( 'fluid_load_theme_support' ) ) {
 }
 
 /**
+ */
+if ( ! function_exists( 'fluid_support_content_width' ) ) {
+	function fluid_support_content_width( $width ) {
+		if ( fluid_sidebar()->is_sidebar_active() ) {
+			$width = 760;
+		}
+		return $width;
+	}
+	add_filter( 'fluid_support_content_width', 'fluid_support_content_width' );
+}
+
+/**
  * add custom parameters for the theme's custom background and will abort the background support if on a mobile device
  *
  * @param array $args background array defaults
