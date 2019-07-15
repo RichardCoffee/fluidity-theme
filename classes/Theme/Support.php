@@ -464,8 +464,8 @@ class TCC_Theme_Support {
 			'languages',
 			'scss',
 		);
-		# add these exclusions when WP is checking for page templates
 		$not_templates = array();
+		# add these exclusions when WP is checking for page templates
 		if ( was_called_by( 'get_post_templates' ) ) {
 			$not_templates = array(
 				'classes',
