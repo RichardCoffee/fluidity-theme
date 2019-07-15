@@ -753,16 +753,14 @@ body.error404 footer {
 .gallery .gallery-caption {
   color: #666;
   display: block;
-  font-size: 0.8125rem;
+  font-size: 0.8125em;
   font-style: italic;
   margin-bottom: 1.5em;
   max-width: 100%;
   padding: 0 10px 0 0;
-  text-align: left;
 }
 .gallery .gallery-item {
   display: inline-block;
-  text-align: left;
   vertical-align: top;
   margin: 0 0 1.5em;
   padding: 0 1em 0 0;
@@ -776,6 +774,8 @@ body.error404 footer {
   transition: filter 0.2s ease-in, -webkit-filter 0.2s ease-in;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  margin-left: auto;
+  margin-right: auto;
 }
 .gallery .gallery-item a:hover, .gallery .gallery-item a:focus {
   -webkit-box-shadow: none;
