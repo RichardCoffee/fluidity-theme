@@ -36,8 +36,7 @@ who_am_i(); ?>
 			$number = '<span itemprop="commentCount">' . $number . '</span>';
 			$title  = '&ldquo;' . get_the_title() . '&rdquo;';
 			echo wp_kses( sprintf( $format, $number, $title ), fluid()->kses() ); ?>
-		</h2><?php
-		fluid_comment_navigation(); ?>
+		</h2>
 		<ul class="comment-list">
 			<hr class="comment-separator"><?php
 			$list = array(
