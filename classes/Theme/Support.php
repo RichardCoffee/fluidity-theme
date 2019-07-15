@@ -18,8 +18,9 @@
 class TCC_Theme_Support {
 
 	/**
-	 * set maximum content width
+	 * set maximum content width.  Be aware that as of 3.5, this value controls the width of oEmbed elements.
 	 *
+	 * @link https://www.wpbeginner.com/wp-themes/how-to-set-oembed-max-width-in-wordpress-3-5-with-content_width/
 	 * @var int
 	 */
 	public $content_width =  1600;
