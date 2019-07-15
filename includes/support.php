@@ -24,6 +24,8 @@ if ( ! function_exists( 'fluid_support_content_width' ) ) {
 	function fluid_support_content_width( $width ) {
 		if ( fluid_sidebar()->is_sidebar_active() ) {
 			$width = 760;
+		} else {
+			$width = 1052;
 		}
 		return $width;
 	}
