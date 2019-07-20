@@ -5,7 +5,7 @@ set MY_PREFIX=tcc-fluid
 set MY_LOCALE=$LANGUAGE
 
 if [ -f updatepot ]; then
-   pushd languages &&
+   pushd $MY_PATH/languages &&
    php ../classes/my-makepot.php wp-theme $MY_PATH $MY_PREFIX.pot &&
    rm $MY_PREFIX-$MY_LOCALE.po &&
    msginit --no-translator --locale=$MY_LOCALE --output-file=$MY_PREFIX-$MY_LOCALE.po &&
