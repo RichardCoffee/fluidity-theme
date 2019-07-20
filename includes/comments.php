@@ -23,6 +23,14 @@ if ( ! function_exists( 'fluid_comment_navigation' ) ) {
 	}
 }
 
+if ( ! function_exists( 'fluid_comments_link_attributes' ) ) {
+	function fluid_comments_link_attributes( $atts ) {
+		return 'class="btn-fluidity"';
+	}
+	add_filter( 'previous_comments_link_attributes', 'fluid_comments_link_attributes' );
+	add_filter( 'next_comments_link_attribute', 'fluid_comments_link_attributes' );
+}
+
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
 		$data = fluid()->get_html_object( $link );
@@ -35,7 +43,7 @@ if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	add_filter( 'comment_reply_link', 'fluid_comment_reply_link', 15, 4 );
 } //*/
 
-if ( ! function_exists( 'disable_website_field' ) ) {
+if ( ! function_exists( 'fluid_disable_website_field' ) ) {
 	#	https://github.com/taniarascia/wp-functions
 	function fluid_disable_website_field( $fields ) {
 		if ( isset( $fields['url'] ) ) {

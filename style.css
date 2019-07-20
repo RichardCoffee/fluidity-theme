@@ -173,7 +173,11 @@ div.wpfep-save {
   width: 50%;
 }
 
-/**  unsorted css  **/
+/**
+
+  unsorted css
+
+ **/
 .article pre {
   margin-bottom: 2.5em;
 }
@@ -278,7 +282,11 @@ pre {
   transition: top 0.1s ease-in-out;
 }
 
-/* end of unsorted css */
+/*
+
+ end of unsorted css
+
+ */
 /**
  *
  *  2.0 - WordPress
@@ -625,11 +633,11 @@ header#fluid-header {
   top: 0;
 }
 
-article.post .row::before,
-article.post .row::after {
-  display: inline-block;
-}
-
+/**
+ *
+ *  11.2 Posts
+ *
+ */
 .article {
   margin-left: 2em;
   margin-right: 2em;

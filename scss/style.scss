@@ -58,7 +58,11 @@
 
 // FIXME: everything below this line, except the import, needs to be moved to their respective proper file
 
-/**  unsorted css  **/
+/**
+
+  unsorted css
+
+ **/
 
 .article pre {
 	margin-bottom: 2.5em;
@@ -162,6 +166,10 @@ pre {
 	@include transition( top 0.1s ease-in-out );
 }
 
-/* end of unsorted css */
+/*
+
+ end of unsorted css
+
+ */
 
 @import "components/components";
