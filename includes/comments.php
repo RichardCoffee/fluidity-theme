@@ -8,7 +8,7 @@
 if ( ! function_exists( 'fluid_comment_navigation' ) ) {
 	function fluid_comment_navigation() {
 		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
-			<div>
+			<div class="row">
 				<nav class="navigation comment-navigation" role="navigation"><?php
 					fluid()->element( 'h2', [ 'class' => 'screen-reader-text' ], __( 'Comment navigation', 'tcc-fluid' ) ); ?>
 					<div class="nav-previous"><?php
