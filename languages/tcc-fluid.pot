@@ -1,0 +1,1916 @@
+# Copyright (C) 2019 Richard Coffee
+# This file is distributed under the GPLv2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Creative Fluidity 3.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fluidity\n"
+"POT-Creation-Date: 2019-07-20 17:49:07+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: 404.php:39
+msgid "Ooops.....Well this is somewhat embarrassing, isn't it?"
+msgstr ""
+
+#: 404.php:41
+msgid "It seems as if the page you are looking for is not here"
+msgstr ""
+
+#: 404.php:42
+msgid "It looks like nothing was found at this location"
+msgstr ""
+
+#: bbpress/form-search.php:46
+msgid "Search for:"
+msgstr ""
+
+#: bbpress/form-search.php:47 classes/Widget/Search.php:6 searchform.php:34
+msgid "Search"
+msgstr ""
+
+#: bbpress/loop-forums.php:17
+msgid "Forum"
+msgstr ""
+
+#: bbpress/loop-forums.php:18
+msgid "Topics"
+msgstr ""
+
+#: bbpress/loop-forums.php:19
+msgid "Replies"
+msgstr ""
+
+#: bbpress/loop-forums.php:19 template-parts/profile.php:37
+msgid "Posts"
+msgstr ""
+
+#: bbpress/loop-forums.php:20 includes/dashboard.php:9
+msgid "Activity"
+msgstr ""
+
+#: classes/Form/Admin.php:232
+msgctxt "string - a function name"
+msgid "ERROR: Unable to locate function %s"
+msgstr ""
+
+#: classes/Form/Admin.php:233
+msgctxt "placeholder will be an ASCII character string"
+msgid "ERROR: Not able to locate form data subscript:  %s"
+msgstr ""
+
+#: classes/Form/Admin.php:236
+msgid "Save Changes"
+msgstr ""
+
+#: classes/Form/Admin.php:237 classes/Form/Admin.php:239
+msgid "Form"
+msgstr ""
+
+#: classes/Form/Admin.php:238
+msgctxt "placeholder is a noun, may be plural"
+msgid "Reset %s"
+msgstr ""
+
+#: classes/Form/Admin.php:240
+msgctxt "placeholder is a noun, probably singular"
+msgid "Default %s options restored."
+msgstr ""
+
+#: classes/Form/Admin.php:243 classes/Options/Parallax.php:32
+msgid "Assign/Upload Image"
+msgstr ""
+
+#: classes/Form/Admin.php:244 classes/Options/Parallax.php:33
+msgid "Assign Image"
+msgstr ""
+
+#: classes/Form/Admin.php:245
+msgid "Unassign Image"
+msgstr ""
+
+#: classes/Form/Admin.php:933
+msgid "Yes"
+msgstr ""
+
+#: classes/Form/Admin.php:934
+msgid "No"
+msgstr ""
+
+#: classes/Form/Comment.php:74
+msgid "Your Good Name"
+msgstr ""
+
+#: classes/Form/Comment.php:75
+msgid "Your Good Name - Required Field"
+msgstr ""
+
+#: classes/Form/Comment.php:76
+msgid "Let us know what you have to say"
+msgstr ""
+
+#: classes/Form/Comment.php:77
+msgid "Your email address will not be published."
+msgstr ""
+
+#: classes/Form/Comment.php:78
+msgid "Your email address is required but will not be published."
+msgstr ""
+
+#: classes/Form/Comment.php:79
+msgid "Your Email Please"
+msgstr ""
+
+#: classes/Form/Comment.php:80
+msgid "Your Email Please - Required Field"
+msgstr ""
+
+#: classes/Form/Comment.php:81
+msgid "Save my name and email in a browser cookie for the next time I comment."
+msgstr ""
+
+#: classes/Form/Comment.php:82
+msgctxt "1: User name,  2,3: html start and end of link to log-out page"
+msgid "Logged in as %1$s. %2$sLog out?%3$s"
+msgstr ""
+
+#: classes/Form/Comment.php:83
+msgctxt "start and end of html for link to log-in page"
+msgid "You must be %slogged in%s to post a comment."
+msgstr ""
+
+#: classes/Form/Comment.php:84
+msgid "Edit your profile."
+msgstr ""
+
+#: classes/Form/Comment.php:85
+msgid "Got Something To Say:"
+msgstr ""
+
+#: classes/Form/Comment.php:86
+msgid "Your Website"
+msgstr ""
+
+#: classes/Form/Login/Login.php:90
+msgid "Username or Email Address"
+msgstr ""
+
+#: classes/Form/Login/Login.php:91
+msgid "Password"
+msgstr ""
+
+#: classes/Form/Login/Login.php:93
+msgid "Sign In"
+msgstr ""
+
+#: classes/Form/Login/Login.php:94
+msgid "Lost Password"
+msgstr ""
+
+#: classes/Form/Login/Login.php:218
+msgid "View your password."
+msgstr ""
+
+#: classes/Form/Login/Login.php:305
+msgid "You can request a new password via this link."
+msgstr ""
+
+#: classes/Form/Login/Login.php:326
+msgid "Sign Out"
+msgstr ""
+
+#: classes/MetaBox/FontType.php:56
+msgid "Select Font for Post"
+msgstr ""
+
+#: classes/MetaBox/FontType.php:73 classes/MetaBox/PostDate.php:37
+msgid "Use theme default: %s"
+msgstr ""
+
+#: classes/MetaBox/PostDate.php:18
+msgid "Displayed Post Date"
+msgstr ""
+
+#: classes/MetaBox/Sidebar.php:14
+msgid "Show/Hide Sidebar"
+msgstr ""
+
+#: classes/MetaBox/Sidebar.php:27
+msgid "Show sidebar when displaying this post."
+msgstr ""
+
+#: classes/MetaBox/Sidebar.php:28
+msgid "Hide sidebar when displaying this post."
+msgstr ""
+
+#: classes/Modal/Bootstrap.php:169
+msgid "Close the dialog"
+msgstr ""
+
+#: classes/Modal/Bootstrap.php:268
+msgid "Show Modal"
+msgstr ""
+
+#: classes/Modal/Login.php:16 classes/Widget/Login.php:8
+msgid "Login"
+msgstr ""
+
+#: classes/Options/APIControl.php:11
+msgid "API Control"
+msgstr ""
+
+#: classes/Options/APIControl.php:19
+msgid "REST API Control"
+msgstr ""
+
+#: classes/Options/APIControl.php:27
+msgid "WP Heartbeat"
+msgstr ""
+
+#: classes/Options/APIControl.php:28
+msgid "Control the status of the WordPress Heartbeat API"
+msgstr ""
+
+#: classes/Options/APIControl.php:29
+msgid ""
+"The Heartbeat API will always remain active on these pages: post.php, post-"
+"new.php, and admin.php"
+msgstr ""
+
+#: classes/Options/APIControl.php:32 classes/Options/Settings.php:43
+msgid "On"
+msgstr ""
+
+#: classes/Options/APIControl.php:33 classes/Options/Settings.php:44
+msgid "Off"
+msgstr ""
+
+#: classes/Options/APIControl.php:38
+msgid "REST API"
+msgstr ""
+
+#: classes/Options/APIControl.php:39
+msgid "Control access to your site REST API"
+msgstr ""
+
+#: classes/Options/APIControl.php:40
+msgid ""
+"Be very careful with this option.  Any value other than ON runs the risk of "
+"breaking your site!"
+msgstr ""
+
+#: classes/Options/APIControl.php:43
+msgid "On - the default value."
+msgstr ""
+
+#: classes/Options/APIControl.php:44
+msgid "Allow access to admin only."
+msgstr ""
+
+#: classes/Options/APIControl.php:45
+msgid "Allow access to logged-in users only."
+msgstr ""
+
+#: classes/Options/APIControl.php:46
+msgid "Filter public access."
+msgstr ""
+
+#: classes/Options/APIControl.php:47
+msgid "Off - this may break things."
+msgstr ""
+
+#: classes/Options/APIControl.php:53
+msgid "Namespaces"
+msgstr ""
+
+#: classes/Options/APIControl.php:54
+msgid "Control established routes"
+msgstr ""
+
+#: classes/Options/APIControl.php:59
+msgid "Check to block access to these routes."
+msgstr ""
+
+#: classes/Options/Bootstrap.php:9
+msgid "Bootstrap"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:18
+msgid "Bootstrap Components - specify which bootstrap components to load."
+msgstr ""
+
+#: classes/Options/Bootstrap.php:26
+msgid "Reset/Dependencies"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:32
+msgid "Core CSS"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:38
+msgid "Components"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:44
+msgid "Javascript"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:45
+msgid "Components with Javascript"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:51 classes/Options/Bootstrap.php:131
+msgid "Utilities"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:80
+msgid "Normalize"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:81 includes/header.php:148
+msgid "Print"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:82
+msgid "Glyphicons"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:87
+msgid "Scaffolding"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:88
+msgid "Type"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:89
+msgid "Code"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:90
+msgid "Grid"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:91
+msgid "Tables"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:92
+msgid "Forms"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:93
+msgid "Buttons"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:98
+msgid "Component Animations"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:99
+msgid "Dropdowns"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:100
+msgid "Button Groups"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:101
+msgid "Input Groups"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:102
+msgid "Navs"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:103
+msgid "Navbar"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:104
+msgid "Breadcrumbs"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:105
+msgid "Pagination"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:106
+msgid "Pager"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:107
+msgid "Labels"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:108
+msgid "Badges"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:109
+msgid "Jumbotron"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:110
+msgid "Thumbnails"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:111
+msgid "Alerts"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:112
+msgid "Progress Bars"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:113
+msgid "Media"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:114
+msgid "List Group"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:115
+msgid "Panels"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:116
+msgid "Responsive Embed"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:117
+msgid "Wells"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:118
+msgid "Close"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:123
+msgid "Modals"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:124
+msgid "Tooltip"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:125
+msgid "Popovers"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:126
+msgid "Carousel"
+msgstr ""
+
+#: classes/Options/Bootstrap.php:132
+msgid "Responsive Utilities"
+msgstr ""
+
+#: classes/Options/Design.php:11 classes/Options/Images.php:14
+msgid "Design"
+msgstr ""
+
+#: classes/Options/Design.php:20 classes/Options/Images.php:26
+msgid ""
+"Design Options - these options also show up in the WordPress Customizer."
+msgstr ""
+
+#: classes/Options/Design.php:30 classes/Options/Parallax.php:14
+msgid "Parallax"
+msgstr ""
+
+#: classes/Options/Design.php:31
+msgid "Do you want to use the parallax effect for a page's featured image?"
+msgstr ""
+
+#: classes/Options/Design.php:35
+msgid ""
+"Show featured images normally - although currently this is not at all on "
+"pages"
+msgstr ""
+
+#: classes/Options/Design.php:36
+msgid "Use featured image as background"
+msgstr ""
+
+#: classes/Options/Fluidity.php:17
+msgid "Options"
+msgstr ""
+
+#: classes/Options/Fluidity.php:18
+msgid "Theme"
+msgstr ""
+
+#: classes/Options/Fluidity.php:43 classes/Options/Fluidity.php:44
+#: classes/Options/Fluidity.php:94
+msgid "Theme Options"
+msgstr ""
+
+#: classes/Options/Fluidity.php:99
+msgid "About / Contact"
+msgstr ""
+
+#: classes/Options/Fluidity.php:154
+msgid "Theme Version"
+msgstr ""
+
+#: classes/Options/Fluidity.php:159
+msgid "Theme Settings"
+msgstr ""
+
+#: classes/Options/Fluidity.php:160
+msgid "control the menu location of the theme options screen."
+msgstr ""
+
+#: classes/Options/Fluidity.php:165
+msgid "Page Location"
+msgstr ""
+
+#: classes/Options/Fluidity.php:166
+msgid "You can choose where the Theme Options page appears"
+msgstr ""
+
+#: classes/Options/Fluidity.php:167
+msgid "I recommend you leave it on the default setting, which is Appearance"
+msgstr ""
+
+#: classes/Options/Fluidity.php:170
+msgid "Dashboard menu"
+msgstr ""
+
+#: classes/Options/Fluidity.php:171
+msgid "Appearance menu"
+msgstr ""
+
+#: classes/Options/Fluidity.php:172
+msgid "Settings menu"
+msgstr ""
+
+#: classes/Options/Fluidity.php:183
+msgid "Dashboard location"
+msgstr ""
+
+#: classes/Options/Fluidity.php:184
+msgid ""
+"This controls where on the WordPress Dashboard menu that Theme Options will "
+"appear"
+msgstr ""
+
+#: classes/Options/Fluidity.php:185
+msgid ""
+"Bottom is best for this option.  Having it at the top can be annoying.  YMMV"
+msgstr ""
+
+#: classes/Options/Fluidity.php:188
+msgid "Top"
+msgstr ""
+
+#: classes/Options/Fluidity.php:189
+msgid "Bottom"
+msgstr ""
+
+#: classes/Options/Fluidity.php:195
+msgid "Plugin Survey"
+msgstr ""
+
+#: classes/Options/Fluidity.php:196
+msgid ""
+"Can the theme author collect info on what plugins are installed?  It will "
+"help efforts to improve the theme."
+msgstr ""
+
+#: classes/Options/Fluidity.php:197
+msgid ""
+"WordPress is already collecting this information, and they didn't even ask."
+msgstr ""
+
+#: classes/Options/Fluidity.php:200
+msgid "No way, No how."
+msgstr ""
+
+#: classes/Options/Fluidity.php:201
+msgid ""
+"Yes, the theme author can collect info on what plugins are currently "
+"installed."
+msgstr ""
+
+#: classes/Options/Fluidity.php:203
+msgid ""
+"Only information returned by the WordPress function 'get_plugins()' would be "
+"collected."
+msgstr ""
+
+#: classes/Options/Fluidity.php:206
+msgid "Theme Data"
+msgstr ""
+
+#: classes/Options/Fluidity.php:207
+msgid "control when theme data is removed"
+msgstr ""
+
+#: classes/Options/Fluidity.php:212
+msgid "Data Deletion"
+msgstr ""
+
+#: classes/Options/Fluidity.php:215
+msgid "Delete theme data upon theme deactivation"
+msgstr ""
+
+#: classes/Options/Fluidity.php:216
+msgid "Delete theme data upon theme deletion"
+msgstr ""
+
+#: classes/Options/Fluidity.php:217
+msgid "Do not delete data"
+msgstr ""
+
+#: classes/Options/Fluidity.php:229
+msgid "Support Site:"
+msgstr ""
+
+#: classes/Options/Fluidity.php:231
+msgctxt "company name"
+msgid "RTC Enterprises"
+msgstr ""
+
+#: classes/Options/Fluidity.php:235
+msgid ""
+"For help with this theme, or any other general support items, please contact "
+"us at any time"
+msgstr ""
+
+#: classes/Options/Fluidity.php:238
+msgid "Copyright 2014-2018 RTC"
+msgstr ""
+
+#: classes/Options/Fluidity.php:337
+msgctxt "primary currency symbol"
+msgid "$"
+msgstr ""
+
+#: classes/Options/Fluidity.php:339
+msgid "Currency Symbol"
+msgstr ""
+
+#: classes/Options/Images.php:32
+msgid "Theme Logo"
+msgstr ""
+
+#: classes/Options/Images.php:35
+msgid "Assign/Upload Theme Logo"
+msgstr ""
+
+#: classes/Options/Images.php:36
+msgid "Assign Logo"
+msgstr ""
+
+#: classes/Options/Images.php:37
+msgid "Remove Logo"
+msgstr ""
+
+#: classes/Options/Images.php:39
+msgid "Background Repeat"
+msgstr ""
+
+#: classes/Options/Images.php:41
+msgid "No Repeat"
+msgstr ""
+
+#: classes/Options/Images.php:42
+msgid "Tile"
+msgstr ""
+
+#: classes/Options/Images.php:43
+msgid "Tile Horizontally"
+msgstr ""
+
+#: classes/Options/Images.php:44
+msgid "Tile Vertically"
+msgstr ""
+
+#: classes/Options/Images.php:46
+msgid "Background Position"
+msgstr ""
+
+#: classes/Options/Images.php:48
+msgid "Left"
+msgstr ""
+
+#: classes/Options/Images.php:49
+msgid "Center"
+msgstr ""
+
+#: classes/Options/Images.php:50
+msgid "Right"
+msgstr ""
+
+#: classes/Options/Images.php:52
+msgid "Background Movement"
+msgstr ""
+
+#: classes/Options/Images.php:54
+msgid "Scroll with page"
+msgstr ""
+
+#: classes/Options/Images.php:55
+msgid "Fixed position in viewport"
+msgstr ""
+
+#: classes/Options/Images.php:63 classes/Theme/Typography.php:219
+#: classes/Theme/Typography.php:224
+msgid "Typography"
+msgstr ""
+
+#: classes/Options/Images.php:64
+msgid "Site typography options"
+msgstr ""
+
+#: classes/Options/Images.php:67
+msgid "Font Type"
+msgstr ""
+
+#: classes/Options/Images.php:71
+msgid "Font Size"
+msgstr ""
+
+#: classes/Options/Images.php:72
+msgctxt "abbreviation for 'pixel'"
+msgid "px"
+msgstr ""
+
+#: classes/Options/Parallax.php:27
+msgid "Parallax Options - assign background images for parallax effects."
+msgstr ""
+
+#: classes/Options/Parallax.php:34
+msgid "Remove Image"
+msgstr ""
+
+#: classes/Options/Parallax.php:37
+msgid "Front Page"
+msgstr ""
+
+#: classes/Options/Settings.php:11
+msgid "Settings"
+msgstr ""
+
+#: classes/Options/Settings.php:19
+msgid "Theme Behavior Options"
+msgstr ""
+
+#: classes/Options/Settings.php:27
+msgid "Autocomplete"
+msgstr ""
+
+#: classes/Options/Settings.php:28
+msgid ""
+"Use a plugin to handle autocompletion on the search field, or let the theme "
+"handle it."
+msgstr ""
+
+#: classes/Options/Settings.php:31
+msgid "Use theme code."
+msgstr ""
+
+#: classes/Options/Settings.php:32
+msgid "Use a plugin. CSS selector is 'searchform-input'."
+msgstr ""
+
+#: classes/Options/Settings.php:38
+msgid "Where Am I?"
+msgstr ""
+
+#: classes/Options/Settings.php:39
+msgid "Display template file names on site front end - for development only"
+msgstr ""
+
+#: classes/Options/Settings.php:40
+msgid "Hi!"
+msgstr ""
+
+#: classes/Options/Settings.php:48
+msgid "ON"
+msgstr ""
+
+#: classes/Options/Settings.php:48
+msgid "OFF"
+msgstr ""
+
+#: classes/Options/Settings.php:50
+msgid "WP Debug status"
+msgstr ""
+
+#: classes/Options/Settings.php:51
+msgid "WP Debug is %s"
+msgstr ""
+
+#: classes/Options/Social.php:12
+msgid "Social Icons"
+msgstr ""
+
+#: classes/Options/Social.php:20
+msgctxt "html anchor/link tag"
+msgid "Fluidity Social Icons (powered by %sFont Awesome%s)"
+msgstr ""
+
+#: classes/Options/Social.php:31
+msgid "Use Theme Icons"
+msgstr ""
+
+#: classes/Options/Social.php:32
+msgid "Contact us if you need help with a third-party plugin"
+msgstr ""
+
+#: classes/Options/Social.php:35
+msgid "Yes - you want to use the theme's internal social icons"
+msgstr ""
+
+#: classes/Options/Social.php:36
+msgid "No -- you are using a plugin, or do not want social icons"
+msgstr ""
+
+#: classes/Options/Social.php:48
+msgid "Browser"
+msgstr ""
+
+#: classes/Options/Social.php:51
+msgid "Open in new tab (default)"
+msgstr ""
+
+#: classes/Options/Social.php:52
+msgid "Load in same tab"
+msgstr ""
+
+#: classes/Options/Social.php:58
+msgid "Icon Size"
+msgstr ""
+
+#: classes/Options/Social.php:61
+msgid "Site font size"
+msgstr ""
+
+#: classes/Options/Social.php:62
+msgid "33% larger than font size"
+msgstr ""
+
+#: classes/Options/Social.php:63
+msgid "2 * font size"
+msgstr ""
+
+#: classes/Options/Social.php:64
+msgid "3 * font size"
+msgstr ""
+
+#: classes/Options/Social.php:65
+msgid "4 * font size"
+msgstr ""
+
+#: classes/Options/Social.php:66
+msgid "5 * font size"
+msgstr ""
+
+#: classes/Options/Social.php:72
+msgid "Icon Colors"
+msgstr ""
+
+#: classes/Options/Social.php:75
+msgid "Use individual colors for each icon."
+msgstr ""
+
+#: classes/Options/Social.php:76
+msgid "Use one color for all icons."
+msgstr ""
+
+#: classes/Options/Social.php:87
+msgid "Base Color"
+msgstr ""
+
+#: classes/Options/Social.php:92
+msgid "Social Site URL"
+msgstr ""
+
+#: classes/Options/Social.php:93
+msgid "Be sure to add the protocol (ie: http:// or https://)."
+msgstr ""
+
+#: classes/Options/Social.php:119
+msgid "Default color is %s"
+msgstr ""
+
+#: classes/Options/Social.php:120
+msgid "site url"
+msgstr ""
+
+#: classes/Options/Third.php:10
+msgid "Third Party"
+msgstr ""
+
+#: classes/Options/Third.php:18
+msgid "These are options for plugins that Fluidity has some integration for."
+msgstr ""
+
+#: classes/Register/Sidebars.php:43
+msgid "Standard Page w/Panels"
+msgstr ""
+
+#: classes/Register/Sidebars.php:140
+msgid "Sidebar Behavior"
+msgstr ""
+
+#: classes/Register/Sidebars.php:141
+msgid ""
+"This section controls things dealing with the sidebar.  My, how informative "
+"that was..."
+msgstr ""
+
+#: classes/Register/Sidebars.php:146
+msgid "Sidebar"
+msgstr ""
+
+#: classes/Register/Sidebars.php:147
+msgid "Which side of the screen should the sidebar show up on?"
+msgstr ""
+
+#: classes/Register/Sidebars.php:150
+msgid "No Sidebar"
+msgstr ""
+
+#: classes/Register/Sidebars.php:151
+msgid "Left side"
+msgstr ""
+
+#: classes/Register/Sidebars.php:152
+msgid "Right side"
+msgstr ""
+
+#: classes/Register/Sidebars.php:157
+msgid "Fluid Sidebar"
+msgstr ""
+
+#: classes/Register/Sidebars.php:158
+msgid "Let content flow around sidebar"
+msgstr ""
+
+#: classes/Register/Sidebars.php:161
+msgid "Static content"
+msgstr ""
+
+#: classes/Register/Sidebars.php:162
+msgid "Fluid content"
+msgstr ""
+
+#: classes/Register/Sidebars.php:172
+msgid "Mobile Sidebar"
+msgstr ""
+
+#: classes/Register/Sidebars.php:173
+msgid "Where should the sidebar show up on mobile devices?"
+msgstr ""
+
+#: classes/Register/Sidebars.php:176
+msgid "Do not show sidebar on mobile devices"
+msgstr ""
+
+#: classes/Register/Sidebars.php:177
+msgid "Before post content"
+msgstr ""
+
+#: classes/Register/Sidebars.php:178
+msgid "After post content"
+msgstr ""
+
+#: classes/Theme/BasicNav.php:60
+msgid "Post navigation"
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:101
+msgid "Color Notes"
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:102
+msgid ""
+"Customizer preview does not render the colors.  You will need to exit out of "
+"the previewer to see each color change."
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:108
+msgid "Color Scheme"
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:109
+msgid "Choose the color scheme you wish to use"
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:113
+msgid "Do not use a color scheme"
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:114
+msgid "Random color scheme on each page load."
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:155
+msgid "Color Scheme Image"
+msgstr ""
+
+#: classes/Theme/ColorScheme.php:156
+msgid "Assign this background image to current scheme: %s"
+msgstr ""
+
+#: classes/Theme/Customizer.php:82
+msgid "Panel Title"
+msgstr ""
+
+#: classes/Theme/Customizer.php:83
+msgid "Panel Description"
+msgstr ""
+
+#: classes/Theme/Customizer.php:97
+msgid "Section Title"
+msgstr ""
+
+#: classes/Theme/Customizer.php:98
+msgid "Section description text"
+msgstr ""
+
+#: classes/Theme/Customizer.php:128
+msgid "Control Label"
+msgstr ""
+
+#: classes/Theme/Customizer.php:143
+msgid "Theme Behavior"
+msgstr ""
+
+#: classes/Theme/Customizer.php:144
+msgid ""
+"All of these options affect how various aspects of the theme will act at "
+"various times."
+msgstr ""
+
+#: classes/Theme/Customizer.php:161
+msgid "Desktop Screen Width"
+msgstr ""
+
+#: classes/Theme/Customizer.php:162
+msgid "This section controls the overall behavior of the theme."
+msgstr ""
+
+#: classes/Theme/Customizer.php:167
+msgid "Width"
+msgstr ""
+
+#: classes/Theme/Customizer.php:168
+msgid "How much screen real estate do you want the theme to use?"
+msgstr ""
+
+#: classes/Theme/Customizer.php:169
+msgid "This determines the margins for the main body of the website"
+msgstr ""
+
+#: classes/Theme/Customizer.php:172
+msgid "Full Width (small margins)"
+msgstr ""
+
+#: classes/Theme/Customizer.php:173
+msgid "Standard Margins (recommended)"
+msgstr ""
+
+#: classes/Theme/Customizer.php:201
+msgid "Widget Collapse"
+msgstr ""
+
+#: classes/Theme/Customizer.php:202
+msgid ""
+"This section controls the use and details concerning collapsible widgets."
+msgstr ""
+
+#: classes/Theme/Customizer.php:207
+msgid "Widgets"
+msgstr ""
+
+#: classes/Theme/Customizer.php:208
+msgid "Should the sidebar widgets start open or closed, where applicable"
+msgstr ""
+
+#: classes/Theme/Customizer.php:211
+msgid "Do not provide option to users"
+msgstr ""
+
+#: classes/Theme/Customizer.php:212
+msgid "Open"
+msgstr ""
+
+#: classes/Theme/Customizer.php:213
+msgid "Closed"
+msgstr ""
+
+#: classes/Theme/Customizer.php:218
+msgid "Widget Icons"
+msgstr ""
+
+#: classes/Theme/Customizer.php:219
+msgid "Choose the icon set used for the widgets"
+msgstr ""
+
+#: classes/Theme/Customizer.php:240
+msgid "Do not use an icon set - let the lusers figure it out for themselves..."
+msgstr ""
+
+#: classes/Theme/Customizer.php:243
+msgctxt "display open and close icons for use with the sidebar widgets"
+msgid "Open %1$s / Close %2$s"
+msgstr ""
+
+#: classes/Theme/Customizer.php:256 classes/Theme/Customizer.php:292
+msgid "Content"
+msgstr ""
+
+#: classes/Theme/Customizer.php:257
+msgid "All settings dealing with the blog content`"
+msgstr ""
+
+#: classes/Theme/Customizer.php:263
+msgid "Displayed Publish/Edit Date"
+msgstr ""
+
+#: classes/Theme/Customizer.php:264
+msgid "Control when and how the post dates are displayed"
+msgstr ""
+
+#: classes/Theme/Customizer.php:267
+msgid ""
+"Show both modified and original post date when showing full post content"
+msgstr ""
+
+#: classes/Theme/Customizer.php:268
+msgid "Use modified post date, where applicable."
+msgstr ""
+
+#: classes/Theme/Customizer.php:269
+msgid "Always use published post date."
+msgstr ""
+
+#: classes/Theme/Customizer.php:270
+msgid "Never show the post date."
+msgstr ""
+
+#: classes/Theme/Customizer.php:288
+msgid "Blog/News/Search"
+msgstr ""
+
+#: classes/Theme/Customizer.php:289
+msgid ""
+"Show full post content or just an excerpt on archive/category/search pages"
+msgstr ""
+
+#: classes/Theme/Customizer.php:293
+msgid "Excerpt"
+msgstr ""
+
+#: classes/Theme/Customizer.php:301
+msgid "Excerpt Date"
+msgstr ""
+
+#: classes/Theme/Customizer.php:302
+msgid "Should the post date be displayed with excerpt?"
+msgstr ""
+
+#: classes/Theme/Customizer.php:305
+msgid "Never show date."
+msgstr ""
+
+#: classes/Theme/Customizer.php:306
+msgid "Always show date."
+msgstr ""
+
+#: classes/Theme/Customizer.php:307
+msgid "Allow control per post with default to show."
+msgstr ""
+
+#: classes/Theme/Customizer.php:308
+msgid "Allow control per post with default to hide."
+msgstr ""
+
+#: classes/Theme/Customizer.php:316
+msgid "Excerpt Length"
+msgstr ""
+
+#: classes/Theme/Login.php:240
+msgid "Login page"
+msgstr ""
+
+#: classes/Theme/Login.php:241
+msgid ""
+"Use a plugin to handle the login page, or whether the internal theme login "
+"shortcode should be used"
+msgstr ""
+
+#: classes/Theme/Login.php:242
+msgid ""
+"I recommend Theme My Login.  Fluidity plays nice with that plugin, also with "
+"WP Frontend Profile"
+msgstr ""
+
+#: classes/Theme/Login.php:245
+msgid "Use [fluid-login] shortcode."
+msgstr ""
+
+#: classes/Theme/Login.php:246
+msgid "Use a plugin.  (recommended)"
+msgstr ""
+
+#: classes/Theme/Navigation.php:47
+msgid "Newer Post"
+msgstr ""
+
+#: classes/Theme/Navigation.php:48
+msgctxt "the taxonomy label (singular)"
+msgid "Newer '%s' post"
+msgstr ""
+
+#: classes/Theme/Navigation.php:49
+msgid "Older Post"
+msgstr ""
+
+#: classes/Theme/Navigation.php:50
+msgctxt "the taxonomy label (singular)"
+msgid "Older '%s' post"
+msgstr ""
+
+#: classes/Theme/Navigation.php:51
+msgid "Posts Navigation"
+msgstr ""
+
+#: classes/Theme/Navigation.php:52
+msgid "Category Navigation"
+msgstr ""
+
+#: classes/Theme/Pagination.php:208
+msgid "Go to the first page"
+msgstr ""
+
+#: classes/Theme/Pagination.php:227
+msgid "Go to the previous page"
+msgstr ""
+
+#: classes/Theme/Pagination.php:247
+msgid "Current Page"
+msgstr ""
+
+#: classes/Theme/Pagination.php:268
+msgctxt "page number"
+msgid "Go to page %s"
+msgid_plural "Go to page %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: classes/Theme/Pagination.php:300
+msgid "Go to next page"
+msgstr ""
+
+#: classes/Theme/Pagination.php:319
+msgid "Go to last page"
+msgstr ""
+
+#: classes/Theme/Typography.php:39
+msgctxt "Andale Mono font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:40 classes/Theme/Typography.php:46
+msgctxt "Arial font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:42
+msgctxt "Cambria font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:43
+msgctxt "Comic Sans MS font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:45
+msgctxt "Courier New font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:48
+msgctxt "Georgia font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:50
+msgctxt "Liberation Sans font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:51
+msgctxt "Liberation Serif font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:52
+msgctxt "Tahoma font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:53
+msgctxt "Times New Roman font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:103
+msgctxt "Arvo font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:104
+msgctxt "Copse font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:105
+msgctxt "Droid Sans font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:106
+msgctxt "Droid Serif font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:107
+msgctxt "Lato font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:108
+msgctxt "Lobster font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:109
+msgctxt "Lustria font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:110
+msgctxt "Nobile font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:111
+msgctxt "Open Sans font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:112
+msgctxt "Oswald font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:113
+msgctxt "Pacifico font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:114
+msgctxt "Roboto font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:115
+msgctxt "Roboto Mono font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:116
+msgctxt "Rokkit font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:117
+msgctxt "PT Sans font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:118
+msgctxt "Quattrocento font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:119
+msgctxt "Raleway font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:120
+msgctxt "Ubuntu font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:121
+msgctxt "Yanone Kaffeesatz font: translate as 'on' or 'off'"
+msgid "on"
+msgstr ""
+
+#: classes/Theme/Typography.php:220
+msgid "We suggest you visit fonts.google.com to see what the fonts look like."
+msgstr ""
+
+#: classes/Theme/Typography.php:225
+msgid ""
+"IMPORTANT: Customizer preview does not work properly on the fonts.  Go to "
+"https://fonts.google.com to see what each font will appear as.  Some fonts "
+"may require a larger font size to make them easily readable."
+msgstr ""
+
+#: classes/Theme/Typography.php:231
+msgid "Site Main Font"
+msgstr ""
+
+#: classes/Theme/Typography.php:237
+msgid "Site Font Size"
+msgstr ""
+
+#: classes/Theme/Typography.php:247
+msgid "Header Font"
+msgstr ""
+
+#: classes/Theme/Typography.php:253
+msgid "Header Font Size"
+msgstr ""
+
+#: classes/Theme/Typography.php:263
+msgid "Sidebar Font"
+msgstr ""
+
+#: classes/Theme/Typography.php:269
+msgid "Footer Font"
+msgstr ""
+
+#: classes/Trait/Singleton.php:53
+msgid "This class can not be cloned."
+msgstr ""
+
+#: classes/Trait/Singleton.php:59
+msgid "This class can not be serialized."
+msgstr ""
+
+#: classes/Trait/Singleton.php:65
+msgid "This class can not be unserialized."
+msgstr ""
+
+#: classes/Widget/Address.php:8
+msgid "Address"
+msgstr ""
+
+#: classes/Widget/Address.php:9
+msgid "Fluidity address widget"
+msgstr ""
+
+#: classes/Widget/Address.php:12
+msgid "Street Address"
+msgstr ""
+
+#: classes/Widget/Address.php:13
+msgid "City"
+msgstr ""
+
+#: classes/Widget/Address.php:14
+msgid "State"
+msgstr ""
+
+#: classes/Widget/Address.php:15
+msgid "Zipcode"
+msgstr ""
+
+#: classes/Widget/Address.php:16
+msgid "Contact Number"
+msgstr ""
+
+#: classes/Widget/Address.php:17
+msgid "Email Address"
+msgstr ""
+
+#: classes/Widget/Address.php:33
+msgctxt "phone number"
+msgid "Office: %s"
+msgstr ""
+
+#: classes/Widget/Address.php:41
+msgctxt "email address"
+msgid "Email: %s"
+msgstr ""
+
+#: classes/Widget/Address.php:61
+msgid ""
+"Caution:  We advise that you think very carefully about putting your address "
+"out on the internet."
+msgstr ""
+
+#: classes/Widget/Address.php:66
+msgid "Display Google map"
+msgstr ""
+
+#: classes/Widget/Login.php:9
+msgid "Fluidity Login form"
+msgstr ""
+
+#: classes/Widget/Login.php:22
+msgid "Logout"
+msgstr ""
+
+#: classes/Widget/Logo.php:6
+msgid "Logo"
+msgstr ""
+
+#: classes/Widget/Logo.php:7
+msgid "Fluidity - Displays your site logo"
+msgstr ""
+
+#: classes/Widget/Search.php:7
+msgid "Fluidity Search Form"
+msgstr ""
+
+#: classes/Widget/Widget.php:40
+msgid "Title:"
+msgstr ""
+
+#: classes/microdata.php:271
+msgid "Archives"
+msgstr ""
+
+#: comments.php:27
+msgid "Get a Trackback link"
+msgstr ""
+
+#: comments.php:35
+msgid "One thought on %2$s"
+msgid_plural "%1$s thoughts on %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:52
+msgid "Comments are closed."
+msgstr ""
+
+#: header.php:33
+msgid "Skip to content"
+msgstr ""
+
+#: includes/admin.php:44
+msgctxt "text greeting, user name"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: includes/admin.php:52
+msgid "My Account"
+msgstr ""
+
+#: includes/bbpress.php:89 includes/bbpress.php:194
+msgid "bbPress"
+msgstr ""
+
+#: includes/bbpress.php:90 includes/bbpress.php:195
+msgid "Compatibility options for bbPress"
+msgstr ""
+
+#: includes/bbpress.php:94
+msgid "Default Topic Subscription"
+msgstr ""
+
+#: includes/bbpress.php:95
+msgid "Check for topic subscription default value"
+msgstr ""
+
+#: includes/bbpress.php:96
+msgid ""
+"If this box is checked, then the checkbox on the comment form, indicating "
+"that the commenter will receive email notifications, will also be checked."
+msgstr ""
+
+#: includes/bbpress.php:111
+msgid "bbPress Topics"
+msgstr ""
+
+#: includes/bbpress.php:132
+msgid "Automatically subscribe to a forum topic when posting to it."
+msgstr ""
+
+#: includes/bbpress.php:201
+msgid "Title"
+msgstr ""
+
+#: includes/bbpress.php:202
+msgid "Control the font size for titles and headers on forum pages"
+msgstr ""
+
+#: includes/bbpress.php:210
+msgid "Text"
+msgstr ""
+
+#: includes/bbpress.php:211
+msgid "Control the font size for normal text on forum pages"
+msgstr ""
+
+#: includes/comments.php:13
+msgid "Comment navigation"
+msgstr ""
+
+#: includes/comments.php:15
+msgid "Older Comments"
+msgstr ""
+
+#: includes/comments.php:18
+msgid "Newer Comments"
+msgstr ""
+
+#: includes/comments.php:69
+msgctxt "the comment type; author name; date of comment"
+msgid "%1$s by %2$s on %3$s"
+msgstr ""
+
+#: includes/comments.php:71
+msgid "Comment"
+msgstr ""
+
+#: includes/comments.php:72
+msgid "Trackback"
+msgstr ""
+
+#: includes/comments.php:73
+msgid "Pingback"
+msgstr ""
+
+#: includes/comments.php:103
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: includes/dashboard.php:21
+msgid "Publishing Soon"
+msgstr ""
+
+#: includes/dashboard.php:28
+msgid "Recently Published"
+msgstr ""
+
+#: includes/dashboard.php:34
+msgid "No activity yet!"
+msgstr ""
+
+#: includes/footer.php:62
+msgctxt "1: numeric year  2: site name"
+msgid "Copyright %1$s %2$s, All rights reserved."
+msgstr ""
+
+#: includes/header.php:140
+msgid "Print this page using your browser print function."
+msgstr ""
+
+#: includes/in-the-loop.php:39
+msgctxt "verb"
+msgid "Edit"
+msgstr ""
+
+#: includes/in-the-loop.php:53
+msgctxt "Name of current post"
+msgid "Edit %s"
+msgstr ""
+
+#: includes/in-the-loop.php:119
+msgctxt "the post title"
+msgid "Read All About %s"
+msgstr ""
+
+#: includes/in-the-loop.php:147
+msgctxt "1: formatted date string, 2: author name"
+msgid "Posted on %1$s by %2$s"
+msgstr ""
+
+#: includes/in-the-loop.php:150
+msgctxt "1: formatted date string, 2: author name"
+msgid "Last modified on %1$s by %2$s"
+msgstr ""
+
+#: includes/in-the-loop.php:166
+msgctxt "wordpress formatted date string"
+msgid "Originally posted on %s"
+msgstr ""
+
+#: includes/in-the-loop.php:180
+msgid "Tags: "
+msgstr ""
+
+#: includes/in-the-loop.php:185
+msgctxt "string - one or more categories"
+msgid "Categories: %s"
+msgstr ""
+
+#: includes/in-the-loop.php:228
+msgid "Read More"
+msgstr ""
+
+#: includes/in-the-loop.php:231
+msgid "Read more about %s"
+msgstr ""
+
+#: includes/in-the-loop.php:329
+msgid "View image"
+msgstr ""
+
+#: includes/menus.php:14
+msgid "Site Menu"
+msgstr ""
+
+#: includes/menus.php:21
+msgid "Home"
+msgstr ""
+
+#: includes/misc.php:133
+msgctxt "(social) website name"
+msgid "See us on %s"
+msgstr ""
+
+#: includes/misc.php:140
+msgid "Subscribe to our RSS feed"
+msgstr ""
+
+#: includes/misc.php:186
+msgid "%1$s Error: [%2$s] %3$s, %4$s on line %5$s"
+msgstr ""
+
+#: includes/misc.php:201
+msgid "Dismiss this notice."
+msgstr ""
+
+#: includes/misc.php:239
+msgid "Once Monthly"
+msgstr ""
+
+#: includes/misc.php:370
+msgid "Welcome"
+msgstr ""
+
+#: includes/misc.php:382
+msgid "Happy New Year"
+msgstr ""
+
+#: includes/misc.php:385
+msgid "Martin Luthor King Day"
+msgstr ""
+
+#: includes/misc.php:388
+msgid "Valentine's Day"
+msgstr ""
+
+#: includes/misc.php:391
+msgid "Presidents' Day"
+msgstr ""
+
+#: includes/misc.php:394
+msgid "Happy Easter"
+msgstr ""
+
+#: includes/misc.php:397
+msgid "Memorial Day"
+msgstr ""
+
+#: includes/misc.php:400
+msgid "Fourth of July"
+msgstr ""
+
+#: includes/misc.php:403
+msgid "Labor Day"
+msgstr ""
+
+#: includes/misc.php:406
+msgid "Columbus Day"
+msgstr ""
+
+#: includes/misc.php:409
+msgid "Happy Thanksgiving"
+msgstr ""
+
+#: includes/misc.php:412
+msgid "Veteran's Day"
+msgstr ""
+
+#: includes/misc.php:415
+msgid "Merry Christmas"
+msgstr ""
+
+#: includes/misc.php:418
+msgid "Your Royal Highness"
+msgstr ""
+
+#: includes/pages.php:23
+msgid ""
+"Apologies, but no results were found for the requested Category. Perhaps "
+"searching will help find a related post."
+msgstr ""
+
+#: includes/pages.php:43
+msgid "Pages"
+msgstr ""
+
+#: includes/pages.php:44
+msgid "All settings dealing with pages"
+msgstr ""
+
+#: includes/pages.php:49
+msgid "Page Title"
+msgstr ""
+
+#: includes/pages.php:50
+msgid "Do you want to show the page title before the content?"
+msgstr ""
+
+#: includes/pages.php:53
+msgid "Do not show the page title."
+msgstr ""
+
+#: includes/pages.php:54
+msgid "Show the page title after the header and before the content/sidebar."
+msgstr ""
+
+#: includes/pages.php:55
+msgid "Over content area only, when showing sidebar."
+msgstr ""
+
+#: includes/pages.php:90
+msgid "Search Results"
+msgstr ""
+
+#: includes/pages.php:99
+msgid "Not Found"
+msgstr ""
+
+#: printer.php:27
+msgid "Fluidity Printer"
+msgstr ""
+
+#: searchform.php:43
+msgid "Search field"
+msgstr ""
+
+#: searchform.php:44
+msgid "Submit search terms"
+msgstr ""
+
+#: template-parts/content-about-us.php:52
+msgctxt "user bbpress forum role"
+msgid "Support Forums %s"
+msgstr ""
+
+#: template-parts/menu.php:49 template-parts/menu.php:83
+msgid "Toggle navigation"
+msgstr ""
+
+#: template-parts/profile.php:12
+msgctxt "post author's name"
+msgid "Author %s"
+msgstr ""
+
+#: template-parts/profile.php:26
+msgid "Skill Set"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Creative Fluidity"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/RichardCoffee/fluidity-theme"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Wordpress Theme based on using a fluid design, with bootstrap"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Richard Coffee"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://rtcenterprises.net"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "No Sidebar (theme)"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Sidebar on Left (theme)"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Sidebar on Right (theme)"
+msgstr ""

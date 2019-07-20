@@ -20,6 +20,8 @@ class Fluid_MakePOT extends MakePOT {
 
 	public function __construct() {
 		$this->rules = array_merge( $this->rules, $this->new_rules );
+		$this->meta['wp-plugin']['msgid-bugs-address'] = 'http://rtcenterprises.net/forums/forum/themes/';
+		$this->meta['wp-theme' ]['msgid-bugs-address'] = 'http://rtcenterprises.net/forums/forum/themes/';
 		parent::__construct();
 		$this->extractor = new Fluid_StringExtractor( $this->rules );
 	}
