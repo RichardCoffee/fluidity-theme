@@ -1,4 +1,4 @@
-# WARNING: edit path, prefix, and locale before using this file
+# WARNING: edit path, prefix, and locale before using this file.  Do not forget to make this file executable.
 
 set MY_PATH=$HOME/work/php/fluidity
 set MY_PREFIX=tcc-fluid
