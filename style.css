@@ -730,6 +730,10 @@ body.archive.author .article {
   margin-top: 1em;
 }
 
+nav.comment-navigation {
+  width: 100%;
+}
+
 #fluid-footer {
   padding-top: 1em;
 }
