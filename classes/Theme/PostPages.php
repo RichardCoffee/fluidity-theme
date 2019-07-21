@@ -38,6 +38,8 @@ class TCC_Theme_PostPages extends TCC_Theme_Pagination {
 	 * @param array $args
 	 * @uses TCC_Trait_ParseArgs::parse_args()
 	 * @global $multipage
+	 * @global $numpages
+	 * @global $page
 	 */
 	public function __construct( $args = array() ) {
 		global $multipage, $numpages, $page;
@@ -52,6 +54,7 @@ class TCC_Theme_PostPages extends TCC_Theme_Pagination {
 			if ( ! ( $new === (array) $this ) ) {
 				$this->parse_args( $args );
 			}
+			$this->generate_navigation();
 		}
 	}
 
@@ -61,6 +64,8 @@ class TCC_Theme_PostPages extends TCC_Theme_Pagination {
 	 * @since 20190721
 	 */
 	protected function pagination_text() {
+		$this->nav_css = 'post-page-navigation';
+		$this->sr_text = esc_html__( 'Post Page Navigation', 'tcc-fluid' );
 		parent::pagination_text();
 		$this->text['plabel'] = esc_html__( 'Previous', 'tcc-fluid' );
 		$this->text['nlabel'] = esc_html__( 'Next', 'tcc-fluid' );
