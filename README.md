@@ -146,17 +146,28 @@ I wrote the TCC_Form_Comment class to give myself somewhat better control over
 how the comment form is displayed.  It makes heavy use of my [TCC_Trait_Attributes
 trait](https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Trait/Attributes.php).
 
+##### Paged Comments
+
+TCC_Theme_CommentNav, child class of TCC_Theme_Navigation, handles showing the
+user the comment navigation buttons.
+
 
 #### Login form
 
-The theme's login form, suitable for use in a navbar or a widget.  Should also
-be able to be used in a modal, although I still haven't written the modal code.
+The theme's login form, suitable for use in a navbar or a widget.  Can also
+be able to be used in a modal.
 
 
 ### Metaboxes
 
 The theme includes an abstract class, TCC_Metabox_Metabox, which I use for admin
-metaboxes, although it gets used mainly in plugins.
+metaboxes, although it gets used mainly in plugins.  Testing has indicated
+these work with the new block editor.
+
+#### FontType
+
+TCC_MetaBox_FontType allows a post editor to control what font the post is
+displayed with.  Still needs some work though...
 
 #### PostDate
 
@@ -176,7 +187,7 @@ used as a basis for all modal classes.  I have used this class in other projects
 
 #### Login modal
 
-Hmmm, TCC_Modal_Login - never finished.  PR anyone?
+TCC_Modal_Login will display the login form in a modal form.
 
 
 ### NavWalker
@@ -185,7 +196,7 @@ The theme currently uses TCC_NavWalker_Bootstrap, loosely based on [this one on 
 
 #### Taxonomy
 
-This is used to dynamically add a taxonomy's terms to a menu.
+TCC_NavWalker_Taxonomy is used to dynamically add taxonomy terms to a menu.
 
 
 ### Options
