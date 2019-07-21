@@ -22,7 +22,10 @@ who_am_i(); ?>
 		<section class="article" itemprop="description"><?php
 			global $more;
 			$more = 0;
-			the_excerpt(); ?>
+
+#			the_excerpt();
+the_content();
+ ?>
 		</section>
 
 	</article>
