@@ -4,32 +4,6 @@
  *  File:  includes/comments.php
  *
  */
-/*
-if ( ! function_exists( 'fluid_comment_navigation' ) ) {
-	function fluid_comment_navigation() {
-		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
-			<div class="row">
-				<nav class="navigation comment-navigation" role="navigation"><?php
-					fluid()->element( 'h2', [ 'class' => 'screen-reader-text' ], __( 'Comment navigation', 'tcc-fluid' ) ); ?>
-					<div class="nav-previous"><?php
-						previous_comments_link('&larr; '.esc_html__('Older Comments','tcc-fluid')); ?>
-					</div>
-					<div class="nav-next"><?php
-						next_comments_link( esc_html__('Newer Comments','tcc-fluid').' &rarr;'); ?>
-					</div>
-				</nav><!-- #comment-nav-above -->
-			</div><?php
-		}
-	}
-}
-
-if ( ! function_exists( 'fluid_comments_link_attributes' ) ) {
-	function fluid_comments_link_attributes( $atts ) {
-		return 'class="btn-fluidity"';
-	}
-	add_filter( 'previous_comments_link_attributes', 'fluid_comments_link_attributes' );
-	add_filter( 'next_comments_link_attribute', 'fluid_comments_link_attributes' );
-} //*/
 
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {

@@ -13,7 +13,6 @@
 			Classes
 	==================================
 		TCC_Theme_ClearFix( array( 'lg'=>4, 'md'=>4, 'sm'=>6, 'xs'=>12 ) )
-		TCC_Theme_Navigation( array( 'taxonomy'=>'', 'all_links'=>false ) )
 
 			Footer
 	==================================
@@ -56,7 +55,8 @@
 
 			Posts
 	==================================
-		fluid_comment_navigation()
+		TCC_Theme_Navigation( array( 'taxonomy'=>'', 'all_links'=>false ) )
+		TCC_Theme_CommentNav;
 		fluid_get_post_terms( $post_id, $taxonomy, $args )
 		fluid_edit_post_link()
 		fluid_list_comments( $comment, $args, $depth )
