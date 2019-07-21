@@ -19,7 +19,8 @@ who_am_i(); ?>
 	</header>
 
 	<section class="article" itemprop="articleBody"><?php
-		the_content(); ?>
+		the_content();
+		new TCC_Theme_PostPage; ?>
 	</section>
 
 	<footer><?php

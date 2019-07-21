@@ -91,6 +91,13 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 * @var int
 	 */
 	protected $show = 3;
+	/**
+	 *  Stores text used for title attributes.
+	 *
+	 * @since 20190725
+	 * @var array
+	 */
+	protected $text = array();
 
 	/**
 	 *  sets up for showing pagination.
@@ -104,7 +111,25 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 		$this->get_paged();
 		$this->get_pages();
 		$this->show = ( $this->range * 2 ) + 1;
+		$this->pagination_text();
 		$this->pagination();
+	}
+
+	/**
+	 *  Text strings to be used for title attributes.
+	 *
+	 * @since 20190721
+	 */
+	protected function pagination_text() {
+		$this->text = array(
+			'first'    => esc_html__( 'Go to the first page', 'tcc-fluid' ),
+			'previous' => esc_html__( 'Go to the previous page', 'tcc-fluid' ),
+			'current'  => esc_html__( 'Current Page', 'tcc-fluid' ),
+			'page1'    => esc_html_x( 'Go to page %s', 'Go to page 1', 'tcc-fluid' ),
+			'pagen'    => esc_html_x( 'Go to page %s', 'Go to page <n>, where n > 1', 'tcc-fluid' ),
+			'next'     => esc_html__( 'Go to next page', 'tcc-fluid' ),
+			'last'     => esc_html__( 'Go to last page', 'tcc-fluid' ),
+		);
 	}
 
 	/**
@@ -202,15 +227,13 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 *
 	 * @since 20170505
 	 * @uses __()
-	 * @uses get_pagenum_link()
 	 */
 	protected function show_first_link() {
-		$text = __( 'Go to the first page', 'tcc-fluid' );
 		$attrs = array(
 			'class' => 'first page-numbers',
-			'href'  => get_pagenum_link( 1 ),
-			'title' => $text,
-			'aria-label' => $text,
+			'href'  => $this->get_link( 1 ),
+			'title' => $this->text['first'],
+			'aria-label' => $this->text['first'],
 			'rel'   => 'prev',
 		);
 		$this->show_link( $attrs, $this->first );
@@ -221,15 +244,13 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 *
 	 * @since 20170505
 	 * @uses __()
-	 * @uses get_pagenum_link()
 	 */
 	protected function show_previous_link() {
-		$text = __( 'Go to the previous page', 'tcc-fluid' );
 		$attrs = array(
 			'class' => 'prev page-numbers',
-			'href'  => get_pagenum_link( $this->paged - 1 ),
-			'title' => $text,
-			'aria-label' => $text,
+			'href'  => $this->get_link( $this->paged - 1 ),
+			'title' => $this->text['previous'],
+			'aria-label' => $this->text['previous'],
 			'rel'   => 'prev',
 		);
 		$this->show_link( $attrs, $this->prev );
@@ -244,11 +265,10 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 * @uses TCC_Trait_Attributes::apply_attrs()
 	 */
 	protected function show_current_link( $int ) {
-		$text = __( 'Current Page', 'tcc-fluid' );
 		$attrs = array(
 			'class' => 'page-numbers current',
-			'title' => $text,
-			'aria-label' => $text,
+			'title' => $this->text['current'],
+			'aria-label' => $this->text['current'],
 		); ?>
 		<li>
 			<span <?php $this->apply_attrs( $attrs ); ?>><?php
@@ -262,13 +282,13 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 *
 	 * @since 20170505
 	 * @uses _nx()
-	 * @uses get_pagenum_link()
 	 */
 	protected function show_page_link ( $int ) {
-		$text = sprintf( _nx( 'Go to page %s', 'Go to page %s', $int, 'page number', 'tcc-fluid' ), $int );
-		$attrs = array(
+		$format = ( $int === 1 ) ? $this->text['page1'] : $this->text['pagen'];
+		$text   = sprintf( $format, $int );
+		$attrs  = array(
 			'class' => 'page-numbers',
-			'href'  => get_pagenum_link( $int ),
+			'href'  => $this->get_link( $int ),
 			'title' => $text,
 			'aria-label' => $text,
 		);
@@ -294,15 +314,13 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 *
 	 * @since 20170505
 	 * @uses __()
-	 * @uses get_pagenum_link()
 	 */
 	protected function show_next_link() {
-		$text = __('Go to next page','tcc-fluid');
 		$attrs = array(
 			'class' => 'next page-numbers',
-			'href'  => get_pagenum_link( $this->paged + 1 ),
-			'title' => $text,
-			'aria-label' => $text,
+			'href'  => $this->get_link( $this->paged + 1 ),
+			'title' => $this->text['next'],
+			'aria-label' => $this->text['next'],
 			'rel'   => 'next',
 		);
 		$this->show_link( $attrs, $this->next );
@@ -313,18 +331,28 @@ class TCC_Theme_Pagination extends TCC_Theme_BasicNav {
 	 *
 	 * @since 20170505
 	 * @uses __()
-	 * @uses get_pagenum_link()
 	 */
 	protected function show_last_link() {
-		$text = __('Go to last page','tcc-fluid');
 		$attrs = array(
 			'class' => 'last page-numbers',
-			'href'  => get_pagenum_link( $this->pages ),
-			'title' => $text,
-			'aria-label' => $text,
+			'href'  => $this->get_link( $this->pages ),
+			'title' => $this->text['last'],
+			'aria-label' => $this->text['last'],
 			'rel'   => 'last',
 		);
 		$this->show_link( $attrs, $this->last );
+	}
+
+	/**
+	 *  Wrapper for get_pagenum_link().
+	 *
+	 * @since 20190721
+	 * @param integer $int
+	 * @return string
+	 * @uses get_pagenum_link()
+	 */
+	protected function get_link( $int ) {
+		return get_pagenum_link( $int );
 	}
 
 	/**
