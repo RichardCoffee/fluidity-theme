@@ -246,7 +246,7 @@ if ( ! function_exists( 'fluid_remove_more_jump_link' ) ) {
 		$link = preg_replace( '|#more-[0-9]+|', '', $link );
 		return $link;
 	}
-	add_filter( 'the_content_more_link', 'remove_more_jump_link' );
+	add_filter( 'the_content_more_link', 'fluid_remove_more_jump_link' );
 }
 
 # * @since 20180313
