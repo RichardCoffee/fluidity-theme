@@ -4,7 +4,7 @@
  *  File:  includes/comments.php
  *
  */
-
+/*
 if ( ! function_exists( 'fluid_comment_navigation' ) ) {
 	function fluid_comment_navigation() {
 		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
@@ -29,7 +29,7 @@ if ( ! function_exists( 'fluid_comments_link_attributes' ) ) {
 	}
 	add_filter( 'previous_comments_link_attributes', 'fluid_comments_link_attributes' );
 	add_filter( 'next_comments_link_attribute', 'fluid_comments_link_attributes' );
-}
+} //*/
 
 if ( ! function_exists( 'fluid_comment_reply_link' ) ) {
 	function fluid_comment_reply_link( $link, $args, $comment, $post ) {
@@ -63,7 +63,7 @@ if ( ! function_exists( 'fluid_disable_website_field' ) ) {
  * @param array $args
  * @param integer $depth
  */
-if (!function_exists('fluid_list_comments')) {
+if ( ! function_exists( 'fluid_list_comments' ) ) {
 	function fluid_list_comments( WP_Comment $comment, array $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		$string    = esc_html_x( '%1$s by %2$s on %3$s', 'the comment type; author name; date of comment', 'tcc-fluid' );

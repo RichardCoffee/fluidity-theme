@@ -46,7 +46,8 @@ who_am_i(); ?>
 			);
 			wp_list_comments( $list ); ?>
 		</ul><!-- .comment-list --><?php
-		fluid_comment_navigation();
+		new TCC_Theme_CommentNav;
+#		fluid_comment_navigation();
 		if ( ! comments_open() ) { ?>
 			<p class="no-comments">
 				<?php esc_html_e('Comments are closed.', 'tcc-fluid' ); ?>

@@ -25,6 +25,7 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $show_older     = true;
 	protected $taxonomy       = '';
 	protected $text           = array();
+	# @since 20170510
 	protected $ul_css         = '';
 
 	use TCC_Trait_Logging;

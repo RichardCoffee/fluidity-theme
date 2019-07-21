@@ -18,14 +18,14 @@ defined( 'ABSPATH' ) || exit;
 abstract class TCC_Theme_BasicNav {
 
 	/**
-	 *  CSS class assigned to <nav> object.
+	 *  CSS class assigned to <nav> element.
 	 *
 	 * @since 20170510
 	 * @var string
 	 */
 	protected $nav_css = 'posts-navigation';
 	/**
-	 *  Text used for title and aria-label on <nav> object.
+	 *  Text used for title and aria-label on <nav> element.
 	 *
 	 * @since 20170510
 	 * @var string
@@ -90,6 +90,7 @@ abstract class TCC_Theme_BasicNav {
 	protected function generate_markup() {
 		$attrs = array(
 			'class' => 'navigation noprint ' . $this->nav_css,
+			'role'  => 'navigation',
 			'title' => $this->sr_text,
 			'aria-label' => $this->sr_text,
 		);
