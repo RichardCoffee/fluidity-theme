@@ -222,13 +222,13 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 			'href'        => get_permalink( get_the_ID() ),
 			'itemprop'    => 'url',
 			'aria-hidden' => 'true',
-			'tabindex'    => '-1',
+#			'tabindex'    => '-1',
 		);
 		$link  = fluid()->get_tag( 'a', $attrs );
-		$link .= apply_filters( 'fluid_read_more_text', __( 'Read More', 'tcc-fluid' ) );
+		$link .= strip_tags( fluid_read_more_text() );
 		// title inserted here for SEO purposes
 		$link .= '<span class="screen-reader-text"> ';
-		$link .= sprintf( __( 'Read more about %s', 'tcc-fluid' ), wp_strip_all_tags( get_the_title( get_the_ID() ) ) );
+		$link .= strip_tags( sprintf( __( 'Read more about %s', 'tcc-fluid' ), wp_strip_all_tags( get_the_title( get_the_ID() ) ) ) );
 		$link .= '</span></a>';
 		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
 			$link = ' <span class="block">[' . $link . ']</span>';
@@ -236,6 +236,12 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 		return $link;
 	}
 	add_filter( 'excerpt_more', 'fluid_read_more_link' );
+}
+
+if ( ! function_exists( 'fluid_read_more_text' ) ) {
+	function fluid_read_more_text() {
+		return apply_filters( 'fluid_read_more_text', __( 'Read More', 'tcc-fluid' ) );
+	}
 }
 
 # * @since 20190721
