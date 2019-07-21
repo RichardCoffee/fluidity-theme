@@ -20,7 +20,7 @@ who_am_i(); ?>
 
 	<section class="article" itemprop="articleBody"><?php
 		the_content();
-		new TCC_Theme_PostPage; ?>
+		new TCC_Theme_PostPages; ?>
 	</section>
 
 	<footer><?php
