@@ -238,6 +238,17 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 	add_filter( 'excerpt_more', 'fluid_read_more_link' );
 }
 
+# * @since 20190721
+# * @link https://digwp.com/2010/01/wordpress-more-tag-tricks/
+# * @link https://codex.wordpress.org/Customizing_the_Read_More#Link_Jumps_to_More_or_Top_of_Page
+if ( ! function_exists( 'fluid_remove_more_jump_link' ) ) {
+	function fluid_remove_more_jump_link( $link ) {
+		$link = preg_replace( '|#more-[0-9]+|', '', $link );
+		return $link;
+	}
+	add_filter( 'the_content_more_link', 'remove_more_jump_link' );
+}
+
 # * @since 20180313
 if ( ! function_exists( 'fluid_show_content_title' ) ) {
 	function fluid_show_content_title() {

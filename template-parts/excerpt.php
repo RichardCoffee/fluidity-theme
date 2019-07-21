@@ -20,6 +20,8 @@ who_am_i(); ?>
 		</header>
 
 		<section class="article" itemprop="description"><?php
+			global $more;
+			$more = 0;
 			the_excerpt(); ?>
 		</section>
 
