@@ -66,13 +66,13 @@ class TCC_Theme_CommentNav extends TCC_Theme_Navigation {
 	 */
 	protected function get_orientation() {
 		$orient = array(
-			$right => array(
+			'newer' => array(
 				'task'   => 'next',
 				'class'  => 'next ' . $this->li_css,
 				'format' => $this->right,
 				'text'   => $this->newer_link,
 			),
-			$left => array(
+			'older' => array(
 				'task'   => 'previous',
 				'class'  => 'previous ' . $this->li_css,
 				'format' => $this->left,
@@ -80,10 +80,10 @@ class TCC_Theme_CommentNav extends TCC_Theme_Navigation {
 			),
 		);
 		if ( $this->orientation === 'reverse' ) {
-			$orient['right']['class' ] = 'previous ' . $this->li_css;
-			$orient['right']['format'] = $this->left;
-			$orient['left' ]['class' ] = 'next ' . $this->li_css;
-			$orient['left' ]['format'] = $this->right;
+			$orient['newer']['class' ] = 'previous ' . $this->li_css;
+			$orient['newer']['format'] = $this->left;
+			$orient['older']['class' ] = 'next ' . $this->li_css;
+			$orient['older']['format'] = $this->right;
 		}
 		return $orient;
 	}
