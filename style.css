@@ -671,7 +671,12 @@ header#fluid-header {
 
 .post-categories {
   list-style: none;
-  text-align: center;
+}
+.post-categories li > a {
+  border: 1px solid;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 5px 14px;
 }
 
 @media (max-width: 991px) {
