@@ -13,10 +13,23 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $excluded_terms = array();
 	protected $left           = '<span aria-hidden="true">&laquo;</span> %title';
 	protected $li_css         = 'btn-fluidity';
+	/**
+	 *  Max length of the displayed title.
+	 *
+	 * @since 20190722
+	 * @var integer
+	 */
+	protected $max_length = 38;
 	protected $newer_link     = '';
 	protected $next           = null;
 	protected $older_link     = '';
-	protected $orientation    = 'bootstrap';  // possible values are 'bootstrap' and 'reverse'
+	/**
+	 *  Setting for the orientation of the link display, although 'reverse' is the only value checked for.
+	 *
+	 * @since 20190713
+	 * @var string
+	 */
+	protected $orientation    = 'bootstrap';
 	protected $posts          = array();
 	protected $previous       = null;
 	protected $right          = '%title <span aria-hidden="true">&raquo;</span>';
@@ -25,8 +38,8 @@ class TCC_Theme_Navigation extends TCC_Theme_BasicNav {
 	protected $show_older     = true;
 	protected $taxonomy       = '';
 	protected $text           = array();
-	# @since 20170510
-	protected $ul_css         = '';
+	# * @since 20170510
+	protected $ul_css = '';
 
 	use TCC_Trait_Logging;
 
@@ -93,7 +106,7 @@ add_filter( 'previous_post_link', function() {
 	}
 
 	/**
-	 * pre-processor for get_adjacent_post function
+	 *  Pre-processor for get_adjacent_post function.
 	 *
 	 * @link https://codex.wordpress.org/Function_Reference/get_adjacent_post
 	 * @link https://developer.wordpress.org/reference/functions/get_adjacent_post/
@@ -174,6 +187,12 @@ add_filter( 'previous_post_link', function() {
 		return ob_get_clean();
 	}
 
+	/**
+	 *  Provides for changing the orientation of the links.
+	 *
+	 * @since 20190713
+	 * @return array
+	 */
 	protected function get_orientation() {
 		$orient = array(
 			'older' => array(
@@ -204,6 +223,12 @@ add_filter( 'previous_post_link', function() {
 		return $orient;
 	}
 
+	/**
+	 *  Wrapper for the call to $this->get_adjacent_post_link().
+	 *
+	 * @since 20190713
+	 * @param array $data
+	 */
 	protected function show_link( $data ) {
 		$this->tag( 'li', $data['attrs'] );
 			echo $this->get_adjacent_post_link( '%link', $data['format'], $data['which'], $data['post'] ); ?>
@@ -215,6 +240,7 @@ add_filter( 'previous_post_link', function() {
 	 *
 	 * original: get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
 	 *
+	 * @since 20180331
 	 * @link wp-includes/link-template.php
 	 * @link https://developer.wordpress.org/reference/functions/get_adjacent_post_link/
 	 * @param string $format
@@ -224,15 +250,10 @@ add_filter( 'previous_post_link', function() {
 	 * @return string
 	 */
 	protected function get_adjacent_post_link( $format, $link, $previous, $post ) {
-#		$post = $this->get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
 		if ( $post->ID === 0 ) {
 			$output = '';
 		} else {
-			$title = $post->post_title;
-			if ( empty( $post->post_title ) ) {
-				$title = $previous ? $this->text['prev_all'] : $this->text['next_all'];
-			}
-			$title  = apply_filters( 'the_title', $title, $post->ID );
+			$title  = $this->post_title( $post, $previous );
 			$date   = mysql2date( get_option( 'date_format' ), $post->post_date );
 			$inlink = str_replace( [ '%title', '%date' ], [ $title, $date ], $link );
 			$attrs  = array(
@@ -244,6 +265,31 @@ add_filter( 'previous_post_link', function() {
 		}
 		$adjacent = $previous ? 'previous' : 'next';
 		return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
+	}
+
+	/**
+	 *  Checks the length of the title and reduces it if necessary.
+	 *
+	 * @since 20190722
+	 * @param WP_Post $post
+	 * @param bool $previous
+	 */
+	protected function post_title( $post, $previous ) {
+		$title  = wp_kses( $post->post_title, fluid()->kses() );
+		$length = intval( $this->max_length, 10 );
+		if ( empty( $title ) ) {
+			$title = $previous ? $this->text['prev_all'] : $this->text['next_all'];
+		} else {
+			if ( $length ) {
+				$test = wp_strip_all_tags( $title );
+				if ( strlen( $test ) > $length ) {
+					$title = substr( $test,  0, $length );
+					$title = substr( $title, 0, strripos( $title, ' ' ) );
+					$title.= '...';
+				}
+			}
+		}
+		return apply_filters( 'the_title', $title, $post->ID );
 	}
 
 

@@ -336,8 +336,7 @@ if ( ! function_exists( 'fluid_title' ) ) {
 			if ( $length ) {
 				$test = wp_strip_all_tags( $title );
 				if ( strlen( $test ) > $length ) {
-					$title = wp_strip_all_tags( $title );
-					$title = substr( $title, 0, $length );
+					$title = substr( $test,  0, $length );
 					$title = substr( $title, 0, strripos( $title, ' ' ) );
 					$title = $before . $title . $after;
 				}
