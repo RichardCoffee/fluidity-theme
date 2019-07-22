@@ -285,7 +285,7 @@ add_filter( 'previous_post_link', function() {
 				if ( strlen( $test ) > $length ) {
 					$title = substr( $test,  0, $length );
 					$title = substr( $title, 0, strripos( $title, ' ' ) );
-					$title.= '...';
+					$title.= ' ...';
 				}
 			}
 		}
