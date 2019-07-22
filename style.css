@@ -307,15 +307,18 @@ pre {
   text-align: right;
 }
 
+figure.aligncenter,
 img.aligncenter {
   margin-left: auto;
   margin-right: auto;
 }
 
+figure.alignleft,
 img.alignleft {
   float: left;
 }
 
+figure.alignright,
 img.alignright {
   float: right;
 }
