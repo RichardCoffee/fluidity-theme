@@ -669,6 +669,11 @@ header#fluid-header {
   margin-top: 5px;
 }
 
+.post-categories {
+  list-style: none;
+  text-align: center;
+}
+
 @media (max-width: 991px) {
   .article {
     margin: 0;
