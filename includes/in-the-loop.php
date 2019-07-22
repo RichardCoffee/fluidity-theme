@@ -177,6 +177,7 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 			<div class="postmetadata">
 				<hr><?php
 				if ( has_tag() ) {
+					fluid_post_tags();
 					the_tags( esc_html__( 'Tags: ', 'tcc-fluid' ), '+++', '<br>' );
 					echo '<hr>';
 				}
@@ -208,6 +209,25 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 				echo '<hr class="padbott">';
 			}
 		}
+	}
+}
+
+/**
+ *  Turns tag list into tag buttons
+ *
+ * @since 20190722
+ */
+if ( ! function_exists( 'fluid_post_tags' ) ) {
+	function fluid_post_tags() {
+		ob_start();
+		the_tags( esc_html__( 'Tags: ', 'tcc-fluid' ), '+++', '<br>' );
+		$html = ob_get_clean();
+		$tags = explode( '+++', $html );
+		fluid()->tag( 'ul', [ 'class' => 'post-tags' ] );
+			foreach( $tags as $tag ) {
+				fluid()->element( 'li', [ 'class' => 'btn-fluidity' ], $tag, true );
+			} ?>
+		</ul><?php
 	}
 }
 

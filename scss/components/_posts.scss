@@ -30,6 +30,7 @@
 	margin-top: 5px;
 }
 
+.post-tags,
 .post-categories {
 	display: inline;
 	list-style: none;
@@ -45,6 +46,10 @@
 			padding: 5px 14px;
 		}
 	}
+}
+
+ul.post-tags li > a {
+	margin-right: 2px;
 }
 
 @media (max-width: 991px) { // sm
