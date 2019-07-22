@@ -662,10 +662,6 @@ header#fluid-header {
   max-width: 100%;
 }
 
-.has-fluid-sidebar .aligncenter {
-  margin-left: 0;
-}
-
 @media (max-width: 991px) {
   .article {
     margin: 0;
