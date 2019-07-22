@@ -662,7 +662,7 @@ header#fluid-header {
   max-width: 100%;
 }
 
-main.has-fluid-sidebar section.article .aligncenter {
+.has-fluid-sidebar .aligncenter {
   margin-left: 0;
 }
 

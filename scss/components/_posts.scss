@@ -20,11 +20,9 @@
   }
 }
 
-main.has-fluid-sidebar {
-	& section.article {
-		& .aligncenter {
-			margin-left: 0;
-		}
+.has-fluid-sidebar {
+	& .aligncenter {
+		margin-left: 0;
 	}
 }
 
