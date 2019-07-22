@@ -63,12 +63,12 @@
 		fluid_next_post_exists()
 		fluid_post_date( $complete = false )
 		fluid_post_separator( $slug )
+		fluid_post_title( $max = 0, $anchor = true )
 		fluid_postmetadata()
 		fluid_thumbnail()
 		fluid_title( $length = 0 )
 		tcc_excerpt_parallax()
 		tcc_post_parallax( $css = 'single-parallax' )
-		tcc_post_title( $max = 0, $anchor = true )
 
 			Settings
 	==================================

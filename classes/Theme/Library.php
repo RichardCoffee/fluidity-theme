@@ -122,6 +122,7 @@ $this->log($meta);
 	public function kses() {
 		return array(
 			'a'    => [ 'class' => [ ], 'href' => [ ], 'itemprop' => [ ], 'rel' => [ ], 'target' => [ ], 'title' => [ ], 'aria-label' => [ ] ],
+			'b'    => [ ],
 			'i'    => [ 'class' => [ ] ],
 			'span' => [ 'class' => [ ], 'itemprop' => [ ] ],
 		);

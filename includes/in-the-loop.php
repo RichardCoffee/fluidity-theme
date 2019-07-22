@@ -81,7 +81,7 @@ if ( ! function_exists( 'fluid_excerpt' ) ) {
 if ( ! function_exists( 'fluid_excerpt_header' ) ) {
 	function fluid_excerpt_header() { ?>
 		<h2 class="text-center" itemprop="headline"><?php
-			tcc_post_title( 40 ); ?>
+			fluid_post_title( 40 ); ?>
 		</h2><?php
 		if ( get_theme_mod( 'content_exdate', 'show' ) === 'show' ) { ?>
 			<h3 class="text-center"><?php
@@ -210,6 +210,23 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 	}
 }
 
+# * @since 20161229
+if ( ! function_exists( 'fluid_post_title' ) ) {
+	function fluid_post_title( $max = 0, $anchor = true ) {
+		$anchor = ( is_single() || is_page() ) ? false : $anchor;
+		if ( $anchor ) {
+			$attrs = array(
+				'href'  => get_the_permalink(),
+				'rel'   => 'bookmark',
+				'title' => fluid_excerpt_link_tooltip()
+			);
+			fluid()->element( 'a', $attrs, fluid_title( $max ), true );
+		} else {
+			fluid_title( $max, true );
+		}
+	}
+}
+
 # * @since 20150520
 # * @link http://codex.wordpress.org/Excerpt
 # * @link https://make.wordpress.org/themes/handbook/review/accessibility/required/
@@ -227,9 +244,8 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 		$link  = fluid()->get_tag( 'a', $attrs );
 		$link .= strip_tags( fluid_read_more_text() );
 		// title inserted here for SEO purposes
-		$link .= '<span class="screen-reader-text"> ';
-		$link .= strip_tags( sprintf( __( 'Read more about %s', 'tcc-fluid' ), wp_strip_all_tags( get_the_title( get_the_ID() ) ) ) );
-		$link .= '</span></a>';
+		$link .= fluid()->get_element( 'span', [ 'class' => 'screen-reader-text' ], fluid_excerpt_link_tooltip() );
+		$link .= '</a>';
 		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
 			$link = ' <span class="block">[' . $link . ']</span>';
 		}
@@ -261,7 +277,7 @@ if ( ! function_exists( 'fluid_show_content_title' ) ) {
 		if ( ! is_page() ) {
 			$show_orig = false; ?>
 			<h2 class="text-center" itemprop="headline"><?php
-				tcc_post_title();
+				fluid_post_title();
 				fluid_edit_post_link(); ?>
 			</h2>
 			<div id="fluid_content_post_dates"><?php
@@ -311,13 +327,16 @@ if ( ! function_exists( 'fluid_thumbnail' ) ) {
 # * @since 20161229
 if ( ! function_exists( 'fluid_title' ) ) {
 	function fluid_title( $length = 0, $echo = false ) {
-		$after = '...'; $before = ''; // FIXME
-		$title  = wp_strip_all_tags( get_the_title( get_the_ID() ) );
+		$after  = '...'; $before = ''; // FIXME
+		$title  = wp_kses( get_the_title( get_the_ID() ), fluid()->kses() );
+		$length = intval( $length, 10 );
 		if ( strlen( $title ) === 0 ) {
 			$title = "{No Title}";
 		} else {
-			if ( $length && is_numeric( $length ) ) {
-				if ( strlen( $title ) > $length ) {
+			if ( $length ) {
+				$test = wp_strip_all_tags( $title );
+				if ( strlen( $test ) > $length ) {
+					$title = wp_strip_all_tags( $title );
 					$title = substr( $title, 0, $length );
 					$title = substr( $title, 0, strripos( $title, ' ' ) );
 					$title = $before . $title . $after;
@@ -326,7 +345,7 @@ if ( ! function_exists( 'fluid_title' ) ) {
 			$title = apply_filters( 'the_title', $title, get_the_ID() );
 		}
 		if ( $echo ) {
-			e_esc_html( $title );
+			echo $title;
 		} else {
 			return $title;
 		}
@@ -344,24 +363,6 @@ if ( ! function_exists( 'fluid_view_image_link' ) ) {
 			'tabindex'    => '-1',
 		);
 		fluid()->element( 'a', $attrs, __( 'View image', 'tcc-fluid' ) );
-	}
-}
-
-
-# * @since 20161229
-if (!function_exists('tcc_post_title')) {
-	function tcc_post_title( $max = 0, $anchor = true ) {
-		$anchor = ( is_single() || is_page() ) ? false : $anchor;
-		if ( $anchor ) {
-			$attrs = array(
-				'href'  => get_the_permalink(),
-				'rel'   => 'bookmark',
-				'title' => fluid_excerpt_link_tooltip()
-			);
-			fluid()->element( 'a', $attrs, fluid_title( $max ) );
-		} else {
-			fluid_title( $max, true );
-		}
 	}
 }
 
