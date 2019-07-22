@@ -670,12 +670,16 @@ header#fluid-header {
 }
 
 .post-categories {
+  display: inline;
   list-style: none;
+  padding: 0;
+}
+.post-categories li {
+  display: inline;
 }
 .post-categories li > a {
   border: 1px solid;
   border-radius: 10px;
-  display: inline-block;
   padding: 5px 14px;
 }
 
