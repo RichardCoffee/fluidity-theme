@@ -669,14 +669,17 @@ header#fluid-header {
   margin-top: 5px;
 }
 
+.post-tags,
 .post-categories {
   display: inline;
   list-style: none;
   padding: 0;
 }
+.post-tags li,
 .post-categories li {
   display: inline;
 }
+.post-tags li > a,
 .post-categories li > a {
   border: 1px solid;
   border-radius: 10px;
@@ -684,6 +687,10 @@ header#fluid-header {
   margin-bottom: 2px;
   margin-right: -5px;
   padding: 5px 14px;
+}
+
+ul.post-tags li > a {
+  margin-right: 2px;
 }
 
 @media (max-width: 991px) {

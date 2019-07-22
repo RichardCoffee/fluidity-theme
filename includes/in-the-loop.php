@@ -178,7 +178,6 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 				<hr><?php
 				if ( has_tag() ) {
 					fluid_post_tags();
-					the_tags( esc_html__( 'Tags: ', 'tcc-fluid' ), '+++', '<br>' );
 					echo '<hr>';
 				}
 				$cat_list = get_the_category_list();
@@ -220,9 +219,10 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 if ( ! function_exists( 'fluid_post_tags' ) ) {
 	function fluid_post_tags() {
 		ob_start();
-		the_tags( esc_html__( 'Tags: ', 'tcc-fluid' ), '+++', '<br>' );
+		the_tags( esc_html__( '', 'tcc-fluid' ), '+++', '<br>' );
 		$html = ob_get_clean();
 		$tags = explode( '+++', $html );
+		e_esc_html__( 'Tags: ', 'tcc-fluid' );
 		fluid()->tag( 'ul', [ 'class' => 'post-tags' ] );
 			foreach( $tags as $tag ) {
 				fluid()->element( 'li', [ 'class' => 'btn-fluidity' ], $tag, true );
