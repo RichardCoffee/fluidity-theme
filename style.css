@@ -665,6 +665,10 @@ header#fluid-header {
   max-width: 100%;
 }
 
+.post-link-separator-middle {
+  margin-top: 5px;
+}
+
 @media (max-width: 991px) {
   .article {
     margin: 0;
