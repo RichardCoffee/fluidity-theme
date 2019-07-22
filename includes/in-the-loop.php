@@ -222,7 +222,7 @@ if ( ! function_exists( 'fluid_post_tags' ) ) {
 		the_tags( esc_html__( '', 'tcc-fluid' ), '+++', '<br>' );
 		$html = ob_get_clean();
 		$tags = explode( '+++', $html );
-		e_esc_html__( 'Tags: ', 'tcc-fluid' );
+		esc_html_e( 'Tags: ', 'tcc-fluid' );
 		fluid()->tag( 'ul', [ 'class' => 'post-tags' ] );
 			foreach( $tags as $tag ) {
 				fluid()->element( 'li', [ 'class' => 'btn-fluidity' ], $tag, true );
