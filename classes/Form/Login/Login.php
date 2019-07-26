@@ -232,7 +232,7 @@ class TCC_Form_Login_Login {
 			'name'  => 'rememberme',
 			'value' => 'forever',
 		);
-		$attr = $this->checked( $attrs, $this->defaults['value_remember'], true ); ?>
+		$this->checked( $attrs, $this->defaults['value_remember'], true ); ?>
 		<label>&nbsp;<?php
 			$this->element( 'input', $attr, $this->defaults['label_remember'] ); ?>
 		</label><?php

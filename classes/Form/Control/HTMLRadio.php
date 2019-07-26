@@ -45,7 +45,7 @@ class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 					$attrs['aria-describedby'] = $description_id;
 				}
 				$attrs = $this->setting_link( $attrs );
-				$attrs = $this->checked( $attrs, $this->value(), $value );
+				$this->checked( $attrs, $this->value(), $value );
 				$this->element( 'input', $attrs );
 
 				$this->tag( 'label', [ 'for' => $attrs['id'] ] );

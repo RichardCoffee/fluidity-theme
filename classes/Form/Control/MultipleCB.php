@@ -58,7 +58,7 @@ class TCC_Form_Control_MultipleCB extends TCC_Form_Control_Control {
                 <li>
                     <label><?php
                         $attrs = [ 'type' => 'checkbox', 'value' => $value ];
-                        $attrs = $this->checked( $attrs, in_array( $value, $multi_values ) );
+                        $this->checked( $attrs, in_array( $value, $multi_values ) );
                         $this->element( 'input', $attrs ); ?>
 
                         <?php echo esc_html( $label ); ?>

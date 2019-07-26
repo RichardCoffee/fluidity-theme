@@ -2,9 +2,9 @@
 
 class TCC_Form_Field_CheckBox extends TCC_Form_Field_Field {
 
-	protected $type    = 'checkbox';
-	protected $checked = false;
-	protected $form_control = false;
+	protected $type      = 'checkbox';
+	protected $checked   = false;
+	protected $bootstrap = false;
 
 	public function checkbox() {
 		echo $this->get_checkbox();
@@ -15,7 +15,9 @@ class TCC_Form_Field_CheckBox extends TCC_Form_Field_Field {
 	}
 
 	protected function get_input_attributes() {
-		return $this->checked( parent::get_input_attributes(), $this->checked, true );
+		$attrs = parent::get_input_attributes();
+		$this->checked( $attrs, $this->checked, true );
+		return $attrs;
 	}
 
 }

@@ -52,7 +52,7 @@ class TCC_Form_Field_Select extends TCC_Form_Field_Field {
 				if ( is_array( $choices ) ) {
 					foreach( $choices as $key => $text ) {
 						$attrs = [ 'value' => $key ];
-						$attrs = $this->selected( $attrs, $key, $this->field_value );
+						$this->selected( $attrs, $key, $this->field_value );
 						$this->element( 'option', $attrs, ' ' . $text . ' ' );
 					}
 				} elseif ( method_exists( $this, $choices ) ) {

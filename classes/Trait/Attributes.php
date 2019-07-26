@@ -2,6 +2,8 @@
 /**
  * classes/Trait/Attributes.php
  *
+ * @package Fluidity
+ * @subpackage Traits
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
  */
@@ -248,13 +250,12 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20180424
 	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
-	 * @param array $attrs
+	 * @param array $attrs Accepted as reference.
 	 * @param mixed $checked value to check
 	 * @param mixed $current base value to check against
-	 * @return array
 	 */
-	public function checked( $attrs, $checked, $current = true ) {
-		return $this->checked_selected_helper( $attrs, $checked, $current, 'checked' );
+	public function checked( &$attrs, $checked, $current = true ) {
+		$this->checked_selected_helper( $attrs, $checked, $current, 'checked' );
 	}
 
 	/**
@@ -262,13 +263,12 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20180424
 	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
-	 * @param array $attrs
+	 * @param array $attrs Accepted as reference.
 	 * @param mixed $disabled value to check
 	 * @param mixed $current base value to check against
-	 * @return array
 	 */
-	public function disabled( $attrs, $disabled, $current = true ) {
-		return $this->checked_selected_helper( $attrs, $disabled, $current, 'disabled' );
+	public function disabled( &$attrs, $disabled, $current = true ) {
+		$this->checked_selected_helper( $attrs, $disabled, $current, 'disabled' );
 	}
 
 	/**
@@ -276,13 +276,12 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20180424
 	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
-	 * @param array $attrs
+	 * @param array $attrs Accepted as reference.
 	 * @param mixed $readonly value to check
 	 * @param mixed $current base value to check against
-	 * @return array
 	 */
-	public function readonly( $attrs, $readonly, $current = true ) {
-		return $this->checked_selected_helper( $attrs, $readonly, $current, 'readonly' );
+	public function readonly( &$attrs, $readonly, $current = true ) {
+		$this->checked_selected_helper( $attrs, $readonly, $current, 'readonly' );
 	}
 
 	/**
@@ -290,13 +289,12 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20180424
 	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
-	 * @param array $attrs
+	 * @param array $attrs Accepted as reference.
 	 * @param mixed $selected value to check
 	 * @param mixed $current base value to check against
-	 * @return array
 	 */
-	public function selected( $attrs, $selected, $current = true ) {
-		return $this->checked_selected_helper( $attrs, $selected, $current, 'selected' );
+	public function selected( &$attrs, $selected, $current = true ) {
+		$this->checked_selected_helper( $attrs, $selected, $current, 'selected' );
 	}
 
 	/**
@@ -304,17 +302,15 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20180424
 	 * @link https://developer.wordpress.org/reference/files/wp-includes/general-template.php/
-	 * @param array $attrs
+	 * @param array $attrs Accepted as reference.
 	 * @param mixed $checked value to check
 	 * @param mixed $current base value to check against
 	 * @param string $type attribute to add
-	 * @return array
 	 */
-	protected function checked_selected_helper( $attrs, $helper, $current, $type ) {
+	protected function checked_selected_helper( &$attrs, $helper, $current, $type ) {
 		if ( (string) $helper === (string) $current ) {
 			$attrs[ $type ] = $type;
 		}
-		return $attrs;
 	}
 
 

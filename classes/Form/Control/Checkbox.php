@@ -44,7 +44,7 @@ class TCC_Form_Control_Checkbox extends TCC_Form_Control_Control {
 				$attrs['aria-describedby'] = $description_id;
 			}
 			$attrs = $this->setting_link( $attrs );
-			$attrs = $this->checked( $attrs, $this->value(), true );
+			$this->checked( $attrs, $this->value(), true );
 			$this->element( 'input', $attrs );
 			$this->element( 'label', [ 'for' => $input_id ], $this->label );
 			if ( ! empty( $this->description ) ) {
