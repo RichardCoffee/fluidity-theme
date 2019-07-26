@@ -32,7 +32,7 @@ class TCC_Form_Control_MultipleSel extends TCC_Form_Control_Control {
 			$this->tag( 'select', $attrs );
 				foreach ( $this->choices as $value => $label ) {
 					$attrs = [ 'value' => $value ];
-					$attrs = $this->selected( $attrs, in_array( $value, $this->value() ) );
+					$this->selected( $attrs, in_array( $value, $this->value() ) );
 					$this->element( 'option', $attrs, $label );
 				} ?>
 			</select>
