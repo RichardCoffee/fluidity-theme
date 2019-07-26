@@ -234,7 +234,7 @@ class TCC_Form_Login_Login {
 		);
 		$this->checked( $attrs, $this->defaults['value_remember'], true ); ?>
 		<label>&nbsp;<?php
-			$this->element( 'input', $attr, $this->defaults['label_remember'] ); ?>
+			$this->element( 'input', $attrs, $this->defaults['label_remember'] ); ?>
 		</label><?php
 	}
 
