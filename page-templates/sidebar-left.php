@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define('TCC_LEFT_SIDEBAR');
+define('TCC_LEFT_SIDEBAR', true );
 
 include( FLUIDITY_HOME . 'stock.php' );
 
