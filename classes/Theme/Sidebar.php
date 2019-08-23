@@ -30,6 +30,9 @@ class TCC_Theme_Sidebar {
 			$this->css     = ( $this->fluid === 'static' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
 			$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 			$this->parse_args( $args );
+			if ( defined( 'TCC_LEFT_SIDEBAR'  ) || defined( 'TCC_RIGHT_SIDEBAR' ) ) {
+				$this->fluid = 'static';
+			}
 			if ( ! $this->horizontal ) {
 				$this->check_mobile();
 			}
