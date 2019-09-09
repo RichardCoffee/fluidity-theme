@@ -109,10 +109,10 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 			foreach( $terms as $term ) {
 				if ( ! ( $this->limit < $term->count ) ) { break; }
 				if ( $order > $this->maximum ) { break; }
-				$name  = sprintf( $pattern, $term->name, $term->count );
-				$path  = home_url( '/' ) . 'category/' . $term->slug;
+				$name = sprintf( $pattern, $term->name, $term->count );
+				$link = get_term_link( $term );
 				$this->width = max( $this->width, ( strlen( $term->name . $term->count ) + 3 ) );
-				$this->add_sub_menu_item( $name, $path, $order++, $this->taxonomy );
+				$this->add_sub_menu_item( $name, $link, $order++, $this->taxonomy );
 			}
 		}
 	}
