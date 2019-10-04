@@ -31,7 +31,7 @@ class TCC_Options_Survey {
 
 	public function take_fluid_survey( $args = array() ) {
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		$plugins = get_plugins();
+		$plugins = $this->get_plugins();
 		$subject = 'Fluid Survey - ' . get_home_url();
 		$bodyhdr = __( '', 'tcc-fluid' );
 		$body    = print_r( $plugins, true );
@@ -40,6 +40,15 @@ class TCC_Options_Survey {
 #			'cc'   => get_bloginfo('admin_email')
 		);
 		wp_mail( $this->destination, $subject, $body, $headers );
+	}
+
+	private function get_plugins() {
+		$plugins = get_plugins();
+		$active  = get_option( 'active_plugins', array() );
+		foreach( $plugins as $plugin => $data ) {
+			$plugins[ $plugin ]['status'] = ( in_array( $plugin, $active ) ) ? 'active' : 'inactive';
+		}
+		return $plugins;
 	}
 
 
