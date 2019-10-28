@@ -337,19 +337,6 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		$default     = _x( '$', 'primary currency symbol', 'tcc-fluid' );
 		$field_name  = 'currency_symbol';
 		$description = __( 'Currency Symbol', 'tcc-fluid' );
-/*		$possible = array(
-			'currency_sign' => __( 'Currency Sign', 'tcc-fluid' ),
-			$field_name     => $description,
-		);
-		for ( $possible as $key => $desc ) {
-			$test = get_option( $key, '' );
-			if ( ! empty( $test ) ) {
-				$default     = $test;
-				$field_name  = $key;
-				$description = $desc;
-				break;
-			}
-		} //*/
 		$args = apply_filters(
 			'fluid_currency_symbol',
 			array(
