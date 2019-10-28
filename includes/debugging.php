@@ -3,6 +3,23 @@
  *
  */
 
+/**
+ *  Add HTTP response header
+ *
+ * @since 20191028
+ * @link https://www.dev2qa.com/how-to-modify-http-response-header-in-wordpress/
+ * @param $headers array
+ * @return array
+ */
+if ( ! function_exists( 'fluid_wp_headers' ) ) {
+	function fluid_wp_headers( $headers ) {
+		# TODO: check for pre-existing value
+		$headers['Referrer-Policy'] = 'no-referrer';
+		return $headers;
+	}
+	add_filter( 'wp_headers', 'fluid_wp_headers' );
+}
+
 if ( ! function_exists( 'fluid_show_color_scheme' ) ) {
 	function fluid_show_color_scheme() {
 		if ( WP_DEBUG && current_user_can( 'administrator' ) ) { ?>
