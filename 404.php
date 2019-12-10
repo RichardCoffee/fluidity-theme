@@ -38,8 +38,8 @@ if ( WP_DEBUG && is_user_logged_in() && current_user_can( 'update_core' ) ) { ?>
 			<article class="error-404 not-found"><?php
 				fluid()->element( 'h2', [ 'class' => 'page-title' ], __( "Ooops.....Well this is somewhat embarrassing, isn't it?", 'tcc-fluid' ) ); ?>
 				<div class="page-content"><?php
-					fluid()->element( 'h3', [ ], __( 'It seems as if the page you are looking for is not here', 'tcc-fluid' ) );
-					fluid()->element( 'h4', [ ], __( 'It looks like nothing was found at this location', 'tcc-fluid' ) ); ?>
+					fluid()->element( 'h3', [ ], __( "Sorry, but we can't seem to find that page.", 'tcc-fluid' ) );
+					fluid()->element( 'h4', [ ], __( 'It may have moved or been deleted, or the original link could have been incorrect.', 'tcc-fluid' ) ); ?>
 					<div class="row">
 						<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12"><?php
 							get_search_form();
