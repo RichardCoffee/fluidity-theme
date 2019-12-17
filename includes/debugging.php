@@ -4,18 +4,30 @@
  */
 
 /**
- *  Add HTTP response header
+ *  Add HTTP response header defaults.  These are defaults only, and will not override pre-existing values.
  *
  * @since 20191028
  * @link https://www.dev2qa.com/how-to-modify-http-response-header-in-wordpress/
+ * @link https://paragonie.com/blog/2017/12/2018-guide-building-secure-php-software
+ * @link https://scotthelme.co.uk/content-security-policy-an-introduction/
  * @param $headers array
  * @return array
  */
 if ( ! function_exists( 'fluid_wp_headers' ) ) {
 	function fluid_wp_headers( $headers ) {
-		# TODO: check for pre-existing value
-		$headers['Referrer-Policy'] = 'no-referrer';
-		return $headers;
+		fluid()->log_chance( $headers );
+		$defaults = array(
+			'Content-Security-Policy' => 'script-src self',
+			'X-Content-Type-Options'  => 'nosniff',
+			'Referrer-Policy'  => 'no-referrer',
+			'X-Frame-Options'  => 'SAMEORIGIN',
+			'X-XSS-Protection' => '1; mode=block',
+		);
+		if ( is_ssl() ) {
+			$defaults['Strict-Transport-Security'] = 'max-age=30';
+		}
+		$defaults = apply_filters( 'fluid_http_header_defaults', $defaults );
+		return array_merge( $defaults, $headers );
 	}
 	add_filter( 'wp_headers', 'fluid_wp_headers' );
 }

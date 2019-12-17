@@ -31,6 +31,15 @@ class TCC_Theme_Library {
 	}
 
 
+	public function log_chance( $data, $max_chance = 1000 ) {
+		if ( WP_DEBUG ) {
+			if ( mt_rand( 1, $max_chance ) === 1 ) {
+				$this->log( $data, 'stack' );
+			}
+		}
+	}
+
+
 	/**  Font Awesome icons  **/
 
 	public function fawe( $icon = 'fa-question fa-border' ) {
