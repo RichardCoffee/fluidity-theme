@@ -18,19 +18,19 @@ defined( 'ABSPATH' ) || exit;
 abstract class TCC_Theme_BasicNav {
 
 	/**
+	 *  Text used for title and aria-label on <nav> element.
+	 *
+	 * @since 20170510
+	 * @var string
+	 */
+	protected $aria_label = '';
+	/**
 	 *  CSS class assigned to <nav> element.
 	 *
 	 * @since 20170510
 	 * @var string
 	 */
 	protected $nav_css = 'posts-navigation';
-	/**
-	 *  Text used for title and aria-label on <nav> element.
-	 *
-	 * @since 20170510
-	 * @var string
-	 */
-	protected $sr_text = '';
 
 	/**
 	 * @link https://github.com/RichardCoffee/custom-post-type/blob/master/classes/Trait/Attributes.php
@@ -57,8 +57,10 @@ abstract class TCC_Theme_BasicNav {
 	 * @uses TCC_Trait_ParseArgs::parse_args()
 	 */
 	public function __construct( $args = array() ) {
-		$this->sr_text = __( 'Post navigation' , 'tcc-fluid' );
 		$this->parse_args( $args );
+		if ( empty( $this->aria_label ) ) {
+			$this->aria_label = __( 'Post navigation' , 'tcc-fluid' );
+		}
 	}
 
 	/**
@@ -72,7 +74,7 @@ abstract class TCC_Theme_BasicNav {
 	protected function generate_navigation() {
 		$template = apply_filters( 'navigation_markup_template', null, $this->nav_css );
 		if ( $template ) {
-			printf( $template, sanitize_html_class( $this->nav_css ), esc_html( $this->sr_text ), $this->generate_links() );
+			printf( $template, sanitize_html_class( $this->nav_css ), esc_html( $this->aria_label ), $this->generate_links() );
 		} else {
 			if ( $template = $this->generate_markup() ) {
 				printf( $template, $this->generate_links() );
@@ -91,8 +93,8 @@ abstract class TCC_Theme_BasicNav {
 		$attrs = array(
 			'class' => 'navigation noprint ' . $this->nav_css,
 			'role'  => 'navigation',
-			'title' => $this->sr_text,
-			'aria-label' => $this->sr_text,
+			'title' => $this->aria_label,
+			'aria-label' => $this->aria_label,
 		);
 		$html = $this->get_tag( 'nav', $attrs );
 		$html.= '<div class="nav-links">%s</div>';

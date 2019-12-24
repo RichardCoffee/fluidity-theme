@@ -62,8 +62,8 @@ add_filter( 'previous_post_link', function() {
 			'next_tax' => _x( "Newer '%s' post", 'the taxonomy label (singular)', 'tcc-fluid' ),
 			'prev_all' => __( 'Older Post', 'tcc-fluid' ),
 			'prev_tax' => _x( "Older '%s' post", 'the taxonomy label (singular)', 'tcc-fluid' ),
-			'sr_all'   => __( 'Posts Navigation', 'tcc-fluid' ),
-			'sr_tax'   => __( 'Category Navigation', 'tcc-fluid' )
+			'al_all'   => __( 'Posts Navigation', 'tcc-fluid' ),
+			'al_tax'   => __( 'Category Navigation', 'tcc-fluid' )
 		);
 	}
 
@@ -140,7 +140,9 @@ add_filter( 'previous_post_link', function() {
 			$this->newer_link = sprintf( $this->text['next_tax'], $tax_obj->labels->singular_name );
 			$this->older_link = sprintf( $this->text['prev_tax'], $tax_obj->labels->singular_name );
 		}
-		$this->sr_text    = $this->text['sr_tax'];
+		if ( empty( $this->aria_label ) ) {
+			$this->aria_label = $this->text['al_tax'];
+		}
 		$this->ul_css     = 'pager pager-taxonomy';
 		$this->same_term  = true;
 		$this->next       = $this->posts['next_tax'];
@@ -156,9 +158,11 @@ add_filter( 'previous_post_link', function() {
 	}
 
 	protected function all_links() {
+		if ( empty( $this->aria_label ) ) {
+			$this->aria_label = $this->text['al_all'];
+		}
 		$this->newer_link = $this->text['next_all'];
 		$this->older_link = $this->text['prev_all'];
-		$this->sr_text    = $this->text['sr_all'];
 		$this->show_newer = ( $this->posts['next_all']->ID > 0 );
 		$this->show_older = ( $this->posts['prev_all']->ID > 0 );
 		$this->ul_css     = 'pager pager-all';

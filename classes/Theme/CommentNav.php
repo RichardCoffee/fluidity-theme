@@ -55,7 +55,9 @@ class TCC_Theme_CommentNav extends TCC_Theme_Navigation {
 	protected function navigation_text() {
 		$this->newer_link = esc_html__( 'Newer Comments', 'tcc-fluid' );
 		$this->older_link = esc_html__( 'Older Comments', 'tcc-fluid' );
-		$this->sr_text    = esc_html__( 'Comment navigation', 'tcc-fluid' );
+		if ( empty( $this->aria_label ) ) {
+			$this->aria_label = esc_html__( 'Comment navigation', 'tcc-fluid' );
+		}
 	}
 
 	/**

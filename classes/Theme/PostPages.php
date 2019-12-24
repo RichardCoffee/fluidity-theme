@@ -65,7 +65,9 @@ class TCC_Theme_PostPages extends TCC_Theme_Pagination {
 	 */
 	protected function pagination_text() {
 		$this->nav_css = 'post-page-navigation';
-		$this->sr_text = esc_html__( 'Post Page Navigation', 'tcc-fluid' );
+		if ( empty( $this->aria_label ) ) {
+			$this->aria_label = esc_html__( 'Post Page Navigation', 'tcc-fluid' );
+		}
 		parent::pagination_text();
 		$this->text['plabel'] = esc_html__( 'Previous', 'tcc-fluid' );
 		$this->text['nlabel'] = esc_html__( 'Next', 'tcc-fluid' );
