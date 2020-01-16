@@ -30,11 +30,11 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 				'slug'        => 'theme-my-login',
 				'is_callable' => [ 'Theme_My_Login', 'get_object' ],
 			), //*/
-			array(
+/*			array(
 				'name'        => 'User Last Login by Raj',
 				'slug'        => 'user-last-login',
 #				'is_callable' =>
-			),
+			), //*/
 			array(
 				'name'        => 'Wordfence Security by Wordfence',
 				'slug'        => 'wordfence',
@@ -70,3 +70,7 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 		}
 	}
 }
+
+require_once( FLUIDITY_HOME . 'vendor/plugin-update-checker/plugin-update-checker.php';
+
+Puc_v4_Factory::buildUpdateChecker( 'https://github.com/RichardCoffee/fluidity-theme', FLUIDITY_HOME . 'functions.php', 'fluidity' );
