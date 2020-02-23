@@ -17,7 +17,7 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 	function fluid_wp_headers( $headers ) {
 		fluid()->log_chance( $headers );
 		$defaults = array(
-			'Content-Security-Policy' => 'script-src self',
+			'Content-Security-Policy' => "default-src 'self'; font-src 'self' fonts.googleapis.com",
 			'X-Content-Type-Options'  => 'nosniff',
 			'Referrer-Policy'  => 'no-referrer',
 			'X-Frame-Options'  => 'SAMEORIGIN',

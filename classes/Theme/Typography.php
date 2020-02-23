@@ -160,6 +160,7 @@ class TCC_Theme_Typography {
 
 	public static function enqueue_fonts() {
 		if ( ! empty( static::$loaded ) ) {
+			add_filter( 'style_loader_tag', [ 'TCC_Theme_Typography', 'style_loader_tag' ] );
 			$fonts = array_unique( static::$loaded );
 			$fonts = array_map( [ 'TCC_Theme_Typography', 'map_font' ], $fonts );
 			foreach( $fonts as $font ) {
@@ -168,6 +169,16 @@ class TCC_Theme_Typography {
 				wp_enqueue_style( 'theme_font_' . sanitize_key( $font ), $url, null, null, 'all' );
 			}
 		}
+	}
+
+	public static function style_loader_tag( $link ) {
+		if ( strpos( $link, 'theme_font_' ) ) {
+			$obj = fluid()->get_html_object( $link );
+			$obj->attrs['type'] = 'font/woff';
+			$new = fluid()->element( $obj->tag, $obj->attrs );
+			fluid()->log( $link, $new, $obj );
+		}
+		return $link;
 	}
 
 	public static function map_font( $font ) {
