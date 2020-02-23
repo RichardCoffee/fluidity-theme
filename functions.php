@@ -59,6 +59,7 @@ if ( is_admin() ) {
 	require_once('includes/header.php');
 	require_once('includes/in-the-loop.php');
 	require_once('classes/microdata.php');
+	new TCC_Theme_SameSite;
 }
 
 
