@@ -82,7 +82,7 @@ class TCC_Theme_Library {
 			$puc_file = FLUIDITY_HOME . 'vendor/plugin-update-checker/plugin-update-checker.php';
 			if ( is_readable( $puc_file ) ) {
 				require_once( $puc_file );
-				$puc = Puc_v4_Factory::buildUpdateChecker( $this->github, FLUIDITY_HOME . 'style.css', 'fluidity-master' );
+				$puc = Puc_v4_Factory::buildUpdateChecker( $this->github, FLUIDITY_HOME . 'style.css', 'fluidity-theme' );
 				$puc->setBranch( $this->branch );
 			}
 		}
