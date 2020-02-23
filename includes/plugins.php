@@ -71,6 +71,6 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 	}
 }
 
-require_once( FLUIDITY_HOME . 'vendor/plugin-update-checker/plugin-update-checker.php';
+#require_once( FLUIDITY_HOME . 'vendor/plugin-update-checker/plugin-update-checker.php';
 
-Puc_v4_Factory::buildUpdateChecker( 'https://github.com/RichardCoffee/fluidity-theme', FLUIDITY_HOME . 'functions.php', 'fluidity' );
+#Puc_v4_Factory::buildUpdateChecker( 'https://github.com/RichardCoffee/fluidity-theme', FLUIDITY_HOME . 'functions.php', 'fluidity' );
