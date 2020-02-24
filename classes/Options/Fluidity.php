@@ -235,7 +235,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 			<?php esc_html_e( 'For help with this theme, or any other general support items, please contact us at any time', 'tcc-fluid' ); ?>
 		</p>
 		<p>
-			&copy; <?php esc_html_e( 'Copyright 2014-2018 RTC', 'tcc-fluid' ); ?>
+			&copy; <?php esc_html_e( 'Copyright 2014-2020 RTC', 'tcc-fluid' ); ?>
 		</p><?php
 	}
 
