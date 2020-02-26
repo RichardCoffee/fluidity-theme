@@ -142,6 +142,7 @@ abstract class TCC_Options_Options {
 				$opts[ $key ] = $option['default'];
 			}
 		}
+fluid()->log( 'default options', $opts );
 		return $opts;
 	}
 
