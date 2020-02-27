@@ -17,7 +17,6 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 	function fluid_wp_headers( $headers ) {
 		fluid()->log_chance( $headers );
 		$defaults = array(
-			'Content-Security-Policy' => "default-src 'self'; font-src 'self' fonts.googleapis.com",
 			'X-Content-Type-Options'  => 'nosniff',
 			'Referrer-Policy'  => 'no-referrer',
 			'X-Frame-Options'  => 'SAMEORIGIN',
@@ -25,6 +24,17 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 		);
 		if ( is_ssl() ) {
 			$defaults['Strict-Transport-Security'] = 'max-age=30';
+		}
+		$csp_key = apply_filters( 'fluid_content_security_policy', '' );  // 'Content-Security-Policy'
+		if ( $csp_key ) {
+			$csp_policy = apply_filters( 'fluid_csp_policy', '' );  // "default-src 'self'; font-src 'self' fonts.googleapis.com"
+			if ( $csp_policy ) {
+				$default[ $csp_key ] = $csp_policy;
+				$csp_uri = apply_filters( 'fluid_csp_report_uri', '' );
+				if ( $csp_uri ) {
+					$defaults[ $csp_key ] .= "; report-uri $csp_uri";
+				}
+			}
 		}
 		$defaults = apply_filters( 'fluid_http_header_defaults', $defaults );
 		return array_merge( $defaults, $headers );

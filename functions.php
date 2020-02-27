@@ -74,3 +74,7 @@ add_filter( 'heartbeat_received', function ( $resource, $data ) {
 #fluid()->log( $shortcode_tags );
 
 # $current_url = remove_query_arg( 'customize_changeset_uuid', $current_url );
+
+add_filter( 'fluid_content_security_policy', function( $x ) { return 'Content-Security-Policy-Report-Only'; } );
+add_filter( 'fluid_csp_policy', function ( $x ) { return "default-src 'self'; font-src 'self' fonts.googleapis.com"; } );
+#add_filter( 'fluid_csp_report_uri', function( $x ) { return 'csp.rtcenterprises.net'; } );
