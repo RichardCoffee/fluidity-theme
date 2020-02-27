@@ -152,35 +152,36 @@ class TCC_Theme_Typography {
 	public static function load_google_font( $font = 'Arial' ) {
 		if ( ( ! in_array( $font, self::os_fonts(), true ) ) && ( ! in_array( $font, static::$loaded, true ) ) ) {
 			if ( empty( static::$loaded ) ) {
-				add_action( 'wp_enqueue_scripts', [ 'TCC_Theme_Typography', 'enqueue_fonts' ] );
+				add_action( 'fluid_header_links', [ 'TCC_Theme_Typography', 'create_font_links' ] );
 			}
 			static::$loaded[] = $font;
 		}
 	}
 
-	public static function enqueue_fonts() {
+#	 * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link
+#	 * @link https://developers.google.com/fonts/docs/getting_started
+	public static function create_font_links() {
 		if ( ! empty( static::$loaded ) ) {
-			add_filter( 'style_loader_tag', [ 'TCC_Theme_Typography', 'style_loader_tag' ] );
 			$fonts = array_unique( static::$loaded );
 			$fonts = array_map( [ 'TCC_Theme_Typography', 'map_font' ], $fonts );
+			$args = array(
+				'id'   => 'theme_font',
+				'rel'  => 'preload',
+				'href' => 'https://fonts.googleapis.com/css',
+				'as'   => 'font',
+#				'type' => 'font/woff',
+				'crossorigin' => 'anonymous',
+#				'media' => 'all',
+			);
 			foreach( $fonts as $font ) {
-				$args  = [ 'family' => urlencode( $font ) ];
-				$url   = add_query_arg( $args, 'https://fonts.googleapis.com/css' );
-				wp_enqueue_style( 'theme_font_' . sanitize_key( $font ), $url, null, null, 'all' );
+				$args['id']   = 'theme_font_' . sanitize_key( $font );
+				$args['href'] = add_query_arg( [ 'family' => urlencode( $font ) ], 'https://fonts.googleapis.com/css' );
+				fluid()->element( 'link', $args );
 			}
 		}
 	}
 
-	public static function style_loader_tag( $link ) {
-		if ( strpos( $link, 'theme_font_' ) ) {
-			$obj = fluid()->get_html_object( $link );
-			$obj->attrs['type'] = 'font/woff';
-			$new = fluid()->element( $obj->tag, $obj->attrs );
-			fluid()->log( $link, $new, $obj );
-		}
-		return $link;
-	}
-
+#	 * @link https://rwt.io/typography-tips/variable-fonts-new-google-fonts-api
 	public static function map_font( $font ) {
 		switch( $font ) {
 			case 'Lustria':
