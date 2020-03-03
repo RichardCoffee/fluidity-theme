@@ -10,6 +10,8 @@
  * @link https://www.dev2qa.com/how-to-modify-http-response-header-in-wordpress/
  * @link https://paragonie.com/blog/2017/12/2018-guide-building-secure-php-software
  * @link https://scotthelme.co.uk/content-security-policy-an-introduction/
+ * @link https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Content_Security_Policy_Cheat_Sheet.md
+ * @link https://csp.withgoogle.com/docs/strict-csp.html
  * @param $headers array
  * @return array
  */
@@ -29,7 +31,7 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 		if ( $csp_key ) {
 			$csp_policy = apply_filters( 'fluid_csp_policy', '' );  // "default-src 'self'; font-src 'self' fonts.googleapis.com"
 			if ( $csp_policy ) {
-				$default[ $csp_key ] = $csp_policy;
+				$defaults[ $csp_key ] = $csp_policy;
 				$csp_uri = apply_filters( 'fluid_csp_report_uri', '' );
 				if ( $csp_uri ) {
 					$defaults[ $csp_key ] .= "; report-uri $csp_uri";
