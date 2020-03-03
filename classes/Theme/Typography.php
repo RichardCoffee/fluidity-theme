@@ -68,14 +68,13 @@ class TCC_Theme_Typography {
 			'Caveat'       => 'Caveat, cursive',
 			'Cookie'       => 'Cookie, cursive',
 			'Copse'        => 'Copse, sans-serif', // duplicate in os_fonts()
-			'Dancing Script'     => 'Dancing Script, cursive',
-			'Droid Sans'   => 'Droid Sans, sans-serif',
-			'Droid Serif'  => 'Droid Serif, serif',
+			'Dancing Script' => 'Dancing Script, cursive',
+			'Emilys Candy' => 'Emilys Candy',
 			'Gamja Flower' => 'Gamja Flower, cursive',
-			'Gloria Hallelujah'  => 'Gloria Hallelujah, cursive',
+			'Gloria Hallelujah' => 'Gloria Hallelujah, cursive',
 			'Great Vibes'  => 'Great Vibes, cursive',
 			'Indie Flower' => 'Indie Flower, cursive',
-			'Kaushan'      => 'Kaishan Script, cursive',
+			'Kaushan Script' => 'Kaishan Script, cursive',
 			'Lato'         => 'Lato, sans-serif',
 			'Lobster'      => 'Lobster, cursive',
 			'Lustria'      => 'Lustria, Open Sans',
@@ -84,12 +83,12 @@ class TCC_Theme_Typography {
 			'Open Sans'    => 'Open Sans, sans-serif',
 			'Oswald'       => 'Oswald, sans-serif',
 			'Pacifico'     => 'Pacifico, cursive',
-			'Roboto'       => 'Roboto, sans serif',
-			'Roboto Mono'  => 'Roboto Mono',
-			'Rokkit'       => 'Rokkitt, serif',
 			'PT Sans'      => 'PT Sans, sans-serif',
 			'Quattrocento' => 'Quattrocento, serif',
 			'Raleway'      => 'Raleway, sans-serif',
+			'Roboto'       => 'Roboto, sans serif',
+			'Roboto Mono'  => 'Roboto Mono',
+			'Rokkit'       => 'Rokkitt, serif',
 			'Satisfy'      => 'Satisfy, cursive',
 			'Shadows Into Light' => 'Shadows Into Light, cursive',
 			'Ubuntu'       => 'Ubuntu, sans-serif',
@@ -101,24 +100,34 @@ class TCC_Theme_Typography {
 	public static function google_fonts_filter( $fonts ) {
 		$check = array(
 			'Arvo'         => _x( 'on', "Arvo font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Caveat'       => _x( 'on', "Caveat font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Cookie'       => _x( 'on', "Cookie font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Copse'        => _x( 'on', "Copse font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Droid Sans'   => _x( 'on', "Droid Sans font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Droid Serif'  => _x( 'on', "Droid Serif font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Dancing Script' => _x( 'on', "Dancing Script font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Emilys Candy' => _x( 'on', "Emilys Candy font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Gamja Flower' => _x( 'on', "Gamja Flower font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Gloria Hallelujah' => _x( 'on', "Gloria Hallelujah font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Great Vibes'  => _x( 'on', "Great Vibes font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Indie Flower' => _x( 'on', "Indie Flower font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Kaushan Script' => _x( 'on', "Kaushan Script font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Lato'         => _x( 'on', "Lato font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Lobster'      => _x( 'on', "Lobster font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Lustria'      => _x( 'on', "Lustria font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Merienda'     => _x( 'on', "Merienda font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Nobile'       => _x( 'on', "Nobile font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Open Sans'    => _x( 'on', "Open Sans font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Oswald'       => _x( 'on', "Oswald font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Pacifico'     => _x( 'on', "Pacifico font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Roboto'       => _x( 'on', "Roboto font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Roboto Mono'  => _x( 'on', "Roboto Mono font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Rokkit'       => _x( 'on', "Rokkit font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'PT Sans'      => _x( 'on', "PT Sans font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Quattrocento' => _x( 'on', "Quattrocento font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Raleway'      => _x( 'on', "Raleway font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Roboto'       => _x( 'on', "Roboto font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Roboto Mono'  => _x( 'on', "Roboto Mono font: translate as 'on' or 'off'.  Availability: Latin, Cyrillic, Greek", 'tcc-fluid' ),
+			'Rokkit'       => _x( 'on', "Rokkit font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Satisfy'      => _x( 'on', "Satisfy font: translate as 'on' or 'off'", 'tcc-fluid' ),
+			'Shadows Into Light' => _x( 'on', "Shadows Into Light font: translate as 'on' or 'off'", 'tcc-fluid' ),
 			'Ubuntu'       => _x( 'on', "Ubuntu font: translate as 'on' or 'off'", 'tcc-fluid' ),
-			'Yanone Kaffeesatz' => _x( 'on', "Yanone Kaffeesatz font: translate as 'on' or 'off'", 'tcc-fluid' )
+			'Yanone Kaffeesatz' => _x( 'on', "Yanone Kaffeesatz font: translate as 'on' or 'off'.  Availability: Latin, Cyrillic", 'tcc-fluid' )
 		);
 		foreach( $check as $font => $state ) {
 			if ( ( isset( $fonts[ $font ] ) ) && ( $state === 'off' ) ) {
@@ -150,7 +159,7 @@ class TCC_Theme_Typography {
 	}
 
 	public static function load_google_font( $font = 'Arial' ) {
-		if ( ( ! in_array( $font, self::os_fonts(), true ) ) && ( ! in_array( $font, static::$loaded, true ) ) ) {
+		if ( ( in_array( $font, static::google_fonts() ) ) && ( ! in_array( $font, static::$loaded ) ) ) {
 			if ( empty( static::$loaded ) ) {
 				add_action( 'fluid_header_links', [ 'TCC_Theme_Typography', 'create_font_links' ] );
 			}
@@ -184,15 +193,58 @@ class TCC_Theme_Typography {
 #	 * @link https://rwt.io/typography-tips/variable-fonts-new-google-fonts-api
 	public static function map_font( $font ) {
 		switch( $font ) {
-			case 'Lustria':
-				$font .= ':400,400i,600,600i,700,700i';
+			case 'Arvo':
+			case 'PT Sans':
+				$font .= ':i,b,bi';
 				break;
+			case 'Caveat':
+			case 'Merienda':
+			case 'Quattrocento':
+				$font .= ':b';
+				break;
+			case 'Dancing Script':
+				$font .= ':400,500,600,700';
+				break;
+			case 'Lato':
 			case 'Roboto':
-				$font .= ':300,400,400i,500,600,700';
+				$font .= ':100,100i,300,300i,400,400i,700,700i,900,900i';
+				break;
+			case 'Nobile':
+				$font .= ':400,400i,500,500i,700,700i';
+				break;
+			case 'Open Sans':
+				$font .= ':300,300i,400,400i,600,600i,700,700i,800,800i';
+				break;
+			case 'Oswald':
+			case 'Yanone Kaffeesatz':
+				$font .= ':200,300,400,500,600,700';
 				break;
 			case 'Raleway':
+				$font .= ':100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i';
+				break;
+			case 'Roboto Mono':
+				$font .= ':100,100i,300,300i,400,400i,700,700i';
+				break;
+			case 'Rokkit':
+				$font .= ':100,200,300,400,500,600,700,800,900';
+				break;
+			case 'Ubuntu':
+				$font .= ':300,300i,400,400i,500,500i,700,700i';
+				break;
+#			case 'Cookie':
+#			case 'Copse':
+#			case 'Emilys Candy':
+#			case 'Gamja Flower':
+#			case 'Gloria Hallelujah':
+#			case 'Great Vibes':
+#			case 'Indie Flower':
+#			case 'Kaushan Script':
+#			case 'Lobster';
+#			case 'Lustria':
+#			case 'Pacifico':
+#			case 'Satisfy':
+#			case 'Shadows Into Light':
 			default:
-				$font .= ':200,200i,300,300i,400,400i,500,500i,700,700i';
 		}
 		return $font;
 	}
