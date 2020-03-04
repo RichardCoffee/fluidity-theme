@@ -85,7 +85,9 @@ if ( ! function_exists( 'fluid_excerpt_header' ) ) {
 		</h2><?php
 		if ( get_theme_mod( 'content_exdate', 'show' ) === 'show' ) { ?>
 			<h3 class="text-center"><?php
-				fluid_post_date(); ?>
+				$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
+				$postdate = ( in_array( $postdate, [ 'both', 'modified' ] ) ) ? 'modified' : $postdate;
+				fluid_post_date( $postdate ); ?>
 			</h3><?php
 		}
 	}
