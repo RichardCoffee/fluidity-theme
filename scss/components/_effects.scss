@@ -1,4 +1,10 @@
 
+/**
+ *
+ *  9.0 - Effects
+ *
+ */
+
 a,
 button,
 input:focus,
@@ -21,17 +27,20 @@ button:hover,
 }
 
 .updraft {
-  background: rgba(0, 0, 0, 0.70) none repeat scroll 0 0;
-  border-top: 3px solid #fff;
-  bottom: 0;
-  padding: 10px ;
-  position: absolute;
-  height: 25%;
-  width: 100%;
-  overflow: hidden;
+	background: rgba(0, 0, 0, 0.70) none repeat scroll 0 0;
+	border-top: 3px solid #fff;
+	bottom: 0;
+	padding: 10px ;
+	position: absolute;
+	height: 25%;
+	width: 100%;
+	overflow: hidden;
 }
 
 .updraft:hover{
-  height: 100%;
-  @include transition(height 22s ease-in-out);
+	height: 100%;
+	@include transition(height 22s ease-in-out);
 }
+
+@import "parallax";
+

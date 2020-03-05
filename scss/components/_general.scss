@@ -12,10 +12,6 @@
 	display: inline-block;
 }
 
-.bold {
-	font-weight: bold;
-}
-
 .aligncenter,
 .centered {
 	margin-right: auto;
@@ -30,14 +26,14 @@
 
 .inline { display: inline; }
 
-.marginbot, .marginb1e { margin-bottom: 1em; }
-.margintop, .margint1e { margin-top: 1em; }
+.marginbot, .marginb1e { margin-bottom: 1rem; }
+.margintop, .margint1e { margin-top: 1rem; }
 
 .nomargin { margin: 0 }
 .nopad { padding: 0; }
 
 .padbott,
-.padb1e { padding-bottom: 1em; }
+.padb1e { padding-bottom: 1rem; }
 
 .pointer { cursor: pointer; }
 

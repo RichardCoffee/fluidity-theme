@@ -5,7 +5,7 @@
  * Author: Richard Coffee
  * Author URI: http://rtcenterprises.net
  * Description: Wordpress Theme based on using a fluid design, with bootstrap
- * Version: 2020.03.03
+ * Version: 2020.03.05
  * Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-background, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, translation-ready
  * Text Domain: tcc-fluid
  * Domain Path: /languages
@@ -33,9 +33,11 @@
  * 6.0 - Navigation
  *   6.1 - Links
  *   6.2 - Menus
+ *   6.3 - Pagination
  * 7.0 - Accessibility
  * 8.0 - Alignments
  * 9.0 - Effects
+ *    9.1 - Parallax
  * 10.0 - Widgets
  * 11.0 - Content
  *    11.1 - Header
@@ -64,49 +66,12 @@
 
  **/
 
-.article pre {
-	margin-bottom: 2.5em;
-}
-
-.content {
-  border:1px solid;
-  border-radius: 5px;
-}
-
 li.customize-control-content {
-	margin-top: 1em;
-}
-
-.excerpt-title-wrap {
-	display: grid;
-}
-
-#fluid-content {
-	background: rgba(255,255,255,0.85);
-	padding-top: 1em;
-}
-
-.has-fluid-sidebar textarea#comment {
-	width: 73%;
-}
-
-img {
-  max-width: 100%;
-  overflow: hidden;
-  opacity: 1.0; //!important;
+	margin-top: 1rem;
 }
 
 img.avatar {
 	border-radius: 50%;
-}
-
-form div.input-group input.form-control.searchform-input {
-	border-top-left-radius: 4px !important;
-	border-bottom-left-radius: 4px !important;
-}
-
-.login-form a small {
-	font-size: 60%;
 }
 
 logo {
@@ -129,15 +94,6 @@ logo {
 	display: block;
 }
 
-.post div {
-  max-width:100%;
-}
-
-pre {
-  font-size: inherit;
-  line-height: inherit;
-}
-
 .row {
   margin: 0;
 }
@@ -147,17 +103,13 @@ pre {
   margin-bottom: 0;
 }
 
-.search-input-group {
-	display: inherit;
-}
-
 .skip-link.sr-only:focus {
 	border: none;
 	border-bottom-right-radius: 6px;
-	height: 1em;
+	height: 1rem;
 	left: 1px;
 	margin: 0;
-	padding: 0.5em 1em;
+	padding: 0.5rem 1rem;
 	position: -webkit-sticky;
 	position: sticky;
 	text-decoration: underline;

@@ -4,6 +4,10 @@
  *
  */
 
+.has-fluid-sidebar textarea#comment {
+	width: 73%;
+}
+
 #author { }
 #cancel-comment-reply-link { }
 #commentform { }
@@ -16,12 +20,12 @@
 
 .comment {
 	& .reply {
-		margin-bottom: 0.5em;
+		margin-bottom: 0.5rem;
 	}
 }
 
 .comment-author {
-	margin-bottom: 0.4375em; // twentysixteen
+	margin-bottom: 0.4375rem; // twentysixteen
 	.comment-info {
 		align: center;
 		height: 34px;
@@ -55,8 +59,8 @@
 
 .comment-text {
 	p {
-		margin-bottom: 0.25em;
-		margin-top: 1em;
+		margin-bottom: 0.25rem;
+		margin-top: 1rem;
 	}
 }
 

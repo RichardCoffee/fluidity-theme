@@ -1,3 +1,8 @@
+/**
+ *
+ *  6.3 - Pagination
+ *
+ */
 /*
 .pagination {
 	clear:both;
@@ -5,8 +10,8 @@
 	& li {
 		display:block;
 		float:left;
-		margin: 0.25em 0.5em 0.25em 0;
-		padding: 0.3em 1em 0.25em 1em;
+		margin: 0.25rem 0.5em 0.25rem 0;
+		padding: 0.3rem 1em 0.25rem 1em;
 		text-decoration:none;
 		width:auto;
 	}
@@ -34,7 +39,7 @@ ul.pagination > li {
 //			border-radius: 3px;
 //			cursor: pointer;
 //			padding: 12px;
-//			padding: 0.75rem;
+//			padding: 0.75em 0.75rem;
 //		}
 //		& a:hover,
 //		&.active a {
@@ -42,3 +47,4 @@ ul.pagination > li {
 //		}
 ////	}
 //}
+

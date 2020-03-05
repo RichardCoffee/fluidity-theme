@@ -6,8 +6,13 @@
  */
 
 body {
-  font-weight: normal;
-  font-style: normal;
-/*  font-size: 18px; set in theme options */
-  -webkit-font-smoothing: antialiased;
+	font-weight: normal;
+	font-style: normal;
+/* font-size: 18px; set in theme options */
+	-webkit-font-smoothing: antialiased;
 }
+
+.bold {
+	font-weight: bold;
+}
+

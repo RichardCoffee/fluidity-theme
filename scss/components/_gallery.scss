@@ -5,15 +5,13 @@
  *
  */
 
-/** WordPress Gallery **/
-
 .gallery {
 	& .gallery-caption {
 		color: #666;
 		display: block;
 		font-size: 0.8125em;
 		font-style: italic;
-		margin-bottom: 1.5em;
+		margin-bottom: 1.5rem;
 		max-width: 100%;
 		padding: 0 10px 0 0;
 	}
@@ -21,7 +19,7 @@
 		display: inline-block;
 		vertical-align: top;
 		margin: 0 0 1.5em;
-		padding: 0 1em 0 0;
+		padding: 0 1rem 0 0;
 		width: 50%;
 		& a {
 			& img {
@@ -56,7 +54,7 @@
 	}
 }
 
-@media screen and (min-width: 30em) {
+@media screen and (min-width: 30rem) {
 	.gallery-item {
 		max-width: 25%;
 	}
@@ -74,7 +72,7 @@
 	}
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 48rem) {
 	.gallery-columns-5 .gallery-item {
 		max-width: 20%;
 	}
@@ -91,3 +89,4 @@
 		max-width: 11.11%;
 	}
 }
+

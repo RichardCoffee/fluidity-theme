@@ -1,0 +1,31 @@
+/**
+ *
+ *  5.0 - Forms
+ *
+ */
+
+form div.input-group input.form-control.searchform-input {
+	border-top-left-radius: 4px !important;
+	border-bottom-left-radius: 4px !important;
+}
+
+form.searchform .input-group {
+	width: 100%;
+}
+
+.input-group .input-group-btn .btn-search {
+	margin-left: 0;
+}
+
+.search-input-group {
+	display: inherit;
+}
+
+.login-form a small {
+	font-size: 60%;
+}
+
+.navbar-form .lost-password {
+	margin-left: 1em;
+}
+

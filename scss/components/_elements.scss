@@ -29,6 +29,18 @@ a {
 	}
 }
 
-p {
-	margin-bottom: 1.5em;
+img {
+	max-width: 100%;
+	overflow: hidden;
+	opacity: 1.0;
 }
+
+p {
+	margin-bottom: 1.5rem;
+}
+
+pre {
+	font-size: inherit;
+	line-height: inherit;
+}
+

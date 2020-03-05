@@ -4,27 +4,23 @@
  *
  */
 
-//article.post .row::before,
-//article.post .row::after {
-//	display:  inline-block;
-//}
-
 .article {
-  margin-left: 2em;
-  margin-right: 2em;
-  padding-top: 1em;
-  & img {  // duplicate bootstrap img-responsive
-    display: block;
-    height: auto;
-    max-width: 100%;
-  }
+	margin-left: 2em;
+	margin-right: 2em;
+	padding-top: 1rem;
+	& img {  // duplicate bootstrap img-responsive
+		display: block;
+		height: auto;
+		max-width: 100%;
+	}
+	& pre {
+		margin-bottom: 2.5rem;
+	}
 }
 
-//.has-fluid-sidebar {
-//	& .aligncenter {
-//		margin-left: 0;
-//	}
-//}
+.post div {
+	max-width:100%;
+}
 
 .post-link-separator-middle {
 	margin-top: 5px;
@@ -52,8 +48,13 @@ ul.post-tags li > a {
 	margin-right: 2px;
 }
 
+.excerpt-title-wrap {
+	display: grid;
+}
+
 @media (max-width: 991px) { // sm
 	.article {
 		margin: 0;
 	}
 }
+

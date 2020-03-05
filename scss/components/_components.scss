@@ -6,19 +6,17 @@
 @import "wordpress"; // load required wordpress css first
 @import "typography";
 @import "elements";
-
+@import "navigation";
+@import "effects";
+@import "forms";
+@import "content";
+@import "gallery";
+/**
+ *  More semi-sorted css
+ */
 @import "general";
 @import "misc";
 @import "width";
-@import "effects";
-@import "parallax";
-@import "header";
-@import "posts";
 @import "posting-table";
-@import "pages";
-@import "comments";
-@import "footer";
-@import "gallery";
-@import "pagination";
 
 @import "print"; // print css must be last
