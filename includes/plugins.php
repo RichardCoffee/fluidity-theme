@@ -1,5 +1,6 @@
 <?php
 
+#  TODO: add transient, or other mechanism, to prevent this check after installation, perhaps after grace period of 5 days?
 require_once( FLUIDITY_HOME . 'vendor/class-tgm-plugin-activation.php' );
 
 add_action( 'tgmpa_register', 'fluidity_plugins' );
@@ -30,11 +31,6 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 				'slug'        => 'theme-my-login',
 				'is_callable' => [ 'Theme_My_Login', 'get_object' ],
 			), //*/
-/*			array(
-				'name'        => 'User Last Login by Raj',
-				'slug'        => 'user-last-login',
-#				'is_callable' =>
-			), //*/
 			array(
 				'name'        => 'Wordfence Security by Wordfence',
 				'slug'        => 'wordfence',
@@ -45,11 +41,11 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 				'slug'        => 'wordpress-seo',
 				'is_callable' => 'wpseo_init',
 			), //*/
-			array(
+/*			array(
 				'name'        => 'WP Front End Profile by Mark Wilkinson',
 				'slug'        => 'wp-frontend-profile',
 				'is_callable' => 'wpfep_show_profile',
-			),
+			), //*/
 		);
 		$plugins = apply_filters( 'fluidity_tgmpa_plugins', $plugins );
 		$config  = array(
@@ -71,6 +67,3 @@ if ( ! function_exists( 'fluidity_plugins' ) ) {
 	}
 }
 
-#require_once( FLUIDITY_HOME . 'vendor/plugin-update-checker/plugin-update-checker.php';
-
-#Puc_v4_Factory::buildUpdateChecker( 'https://github.com/RichardCoffee/fluidity-theme', FLUIDITY_HOME . 'functions.php', 'fluidity' );
