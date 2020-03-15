@@ -2,7 +2,7 @@
 /**
  *  Display admin forms - If you're looking for an example of what an excellent programmer I am, then you'll need to look somewhere else, because this isn't it.
  *
- * @package Plugin
+ * @package Fluidity
  * @subpackage Forms
  * @since 20150323
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
@@ -243,20 +243,20 @@ abstract class TCC_Form_Admin {
 	private function form_text() {
 		$text = array(
 			'error'  => array(
-				'render'    => _x( 'ERROR: Unable to locate function %s', 'string - a function name', 'tcc-plugin' ),
-				'subscript' => _x( 'ERROR: Not able to locate form data subscript:  %s', 'placeholder will be an ASCII character string', 'tcc-plugin' )
+				'render'    => _x( 'ERROR: Unable to locate function %s', 'string - a function name', 'tcc-fluid' ),
+				'subscript' => _x( 'ERROR: Not able to locate form data subscript:  %s', 'placeholder will be an ASCII character string', 'tcc-fluid' )
 			),
 			'submit' => array(
-				'save'      => __( 'Save Changes', 'tcc-plugin' ),
-				'object'    => __( 'Form', 'tcc-plugin' ),
-				'reset'     => _x( 'Reset %s', 'placeholder is a noun, may be plural', 'tcc-plugin' ),
-				'subject'   => __( 'Form', 'tcc-plugin' ),
-				'restore'   => _x( 'Default %s options restored.', 'placeholder is a noun, probably singular', 'tcc-plugin' )
+				'save'      => __( 'Save Changes', 'tcc-fluid' ),
+				'object'    => __( 'Form', 'tcc-fluid' ),
+				'reset'     => _x( 'Reset %s', 'placeholder is a noun, may be plural', 'tcc-fluid' ),
+				'subject'   => __( 'Form', 'tcc-fluid' ),
+				'restore'   => _x( 'Default %s options restored.', 'placeholder is a noun, probably singular', 'tcc-fluid' )
 			),
 			'media'  => array(
-				'title'     => __( 'Assign/Upload Image', 'tcc-plugin' ),
-				'button'    => __( 'Assign Image', 'tcc-plugin' ),
-				'delete'    => __( 'Unassign Image', 'tcc-plugin' )
+				'title'     => __( 'Assign/Upload Image', 'tcc-fluid' ),
+				'button'    => __( 'Assign Image', 'tcc-fluid' ),
+				'delete'    => __( 'Unassign Image', 'tcc-fluid' )
 			)
 		);
 		$this->form_text = apply_filters( 'form_text_' . $this->slug, $text, $text );
@@ -939,9 +939,9 @@ abstract class TCC_Form_Admin {
 		//  Pre-Text
 		$html = $this->get_element( 'div', [ 'class' => $pre_css ], $pre_text );
 		//  Radio labels
-		$label  = $this->get_element( 'span', [ 'class' => 'radio-multiple-yes' ], __( 'Yes', 'tcc-plugin' ) );
+		$label  = $this->get_element( 'span', [ 'class' => 'radio-multiple-yes' ], __( 'Yes', 'tcc-fluid' ) );
 		$label .= '&nbsp;';
-		$label .= $this->get_element( 'span', [ 'class' => 'radio-multiple-no'  ], __( 'No',  'tcc-plugin' ) );
+		$label .= $this->get_element( 'span', [ 'class' => 'radio-multiple-no'  ], __( 'No',  'tcc-fluid' ) );
 		$html  .= $this->get_element( 'div', [ 'class' => 'radio-multiple-header' ], $label, true );
 		//  Radio buttons
 		foreach( $layout['source'] as $key => $text ) {
