@@ -18,11 +18,12 @@ class TCC_Options_About extends TCC_Options_Options {
 
 #|  * @since 20150523
 	public function describe_options() {
+		$lib   = fluid();
 		$html  = __( 'Support Site:  ', 'tcc-fluid' );
-		$html .= $this->get_element( 'a', [ 'href' => 'http://www.rtcenterprises.net', 'target' => 'rtc' ], _x( 'RTC Enterprises', 'company name', 'tcc-fluid' ) );
-		$this->element( 'p', [ ], $html, true );
-		$this->element( 'p', [ ], __( 'For help with this theme, or any other general support items, please contact us at any time', 'tcc-fluid' ) );
-		$this->element( 'p', [ ], '&copy; ' . __( 'Copyright 2014 RTC', 'tcc-fluid' ) );
+		$html .= $lib->get_element( 'a', [ 'href' => 'http://www.rtcenterprises.net', 'target' => 'rtc' ], _x( 'RTC Enterprises', 'company name', 'tcc-fluid' ) );
+		$lib->element( 'p', [ ], $html, true );
+		$lib->element( 'p', [ ], __( 'For help with this theme, or any other general support items, please contact us at any time', 'tcc-fluid' ) );
+		$lib->element( 'p', [ ], '&copy; ' . __( 'Copyright 2014 RTC', 'tcc-fluid' ) );
 	}
 
 /*
