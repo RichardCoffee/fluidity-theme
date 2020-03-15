@@ -95,7 +95,6 @@ class TCC_Options_About extends TCC_Options_Options {
 					'appearance' => __( 'Appearance menu', 'tcc-fluid' ),
 					'settings'   => __( 'Settings menu', 'tcc-fluid' ),
 				),
-#				'change'   => 'showhidePosi( this, ".tcc-wp_posi", "dashboard" );',
 				'showhide' => array(
 					'origin' => 'tcc-loca',
 					'target' => 'tcc-wp_posi',

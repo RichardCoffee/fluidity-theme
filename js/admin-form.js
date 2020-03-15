@@ -1,7 +1,6 @@
 // js/admin-form.js
 
 jQuery(document).ready(function() {
-//	showhideAdminElements('.tcc-loca','.tcc-wp_posi','dashboard');
 	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
 	showhideAdminElements( '.privacy-blog-active',   '.privacy-blog-option',    'yes');
 	showhideAdminElements( '.privacy-multi-active',  '.privacy-multi-option',   'filter');
@@ -13,7 +12,6 @@ jQuery(document).ready(function() {
 		jQuery.each( tcc_admin_options.showhide, function( counter, item ) {
 			targetableElements( item );
 		});
-console.log(tcc_admin_options.showhide);
 	}
 
 	showhideElements( jQuery( '.showhide' ) );
@@ -73,32 +71,17 @@ function showhideElements( els ) {
 	});
 }
 
-function showhidePosi( el, target, show, hide ) {
-	if ( el ) {
-		var eldiv = el.parentNode.parentNode.parentNode;
-//		var eldiv = document.querySelector( selector );
-		if ( eldiv ) {
-			showhideAdminElements( eldiv, target, show, hide );
-		}
-	}
-}
-
 function targetableElements( item ) {
 	showhideAdminElements( '.'+item.origin, '.'+item.target, item.show, item.hide );
 }
 
 function showhideAdminElements( origin, target, show, hide ) {
-console.log('origin: '+origin);
-//console.log('target: '+target);
 	if ( origin && target ) {
 		var radio = jQuery( origin + ' input:radio:checked' );
-console.log(radio);
 		if ( radio ) {
 			var state = jQuery( radio ).val();
-console.log('state: '+state);
 			if ( state ) {
 				if ( show ) {
-console.log('show: '+show);
 					if ( state === show ) {
 						jQuery( target ).parent().parent().show( 2000 ); //removeClass('hidden');
 					} else {

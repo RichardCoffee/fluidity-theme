@@ -40,7 +40,6 @@ class TCC_Options_Social extends TCC_Options_Options {
 				'target' => 'social-option-icon',
 				'show'   => 'yes',
 			),
-			'change'  => 'showhidePosi(this,".social-option-icon","yes");',
 			'divcss'  => 'social-option-active',
 		);
 		$layout['target'] = array(

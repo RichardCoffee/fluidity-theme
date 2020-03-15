@@ -20,41 +20,47 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 	}
 
 	protected function options_layout( $all = false ) {
+		$layout = array(
+			'default' => true,
+			'heart' => array(
+				'default' => 'on',
+				'label'   => __( 'WP Heartbeat', 'tcc-fluid' ),
+				'text'    => __( 'Control the status of the WordPress Heartbeat API', 'tcc-fluid' ),
+				'help'    => __( 'The Heartbeat API will always remain active on these pages: post.php, post-new.php, and admin.php', 'tcc-fluid' ),
+				'render'  => 'radio',
+				'source'  => array(
+					'on'   => __( 'On', 'tcc-fluid' ),
+					'off'  => __( 'Off', 'tcc-fluid' ),
+				),
+			),
+			'status' => array(
+				'default' => 'on',
+				'label'   => __( 'REST API', 'tcc-fluid' ),
+				'text'    => __( 'Control access to your site REST API', 'tcc-fluid' ),
+				'help'    => __( 'Be very careful with this option.  Any value other than ON runs the risk of breaking your site!', 'tcc-fluid' ),
+				'render'  => 'radio',
+				'source'  => array(
+					'on'     => __( 'On - the default value.', 'tcc-fluid' ),
+					'admin'  => __( 'Allow access to admin only.', 'tcc-fluid' ),
+					'users'  => __( 'Allow access to logged-in users only.', 'tcc-fluid' ),
+					'filter' => __( 'Filter public access.', 'tcc-fluid' ),
+					'off'    => __( 'Off - this may break things.', 'tcc-fluid' ),
+				),
+				'showhide' => array(
+					'origin' => 'master-rest-api',
+					'target' => 'control-rest-api-namespace',
+					'show'   => 'filter',
+				),
+				'divcss' => 'master-rest-api-namespace',
+			),
+			'namespaces' => array(
+				'label'  => __( 'Namespaces', 'tcc-fluid' ),
+				'text'   => __( 'Control established routes', 'tcc-fluid' ),
+				'render' => 'display',
+				'divcss' => 'control-rest-api-namespace',
+			),
+		);
 		$endpoints = $this->get_endpoints();
-		$layout = array( 'default' => true );
-		$layout['heart'] = array(
-			'default' => 'on',
-			'label'   => __( 'WP Heartbeat', 'tcc-fluid' ),
-			'text'    => __( 'Control the status of the WordPress Heartbeat API', 'tcc-fluid' ),
-			'help'    => __( 'The Heartbeat API will always remain active on these pages: post.php, post-new.php, and admin.php', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'on'   => __( 'On', 'tcc-fluid' ),
-				'off'  => __( 'Off', 'tcc-fluid' ),
-			),
-		);
-		$layout['status'] = array(
-			'default' => 'on',
-			'label'   => __( 'REST API', 'tcc-fluid' ),
-			'text'    => __( 'Control access to your site REST API', 'tcc-fluid' ),
-			'help'    => __( 'Be very careful with this option.  Any value other than ON runs the risk of breaking your site!', 'tcc-fluid' ),
-			'render'  => 'radio',
-			'source'  => array(
-				'on'     => __( 'On - the default value.', 'tcc-fluid' ),
-				'admin'  => __( 'Allow access to admin only.', 'tcc-fluid' ),
-				'users'  => __( 'Allow access to logged-in users only.', 'tcc-fluid' ),
-				'filter' => __( 'Filter public access.', 'tcc-fluid' ),
-				'off'    => __( 'Off - this may break things.', 'tcc-fluid' ),
-			),
-			'change'    => 'showhidePosi( this, ".control-rest-api-namespace", "filter" );',
-			'divcss' => 'master-rest-api-namespace',
-		);
-		$layout['namespaces'] = array(
-			'label'  => __( 'Namespaces', 'tcc-fluid' ),
-			'text'   => __( 'Control established routes', 'tcc-fluid' ),
-			'render' => 'display',
-			'divcss' => 'control-rest-api-namespace',
-		);
 		if ( $endpoints ) {
 			$route_text = __( 'Check to block access to these routes.', 'tcc-fluid' );
 			foreach( $endpoints as $key => $routes ) {
