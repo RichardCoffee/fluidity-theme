@@ -79,6 +79,11 @@ class TCC_Options_Social extends TCC_Options_Options {
 				'target' => 'social-option-color',
 				'hide'   => 'individual',
 			),
+			'subshow' => array(
+				'origin' => 'social-option-single',
+				'target' => 'wp-picker-container',
+				'hide'   => 'single',
+			),
 			'divcss' => 'social-option-icon social-option-single',
 		);
 		$layout['color'] = array(
