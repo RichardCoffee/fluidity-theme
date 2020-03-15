@@ -65,7 +65,7 @@ class TCC_Widget_Widget extends WP_Widget {
 					'name' => $this->get_field_name( $slug ),
 				);
 				$this->checked( $attrs, $value, 'on' );
-				$this->element( 'input', $attr ); ?>
+				$this->element( 'input', $attrs ); ?>
 				&nbsp;<span>
 					 <?php esc_html( $text ); ?>
 				</span>
