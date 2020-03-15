@@ -1,6 +1,6 @@
 <?php
 /**
- *  Display admin option forms
+ *  Display admin option forms - abstract class to provide basic functionality for controlling option screen layouts
  *
  * @package Fluidity
  * @subpackage Forms
@@ -10,53 +10,53 @@
  * @link https://github.com/RichardCoffee/custom-post-type/blob/master/classes/Options/Options.php
  */
 defined( 'ABSPATH' ) || exit;
-/**
- *  Abstract class to provide basic functionality for controlling option screen layouts
- */
+
+
 abstract class TCC_Options_Options {
 
 
 	/**
 	 * @since 20170505
-	 * @var string slug name for option
+	 * @var string  Slug name for option.
 	 */
 	protected $base = 'options';
 	/**
 	 * @since 20180404
-	 * @var string user capability required to edit the options form
+	 * @var string  User capability required to edit the options form.
 	 */
 	protected $capability = 'edit_theme_options';
 	/**
 	 * @since 20170505
-	 * @var integer tab priority on multi-tabbed screens
+	 * @var integer  Tab priority on multi-tabbed screens.
 	 */
 	protected $priority = 1000;
 	/**
 	 * @since 20170505
-	 * @var array contains screen layout
+	 * @var array  Contains screen layout.
 	 */
 	protected $screen = array();
 
+
 	/**
-	 *  Function provides the name of the screen or tab
+	 *  This function should return the title of the screen/tab
 	 *
 	 * @since 20170505
 	 */
 	abstract protected function form_title();
 	/**
-	 *  Function provides the name of the icon to be displayed
+	 *  This function should return the slug of the dashicon to be displayed
 	 *
 	 * @since 20180831
 	 */
 	abstract protected function form_icon();
 	/**
-	 *  Function provides a text description of the screen
+	 *  This function should return a text description of the screen/tab
 	 *
 	 * @since 20170505
 	 */
 	abstract public function describe_options();
 	/**
-	 *  Function provides the screen layout
+	 *  This function should return the screen/tab layout array
 	 *
 	 * @since 20170505
 	 */
@@ -74,11 +74,11 @@ abstract class TCC_Options_Options {
 	}
 
 	/**
-	 *  Add options layout to a tabbed screen
+	 *  Add options layout to current form.
 	 *
 	 * @since 20170505
-	 * @param array $form contains form information determining the screen layout
-	 * @return array
+	 * @param  array $form  Contains form information determining the screen layout.
+	 * @return array        Returns the form with a tab layout added.
 	 */
 	public function form_layout( $form ) {
 		if ( ! array_key_exists( $this->base, $form ) ) {
@@ -88,10 +88,10 @@ abstract class TCC_Options_Options {
 	}
 
 	/**
-	 *  Create screen option layout
+	 *  Set the screen property and return it.
 	 *
 	 * @since 20170505
-	 * @return array
+	 * @return array  Current screen layout.
 	 */
 	public function default_form_layout() {
 		if ( empty( $this->screen ) ) {
@@ -100,18 +100,18 @@ abstract class TCC_Options_Options {
 				'title'    => $this->form_title(),
 				'icon'     => $this->form_icon(),
 				'option'   => 'tcc_options_' . $this->base,
-				'layout'   => $this->options_layout(),
+				'layout'   => apply_filters( "tcc_{$this->base}_options_layout", $this->options_layout() ),
 			);
 		}
 		return $this->screen;
 	}
 
 	/**
-	 *  Add localzation data into array passed to javascript
+	 *  Add showhide data to array passed to javascript
 	 *
 	 * @since 20170505
-	 * @param array $data
-	 * @return array
+	 * @param  array $data  Incoming data.
+	 * @return array        Data with showhide data added.
 	 */
 	public function options_localization( $data = array() ) {
 		if ( ! array_key_exists( 'showhide', $data ) ) {
@@ -128,10 +128,10 @@ abstract class TCC_Options_Options {
 	}
 
 	/**
-	 *  Create an array containing default option values
+	 *  Create an array containing default option values.
 	 *
 	 * @since 20170505
-	 * @param array
+	 * @return array  Current screen default values.
 	 */
 	public function get_default_options() {
 		$form = $this->options_layout( true );
@@ -142,16 +142,15 @@ abstract class TCC_Options_Options {
 				$opts[ $key ] = $option['default'];
 			}
 		}
-fluid()->log( 'default options', $opts );
 		return $opts;
 	}
 
 	/**
-	 *  Get the layout for a screen item
+	 *  Get the layout for a screen item.
 	 *
 	 * @since 20180410
-	 * @param string $item  slug of the item to be retrieved
-	 * @return array
+	 * @param string $item  Slug of the item to be retrieved.
+	 * @return array        Layout of the item requested.
 	 */
 	public function get_item( $item ) {
 		$layout = ( empty( $this->screen ) ) ? $this->options_layout() : $this->screen['layout'];

@@ -1,31 +1,44 @@
 <?php
 /**
+ *  Handles displaying theme options.
+ *
+ * @package Fluidity
+ * @subpackage Options
+ * @since 20150523
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
- * @copyright Copyright (c) 2018, Richard Coffee
+ * @copyright Copyright (c) 2015, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Options/Fluidity.php
  */
+defined( 'ABSPATH' ) || exit;
 
 class TCC_Options_Fluidity extends TCC_Form_Admin {
 
+#	 * @since 20170307
 	private $classes = array();
+#	 * @since 20170307
 	private $values  = array();
 
+#	 * @since 20150523
 	private static $text = null;
 
+#	 * @since 20170112
 	use TCC_Trait_Singleton;
 
+#	 * @since 20150525
 	public function form_trans_text( $text, $orig ) {
 		$text['submit']['object']  = __( 'Options', 'tcc-fluid' );
 		$text['submit']['subject'] = __( 'Theme', 'tcc-fluid' );
 		return $text;
 	} //*/
 
+#	 * @since 20150525
 	protected function __construct() {
 		$this->prefix = 'tcc_options_';
 		$this->slug   = 'fluidity_options';
 		$this->type   = 'tabbed';
-		add_action( 'admin_menu',               array( $this, 'add_menu_option' ) );
-		add_action( 'tcc_admin_menu_setup',     array( $this, 'initialize_options' ) );
-		add_filter( 'form_text_' . $this->slug, array( $this, 'form_trans_text' ), 10, 2 );
+		add_action( 'admin_menu',               [ $this, 'add_menu_option' ] );
+		add_action( 'tcc_admin_menu_setup',     [ $this, 'initialize_options' ] );
+		add_filter( 'form_text_' . $this->slug, [ $this, 'form_trans_text' ], 10, 2 );
 		parent::__construct();
 		# https://codex.wordpress.org/Plugin_API/Admin_Screen_Reference
 		add_action( 'current_screen', function() {
@@ -33,6 +46,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		} );
 	}
 
+#	 * @since 20150525
 	public function add_menu_option() {
 		$cap = 'edit_theme_options';
 		if ( current_user_can( $cap ) ) {
@@ -61,6 +75,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		}
 	}
 
+#	 * @since 20170304
 	public function initialize_options() {
 		$this->classes['Design']   = new TCC_Options_Design;    # 80
 		$this->classes['Social']   = new TCC_Options_Social;    # 100
@@ -73,6 +88,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		if ( WP_DEBUG ) {
 			$this->classes['Bootstrap'] = new TCC_Options_Bootstrap; # 700
 		}
+		$this->classes['About'] = new TCC_Options_About; # 1000
 		$this->classes = apply_filters( 'fluidity_initialize_options', $this->classes );
 	}
 
@@ -89,156 +105,15 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
  *            option: (string) option name, used to save and retrieve the options
  *            layout: (array)  field data - see the section below describing the layout array
  *
+#	 * @since 20150523
  */
 	protected function form_layout( $section = '' ) {
 		$form['title'] = __( 'Theme Options', 'tcc-fluid' );
 		$form = apply_filters( 'fluidity_options_form_layout', $form );
-		$form['about'] = array(
-			'describe' => 'describe_about',
-			'icon'     => 'dashicons-welcome-view-site',
-			'title'    => __( 'About / Contact', 'tcc-fluid' ),
-			'option'   => 'tcc_options_about',
-			'layout'   => $this->options_layout( 'about' )
-		);
 		return ( empty( $section ) ) ? $form : $form[ $section ];
 	}
 
-/*
- *  layout array
- *
- *      primary associative key: (string) field name
- *
- *   secondary associative keys: (all keys are required unless stated otherwise)
- *
- *          default: (mixed)   The default value of the field
- *             help: (string)  Help text, displayed as a title attribute
- *            label: (string)  Title of the field (required unless render is set to 'skip')
- *                               see: http://codex.wordpress.org/Function_Reference/add_settings_field
- *             text: (string)  Text displayed to the right of the field (optional field)
- *           render: (string)  How the field is to be displayed
- *                               Possible pre-set values are: checkbox, colorpicker, display, font, image, radio, select, text, textarea, wp_dropdown, skip
- *                               Another possible value is 'array', see notes for 'type'.
- *                               This string is interpreted as a function call, prefixed with 'render_'
- *                               The rendering function is passed one parameter, an associative array, like so:
- *                                 array('ID'=>{primary key}, 'value'=>{option value}, 'layout'=>{key array}, 'name'=>"{option}[{primary key}]");
- *            class: (string)  Used only if render is set to 'text'.  If set, the input class attribute will be set to this value.
- *                               Default class for a text input is 'regular-text'.
- *             type: (string)  Required only if render is set to 'array'. possible values are 'image' and 'text'.
- *                               functionality for this is only partially implemented.
- *           source:           Required only if render is set to 'font', 'radio', 'select', or 'wp_dropdown'
- *                   (array)   The array values will be used to generate the radio buttons / select listing.
- *                               This must be an associative array.
- *                     -or-
- *                   (string)  Name of the function that returns the select options (render: select)
- *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_roles
- *                   (string)  Suffix name of the wp_dropdown_* function (render:  wp_dropdown)
- *                               example: http://codex.wordpress.org/Function_Reference/wp_dropdown_pages
- *           change: (string)  Used only if render is set to 'checkbox','font','radio','select', or 'text'.
- *                             Will be applied as an 'onchange' html attribute (optional)
- *            media:           Required only if render is set to 'image'.
- *                   (array)     title:  (string) Title displayed in media uploader
- *                               button: (string) Button text - used for both the admin and the media buttons
- *                               delete: (string) Delete text - used for admin button
- *             args: (array)   Required only if render is set to 'wp_dropdown'.
- *                               This array will be passed to the called function.
- *           divcss: (string)  If set, a div is created to surround the rendered object, with the string assigned to the class attribute of that div (optional)
- *          require: (boolean) If set, then when saving (as currently implemented) then a blank field will be set to the default value.
- *         (string): (mixed)   Any other key can be added to this array.
- *
- *                             The layout array is passed to the rendering function.
- *
- */
-	private function about_options_layout() {
-		$layout = array(
-			'version' => array(
-				'label'   => __( 'Theme Version', 'tcc-fluid' ),
-				'text'    => FLUIDITY_VERSION,
-				'render'  => 'display',
-			),
-			'theme' => array(
-				'label'  => __( 'Theme Settings', 'tcc-fluid' ),
-				'text'   => __( 'control the menu location of the theme options screen.', 'tcc-fluid' ),
-				'render' => 'title',
-			),
-			'loca' => array(
-				'default' => 'appearance',
-				'label'   => __( 'Page Location', 'tcc-fluid' ),
-				'text'    => __( 'You can choose where the Theme Options page appears', 'tcc-fluid' ),
-				'help'    => __( 'I recommend you leave it on the default setting, which is Appearance', 'tcc-fluid' ),
-				'render'  => 'radio',
-				'source'  => array(
-					'dashboard'  => __( 'Dashboard menu', 'tcc-fluid' ),
-					'appearance' => __( 'Appearance menu', 'tcc-fluid' ),
-					'settings'   => __( 'Settings menu', 'tcc-fluid' ),
-				),
-				'change'   => 'showhidePosi( this, ".tcc-wp_posi", "dashboard" );',
-				'showhide' => array(
-					'item' => '.tcc-wp_posi',
-					'show' => 'dashboard',
-				),
-				'divcss'  => 'tcc-loca showhide',
-			),
-			'wp_posi' => array(
-				'default' => 'bottom',
-				'label'   => __( 'Dashboard location', 'tcc-fluid' ),
-				'text'    => __( 'This controls where on the WordPress Dashboard menu that Theme Options will appear', 'tcc-fluid' ),
-				'help'    => __( 'Bottom is best for this option.  Having it at the top can be annoying.  YMMV', 'tcc-fluid' ),
-				'render'  => 'radio',
-				'source'  => array(
-					'top'    => __( 'Top', 'tcc-fluid' ),
-					'bottom' => __( 'Bottom', 'tcc-fluid' ),
-				),
-				'divcss'  => 'tcc-wp_posi',
-			),
-			'survey' => array(
-				'default' => 'no',
-				'label'   => __( 'Plugin Survey', 'tcc-fluid' ),
-				'text'    => __( 'Can the theme author collect info on what plugins are installed?  It will help efforts to improve the theme.', 'tcc-fluid' ),
-				'help'    => __( "WordPress is already collecting this information, and they didn't even ask.", 'tcc-fluid' ),
-				'render'  => 'radio',
-				'source'  => array(
-					'no'  => __( 'No way, No how.', 'tcc-fluid' ),
-					'yes' => __( 'Yes, the theme author can collect info on what plugins are currently installed.', 'tcc-fluid' ),
-				),
-				'postext' => __( "Only information returned by the WordPress function 'get_plugins()' would be collected.", 'tcc-fluid' )
-			),
-			'themedata' => array(
-				'label'  => __( 'Theme Data', 'tcc-fluid' ),
-				'text'   => __( 'control when theme data is removed', 'tcc-fluid' ),
-				'render' => 'title'
-			),
-			'deledata' => array(
-				'default' => 'uninstall',
-				'label'   => __( 'Data Deletion', 'tcc-fluid' ),
-				'render'  => 'radio',
-				'source'  => array(
-					'deactive'  => __( 'Delete theme data upon theme deactivation', 'tcc-fluid' ),
-					'uninstall' => __( 'Delete theme data upon theme deletion', 'tcc-fluid' ),
-					'nodelete'  => __( 'Do not delete data', 'tcc-fluid' ),
-				),
-			),
-		);
-		$layout = apply_filters( 'tcc_about_options_layout', $layout );
-		return $layout;
-	}
-
-	public function describe_about() {
-		$describe = array(
-		); ?>
-		<p>
-			<?php esc_html_e( 'Support Site:', 'tcc-fluid' ); ?>
-			<a href="http://www.rtcenterprises.net" target="rtc">
-				<?php esc_html_ex( 'RTC Enterprises', 'company name', 'tcc-fluid' ); ?>
-			</a>
-		</p>
-		<p>
-			<?php esc_html_e( 'For help with this theme, or any other general support items, please contact us at any time', 'tcc-fluid' ); ?>
-		</p>
-		<p>
-			&copy; <?php esc_html_e( 'Copyright 2014-2020 RTC', 'tcc-fluid' ); ?>
-		</p><?php
-	}
-
+#	 * @since 20150523
 	protected function options_layout( $section ) {
 		$lookup = $section.'_options_layout';
 		$layout = array();
@@ -248,10 +123,12 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		return $layout;
 	}
 
+#	 * @since 20150523
 	protected function get_options_layout( $section ) {
 		return $this->form[ $section ]['layout'];
 	}
 
+#	 * @since 20170307
 	public function get_options() {
 		if ( empty( $this->values ) ) {
 			if ( empty( $this->classes ) ) {
@@ -269,6 +146,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		return $this->values;
 	}
 
+#	 * @since 20170308
 	public function get_option_source_text( $section_key, $item_key, $source_key ) {
 		$text = '';
 		if ( empty( $this->classes ) ) {
@@ -291,6 +169,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		return $text;
 	}
 
+#	 * @since 20150523
 	protected function create_file_select( $slug, $base = '', $full = false ) {
 		$dir = get_stylesheet_directory();
 		if ( ! empty( $base ) ) { $dir .= '/' . $base; }
@@ -313,6 +192,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		return $result;
 	}
 
+#	 * @since 20150523
 	protected static function create_select_layout( $data, $text ) {
 		if ( is_array( $text ) ) {
 			$select = $text;
@@ -325,14 +205,16 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 		return $select;
 	}
 
+#	 * @since 20180323
 	private function check_screen( $check, $method, $args = array() ) {
 		if ( function_exists( 'get_current_screen' ) ) {
 			if ( get_current_screen()->base === $check ) {
 				$this->$method( $args );
 			}
-		} else { fluid()->log('no screen'); }
+		} else { fluid()->log("no screen for '$check'"); }
 	}
 
+#	 * @since 20170211
 	private function add_currency_symbol() {
 		$default     = _x( '$', 'primary currency symbol', 'tcc-fluid' );
 		$field_name  = 'currency_symbol';

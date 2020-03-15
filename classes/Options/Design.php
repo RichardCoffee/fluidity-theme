@@ -36,7 +36,7 @@ class TCC_Options_Design extends TCC_Options_Options {
 				'yes' => __( 'Use featured image as background', 'tcc-fluid' ),
 			)
 		);
-		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
+		return $layout;
 	}
 
 
