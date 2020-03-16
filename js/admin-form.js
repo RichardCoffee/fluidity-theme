@@ -1,20 +1,17 @@
 // js/admin-form.js
 
-jQuery(document).ready(function() {
-	showhideAdminElements( '.no-sidebar-active',     '.mobile-sidebar-setting',  null, 'none');
-	showhideAdminElements( '.privacy-blog-active',   '.privacy-blog-option',    'yes');
-	showhideAdminElements( '.privacy-multi-active',  '.privacy-multi-option',   'filter');
-	showhideAdminElements( '.privacy-plugin-active', '.privacy-plugin-filter',  'filter');
-	showhideAdminElements( '.privacy-theme-active',  '.privacy-theme-filter',   'filter');
-	showhideAdminElements( '.master-rest-api-namespace', '.control-rest-api-namespace', 'filter');
-
+jQuery( document ).ready( function() {
 	if ( tcc_admin_options.showhide ) {
 		jQuery.each( tcc_admin_options.showhide, function( counter, item ) {
-			targetableElements( item );
+			if ( targetableElement( item ) ) {
+				var origin = '.' + item.origin + ' input:radio';
+				jQuery( origin ).change( item, function( e ) {
+					targetableElement( e.data );
+				});
+			}
 		});
 	}
-
-	showhideElements( jQuery( '.showhide' ) );
+//	showhideElements( jQuery( '.showhide' ) );
 	jQuery( '.form-colorpicker'  ).wpColorPicker();
 	jQuery( '.form-image'        ).click( function( e ) { imageUploader( this, e ); });
 	jQuery( '.form-image-delete' ).click( function( e ) { imageDelete( this ); });
@@ -44,7 +41,6 @@ function imageUploader( el, e ) {
 	});
 	custom_uploader.on( 'select', function() {
 		var attachment = custom_uploader.state().get( 'selection' ).first().toJSON();
-console.log(attachment);
 		if ( iuField ) {
 			var iuInput = document.getElementById( iuField + '_input' );
 			var iuImage = document.getElementById( iuField + '_img' );
@@ -62,23 +58,23 @@ function showhideElements( els ) {
 		var target = jQuery( el ).attr( 'data-item' );
 		var show   = jQuery( el ).attr( 'data-show' );
 		if ( show ) {
-			showhideAdminElements( el, target, show, null );
+			showhideAdminElement( el, target, show, null );
 		}
 		var hide = jQuery( el ).attr( 'data-hide' );
 		if ( hide ) {
-			showhideAdminElements( el, target, null, hide );
+			showhideAdminElement( el, target, null, hide );
 		}
 	});
 }
 
-function targetableElements( item ) {
-	showhideAdminElements( '.'+item.origin, '.'+item.target, item.show, item.hide );
+function targetableElement( item ) {
+	return showhideAdminElement( '.'+item.origin, '.'+item.target, item.show, item.hide );
 }
 
-function showhideAdminElements( origin, target, show, hide ) {
+function showhideAdminElement( origin, target, show, hide ) {
 	if ( origin && target ) {
 		var radio = jQuery( origin + ' input:radio:checked' );
-		if ( radio ) {
+		if ( radio.length ) {
 			var state = jQuery( radio ).val();
 			if ( state ) {
 				if ( show ) {
@@ -95,14 +91,8 @@ function showhideAdminElements( origin, target, show, hide ) {
 					}
 				}
 			}
+			return true;
 		}
 	}
-}
-
-// Browser compatibility function taken from http://stackoverflow.com/questions/6548748/portability-of-nextelementsibling-nextsibling
-// the jquery .next() function is not reliable under certain circumstances - ie: when the DOM element has been dynamically added
-function nextElementSibling( el ) {
-  if ( el.nextElementSibling ) return el.nextElementSibling;
-  do { el = el.nextSibling } while ( el && el.nodeType !== 1 );
-  return el;
+	return false;
 }
