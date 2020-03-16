@@ -58,7 +58,7 @@ class TCC_Theme_Customizer {
 				$args       = $this->get_setting_defaults( $control );
 				$customize->add_setting( $setting_id, $args );
 				$priority = ( isset( $control['priority'] ) ) ? $control['priority'] : ( $order += 10 );
-				new TCC_Form_Control_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
+				new TCC_Customizer_Customizer( compact( 'customize', 'section_id', 'setting_id', 'control', 'priority' ) );
 			}
 		}
 	}

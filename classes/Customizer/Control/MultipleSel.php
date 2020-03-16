@@ -4,38 +4,34 @@
  *
  * @link https://jayj.dk/multiple-select-lists-theme-customizer/
  */
-#class Jayj_Customize_Control_Multiple_Select extends WP_Customize_Control {
 
-class TCC_Form_Control_MultipleSel extends TCC_Form_Control_Control {
+class TCC_Customizer_Control_MultipleSel extends TCC_Customizer_Control_Control {
 
 	/**
 	 * The type of customize control being rendered.
 	 */
 	public $type = 'multiple-select';
 
-		/**
-		 * Displays the multiple select on the customize screen.
-		 */
-		public function render_content() {
+	/**
+	 * Displays the multiple select on the customize screen.
+	 */
+	public function render_content() {
 
 		if ( empty( $this->choices ) ) {
 			return;
 		} ?>
 
-		<label>
-			<span class="customize-control-title">
-				<?php echo esc_html( $this->label ); ?>
-			</span><?php
-
+		<label><?php
+			$this->element( 'span', [ 'class' => 'customize-control-title' ], $this->label );
 			$attrs = [ 'multiple' => 'multiple', 'style' => 'height: 100%;' ];
 			$attrs = $this->setting_link( $attrs );
-			$this->tag( 'select', $attrs );
-				foreach ( $this->choices as $value => $label ) {
-					$attrs = [ 'value' => $value ];
-					$this->selected( $attrs, in_array( $value, $this->value() ) );
-					$this->element( 'option', $attrs, $label );
-				} ?>
-			</select>
+			$html  = '';
+			foreach ( $this->choices as $value => $label ) {
+				$opts = [ 'value' => $value ];
+				$this->selected( $opts, in_array( $value, $this->value() ) );
+				$html .= $this->get_element( 'option', $opts, $label );
+			}
+			$this->element( 'select', $attrs, $html, true ); ?>
 		</label><?php
 	}
 

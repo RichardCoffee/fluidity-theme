@@ -8,7 +8,7 @@
  * @access public
  */
 
-class TCC_Form_Control_MultipleCB extends TCC_Form_Control_Control {
+class TCC_Customizer_Control_MultipleCB extends TCC_Customizer_Control_Control {
 
     /**
      * The type of customize control being rendered.

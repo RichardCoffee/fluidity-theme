@@ -1,9 +1,9 @@
 <?php
 /**
- * Add controls for arbitrary heading, description, line
+ *  Add controls for arbitrary heading, description, line
  *
  * @package    Customizer_Library
- * @author     Devin Price
+ * @author     Richard Coffee, based on code by Devin Price
  * @link       https://github.com/devinsays/customizer-library
  * @since      20180416
  */
@@ -12,9 +12,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) ) {
 	return NULL;
 }
 
-#class Customizer_Library_Content extends WP_Customize_Control {
-
-class TCC_Form_Control_Content extends TCC_Form_Control_Control {
+class TCC_Customizer_Control_Content extends TCC_Customizer_Control_Control {
 
 	// Whitelist content parameter
 	public $content = '';

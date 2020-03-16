@@ -7,7 +7,7 @@
  *  display radio, showing raw html choices
  *
  */
-class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
+class TCC_Customizer_Control_HTMLRadio extends TCC_Customizer_Control_Control {
 
 	public $type = 'radio';
 
@@ -47,10 +47,7 @@ class TCC_Form_Control_HTMLRadio extends TCC_Form_Control_Control {
 				$attrs = $this->setting_link( $attrs );
 				$this->checked( $attrs, $this->value(), $value );
 				$this->element( 'input', $attrs );
-
-				$this->tag( 'label', [ 'for' => $attrs['id'] ] );
-					echo wp_kses( $label, fluid()->kses() ); ?>
-				</label>
+				$this->element( 'label', [ 'for' => $attrs['id'] ], wp_kses( $label, fluid()->kses() ), true ); ?>
 
 			</span><?php
 

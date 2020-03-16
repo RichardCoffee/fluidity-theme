@@ -7,7 +7,7 @@
  * set up customizer controls
  *
  */
-class TCC_Form_Control_Customizer {
+class TCC_Customizer_Customizer {
 
 	protected $control;
 	protected $customize; // WP_Customize_Manager
@@ -80,12 +80,12 @@ class TCC_Form_Control_Customizer {
 
 	protected function checkbox( $args ) {
 		$args['title'] = $this->control['title'];
-		$obj = new TCC_Form_Control_Checkbox( $this->customize, $this->setting_id, $args );
+		$obj = new TCC_Customizer_Control_Checkbox( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
 
 	protected function content( $args ) {
-		$obj = new TCC_Form_Control_Content( $this->customize, $this->setting_id, $args );
+		$obj = new TCC_Customizer_Control_Content( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
 
@@ -97,7 +97,7 @@ class TCC_Form_Control_Customizer {
 
 	protected function htmlradio( $args ) {
 		$args['type'] = 'radio';
-		$obj = new TCC_Form_Control_HTMLRadio( $this->customize, $this->setting_id, $args );
+		$obj = new TCC_Customizer_Control_HTMLRadio( $this->customize, $this->setting_id, $args );
 		$this->add_object_control( $obj );
 	}
 

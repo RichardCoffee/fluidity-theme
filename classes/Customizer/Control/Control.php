@@ -1,6 +1,6 @@
 <?php
 
-class TCC_Form_Control_Control extends WP_Customize_Control {
+class TCC_Customizer_Control_Control extends WP_Customize_Control {
 
 	use TCC_Trait_Attributes;
 
@@ -15,11 +15,10 @@ class TCC_Form_Control_Control extends WP_Customize_Control {
 	}
 
 
-/* testing */
-
-public function link ( $setting_key = 'default', $attrs = array() ) {
-	return $this->setting_link( $attrs, $setting_key );
-}
+	/* for testing purposes only */
+	public function link ( $setting_key = 'default', $attrs = array() ) {
+		return $this->setting_link( $attrs, $setting_key );
+	}
 
 
 }
