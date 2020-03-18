@@ -140,7 +140,7 @@ if (!function_exists('fluid_next_post_exists')) {
  */
 if ( ! function_exists( 'fluid_post_date' ) ) {
 	function fluid_post_date( $postdate = '' ) {
-		$showboth = ! empty( $postdate );
+		$showboth = empty( $postdate );
 		if ( empty( $postdate ) ) {
 			$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
 			$postdate = ( empty( $postdate ) || ( in_array( $postdate, [ 'defaultpd', 'default' ] ) ) ) ? get_theme_mod( 'content_postdate', 'original' ) : $postdate;
