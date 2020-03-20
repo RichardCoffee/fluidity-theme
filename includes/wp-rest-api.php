@@ -35,7 +35,7 @@ if ( ! function_exists( 'fluidity_filter_rest_endpoints' ) ) {
 	function fluidity_filter_rest_endpoints( $endpoints ) {
 		$status = tcc_option( 'status', 'apicontrol', 'on' );
 		if ( ( ! empty( $endpoints) ) && ( $status === 'filter' ) ) {
-			$options = new TCC_Options_APIControl;
+			$options = TCC_Options_APIControl::instance();
 			$allowed = $options->get_allowed_endpoints();
 			$current = array();
 			if ( $allowed ) {

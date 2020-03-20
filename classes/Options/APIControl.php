@@ -1,24 +1,73 @@
 <?php
+/**
+ *  Provides layout for API Control options.
+ *
+ * @package Fluidity
+ * @subpackage Options
+ * @since 20170503
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2017, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Options/APIControl.php
+ */
+defined( 'ABSPATH' ) || exit;
 
 class TCC_Options_APIControl extends TCC_Options_Options {
 
 
+	/**
+	 * @since 20170503
+	 * @var string  Layout slug.
+	 */
 	protected $base     = 'apicontrol';
+	/**
+	 * @since 20170503
+	 * @var integer  Layout priority, or where it shows up in the order.
+	 */
 	protected $priority = 570;
 
 
+	/**
+	 * @since 20200320
+	 * @link https://github.com/RichardCoffee/custom-post-type/blob/master/classes/Trait/Singleton.php
+	 */
+	use TCC_Trait_Singleton;
+
+
+	/**
+	 *  Provides the layout title.
+	 *
+	 * @since 20170503
+	 * @return string  Layout title.
+	 */
 	protected function form_title() {
 		return __( 'API Control', 'tcc-fluid' );
 	}
 
+	/**
+	 *  Provides the icon slug.
+	 *
+	 * @since 20180924
+	 * @return string  Icon slug.
+	 */
 	protected function form_icon() {
 		return 'dashicons-heart';
 	}
 
+	/**
+	 *  Display the layout description.
+	 *
+	 * @since 20170503
+	 */
 	public function describe_options() {
 		esc_html_e( 'REST API Control', 'tcc-fluid' );
 	}
 
+	/**
+	 *  Provides the form layout information.
+	 *
+	 * @since 20170503
+	 * @return array  The form layout.
+	 */
 	protected function options_layout( $all = false ) {
 		$layout = array(
 			'default' => true,
@@ -48,16 +97,16 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 				),
 				'showhide' => array(
 					'origin' => 'master-rest-api',
-					'target' => 'control-rest-api-namespace',
+					'target' => 'control-rest-api',
 					'show'   => 'filter',
 				),
-				'divcss' => 'master-rest-api-namespace',
+				'divcss' => 'master-rest-api',
 			),
 			'namespaces' => array(
 				'label'  => __( 'Namespaces', 'tcc-fluid' ),
 				'text'   => __( 'Control established routes', 'tcc-fluid' ),
 				'render' => 'display',
-				'divcss' => 'control-rest-api-namespace',
+				'divcss' => 'control-rest-api',
 			),
 		);
 		$endpoints = $this->get_endpoints();
@@ -74,14 +123,20 @@ class TCC_Options_APIControl extends TCC_Options_Options {
 					'text'   => $route_text,
 					'render' => 'checkbox_multiple',
 					'source' => $source,
-					'divcss' => 'control-rest-api-namespace',
+					'divcss' => 'control-rest-api',
 				);
 			}
 		}
 $this->get_allowed_endpoints();
-		return apply_filters( "tcc_{$this->base}_options_layout", $layout );
+		return $layout;
 	}
 
+	/**
+	 *  Get all available endpoints.
+	 *
+	 * @since 20170504
+	 * @return array  List of endpoints.
+	 */
 	private function get_endpoints() {
 		$request  = new WP_REST_Request( 'GET', '/' );
 		$response = rest_do_request( $request );
@@ -106,11 +161,21 @@ $this->get_allowed_endpoints();
 		return $linked;
 	}
 
+	/**
+	 *
+	 * @since 20170504
+	 */
 	public function get_allowed_endpoints() {
 		$options = get_option( 'tcc_options_apicontrol' );
 #		fluid()->log( $options );
 	}
 
+	/**
+	 *  Customizer layout data.
+	 *
+	 * @since 20180404
+	 * @return array  Customizer data.
+	 */
 	protected function customizer_data() {
 		$data = array(
 			array(
