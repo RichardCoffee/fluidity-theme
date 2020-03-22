@@ -4,17 +4,15 @@
  *
  *  All functions in this file expect to be run inside the WordPress loop
  *
+ * @since 20160830
  * @author Richard Coffee <richard.coffee@rtcenterprises.net>
  * @copyright Copyright (c) 2018, Richard Coffee
- * @since 20160830
- */
-/**
- *  check for wordpress
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/in-the-loop.php
  */
 defined( 'ABSPATH' ) || exit;
 
 /**
- *  controls the second parameter used for get_template_part calls
+ *  Controls the second parameter used for get_template_part calls.
  *
  * @since 20160830
  * @param string $page
@@ -33,19 +31,31 @@ if ( ! function_exists( 'fluid_content_slug' ) ) {
 	}
 }
 
-# * @since 20160830
+/**
+ *  Control the appearence of the edit post link.
+ *
+ * @since 20160830
+ */
 if ( ! function_exists( 'fluid_edit_post_link' ) ) {
 	function fluid_edit_post_link() {
-		$text   = '{ ' . esc_html_x( 'Edit', 'verb', 'tcc-fluid' ) . ' }';
+		$text   = '{ ' . _x( 'Edit', 'verb', 'tcc-fluid' ) . ' }';
 		$before = '&nbsp;<span class="edit-link small block">';
 		$after  = '</span>';
 		edit_post_link( $text, $before, $after );
 	}
 }
 
-# * @since 20180328
+/**
+ *  Exercise some control over the anchor for the edit post link.
+ *
+ * @since 20180328
+ * @param string $link  Anchor tag for the edit link.
+ * @param int    $id    Post ID.
+ * @param string $text  Anchor text.
+ * @return string       Anchor tag for the edit link.
+ */
 if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
-	function fluid_edit_post_link_anchor( $anchor, $id, $text ) {
+	function fluid_edit_post_link_anchor( $link, $id, $text ) {
 		$attrs = array(
 			'class'  => 'post-edit-link',
 			'href'   => get_edit_post_link( $id ),
@@ -58,13 +68,12 @@ if ( ! function_exists( 'fluid_edit_post_link_anchor' ) ) {
 }
 
 /**
- *  display excerpt
+ *  Display text for excerpt.
  *
  * @since 20180813
  */
 if ( ! function_exists( 'fluid_excerpt' ) ) {
 	function fluid_excerpt() {
-		# FIXME:  create postmeta option for post control
 		if ( get_theme_mod( 'content_excerpt', 'excerpt' ) === 'content' ) {
 			the_content();
 		} else {
@@ -74,20 +83,19 @@ if ( ! function_exists( 'fluid_excerpt' ) ) {
 }
 
 /**
- *  Display excerpt header
+ *  Display excerpt header.
  *
  * @since 20180807
  */
 if ( ! function_exists( 'fluid_excerpt_header' ) ) {
-	function fluid_excerpt_header() { ?>
-		<h2 class="text-center" itemprop="headline"><?php
-			fluid_post_title( 40 ); ?>
-		</h2><?php
+	function fluid_excerpt_header() {
+		fluid()->element( 'h2', [ 'class' => 'text-center', 'itemprop' => 'headline' ], fluid_post_title( 40 ), true );
 		if ( get_theme_mod( 'content_exdate', 'show' ) === 'show' ) { ?>
 			<h3 class="text-center"><?php
 				$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
+				$postdate = ( $postdate ) ? $postdate : get_theme_mod( 'content_postdate', 'original' );
 				$postdate = ( in_array( $postdate, [ 'both', 'modified' ] ) ) ? 'modified' : $postdate;
-				fluid_post_date( $postdate ); ?>
+				fluid_post_date( $postdate, false ); ?>
 			</h3><?php
 		}
 	}
@@ -95,26 +103,25 @@ if ( ! function_exists( 'fluid_excerpt_header' ) ) {
 }
 
 /**
- *  Control excerpt length
+ *  Control excerpt length.
  *
  * @since 20170126
- * @param int $length
- * @return int
+ * @param int  $length  Excerpt length.
+ * @return int          Modified length for excerpt.
  */
 if ( ! function_exists( 'fluid_excerpt_length' ) ) {
 	function fluid_excerpt_length( $length ) {
-		$stored  = get_theme_mod( 'content_exlength', 55 );
-		$calced  = intval( $stored, 10 );
-		return ( $calced ) ? $calced : $length;
+		$len = intval( get_theme_mod( 'content_exlength', 55 ) );
+		return ( $len ) ? $len : $length;
 	}
 	add_filter( 'excerpt_length', 'fluid_excerpt_length', 11 );
 }
 
 /**
- * Returns a string intended to be used for the title attribute for post links in excerpts
+ *  Returns a string intended to be used for the title attribute for post links in excerpts
  *
  * @since 20180328
- * @return string
+ * @return string  Post link title.
  */
 if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
 	function fluid_excerpt_link_tooltip() {
@@ -123,7 +130,12 @@ if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
 	}
 }
 
-# * @since 20160830
+/**
+ *  Check of the next post exists.
+ *
+ * @since 20160830
+ * @return bool  Is there a next post?
+ */
 if (!function_exists('fluid_next_post_exists')) {
   function fluid_next_post_exists() {
     global $wp_query;
@@ -132,26 +144,26 @@ if (!function_exists('fluid_next_post_exists')) {
 }
 
 /**
- * show the post publish and/or last edit date
+ *  Show the post publish and/or last edit date.
  *
  * @since 20160830
- * @param string $postdate
- * @return bool
+ * @param string $postdate  Type of date to display
+ * @param bool   $showboth  Show both dates, if applicable.
+ * @return bool             Is there a second date?
  */
 if ( ! function_exists( 'fluid_post_date' ) ) {
-	function fluid_post_date( $postdate = '' ) {
-		$showboth = empty( $postdate );
+	function fluid_post_date( $postdate = '', $showboth = true ) {
 		if ( empty( $postdate ) ) {
 			$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
 			$postdate = ( empty( $postdate ) || ( in_array( $postdate, [ 'defaultpd', 'default' ] ) ) ) ? get_theme_mod( 'content_postdate', 'original' ) : $postdate;
 		}
 		if ( ! ( $postdate === 'none' ) ) {
-			$default = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
-			$date    = get_the_date();
+			$showboth = ( $postdate === 'both' );
+			$default  = esc_html_x( 'Posted on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
+			$date     = get_the_date();
 			if ( in_array( $postdate, [ 'both', 'modified' ] ) && ( ( get_the_modified_date( 'U' ) - DAY_IN_SECONDS ) > ( get_the_date( 'U' ) ) ) ) {
 				$default  = esc_html_x( 'Last modified on %1$s by %2$s', '1: formatted date string, 2: author name', 'tcc-fluid' );
 				$date     = get_the_modified_date();
-				$showboth = ( $postdate === 'both' );
 			}
 			$string = apply_filters( 'fluid_post_date_sprintf', $default, $postdate, $showboth );
 			$author = ( is_single() ) ? get_the_author_posts_link() : get_the_author();
@@ -161,9 +173,17 @@ if ( ! function_exists( 'fluid_post_date' ) ) {
 	}
 }
 
-# * @since 20180417
+/**
+ *  Filters for original date.
+ *
+ * @since 20180417
+ * @param string $format    Text for date format.
+ * @param string $postdate  Date format desired.
+ * @param bool   $showboth  Are both formats desired?
+ * @return string           Text for date format.
+ */
 if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
-	function fluid_post_date_sprintf( $format, $postdate, $showboth = false ) {
+	function fluid_post_date_sprintf( $format, $postdate, $showboth ) {
 		if ( $showboth && ( $postdate === 'original' ) ) {
 			$format = esc_html_x( 'Originally posted on %s', 'wordpress formatted date string', 'tcc-fluid' );
 		}
@@ -172,21 +192,25 @@ if ( ! function_exists( 'fluid_post_date_sprintf' ) ) {
 	add_filter( 'fluid_post_date_sprintf', 'fluid_post_date_sprintf', 10, 3 );
 }
 
-# * @since 20161231
+/**
+ *  Display the post meta data.
+ *
+ * @since 20161231
+ */
 if ( ! function_exists( 'fluid_postmetadata' ) ) {
 	function fluid_postmetadata() { ?>
 		<div class="article margint1e noprint">
 			<div class="postmetadata">
-				<hr><?php
+				<hr class="postmetadata-separator"><?php
 				if ( has_tag() ) {
 					fluid_post_tags();
-					echo '<hr>';
+					echo '<hr class="postmetadata-separator">>';
 				}
 				$cat_list = get_the_category_list();
 				if ( ! empty( $cat_list ) ) {  #  wordpress's has_category() does not always return a correct value - wtf?
 					$cat_list = str_replace( '	<li>', '<li class="btn-fluidity">', $cat_list );
 					printf( esc_html_x( 'Categories: %s', 'string - one or more categories', 'tcc-fluid' ), $cat_list );
-					echo '<hr>';
+					echo '<hr class="postmetadata-separator">>';
 				} ?>
 			</div>
 		</div><?php
@@ -194,7 +218,7 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 }
 
 /**
- *  display a separator between excerpts
+ *  Display a separator between excerpts.
  *
  * @since 20161206
  * @param string $slug the page slug
@@ -214,7 +238,7 @@ if ( ! function_exists( 'fluid_post_separator' ) ) {
 }
 
 /**
- *  Turns tag list into tag buttons
+ *  Turns tag list into tag buttons.
  *
  * @since 20190722
  */
@@ -233,7 +257,13 @@ if ( ! function_exists( 'fluid_post_tags' ) ) {
 	}
 }
 
-# * @since 20161229
+/**
+ *  Display the post title.
+ *
+ * @since 20161229
+ * @param int  $max     Maximum length of the title.
+ * @param bool $anchor  Should the title be displayed in an anchor tag?
+ */
 if ( ! function_exists( 'fluid_post_title' ) ) {
 	function fluid_post_title( $max = 0, $anchor = true ) {
 		$anchor = ( is_single() || is_page() ) ? false : $anchor;
@@ -250,11 +280,17 @@ if ( ! function_exists( 'fluid_post_title' ) ) {
 	}
 }
 
-# * @since 20150520
-# * @link http://codex.wordpress.org/Excerpt
-# * @link https://make.wordpress.org/themes/handbook/review/accessibility/required/
-# * @link https://github.com/wpaccessibility/a11ythemepatterns
-# * @link https://make.wordpress.org/accessibility/handbook/best-practices/markup/post-excerpts-for-an-archive-template/
+/**
+ *  Control the 'read_more' link.
+ *
+ * @since 20150520
+ * @link http://codex.wordpress.org/Excerpt
+ * @link https://make.wordpress.org/themes/handbook/review/accessibility/required/
+ * @link https://github.com/wpaccessibility/a11ythemepatterns
+ * @link https://make.wordpress.org/accessibility/handbook/best-practices/markup/post-excerpts-for-an-archive-template/
+ * @param string $output  WP's version of the more link.
+ * @return string         Fluidity's version of the more link.
+ */
 if ( ! function_exists( 'fluid_read_more_link' ) ) {
 	function fluid_read_more_link( $output ) {
 		$attrs = array(
@@ -264,28 +300,39 @@ if ( ! function_exists( 'fluid_read_more_link' ) ) {
 			'aria-hidden' => 'true',
 #			'tabindex'    => '-1',
 		);
-		$link  = fluid()->get_tag( 'a', $attrs );
-		$link .= strip_tags( fluid_read_more_text() );
 		// title inserted here for SEO purposes
-		$link .= fluid()->get_element( 'span', [ 'class' => 'screen-reader-text' ], fluid_excerpt_link_tooltip() );
-		$link .= '</a>';
+		$span = fluid()->get_element( 'span', [ 'class' => 'screen-reader-text' ], fluid_excerpt_link_tooltip() );
+		$text = esc_html( strip_tags( fluid_read_more_text() ) );
+		$link = fluid()->get_element( 'a', $attrs, $text . $span, true );
 		if ( apply_filters( 'fluid_read_more_brackets', true ) ) {
-			$link = ' <span class="block">[' . $link . ']</span>';
+			$link = '<span class="block">[' . $link . ']</span>';
 		}
 		return $link;
 	}
 	add_filter( 'excerpt_more', 'fluid_read_more_link' );
 }
 
+/**
+ *  Returns desired 'read more' text.
+ *
+ * @since 20190721
+ * @return string  Filtered 'read more' text.
+ */
 if ( ! function_exists( 'fluid_read_more_text' ) ) {
 	function fluid_read_more_text() {
 		return apply_filters( 'fluid_read_more_text', __( 'Read More', 'tcc-fluid' ) );
 	}
 }
 
-# * @since 20190721
-# * @link https://digwp.com/2010/01/wordpress-more-tag-tricks/
-# * @link https://codex.wordpress.org/Customizing_the_Read_More#Link_Jumps_to_More_or_Top_of_Page
+/**
+ *  Filter the content more jump link.
+ *
+ * @since 20190721
+ * @link https://digwp.com/2010/01/wordpress-more-tag-tricks/
+ * @link https://codex.wordpress.org/Customizing_the_Read_More#Link_Jumps_to_More_or_Top_of_Page
+ * @param string $link  More jump link.
+ * @return string       Modified more jump link.
+ */
 if ( ! function_exists( 'fluid_remove_more_jump_link' ) ) {
 	function fluid_remove_more_jump_link( $link ) {
 		$link = preg_replace( '|#more-[0-9]+|', '', $link );
@@ -294,7 +341,11 @@ if ( ! function_exists( 'fluid_remove_more_jump_link' ) ) {
 	add_filter( 'the_content_more_link', 'fluid_remove_more_jump_link' );
 }
 
-# * @since 20180313
+/**
+ *  Shows the content title.
+ *
+ * @since 20180313
+ */
 if ( ! function_exists( 'fluid_show_content_title' ) ) {
 	function fluid_show_content_title() {
 		if ( ! is_page() ) {
@@ -323,23 +374,29 @@ if ( ! function_exists( 'fluid_show_post_dates' ) ) {
 		</h3><?php
 		if ( $show_orig ) { ?>
 			<h4 class="post-date text-center"><?php
-				fluid_post_date( 'original' ); ?>
+				fluid_post_date( 'original', false ); ?>
 			</h4><?php
 		}
 	}
 }
 
-#	 * @since 20160830
+/**
+ *  Show the thumbnail, if present.
+ *
+ * @since 20160830
+ * @param string|array $size   Desired size for the thumbnail.
+ * @param string       $class  CSS class for the image.
+ */
 if ( ! function_exists( 'fluid_thumbnail' ) ) {
-	function fluid_thumbnail( $size = null, $class = 'img-responsive' ) {
+	function fluid_thumbnail( $size = 'post-thumbnail', $class = 'img-responsive' ) {
 		if ( ! is_page() || ( tcc_design( 'paral', 'no' ) === 'no' ) ) {
 			if ( has_post_thumbnail() ) { ?>
 				<div class="featured-image"><?php
-					$attr = array(
+					$attrs = array(
 						'alt'   => fluid_title(),
 						'class' => $class
 					);
-					the_post_thumbnail( $size, $attr ); ?>
+					the_post_thumbnail( $size, $attrs ); ?>
 				</div><?php
 			}
 		}
@@ -347,7 +404,14 @@ if ( ! function_exists( 'fluid_thumbnail' ) ) {
 	add_action( 'fluid_content_header', 'fluid_thumbnail', 20 );
 }
 
-# * @since 20161229
+/**
+ *  Restrict the length of the title.
+ *
+ * @since 20161229
+ * @param int  $length  Maximum desired length of the title.
+ * @param bool $echo    Should we echo the title?
+ * @return string       Only returns if $echo is true.
+ */
 if ( ! function_exists( 'fluid_title' ) ) {
 	function fluid_title( $length = 0, $echo = false ) {
 		$after  = '...'; $before = ''; // FIXME
@@ -374,7 +438,11 @@ if ( ! function_exists( 'fluid_title' ) ) {
 	}
 }
 
-#	 * @since 201811
+/**
+ *  Displays a view image link.
+ *
+ * @since 201811
+ */
 if ( ! function_exists( 'fluid_view_image_link' ) ) {
 	function fluid_view_image_link() {
 		$attrs = array(
@@ -388,7 +456,11 @@ if ( ! function_exists( 'fluid_view_image_link' ) ) {
 	}
 }
 
-# * @since 20180324
+/**
+ *  Display the footer section for a post.
+ *
+ * @since 20180324
+ */
 if ( ! function_exists( 'fluid_show_content_footer' ) ) {
 	function fluid_show_content_footer() {
 		if ( is_single() && ! is_page() ) {
@@ -401,7 +473,11 @@ if ( ! function_exists( 'fluid_show_content_footer' ) ) {
 	add_action( 'fluid_content_footer', 'fluid_show_content_footer' );
 }
 
-# * @since 20170120
+/**
+ *  Display the comments template.
+ *
+ * @since 20170120
+ */
 if (!function_exists('tcc_show_comments')) {
 	function tcc_show_comments() {
 		if ( comments_open() || get_comments_number() ) {
