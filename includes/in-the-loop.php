@@ -89,7 +89,7 @@ if ( ! function_exists( 'fluid_excerpt' ) ) {
  */
 if ( ! function_exists( 'fluid_excerpt_header' ) ) {
 	function fluid_excerpt_header() {
-		fluid()->element( 'h2', [ 'class' => 'text-center', 'itemprop' => 'headline' ], fluid_post_title( 40 ), true );
+		fluid()->element( 'h2', [ 'class' => 'text-center', 'itemprop' => 'headline' ], fluid_get_post_title( 40 ), true );
 		if ( get_theme_mod( 'content_exdate', 'show' ) === 'show' ) { ?>
 			<h3 class="text-center"><?php
 				$postdate = get_post_meta( get_the_ID(), 'postdate_display', true );
@@ -129,6 +129,31 @@ if ( ! function_exists( 'fluid_excerpt_link_tooltip' ) ) {
 		return $tooltip; # apply_filters( 'fluid_excerpt_link_tooltip', $tooltip );
 	}
 }
+
+/**
+ *  Get the post title.
+ *
+ * @since 20200323
+ * @param int  $max     Maximum length of the title.
+ * @param bool $anchor  Should the title be wrapped in an anchor tag?
+ */
+if ( ! function_exists( 'fluid_get_post_title' ) ) {
+	function fluid_get_post_title( $max = 0, $anchor = true ) {
+		$anchor = ( is_single() || is_page() ) ? false : $anchor;
+		if ( $anchor ) {
+			$attrs = array(
+				'href'  => get_the_permalink(),
+				'rel'   => 'bookmark',
+				'title' => fluid_excerpt_link_tooltip()
+			);
+			$html = fluid()->get_element( 'a', $attrs, fluid_title( $max ), true );
+		} else {
+			$html = fluid_title( $max );
+		}
+		return $html;
+	}
+}
+
 
 /**
  *  Check of the next post exists.
@@ -266,17 +291,7 @@ if ( ! function_exists( 'fluid_post_tags' ) ) {
  */
 if ( ! function_exists( 'fluid_post_title' ) ) {
 	function fluid_post_title( $max = 0, $anchor = true ) {
-		$anchor = ( is_single() || is_page() ) ? false : $anchor;
-		if ( $anchor ) {
-			$attrs = array(
-				'href'  => get_the_permalink(),
-				'rel'   => 'bookmark',
-				'title' => fluid_excerpt_link_tooltip()
-			);
-			fluid()->element( 'a', $attrs, fluid_title( $max ), true );
-		} else {
-			fluid_title( $max, true );
-		}
+		echo fluid_get_post_title( $max, $anchor );
 	}
 }
 
