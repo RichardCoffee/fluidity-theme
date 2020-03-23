@@ -22,7 +22,6 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 			'X-Content-Type-Options'  => 'nosniff',
 			'Referrer-Policy'  => 'no-referrer',
 			'X-Frame-Options'  => 'SAMEORIGIN',
-			'X-XSS-Protection' => '1; mode=block',
 		);
 		if ( is_ssl() ) {
 			$defaults['Strict-Transport-Security'] = 'max-age=30';
