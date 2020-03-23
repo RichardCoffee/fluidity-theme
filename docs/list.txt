@@ -6,8 +6,6 @@
 		fluidity_register_bootstrap()
 		fluidity_register_fontawesome()
 		fluidity_register_sidebars()
-		tcc_register_galleryview()
-		tcc_enqueue_galleryview( $query )
 		tcc_register_nav_menu()
 
 			Classes

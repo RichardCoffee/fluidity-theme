@@ -1,12 +1,11 @@
 # fluidity-theme
 
-A WordPress theme I use as a parent theme.  I am trying to add docblocks to all files, classes, and functions, but since I use vi as my editor, the docblocks
-don't really do me any good, and I have no way of testing their usefulness. Could someone look at this for me?
+A WordPress theme I use as a parent theme for my sites.
 
 ## Theme files - root directory
 
 This section covers all theme root directory files.  If you are at all familiar with how a WordPress theme works, then what the majority of these files are,
-and how they work, should already be known to you.  You can skip to the section on classes.
+and how they work, should already be known to you.  You should skip to the section on classes.
 
 ### Pages
 
@@ -77,21 +76,21 @@ The image that shows up in the tab of the browser.
 ## Classes
 
 The theme uses a variety of classes, all residing in the classes/ directory, and organized mainly via sub-directories.  Wordpress frowns on this type of
-organization, which is okay.  I'll do it how I want, and they can do it the way they want.
+organization, which is okay.  I'll do it how I want, and they can do it the way they want, and never the twain shall meet.
 
-All classes are loaded via the includes/loader.php file.  Take a look at that file to see which classes can be replaced/extended by a child theme.  All class
-names use the same format, i.e.: the class TCC_Form_Admin is located in the file classes/Form/Admin.php, which means if you know the class name, then you can
-easily find the file containing the class.
+Most, not quite all, classes are loaded via the includes/loader.php file.  Take a look at that file to see which classes can be replaced/extended by a child theme.  All class
+names use the same format, i.e.: the class TCC_Form_Admin is located in the file classes/Form/Admin.php, which means if you know the class name, then you should not
+have any trouble finding the file that contains the class.
 
 
 ### Forms
 
-The forms classes deal with admin page forms, customizer controls, comment forms, and the login form.
+The form classes deal with admin page forms, customizer controls, comment forms, and the login form.
 
 
 #### Admin Forms
 
-The class TCC_Form_Admin is an abstract class used a basis for all admin forms, and uses the WordPress Settings API.  Currently, the only class the theme uses
+The class 'TCC_Form_Admin' is an abstract class used a basis for all admin forms, and uses the WordPress Settings API.  Currently, the only class the theme uses
 this for is the TCC_Options_Fluidity class, which is a tabbed form.  I have used it in some plugins, although only the
 [Privacy My Way plugin](https://github.com/RichardCoffee/privacy-my-way) is available to be viewed by the general public.  I still consider this class
 to be a work in progress in many ways.  I kept hoping WordPress will make it easier to create Admin screens, but with the advent of the Customizer, they
@@ -99,7 +98,7 @@ actually went in the opposite direction.
 
 #### Customizer Controls
 
-The class TCC_Customizer_Customizer handles adding each individual control to the WordPress customizer.  The TCC_Customizer_Control_Control class extends the
+TCC_Customizer_Customizer handles adding each individual control to the WordPress customizer.  The TCC_Customizer_Control_Control class extends the
 WP_Customize_Control class, and serves as the parent class of all other theme customizer controls.
 
 ##### Customizer Checkbox control
@@ -108,7 +107,7 @@ I wrote the TCC_Customizer_Control_Checkbox class because the WordPress control 
 
 ##### Customizer Content control
 
-The TCC_Customizer_Control_Content simply displays a title and some text on the screen, no inputs at all.
+TCC_Customizer_Control_Content simply displays a title and some text on the screen, no inputs at all.
 
 ##### Customizer HTMLRadio control
 
@@ -136,7 +135,7 @@ TCC_Theme_CommentNav, child class of TCC_Theme_Navigation, handles showing the u
 
 #### Login form
 
-The theme's login form, suitable for use in a navbar or a widget.  Can also be able to be used in a modal.
+The theme's login form, suitable for use in a navbar or a widget.  Can also be used in a modal.
 
 
 ### Metaboxes
@@ -193,27 +192,32 @@ I use Sass instead of Less, although I understand the new version 4 has moved to
 ### Color Schemes
 
 The theme has a variety of pre-set color schemes available, although I seem to be having a problem getting the Customizer to properly display the chosen color
-instead of the Customizer.  I'm sure I am the issue, it certainly can't be the Customizer.
+inside of the Customizer.  I'm sure I am the issue, it certainly can't be the Customizer.
 
 
 ## includes
 
-Here I intend the cover the files in the includes/ directory...someday...
+Here I intend to cover the files in the includes/ directory...someday...
 
 ## Javascript
 
+Javascript files will be described here.
 
 ## Languages
 
+English only at the moment.
 
 ## Page Templates
 
+Will cover files contained in the page-template directory.
 
 ## Template Parts
 
 ## Vendors
 
-### External Libraries
+Recently removed a gallery plugin.  It was no longer being maintained.
+
+### External Source Libraries
 
 #### Bootstrap
 
@@ -228,7 +232,7 @@ Currently uses Font Awesome 4.7.0, with no plans to upgrade to version 5 at this
 Release updates are handled using [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker), so everything should work the WordPress way.
 I know it says Plugin, but it works just fine for themes as well.
 
-### External Files
+### External Source Files
 
 #### custom_menu_items.php
 
