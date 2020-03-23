@@ -62,7 +62,7 @@ class TCC_Form_Field_Radio extends TCC_Form_Field_Field {
 	public function display_radio_element( $attrs, $text ) { ?>
 		<label><?php
 			$this->checked( $attrs, $attrs['value'], $this->value );
-			$this->element( 'input', $atts, $text ); ?>
+			$this->element( 'input', $attrs, $text ); ?>
 		</label><?php
 	}
 
