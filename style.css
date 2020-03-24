@@ -658,10 +658,11 @@ body.archive.author .article {
  *  11.5  Comments
  *
  */
-.has-fluid-sidebar textarea#comment {
-  width: 73%;
+@media (min-width: 992px) {
+  .has-fluid-sidebar textarea#comment {
+    width: 73%;
+  }
 }
-
 .comment .reply {
   margin-bottom: 0.5rem;
 }
