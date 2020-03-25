@@ -36,11 +36,11 @@ if (!function_exists('fluid_browser_body_class')) {
  * @since 20160807
  */
 if ( ! function_exists( 'fluid_custom_css' ) ) {
-	function fluid_custom_css() { ?>
-		<style id="fluid-custom-css"><?php
+	function fluid_custom_css() {
+		fluid()->tag( 'style', [ 'id' => 'fluid-custom-css' ] );
 			do_action( 'fluid_custom_css' );
-			do_action( 'tcc_custom_css' ); ?>
-		</style><?php
+			do_action( 'tcc_custom_css' );
+		echo '</style>';
 	}
 }
 

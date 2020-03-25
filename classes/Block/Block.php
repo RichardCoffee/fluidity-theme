@@ -54,6 +54,11 @@ abstract class TCC_Block_Block {
 	static private $inline_js = false;
 
 	/**
+	 * @since 20200325
+	 */
+	use TCC_Trait_Attributes;
+
+	/**
 	 *  Basic construction method for class
 	 *
 	 * @since 20190529
@@ -71,7 +76,7 @@ abstract class TCC_Block_Block {
 	}
 
 	public function add_inline_javascript() {
-		echo '<script>';
+		$this->tag( 'script' );
 		do_action( 'fluid_inline_javascript' );
 		echo '</script>';
 	}

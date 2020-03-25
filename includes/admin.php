@@ -91,10 +91,10 @@ if ( ! function_exists( 'fluid_wp_admin_bar_my_account_profile_url' ) ) {
  * @uses add_action()
  */
 if ( ! function_exists( 'fluid_custom_css_admin' ) ) {
-	function fluid_custom_css_admin() { ?>
-		<style id="fluid-custom-css-admin" type="text/css"><?php
-			do_action( 'fluid_custom_css_admin' ); ?>
-		</style><?php
+	function fluid_custom_css_admin() {
+		fluid()->tag( 'style', [ 'id' => 'fluid-custom-css-admin', 'type' => 'text/css' ] );
+			do_action( 'fluid_custom_css_admin' );
+		echo '</style>';
 	}
 	add_action( 'admin_head', 'fluid_custom_css_admin' );
 }
