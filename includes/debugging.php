@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ *  Contains functions that either need debugging, or are intended to be temporary.
  */
 
 /**
@@ -12,6 +12,7 @@
  * @link https://scotthelme.co.uk/content-security-policy-an-introduction/
  * @link https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Content_Security_Policy_Cheat_Sheet.md
  * @link https://csp.withgoogle.com/docs/strict-csp.html
+ * @link https://securityheaders.com
  * @param $headers array
  * @return array
  */
@@ -21,10 +22,10 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 		$defaults = array(
 			'X-Content-Type-Options'  => 'nosniff',
 			'Referrer-Policy'  => 'no-referrer',
-			'X-Frame-Options'  => 'SAMEORIGIN',
+			'X-Frame-Options'  => 'DENY', // more restrictive than wordpress default of SAMEORIGIN
 		);
 		if ( is_ssl() ) {
-			$defaults['Strict-Transport-Security'] = 'max-age=30';
+			$defaults['Strict-Transport-Security'] = 'max-age=' . YEAR_IN_SECONDS . '; includeSubdomains';
 		}
 		$csp_key = apply_filters( 'fluid_content_security_policy', 'Content-Security-Policy-Report-Only' );
 		if ( $csp_key ) {
@@ -41,6 +42,25 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 		return array_merge( $defaults, $headers );
 	}
 	add_filter( 'wp_headers', 'fluid_wp_headers' );
+}
+
+/**
+ *  Remove the filters that add the 'X-Frame-Options' to the header.  Required in order to change the wordpress default value of SAMEORIGIN
+ *  Note:  There is absolutely nothing wrong with SAMEORIGIN, it is a good safe setting.
+ *
+ * @since 20200325
+ */
+if ( ! function_exists( 'fluid_remove_frame_options' ) ) {
+	function fluid_remove_frame_options() {
+		if ( ! ( has_action( 'login_init', 'send_frame_options_header' ) === false ) ) {
+			remove_action( 'login_init', 'send_frame_options_header', 10 );
+		}
+		if ( ! ( has_action( 'admin_init', 'send_frame_options_header' ) === false ) ) {
+			remove_action( 'admin_init', 'send_frame_options_header', 10 );
+		}
+	}
+	add_action( 'login_init', 'fluid_remove_frame_options', 9, 0 );
+	add_action( 'admin_init', 'fluid_remove_frame_options', 9, 0 );
 }
 
 if ( ! function_exists( 'fluid_show_color_scheme' ) ) {
