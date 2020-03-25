@@ -9,11 +9,11 @@ add_action( 'tgmpa_register', 'fluidity_plugins' );
 if ( ! function_exists( 'fluidity_plugins' ) ) {
 	function fluidity_plugins() {
 		$plugins = array(
-			array(
+/*			array(
 				'name'        => 'mobble by Scott Evans',
 				'slug'        => 'mobble',
 				'is_callable' => 'is_mobile',
-			),
+			), //*/
 			array(
 				'name'        => 'Nav Menu Roles by Kathy Darling',
 				'slug'        => 'nav-menu-roles',
