@@ -60,4 +60,4 @@ class TCC_AutoComplete {
 
 }
 
-TCC_AutoComplete::load();
+TCC_AutoComplete::init();

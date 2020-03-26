@@ -39,7 +39,6 @@ add_action( 'rest_api_init', function() {
 fluidity_check_update();
 
 #  prime the pump
-require_once( 'classes/autocomplete.php' );
 fluid_register_sidebars(); # TCC_Register_Sidebars
 fluid_theme_support();     # TCC_Theme_Support
 fluid_login();             # TCC_Theme_Login

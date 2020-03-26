@@ -3,6 +3,7 @@
 class TCC_Widget_Search extends TCC_Widget_Widget {
 
 	function __construct() {
+		require_once( get_theme_file_path( 'classes/autocomplete.php' ) );
 		$this->title = esc_html__( 'Search', 'tcc-fluid' );
 		$this->desc  = esc_html__( 'Fluidity Search Form', 'tcc-fluid' );
 		$this->slug  = 'tcc_search';
