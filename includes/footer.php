@@ -67,50 +67,45 @@ if ( ! function_exists( 'tcc_copyright' ) ) {
 	}
 }
 /*
-if ( ! function_exists( 'tcc_footer_menu' ) ) {
-	function tcc_footer_menu() {
-		$foot_menu = array();
-		if ( page_exists( 'terms' ) )           $foot_menu['terms']           = __( 'Terms & Conditions', 'tcc-fluid' );
-		if ( page_exists( 'terms-of-use' ) )    $foot_menu['terms-of-use']    = __( 'Terms & Conditions', 'tcc-fluid' );
-		if ( page_exists( 'conditions' ) )      $foot_menu['conditions']      = __( 'Terms & Conditions', 'tcc-fluid' );
-		if ( page_exists( 'privacy' ) )         $foot_menu['privacy']         = __( 'Privacy Policy',     'tcc-fluid' );
-		if ( page_exists( 'privacy-policy' ) )  $foot_menu['privacy-policy']  = __( 'Privacy Policy',     'tcc-fluid' );
-		if ( page_exists( 'security' ) )        $foot_menu['security']        = __( 'Security Policy',    'tcc-fluid' );
-		if ( page_exists( 'security-policy' ) ) $foot_menu['security-policy'] = __( 'Security Policy',    'tcc-fluid' );
-		$foot_menu = apply_filters( 'tcc_footer_menu', $foot_menu );
-		if ($foot_menu) {
-			$menu   = array();
-			foreach( $foot_menu as $index => $text ) {
-				$menu[] = '<a class="tcc-footer-menu-item" href="/' . $index . '/">&nbsp;' . esc_html( $text ) . '&nbsp; </a>';
-			} ?>
-			<span class="tcc-footer-menu" <?php microdata()->SiteNavigationElement(); ?>>
-				<?php echo wp_kses( implode( '&nbsp;|&nbsp;', $menu ), fluid()->kses() ); ?>
-			</span><?php
-		}
-	}
-} //*/
-/*
 if ( ! function_exists( 'tcc_site_link' ) ) {
 	function tcc_site_link() {
-		$attrs = get_file_data( FLUIDITY_HOME . 'style.css', array( 'href' => 'Theme URI' ) );
-		$attrs['title'] = __( 'Theme by The Creative Collective', 'tcc-fluid' );
-		$attrs['target'] = 'the_creative_collective'; ?>
-		<a <?php fluid()->apply_attrs( $attrs ); ?>>
-			<img alt="TCC" src="<?php echo get_template_directory_uri(); ?>/icons/tcc-btn.png" class="tcc-icon">
-		</a><?php
+		$ittrs = array(
+			'class' => 'tcc-icon',
+			'alt'   => 'RTC',
+			'src'   => get_theme_file_uri( 'icons/tcc-btn.png' ),
+		);
+		$image = fluid()->get_tag( 'img', $ittrs );
+		$data  = array(
+			'href'  => 'Theme URI',
+			'title' => 'Theme Name',
+		);
+		$attrs = get_file_data( FLUIDITY_HOME . 'style.css', $data );
+		$attrs['target'] = 'rtc_github';
+		fluid()->element( 'a', $attrs, $image, true );
 	}
 	add_action( 'tcc_copyright_left', 'tcc_site_link' );
-}//*/
+} //*/
 /*
 if ( ! function_exists( 'tcc_xfn_link' ) ) {
-	function tcc_xfn_link() { ?>
-		<a href="http://gmpg.org/xfn/" target="gmpg_org_xfn">
-			<img alt="XFN" src="<?php echo get_template_directory_uri(); ?>/icons/xfn-btn.gif">
-		</a><?php
+	function tcc_xfn_link() {
+		$ittrs = array(
+			'alt' => 'XFN',
+			'src' => get_theme_file_uri( 'icons/xfn-btn.gif' ),
+		);
+		$image = fluid->get_tag( 'img', $ittrs );
+		$attrs = array(
+			'href'   => 'http://gmpg.org/xfn/',
+			'target' => 'gmpg_org_xfn',
+		);
+		fluid()->element( 'a', $attrs, $image, true );
 	}
 	add_action( 'tcc_copyright_right', 'tcc_xfn_link' );
 	add_action( 'fluid_header_links', function() {
-		echo '<link rel="profile" href="http://gmpg.org/xfn/11" />';
+		$attrs = array(
+			'rel'  => 'profile',
+			'href' => 'http://gmpg.org/xfn/11',
+		);
+		fluid()->tag( 'link', $attrs );
 	} );
 } //*/
 
