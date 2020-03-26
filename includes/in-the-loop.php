@@ -229,13 +229,13 @@ if ( ! function_exists( 'fluid_postmetadata' ) ) {
 				<hr class="postmetadata-separator"><?php
 				if ( has_tag() ) {
 					fluid_post_tags();
-					echo '<hr class="postmetadata-separator">>';
+					echo '<hr class="postmetadata-separator">';
 				}
 				$cat_list = get_the_category_list();
 				if ( ! empty( $cat_list ) ) {  #  wordpress's has_category() does not always return a correct value - wtf?
 					$cat_list = str_replace( '	<li>', '<li class="btn-fluidity">', $cat_list );
 					printf( esc_html_x( 'Categories: %s', 'string - one or more categories', 'tcc-fluid' ), $cat_list );
-					echo '<hr class="postmetadata-separator">>';
+					echo '<hr class="postmetadata-separator">';
 				} ?>
 			</div>
 		</div><?php
