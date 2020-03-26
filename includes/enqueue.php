@@ -94,17 +94,19 @@ if ( ! function_exists( 'fluidity_enqueue_styles' ) ) {
  *
  * @link https://github.com/myersg86/WP_HTML5BP/blob/master/functions.php
  */
+/* FIXME:  add theme option to disable emojis */
 if ( ! function_exists( 'fluid_dequeue_emoji' ) ) {
 	function fluid_dequeue_emoji() {
 		wp_dequeue_script( 'emoji' );
 	}
 	add_action( 'wp_print_scripts', 'fluid_dequeue_emoji', 100 );
-	/**
-	 * Remove the emoji styles.
-	 */
+	//  Remove the emoji styles.
 	remove_action( 'wp_print_styles',    'print_emoji_styles' );
 	remove_action( 'admin_print_styles', 'print_emoji_styles');
 	remove_action( 'wp_head',            'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts','print_emoji_detection_script');
 	remove_action( 'embed_head',         'print_emoji_detection_script' );
-}
+	remove_filter( 'the_content_feed',   'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss',   'wp_staticize_emoji' );
+	remove_filter( 'wp_mail',            'wp_staticize_emoji_for_email' );
+} //*/
