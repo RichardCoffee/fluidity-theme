@@ -225,7 +225,7 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 					} else if ( is_customize_preview() ) {
 					} else {
 						$current_url = wp_parse_url( add_query_arg( array( ) ) );
-						fluid()->log( "url: $current_url", 'no queried object available' );
+						fluid()->log( ' current url arguments', $current_url, 'no queried object available' );
 					}
 				}
 			}
