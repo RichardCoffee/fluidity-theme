@@ -155,9 +155,10 @@ if ( ! function_exists( 'fluid_start_author_loop' ) ) {
 	function fluid_start_author_loop( $mypage ) {
 		if ( $mypage === 'author' ) {
 			clearfix()->initialize( array(
+				'xl' => 4,
 				'lg' => 4,
-				'md' => 4,
-				'sm' => 6,
+				'md' => 6,
+				'sm' => 12,
 				'xs' => 12,
 			) );
 		}

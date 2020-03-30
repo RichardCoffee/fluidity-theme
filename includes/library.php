@@ -706,7 +706,7 @@ if (!function_exists('showme')) {
 				$data  = $title;
 				$title = 'Show Me Data';
 			} ?>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading" data-collapse="1">
 						<h3 class="panel-title"><?php

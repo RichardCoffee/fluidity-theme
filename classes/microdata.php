@@ -296,7 +296,7 @@ class TCC_Microdata {
 	public function get_the_title( $title, $id ) {
 		if ( ! ( strpos( $title, 'itemprop' ) === false ) )               return $title;  // itemprop already present
 		if ( ! ( strpos( $title, 'sr-only' ) === false ) )                return $title;  // bootstrap css
-		if ( ! ( strpos( $title, 'screen-reader-text') === false ) )      return $title;  // underscore theme
+		if ( ! ( strpos( $title, 'screen-reader-text') === false ) )      return $title;  // wordpress css
 		if ( $this->called_by( [ 'wp_title', '_wp_render_title_tag' ] ) ) return $title;  // string already processed
 		return '<span itemprop="headline">' . esc_html( $title ) . '</span>';
 	}

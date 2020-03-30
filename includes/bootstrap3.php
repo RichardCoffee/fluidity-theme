@@ -11,59 +11,57 @@
  */
 if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
 	function fluidity_enqueue_bootstrap() {
-		// bootstrap version being loaded
-		$version  = '4.4.1';
-		$basepath = "vendor/bootstrap-$version";
-/*		// load component arrays
+		# bootstrap version being loaded
+		$version    = '3.3.7';
+		# load component arrays
 		$resets     = fluidity_check_bootstrap( 'resets' );
 		$core       = fluidity_check_bootstrap( 'core' );
 		$components = fluidity_check_bootstrap( 'components' );
 		$javascript = fluidity_check_bootstrap( 'javascript' );
 		$utility    = fluidity_check_bootstrap( 'utility' );
-		// check for possibility of loading aggregate files
-		$load_resets     = ( count( $resets )     === 3  ) ? true : false; // load reset and dependencies
-		$load_core       = ( count( $core )       === 7  ) ? true : false; // load all of core
-		$load_components = ( count( $components ) === 21 ) ? true : false; // load all components not requiring javascript
-		$load_javascript = ( count( $javascript ) === 4  ) ? true : false; // load all components requiring javascript
-		$load_utility    = ( count( $utility )    === 2  ) ? true : false; // load utility components
-		$load_bootstrap  = ( $load_resets && $load_core && $load_components && $load_javascript && $load_utility ) ? true : false; // load all of bootstrap */
-		$load_bootstrap = true;
+		# check for possibility of loading aggregate files
+		$load_resets     = ( count( $resets )     === 3  ) ? true : false;	#	load reset and dependencies
+		$load_core       = ( count( $core )       === 7  ) ? true : false;	#	load all of core
+		$load_components = ( count( $components ) === 21 ) ? true : false;	#	load all components not requiring javascript
+		$load_javascript = ( count( $javascript ) === 4  ) ? true : false;	#	load all components requiring javascript
+		$load_utility    = ( count( $utility )    === 2  ) ? true : false;	#	load utility components
+		$load_bootstrap  = ( $load_resets && $load_core && $load_components && $load_javascript && $load_utility ) ? true : false;	#	load all of bootstrap
 		if ( $load_bootstrap ) {
-			// load all of bootstrap
-			wp_enqueue_style( 'bootstrap.css', get_theme_file_uri( "$basepath/css/bootstrap.min.css" ), null, $version );
-/*		} else {
+			# load all of bootstrap
+			wp_enqueue_style( 'bootstrap.css', get_theme_file_uri( 'css/bootstrap.min.css' ), null, $version );
+		} else {
 			$bootstrap = array();
-			// load reset css
+			# load reset css
 			if ( $load_resets ) {
 				wp_enqueue_style( 'bootstrap-resets', get_theme_file_uri( 'css/bootstrap/bootstrap-resets.min.css' ), null, $version );
 			} else {
 				$bootstrap = array_merge( $bootstrap, $resets );
 			}
-			// load core css
+			# load core css
 			if ( $load_core ) {
 				wp_enqueue_style( 'bootstrap-core', get_theme_file_uri( 'css/bootstrap/bootstrap-core.min.css' ), null, $version );
 			} else {
 				$bootstrap = array_merge( $bootstrap, $core );
 			}
-			// load components css
+			# load components css
 			if ( $load_components ) {
 				wp_enqueue_style( 'bootstrap-components', get_theme_file_uri( 'css/bootstrap/bootstrap-components.min.css' ), null, $version );
 			} else {
 				$bootstrap = array_merge( $bootstrap, $components );
 			}
-			// load javascript css
+			# load javascript css
 			if ( $load_javascript ) {
 				wp_enqueue_style( 'bootstrap-javascript', get_theme_file_uri( 'css/bootstrap/bootstrap-javascript.min.css' ), null, $version );
 			} else {
 				$bootstrap = array_merge( $bootstrap, $javascript );
 			}
-			// load utility css
+			# load utility css
 			if ( $load_utility ) {
 				wp_enqueue_style( 'bootstrap-utility', get_theme_file_uri( 'css/bootstrap/bootstrap-utility.min.css' ), null, $version );
 			} else {
 				$bootstrap = array_merge( $bootstrap, $utility );
 			}
-			// load individual components
+			# load individual components
 			if ( $bootstrap ) {
 				foreach( $bootstrap as $component ) {
 					wp_enqueue_style( "bootstrap-$component", get_theme_file_uri( "css/bootstrap/bootstrap-{$component}.min.css" ), null, $version );
@@ -71,11 +69,11 @@ if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
 			} else {
 				wp_enqueue_style( 'bootstrap.css', get_theme_file_uri( 'css/bootstrap.min.css' ), null, $version );
 				$load_bootstrap = true;
-			} //*/
+			}
 		}
-		// load javascript file
+		# load javascript file
 		if ( $load_bootstrap || $load_javascript || $javascript ) {
-			wp_enqueue_script( 'bootstrap.js', get_theme_file_uri( "$basepath/js/bootstrap.min.js" ), array( 'jquery' ), $version, true );
+			wp_enqueue_script( 'bootstrap.js', get_theme_file_uri( 'js/bootstrap.min.js' ), array( 'jquery' ), $version, true );
 		}
 	}
 }
@@ -87,7 +85,7 @@ if ( ! function_exists( 'fluidity_enqueue_bootstrap' ) ) {
  * @param string $section which bootstrap section to check
  * @return array which components to load
  */
-if ( ! function_exists( 'fluidity_check_bootstrap' ) ) {
+if ( ! function_exists( 'fluidity_register_bootstrap' ) ) {
 	function fluidity_check_bootstrap( $section ) {
 		$return  = array();
 		$options = tcc_bootstrap( $section );
@@ -99,21 +97,5 @@ if ( ! function_exists( 'fluidity_check_bootstrap' ) ) {
 			}
 		}
 		return $return;
-	}
-}
-
-/**
- *  Get bootstrap options.
- *
- * @since 20200330
- * @param string $option  The name of the option desired.
- * @return array          The option values, or an empty array.
- */
-if ( ! function_exists( 'fluidity_bootstrap' ) ) {
-	function fluidity_bootstrap( $option ) {
-		static $data;
-		if ( empty( $data ) ) $data = get_theme_mod( 'bootstrap', array() );
-		if ( isset( $data[ $option ] ) ) return $data[ $option ];
-		return [];
 	}
 }

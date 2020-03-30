@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 $page = get_page_slug();
 $menu = apply_filters( 'fluid_menu', 'primary', $page ); # defaults: primary, header or footer
-$msys = apply_filters( 'fluid_menu_system', 'underscore' );
+$msys = apply_filters( 'fluid_menu_system', 'bootstrap' );
 
 do_action( 'fluid_before_menu', $page );
 
@@ -44,7 +44,7 @@ if ( has_nav_menu( $menu ) ) {
 		fluid()->tag( 'nav', $nav_attrs ); ?>
 
 			<div class="navbar-header"><?php
-					fluid()->tag( 'button', $button_attrs ); ?>
+				fluid()->tag( 'button', $button_attrs ); ?>
 					<span class="sr-only"><?php
 						esc_html_e( 'Toggle navigation', 'tcc-fluid' ); ?>
 					</span><?php
@@ -82,7 +82,7 @@ if ( has_nav_menu( $menu ) ) {
 				<span class="sr-only"><?php
 					esc_html_e( 'Toggle navigation', 'tcc-fluid' ); ?>
 				</span><?php
-			fluid()->fawe( 'fa-bars' ); ?>
+				fluid()->fawe( 'fa-bars' ); ?>
 			</button><?php
 
 			$args = array(

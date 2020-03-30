@@ -52,7 +52,7 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 			'after_title'   => $after_title,
 			'after_widget'  => $after_widget,
 		);
-		$f2_before = "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'><div class='panel panel-fluidity'><div class='panel-body back-fluidity'>";
+		$f2_before = "<div class='col-12 col-md-6'><div class='panel panel-fluidity'><div class='panel-body back-fluidity'>";
 		$sidebars['two'] = array(
 			'name'          => esc_html__('Horizontal Panels (2 col)','tcc-fluid'),
 			'id'            => 'footer2',
@@ -65,7 +65,7 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 		$sidebars['three'] = array(
 			'name'          => esc_html__('Horizontal Panels (3 col)','tcc-fluid'),
 			'id'            => 'three_column',
-			'before_widget' => "<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>$before_widget",
+			'before_widget' => "<div class='col-12 col-md-4'>$before_widget",
 			'before_title'  => $before_title,
 			'after_title'   => $after_title,
 			'after_widget'  => "$after_widget</div>",
@@ -74,7 +74,7 @@ if ( ! function_exists( 'fluidity_register_sidebars' ) ) {
 		$sidebars['four'] = array(
 			'name'          => esc_html__('Horizontal Panels (4 col)','tcc-fluid'),
 			'id'            => 'footer4',
-			'before_widget' => "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>$before_widget",
+			'before_widget' => "<div class='col-12 col-md-6 col-lg-3'>$before_widget",
 			'before_title'  => $before_title,
 			'after_title'   => $after_title,
 			'after_widget'  => "$after_widget</div>",
@@ -159,7 +159,7 @@ if (!function_exists('fluidity_sidebar_layout')) {
       $posi = ($side=='right') ? 'pull-right' : '';
       $posi = (defined('TCC_LEFT_SIDEBAR')) ? '' : $posi;
       $posi = (defined('TCC_RIGHT_SIDEBAR')) ? 'pull-right' : $posi;
-      $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e $posi"; ?>
+      $sidebar_class = "col-12 col-md-4 margint1e $posi"; ?>
       <div class="<?php e_esc_attr( $sidebar_class ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
         get_template_part('sidebar',$sidebar); ?>
       </div><?php

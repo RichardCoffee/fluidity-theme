@@ -174,19 +174,6 @@ class TCC_Theme_Customizer {
 				),
 			),
 		);
-/*		if ( WP_DEBUG ) {
-			$controls['menu']    = array(
-				'default'     => 'underscore',
-				'label'       => __( 'Menu', 'tcc-fluid' ),
-				'description' => __( 'Which menuing system do you want to use?', 'tcc-fluid' ),
-				'title'       => __( '', 'tcc-fluid' ),
-				'render'      => 'radio',
-				'choices'     => array(
-					'underscore' => __( 'Underscores - WordPress starter theme', 'tcc-fluid' ),
-					'bootstrap'  => __( 'Bootstrap - web site front-end framework', 'tcc-fluid' ),
-				),
-			);
-		} //*/
 		$options['behavior'] = array(
 			'section'  => $section,
 			'controls' => $controls

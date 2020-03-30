@@ -3,8 +3,8 @@
 
 class TCC_Theme_Sidebar {
 
-	private $main_css    = 'col-lg-9 col-md-9 col-sm-12 col-xs-12';
-	private $sidebar_css = 'col-lg-3 col-md-3 col-sm-12 col-xs-12';
+	private $main_css    = 'col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9';
+	private $sidebar_css = 'col-12 col-sm-12 col-md-12 col-lg-3 col-lx-3';
 
 	protected $action     = 'fluid_before_main';
 	protected $mobile     = 'fluid_after_main';

@@ -3,21 +3,21 @@
 if ( ! function_exists( 'tcc_enqueue' ) ) {
 	function tcc_enqueue() {
 		do_action( 'tcc_pre_enqueue' );
-		#  register scripts
+		//  register scripts
 		fluidity_register_fontawesome();
 		fluidity_register_color_scheme();
 		fluidity_register_css_js();
-		#  load stylesheets
+		//  load stylesheets
 		wp_enqueue_style( 'tcc-fawe' );   #  font-awesome needs to be loaded before bootstrap, due to css conflict (sr-only)
 		if ( tcc_option( 'active', 'social', 'no' ) === 'yes' ) {
 			wp_enqueue_style( 'fa-social' );
 		}
 		fluidity_enqueue_bootstrap();
 		do_action( 'tcc_during_enqueue' );
-		#  load javascript
-		if ( apply_filters( 'fluid_menu_system', 'underscore' ) === 'underscore' ) {
-			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), array(), '20151215', true );
-		}
+		//  load javascript
+#		if ( apply_filters( 'fluid_menu_system', 'underscore' ) === 'underscore' ) {
+#			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), array(), '20151215', true );
+#		}
 		wp_enqueue_script( 'tcc-skiplink' );
 		if ( ( get_theme_mod( 'widgyt_collapse', 'perm' ) !== 'perm' ) || is_404() ) {
 			wp_enqueue_script( 'tcc-collapse' );
@@ -25,7 +25,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );  #  enable threaded comments
 		}
-		// experimental
+		//  experimental
 		$hdr_state = tcc_layout( 'header', 'static' );
 		if ( $hdr_state === 'fixed' ) {
 			wp_enqueue_script( 'tcc-fixed' );

@@ -224,8 +224,8 @@ if ( ! function_exists( 'get_page_slug' ) ) {
 						$slug = 'bbpress-page';
 					} else if ( is_customize_preview() ) {
 					} else {
-						$current_url = wp_parse_url( add_query_arg( array( ) ) );
-						fluid()->log( "url: $current_url", 'no queried object available' );
+						$url_args = wp_parse_url( add_query_arg( array( ) ) );
+						fluid()->log( 'current url arguments', $url_args, 'no queried object available' );
 					}
 				}
 			}

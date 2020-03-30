@@ -29,7 +29,7 @@ $users = get_users( $args );
 if ( $users ) {
 	global $wp_roles; ?>
 	<div class="article"><?php
-		$cols = apply_filters( 'fluid_about_us_cols', [ 'lg' => 4, 'md' => 4, 'sm' => 6, 'xs' => 12 ] );
+		$cols = apply_filters( 'fluid_about_us_cols', [ 'xl' => 4, 'lg' => 4, 'md' => 6, 'sm' => 12, 'xs' => 12 ] );
 		clearfix()->initialize( $cols );
 		foreach( $users as $user ) { ?>
 			<div class="<?php clearfix()->div_class(); ?>">

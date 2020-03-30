@@ -25,7 +25,7 @@ add_filter( 'fluid_register_sidebars', function( $sidebars ) {
 		array(
 			'name'          => __('Home Page Top Row Sidebar','tcc-theme'),
 			'id'            => 'home_page_top_row',
-			'before_widget' => '<div class="col-md-4 hidden-sm hidden-xs"><div class="column-widget">',
+			'before_widget' => '<div class="hidden-md col-lg-4"><div class="column-widget">',
 			'after_widget'  => '</div></div>',
 			'before_title'  => '<div><h3>',
 			'after_title'   => '</h3></div>',
@@ -41,7 +41,7 @@ add_filter( 'fluid_register_sidebars', function( $sidebars ) {
 		array(
 			'name'          => __('Footer Row Sidebar','tcc-theme'),
 			'id'            => 'footer_row_sidebar',
-			'before_widget' => '<div class="col-md-4 hidden-sm hidden-xs">',
+			'before_widget' => '<div class="hidden-md col-lg-4">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div><h3>',
 			'after_title'   => '</h3></div>'
