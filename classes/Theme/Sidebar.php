@@ -1,23 +1,88 @@
 <?php
+/**
+ *  Handles sidebar positioning for Fluidity.
+ *
+ * @package Fluidity
+ * @subpackage Theme
+ * @since 20170304
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2017, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Theme/Sidebar.php
+ */
+defined( 'ABSPATH' ) || exit;
 
 
 class TCC_Theme_Sidebar {
 
-	private $main_css    = 'col-lg-9 col-md-9 col-sm-12 col-xs-12';
+	/**
+	 * @since 20170305
+	 * @var string  CSS for main container.
+	 */
+	private $main_css = 'col-lg-9 col-md-9 col-sm-12 col-xs-12';
+	/**
+	 * @since 20170305
+	 * @var string  CSS for sidebar container.
+	 */
 	private $sidebar_css = 'col-lg-3 col-md-3 col-sm-12 col-xs-12';
 
-	protected $action     = 'fluid_before_main';
-	protected $mobile     = 'fluid_after_main';
-	protected $css        =  array();
+	/**
+	 * @since 20180416
+	 * @var string  Desired default location of sidebar.
+	 */
+	protected $action = 'fluid_before_main';
+	/**
+	 * @since 20180416
+	 * @var string  Desired location of sidebar for mobile.
+	 */
+	protected $mobile = 'fluid_after_main';
+	/**
+	 * @since 20180416
+	 * @var array  Additional CSS classes for sidebar container.
+	 */
+	protected $css =  array();
+	/**
+	 * @since 20180416
+	 * @var bool  Indicates a horizontal sidebar.
+	 */
 	protected $horizontal =  false;
-	protected $position   = 'none';
-	protected $root       = 'sidebar';
-	protected $sidebar    = 'standard';
-	protected $fluid      = 'static';
+	/**
+	 * @since 20180416
+	 * @var string  Controls Fluidity positioning of main sidebar.
+	 */
+	protected $position = 'none';
+	/**
+	 * @since 20180416
+	 * @var string  Root slug for template part.
+	 */
+	protected $root = 'sidebar';
+	/**
+	 * @since 20170304
+	 * @var string  Secondary slug for template part.
+	 */
+	protected $sidebar = 'standard';
+	/**
+	 * @since 20180417
+	 * @var string  Theme option for fluidity of sidebar.
+	 */
+	protected $fluid = 'static';
+	/**
+	 * @since 20180416
+	 * @var string  Sidebar slug.
+	 */
 	protected $slug;
 
+	/**
+	 * @since 20180416
+	 * @link https://github.com/RichardCoffee/custom-post-type/blob/master/classes/Trait/ParseArgs.php
+	 */
 	use TCC_Trait_ParseArgs;
 
+	/**
+	 *  Constructor method.
+	 *
+	 * @since 20170304
+	 * @param array  Control the class options.
+	 */
 	public function __construct( $args = array() ) {
 		$this->position = $this->positioning();
 		if ( defined( 'FLUID_NO_SIDEBAR' ) ) {
@@ -36,7 +101,7 @@ class TCC_Theme_Sidebar {
 			if ( ! $this->horizontal ) {
 				$this->check_mobile();
 			}
-			if ( ! empty( $this->action ) ) {
+			if ( ( ! empty( $this->action ) ) && is_active_sidebar( $this->sidebar ) ) {
 				add_action( 'tcc_custom_css', [ $this, 'fluid_style' ] );
 				add_action( $this->action,    [ $this, 'show_sidebar' ] );
 			}
@@ -44,10 +109,21 @@ class TCC_Theme_Sidebar {
 		}
 	}
 
+	/**
+	 *  Can be queried to see if the sidebar is being displayed.
+	 *
+	 * @since 20190715
+	 * @return bool  Return whether the main sidebar is being displayed.
+	 */
 	public function is_sidebar_active() {
 		return ! ( $this->position === 'none' );
 	}
 
+	/**
+	 *  Checks for mobile devices.
+	 *
+	 * @since 20170305
+	 */
 	private function check_mobile() {
 		if ( fluid()->is_mobile() ) {
 			$mobile = get_theme_mod( 'sidebar_mobile', 'bottom' );
@@ -61,6 +137,11 @@ class TCC_Theme_Sidebar {
 		}
 	}
 
+	/**
+	 *  Add CSS for fluid sidebar on desktop.
+	 *
+	 * @since 20180810
+	 */
 	public function fluid_style() {
 		if ( ( ! fluid()->is_mobile() ) && ( ! ( $this->fluid === 'static' ) ) ) {
 			echo "\n#commentform input.form-control,\n#commentform textarea.form-control {\n\twidth: 73%;\n}\n";
@@ -69,15 +150,26 @@ class TCC_Theme_Sidebar {
 		}
 	}
 
+	/**
+	 *  Preliminary check for the sidebar.
+	 *
+	 * @since 20170305
+	 * @return string  Initial sidebar position.
+	 */
 	protected function positioning() {
 		$side = get_theme_mod( 'sidebar_position', 'right' );
-		if ( defined( 'FLUID_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
-		if ( defined( 'FLUID_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
-		if ( is_attachment() )                { $side = 'none';  }
+		if ( defined( 'FLUID_LEFT_SIDEBAR'  ) ) $side = 'left';
+		if ( defined( 'FLUID_RIGHT_SIDEBAR' ) ) $side = 'right';
+		if ( is_attachment() )                  $side = 'none';
 		$side = apply_filters( 'fluid_theme_sidebar_positioning', $side );
 		return $side;
 	}
 
+	/**
+	 *  Displays the sidebar.
+	 *
+	 * @since 20180416
+	 */
 	public function show_sidebar() {
 		$attrs = array(
 			'class' => $this->build_class(),
@@ -89,6 +181,12 @@ class TCC_Theme_Sidebar {
 		</div><?php
 	}
 
+	/**
+	 *  Create array containing additional CSS for the sidebar container.
+	 *
+	 * @since 20180416
+	 * @return array  CSS for the sidebar.
+	 */
 	protected function build_class() {
 		$css = array(
 			'noprint',
@@ -111,6 +209,7 @@ class TCC_Theme_Sidebar {
 	/**
 	 * @brief Provides for css applied to main content tag.
 	 *
+	 * @since 20180501
 	 * @param string $page
 	 * @param string $css initial css class(es)
 	 * @return string css classes to be applied
@@ -141,7 +240,7 @@ class TCC_Theme_Sidebar {
 	 */
 	protected function adjust_content_width() {
 		global $content_width;
-		$content_width = apply_filters( 'fluid_sidebar_content_width', 760 );
+		$content_width = apply_filters( 'fluid_sidebar_content_width', 760, $content_width );
 	}
 
 
