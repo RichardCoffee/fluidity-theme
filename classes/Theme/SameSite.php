@@ -16,8 +16,8 @@ class TCC_Theme_SameSite {
 	public function __construct() {
 		if ( version_compare( PHP_VERSION, '7.3.0' ) >= 0 ) {
 			add_filter( 'secure_logged_in_cookie', [ $this, 'secure_logged_in_cookie' ], 10, 3 );
-			add_action( 'set_auth_cookie',         [ $this, 'set_auth_cookie' ],         10, 6 );
-			add_action( 'set_logged_in_cookie',    [ $this, 'set_logged_in_cookie' ],    10, 6 );
+			add_action( 'set_auth_cookie',         [ $this, 'set_auth_cookie' ],         10, 2 );
+			add_action( 'set_logged_in_cookie',    [ $this, 'set_logged_in_cookie' ],    10, 1 );
 			add_filter( 'send_auth_cookies',       [ $this, 'send_auth_cookies' ] );
 		}
 	}
@@ -28,13 +28,13 @@ class TCC_Theme_SameSite {
 		return $secure_logged_in_cookie;
 	}
 
-	public function set_auth_cookie( $auth_cookie, $expire, $expiration, $user_id, $scheme, $token ) {
+	public function set_auth_cookie( $auth_cookie, $expire ) {
 		$this->auth_cookie = $auth_cookie;
 		$this->expire = $expire;
 		return $auth_cookie;
 	}
 
-	public function set_logged_in_cookie( $logged_in_cookie, $expire, $expiration, $user_id, $status, $token ) {
+	public function set_logged_in_cookie( $logged_in_cookie ) {
 		$this->logged_in_cookie = $logged_in_cookie;
 		return $logged_in_cookie;
 	}
