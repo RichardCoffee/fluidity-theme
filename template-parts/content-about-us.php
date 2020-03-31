@@ -49,7 +49,7 @@ if ( $users ) {
 					if ( function_exists( 'is_bbpress' ) ) { ?>
 						<div class="text-center"><?php
 							printf(
-								esc_html_x( 'Support Forums %s', 'user bbpress forum role', 'tcc-fluid' ),
+								esc_html_x( 'Support Forums %s', 'user role in bbpress forum', 'tcc-fluid' ),
 								bbp_get_user_display_role( $user->ID )
 							); ?>
 						</div><?php
