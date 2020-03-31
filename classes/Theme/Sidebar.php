@@ -20,7 +20,7 @@ class TCC_Theme_Sidebar {
 
 	public function __construct( $args = array() ) {
 		$this->position = $this->positioning();
-		if ( defined( 'TCC_NO_SIDEBAR' ) ) {
+		if ( defined( 'FLUID_NO_SIDEBAR' ) ) {
 			$this->position = 'none';
 		}
 		if ( ! ( $this->position === 'none' ) ) {
@@ -30,7 +30,7 @@ class TCC_Theme_Sidebar {
 			$this->css     = ( $this->fluid === 'static' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
 			$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 			$this->parse_args( $args );
-			if ( defined( 'TCC_LEFT_SIDEBAR'  ) || defined( 'TCC_RIGHT_SIDEBAR' ) ) {
+			if ( defined( 'FLUID_LEFT_SIDEBAR'  ) || defined( 'FLUID_RIGHT_SIDEBAR' ) ) {
 				$this->fluid = 'static';
 			}
 			if ( ! $this->horizontal ) {
@@ -71,8 +71,8 @@ class TCC_Theme_Sidebar {
 
 	protected function positioning() {
 		$side = get_theme_mod( 'sidebar_position', 'right' );
-		if ( defined( 'TCC_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
-		if ( defined( 'TCC_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
+		if ( defined( 'FLUID_LEFT_SIDEBAR'  ) ) { $side = 'left';  }
+		if ( defined( 'FLUID_RIGHT_SIDEBAR' ) ) { $side = 'right'; }
 		if ( is_attachment() )                { $side = 'none';  }
 		$side = apply_filters( 'fluid_theme_sidebar_positioning', $side );
 		return $side;

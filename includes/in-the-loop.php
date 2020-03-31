@@ -407,17 +407,39 @@ if ( ! function_exists( 'fluid_thumbnail' ) ) {
 		if ( ! is_page() || ( tcc_design( 'paral', 'no' ) === 'no' ) ) {
 			if ( has_post_thumbnail() ) { ?>
 				<div class="featured-image"><?php
+#					add_filter( 'wp_get_attachment_image_attributes', 'fluid_thumbnail_filter' );
 					$attrs = array(
 						'alt'   => fluid_title(),
 						'class' => $class
 					);
 					the_post_thumbnail( $size, $attrs ); ?>
 				</div><?php
+/*
+$html = get_the_post_thumbnail( get_the_ID(), $size, $attrs );
+$obj = fluid()->get_html_object( $html );
+foreach( [ 'srcset', 'sizes', 'width', 'height' ] as $attr ) {
+if ( array_key_exists( $attr, $obj->attrs ) ) unset( $obj->attrs[ $attr ] );
+}
+$image = fluid()->get_tag( $obj->tag, $obj->attrs );
+fluid()->element( 'div', [ 'class' => 'featured-image' ], $image, true );
+*/
 			}
 		}
 	}
 	add_action( 'fluid_content_header', 'fluid_thumbnail', 20 );
 }
+/*
+if ( ! function_exists( 'fluid_thumbnail_filter' ) ) {
+	function fluid_thumbnail_filter( $attrs ) {
+		remove_filter( 'wp_get_attachment_image_attributes', 'fluid_thumbnail_filter' );
+		foreach( $attrs as $attr => $value ) {
+			if ( in_array( $attr, [ 'sizes', 'width', 'height' ] ) ) {
+				unset( $attrs[ $attr ] );
+			}
+		}
+		return $attrs;
+	}
+} //*/
 
 /**
  *  Restrict the length of the title.

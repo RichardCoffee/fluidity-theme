@@ -100,23 +100,23 @@ if (!function_exists('fluidity_get_sidebar')) {
   }
 }
 
-if (!function_exists('fluidity_load_sidebar')) {
-  function fluidity_load_sidebar($args,$force=false) {
-    if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
-    $sidebars = ($force) ? (array)$args : array_merge((array)$args,array('standard','home'));
-    $sidebars = apply_filters( 'fluidity_load_sidebar', $sidebars );
-    $sidebars = apply_filters( 'fluidity_load_sidebar_' . get_page_slug(), $sidebars );
-    $status   = tcc_settings( 'where', 'off' );
-    foreach($sidebars as $sidebar) {
-      if ( is_active_sidebar( $sidebar ) ) {
-        if ($dyn=dynamic_sidebar($sidebar)) {
-          #if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
-          return true;
-        } #else if ( $status === 'on' ) { echo "<p>$sidebar non-dynamic</p>"; }
-      } #else if ( $status === 'on' ) {   echo "<p>$sidebar not active</p>";  }
-    }
-    return $force;
-  }
+if ( ! function_exists( 'fluidity_load_sidebar' ) ) {
+	function fluidity_load_sidebar( $args, $force = false ) {
+		if ( defined( 'FLUID_NO_SIDEBAR' ) ) return;  //  define in page template file
+		$sidebars = ( $force ) ? (array)$args : array_merge( (array)$args, array( 'standard', 'home' ) );
+		$sidebars = apply_filters( 'fluidity_load_sidebar', $sidebars );
+		$sidebars = apply_filters( 'fluidity_load_sidebar_' . get_page_slug(), $sidebars );
+		$status   = tcc_settings( 'where', 'off' );
+		foreach( $sidebars as $sidebar ) {
+			if ( is_active_sidebar( $sidebar ) ) {
+				if ( $dyn = dynamic_sidebar( $sidebar ) ) {
+#					if ( $status === 'on' ) { echo "<p>$sidebar active</p>"; }
+					return true;
+				} #else if ( $status === 'on' ) { echo "<p>$sidebar non-dynamic</p>"; }
+			} #else if ( $status === 'on' ) {   echo "<p>$sidebar not active</p>";  }
+		}
+	return $force;
+	}
 }
 
 if ( ! function_exists( 'fluidity_post_sidebar' ) ) {
@@ -153,12 +153,12 @@ if (!function_exists('fluidity_sidebar_parameter')) {
 if (!function_exists('fluidity_sidebar_layout')) {
 	#	DEPRECATED - do not use
   function fluidity_sidebar_layout($sidebar='standard',$side='') {
-    if (defined('TCC_NO_SIDEBAR')) { return; }  #  define in page template file
+    if (defined('FLUID_NO_SIDEBAR')) { return; }  #  define in page template file
     $side = ( $side ) ? $side : get_theme_mod( 'sidebar_position', 'right' );
     if ($side!=='none') {
       $posi = ($side=='right') ? 'pull-right' : '';
-      $posi = (defined('TCC_LEFT_SIDEBAR')) ? '' : $posi;
-      $posi = (defined('TCC_RIGHT_SIDEBAR')) ? 'pull-right' : $posi;
+      $posi = (defined('FLUID_LEFT_SIDEBAR')) ? '' : $posi;
+      $posi = (defined('FLUID_RIGHT_SIDEBAR')) ? 'pull-right' : $posi;
       $sidebar_class = "col-lg-4 col-md-4 col-sm-12 col-xs-12 margint1e $posi"; ?>
       <div class="<?php e_esc_attr( $sidebar_class ); ?>" <?php microdata()->WPSideBar(); ?> role="complementary"><?php
         get_template_part('sidebar',$sidebar); ?>
@@ -176,10 +176,10 @@ if (!function_exists('fluidity_sidebar_layout')) {
 if ( ! function_exists( 'fluidity_sidebar' ) ) {
 	#	DEPRECATED - do not use
 	function fluidity_sidebar( $css = '', $sidebar = 'standard' ) {
-		if ( defined( 'TCC_NO_SIDEBAR' ) ) { return; }  #  define in page template file
+		if ( defined( 'FLUID_NO_SIDEBAR' ) ) { return; }  #  define in page template file
 		$side = get_theme_mod( 'sidebar_position', 'right' );
-		defined( 'TCC_LEFT_SIDEBAR' )  or ( $side = 'left' );
-		defined( 'TCC_RIGHT_SIDEBAR' ) or ( $side = 'right' );
+		defined( 'FLUID_LEFT_SIDEBAR' )  or ( $side = 'left' );
+		defined( 'FLUID_RIGHT_SIDEBAR' ) or ( $side = 'right' );
 		if ( $side !== 'none' ) {
 			$slug = get_page_slug();
 			$css .= ( $side === 'right' ) ? ' pull-right' : '';

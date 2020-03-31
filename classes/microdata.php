@@ -173,7 +173,7 @@ class TCC_Microdata {
 		add_filter('get_the_date',                       [ $this, 'get_the_date' ],                       $pri, 3 );
 		add_filter('get_the_modified_date',              [ $this, 'get_the_modified_date' ],              $pri, 3 );
 		add_filter('get_the_title',                      [ $this, 'get_the_title' ],                      $pri, 2 );
-		add_filter('post_thumbnail_html',                [ $this, 'post_thumbnail_html' ],                $pri );
+#		add_filter('post_thumbnail_html',                [ $this, 'post_thumbnail_html' ],                $pri ); // Superceded by wp_get_attachment_image_attributes filter.
 		add_filter('post_type_archive_title',            [ $this, 'get_the_title' ],                      $pri, 2 );
 		add_filter('single_cat_title',                   [ $this, 'single_term_title' ],                  $pri );
 		add_filter('single_post_title',                  [ $this, 'get_the_title' ],                      $pri, 2 );
