@@ -88,11 +88,12 @@ class TCC_Theme_Sidebar {
 		if ( defined( 'FLUID_NO_SIDEBAR' ) ) {
 			$this->position = 'none';
 		}
+		$this->sidebar  = get_page_slug();
+		$this->position = ( is_active_sidebar( $this->sidebar ) ) ? $this->position : 'none';
 		if ( ! ( $this->position === 'none' ) ) {
-			$this->sidebar = get_page_slug();
-			$this->slug    = $this->sidebar;
-			$this->fluid   = get_theme_mod( 'sidebar_fluidity', 'static' );
-			$this->css     = ( $this->fluid === 'static' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
+			$this->slug  = $this->sidebar;
+			$this->fluid = get_theme_mod( 'sidebar_fluidity', 'static' );
+			$this->css   = ( $this->fluid === 'static' ) ? tcc_layout( 'sidebar_css', $this->sidebar_css ) : '';
 			$args = apply_filters( 'fluid_theme_sidebar_args', $args );
 			$this->parse_args( $args );
 			if ( defined( 'FLUID_LEFT_SIDEBAR'  ) || defined( 'FLUID_RIGHT_SIDEBAR' ) ) {
