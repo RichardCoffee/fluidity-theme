@@ -202,7 +202,7 @@ abstract class TCC_NavWalker_Dynamic {
 	protected function add_item( $item ) {
 		$slug = $item['menu'];
 		$this->insert->menus[ $slug ] = $slug;
-		$this->insert->menu_items[]   = $item;
+		$this->insert->items[] = $item;
 	}
 
 	/**
