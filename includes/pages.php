@@ -170,7 +170,8 @@ if ( ! function_exists( 'fluid_title_placement' ) ) {
 if ( ! function_exists( 'get_page_id' ) ) {
 	function get_page_id( $slug ) {
 		global $wpdb;
-		return $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$slug' AND post_type = 'page'" );
+		$prep = $wpdb->prepare( "SELECT ID FROM posts WHERE post_name = %s AND post_type = 'page'", $slug );
+		return $wpdb->get_var( $prep );
 	}
 }
 
