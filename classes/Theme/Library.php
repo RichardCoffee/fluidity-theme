@@ -269,9 +269,8 @@ class TCC_Theme_Library {
 		} else {
 			$value = esc_attr( $value );
 		}
-		if ( empty( $value ) )
-			$value = $default;
-		return apply_filters( 'bbp_get_form_option', $value, $option );
+		if ( empty( $value ) ) $value = $default;
+		return apply_filters( 'bbp_get_form_option', $value, $option, $default, $slug );
 	}
 
 

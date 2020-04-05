@@ -14,7 +14,6 @@
 defined( 'ABSPATH' ) || exit;
 
 
-
 abstract class TCC_NavWalker_Dynamic {
 
 
@@ -72,7 +71,7 @@ abstract class TCC_NavWalker_Dynamic {
 
 	/**
 	 * @since 20180905
-	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Trait/ParseArgs.php
+	 * @link https://github.com/RichardCoffee/custom-post-type/blob/master/classes/Trait/ParseArgs.php
 	 */
 	use TCC_Trait_ParseArgs;
 
@@ -84,7 +83,6 @@ abstract class TCC_NavWalker_Dynamic {
 	 * @uses TCC_Trait_ParseArgs::parse_args()
 	 */
 	public function __construct( $args = array() ) {
-		require_once( FLUIDITY_HOME . 'vendor/custom-menu-items.php' );
 		$this->insert  = TCC_NavWalker_Insert::instance();
 		$this->link    = home_url( '/' );
 		$this->top_id += mt_rand( 1, $this->top_id );
@@ -152,7 +150,7 @@ abstract class TCC_NavWalker_Dynamic {
 	}
 
 	/**
-	 *  Used as a default loop for adding submenu items.
+	 *  Used as a default loop for adding submenu items.  Here as an example.
 	 *
 	 * @since 20180905
 	 * @param array $items  Items to be displayed.  Minimum required indexes are 'count', 'name', and 'path'.  Array should be pre-sorted.
@@ -201,7 +199,9 @@ abstract class TCC_NavWalker_Dynamic {
 	 */
 	protected function add_item( $item ) {
 		$slug = $item['menu'];
-		$this->insert->menus[ $slug ] = $slug;
+		if ( ! array_key_exists( $slug, $this->insert->menus ) ) {
+			$this->insert->menus[ $slug ] = $slug;
+		}
 		$this->insert->items[] = $item;
 	}
 
@@ -209,7 +209,7 @@ abstract class TCC_NavWalker_Dynamic {
 	 *  add css to control the width of the submenu items
 	 *
 	 * @since 20180905
-	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/header.php:fluid_custom_css()
+	 * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/includes/header.php#L35
 	 */
 	public function fluid_custom_css() {
 		$select = "li.menu-item-type-{$this->type} ul.sub-menu";
