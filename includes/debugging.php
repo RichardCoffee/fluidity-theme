@@ -20,9 +20,10 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 	function fluid_wp_headers( $headers ) {
 		fluid()->log_chance( $headers );
 		$defaults = array(
+			'X-Clacks-Overhead'       => 'GNU Terry Pratchett',
 			'X-Content-Type-Options'  => 'nosniff',
-			'Referrer-Policy'  => 'no-referrer',
-			'X-Frame-Options'  => 'DENY', // more restrictive than wordpress default of SAMEORIGIN
+			'Referrer-Policy'         => 'no-referrer',
+			'X-Frame-Options'         => 'DENY', // more restrictive than wordpress default of SAMEORIGIN
 		);
 		if ( is_ssl() ) {
 			$defaults['Strict-Transport-Security'] = 'max-age=' . YEAR_IN_SECONDS . '; includeSubdomains';
