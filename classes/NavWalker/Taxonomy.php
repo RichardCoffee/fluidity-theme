@@ -65,8 +65,10 @@ class TCC_NavWalker_Taxonomy extends TCC_NavWalker_Dynamic {
 		parent::__construct( $args );
 		$terms = $this->get_terms();
 		if ( is_wp_error( $terms ) ) {
-			fluid()->log( $terms );
-			return $terms; //  return?  really?  programmer, where do you think this going to end up?
+			fluid(1)->log( $terms );
+			if ( property_exists( $this, 'abort__construct' ) ) {
+				static::$abort__construct = $terms;
+			}
 		}
 		$this->menu     = apply_filters( 'fluid_navwalker_taxonomy_menu',     $this->menu, $this->taxonomy );
 		$this->position = apply_filters( 'fluid_navwalker_taxonomy_position', $this->position, $this->menu, $this->taxonomy );
