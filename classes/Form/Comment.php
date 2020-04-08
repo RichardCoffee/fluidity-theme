@@ -1,27 +1,51 @@
 <?php
+/**
+ *  The comment form.
+ *
+ * @package Fluidity
+ * @subpackage Comments
+ * @since 20170416
+ * @author Richard Coffee <richard.coffee@rtcenterprises.net>
+ * @copyright Copyright (c) 2018, Richard Coffee
+ * @link https://github.com/RichardCoffee/fluidity-theme/blob/master/classes/Form/Comment.php
+ * @see wp-includes/comment.php
+ * @see wp-includes/comment-template.php
+ * @link http://www.wpbeginner.com/wp-themes/how-to-style-wordpress-comment-form/
+ * @link http://justintadlock.com/archives/2010/07/21/using-the-wordpress-comment-form
+ */
+defined( 'ABSPATH' ) || exit;
 
-#	wp-includes/comment.php
-#	wp-includes/comment-template.php
-#	http://www.wpbeginner.com/wp-themes/how-to-style-wordpress-comment-form/
-#	http://justintadlock.com/archives/2010/07/21/using-the-wordpress-comment-form
 
 class TCC_Form_Comment {
 
 
+#	 * @since 20170416
 	protected $field_cols  = '60';     #	WordPress default: 45
+#	 * @since 20170416
 	protected $field_rows  = '6';      #	WordPress default: 8
+#	 * @since 20170416
 	protected $input_width = '40';     #	WordPress default: 30
+#	 * @since 20170416
 	protected $max_author  = '245';    #	WordPress default: 245
+#	 * @since 20170416
 	protected $max_email   = '100';    #	WordPress default: 100
+#	 * @since 20170416
 	protected $max_url     = '200';    #	WordPress default: 200
+#	 * @since 20170417
 	protected $permalink;
+#	 * @since 20170417
 	protected $post_id     = 0;
+#	 * @since 20170417
 	protected $prefix      = 'fluid';  #	class filter/action prefix
+#	 * @since 20170417
 	protected $require     = false;
+#	 * @since 20170416
 	protected $strings     = array();
 
+#	 * @since 20180314
 	use TCC_Trait_Attributes;
 
+#	 * @since 20170416
 	public function __construct() {
 		$this->set_post_id();
 		$this->author  = $this->author();
@@ -31,7 +55,8 @@ class TCC_Form_Comment {
 		add_filter( 'comment_form_fields',         [ $this, 'move_comment_field_to_bottom' ] );
 	}
 
-	public function set_post_id( $post_id = 0 ) {
+#	 * @since 20170418
+	protected function set_post_id( $post_id = 0 ) {
 		$post_id = intval( $post_id, 10 );
 		if ( ! $post_id ) {
 			$post_id = get_the_ID();
@@ -39,10 +64,12 @@ class TCC_Form_Comment {
 		$this->post_id = $post_id;
 	}
 
+#	 * @since 20170417
 	protected function author() {
 		return array_merge( $this->commenter(), $this->user() );
 	}
 
+#	 * @since 20170417
 	protected function user() {
 		$name = $email = $url = '';
 		$user = wp_get_current_user();
@@ -54,6 +81,7 @@ class TCC_Form_Comment {
 		return compact( 'name', 'email', 'url' );
 	}
 
+#	 * @since 20170417
 	protected function commenter() {
 		$author    = array();
 		$commenter = wp_get_current_commenter();
@@ -69,6 +97,7 @@ class TCC_Form_Comment {
 		return $author;
 	}
 
+#	 * @since 20170416
 	protected function strings() {
 		$strings = array(
 			'author'        => __( 'Your Good Name',                     'tcc-fluid' ),
@@ -104,6 +133,7 @@ class TCC_Form_Comment {
 
 	/**  comment form  **/
 
+#	 * @since 20170416
 	public function comment_form() {
 		$this->permalink = apply_filters( 'the_permalink', get_permalink( $this->post_id ) );
 		$comment_notes_before = ( $this->require ) ? $this->strings['comment_notes_before_req'] : $this->strings['comment_notes_before'];
@@ -120,6 +150,7 @@ class TCC_Form_Comment {
 		comment_form( $args );
 	}
 
+#	 * @since 20170417
 	protected function comment_fields() {
 		$fields = array(
 			'author'  => '<p class="comment-form-author">' . $this->get_tag( 'input', $this->author_attrs() ) . '</p>',
@@ -130,16 +161,13 @@ class TCC_Form_Comment {
 		return $fields;
 	}
 
+#	 * @since 20180805
 	public function comment_form_default_fields( $fields ) {
 		$theme = $this->comment_fields();
-		foreach( $fields as $key => $field ) {
-			if ( isset( $theme[ $key ] ) ) {
-				$fields[ $key ] = $theme[ $key ];
-			}
-		}
-		return $fields;
+		return array_merge( $fields, array_intersect_key( $theme, $fields ) );
 	}
 
+#	 * @since 20170418
 	public function move_comment_field_to_bottom( $fields ) {
 		# move comment textarea to bottom
 		$comment_field = $fields['comment'];
@@ -157,6 +185,7 @@ class TCC_Form_Comment {
 
 	/**  field attributes  **/
 
+#	 * @since 20170416
 	protected function author_attrs() {
 		$attrs = array(
 			'id'    => 'author',
@@ -180,6 +209,7 @@ class TCC_Form_Comment {
 		return apply_filters( "{$this->prefix}_comment_author_attrs", $attrs );
 	}
 
+#	 * @since 20170416
 	protected function email_attrs() {
 		$attrs = array(
 			'id'    => 'email',
@@ -203,6 +233,7 @@ class TCC_Form_Comment {
 		return apply_filters( "{$this->prefix}_comment_email_attrs", $attrs );
 	}
 
+#	 * @since 20170416
 	protected function url_attrs() {
 		$attrs = array(
 			'id'    => 'url',
@@ -219,6 +250,7 @@ class TCC_Form_Comment {
 		return apply_filters( "{$this->prefix}_comment_url_attrs", $attrs );
 	}
 
+#	 * @since 20180521
 	protected function cookies_html() {
 		$attrs = array(
 			'field_id'    => 'wp-comment-cookies-consent',
@@ -233,6 +265,7 @@ class TCC_Form_Comment {
 		return $checkbox->get_checkbox();
 	}
 
+#	 * @since 20170416
 	protected function comment_attrs() {
 		$attrs = array(
 			'id'    => 'comment',
@@ -252,11 +285,13 @@ class TCC_Form_Comment {
 
 	/**  must_log_in  **/
 
+#	 * @since 20170417
 	protected function must_log_in() {
 		$link_html = $this->get_tag( 'a', $this->must_log_in_link_attrs() );
 		return sprintf( $this->strings['must_log_in'], $link_html, '</a>' );
 	}
 
+#	 * @since 20170418
 	protected function must_log_in_link_attrs() {
 		$attrs = array(
 			'href' => wp_login_url( $this->permalink ),
@@ -267,21 +302,26 @@ class TCC_Form_Comment {
 
 	/**  logged_in_as  **/
 
+#	 * @since 20170417
 	protected function logged_in_as() {
 		$profile_link = $this->get_element( 'a', $this->profile_link_attrs(), $this->author['name'] );
 		$logout_link  = $this->get_tag( 'a', $this->logout_link_attrs() );
 		return sprintf( $this->strings['logged_in_as'], $profile_link, $logout_link, '</a>' );
 	}
 
+#	 * @since 20170417
 	protected function profile_link_attrs() {
 		$attrs = array(
 			'href'       => get_edit_user_link(),
 			'aria-label' => $this->strings['aria']['profile'],
 			'title'      => $this->strings['title']['profile'],
+			//  This attribute was added on 20170417, removed on 20180423, added again on 20200408.  Why was it removed?
+			'target'     => 'rtce_edit_profile',
 		);
 		return apply_filters( "{$this->prefix}_comment_profile_link_attrs", $attrs );
 	}
 
+#	 * @since 20170417
 	protected function logout_link_attrs() {
 		$attrs = array(
 			'href'       => wp_logout_url( $this->permalink ),
