@@ -22,10 +22,12 @@ who_am_i(); ?>
 <div id="comments" class="article comments-area"><?php
 	if ( pings_open() ) { ?>
 		<p id="respond">
-			<span id="trackback-link">
-				<a href="<?php trackback_url() ?>" rel="trackback">
-					<?php esc_html_e( 'Get a Trackback link', 'tcc-fluid' ); ?>
-				</a>
+			<span id="trackback-link"><?php
+				$attrs = array(
+					'href' => get_trackback_url(),
+					'rel'  => 'trackback',
+				);
+				fluid()->element( 'a', $attrs, __( 'Get a Trackback link', 'tcc-fluid' ) ); ?>
 			</span>
 		</p><?php
 	}
@@ -47,7 +49,6 @@ who_am_i(); ?>
 			wp_list_comments( $list ); ?>
 		</ul><!-- .comment-list --><?php
 		new TCC_Theme_CommentNav;
-#		fluid_comment_navigation();
 		if ( ! comments_open() ) { ?>
 			<p class="no-comments">
 				<?php esc_html_e('Comments are closed.', 'tcc-fluid' ); ?>
