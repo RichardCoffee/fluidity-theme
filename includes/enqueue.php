@@ -47,6 +47,7 @@ if ( ! function_exists( 'fluidity_register_css_js' ) ) {
 		wp_register_style('fa-social',       get_theme_file_uri('css/fa-social-hover.css'), array('tcc-fawe'), FLUIDITY_VERSION);
 		wp_register_style('fluidity',        get_theme_file_uri( $style ),                  null,              FLUIDITY_VERSION);
 		wp_register_style('tcc-reduce-css',  get_theme_file_uri('css/header-reduce.css'),   null,              FLUIDITY_VERSION);
+		# FIXME:  These js files need to be reduced in number.
 		wp_register_script('tcc-sprintf',    get_theme_file_uri('js/sprintf.js'),       null,                          FLUIDITY_VERSION, true);
 		wp_register_script('tcc-library',    get_theme_file_uri('js/library.js'),       array('jquery','tcc-sprintf'), FLUIDITY_VERSION, true);
 		wp_register_script('tcc-collapse',   get_theme_file_uri('js/collapse.js'),      array('jquery','tcc-library'), FLUIDITY_VERSION, true);
