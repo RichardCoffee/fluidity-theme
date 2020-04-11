@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
 
 function appendElement(elParent,elType,elId,elName,elClass,elIType) {
   if (elParent && elType) {
-    var newEl = document.createElement(elType);
+    let newEl = document.createElement(elType);
     if (newEl) {
       if (elId)    { newEl.id        = elId; }    // jQuery(newEl).attr('id',elId); }
       if (elName)  { newEl.name      = elName; }  // jQuery(newEl).attr('name',elName); }
@@ -42,7 +42,7 @@ function deleteRoutine( deleteNode, stopID, deletion ) {
 }
 
 function findData(myEle,findMe) {
-  var myData = jQuery(myEle).attr(findMe);
+  let myData = jQuery(myEle).attr(findMe);
   while (typeof(myData)=='undefined') { // walk up DOM to find data item
     myEle  = myEle.parentNode;
     myData = jQuery(myEle).attr(findMe);
@@ -56,7 +56,7 @@ function findData(myEle,findMe) {
 
 function insertElement(elParent,elSpot,elType,elId,elName,elClass) {
   if (elParent && elSpot && elType) {
-    var newEl = document.createElement(elType);
+    let newEl = document.createElement(elType);
     if (newEl) {
       if (elId)    { newEl.id        = elId; }    // jQuery(newEl).attr('id',elId); }
       if (elName)  { newEl.name      = elName; }  // jQuery(newEl).attr('name',elName); }

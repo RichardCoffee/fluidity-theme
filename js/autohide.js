@@ -5,7 +5,7 @@
 //  http://ideasandpixels.com/wp_enqueue_script-inline-script-to-load-after-jquery
 //  http://stackoverflow.com/questions/18604022/slide-header-up-if-you-scroll-down-and-vice-versa
 
-var autohide = { bar:   jQuery('.header-hide').outerHeight() // height of header
+const autohide = { bar:   jQuery('.header-hide').outerHeight() // height of header
                  delta: 5,     // action threshold
                  did:   false, // did a scroll occur?
                  doc:   jQuery(document).height(),
@@ -31,8 +31,8 @@ setInterval(function() {
 
 function hasScrolled() {
 console.log(autohide);
-  var curr = Math.max(0,(jQuery(this).scrollTop() - autohide.top));
-  var diff = curr - autohide.last;
+  let curr = Math.max(0,(jQuery(this).scrollTop() - autohide.top));
+  let diff = curr - autohide.last;
 console.log('st: '+curr);
   if(Math.abs(autohide.last - curr) <= autohide.delta) return;
 console.log('last: '+autohide.last+'   bar: '+autohide.bar);

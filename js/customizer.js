@@ -8,11 +8,11 @@
 	 */
 	api.bind('ready', function () {
 
-		for ( var target in fluid_customize ) {
+		for ( let target in fluid_customize ) {
 			// wp-content/themes/twentyseventeen/assets/js/customize-controls.js
 			api( fluid_customize[ target ].control, function( setting ) {
 				api.control( target, function( control ) {
-					var visibility = function() {
+					const visibility = function() {
 						if ( fluid_customize[ control.id ].action === 'hide' ) {
 							if ( fluid_customize[ control.id ].setting === setting.get() ) {
 								control.container.slideUp( 180 );

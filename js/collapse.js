@@ -1,6 +1,6 @@
 // js/collapse.js
 
-var collapse = {
+const collapse = {
 	scroll: false,
 	fixed:  false
 };
@@ -11,10 +11,10 @@ jQuery( document ).ready(function() {
 });
 
 function assignCollapse( elID ) { // Attach toggle event to collapsible areas
-	var el = elID || document.body;
-	var sm = jQuery('.collapse-auto')[0];
+	let el = elID || document.body;
+	let sm = jQuery('.collapse-auto')[0];
 	jQuery( el ).find('.panel-heading').each( function() {
-		var precol = sm || jQuery( this ).attr('data-collapse');
+		let precol = sm || jQuery( this ).attr('data-collapse');
 		if ( precol ) {
 			jQuery( this ).siblings().hide();
 		}
@@ -25,14 +25,14 @@ function assignCollapse( elID ) { // Attach toggle event to collapsible areas
 }
 
 function clickCollapse( el ) {
-	var icon = jQuery( el ).find('.panel-sign');
+	let icon = jQuery( el ).find('.panel-sign');
 	if ( jQuery( el ).next().is(':hidden') ) {
 		if ( icon ) {
 			jQuery( icon ).removeClass( col_icons.plus ).addClass( col_icons.minus );
 		}
 		jQuery( el ).next().show('slow');
 		if ( collapse.scroll || jQuery( el ).find('.scroll-this')[0] ) {
-			var vert = 0;
+			let vert = 0;
 			if ( collapse.fixed ) {
 				vert -= jQuery('.header-fixed').height();
 			} // fixed header
