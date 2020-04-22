@@ -99,6 +99,9 @@ abstract class TCC_Options_Options {
 	 */
 	public function default_form_layout( $layout = array() ) {
 		if ( empty( $this->screen ) ) {
+			if ( empty( $layout ) ) {
+				$layout = apply_filters( "tcc_{$this->base}_options_layout", $this->options_layout() );
+			}
 			$this->screen = array(
 				'describe' => [ $this, 'describe_options' ],
 				'title'    => $this->form_title(),
@@ -125,7 +128,9 @@ abstract class TCC_Options_Options {
 		foreach( $options as $key => $item ) {
 			if ( ! is_array( $item ) ) continue;
 			if ( array_key_exists( 'showhide', $item ) ) {
-				$data['showhide'][] = $item['showhide'];
+				$info = $item['showhide'];
+				$info['render'] = $item['render'];
+				$data['showhide'][] = $info;
 			}
 		}
 		return $data;

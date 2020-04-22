@@ -16,7 +16,7 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 		do_action( 'tcc_during_enqueue' );
 		#  load javascript
 		if ( apply_filters( 'fluid_menu_system', 'underscore' ) === 'underscore' ) {
-			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), array(), '20151215', true );
+			wp_enqueue_script( '_s-navigation', get_theme_file_uri( 'js/navigation.js' ), null, '20151215', true );
 		}
 		wp_enqueue_script( 'tcc-skiplink' );
 		if ( ( get_theme_mod( 'widgyt_collapse', 'perm' ) !== 'perm' ) || is_404() ) {
@@ -44,16 +44,16 @@ if ( ! function_exists( 'tcc_enqueue' ) ) {
 if ( ! function_exists( 'fluidity_register_css_js' ) ) {
 	function fluidity_register_css_js() {
 		$style = ( WP_DEBUG ) ? 'style.css' : 'css/style.min.css';
-		wp_register_style('fa-social',       get_theme_file_uri('css/fa-social-hover.css'), array('tcc-fawe'), FLUIDITY_VERSION);
+		wp_register_style('fa-social',       get_theme_file_uri('css/fa-social-hover.css'), [ 'tcc-fawe' ], FLUIDITY_VERSION);
 		wp_register_style('fluidity',        get_theme_file_uri( $style ),                  null,              FLUIDITY_VERSION);
 		wp_register_style('tcc-reduce-css',  get_theme_file_uri('css/header-reduce.css'),   null,              FLUIDITY_VERSION);
 		# FIXME:  These js files need to be reduced in number.
 		wp_register_script('tcc-sprintf',    get_theme_file_uri('js/sprintf.js'),       null,                          FLUIDITY_VERSION, true);
-		wp_register_script('tcc-library',    get_theme_file_uri('js/library.js'),       array('jquery','tcc-sprintf'), FLUIDITY_VERSION, true);
-		wp_register_script('tcc-collapse',   get_theme_file_uri('js/collapse.js'),      array('jquery','tcc-library'), FLUIDITY_VERSION, true);
-		wp_register_script('tcc-skiplink',   get_theme_file_uri('js/skip-link-focus-fix.js'), array('jquery'),         FLUIDITY_VERSION, true);
-		wp_register_script('tcc-fixed',      get_theme_file_uri('js/header-fixed.js'),  array('jquery'),               FLUIDITY_VERSION, true);
-		wp_register_script('tcc-reduce-js',  get_theme_file_uri('js/header-reduce.js'), array('jquery'),               FLUIDITY_VERSION, true);
+		wp_register_script('tcc-library',    get_theme_file_uri('js/library.js'),       [ 'jquery','tcc-sprintf' ], FLUIDITY_VERSION, true);
+		wp_register_script('tcc-collapse',   get_theme_file_uri('js/collapse.js'),      [ 'jquery','tcc-library' ], FLUIDITY_VERSION, true);
+		wp_register_script('tcc-skiplink',   get_theme_file_uri('js/skip-link-focus-fix.js'), [ 'jquery' ],         FLUIDITY_VERSION, true);
+		wp_register_script('tcc-fixed',      get_theme_file_uri('js/header-fixed.js'),  [ 'jquery' ],               FLUIDITY_VERSION, true);
+		wp_register_script('tcc-reduce-js',  get_theme_file_uri('js/header-reduce.js'), [ 'jquery' ],               FLUIDITY_VERSION, true);
 	}
 }
 
