@@ -23,13 +23,13 @@ class TCC_Theme_Support {
 	 * @link https://www.wpbeginner.com/wp-themes/how-to-set-oembed-max-width-in-wordpress-3-5-with-content_width/
 	 * @var int
 	 */
-	public $content_width =  1600;
+	public $content_width = 1600;
 	/**
 	 * css file name for TinyMCE
 	 *
 	 * @var string
 	 */
-	public $editor_style  = 'css/editor-style.css';
+	public $editor_style = 'css/editor-style.css';
 	/**
 	 * used as prefix for apply_filter calls
 	 *
@@ -45,7 +45,7 @@ class TCC_Theme_Support {
 		add_action( 'after_setup_theme',        [ $this, 'load_theme_support'       ], 100 );
 		add_action( 'init',                     [ $this, 'post_type_support'        ] );
 		add_filter( 'theme_scandir_exclusions', [ $this, 'theme_scandir_exclusions' ] );
-		$this->editor_style = apply_filters( $this->filter_prefix . '_editor_style', $this->editor_style );
+		$this->editor_style = apply_filters( "{$this->filter_prefix}_editor_style", $this->editor_style );
 	}
 
 	/**
@@ -79,7 +79,7 @@ class TCC_Theme_Support {
 			'title-tag',
 			'wp-block-styles',
 		);
-		$support = apply_filters( $this->filter_prefix . '_load_theme_support', $support );
+		$support = apply_filters( "{$this->filter_prefix}_load_theme_support", $support );
 		if ( ! empty( $support ) ) {
 			$functions = array_map(
 				function( $item ) {
@@ -123,7 +123,7 @@ class TCC_Theme_Support {
 	 */
 	protected function content_width() {
 		global $content_width;
-		$content_width = apply_filters( $this->filter_prefix . '_support_content_width', $this->content_width );
+		$content_width = apply_filters( "{$this->filter_prefix}_support_content_width", $this->content_width );
 	}
 
 	/**
@@ -146,7 +146,7 @@ class TCC_Theme_Support {
 			'admin-head-callback'    => '',
 			'admin-preview-callback' => '',
 		);
-		$background = apply_filters( $this->filter_prefix . '_support_custom_background', $background );
+		$background = apply_filters( "{$this->filter_prefix}_support_custom_background", $background );
 		if ( (bool) $background ) {
 			add_theme_support( 'custom-background', $background );
 		}
@@ -177,7 +177,7 @@ class TCC_Theme_Support {
 			'video'                  => false,
 			'video-active-callback'  => 'is_front_page',
 		);
-		$header = apply_filters( $this->filter_prefix . '_support_custom_header', $header );
+		$header = apply_filters( "{$this->filter_prefix}_support_custom_header", $header );
 		if ( (bool) $header ) {
 			add_theme_support( 'custom-header', $header );
 		}
@@ -198,7 +198,7 @@ class TCC_Theme_Support {
 			'flex-width'  => true,
 			'header-text' => '', // array( 'site-title', 'site-description' ),
 		);
-		$logo = apply_filters( $this->filter_prefix . '_support_custom_logo', $logo );
+		$logo = apply_filters( "{$this->filter_prefix}_support_custom_logo", $logo );
 		if ( (bool) $logo ) {
 			add_theme_support( 'custom-logo', $logo );
 		}
@@ -253,15 +253,15 @@ class TCC_Theme_Support {
 	 *
 	 * @since 20190529
 	 * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
-	 * @todo Add possibility of parsing css file to automatically generate palettes array 
+	 * @todo Add possibility of parsing css file to automatically generate palettes array
 	 */
 	protected function editor_color_palette() {
-		$colors = apply_filters( $this->filter_prefix . '_editor_color_palette', array() );
+		$colors = apply_filters( "{$this->filter_prefix}_editor_color_palette", array() );
 		if ( (bool) $colors ) {
 			$palettes = array();
 			foreach( $colors as $color ) {
-				if ( isset( $color['name'] ) && isset( $color['color'] ) ) {
-					if ( ! isset( $color['slug'] ) ) {
+				if ( array_key_exists( 'name', $color ) && array_key_exists( 'color', $color ) ) {
+					if ( ! array_key_exists( 'slug', $color ) ) {
 						$color['slug'] = sanitize_title( $color['name'] );
 					}
 					$palettes[] = $color;
@@ -282,18 +282,18 @@ class TCC_Theme_Support {
 	 * @todo Add possibility of parsing css file to automatically generate fonts array
 	 */
 	protected function editor_font_sizes() {
-		$sizes = apply_filters( $this->filter_prefix . '_editor_font_sizes', array() );
-		if ( ! empty( $sizes ) ) {
+		$sizes = apply_filters( "{$this->filter_prefix}_editor_font_sizes", array() );
+		if ( (bool) $sizes ) {
 			$fonts = array();
 			foreach( $sizes as $size ) {
-				if ( isset( $size['name'] ) && isset( $size['size'] ) ) {
-					if ( ! isset( $size['slug'] ) ) {
+				if ( array_key_exists( 'name', $size ) && array_key_exists( 'size', $size ) ) {
+					if ( ! array_key_exists( 'slug', $size ) ) {
 						$size['slug'] = sanitize_title( $size['name'] );
 					}
 					$fonts[] = $size;
 				}
 			}
-			if ( ! empty( $fonts ) ) {
+			if ( (bool) $fonts ) {
 				$this->disable_custom_font_sizes( true );
 				add_theme_support( 'editor-font-sizes', $fonts );
 			}
@@ -342,7 +342,7 @@ class TCC_Theme_Support {
 			'gallery',
 			'search-form',
 		);
-		$html5 = apply_filters( $this->filter_prefix . '_support_html5', $html5 );
+		$html5 = apply_filters( "{$this->filter_prefix}_support_html5", $html5 );
 		if ( (bool) $html5 ) {
 			add_theme_support( 'html5', $html5 );
 		}
@@ -366,14 +366,23 @@ class TCC_Theme_Support {
 			'status',
 			'video',
 		);
-		$formats = apply_filters( $this->filter_prefix . '_support_post_formats', $formats );
+		$formats = apply_filters( "{$this->filter_prefix}_support_post_formats", $formats );
 		if ( (bool) $formats ) {
 			add_theme_support( 'post-formats', $formats );
-			add_filter( $this->filter_prefix . '_support_post_type', function( $supports ) {
-				$supports[] = 'post-formats';
-				return $supports;
-			});
+			add_filter( "{$this->filter_prefix}_support_post_type", [ $this, 'add_post_format_support' ] );
 		}
+	}
+
+	/**
+	 *  Add post-formats to theme support.
+	 *
+	 * @since 20200422
+	 * @param array $supports
+	 * @return array
+	 */
+	public function add_post_format_support( $supports ) {
+		$supports[] = 'post-formats';
+		return $supports;
 	}
 
 	/**
@@ -393,18 +402,18 @@ class TCC_Theme_Support {
 			'comments',
 			'revisions',
 		);
-		$supports = apply_filters( $this->filter_prefix . '_support_post_type', $supports );
+		$supports = apply_filters( "{$this->filter_prefix}_support_post_type", $supports );
 		if ( (bool) $supports ) {
-			# post type: post
-			$posts = apply_filters( $this->filter_prefix . '_support_post_type_posts', $supports );
+			// post type: post
+			$posts = apply_filters( "{$this->filter_prefix}_support_post_type_posts", $supports );
 			if ( (bool) $posts ) {
 				add_post_type_support( 'post', $posts );
 			}
-			# post type: page
+			// post type: page
 			if ( is_post_type_hierarchical( 'page' ) ) {
 				$supports[] = 'page-attributes';
 			}
-			$pages = apply_filters( $this->filter_prefix . '_support_post_type_pages', $supports );
+			$pages = apply_filters( "{$this->filter_prefix}_support_post_type_pages", $supports );
 			if ( (bool) $pages ) {
 				add_post_type_support( 'page', $pages );
 			}
@@ -418,12 +427,21 @@ class TCC_Theme_Support {
 	 * @link https://codex.wordpress.org/Post_Thumbnails
 	 */
 	protected function post_thumbnails() {
-		add_theme_support( 'post-thumbnails' );  # thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
-		do_action(  $this->filter_prefix . '_support_post_thumbnails' );
-		add_filter( $this->filter_prefix . '_support_post_type', function( $supports ) {
-			$supports[] = 'thumbnail';
-			return $supports;
-		});
+		add_theme_support( 'post-thumbnails' ); // Defaults: thumbnail (150px x 150px), medium (300px x 300px), large (640px x 640px), full (original size uploaded)
+		do_action(  "{$this->filter_prefix}_support_post_thumbnails" );
+		add_filter( "{$this->filter_prefix}_support_post_type", [ $this, 'add_post_thumbnail_support' ] );
+	}
+
+	/**
+	 *  Add thumbnail support.
+	 *
+	 * @since 20200422
+	 * @param array $supports
+	 * @return array
+	 */
+	public function add_post_thumbnail_support( $supports ) {
+		$supports[] = 'thumbnail';
+		return $supports;
 	}
 
 	/**
@@ -444,8 +462,8 @@ class TCC_Theme_Support {
 	 * @link https://developer.wordpress.org/reference/functions/get_theme_starter_content/
 	 */
 	protected function starter_content() {
-		$content = apply_filters( $this->filter_prefix . '_support_starter_content', array() );
-		if ( ! empty( $content ) ) {
+		$content = apply_filters( "{$this->filter_prefix}_support_starter_content", array() );
+		if ( (bool) $content ) {
 			add_theme_support( 'starter-content', $content );
 		}
 	}
@@ -465,7 +483,8 @@ class TCC_Theme_Support {
 			'scss',
 		);
 		$not_templates = array();
-		# add these exclusions when WP is checking for page templates
+		// Add these exclusions when WP is checking for page templates.
+		// @fixme: call this function via theme library.
 		if ( was_called_by( 'get_post_templates' ) ) {
 			$not_templates = array(
 				'classes',
@@ -475,7 +494,7 @@ class TCC_Theme_Support {
 				'template-parts',
 			);
 		}
-		return apply_filters( $this->filter_prefix . '_theme_scandir_exclusions', array_merge( $exclusions, $standard, $not_templates ), $exclusions );
+		return apply_filters( "{$this->filter_prefix}_theme_scandir_exclusions", array_merge( $exclusions, $standard, $not_templates ), $exclusions );
 	}
 
 	/**
