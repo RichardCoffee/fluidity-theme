@@ -491,15 +491,15 @@ if ( ! function_exists( 'sanitize_array' ) ) {
 /**
  * insert a key/value pair into an array after a specific key
  *
- * @link http://eosrei.net/comment/287
  * @param array $array
  * @param string $key
  * @param string $new_key
  * @param mixed $new_value
  * @return array
+ * @link http://eosrei.net/comment/287
  */
 if ( ! function_exists( 'array_insert_after' ) ) {
-	function array_insert_after( $array, $key, $new_key, $new_value ) {
+	function array_insert_after( array $array, $key, $new_key, $new_value ) {
 		if ( array_key_exists( $key, $array ) ) {
 			$new = array();
 			foreach ( $array as $k => $value ) {
