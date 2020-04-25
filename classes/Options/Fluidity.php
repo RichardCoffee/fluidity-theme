@@ -186,7 +186,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	 * @param string $base  Relative path to files
 	 * @param bool   $full  Whether the full file name should be returned.
 	 * @return array        Files meeting the desired criteria.
-	 */
+	 * /
 	protected function create_file_select( $slug, $base = '', $full = false ) {
 		$dir = get_stylesheet_directory();
 		if ( ! empty( $base ) ) { $dir .= '/' . $base; }
@@ -216,7 +216,7 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	 * @param array  $data  Source data for the layout.
 	 * @param string $text  Text for the layout label.
 	 * @return array        The completed layout.
-	 */
+	 * /
 	protected static function create_select_layout( $data, $text ) {
 		if ( is_array( $text ) ) {
 			$select = $text;
