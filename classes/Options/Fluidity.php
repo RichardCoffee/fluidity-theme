@@ -72,26 +72,23 @@ class TCC_Options_Fluidity extends TCC_Form_Admin {
 	public function add_menu_option() {
 		$cap = 'edit_theme_options';
 		if ( current_user_can( $cap ) ) {
-			$about = get_option( 'tcc_options_about' );
-			if ( ! $about ) {
-				$about = $this->get_defaults( 'about' );
-			}
+			$default = $this->get_defaults( 'about' );
+			$options = get_option( 'tcc_options_about', array() );
+			$about   = array_merge( $default, $options );
 			$page = __( 'Theme Options', 'tcc-fluid' );
 			$menu = __( 'Theme Options', 'tcc-fluid' );
 			$func = array( $this, $this->render );
-			if ( $about['loca'] === 'appearance' ) {
-				#$this->hook_suffix = add_theme_page( $page, $menu, $cap, $this->slug, $func );
-				#$this->hook_suffix = add_submenu_page( 'themes.php', $page, $menu, $cap, $this->slug, $func );
-				$this->hook_suffix = call_user_func( 'add_theme_page', $page, $menu, $cap, $this->slug, $func ); # FIXME: hack
-			} elseif ( $about['loca'] === 'settings' ) {
-				#$this->hook_suffix = add_options_page( $page, $menu, $cap, $this->slug, $func );
-				#$this->hook_suffix = add_submenu_page( 'options-general.php', $page, $menu, $cap, $this->slug, $func );
-				$this->hook_suffix = call_user_func( 'add_options_page', $page, $menu, $cap, $this->slug, $func ); # FIXME: hack
-			} else {
-				$icon = 'dashicons-admin-settings';
-				$priority = ( $about['wp_posi'] === 'top' ) ? '1.01302014' : '99.98697986';
-				#$this->hook_suffix = add_menu_page( $page, $menu, $cap, $this->slug, $func, $icon, $priority );
-				$this->hook_suffix = call_user_func( 'add_menu_page', $page, $menu, $cap, $this->slug, $func, $icon, $priority ); # FIXME: hack
+			switch( $about['loca'] ) {
+				case 'appearance':
+					$this->hook_suffix = add_theme_page( $page, $menu, $cap, $this->slug, $func );
+					break;
+				case 'settings':
+					$this->hook_suffix = add_options_page( $page, $menu, $cap, $this->slug, $func );
+					break;
+				default:
+					$icon = 'dashicons-admin-settings';
+					$priority = ( $about['wp_posi'] === 'top' ) ? '1.01302014' : '99.98697986';
+					$this->hook_suffix = add_menu_page( $page, $menu, $cap, $this->slug, $func, $icon, $priority );
 			}
 			do_action( 'tcc_admin_menu_setup' );
 		}
