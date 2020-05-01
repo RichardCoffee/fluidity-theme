@@ -28,9 +28,17 @@ input[type="radio"].radio-multiple-list-no {
 	color: red;
 }
 
+input[type="radio"].radio-multiple-list-no:checked::before {
+	background-color: red;
+}
+
 input[type="radio"].radio-multiple-list-yes {
 	border-color: green;
 	color: green;
+}
+
+input[type="radio"].radio-multiple-list-yes:checked::before {
+	background-color: green;
 }
 
 .nav-tab i.dashicons {
