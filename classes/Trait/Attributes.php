@@ -201,11 +201,9 @@ trait TCC_Trait_Attributes {
 			$nonce_required = apply_filters( 'fluid_attr_nonce_required', $nonce_required );
 		}
 		if ( ! array_key_exists( 'nonce', $attrs ) ) {
-			foreach( $nonce_required as $required ) {
-				if ( array_key_exists( $required, $attrs ) ) {
-					$attrs['nonce'] = static::$attr_javascript_nonce;
-					return $attrs;
-				}
+			$keys = array_keys( $attrs );
+			if ( array_intersect( $keys, $nonce_required ) ) {
+				$attrs['nonce'] = static::$attr_javascript_nonce;
 			}
 		}
 		return $attrs;
@@ -247,7 +245,7 @@ trait TCC_Trait_Attributes {
 	 *
 	 * @since 20170507
 	 * @param  string $tag  Tag for the HTML element.
-	 * @return bool
+	 * @return bool         Is the passed tag self-closing?
 	 */
 	protected function is_tag_self_closing( $tag ) {
 		static $self_closing;

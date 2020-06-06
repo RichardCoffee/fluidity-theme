@@ -677,12 +677,6 @@ abstract class TCC_Form_Admin {
 		$attrs = array();
 		$attrs['class'] = ( array_key_exists( 'divcss', $layout ) ) ? $layout['divcss'] : '';
 		$attrs['title'] = ( array_key_exists( 'help',   $layout ) ) ? $layout['help']   : '';
-		if ( array_key_exists( 'showhide', $layout ) ) {
-			$state = array_merge( [ 'show' => null, 'hide' => null ], $layout['showhide'] );
-			$attrs['data-item'] = ( array_key_exists( 'item', $state ) ) ? $state['item'] : $state['target'];
-			$attrs['data-show'] = $state['show'];
-			$attrs['data-hide'] = $state['hide'];
-		}
 		return $attrs;
 	}
 
@@ -1006,10 +1000,20 @@ abstract class TCC_Form_Admin {
 	 *  Render a field with multiple selects
 	 *
 	 * @since 20170228
-	 * @param array $data field information
+	 * @param array $data  Field information.
 	 */
 	private function render_select_multiple( $data ) {
-		$data['name'] .= '[]';
+		//  Insure the name has brackets for array values.
+		if ( ! strpos( $data['name'], '[]' ) ) $data['name'] .= '[]';
+		//  Add directions if none are provided
+		if ( ! array_key_exists( 'help', $data['layout'] ) ) {
+			//  Check for the attributes array.
+			if ( ! array_key_exists( 'attrs', $data['layout'] ) ) $data['layout']['attrs'] = array();
+			//  Add the directions unless something is already there.
+			if ( ! array_key_exists( 'title', $data['layout']['attrs'] ) ) {
+				$data['layout']['attrs']['title'] = __( "Utilize the 'ctrl+click' combo to choose multiple items.", 'tcc-fluid' );
+			}
+		}
 		$this->render_select( $data );
 	}
 
