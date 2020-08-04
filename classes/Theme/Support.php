@@ -340,7 +340,10 @@ class TCC_Theme_Support {
 			'comment-form',
 			'comment-list',
 			'gallery',
+			'navigation-widgets',
+			'script',
 			'search-form',
+			'style',
 		);
 		$html5 = apply_filters( "{$this->filter_prefix}_support_html5", $html5 );
 		if ( (bool) $html5 ) {
