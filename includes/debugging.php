@@ -18,7 +18,7 @@
  */
 if ( ! function_exists( 'fluid_wp_headers' ) ) {
 	function fluid_wp_headers( $headers ) {
-		fluid()->log_chance( $headers );
+		$log = fluid()->log_chance( $headers );
 		$defaults = array(
 			'X-Clacks-Overhead'       => 'GNU Terry Pratchett',
 			'X-Content-Type-Options'  => 'nosniff',
@@ -40,6 +40,7 @@ if ( ! function_exists( 'fluid_wp_headers' ) ) {
 			}
 		}
 		$defaults = apply_filters( 'fluid_http_header_defaults', $defaults );
+		if ( $log ) fluid()->log( $defaults, $headers );
 		return array_merge( $defaults, $headers );
 	}
 	add_filter( 'wp_headers', 'fluid_wp_headers' );

@@ -93,8 +93,10 @@ class TCC_Theme_Library {
 		if ( WP_DEBUG ) {
 			if ( mt_rand( 1, $max_chance ) === 1 ) {
 				$this->log( $data, 'stack' );
+				return true;
 			}
 		}
+		return false;
 	}
 
 
